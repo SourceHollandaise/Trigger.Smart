@@ -4,31 +4,20 @@ using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public sealed class LogonParameters
+
+    public class LogonParameters
     {
-        public bool Logon(string userName, string password)
+        public string UserName
         {
-            return IsValid(userName, password);
+            get;
+            set;
         }
 
-        static bool IsValid(string userName, string password)
+        public string Password
         {
-            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password))
-            {
-                var user = DependencyMapProvider.Instance.ResolveType<IPersistentStore<User>>().LoadAll().FirstOrDefault(p => p.UserName == userName && p.Password == password);
-
-                if (user != null)
-                {
-                    var provider = new SecurityInfoProvider();
-                    provider.SetUser(user);
-
-                    DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
-
-                    return true;
-                }
-            }
-
-            return false;
+            get;
+            set;
         }
     }
+    
 }

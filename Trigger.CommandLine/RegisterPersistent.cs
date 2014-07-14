@@ -29,8 +29,10 @@ namespace Trigger.CommandLine
             Map.RegisterType<IPersistentStore<IssueTracker>, XmlPersistentStore<IssueTracker>>();
         }
 
-        public void InitDefaults()
+        public void InitTypes()
         {
+            Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+
             var userStore = Map.ResolveType<IPersistentStore<User>>();
 
             var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "j.egger" && p.Password == "1234");

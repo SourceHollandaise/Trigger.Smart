@@ -17,7 +17,7 @@ namespace Trigger.CommandLine
             var reg = new RegisterPersistent();
             reg.InitStore();
             reg.RegisterStores();
-            reg.InitDefaults();
+            reg.InitTypes();
 
 
             var currentUser = LogonUser();
@@ -44,16 +44,17 @@ namespace Trigger.CommandLine
         static User LogonUser()
         {
             User currentUser = null;
-
+            var logon = new LogonParameters();
+            var auth = Map.ResolveType<IAuthenticate>();
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine("Username: ");
-                var userName = Console.ReadLine();
+                logon.UserName = Console.ReadLine();
                 Console.WriteLine("Password: ");
-                var password = ConsolePasswordMask.Enter();
+                logon.Password = ConsolePasswordMask.Enter();
                 Console.WriteLine();
-                var logonParameter = new LogonParameters();
-                if (logonParameter.Logon(userName, password))
+
+                if (auth.LogOn(logon))
                 {
 
                     currentUser = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
