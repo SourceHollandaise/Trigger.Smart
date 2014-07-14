@@ -1,0 +1,11 @@
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.CommandLine.exe.mdb
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.CommandLine.exe
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/Trigger.CommandLine.exe
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/Trigger.CommandLine.exe.mdb
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/System.dll
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.Modules.Base.dll
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.Modules.Base.dll.mdb
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/DependencyMaps.dll
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/DependencyMaps.dll.mdb
+/Users/trigger/Projects/Trigger.Smart/Trigger.CommandLine/bin/Debug/ServiceStack.Text.dll
