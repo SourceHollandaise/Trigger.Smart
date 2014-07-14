@@ -34,10 +34,10 @@ namespace Trigger.CommandLine
 
             var userStore = Map.ResolveType<IPersistentStore<User>>();
 
-            var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "j.egger" && p.Password == "1234");
+            var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Administrator" && p.Password == "admin");
             if (user == null)
             {
-                user = new User{ UserName = "j.egger", Password = "1234" };
+                user = new User{ UserName = "Administrator", Password = "admin" };
                 userStore.Save(user);
             }
         }

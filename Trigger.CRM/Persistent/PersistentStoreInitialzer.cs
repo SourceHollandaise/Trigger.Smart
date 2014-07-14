@@ -41,7 +41,10 @@ namespace Trigger.CRM.Persistent
             var typeMapFile = directory + "/typeMap.json";
 
             if (!File.Exists(typeMapFile))
+            {
                 File.Create(typeMapFile);
+                System.Threading.Thread.Sleep(2000);
+            }
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 

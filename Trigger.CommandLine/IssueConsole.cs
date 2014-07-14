@@ -29,9 +29,24 @@ namespace Trigger.CommandLine
                 Environment.Exit(0);
             }
 
-            Console.WriteLine("Cleaning up typeMap...");
-            XmlPersistentStoreUtils.RestoreTypeMap();
-   
+            Console.WriteLine("Cleanup datastore? Press <Enter> to clean up or any other key to continue!");
+
+            if (Console.ReadKey().Key == ConsoleKey.Enter)
+            {
+                Console.WriteLine("Start cleaning...");
+                XmlPersistentStoreUtils.RestoreTypeMap();
+                Console.WriteLine("Finished cleaning...");
+            }
+
+            var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.State != IssueState.Done && p.State != IssueState.Rejected).OrderBy(p => p.Created);
+
+            Console.WriteLine(string.Format("This is an overview for you {0}! Load current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
+            Console.WriteLine();
+            foreach (var item in openIssues)
+            {
+                WriteIssue(item);
+            }
+                
             Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -102,7 +117,6 @@ namespace Trigger.CommandLine
             Console.ForegroundColor = GetColorOnIssueSate(item.State);
             Console.WriteLine(string.Format("      State: {0}", item.State.ToString().ToUpper()));
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
 
@@ -133,15 +147,24 @@ namespace Trigger.CommandLine
             var issue = store.LoadAll().FirstOrDefault(p => p.Subject == subject);
             if (issue == null)
             {
-                issue = new IssueTracker
+                Console.WriteLine("Issue does not existing! Press <Enter> to create new or any other key to continue!");
+
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
                 {
-                    Subject = subject,
-                    CreatedBy = user,
-                    Created = DateTime.Now,
-                    Issue = IssueType.Bug,
-                    State = IssueState.Open
-                };
+
+                    issue = new IssueTracker
+                    {
+                        Subject = subject,
+                        CreatedBy = user,
+                        Created = DateTime.Now,
+                        Issue = IssueType.Bug,
+                        State = IssueState.Open
+                    };
+                }
+                else
+                    return;
             }
+                
             Console.WriteLine("Set Description: ");
             var description = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(description))
@@ -184,6 +207,7 @@ namespace Trigger.CommandLine
             {
                 store.Delete(issue.Id);
                 Console.WriteLine("Issue deleted!");
+                Console.WriteLine();
             }
         }
 
@@ -193,6 +217,7 @@ namespace Trigger.CommandLine
             {
                 var store = Map.ResolveType<IPersistentStore<IssueTracker>>();
                 Console.WriteLine("Load exisiting issues...");
+                Console.WriteLine();
                 foreach (var item in store.LoadAll().OrderBy( p => p.Created))
                     WriteIssue(item);
             }
