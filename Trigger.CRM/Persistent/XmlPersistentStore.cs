@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
+
     public class XmlPersistentStore<T> : IPersistentStore<T> where T: IPersistentId
     {
         static string DefaultDirectory

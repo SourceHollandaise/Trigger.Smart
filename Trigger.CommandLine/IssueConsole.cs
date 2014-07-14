@@ -28,7 +28,10 @@ namespace Trigger.CommandLine
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-                
+
+            Console.WriteLine("Cleaning up typeMap...");
+            XmlPersistentStoreUtils.RestoreTypeMap();
+   
             Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -80,11 +83,11 @@ namespace Trigger.CommandLine
                 if (command.ToLower().Equals(Commands.ADD.ToLower()))
                     AddOrUpdateIssue();
                 else if (command.ToLower().StartsWith(Commands.LST.ToLower()))
-                    ListIssues(command.ToLower().Replace(Commands.LST.ToLower(), ""));
+                    ListItems(command.ToLower().Replace(Commands.LST.ToLower(), ""));
                 else if (command.ToLower().Equals(Commands.EXIT.ToLower()))
                     Environment.Exit(0);
                 else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
-                    DeleteIssue(command.ToLower().Replace(Commands.DEL.ToLower(), ""));
+                    DeleteIssue(command.Replace(Commands.DEL.ToLower(), ""));
                 else
                     Console.WriteLine("Command not valid!");
 
@@ -184,13 +187,13 @@ namespace Trigger.CommandLine
             }
         }
 
-        static void ListIssues(string target)
+        static void ListItems(string target)
         {
             if (target.ToLower().Equals("issue"))
             {
                 var store = Map.ResolveType<IPersistentStore<IssueTracker>>();
                 Console.WriteLine("Load exisiting issues...");
-                foreach (var item in store.LoadAll())
+                foreach (var item in store.LoadAll().OrderBy( p => p.Created))
                     WriteIssue(item);
             }
 
@@ -198,7 +201,7 @@ namespace Trigger.CommandLine
             {
                 var store = Map.ResolveType<IPersistentStore<Project>>();
                 Console.WriteLine("Load exisiting projects...");
-                foreach (var item in store.LoadAll())
+                foreach (var item in store.LoadAll().OrderBy(p => p.Name))
                     Console.WriteLine(item.Name);
             }
         }

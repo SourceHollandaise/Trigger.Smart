@@ -2,7 +2,6 @@
 using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
-using System.Reflection;
 
 namespace Trigger.CommandLine
 {
