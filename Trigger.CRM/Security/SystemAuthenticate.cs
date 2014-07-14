@@ -7,17 +7,21 @@ namespace Trigger.CRM.Model
     {
         public bool LogOn(LogonParameters logonparamters)
         {
-            var systemUser = WindowsIdentity.GetCurrent().Name;
+            var id = WindowsIdentity.GetCurrent();
 
-            if (logonparamters.UserName.Equals(systemUser))
+            if (id != null && id.IsAuthenticated)
             {
-                var provider = new SecurityInfoProvider();
-                provider.SetUser(new User{ UserName = systemUser });
+                if (logonparamters.UserName.Equals(id.Name))
+                {
+                    var provider = new SecurityInfoProvider();
+                    provider.SetUser(new User{ UserName = id.Name });
 
-                DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
+                    DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
 
-                return true;
+                    return true;
+                }
             }
+                
             return false;
         }
     }
