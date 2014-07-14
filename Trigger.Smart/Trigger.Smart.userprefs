@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Trigger.Dependency/DependencyMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Trigger.CommandLine/IssueConsole.cs">
     <Files>
-      <File FileName="../Trigger.CRM/Security/ISecurityInfoProvider.cs" Line="1" Column="1" />
-      <File FileName="../Trigger.CRM/Security/LogonParameters.cs" Line="21" Column="18" />
-      <File FileName="../Trigger.CRM/Security/UserFactory.cs" Line="18" Column="63" />
-      <File FileName="../Trigger.Dependency/DependencyMapProvider.cs" Line="1" Column="1" />
-      <File FileName="../Trigger.Dependency/DependencyMap.cs" Line="95" Column="44" />
+      <File FileName="../Trigger.CommandLine/IssueConsole.cs" Line="51" Column="44" />
+      <File FileName="../Trigger.CommandLine/RegisterPersistent.cs" Line="16" Column="10" />
+      <File FileName="../Trigger.CRM/Persistent/XmlPersistentStore.cs" Line="31" Column="10" />
+      <File FileName="../Trigger.CommandLine/Commands.cs" Line="9" Column="44" />
+      <File FileName="../Trigger.Dependency/DependencyMap.cs" Line="107" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

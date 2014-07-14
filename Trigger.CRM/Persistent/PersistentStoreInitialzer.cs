@@ -1,7 +1,6 @@
 using System;
-using System.IO;
 using System.Configuration;
-using Trigger.Dependency;
+using System.IO;
 
 namespace Trigger.CRM.Persistent
 {
@@ -11,47 +10,33 @@ namespace Trigger.CRM.Persistent
 
         internal static string PersistentStoreMap;
 
-        public static void InitStore(string initDirectory)
+        public static void InitStore()
         {
-            PersistentStoreLocation = CreateStoreLocation(initDirectory);
+            PersistentStoreLocation = SetStoreLocation();
 
-            PersistentStoreMap = CreateStoreMap(PersistentStoreLocation);
-
-            DependencyMapProvider.Instance.RegisterType<IdGenerator, GuidIdGenerator>();
+            PersistentStoreMap = CreateStoreMap();
         }
 
-        static string CreateStoreLocation(string directory)
+        static string SetStoreLocation()
         {
-            var defaultDirectory = directory;
+            var defaultDirectory = ConfigurationManager.AppSettings["PersistentStoreLocation"];
 
             if (!Directory.Exists(defaultDirectory))
                 Directory.CreateDirectory(defaultDirectory);
-
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            config.AppSettings.Settings.Add("PersistentStoreLocation", defaultDirectory);
-
-            config.Save(ConfigurationSaveMode.Full);
-
+                
             return defaultDirectory;
         }
 
-        static string CreateStoreMap(string directory)
+        static string CreateStoreMap()
         {
-            var typeMapFile = directory + "/typeMap.json";
+            var typeMapFile = PersistentStoreLocation + ConfigurationManager.AppSettings["PersistentStoreMap"];
 
             if (!File.Exists(typeMapFile))
             {
                 File.Create(typeMapFile);
                 System.Threading.Thread.Sleep(2000);
             }
-
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            config.AppSettings.Settings.Add("PersistentStoreMap", typeMapFile);
-
-            config.Save(ConfigurationSaveMode.Full);
-
+                
             return typeMapFile;
         }
     }

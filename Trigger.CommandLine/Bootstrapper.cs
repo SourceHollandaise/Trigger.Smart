@@ -2,36 +2,42 @@
 using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
+using Trigger.Dependency;
 
 namespace Trigger.CommandLine
 {
-    class RegisterPersistent
+    abstract class Bootstrapper
     {
-        static Trigger.Dependency.IDependencyMap Map
+        protected static IDependencyMap Map
         {
             get
             {
-                return Trigger.Dependency.DependencyMapProvider.Instance;
+                return DependencyMapProvider.Instance;
             }
         }
 
-        public void InitStore()
+        protected static void StartUpApplication()
         {
-            PersistentStoreInitialzer.InitStore("/Users/trigger/PersistentFileDB");
+            PersistentStoreInitialzer.InitStore();
+
+            Register();
+
+            CreateInitialObjects();
         }
 
-        public void RegisterStores()
+        protected static void Register()
         {
+            Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+            Map.RegisterType<IdGenerator, GuidIdGenerator>();
+
             Map.RegisterType<IPersistentStore<User>, XmlPersistentStore<User>>();
             Map.RegisterType<IPersistentStore<Project>, XmlPersistentStore<Project>>();
             Map.RegisterType<IPersistentStore<TimeTracker>, XmlPersistentStore<TimeTracker>>();
             Map.RegisterType<IPersistentStore<IssueTracker>, XmlPersistentStore<IssueTracker>>();
         }
 
-        public void InitTypes()
+        protected static void CreateInitialObjects()
         {
-            Map.RegisterType<IAuthenticate, SystemAuthenticate>();
-
             var userStore = Map.ResolveType<IPersistentStore<User>>();
 
             var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Administrator" && p.Password == "admin");

@@ -6,19 +6,15 @@ using Trigger.CRM.Model;
 
 namespace Trigger.CommandLine
 {
-    class IssueConsole
+    class IssueConsole : Bootstrapper
     {
         public static void Main(string[] args)
         {
+            StartUpApplication();
+
             Console.WriteLine("CIT - COMMMANDLINE ISSUE TRACKER 0.1");
             Console.WriteLine("Trigger Smart Solutions");
             Console.WriteLine();
-
-            var reg = new RegisterPersistent();
-            reg.InitStore();
-            reg.RegisterStores();
-            reg.InitTypes();
-
 
             var currentUser = LogonUser();
 
@@ -46,7 +42,32 @@ namespace Trigger.CommandLine
             {
                 WriteIssue(item);
             }
-                
+
+            /*
+            for (int i = 0; i < 10000; i++)
+            {
+                var issue = new IssueTracker();
+                issue.Created = DateTime.Now;
+                issue.CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                issue.Subject = "Test Issue with number '" + i + "' " + Guid.NewGuid();
+                issue.Description = "This is fuckin' awesome!!!";
+                issue.State = IssueState.Accepted;
+                issue.Issue = IssueType.ChangeRequest;
+                var project = Map.ResolveType<IPersistentStore<Project>>().LoadAll().FirstOrDefault(p => p.Name == "Test Project");
+                if (project == null)
+                {
+                    project = new Project{ Name = "Test Project" };
+                    Map.ResolveType<IPersistentStore<Project>>().Save(project);
+                }
+
+                issue.Project = project;
+
+                Map.ResolveType<IPersistentStore<IssueTracker>>().Save(issue);
+
+                Console.WriteLine("Issue created: " + issue.Subject);
+            }
+            */
+
             Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -228,14 +249,6 @@ namespace Trigger.CommandLine
                 Console.WriteLine("Load exisiting projects...");
                 foreach (var item in store.LoadAll().OrderBy(p => p.Name))
                     Console.WriteLine(item.Name);
-            }
-        }
-
-        static Trigger.Dependency.IDependencyMap Map
-        {
-            get
-            {
-                return Trigger.Dependency.DependencyMapProvider.Instance;
             }
         }
     }
