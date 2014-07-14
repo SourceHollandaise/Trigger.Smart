@@ -36,7 +36,12 @@ namespace Trigger.CommandLine
             }
             while (key.Key != ConsoleKey.Enter);
 
-            return input.Replace("\n", "");
+
+
+            var result = input.Replace("\r\n", "");
+
+            return result;
+
         }
     }
 }

@@ -1,6 +1,6 @@
 
-using System.ComponentModel;
 using System;
+using System.ComponentModel;
 
 namespace Trigger.CRM.Model
 {
@@ -185,5 +185,4 @@ namespace Trigger.CRM.Model
         }
 
     }
-	
 }

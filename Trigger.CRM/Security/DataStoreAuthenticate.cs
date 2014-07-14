@@ -1,8 +1,9 @@
 using System.Linq;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
+using Trigger.CRM.Model;
 
-namespace Trigger.CRM.Model
+namespace Trigger.CRM.Security
 {
     public sealed class DataStoreAuthenticate : IAuthenticate
     {

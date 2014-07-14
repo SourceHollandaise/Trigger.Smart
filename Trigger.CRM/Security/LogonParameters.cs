@@ -1,5 +1,5 @@
 
-namespace Trigger.CRM.Model
+namespace Trigger.CRM.Security
 {
     public class LogonParameters
     {

@@ -44,20 +44,20 @@ namespace Trigger.CRM.Model
             }
         }
 
-        public IList<TimeTracker> TrackedTimes
-        {
-            get
-            {
-                return Map.ResolveType<IPersistentStore<TimeTracker>>().LoadAll().Where(p => p.Project != null && p.Project.name == Name).ToList();
-            }
-        }
-
-        public IList<IssueTracker> TrackedIssues
-        {
-            get
-            {
-                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.Project != null && p.Project.name == Name).ToList();
-            }
-        }
+        //        public IList<TimeTracker> TrackedTimes
+        //        {
+        //            get
+        //            {
+        //                return Map.ResolveType<IPersistentStore<TimeTracker>>().LoadAll().Where(p => p.Project != null && p.Project.name == Name).ToList();
+        //            }
+        //        }
+        //
+        //        public IList<IssueTracker> TrackedIssues
+        //        {
+        //            get
+        //            {
+        //                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.Project != null && p.Project.name == Name).ToList();
+        //            }
+        //        }
     }
 }

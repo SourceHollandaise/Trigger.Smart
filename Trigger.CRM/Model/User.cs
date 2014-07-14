@@ -61,28 +61,28 @@ namespace Trigger.CRM.Model
             }
         }
 
-        public IList<TimeTracker> TrackedTimes
-        {
-            get
-            {
-                return Map.ResolveType<IPersistentStore<TimeTracker>>().LoadAll().Where(p => p.User != null && p.User.UserName == UserName).ToList();
-            }
-        }
-
-        public IList<IssueTracker> TrackedIssuesCreated
-        {
-            get
-            {
-                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.CreatedBy != null && p.CreatedBy.UserName == UserName).ToList();
-            }
-        }
-
-        public IList<IssueTracker> TrackedIssuesResolved
-        {
-            get
-            {
-                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.ResolvedBy != null && p.ResolvedBy.UserName == UserName).ToList();
-            }
-        }
+        //        public IList<TimeTracker> TrackedTimes
+        //        {
+        //            get
+        //            {
+        //                return Map.ResolveType<IPersistentStore<TimeTracker>>().LoadAll().Where(p => p.User != null && p.User.UserName == UserName).ToList();
+        //            }
+        //        }
+        //
+        //        public IList<IssueTracker> TrackedIssuesCreated
+        //        {
+        //            get
+        //            {
+        //                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.CreatedBy != null && p.CreatedBy.UserName == UserName).ToList();
+        //            }
+        //        }
+        //
+        //        public IList<IssueTracker> TrackedIssuesResolved
+        //        {
+        //            get
+        //            {
+        //                return Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.ResolvedBy != null && p.ResolvedBy.UserName == UserName).ToList();
+        //            }
+        //        }
     }
 }

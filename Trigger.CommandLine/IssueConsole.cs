@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
+using Trigger.CRM.Security;
 
 namespace Trigger.CommandLine
 {
@@ -25,48 +26,23 @@ namespace Trigger.CommandLine
                 Environment.Exit(0);
             }
 
-            Console.WriteLine("Cleanup datastore? Press <Enter> to clean up or any other key to continue!");
-
-            if (Console.ReadKey().Key == ConsoleKey.Enter)
-            {
-                Console.WriteLine("Start cleaning...");
-                XmlPersistentStoreUtils.RestoreTypeMap();
-                Console.WriteLine("Finished cleaning...");
-            }
+//            Console.WriteLine("Cleanup datastore? Press <Enter> to clean up or any other key to continue!");
+//
+//            if (Console.ReadKey().Key == ConsoleKey.Enter)
+//            {
+//                Console.WriteLine("Start cleaning...");
+//                XmlPersistentStoreUtils.RestoreTypeMap();
+//                Console.WriteLine("Finished cleaning...");
+//            }
 
             var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.State != IssueState.Done && p.State != IssueState.Rejected).OrderBy(p => p.Created);
 
-            Console.WriteLine(string.Format("This is an overview for you {0}! Load current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
+            Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
             Console.WriteLine();
             foreach (var item in openIssues)
             {
                 WriteIssue(item);
             }
-
-            /*
-            for (int i = 0; i < 10000; i++)
-            {
-                var issue = new IssueTracker();
-                issue.Created = DateTime.Now;
-                issue.CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-                issue.Subject = "Test Issue with number '" + i + "' " + Guid.NewGuid();
-                issue.Description = "This is fuckin' awesome!!!";
-                issue.State = IssueState.Accepted;
-                issue.Issue = IssueType.ChangeRequest;
-                var project = Map.ResolveType<IPersistentStore<Project>>().LoadAll().FirstOrDefault(p => p.Name == "Test Project");
-                if (project == null)
-                {
-                    project = new Project{ Name = "Test Project" };
-                    Map.ResolveType<IPersistentStore<Project>>().Save(project);
-                }
-
-                issue.Project = project;
-
-                Map.ResolveType<IPersistentStore<IssueTracker>>().Save(issue);
-
-                Console.WriteLine("Issue created: " + issue.Subject);
-            }
-            */
 
             Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
 
@@ -90,7 +66,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine("Username: ");
                 logon.UserName = Console.ReadLine();
                 Console.WriteLine("Password: ");
-                logon.Password = ConsolePasswordMask.Enter();
+                logon.Password = Console.ReadLine();
                 Console.WriteLine();
 
                 if (auth.LogOn(logon))
@@ -212,6 +188,7 @@ namespace Trigger.CommandLine
             var state = Console.ReadLine();
             issue.State = (IssueState)Convert.ToInt32(state);
             store.Save(issue);
+            System.Threading.Thread.Sleep(500);
             var item = store.Load(issue.Id);
             if (item != null)
             {
@@ -227,6 +204,7 @@ namespace Trigger.CommandLine
             if (issue != null)
             {
                 store.Delete(issue.Id);
+                System.Threading.Thread.Sleep(500);
                 Console.WriteLine("Issue deleted!");
                 Console.WriteLine();
             }

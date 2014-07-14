@@ -1,0 +1,5 @@
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.Dependency/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.Dependency/bin/Release/DependencyMaps.dll.mdb
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.Dependency/bin/Release/DependencyMaps.dll
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.Dependency/obj/Release/DependencyMaps.dll
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.Dependency/obj/Release/DependencyMaps.dll.mdb

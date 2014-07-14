@@ -21,6 +21,8 @@ namespace Trigger.CRM.Persistent
         {
             var defaultDirectory = ConfigurationManager.AppSettings["PersistentStoreLocation"];
 
+
+
             if (!Directory.Exists(defaultDirectory))
                 Directory.CreateDirectory(defaultDirectory);
                 

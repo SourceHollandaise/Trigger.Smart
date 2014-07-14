@@ -3,6 +3,7 @@ using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
 using Trigger.Dependency;
+using Trigger.CRM.Security;
 
 namespace Trigger.CommandLine
 {
@@ -27,7 +28,7 @@ namespace Trigger.CommandLine
 
         protected static void Register()
         {
-            Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+            Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
 
             Map.RegisterType<IPersistentStore<User>, XmlPersistentStore<User>>();
@@ -40,10 +41,10 @@ namespace Trigger.CommandLine
         {
             var userStore = Map.ResolveType<IPersistentStore<User>>();
 
-            var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Administrator" && p.Password == "admin");
+            var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
             if (user == null)
             {
-                user = new User{ UserName = "Administrator", Password = "admin" };
+                user = new User{ UserName = "Admin", Password = "a" };
                 userStore.Save(user);
             }
         }

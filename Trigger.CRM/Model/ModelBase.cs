@@ -8,7 +8,7 @@ namespace Trigger.CRM.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public object Id
+        public string Id
         {
             get;
             set;

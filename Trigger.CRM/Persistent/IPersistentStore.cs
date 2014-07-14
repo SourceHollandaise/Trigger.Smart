@@ -4,7 +4,7 @@ namespace Trigger.CRM.Persistent
 {
     public interface IPersistentStore<T> where T: IPersistentId
     {
-        string Save(T item);
+        void Save(T item);
 
         T Load(object itemId);
 

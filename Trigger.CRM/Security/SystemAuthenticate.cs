@@ -1,7 +1,8 @@
 using Trigger.Dependency;
 using System.Security.Principal;
+using Trigger.CRM.Model;
 
-namespace Trigger.CRM.Model
+namespace Trigger.CRM.Security
 {
     public sealed class SystemAuthenticate : IAuthenticate
     {

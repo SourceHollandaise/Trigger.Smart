@@ -29,32 +29,28 @@ namespace Trigger.CRM.Persistent
             return Guid.NewGuid();
         }
 
-        public string Save(T item)
+        public void Save(T item)
         {
             if (Directory.Exists(DefaultDirectory))
             {
                 if (item.Id == null)
-                    item.Id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
+                    item.Id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString();
 
                 var	json = ServiceStack.Text.XmlSerializer.SerializeToString<T>(item);
-                var path = DefaultDirectory + "/" + item.Id + ".xml";
+                var path = Path.Combine(DefaultDirectory, item.Id + ".xml");
 
                 if (!File.Exists(path))
-                    SaveToTypeMap(typeof(T), path, item.Id.ToString());
-
+                    SaveToTypeMap(typeof(T), item.Id);
+                    
                 File.WriteAllText(path, json);
-
-                return path;
             }
-
-            return null;
         }
 
         public T Load(object itemId)
         {
             if (Directory.Exists(DefaultDirectory))
             {
-                var path = DefaultDirectory + "/" + itemId + ".xml";
+                var path = Path.Combine(DefaultDirectory, itemId + ".xml");
 
                 if (File.Exists(path))
                 {
@@ -73,7 +69,7 @@ namespace Trigger.CRM.Persistent
         {
             if (Directory.Exists(DefaultDirectory))
             {
-                var path = DefaultDirectory + "/" + itemId + ".xml";
+                var path = Path.Combine(DefaultDirectory, itemId + ".xml");
 
                 if (File.Exists(path))
                     File.Delete(path);
@@ -84,6 +80,7 @@ namespace Trigger.CRM.Persistent
         {
             if (File.Exists(TypeMapFile))
             {
+
                 var lines = File.ReadAllLines(TypeMapFile);
 
                 foreach (var line in lines)
@@ -91,9 +88,13 @@ namespace Trigger.CRM.Persistent
                     var splitted = line.Split(';');
                     if (splitted[0] == typeof(T).FullName)
                     {
-                        var item = Load(splitted[1]);
-                        if (item != null)
-                            yield return item;
+                        var fileName = Path.Combine(DefaultDirectory, splitted[1] + ".xml");
+                        if (File.Exists(fileName))
+                        {
+                            var item = Load(fileName);
+                            if (item != null)
+                                yield return item;
+                        }
                     }
                 }
             }
@@ -111,10 +112,10 @@ namespace Trigger.CRM.Persistent
             return default(T);
         }
 
-        static void SaveToTypeMap(Type type, string file, string id)
+        static void SaveToTypeMap(Type type, string id)
         {
-            if (Directory.Exists(DefaultDirectory) && File.Exists(TypeMapFile))
-                File.AppendAllText(TypeMapFile, type.FullName + ";" + file + ";" + id + Environment.NewLine);
+            if (File.Exists(TypeMapFile))
+                File.AppendAllText(TypeMapFile, type.FullName + ";" + id + Environment.NewLine);
         }
     }
 }
