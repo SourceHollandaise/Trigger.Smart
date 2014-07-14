@@ -11,7 +11,7 @@ namespace Trigger.CRM.Model
             return IsValid(userName, password);
         }
 
-        bool IsValid(string userName, string password)
+        static bool IsValid(string userName, string password)
         {
             if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password))
             {

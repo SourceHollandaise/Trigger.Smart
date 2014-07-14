@@ -1,5 +1,0 @@
-/Users/trigger/Projects/Trigger.Smart/Trigger.Dependency/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/Users/trigger/Projects/Trigger.Smart/Trigger.Dependency/bin/Debug/DependencyMaps.dll.mdb
-/Users/trigger/Projects/Trigger.Smart/Trigger.Dependency/bin/Debug/DependencyMaps.dll
-/Users/trigger/Projects/Trigger.Smart/Trigger.Dependency/obj/Debug/DependencyMaps.dll
-/Users/trigger/Projects/Trigger.Smart/Trigger.Dependency/obj/Debug/DependencyMaps.dll.mdb

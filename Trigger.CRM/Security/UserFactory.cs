@@ -8,11 +8,11 @@ namespace Trigger.CRM.Model
 
     public class UserFactory
     {
-        public User CreateUser(string userName, string password, string comparePassword)
+        public User CreateUser(string userName, string password, string passwordToCompare)
         {
-            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password) && !string.IsNullOrWhiteSpace(comparePassword))
+            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password) && !string.IsNullOrWhiteSpace(passwordToCompare))
             {
-                if (!password.Equals(comparePassword))
+                if (!password.Equals(passwordToCompare))
                     throw new ArgumentException("Passwords are not equal!");
 
                 var user = DependencyMapProvider.Instance.ResolveType<IPersistentStore<User>>().LoadAll().FirstOrDefault(p => p.UserName == userName && p.Password == password);

@@ -1,4 +1,3 @@
-using System.Linq;
 using System.ComponentModel;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
