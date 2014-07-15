@@ -43,6 +43,7 @@ namespace Trigger.CommandLine
             }
             Console.WriteLine();
             Console.WriteLine("Adding new documents to store...");
+            Console.WriteLine();
             var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
             Console.WriteLine(string.Format("{0} documents added!", count));
             Console.WriteLine();
@@ -53,10 +54,8 @@ namespace Trigger.CommandLine
             Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
             Console.WriteLine();
             foreach (var item in openIssues)
-            {
                 WriteIssue(item);
-            }
-
+            Console.WriteLine();
             Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -269,6 +268,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine();
                 foreach (var item in store.LoadAll().OrderBy( p => p.Created))
                     WriteIssue(item);
+                Console.WriteLine();
             }
 
             if (target.ToLower().Equals("project"))
@@ -277,6 +277,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine("Load exisiting projects...");
                 foreach (var item in store.LoadAll().OrderBy(p => p.Name))
                     Console.WriteLine(item.Name);
+                Console.WriteLine();
             }
 
             if (target.ToLower().Equals("document"))
@@ -284,6 +285,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine();
                 Console.WriteLine("Adding new documents to store...");
                 var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+                Console.WriteLine();
                 Console.WriteLine(string.Format("{0} documents added!", count));
                 Console.WriteLine();
 

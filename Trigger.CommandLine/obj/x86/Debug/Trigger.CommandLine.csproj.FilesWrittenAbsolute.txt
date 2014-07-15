@@ -1,0 +1,13 @@
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/app.config
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.CommandLine.exe.config
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.CommandLine.exe.mdb
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.CommandLine.exe
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/Trigger.CommandLine.exe
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/obj/x86/Debug/Trigger.CommandLine.exe.mdb
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/System.dll
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.Modules.Base.dll
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/Trigger.Modules.Base.dll.mdb
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/DependencyMaps.dll
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/DependencyMaps.dll.mdb
+/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CommandLine/bin/Debug/ServiceStack.Text.dll

@@ -4,6 +4,7 @@ using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
 using Trigger.Dependency;
 using Trigger.CRM.Security;
+using System.Configuration;
 
 namespace Trigger.CommandLine
 {
@@ -28,7 +29,17 @@ namespace Trigger.CommandLine
 
         protected void Register()
         {
-            Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
+            var logonType = ConfigurationManager.AppSettings["LogonType"];
+            if (!string.IsNullOrWhiteSpace(logonType))
+            {
+                if (logonType == "System")
+                    Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+                if (logonType == "DataStore")
+                    Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
+            }
+            else
+                Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
 
             Map.RegisterType<IPersistentStore<User>, XmlPersistentStore<User>>();
