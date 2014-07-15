@@ -7,7 +7,6 @@ namespace Trigger.CRM.Model
 {
     public class IssueTracker : ModelBase
     {
-
         public void UpdateIssue(IssueState state)
         {
             if (state == IssueState.Done)
