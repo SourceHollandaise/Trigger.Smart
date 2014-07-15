@@ -5,7 +5,6 @@ using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
-
     public class XmlPersistentStore<T> : IPersistentStore<T> where T: IPersistentId
     {
         static string DefaultDirectory
@@ -24,17 +23,12 @@ namespace Trigger.CRM.Persistent
             }
         }
 
-        protected virtual object GetId()
-        {
-            return Guid.NewGuid();
-        }
-
         public void Save(T item)
         {
             if (Directory.Exists(DefaultDirectory))
             {
                 if (item.Id == null)
-                    item.Id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString();
+                    item.Id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
                 var	json = ServiceStack.Text.XmlSerializer.SerializeToString<T>(item);
                 var path = Path.Combine(DefaultDirectory, item.Id + ".xml");
@@ -57,9 +51,7 @@ namespace Trigger.CRM.Persistent
                     var content = File.ReadAllText(path);
 
                     return ServiceStack.Text.XmlSerializer.DeserializeFromString<T>(content);
-
                 }
-                return default(T);
             }
 
             return default(T);

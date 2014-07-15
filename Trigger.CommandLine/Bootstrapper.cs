@@ -7,9 +7,9 @@ using Trigger.CRM.Security;
 
 namespace Trigger.CommandLine
 {
-    abstract class Bootstrapper
+    class Bootstrapper
     {
-        protected static IDependencyMap Map
+        IDependencyMap Map
         {
             get
             {
@@ -17,7 +17,7 @@ namespace Trigger.CommandLine
             }
         }
 
-        protected static void StartUpApplication()
+        public void StartUpApplication()
         {
             PersistentStoreInitialzer.InitStore();
 
@@ -26,7 +26,7 @@ namespace Trigger.CommandLine
             CreateInitialObjects();
         }
 
-        protected static void Register()
+        protected void Register()
         {
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
@@ -37,7 +37,7 @@ namespace Trigger.CommandLine
             Map.RegisterType<IPersistentStore<IssueTracker>, XmlPersistentStore<IssueTracker>>();
         }
 
-        protected static void CreateInitialObjects()
+        protected void CreateInitialObjects()
         {
             var userStore = Map.ResolveType<IPersistentStore<User>>();
 

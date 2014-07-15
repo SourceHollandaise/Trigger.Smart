@@ -16,7 +16,9 @@ namespace Trigger.CRM.Persistent
 
             foreach (var file in files)
             {
-                var line = lines.FirstOrDefault(p => p.Contains(new FileInfo(file).Name));
+                var fi = new FileInfo(file);
+                var fileNameId = fi.Name.Replace(fi.Extension, "");
+                var line = lines.FirstOrDefault(p => p.Contains(fileNameId));
                 if (line != null)
                     newLines.Add(line);
             }

@@ -4,14 +4,21 @@ using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
 using Trigger.CRM.Security;
+using Trigger.Dependency;
 
 namespace Trigger.CommandLine
 {
-    class IssueConsole : Bootstrapper
+    class IssueConsole
     {
+        static IDependencyMap Map
+        {
+            get{ return DependencyMapProvider.Instance; }
+        }
+
         public static void Main(string[] args)
         {
-            StartUpApplication();
+           
+            new Bootstrapper().StartUpApplication();
 
             Console.WriteLine("CIT - COMMMANDLINE ISSUE TRACKER 0.1");
             Console.WriteLine("Trigger Smart Solutions");
@@ -26,17 +33,17 @@ namespace Trigger.CommandLine
                 Environment.Exit(0);
             }
 
-//            Console.WriteLine("Cleanup datastore? Press <Enter> to clean up or any other key to continue!");
-//
-//            if (Console.ReadKey().Key == ConsoleKey.Enter)
-//            {
-//                Console.WriteLine("Start cleaning...");
-//                XmlPersistentStoreUtils.RestoreTypeMap();
-//                Console.WriteLine("Finished cleaning...");
-//            }
+            Console.WriteLine("Cleanup datastore? Type <Del> to clean up or any other key to continue!");
 
-            var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => p.State != IssueState.Done && p.State != IssueState.Rejected).OrderBy(p => p.Created);
+            if (Console.ReadKey().Key == ConsoleKey.Delete)
+            {
+                Console.WriteLine("Start cleaning...");
+                XmlPersistentStoreUtils.RestoreTypeMap();
+                Console.WriteLine("Finished cleaning...");
+            }
 
+            var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => !p.IsDone).OrderBy(p => p.Created);
+            Console.WriteLine();
             Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
             Console.WriteLine();
             foreach (var item in openIssues)

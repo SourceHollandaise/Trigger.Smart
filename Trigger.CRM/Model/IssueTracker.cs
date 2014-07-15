@@ -1,11 +1,27 @@
 
 using System;
 using System.ComponentModel;
+using Trigger.CRM.Security;
 
 namespace Trigger.CRM.Model
 {
     public class IssueTracker : ModelBase
     {
+
+        public void UpdateIssue(IssueState state)
+        {
+            if (state == IssueState.Done)
+            {
+                ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                Resolved = DateTime.Now;
+            }
+            else
+            {
+                ResolvedBy = null;
+                Resolved = null;
+            }
+        }
+
         IssueType issue;
 
         public IssueType Issue
@@ -39,6 +55,8 @@ namespace Trigger.CRM.Model
                 state = value;
 
                 OnPropertyChanged(new PropertyChangedEventArgs("State"));
+
+                UpdateIssue(state);
             }
         }
 
@@ -183,6 +201,5 @@ namespace Trigger.CRM.Model
                 OnPropertyChanged(new PropertyChangedEventArgs("ResolvedBy"));
             }
         }
-
     }
 }
