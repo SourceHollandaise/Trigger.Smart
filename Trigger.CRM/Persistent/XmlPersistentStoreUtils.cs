@@ -9,28 +9,37 @@ namespace Trigger.CRM.Persistent
 {
     public static class XmlPersistentStoreUtils
     {
-        public static void UpdateTypeMapForDocuments()
+        public static int UpdateTypeMapForDocuments()
         {
             var files = Directory.GetFiles(PersistentStoreInitialzer.PersistentDocumentStoreLocation);
             var store = Dependency.DependencyMapProvider.Instance.ResolveType<IPersistentStore<Document>>();
-         
+
+            foreach (var doc in store.LoadAll())
+                if (string.IsNullOrWhiteSpace(doc.FileName))
+                    store.Delete(doc.Id);
+                
+            int counter = 0;
             foreach (var file in files)
             {
                 var fi = new FileInfo(file);
-                var document = store.LoadAll().FirstOrDefault(p => p.DocumentPath == file);
+               
+                var document = store.LoadAll().FirstOrDefault(p => p.FileName == fi.Name);
 
                 if (document == null)
                 {
                     document = new Document
                     {
-                        DocumentPath = file,
+                        FileName = fi.Name,
                         Subject = fi.Name.Replace(fi.Extension, ""),
                         User = Dependency.DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
                     };
 
                     store.Save(document);
+                    counter++;
                 }
             }
+
+            return counter;
         }
 
         public static void RestoreTypeMap()
@@ -43,6 +52,10 @@ namespace Trigger.CRM.Persistent
             foreach (var file in files)
             {
                 var fi = new FileInfo(file);
+
+                if (string.IsNullOrEmpty(fi.Name) || string.IsNullOrEmpty(fi.Extension))
+                    continue;
+
                 var fileNameId = fi.Name.Replace(fi.Extension, "");
                 var line = lines.FirstOrDefault(p => p.Contains(fileNameId));
                 if (line != null)

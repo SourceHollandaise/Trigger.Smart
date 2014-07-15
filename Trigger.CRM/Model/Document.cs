@@ -15,13 +15,15 @@ namespace Trigger.CRM.Model
 
                 var targetPath = Path.Combine(PersistentStoreInitialzer.PersistentDocumentStoreLocation, file.Name);
 
-                if (copy)
-                    File.Copy(sourcePath, targetPath);
-                else
-                    File.Move(sourcePath, targetPath);
+                if (!sourcePath.Equals(targetPath))
+                {
+                    if (copy)
+                        File.Copy(sourcePath, targetPath);
+                    else
+                        File.Move(sourcePath, targetPath);
+                }
 
-                DocumentPath = targetPath;
-                    
+                FileName = new FileInfo(targetPath).Name;
             }
         }
 
@@ -115,21 +117,21 @@ namespace Trigger.CRM.Model
             }
         }
 
-        string documentPath;
+        string fileName;
 
-        public string DocumentPath
+        public string FileName
         {
             get
             {
-                return documentPath;
+                return fileName;
             }
             set
             {
-                if (Equals(documentPath, value))
+                if (Equals(fileName, value))
                     return;
-                documentPath = value;
+                fileName = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("DocumentPath"));
+                OnPropertyChanged(new PropertyChangedEventArgs("FileName"));
             }
         }
     }

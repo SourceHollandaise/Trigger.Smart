@@ -33,17 +33,18 @@ namespace Trigger.CommandLine
                 Environment.Exit(0);
             }
 
-            Console.WriteLine("Cleanup datastore? Type <Del> to clean up or any other key to continue!");
+            Console.WriteLine("Cleanup datastore? Type <Enter> to clean up or any other key to continue!");
 
-            if (Console.ReadKey().Key == ConsoleKey.Delete)
+            if (Console.ReadKey().Key == ConsoleKey.Enter)
             {
                 Console.WriteLine("Start cleaning...");
                 XmlPersistentStoreUtils.RestoreTypeMap();
                 Console.WriteLine("Finished cleaning...");
             }
-
+            Console.WriteLine();
             Console.WriteLine("Adding new documents to store...");
-            XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+            var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+            Console.WriteLine(string.Format("{0} documents added!", count));
             Console.WriteLine();
 
             var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => !p.IsDone).OrderBy(p => p.Created);
@@ -120,7 +121,7 @@ namespace Trigger.CommandLine
 
         static void WriteIssue(IssueTracker item)
         {
-            Console.WriteLine(string.Format("{0} - {1} - {2}", item.Subject, item.Issue.ToString().ToUpper(), item.Project != null ? item.Project.Name : "Project no set"));
+            Console.WriteLine(string.Format("{0} - {1} - {2}", item.Subject, item.Issue.ToString().ToUpper(), item.Project != null ? item.Project.Name : "Project not set!"));
             Console.WriteLine(string.Format("      {0} / {1}", item.CreatedBy.UserName, item.Created));
             Console.WriteLine(string.Format("      {0}", item.Description));
             //Console.ForegroundColor = GetColorOnIssueSate(item.State);
@@ -156,7 +157,7 @@ namespace Trigger.CommandLine
             Console.WriteLine("Filename:");
             var fileName = Console.ReadLine();
 
-            var doc = store.LoadAll().FirstOrDefault(p => p.DocumentPath == fileName);
+            var doc = store.LoadAll().FirstOrDefault(p => p.FileName == fileName);
             if (doc == null)
             {
                 doc = new Document();
@@ -280,12 +281,18 @@ namespace Trigger.CommandLine
 
             if (target.ToLower().Equals("document"))
             {
+                Console.WriteLine();
+                Console.WriteLine("Adding new documents to store...");
+                var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+                Console.WriteLine(string.Format("{0} documents added!", count));
+                Console.WriteLine();
+
                 var store = Map.ResolveType<IPersistentStore<Document>>();
                 Console.WriteLine("Load exisiting documents...");
                 foreach (var item in store.LoadAll().OrderBy(p => p.Subject))
                 {
-                    Console.WriteLine(string.Format("{0} - {1}", item.Subject, item.Project != null ? item.Project.Name : "Project no set"));
-                    Console.WriteLine(string.Format("      {0}", item.DocumentPath));
+                    Console.WriteLine(string.Format("{0} - {1}", item.Subject ?? "???", item.Project != null ? item.Project.Name : "Project no set!"));
+                    Console.WriteLine(string.Format("      {0}", item.FileName));
                     Console.WriteLine(string.Format("      {0}", item.User.UserName));
                     Console.WriteLine(string.Format("      {0}", item.Description));
                     Console.WriteLine();

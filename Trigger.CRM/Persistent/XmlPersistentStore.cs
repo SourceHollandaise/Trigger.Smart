@@ -64,7 +64,10 @@ namespace Trigger.CRM.Persistent
                 var path = Path.Combine(DefaultDirectory, itemId + ".xml");
 
                 if (File.Exists(path))
+                {
                     File.Delete(path);
+                    XmlPersistentStoreUtils.RestoreTypeMap();
+                }
             }
         }
 
