@@ -4,9 +4,9 @@ namespace Trigger.CRM.Persistent
 {
     public class GuidIdGenerator : IdGenerator
     {
-        public string GetId()
+        public object GetId()
         {
-            return Guid.NewGuid().ToString();
+            return Guid.NewGuid();
         }
     }
 }

@@ -7,16 +7,16 @@ using Trigger.CRM.Security;
 
 namespace Trigger.CRM.Persistent
 {
-    public static class XmlPersistentStoreUtils
+    public static class XmlStoreUtils
     {
         public static int UpdateTypeMapForDocuments()
         {
-            var files = Directory.GetFiles(PersistentStoreInitialzer.PersistentDocumentStoreLocation);
-            var store = Dependency.DependencyMapProvider.Instance.ResolveType<IPersistentStore<Document>>();
+            var files = Directory.GetFiles(StoreConfigurator.PersistentDocumentStoreLocation);
+            var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
 
             foreach (var doc in store.LoadAll())
                 if (string.IsNullOrWhiteSpace(doc.FileName))
-                    store.Delete(doc.Id);
+                    store.Delete(doc.MappingId);
                 
             int counter = 0;
             foreach (var file in files)
@@ -44,10 +44,10 @@ namespace Trigger.CRM.Persistent
 
         public static void RestoreTypeMap()
         {
-            var files = Directory.GetFiles(PersistentStoreInitialzer.PersistentStoreLocation);
+            var files = Directory.GetFiles(StoreConfigurator.PersistentStoreLocation);
 
             var newLines = new List<string>();
-            var lines = File.ReadAllLines(PersistentStoreInitialzer.PersistentStoreMap);
+            var lines = File.ReadAllLines(StoreConfigurator.PersistentStoreMap);
 
             foreach (var file in files)
             {
@@ -56,20 +56,19 @@ namespace Trigger.CRM.Persistent
                 if (string.IsNullOrEmpty(fi.Name) || string.IsNullOrEmpty(fi.Extension))
                     continue;
 
-                var fileNameId = fi.Name.Replace(fi.Extension, "");
-                var line = lines.FirstOrDefault(p => p.Contains(fileNameId));
+                var line = lines.FirstOrDefault(p => p.Contains(fi.Name));
                 if (line != null)
                     newLines.Add(line);
             }
            
-            var tempPath = PersistentStoreInitialzer.PersistentStoreLocation + "/typeMap_Temp.json";
-            var backupPath = PersistentStoreInitialzer.PersistentStoreLocation + "/typeMap_Backup.json";
+            var tempPath = StoreConfigurator.PersistentStoreLocation + "/typeMap_Temp.json";
+            var backupPath = StoreConfigurator.PersistentStoreLocation + "/typeMap_Backup.json";
            
             File.WriteAllLines(tempPath, newLines);
 
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1500);
 
-            File.Replace(tempPath, PersistentStoreInitialzer.PersistentStoreMap, backupPath);
+            File.Replace(tempPath, StoreConfigurator.PersistentStoreMap, backupPath);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Trigger.CRM.Security
         {
             if (!string.IsNullOrWhiteSpace(logonParamters.UserName) && !string.IsNullOrWhiteSpace(logonParamters.Password))
             {
-                var user = DependencyMapProvider.Instance.ResolveType<IPersistentStore<User>>().LoadAll()
+                var user = DependencyMapProvider.Instance.ResolveType<IStore<User>>().LoadAll()
                     .FirstOrDefault(p => p.UserName == logonParamters.UserName && p.Password == logonParamters.Password);
 
                 if (user != null)

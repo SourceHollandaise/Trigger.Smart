@@ -16,13 +16,13 @@ namespace Trigger.CRM.Security
                 if (!password.Equals(passwordToCompare))
                     throw new ArgumentException("Passwords are not equal!");
 
-                var user = DependencyMapProvider.Instance.ResolveType<IPersistentStore<User>>().LoadAll().FirstOrDefault(p => p.UserName == userName && p.Password == password);
+                var user = DependencyMapProvider.Instance.ResolveType<IStore<User>>().LoadAll().FirstOrDefault(p => p.UserName == userName && p.Password == password);
                 if (user != null)
                     throw new ArgumentException("User exists!");
                 else
                 {
                     user = new User{ UserName = userName, Password = password };
-                    DependencyMapProvider.Instance.ResolveType<IPersistentStore<User>>().Save(user);
+                    DependencyMapProvider.Instance.ResolveType<IStore<User>>().Save(user);
                     return user;
                 }
             }

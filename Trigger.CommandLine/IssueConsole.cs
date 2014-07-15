@@ -38,17 +38,17 @@ namespace Trigger.CommandLine
             if (Console.ReadKey().Key == ConsoleKey.Enter)
             {
                 Console.WriteLine("Start cleaning...");
-                XmlPersistentStoreUtils.RestoreTypeMap();
+                XmlStoreUtils.RestoreTypeMap();
                 Console.WriteLine("Finished cleaning...");
             }
             Console.WriteLine();
             Console.WriteLine("Adding new documents to store...");
             Console.WriteLine();
-            var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+            var count = XmlStoreUtils.UpdateTypeMapForDocuments();
             Console.WriteLine(string.Format("{0} documents added!", count));
             Console.WriteLine();
 
-            var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => !p.IsDone).OrderBy(p => p.Created);
+            var openIssues = Map.ResolveType<IStore<IssueTracker>>().LoadAll().Where(p => !p.IsDone).OrderBy(p => p.Created);
 
             Console.WriteLine();
             Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
@@ -150,7 +150,7 @@ namespace Trigger.CommandLine
         static Document AddDocument()
         {
             var user = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-            var store = Map.ResolveType<IPersistentStore<Document>>();
+            var store = Map.ResolveType<IStore<Document>>();
             Console.WriteLine("Add Subject for document:");
             var subject = Console.ReadLine();
             Console.WriteLine("Filename:");
@@ -177,7 +177,7 @@ namespace Trigger.CommandLine
         static void AddOrUpdateIssue()
         {
             var user = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-            var store = Map.ResolveType<IPersistentStore<IssueTracker>>();
+            var store = Map.ResolveType<IStore<IssueTracker>>();
             Console.WriteLine("Set Subject: ");
             var subject = Console.ReadLine();
             var issue = store.LoadAll().FirstOrDefault(p => p.Subject == subject);
@@ -209,14 +209,14 @@ namespace Trigger.CommandLine
             var projectName = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(projectName))
             {
-                var project = Map.ResolveType<IPersistentStore<Project>>().LoadAll().FirstOrDefault(p => p.Name == projectName);
+                var project = Map.ResolveType<IStore<Project>>().LoadAll().FirstOrDefault(p => p.Name == projectName);
                 if (project == null)
                 {
                     project = new Project
                     {
                         Name = projectName
                     };
-                    Map.ResolveType<IPersistentStore<Project>>().Save(project);
+                    Map.ResolveType<IStore<Project>>().Save(project);
                 }
                 issue.Project = project;
             }
@@ -234,11 +234,11 @@ namespace Trigger.CommandLine
                 var doc = AddDocument();
                 doc.Project = issue.Project;
                 doc.Issue = issue;
-                Map.ResolveType<IPersistentStore<Document>>().Save(doc);
+                Map.ResolveType<IStore<Document>>().Save(doc);
             }
                 
             System.Threading.Thread.Sleep(500);
-            var item = store.Load(issue.Id);
+            var item = store.Load(issue.MappingId);
             if (item != null)
             {
                 Console.WriteLine();
@@ -248,11 +248,11 @@ namespace Trigger.CommandLine
 
         static void DeleteIssue(string subject)
         {
-            var store = Map.ResolveType<IPersistentStore<IssueTracker>>();
+            var store = Map.ResolveType<IStore<IssueTracker>>();
             var issue = store.LoadAll().FirstOrDefault(p => p.Subject == subject);
             if (issue != null)
             {
-                store.Delete(issue.Id);
+                store.Delete(issue.MappingId);
                 System.Threading.Thread.Sleep(500);
                 Console.WriteLine("Issue deleted!");
                 Console.WriteLine();
@@ -263,7 +263,7 @@ namespace Trigger.CommandLine
         {
             if (target.ToLower().Equals("issue"))
             {
-                var store = Map.ResolveType<IPersistentStore<IssueTracker>>();
+                var store = Map.ResolveType<IStore<IssueTracker>>();
                 Console.WriteLine("Load exisiting issues...");
                 Console.WriteLine();
                 foreach (var item in store.LoadAll().OrderBy( p => p.Created))
@@ -273,7 +273,7 @@ namespace Trigger.CommandLine
 
             if (target.ToLower().Equals("project"))
             {
-                var store = Map.ResolveType<IPersistentStore<Project>>();
+                var store = Map.ResolveType<IStore<Project>>();
                 Console.WriteLine("Load exisiting projects...");
                 foreach (var item in store.LoadAll().OrderBy(p => p.Name))
                     Console.WriteLine(item.Name);
@@ -284,12 +284,12 @@ namespace Trigger.CommandLine
             {
                 Console.WriteLine();
                 Console.WriteLine("Adding new documents to store...");
-                var count = XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+                var count = XmlStoreUtils.UpdateTypeMapForDocuments();
                 Console.WriteLine();
                 Console.WriteLine(string.Format("{0} documents added!", count));
                 Console.WriteLine();
 
-                var store = Map.ResolveType<IPersistentStore<Document>>();
+                var store = Map.ResolveType<IStore<Document>>();
                 Console.WriteLine("Load exisiting documents...");
                 foreach (var item in store.LoadAll().OrderBy(p => p.Subject))
                 {

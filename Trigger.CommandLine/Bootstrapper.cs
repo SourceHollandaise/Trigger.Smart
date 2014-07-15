@@ -20,7 +20,7 @@ namespace Trigger.CommandLine
 
         public void StartUpApplication()
         {
-            PersistentStoreInitialzer.InitStore();
+            StoreConfigurator.InitStore();
 
             Register();
 
@@ -42,16 +42,16 @@ namespace Trigger.CommandLine
 
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
 
-            Map.RegisterType<IPersistentStore<User>, XmlPersistentStore<User>>();
-            Map.RegisterType<IPersistentStore<Project>, XmlPersistentStore<Project>>();
-            Map.RegisterType<IPersistentStore<TimeTracker>, XmlPersistentStore<TimeTracker>>();
-            Map.RegisterType<IPersistentStore<IssueTracker>, XmlPersistentStore<IssueTracker>>();
-            Map.RegisterType<IPersistentStore<Document>, XmlPersistentStore<Document>>();
+            Map.RegisterType<IStore<User>, XmlStore<User>>();
+            Map.RegisterType<IStore<Project>, XmlStore<Project>>();
+            Map.RegisterType<IStore<TimeTracker>, XmlStore<TimeTracker>>();
+            Map.RegisterType<IStore<IssueTracker>, XmlStore<IssueTracker>>();
+            Map.RegisterType<IStore<Document>, XmlStore<Document>>();
         }
 
         protected void CreateInitialObjects()
         {
-            var userStore = Map.ResolveType<IPersistentStore<User>>();
+            var userStore = Map.ResolveType<IStore<User>>();
 
             var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
             if (user == null)

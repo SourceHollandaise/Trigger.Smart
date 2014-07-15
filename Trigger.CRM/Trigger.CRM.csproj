@@ -28,7 +28,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
     <Reference Include="ServiceStack.Text">
@@ -46,10 +45,6 @@
     <Compile Include="Repository\ModelRepositoryEventArgs.cs" />
     <Compile Include="Repository\ModelRepositoryFactory.cs" />
     <Compile Include="Repository\ModelRespository.cs" />
-    <Compile Include="Persistent\IPersistentId.cs" />
-    <Compile Include="Persistent\IPersistentStore.cs" />
-    <Compile Include="Persistent\XmlPersistentStore.cs" />
-    <Compile Include="Persistent\PersistentStoreInitialzer.cs" />
     <Compile Include="Model\IssueType.cs" />
     <Compile Include="Model\IssueTracker.cs" />
     <Compile Include="Model\IssueState.cs" />
@@ -62,8 +57,12 @@
     <Compile Include="Security\IAuthenticate.cs" />
     <Compile Include="Security\LogonParameters.cs" />
     <Compile Include="Security\SystemAuthenticate.cs" />
-    <Compile Include="Persistent\XmlPersistentStoreUtils.cs" />
     <Compile Include="Model\Document.cs" />
+    <Compile Include="Persistent\XmlStore.cs" />
+    <Compile Include="Persistent\XmlStoreUtils.cs" />
+    <Compile Include="Persistent\IStore.cs" />
+    <Compile Include="Persistent\IStorable.cs" />
+    <Compile Include="Persistent\StoreConfigurator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

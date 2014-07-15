@@ -4,11 +4,11 @@ using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public abstract class ModelBase : INotifyPropertyChanged, IPersistentId
+    public abstract class ModelBase : INotifyPropertyChanged, IStorable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Id
+        public object MappingId
         {
             get;
             set;

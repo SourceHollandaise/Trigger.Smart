@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Trigger.CRM.Persistent
 {
-    public static class PersistentStoreInitialzer
+    public static class StoreConfigurator
     {
         internal static string PersistentStoreLocation;
 
@@ -35,8 +35,6 @@ namespace Trigger.CRM.Persistent
         {
             var defaultDirectory = ConfigurationManager.AppSettings["PersistentDocumentStoreLocation"];
 
-
-
             if (!Directory.Exists(defaultDirectory))
                 Directory.CreateDirectory(defaultDirectory);
 
@@ -48,10 +46,7 @@ namespace Trigger.CRM.Persistent
             var typeMapFile = PersistentStoreLocation + ConfigurationManager.AppSettings["PersistentStoreMap"];
 
             if (!File.Exists(typeMapFile))
-            {
                 File.Create(typeMapFile);
-                System.Threading.Thread.Sleep(2000);
-            }
                 
             return typeMapFile;
         }

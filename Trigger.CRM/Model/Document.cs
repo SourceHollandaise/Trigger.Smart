@@ -13,7 +13,7 @@ namespace Trigger.CRM.Model
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(PersistentStoreInitialzer.PersistentDocumentStoreLocation, file.Name);
+                var targetPath = Path.Combine(StoreConfigurator.PersistentDocumentStoreLocation, file.Name);
 
                 if (!sourcePath.Equals(targetPath))
                 {

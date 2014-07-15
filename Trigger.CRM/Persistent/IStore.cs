@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Trigger.CRM.Persistent
 {
-    public interface IPersistentStore<T> where T: IPersistentId
+    public interface IStore<T> where T: IStorable
     {
         void Save(T item);
 

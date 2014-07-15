@@ -5,36 +5,20 @@ using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
-    public class XmlPersistentStore<T> : IPersistentStore<T> where T: IPersistentId
+    public class XmlStore<T> : IStore<T> where T: IStorable
     {
-        static string DefaultDirectory
-        {
-            get
-            {
-                return PersistentStoreInitialzer.PersistentStoreLocation;
-            }
-        }
-
-        static string TypeMapFile
-        {
-            get
-            {
-                return PersistentStoreInitialzer.PersistentStoreMap;
-            }
-        }
-
         public void Save(T item)
         {
-            if (Directory.Exists(DefaultDirectory))
+            if (Directory.Exists(StorePath))
             {
-                if (item.Id == null)
-                    item.Id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
+                if (item.MappingId == null)
+                    item.MappingId = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
                 var	json = ServiceStack.Text.XmlSerializer.SerializeToString<T>(item);
-                var path = Path.Combine(DefaultDirectory, item.Id + ".xml");
+                var path = Path.Combine(StorePath, item.MappingId + ".xml");
 
-                if (!File.Exists(path))
-                    SaveToTypeMap(typeof(T), item.Id);
+                if (!IsInTypeMap(item.MappingId))
+                    SaveToTypeMap(typeof(T), item.MappingId.ToString(), item.MappingId + ".xml");
                     
                 File.WriteAllText(path, json);
             }
@@ -42,9 +26,9 @@ namespace Trigger.CRM.Persistent
 
         public T Load(object itemId)
         {
-            if (Directory.Exists(DefaultDirectory))
+            if (Directory.Exists(StorePath))
             {
-                var path = Path.Combine(DefaultDirectory, itemId + ".xml");
+                var path = Path.Combine(StorePath, itemId + ".xml");
 
                 if (File.Exists(path))
                 {
@@ -59,14 +43,14 @@ namespace Trigger.CRM.Persistent
 
         public void Delete(object itemId)
         {
-            if (Directory.Exists(DefaultDirectory))
+            if (Directory.Exists(StorePath))
             {
-                var path = Path.Combine(DefaultDirectory, itemId + ".xml");
+                var path = Path.Combine(StorePath, itemId + ".xml");
 
                 if (File.Exists(path))
                 {
                     File.Delete(path);
-                    XmlPersistentStoreUtils.RestoreTypeMap();
+                    ClearFromTypeMap();
                 }
             }
         }
@@ -75,7 +59,6 @@ namespace Trigger.CRM.Persistent
         {
             if (File.Exists(TypeMapFile))
             {
-
                 var lines = File.ReadAllLines(TypeMapFile);
 
                 foreach (var line in lines)
@@ -83,7 +66,7 @@ namespace Trigger.CRM.Persistent
                     var splitted = line.Split(';');
                     if (splitted[0] == typeof(T).FullName)
                     {
-                        var fileName = Path.Combine(DefaultDirectory, splitted[1] + ".xml");
+                        var fileName = Path.Combine(StorePath, splitted[2]);
                         if (File.Exists(fileName))
                         {
                             var item = Load(fileName);
@@ -107,10 +90,46 @@ namespace Trigger.CRM.Persistent
             return default(T);
         }
 
-        static void SaveToTypeMap(Type type, string id)
+        static void SaveToTypeMap(Type type, object itemId, string fileName)
         {
             if (File.Exists(TypeMapFile))
-                File.AppendAllText(TypeMapFile, type.FullName + ";" + id + Environment.NewLine);
+                File.AppendAllText(TypeMapFile, type.FullName + ";" + itemId + ";" + fileName + Environment.NewLine);
+        }
+
+        static void ClearFromTypeMap()
+        {
+            if (File.Exists(TypeMapFile))
+                XmlStoreUtils.RestoreTypeMap();
+        }
+
+        static bool IsInTypeMap(object itemId)
+        {
+            foreach (var line in File.ReadAllLines(TypeMapFile))
+            {
+                var splitted = line.Split(';');
+              
+                var mappedId = splitted[1];
+                if (itemId.ToString().Equals(mappedId))
+                    return true;
+            }
+
+            return false;
+        }
+
+        static string StorePath
+        {
+            get
+            {
+                return StoreConfigurator.PersistentStoreLocation;
+            }
+        }
+
+        static string TypeMapFile
+        {
+            get
+            {
+                return StoreConfigurator.PersistentStoreMap;
+            }
         }
     }
 }
