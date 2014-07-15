@@ -4,3 +4,15 @@
 *.mdb
 
 *.exe
+
+*._
+
+*.targets
+
+*.nupkg
+
+*.xml
+
+*.ps1
+
+*.rtf

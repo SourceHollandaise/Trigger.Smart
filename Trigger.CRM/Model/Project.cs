@@ -19,7 +19,7 @@ namespace Trigger.CRM.Model
                     return;
                 name = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Name"));
+                OnPropertyChanged();
             }
         }
 
@@ -37,7 +37,7 @@ namespace Trigger.CRM.Model
                     return;
                 description = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Description"));
+                OnPropertyChanged();
             }
         }
     }

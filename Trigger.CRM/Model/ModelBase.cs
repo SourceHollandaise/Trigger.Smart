@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
+using System.Runtime.CompilerServices;
 
 namespace Trigger.CRM.Model
 {
@@ -22,11 +23,11 @@ namespace Trigger.CRM.Model
             }
         }
 
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, e);
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

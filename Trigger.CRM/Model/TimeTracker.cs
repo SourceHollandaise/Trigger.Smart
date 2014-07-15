@@ -54,7 +54,7 @@ namespace Trigger.CRM.Model
                     return;
                 project = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Project"));
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace Trigger.CRM.Model
                     return;
                 user = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("User"));
+                OnPropertyChanged();
             }
         }
 
@@ -90,7 +90,7 @@ namespace Trigger.CRM.Model
                     return;
                 begin = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Begin"));
+                OnPropertyChanged();
             }
         }
 
@@ -108,7 +108,7 @@ namespace Trigger.CRM.Model
                     return;
                 end = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("End"));
+                OnPropertyChanged();
             }
         }
 
@@ -134,7 +134,7 @@ namespace Trigger.CRM.Model
                     return;
                 subject = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Subject"));
+                OnPropertyChanged();
             }
         }
 
@@ -152,7 +152,7 @@ namespace Trigger.CRM.Model
                     return;
                 description = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Description"));
+                OnPropertyChanged();
             }
         }
     }

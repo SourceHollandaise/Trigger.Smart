@@ -11,7 +11,7 @@ namespace Trigger.CRM.Persistent
     {
         public static int UpdateTypeMapForDocuments()
         {
-            var files = Directory.GetFiles(StoreConfigurator.PersistentDocumentStoreLocation);
+            var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation);
             var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
 
             foreach (var doc in store.LoadAll())
@@ -44,10 +44,10 @@ namespace Trigger.CRM.Persistent
 
         public static void RestoreTypeMap()
         {
-            var files = Directory.GetFiles(StoreConfigurator.PersistentStoreLocation);
+            var files = Directory.GetFiles(StoreConfigurator.DataStoreLocation);
 
             var newLines = new List<string>();
-            var lines = File.ReadAllLines(StoreConfigurator.PersistentStoreMap);
+            var lines = File.ReadAllLines(StoreConfigurator.StoreMap);
 
             foreach (var file in files)
             {
@@ -61,14 +61,14 @@ namespace Trigger.CRM.Persistent
                     newLines.Add(line);
             }
            
-            var tempPath = StoreConfigurator.PersistentStoreLocation + "/typeMap_Temp.json";
-            var backupPath = StoreConfigurator.PersistentStoreLocation + "/typeMap_Backup.json";
+            var tempPath = StoreConfigurator.DataStoreLocation + "/typeMap_Temp.json";
+            var backupPath = StoreConfigurator.DataStoreLocation + "/typeMap_Backup.json";
            
             File.WriteAllLines(tempPath, newLines);
 
             System.Threading.Thread.Sleep(1500);
 
-            File.Replace(tempPath, StoreConfigurator.PersistentStoreMap, backupPath);
+            File.Replace(tempPath, StoreConfigurator.StoreMap, backupPath);
         }
     }
 }

@@ -6,49 +6,49 @@ namespace Trigger.CRM.Persistent
 {
     public static class StoreConfigurator
     {
-        internal static string PersistentStoreLocation;
+        public static string DataStoreLocation;
 
-        internal static string PersistentDocumentStoreLocation;
+        public static string DocumentStoreLocation;
 
-        internal static string PersistentStoreMap;
+        public static string StoreMap;
 
         public static void InitStore()
         {
-            PersistentStoreLocation = SetStoreLocation();
+            DataStoreLocation = SetStoreLocation();
 
-            PersistentDocumentStoreLocation = SetDocumentStoreLocation();
+            DocumentStoreLocation = SetDocumentStoreLocation();
 
-            PersistentStoreMap = CreateStoreMap();
+            StoreMap = CreateStoreMap();
         }
 
         static string SetStoreLocation()
         {
-            var defaultDirectory = ConfigurationManager.AppSettings["PersistentStoreLocation"];
+            var value = ConfigurationManager.AppSettings["DataStoreLocation"];
 
-            if (!Directory.Exists(defaultDirectory))
-                Directory.CreateDirectory(defaultDirectory);
+            if (!Directory.Exists(value))
+                Directory.CreateDirectory(value);
                 
-            return defaultDirectory;
+            return value;
         }
 
         static string SetDocumentStoreLocation()
         {
-            var defaultDirectory = ConfigurationManager.AppSettings["PersistentDocumentStoreLocation"];
+            var value = ConfigurationManager.AppSettings["DocumentStoreLocation"];
 
-            if (!Directory.Exists(defaultDirectory))
-                Directory.CreateDirectory(defaultDirectory);
+            if (!Directory.Exists(value))
+                Directory.CreateDirectory(value);
 
-            return defaultDirectory;
+            return value;
         }
 
         static string CreateStoreMap()
         {
-            var typeMapFile = PersistentStoreLocation + ConfigurationManager.AppSettings["PersistentStoreMap"];
+            var value = DataStoreLocation + ConfigurationManager.AppSettings["StoreMap"];
 
-            if (!File.Exists(typeMapFile))
-                File.Create(typeMapFile);
+            if (!File.Exists(value))
+                File.Create(value);
                 
-            return typeMapFile;
+            return value;
         }
     }
 }

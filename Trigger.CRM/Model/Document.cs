@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.IO;
 using Trigger.CRM.Persistent;
 using System;
@@ -13,7 +12,7 @@ namespace Trigger.CRM.Model
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(StoreConfigurator.PersistentDocumentStoreLocation, file.Name);
+                var targetPath = Path.Combine(StoreConfigurator.DocumentStoreLocation, file.Name);
 
                 if (!sourcePath.Equals(targetPath))
                 {
@@ -41,7 +40,7 @@ namespace Trigger.CRM.Model
                     return;
                 subject = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Subject"));
+                OnPropertyChanged();
             }
         }
 
@@ -59,7 +58,25 @@ namespace Trigger.CRM.Model
                     return;
                 description = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Description"));
+                OnPropertyChanged();
+            }
+        }
+
+        DateTime? created;
+
+        public DateTime? Created
+        {
+            get
+            {
+                return created;
+            }
+            set
+            {
+                if (Equals(created, value))
+                    return;
+                created = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -77,7 +94,7 @@ namespace Trigger.CRM.Model
                     return;
                 project = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Project"));
+                OnPropertyChanged();
             }
         }
 
@@ -95,7 +112,7 @@ namespace Trigger.CRM.Model
                     return;
                 issue = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Issue"));
+                OnPropertyChanged();
             }
         }
 
@@ -113,7 +130,7 @@ namespace Trigger.CRM.Model
                     return;
                 user = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("User"));
+                OnPropertyChanged();
             }
         }
 
@@ -131,7 +148,7 @@ namespace Trigger.CRM.Model
                     return;
                 fileName = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("FileName"));
+                OnPropertyChanged();
             }
         }
     }

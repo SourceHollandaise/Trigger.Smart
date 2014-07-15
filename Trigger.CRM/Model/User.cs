@@ -18,7 +18,7 @@ namespace Trigger.CRM.Model
                     return;
                 userName = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("UserName"));
+                OnPropertyChanged();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Trigger.CRM.Model
                     return;
                 password = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Password"));
+                OnPropertyChanged();
             }
         }
 
@@ -54,7 +54,7 @@ namespace Trigger.CRM.Model
                     return;
                 eMail = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("EMail"));
+                OnPropertyChanged();
             }
         }
     }

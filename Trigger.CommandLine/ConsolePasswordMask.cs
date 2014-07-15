@@ -2,14 +2,6 @@ using System;
 
 namespace Trigger.CommandLine
 {
-    struct Commands
-    {
-        public static string ADD = "ADD";
-        public static string DEL = "DEL >";
-        public static string LST = "LST >";
-        public static string EXIT = "EXIT";
-    }
-
     public static class ConsolePasswordMask
     {
         public static string Enter()

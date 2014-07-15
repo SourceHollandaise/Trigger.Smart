@@ -120,7 +120,7 @@ namespace Trigger.CRM.Persistent
         {
             get
             {
-                return StoreConfigurator.PersistentStoreLocation;
+                return StoreConfigurator.DataStoreLocation;
             }
         }
 
@@ -128,7 +128,7 @@ namespace Trigger.CRM.Persistent
         {
             get
             {
-                return StoreConfigurator.PersistentStoreMap;
+                return StoreConfigurator.StoreMap;
             }
         }
     }

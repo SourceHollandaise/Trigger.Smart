@@ -35,7 +35,7 @@ namespace Trigger.CRM.Model
                     return;
                 issue = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Issue"));
+                OnPropertyChanged();
             }
         }
 
@@ -53,7 +53,7 @@ namespace Trigger.CRM.Model
                     return;
                 state = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("State"));
+                OnPropertyChanged();
 
                 UpdateIssue(state);
             }
@@ -81,7 +81,7 @@ namespace Trigger.CRM.Model
                     return;
                 subject = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Subject"));
+                OnPropertyChanged();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Trigger.CRM.Model
                     return;
                 description = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Description"));
+                OnPropertyChanged();
             }
         }
 
@@ -117,7 +117,7 @@ namespace Trigger.CRM.Model
                     return;
                 project = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Project"));
+                OnPropertyChanged();
             }
         }
 
@@ -135,7 +135,7 @@ namespace Trigger.CRM.Model
                     return;
                 created = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Created"));
+                OnPropertyChanged();
             }
         }
 
@@ -153,7 +153,7 @@ namespace Trigger.CRM.Model
                     return;
                 resolved = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("Resolved"));
+                OnPropertyChanged();
             }
         }
 
@@ -179,7 +179,7 @@ namespace Trigger.CRM.Model
                     return;
                 createdBy = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("CreatedBy"));
+                OnPropertyChanged();
             }
         }
 
@@ -197,7 +197,7 @@ namespace Trigger.CRM.Model
                     return;
                 resolvedBy = value;
 
-                OnPropertyChanged(new PropertyChangedEventArgs("ResolvedBy"));
+                OnPropertyChanged();
             }
         }
     }

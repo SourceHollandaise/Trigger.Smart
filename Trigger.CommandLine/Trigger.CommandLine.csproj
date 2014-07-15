@@ -42,8 +42,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IssueConsole.cs" />
-    <Compile Include="Commands.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ConsoleDeleteCommands.cs" />
+    <Compile Include="ConsoleInsertUpdateCommands.cs" />
+    <Compile Include="ConsoleSelectCommands.cs" />
+    <Compile Include="ConsoleCommands.cs" />
+    <Compile Include="ConsolePasswordMask.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

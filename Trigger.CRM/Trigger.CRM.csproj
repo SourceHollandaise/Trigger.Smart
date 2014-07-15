@@ -34,6 +34,15 @@
       <HintPath>..\Trigger.Smart\packages\ServiceStack.Text.4.0.23\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.IO">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +72,12 @@
     <Compile Include="Persistent\IStore.cs" />
     <Compile Include="Persistent\IStorable.cs" />
     <Compile Include="Persistent\StoreConfigurator.cs" />
+    <Compile Include="Commands\DocumentCommand.cs" />
+    <Compile Include="Commands\UserCommand.cs" />
+    <Compile Include="Commands\ProjectCommand.cs" />
+    <Compile Include="Commands\IssueTrackerCommand.cs" />
+    <Compile Include="Commands\TimeTrackerCommand.cs" />
+    <Compile Include="Commands\ModelCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -70,6 +85,7 @@
     <Folder Include="Repository\" />
     <Folder Include="Persistent\" />
     <Folder Include="Security\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
