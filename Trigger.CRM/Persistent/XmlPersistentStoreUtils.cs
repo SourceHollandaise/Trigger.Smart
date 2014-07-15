@@ -2,11 +2,37 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
+using Trigger.CRM.Model;
+using Trigger.CRM.Security;
 
 namespace Trigger.CRM.Persistent
 {
     public static class XmlPersistentStoreUtils
     {
+        public static void UpdateTypeMapForDocuments()
+        {
+            var files = Directory.GetFiles(PersistentStoreInitialzer.PersistentDocumentStoreLocation);
+            var store = Dependency.DependencyMapProvider.Instance.ResolveType<IPersistentStore<Document>>();
+         
+            foreach (var file in files)
+            {
+                var fi = new FileInfo(file);
+                var document = store.LoadAll().FirstOrDefault(p => p.DocumentPath == file);
+
+                if (document == null)
+                {
+                    document = new Document
+                    {
+                        DocumentPath = file,
+                        Subject = fi.Name.Replace(fi.Extension, ""),
+                        User = Dependency.DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
+                    };
+
+                    store.Save(document);
+                }
+            }
+        }
+
         public static void RestoreTypeMap()
         {
             var files = Directory.GetFiles(PersistentStoreInitialzer.PersistentStoreLocation);

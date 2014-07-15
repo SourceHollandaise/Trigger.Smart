@@ -63,6 +63,7 @@
     <Compile Include="Security\LogonParameters.cs" />
     <Compile Include="Security\SystemAuthenticate.cs" />
     <Compile Include="Persistent\XmlPersistentStoreUtils.cs" />
+    <Compile Include="Model\Document.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

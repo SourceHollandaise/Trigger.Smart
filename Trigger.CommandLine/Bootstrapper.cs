@@ -35,6 +35,7 @@ namespace Trigger.CommandLine
             Map.RegisterType<IPersistentStore<Project>, XmlPersistentStore<Project>>();
             Map.RegisterType<IPersistentStore<TimeTracker>, XmlPersistentStore<TimeTracker>>();
             Map.RegisterType<IPersistentStore<IssueTracker>, XmlPersistentStore<IssueTracker>>();
+            Map.RegisterType<IPersistentStore<Document>, XmlPersistentStore<Document>>();
         }
 
         protected void CreateInitialObjects()

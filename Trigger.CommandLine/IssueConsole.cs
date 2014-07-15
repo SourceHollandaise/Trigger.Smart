@@ -42,7 +42,12 @@ namespace Trigger.CommandLine
                 Console.WriteLine("Finished cleaning...");
             }
 
+            Console.WriteLine("Adding new documents to store...");
+            XmlPersistentStoreUtils.UpdateTypeMapForDocuments();
+            Console.WriteLine();
+
             var openIssues = Map.ResolveType<IPersistentStore<IssueTracker>>().LoadAll().Where(p => !p.IsDone).OrderBy(p => p.Created);
+
             Console.WriteLine();
             Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
             Console.WriteLine();
@@ -55,7 +60,7 @@ namespace Trigger.CommandLine
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
-                AddIssue();
+                ExecuteCommand();
 
                 Console.WriteLine("Add or update issue? Press <Enter> to continue or <ESC> to exit!");
             }
@@ -92,7 +97,7 @@ namespace Trigger.CommandLine
             return currentUser;
         }
 
-        static void AddIssue()
+        static void ExecuteCommand()
         {
             var user = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 
@@ -115,12 +120,12 @@ namespace Trigger.CommandLine
 
         static void WriteIssue(IssueTracker item)
         {
-            Console.WriteLine(string.Format("{0} - {1}", item.Subject, item.Issue.ToString().ToUpper()));
+            Console.WriteLine(string.Format("{0} - {1} - {2}", item.Subject, item.Issue.ToString().ToUpper(), item.Project != null ? item.Project.Name : "Project no set"));
             Console.WriteLine(string.Format("      {0} / {1}", item.CreatedBy.UserName, item.Created));
             Console.WriteLine(string.Format("      {0}", item.Description));
-            Console.ForegroundColor = GetColorOnIssueSate(item.State);
+            //Console.ForegroundColor = GetColorOnIssueSate(item.State);
             Console.WriteLine(string.Format("      State: {0}", item.State.ToString().ToUpper()));
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
 
@@ -140,6 +145,33 @@ namespace Trigger.CommandLine
             }
 
             return ConsoleColor.White;
+        }
+
+        static Document AddDocument()
+        {
+            var user = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+            var store = Map.ResolveType<IPersistentStore<Document>>();
+            Console.WriteLine("Add Subject for document:");
+            var subject = Console.ReadLine();
+            Console.WriteLine("Filename:");
+            var fileName = Console.ReadLine();
+
+            var doc = store.LoadAll().FirstOrDefault(p => p.DocumentPath == fileName);
+            if (doc == null)
+            {
+                doc = new Document();
+                doc.Subject = subject;
+                doc.User = user;
+                doc.AddFile(fileName);
+            }
+            else
+            {
+                Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    doc.AddFile(fileName);
+            }
+
+            return doc;
         }
 
         static void AddOrUpdateIssue()
@@ -195,6 +227,16 @@ namespace Trigger.CommandLine
             var state = Console.ReadLine();
             issue.State = (IssueState)Convert.ToInt32(state);
             store.Save(issue);
+            Console.WriteLine("Add document? Press <Enter> to add or any key to continue!");
+
+            if (Console.ReadKey().Key == ConsoleKey.Enter)
+            {
+                var doc = AddDocument();
+                doc.Project = issue.Project;
+                doc.Issue = issue;
+                Map.ResolveType<IPersistentStore<Document>>().Save(doc);
+            }
+                
             System.Threading.Thread.Sleep(500);
             var item = store.Load(issue.Id);
             if (item != null)
@@ -235,6 +277,22 @@ namespace Trigger.CommandLine
                 foreach (var item in store.LoadAll().OrderBy(p => p.Name))
                     Console.WriteLine(item.Name);
             }
+
+            if (target.ToLower().Equals("document"))
+            {
+                var store = Map.ResolveType<IPersistentStore<Document>>();
+                Console.WriteLine("Load exisiting documents...");
+                foreach (var item in store.LoadAll().OrderBy(p => p.Subject))
+                {
+                    Console.WriteLine(string.Format("{0} - {1}", item.Subject, item.Project != null ? item.Project.Name : "Project no set"));
+                    Console.WriteLine(string.Format("      {0}", item.DocumentPath));
+                    Console.WriteLine(string.Format("      {0}", item.User.UserName));
+                    Console.WriteLine(string.Format("      {0}", item.Description));
+                    Console.WriteLine();
+
+                }
+            }
+
         }
     }
 }
