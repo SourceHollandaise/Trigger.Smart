@@ -41,7 +41,7 @@ namespace Trigger.CommandLine
             else
                 Map.RegisterType<IAuthenticate, SystemAuthenticate>();
 
-            Map.RegisterType<IdGenerator, GuidIdGenerator>();
+            Map.RegisterType<IdGenerator, SchroederIdGenerator>();
 
             Map.RegisterType<IStore<User>, XmlStore<User>>();
             Map.RegisterType<IStore<Project>, XmlStore<Project>>();

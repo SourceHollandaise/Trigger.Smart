@@ -15,7 +15,6 @@ namespace Trigger.CRM.Persistent
                 {
                     var id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString().Replace("-", "");
                     item.MappingId = id;
-
                 }
                 var json = ServiceStack.Text.JsonSerializer.SerializeToString<T>(item);
                 var path = Path.Combine(StorePath, item.MappingId + ".xml");
