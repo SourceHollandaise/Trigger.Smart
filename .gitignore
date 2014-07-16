@@ -21,3 +21,11 @@
 *.pdb
 *.manifest
 Trigger.CommandLine/bin/Debug/Trigger.CommandLine.vshost.exe.config
+
+*.userprefs
+
+*.userprefs
+
+*.txt
+
+*.userprefs
