@@ -28,26 +28,6 @@ namespace Trigger.CommandLine
 
             ConsoleLogonCommand.LogonUser();
 
-            var icmd = new IssueTrackerCommand();
-            var pcmd = new ProjectCommand();
-            for (int i = 0; i < 10000; i++)
-            {
-                var issue = new IssueTracker();
-                issue.Created = DateTime.Now;
-                issue.CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-                issue.Description = "Test " + i;
-                issue.Issue = IssueType.Bug;
-
-                issue.Project = GetProject(pcmd);
-                issue.State = IssueState.InProgress;
-                issue.Subject = "Testsubject " + i;
-
-                icmd.Save(issue);
-
-                Console.WriteLine(icmd.GetRepresentation(issue));
-
-            }
-
             Console.WriteLine();
             Console.WriteLine("Search for new documents...");
             Console.WriteLine();
@@ -58,11 +38,11 @@ namespace Trigger.CommandLine
             }
             else
             {
-                Console.WriteLine(string.Format("{0} documents added!", count));
+                Console.WriteLine("{0} documents added!", count);
                 Console.WriteLine();
-                Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
+                Console.WriteLine("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName);
                 Console.WriteLine();
-                foreach (var item in new IssueTrackerCommand().GetObjects(new Func<IssueTracker, bool>(p => !p.IsDone)).OrderBy(p => p.Created))
+                foreach (var item in new IssueTrackerCommand().GetObjects(p => !p.IsDone).OrderBy(p => p.Created))
                     Console.WriteLine(new IssueTrackerCommand().GetRepresentation(item));
 
             }
@@ -77,24 +57,6 @@ namespace Trigger.CommandLine
             }
 
             Environment.Exit(0);
-        }
-
-        private static Project prj;
-        private static Project GetProject(ProjectCommand pcmd)
-        {
-            if (prj != null)
-                return prj;
-
-            prj = pcmd.GetObjects().FirstOrDefault(p => p.Name == "Demoproject");
-
-            if (prj == null)
-            {
-                prj = new Project();
-                prj.Name = "Demoproject";
-                pcmd.Save(prj);
-            }
-
-            return prj;
         }
 
         static ConsoleColor GetColorOnIssueSate(IssueState state)

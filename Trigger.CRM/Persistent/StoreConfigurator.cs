@@ -17,8 +17,6 @@ namespace Trigger.CRM.Persistent
             DataStoreLocation = SetStoreLocation();
 
             DocumentStoreLocation = SetDocumentStoreLocation();
-
-            StoreMap = CreateStoreMap();
         }
 
         static string SetStoreLocation()
@@ -38,16 +36,6 @@ namespace Trigger.CRM.Persistent
             if (!Directory.Exists(value))
                 Directory.CreateDirectory(value);
 
-            return value;
-        }
-
-        static string CreateStoreMap()
-        {
-            var value = DataStoreLocation + ConfigurationManager.AppSettings["StoreMap"];
-
-            if (!File.Exists(value))
-                File.Create(value);
-                
             return value;
         }
     }
