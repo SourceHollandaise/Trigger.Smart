@@ -128,13 +128,16 @@ namespace Trigger.CommandLine.Commands
             var projectName = Console.ReadLine();
             Console.WriteLine("Add some informations:");
             var description = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(projectName))
+                return null;
+
             var project = cmd.GetObjects(new Func<Project, bool>(p => p.Name == projectName)).FirstOrDefault();
             if (project == null)
             {
                 project = new Project();
                 project.Name = projectName;
             }
-     
+
             if (!string.IsNullOrWhiteSpace(description))
                 project.Description = description;
 
@@ -156,17 +159,17 @@ namespace Trigger.CommandLine.Commands
                 document = new Document();
                 document.Subject = subject;
                 document.User = CurrentUser;
-                new DocumentService(document).AddFile(fileName);                              
+                new DocumentService(document).AddFile(fileName);
             }
 
             Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
             if (Console.ReadKey().Key == ConsoleKey.Enter)
-                new DocumentService(document).AddFile(fileName);    
+                new DocumentService(document).AddFile(fileName);
 
             document.Project = InsertUpdateProject();
             cmd.Save(document);
 
-            return  document;
+            return document;
         }
 
         static IssueTracker InsertUpdateIssue()
@@ -198,10 +201,12 @@ namespace Trigger.CommandLine.Commands
                 issue.Description = description;
             Console.WriteLine("Set Issue: Bug = 1, Incident = 2, Request = 11, ChangeRequest = 12, EnhancementRequest = 13, Information = 21");
             var type = Console.ReadLine();
-            issue.Issue = (IssueType)Convert.ToInt32(type);
+            if (!string.IsNullOrWhiteSpace(type))
+                issue.Issue = (IssueType)Convert.ToInt32(type);
             Console.WriteLine("Set State: Open = 1, Accepted = 2, InProgress = 3, Done = 4, Rejected = 10");
             var state = Console.ReadLine();
-            issue.State = (IssueState)Convert.ToInt32(state);
+            if (!string.IsNullOrWhiteSpace(state))
+                issue.State = (IssueState)Convert.ToInt32(state);
             issue.Project = InsertUpdateProject();
 
             cmd.Save(issue);

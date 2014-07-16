@@ -1,0 +1,4 @@
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.Dependency\bin\Debug\DependencyMaps.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.Dependency\bin\Debug\DependencyMaps.pdb
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.Dependency\obj\Debug\DependencyMaps.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.Dependency\obj\Debug\DependencyMaps.pdb

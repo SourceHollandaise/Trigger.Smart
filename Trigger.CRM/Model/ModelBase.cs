@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
 using System.Runtime.CompilerServices;
+using System;
 
 namespace Trigger.CRM.Model
 {

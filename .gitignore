@@ -16,3 +16,8 @@
 *.ps1
 
 *.rtf
+*.cache
+*.suo
+*.pdb
+*.manifest
+Trigger.CommandLine/bin/Debug/Trigger.CommandLine.vshost.exe.config

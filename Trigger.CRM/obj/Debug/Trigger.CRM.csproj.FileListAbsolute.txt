@@ -1,0 +1,15 @@
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\Trigger.Modules.Base.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\Trigger.Modules.Base.pdb
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\DependencyMaps.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\ServiceStack.Text.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.IO.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.Runtime.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.Threading.Tasks.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\DependencyMaps.pdb
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\ServiceStack.Text.xml
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.IO.xml
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.Runtime.xml
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\bin\Debug\System.Threading.Tasks.xml
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\obj\Debug\Trigger.CRM.csprojResolveAssemblyReference.cache
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\obj\Debug\Trigger.Modules.Base.dll
+C:\Users\j.egger.PARASOFT\Documents\GitHub\Trigger.Smart\Trigger.CRM\obj\Debug\Trigger.Modules.Base.pdb

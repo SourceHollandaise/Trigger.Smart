@@ -12,9 +12,12 @@ namespace Trigger.CRM.Persistent
             if (Directory.Exists(StorePath))
             {
                 if (item.MappingId == null)
-                    item.MappingId = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
+                {
+                    var id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString().Replace("-", "");
+                    item.MappingId = id;
 
-                var	json = ServiceStack.Text.XmlSerializer.SerializeToString<T>(item);
+                }
+                var json = ServiceStack.Text.JsonSerializer.SerializeToString<T>(item);
                 var path = Path.Combine(StorePath, item.MappingId + ".xml");
 
                 if (!IsInTypeMap(item.MappingId))
@@ -34,7 +37,8 @@ namespace Trigger.CRM.Persistent
                 {
                     var content = File.ReadAllText(path);
 
-                    return ServiceStack.Text.XmlSerializer.DeserializeFromString<T>(content);
+                    var result = ServiceStack.Text.JsonSerializer.DeserializeFromString<T>(content);
+                    return result;
                 }
             }
 
@@ -84,7 +88,8 @@ namespace Trigger.CRM.Persistent
             {
                 var content = File.ReadAllText(path);
 
-                return ServiceStack.Text.XmlSerializer.DeserializeFromString<T>(content);
+                var result = ServiceStack.Text.JsonSerializer.DeserializeFromString<T>(content);
+                return result;
             }
 
             return default(T);
