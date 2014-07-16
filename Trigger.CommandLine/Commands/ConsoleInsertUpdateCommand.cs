@@ -207,7 +207,9 @@ namespace Trigger.CommandLine.Commands
             var state = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(state))
                 issue.State = (IssueState)Convert.ToInt32(state);
-            issue.Project = InsertUpdateProject();
+            var project = InsertUpdateProject();
+            if (project != null)
+                issue.Project = project;
 
             cmd.Save(issue);
 
