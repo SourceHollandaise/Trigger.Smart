@@ -67,6 +67,8 @@ namespace Trigger.CRM.Persistent
                 foreach (var line in lines)
                 {
                     var splitted = line.Split(';');
+                    if (splitted.Length < 2)
+                        continue;
                     if (splitted[0] == typeof(T).FullName)
                     {
                         var fileName = Path.Combine(StorePath, splitted[2]);
@@ -111,7 +113,8 @@ namespace Trigger.CRM.Persistent
             foreach (var line in File.ReadAllLines(TypeMapFile))
             {
                 var splitted = line.Split(';');
-              
+                if (splitted.Length < 1)
+                    continue;
                 var mappedId = splitted[1];
                 if (itemId.ToString().Equals(mappedId))
                     return true;
