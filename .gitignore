@@ -31,3 +31,5 @@ Trigger.CommandLine/bin/Debug/Trigger.CommandLine.vshost.exe.config
 *.userprefs
 
 Trigger.Smart/Trigger.Smart.userprefs
+
+*.json
