@@ -4,10 +4,19 @@ using Trigger.CRM.Commands;
 
 namespace Trigger.CommandLine
 {
-    public class ConsoleDeleteCommands : ConsoleCommands
+    public class ConsoleDeleteCommand : ConsoleCommand
     {
         public static void DeleteItem(string target, string id)
         {
+            if (target.ToLower().Equals("user"))
+            {
+                var cmd = new UserCommand();
+
+                Console.WriteLine("Delete exisiting user...");
+
+                cmd.Delete(id);
+            }
+
             if (target.ToLower().Equals("issue"))
             {
                 var cmd = new IssueTrackerCommand();

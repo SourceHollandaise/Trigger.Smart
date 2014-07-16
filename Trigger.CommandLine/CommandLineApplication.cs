@@ -9,7 +9,7 @@ using Trigger.CRM.Commands;
 
 namespace Trigger.CommandLine
 {
-    class IssueConsole
+    class CommandLineApplication
     {
         static IDependencyMap Map
         {
@@ -25,14 +25,7 @@ namespace Trigger.CommandLine
             Console.WriteLine("Trigger Smart Solutions");
             Console.WriteLine();
 
-            var currentUser = LogonUser();
-
-            if (currentUser == null)
-            {
-                Console.WriteLine("Nice try! User does not exists!");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
+            ConsoleLogonCommand.LogonUser();
 
             Console.WriteLine("Cleanup datastore? Type <Enter> to clean up or any other key to continue!");
 
@@ -59,72 +52,15 @@ namespace Trigger.CommandLine
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
-                ExecuteCommand();
-
+                Console.WriteLine("Type command...");
+                CommandExecuteStratgy.ExecuteCommand(Console.ReadLine());
                 Console.WriteLine("Press <Enter> to continue or <ESC> to exit!");
             }
 
             Environment.Exit(0);
         }
 
-        static User LogonUser()
-        {
-            User currentUser = null;
-            var logon = new LogonParameters();
-            var auth = Map.ResolveType<IAuthenticate>();
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine("Username: ");
-                logon.UserName = Console.ReadLine();
-                Console.WriteLine("Password: ");
-                logon.Password = Console.ReadLine();
-                Console.WriteLine();
 
-                if (auth.LogOn(logon))
-                {
-                    currentUser = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-                    Console.WriteLine(string.Format("Hello {0}! You're successfully logged on!", currentUser.UserName));
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Username or password wrong! Try again!");
-                }
-            }
-
-            return currentUser;
-        }
-
-        static void ExecuteCommand()
-        {
-            var user = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-
-            Console.WriteLine("Type command...");
-            var command = Console.ReadLine();
-            {
-                if (command.ToLower().StartsWith(Commands.ADD.ToLower()))
-                {
-                    ConsoleInsertUpdateCommands.InsertUpdateItems(command.ToLower().Replace(Commands.ADD.ToLower(), ""));
-                }
-                else if (command.ToLower().StartsWith(Commands.LST.ToLower()))
-                {
-                    ConsoleSelectCommands.ListItems(command.ToLower().Replace(Commands.LST.ToLower(), ""));
-                }
-                else if (command.ToLower().Equals(Commands.EXIT.ToLower()))
-                {
-                    Environment.Exit(0);
-                }
-                else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
-                {
-                    var tmp = command.Replace(Commands.DEL.ToLower(), "");
-                    var splitted = tmp.Split('-');
-                    ConsoleDeleteCommands.DeleteItem(splitted[0], splitted[1]);
-                }
-                else
-                    Console.WriteLine("Command not valid!");
-
-            }
-        }
 
         static ConsoleColor GetColorOnIssueSate(IssueState state)
         {
@@ -142,6 +78,33 @@ namespace Trigger.CommandLine
             }
 
             return ConsoleColor.White;
+        }
+    }
+
+    public class CommandExecuteStratgy : ConsoleCommand
+    {
+        public static  void ExecuteCommand(string command)
+        {
+            if (command.ToLower().StartsWith(Commands.ADD.ToLower()))
+            {
+                ConsoleInsertUpdateCommand.InsertUpdateItems(command.ToLower().Replace(Commands.ADD.ToLower(), ""));
+            }
+            else if (command.ToLower().StartsWith(Commands.LST.ToLower()))
+            {
+                ConsoleSelectCommand.ListItems(command.ToLower().Replace(Commands.LST.ToLower(), ""));
+            }
+            else if (command.ToLower().Equals(Commands.EXIT.ToLower()))
+            {
+                Environment.Exit(0);
+            }
+            else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
+            {
+                var tmp = command.Replace(Commands.DEL.ToLower(), "");
+                var splitted = tmp.Split('-');
+                ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
+            }
+            else
+                Console.WriteLine("Command not valid!");
         }
     }
 }

@@ -7,7 +7,7 @@ using Trigger.CRM.Commands;
 
 namespace Trigger.CommandLine
 {
-    public class ConsoleSelectCommands : ConsoleCommands
+    public class ConsoleSelectCommand : ConsoleCommand
     {
         public static void ListItems(string target)
         {

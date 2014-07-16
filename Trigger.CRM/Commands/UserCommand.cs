@@ -13,6 +13,7 @@ namespace Trigger.CRM.Commands
             var sb = new System.Text.StringBuilder();
             sb.AppendLine(string.Format("{0}", item.UserName));
             sb.AppendLine(string.Format("{0}", item.EMail));
+            sb.AppendLine(string.Format("ID: {0}", item.MappingId));
             return sb.ToString();
         }
 

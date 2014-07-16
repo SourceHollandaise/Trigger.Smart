@@ -12,6 +12,7 @@ namespace Trigger.CRM.Commands
                 sb.AppendLine(string.Format("{0} - {1} with duration {2}", item.Begin, item.End));
             sb.AppendLine(string.Format("Linked to '{0}' project", item.Project));
             sb.AppendLine(string.Format("{0}", item.Description));
+            sb.AppendLine(string.Format("ID: {0}", item.MappingId));
             return sb.ToString();
         }
     }

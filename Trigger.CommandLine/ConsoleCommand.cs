@@ -13,7 +13,7 @@ namespace Trigger.CommandLine
         public static string EXIT = "EXIT";
     }
 
-    public abstract class ConsoleCommands
+    public abstract class ConsoleCommand
     {
         protected static IDependencyMap Map
         {

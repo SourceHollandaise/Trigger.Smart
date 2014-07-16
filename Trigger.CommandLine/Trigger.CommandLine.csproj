@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IssueConsole.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ConsoleDeleteCommands.cs" />
-    <Compile Include="ConsoleInsertUpdateCommands.cs" />
-    <Compile Include="ConsoleSelectCommands.cs" />
-    <Compile Include="ConsoleCommands.cs" />
     <Compile Include="ConsolePasswordMask.cs" />
+    <Compile Include="ConsoleCommand.cs" />
+    <Compile Include="ConsoleDeleteCommand.cs" />
+    <Compile Include="ConsoleInsertUpdateCommand.cs" />
+    <Compile Include="ConsoleSelectCommand.cs" />
+    <Compile Include="ConsoleLogonCommand.cs" />
+    <Compile Include="CommandLineApplication.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -6,7 +6,7 @@ using Trigger.CRM.Commands;
 
 namespace Trigger.CommandLine
 {
-    public class ConsoleInsertUpdateCommands : ConsoleCommands
+    public class ConsoleInsertUpdateCommand : ConsoleCommand
     {
         public static void InsertUpdateItems(string target)
         {
@@ -36,7 +36,7 @@ namespace Trigger.CommandLine
             }
         }
 
-        static void InsertUpdateUser()
+        static User InsertUpdateUser()
         {
             var cmd = new UserCommand();
             Console.WriteLine("Username:");
@@ -52,7 +52,7 @@ namespace Trigger.CommandLine
                 if (!password.Equals(passwordToCompare))
                 {
                     Console.WriteLine("Passwords are not equal!");
-                    return;
+                    return null;
                 }
                 var user = cmd.GetObjects(new Func<User, bool>(p => p.UserName == userName && p.Password == password)).FirstOrDefault();
 
@@ -65,7 +65,10 @@ namespace Trigger.CommandLine
                     user.EMail = email;
                 user.Password = password;
                 cmd.Save(user);
+                return user;
             }
+
+            return null;
         }
 
         static Project InsertUpdateProject()
@@ -90,7 +93,7 @@ namespace Trigger.CommandLine
             return project;
         }
 
-        static void InsertUpdateDocument()
+        static Document InsertUpdateDocument()
         {
             var cmd = new DocumentCommand();
             Console.WriteLine("Add Subject for document:");
@@ -111,9 +114,11 @@ namespace Trigger.CommandLine
                 if (Console.ReadKey().Key == ConsoleKey.Enter)
                     document.AddFile(fileName);
             }
+
+            return  document;
         }
 
-        static void InsertUpdateIssue()
+        static IssueTracker InsertUpdateIssue()
         {
             var cmd = new IssueTrackerCommand();
             Console.WriteLine("Set Subject: ");
@@ -134,7 +139,7 @@ namespace Trigger.CommandLine
                     };
                 }
                 else
-                    return;
+                    return null;
             }
             Console.WriteLine("Set Description: ");
             var description = Console.ReadLine();
@@ -149,7 +154,8 @@ namespace Trigger.CommandLine
             issue.Project = InsertUpdateProject();
 
             cmd.Save(issue);
+
+            return issue;
         }
     }
-    
 }

@@ -11,6 +11,7 @@ namespace Trigger.CRM.Commands
             sb.AppendLine(string.Format("{0} is {1}", item.Issue, item.State));
             sb.AppendLine(string.Format("Linked to '{0}' project", item.Project));
             sb.AppendLine(string.Format("{0}", item.Description));
+            sb.AppendLine(string.Format("ID: {0}", item.MappingId));
             return sb.ToString();
         }
     }
