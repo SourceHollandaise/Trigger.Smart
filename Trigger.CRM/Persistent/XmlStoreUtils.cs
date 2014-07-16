@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using Trigger.CRM.Model;
 using Trigger.CRM.Security;
+using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
@@ -12,7 +13,7 @@ namespace Trigger.CRM.Persistent
         public static int UpdateTypeMapForDocuments()
         {
             var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation);
-            var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
+            var store = DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
 
             foreach (var doc in store.LoadAll())
             {
@@ -21,7 +22,7 @@ namespace Trigger.CRM.Persistent
                     if (!File.Exists(Path.Combine(StoreConfigurator.DocumentStoreLocation, doc.FileName)))
                         store.Delete(doc.MappingId);
                 }
-                if (string.IsNullOrEmpty(doc.FileName))
+                else
                     store.Delete(doc.MappingId);
             }
    
@@ -39,7 +40,7 @@ namespace Trigger.CRM.Persistent
                         Created = DateTime.Now,
                         FileName = fi.Name,
                         Subject = fi.Name.Replace(fi.Extension, ""),
-                        User = Dependency.DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
+                        User = DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
                     };
 
                     store.Save(document);

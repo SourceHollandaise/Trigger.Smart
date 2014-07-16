@@ -1,34 +1,29 @@
 
 using System;
-using System.Linq;
-using Trigger.CRM.Persistent;
-using Trigger.CRM.Model;
-using Trigger.CRM.Security;
-using Trigger.Dependency;
-using Trigger.CRM.Commands;
+using Trigger.CommandLine.Commands;
 
 namespace Trigger.CommandLine
 {
 
-    public class CommandExecuteStratgy : ConsoleCommand
+    public class CommandExecuteStratgy : ConsoleBaseCommand
     {
         public static  void ExecuteCommand(string command)
         {
-            if (command.ToLower().StartsWith(Commands.ADD.ToLower()))
+            if (command.ToLower().StartsWith(CommandKey.ADD.ToLower()))
             {
-                ConsoleInsertUpdateCommand.InsertUpdateItems(command.ToLower().Replace(Commands.ADD.ToLower(), ""));
+                ConsoleInsertUpdateCommand.InsertUpdateItems(command.ToLower().Replace(CommandKey.ADD.ToLower(), ""));
             }
-            else if (command.ToLower().StartsWith(Commands.LST.ToLower()))
+            else if (command.ToLower().StartsWith(CommandKey.LST.ToLower()))
             {
-                ConsoleSelectCommand.ListItems(command.ToLower().Replace(Commands.LST.ToLower(), ""));
+                ConsoleSelectCommand.ListItems(command.ToLower().Replace(CommandKey.LST.ToLower(), ""));
             }
-            else if (command.ToLower().Equals(Commands.EXIT.ToLower()))
+            else if (command.ToLower().Equals(CommandKey.EXIT.ToLower()))
             {
                 Environment.Exit(0);
             }
-            else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
+            else if (command.ToLower().StartsWith(CommandKey.DEL.ToLower()))
             {
-                var tmp = command.Replace(Commands.DEL.ToLower(), "");
+                var tmp = command.Replace(CommandKey.DEL.ToLower(), "");
                 var splitted = tmp.Split(new []{ '>' }, StringSplitOptions.RemoveEmptyEntries);
                 ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
             }

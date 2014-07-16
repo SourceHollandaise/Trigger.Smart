@@ -3,10 +3,10 @@ using Trigger.CRM.Security;
 using Trigger.CRM.Model;
 using System;
 
-namespace Trigger.CommandLine
+namespace Trigger.CommandLine.Commands
 {
 
-    public class ConsoleLogonCommand : ConsoleCommand
+    public class ConsoleLogonCommand : ConsoleBaseCommand
     {
         public static void LogonUser()
         {

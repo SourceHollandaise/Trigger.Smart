@@ -5,6 +5,7 @@ using Trigger.CRM.Model;
 using Trigger.Dependency;
 using Trigger.CRM.Security;
 using System.Configuration;
+using Trigger.CommandLine.Commands;
 
 namespace Trigger.CommandLine
 {

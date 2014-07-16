@@ -1,31 +1,9 @@
-using System.IO;
-using Trigger.CRM.Persistent;
 using System;
 
 namespace Trigger.CRM.Model
 {
     public class Document : ModelBase
     {
-        public void AddFile(string sourcePath, bool copy = true)
-        {
-            if (File.Exists(sourcePath))
-            {
-                var file = new FileInfo(sourcePath);
-
-                var targetPath = Path.Combine(StoreConfigurator.DocumentStoreLocation, file.Name);
-
-                if (!sourcePath.Equals(targetPath))
-                {
-                    if (copy)
-                        File.Copy(sourcePath, targetPath);
-                    else
-                        File.Move(sourcePath, targetPath);
-                }
-
-                FileName = new FileInfo(targetPath).Name;
-            }
-        }
-
         string subject;
 
         public string Subject

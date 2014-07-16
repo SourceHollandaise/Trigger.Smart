@@ -5,9 +5,9 @@ using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
 using Trigger.CRM.Commands;
 
-namespace Trigger.CommandLine
+namespace Trigger.CommandLine.Commands
 {
-    public class ConsoleSelectCommand : ConsoleCommand
+    public class ConsoleSelectCommand : ConsoleBaseCommand
     {
         public static void ListItems(string target)
         {

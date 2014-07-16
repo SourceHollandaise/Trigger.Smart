@@ -2,9 +2,9 @@
 using System;
 using Trigger.CRM.Commands;
 
-namespace Trigger.CommandLine
+namespace Trigger.CommandLine.Commands
 {
-    public class ConsoleDeleteCommand : ConsoleCommand
+    public class ConsoleDeleteCommand : ConsoleBaseCommand
     {
         public static void DeleteItem(string target, string id)
         {

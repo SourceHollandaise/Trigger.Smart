@@ -3,17 +3,9 @@ using Trigger.Dependency;
 using Trigger.CRM.Security;
 using Trigger.CRM.Model;
 
-namespace Trigger.CommandLine
+namespace Trigger.CommandLine.Commands
 {
-    struct Commands
-    {
-        public static string ADD = "ADD ";
-        public static string DEL = "DEL ";
-        public static string LST = "LST ";
-        public static string EXIT = "EXIT";
-    }
-
-    public abstract class ConsoleCommand
+    public abstract class ConsoleBaseCommand
     {
         protected static IDependencyMap Map
         {

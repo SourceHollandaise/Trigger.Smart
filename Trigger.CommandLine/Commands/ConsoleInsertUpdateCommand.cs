@@ -3,10 +3,11 @@ using System;
 using System.Linq;
 using Trigger.CRM.Model;
 using Trigger.CRM.Commands;
+using Trigger.CRM.Services;
 
-namespace Trigger.CommandLine
+namespace Trigger.CommandLine.Commands
 {
-    public class ConsoleInsertUpdateCommand : ConsoleCommand
+    public class ConsoleInsertUpdateCommand : ConsoleBaseCommand
     {
         public static void InsertUpdateItems(string target)
         {
@@ -155,12 +156,12 @@ namespace Trigger.CommandLine
                 document = new Document();
                 document.Subject = subject;
                 document.User = CurrentUser;
-                document.AddFile(fileName);
+                new DocumentService(document).AddFile(fileName);                              
             }
 
             Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
             if (Console.ReadKey().Key == ConsoleKey.Enter)
-                document.AddFile(fileName);
+                new DocumentService(document).AddFile(fileName);    
 
             document.Project = InsertUpdateProject();
             cmd.Save(document);

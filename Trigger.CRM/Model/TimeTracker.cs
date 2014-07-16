@@ -1,42 +1,43 @@
 ﻿
 using System;
-using System.ComponentModel;
 
 namespace Trigger.CRM.Model
 {
     public class TimeTracker : ModelBase
     {
-        public void StartTracking(DateTime begin)
+        string subject;
+
+        public string Subject
         {
-            if (End.HasValue)
-                throw new ArgumentException("Cannot start new tracking before stop!");
-
-            if (User == null)
-                throw new ArgumentException("Cannot start tracking if user is null!");
-
-            if (!End.HasValue && User != null)
+            get
             {
-                User = user;
-                Begin = begin;
+                return subject;
+            }
+            set
+            {
+                if (Equals(subject, value))
+                    return;
+                subject = value;
+
+                OnPropertyChanged();
             }
         }
 
-        public void StopTracking(DateTime end, string subject = null, string description = null)
+        string description;
+
+        public string Description
         {
-            if (User == null)
-                throw new ArgumentException("Cannot track if user is null!");
-
-            if (!Begin.HasValue)
-                throw new ArgumentException("Cannot stop tracking before start!");
-
-            if (Begin.HasValue && User != null)
+            get
             {
-                if (end < Begin.Value)
-                    throw new ArgumentException("End must be greater than Start!");
-					
-                End = end;
-                Subject = subject;
-                Description = description;
+                return description;
+            }
+            set
+            {
+                if (Equals(description, value))
+                    return;
+                description = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -117,42 +118,6 @@ namespace Trigger.CRM.Model
             get
             {
                 return End.HasValue && Begin.HasValue ? End - Begin : null;
-            }
-        }
-
-        string subject;
-
-        public string Subject
-        {
-            get
-            {
-                return subject;
-            }
-            set
-            {
-                if (Equals(subject, value))
-                    return;
-                subject = value;
-
-                OnPropertyChanged();
-            }
-        }
-
-        string description;
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                if (Equals(description, value))
-                    return;
-                description = value;
-
-                OnPropertyChanged();
             }
         }
     }

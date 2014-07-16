@@ -78,6 +78,8 @@
     <Compile Include="Commands\IssueTrackerCommand.cs" />
     <Compile Include="Commands\TimeTrackerCommand.cs" />
     <Compile Include="Commands\ModelCommand.cs" />
+    <Compile Include="Services\TimeTrackerService.cs" />
+    <Compile Include="Services\DocumentService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -86,6 +88,7 @@
     <Folder Include="Persistent\" />
     <Folder Include="Security\" />
     <Folder Include="Commands\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
