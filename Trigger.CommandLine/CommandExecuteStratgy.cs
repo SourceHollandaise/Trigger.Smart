@@ -29,11 +29,9 @@ namespace Trigger.CommandLine
             else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
             {
                 var tmp = command.Replace(Commands.DEL.ToLower(), "");
-                var splitted = tmp.Split('-');
+                var splitted = tmp.Split(new []{ '>' }, StringSplitOptions.RemoveEmptyEntries);
                 ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
             }
-            else
-                Console.WriteLine("Command not valid!");
         }
     }
 }

@@ -41,34 +41,83 @@ namespace Trigger.CommandLine
             var cmd = new UserCommand();
             Console.WriteLine("Username:");
             var userName = Console.ReadLine();
-            Console.WriteLine("E-Mail:");
-            var email = Console.ReadLine();
-            Console.WriteLine("Password:");
-            var password = Console.ReadLine();
-            Console.WriteLine("Retype password:");
-            var passwordToCompare = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password) && !string.IsNullOrWhiteSpace(passwordToCompare))
+
+            var user = cmd.GetObjects(new Func<User, bool>(p => p.UserName == userName)).FirstOrDefault();
+            if (user == null)
             {
+                Console.WriteLine("User doesn't exists. Add new user informations.");
+
+                Console.WriteLine("E-Mail:");
+                var email = Console.ReadLine();
+                Console.WriteLine("Password:");
+                var password = Console.ReadLine();
+                Console.WriteLine("Retype password:");
+                var passwordToCompare = Console.ReadLine();
+
                 if (!password.Equals(passwordToCompare))
                 {
                     Console.WriteLine("Passwords are not equal!");
                     return null;
                 }
-                var user = cmd.GetObjects(new Func<User, bool>(p => p.UserName == userName && p.Password == password)).FirstOrDefault();
 
-                if (user == null)
-                {
-                    user = new User();
-                    user.UserName = userName;
-                }
+                user = new User();
+                user.UserName = userName;
+                user.Password = password;
+
                 if (!string.IsNullOrWhiteSpace(email))
                     user.EMail = email;
-                user.Password = password;
+
                 cmd.Save(user);
                 return user;
-            }
 
-            return null;
+            }
+            else
+            {
+                Console.WriteLine("User already exists. Update user informations.");
+
+                var currentPassword = user.Password;
+
+                Console.WriteLine("Current password:");
+                var password = Console.ReadLine();
+
+                if (!password.Equals(currentPassword))
+                {
+                    Console.WriteLine("Password is not valid!");
+                    return user;
+                }
+
+                Console.WriteLine("Update password? Press <Enter> to update or any key to continue!");
+
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("Password:");
+                    var newPassword = Console.ReadLine();
+                    Console.WriteLine("Retype password:");
+                    var passwordToCompare = Console.ReadLine();
+
+                    if (!newPassword.Equals(passwordToCompare))
+                    {
+                        Console.WriteLine("Passwords are not equal!");
+                        return null;
+                    }
+                    else
+                        user.Password = newPassword;
+                }
+
+                Console.WriteLine("Update E-Mail? Press <Enter> to update or any key to continue!");
+
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("E-Mail:");
+                    var email = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(email))
+                        user.EMail = email;
+                }
+
+                cmd.Save(user);
+
+                return user;
+            }
         }
 
         static Project InsertUpdateProject()
