@@ -31,7 +31,7 @@ namespace Trigger.CRM.Commands
 
         public virtual void Delete(object id)
         {
-            Store.Delete(id);
+            Store.DeleteById(id);
         }
 
         public virtual IEnumerable<T> GetObjects(Func<T, bool> function)

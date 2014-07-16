@@ -63,7 +63,7 @@
     <Compile Include="Persistent\GuidIdGenerator.cs" />
     <Compile Include="Security\ISecurityInfoProvider.cs" />
     <Compile Include="Security\SecurityInfoProvider.cs" />
-    <Compile Include="Security\UserFactory.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Security\DataStoreAuthenticate.cs" />
     <Compile Include="Security\IAuthenticate.cs" />
     <Compile Include="Security\LogonParameters.cs" />

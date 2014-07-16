@@ -1,13 +1,12 @@
 using System;
 using System.Linq;
-using Trigger.Dependency;
-using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
+using Trigger.CRM.Persistent;
+using Trigger.Dependency;
 
-namespace Trigger.CRM.Security
+namespace Trigger.CRM.Services
 {
-
-    public class UserFactory
+    public class UserService
     {
         public User CreateUser(string userName, string password, string passwordToCompare)
         {

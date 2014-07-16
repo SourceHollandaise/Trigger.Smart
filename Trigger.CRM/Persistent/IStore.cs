@@ -10,6 +10,7 @@ namespace Trigger.CRM.Persistent
 
         IEnumerable<T>LoadAll();
 
-        void Delete(object itemId);
+        void DeleteById(object itemId);
+        void Delete(T item);
     }
 }

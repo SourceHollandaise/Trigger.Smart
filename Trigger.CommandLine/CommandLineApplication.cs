@@ -14,12 +14,12 @@ namespace Trigger.CommandLine
     {
         static IDependencyMap Map
         {
-            get{ return DependencyMapProvider.Instance; }
+            get { return DependencyMapProvider.Instance; }
         }
 
         public static void Main(string[] args)
         {
-           
+
             new Bootstrapper().StartUpApplication();
 
             Console.WriteLine("CIT - COMMMANDLINE ISSUE TRACKER 0.1");
@@ -28,14 +28,26 @@ namespace Trigger.CommandLine
 
             ConsoleLogonCommand.LogonUser();
 
-            Console.WriteLine("Cleanup datastore? Type <Enter> to clean up or any other key to continue!");
-
-            if (Console.ReadKey().Key == ConsoleKey.Enter)
+            var icmd = new IssueTrackerCommand();
+            var pcmd = new ProjectCommand();
+            for (int i = 0; i < 10000; i++)
             {
-                Console.WriteLine("Start cleaning...");
-                XmlStoreUtils.RestoreTypeMap();
-                Console.WriteLine("Finished cleaning...");
+                var issue = new IssueTracker();
+                issue.Created = DateTime.Now;
+                issue.CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                issue.Description = "Test " + i;
+                issue.Issue = IssueType.Bug;
+
+                issue.Project = GetProject(pcmd);
+                issue.State = IssueState.InProgress;
+                issue.Subject = "Testsubject " + i;
+
+                icmd.Save(issue);
+
+                Console.WriteLine(icmd.GetRepresentation(issue));
+
             }
+
             Console.WriteLine();
             Console.WriteLine("Search for new documents...");
             Console.WriteLine();
@@ -52,7 +64,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine();
                 foreach (var item in new IssueTrackerCommand().GetObjects(new Func<IssueTracker, bool>(p => !p.IsDone)).OrderBy(p => p.Created))
                     Console.WriteLine(new IssueTrackerCommand().GetRepresentation(item));
-               
+
             }
             Console.WriteLine();
             Console.WriteLine("Press <Enter> to continue or <ESC> to exit!");
@@ -67,6 +79,24 @@ namespace Trigger.CommandLine
             Environment.Exit(0);
         }
 
+        private static Project prj;
+        private static Project GetProject(ProjectCommand pcmd)
+        {
+            if (prj != null)
+                return prj;
+
+            prj = pcmd.GetObjects().FirstOrDefault(p => p.Name == "Demoproject");
+
+            if (prj == null)
+            {
+                prj = new Project();
+                prj.Name = "Demoproject";
+                pcmd.Save(prj);
+            }
+
+            return prj;
+        }
+
         static ConsoleColor GetColorOnIssueSate(IssueState state)
         {
             switch (state)
@@ -75,7 +105,7 @@ namespace Trigger.CommandLine
                     return ConsoleColor.Red;
                 case IssueState.Accepted:
                 case IssueState.InProgress:
-                    return ConsoleColor.DarkYellow;               
+                    return ConsoleColor.DarkYellow;
                 case IssueState.Done:
                     return ConsoleColor.Green;
                 case IssueState.Rejected:

@@ -54,10 +54,6 @@ namespace Trigger.CommandLine.Commands
                 cmd.Delete(id);
 
             }
-            else
-                Console.WriteLine("List command not valid!");
         }
-
-    }
-    
+    } 
 }

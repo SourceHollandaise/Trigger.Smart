@@ -1,27 +1,28 @@
-using System;
 using System.IO;
 using System.Collections.Generic;
 using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
-    public class XmlStore<T> : IStore<T> where T: IStorable
+    public class XmlStore<T> : IStore<T> where T : IStorable
     {
         public void Save(T item)
         {
             if (Directory.Exists(StorePath))
             {
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+
+                if (!Directory.Exists(subDir))
+                    Directory.CreateDirectory(subDir);
+
                 if (item.MappingId == null)
                 {
                     var id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString().Replace("-", "");
                     item.MappingId = id;
                 }
                 var json = ServiceStack.Text.JsonSerializer.SerializeToString<T>(item);
-                var path = Path.Combine(StorePath, item.MappingId + ".xml");
+                var path = Path.Combine(subDir, item.MappingId + ".json");
 
-                if (!IsInTypeMap(item.MappingId))
-                    SaveToTypeMap(typeof(T), item.MappingId.ToString(), item.MappingId + ".xml");
-                    
                 File.WriteAllText(path, json);
             }
         }
@@ -30,7 +31,12 @@ namespace Trigger.CRM.Persistent
         {
             if (Directory.Exists(StorePath))
             {
-                var path = Path.Combine(StorePath, itemId + ".xml");
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+
+                if (!Directory.Exists(subDir))
+                    return default(T);
+
+                var path = Path.Combine(subDir, itemId + ".json");
 
                 if (File.Exists(path))
                 {
@@ -44,41 +50,54 @@ namespace Trigger.CRM.Persistent
             return default(T);
         }
 
-        public void Delete(object itemId)
+        public void DeleteById(object itemId)
         {
             if (Directory.Exists(StorePath))
             {
-                var path = Path.Combine(StorePath, itemId + ".xml");
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+
+                if (!Directory.Exists(subDir))
+                    return;
+
+                var path = Path.Combine(subDir,itemId + ".json");
 
                 if (File.Exists(path))
                 {
                     File.Delete(path);
-                    ClearFromTypeMap();
                 }
             }
         }
 
-        public IEnumerable<T>LoadAll()
+        public void Delete(T item)
         {
-            if (File.Exists(TypeMapFile))
+            if (Directory.Exists(StorePath))
             {
-                var lines = File.ReadAllLines(TypeMapFile);
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
 
-                foreach (var line in lines)
+                if (!Directory.Exists(subDir))
+                    return;
+
+                var path = Path.Combine(subDir, item.MappingId + ".json");
+
+                if (File.Exists(path))
                 {
-                    var splitted = line.Split(';');
-                    if (splitted.Length < 2)
-                        continue;
-                    if (splitted[0] == typeof(T).FullName)
-                    {
-                        var fileName = Path.Combine(StorePath, splitted[2]);
-                        if (File.Exists(fileName))
-                        {
-                            var item = Load(fileName);
-                            if (item != null)
-                                yield return item;
-                        }
-                    }
+                    File.Delete(path);
+                }
+            }
+        }
+
+        public IEnumerable<T> LoadAll()
+        {
+            if (Directory.Exists(StorePath))
+            {
+                var subDir = Path.Combine(StorePath, typeof (T).FullName);
+
+                if (!Directory.Exists(subDir))
+                    yield break;
+
+                foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
+                {
+                    yield return Load(item);
                 }
             }
         }
@@ -96,46 +115,11 @@ namespace Trigger.CRM.Persistent
             return default(T);
         }
 
-        static void SaveToTypeMap(Type type, object itemId, string fileName)
-        {
-            if (File.Exists(TypeMapFile))
-                File.AppendAllText(TypeMapFile, type.FullName + ";" + itemId + ";" + fileName + Environment.NewLine);
-        }
-
-        static void ClearFromTypeMap()
-        {
-            if (File.Exists(TypeMapFile))
-                XmlStoreUtils.RestoreTypeMap();
-        }
-
-        static bool IsInTypeMap(object itemId)
-        {
-            foreach (var line in File.ReadAllLines(TypeMapFile))
-            {
-                var splitted = line.Split(';');
-                if (splitted.Length < 1)
-                    continue;
-                var mappedId = splitted[1];
-                if (itemId.ToString().Equals(mappedId))
-                    return true;
-            }
-
-            return false;
-        }
-
         static string StorePath
         {
             get
             {
                 return StoreConfigurator.DataStoreLocation;
-            }
-        }
-
-        static string TypeMapFile
-        {
-            get
-            {
-                return StoreConfigurator.StoreMap;
             }
         }
     }
