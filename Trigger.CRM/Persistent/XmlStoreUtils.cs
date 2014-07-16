@@ -15,9 +15,16 @@ namespace Trigger.CRM.Persistent
             var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
 
             foreach (var doc in store.LoadAll())
-                if (string.IsNullOrWhiteSpace(doc.FileName))
+            {
+                if (!string.IsNullOrWhiteSpace(doc.FileName))
+                {
+                    if (!File.Exists(Path.Combine(StoreConfigurator.DocumentStoreLocation, doc.FileName)))
+                        store.Delete(doc.MappingId);
+                }
+                if (string.IsNullOrEmpty(doc.FileName))
                     store.Delete(doc.MappingId);
-                
+            }
+   
             int counter = 0;
             foreach (var file in files)
             {
@@ -29,6 +36,7 @@ namespace Trigger.CRM.Persistent
                 {
                     document = new Document
                     {
+                        Created = DateTime.Now,
                         FileName = fi.Name,
                         Subject = fi.Name.Replace(fi.Extension, ""),
                         User = Dependency.DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
