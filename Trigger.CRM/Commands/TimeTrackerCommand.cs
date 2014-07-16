@@ -7,10 +7,10 @@ namespace Trigger.CRM.Commands
         public override string GetRepresentation(TimeTracker item)
         {
             var sb = new System.Text.StringBuilder();
-            sb.AppendLine(string.Format("'{0}' by {1} on {2}", item.Subject, item.User));
+            sb.AppendLine(string.Format("'{0}' by {1} on {2}", item.Subject, item.User != null ? item.User.UserName : "anonymous"));
             if (item.Duration != null)
-                sb.AppendLine(string.Format("{0} - {1} with duration {2}", item.Begin, item.End));
-            sb.AppendLine(string.Format("Linked to '{0}' project", item.Project));
+                sb.AppendLine(string.Format("{0} - {1} with duration {2}", item.Begin, item.End, item.Duration));
+            sb.AppendLine(string.Format("Linked to '{0}' project", item.Project != null ? item.Project.Name : "anonymous"));
             sb.AppendLine(string.Format("{0}", item.Description));
             sb.AppendLine(string.Format("ID: {0}", item.MappingId));
             return sb.ToString();

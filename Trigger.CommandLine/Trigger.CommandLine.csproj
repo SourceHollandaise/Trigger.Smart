@@ -49,6 +49,7 @@
     <Compile Include="ConsoleSelectCommand.cs" />
     <Compile Include="ConsoleLogonCommand.cs" />
     <Compile Include="CommandLineApplication.cs" />
+    <Compile Include="CommandExecuteStratgy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

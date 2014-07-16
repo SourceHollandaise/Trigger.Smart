@@ -108,12 +108,13 @@ namespace Trigger.CommandLine
                 document.User = CurrentUser;
                 document.AddFile(fileName);
             }
-            else
-            {
-                Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
-                    document.AddFile(fileName);
-            }
+
+            Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
+            if (Console.ReadKey().Key == ConsoleKey.Enter)
+                document.AddFile(fileName);
+
+            document.Project = InsertUpdateProject();
+            cmd.Save(document);
 
             return  document;
         }

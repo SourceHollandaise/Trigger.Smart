@@ -36,17 +36,23 @@ namespace Trigger.CommandLine
                 Console.WriteLine("Finished cleaning...");
             }
             Console.WriteLine();
-            Console.WriteLine("Adding new documents to store...");
+            Console.WriteLine("Search for new documents...");
             Console.WriteLine();
             var count = XmlStoreUtils.UpdateTypeMapForDocuments();
-            Console.WriteLine(string.Format("{0} documents added!", count));
-            Console.WriteLine();
-
-            Console.WriteLine();
-            Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
-            Console.WriteLine();
-            foreach (var item in new IssueTrackerCommand().GetObjects(new Func<IssueTracker, bool>(p => !p.IsDone)).OrderBy(p => p.Created))
-                Console.WriteLine(new IssueTrackerCommand().GetRepresentation(item));
+            if (count == 0)
+            {
+                Console.WriteLine("No new documents found!");
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0} documents added!", count));
+                Console.WriteLine();
+                Console.WriteLine(string.Format("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName));
+                Console.WriteLine();
+                foreach (var item in new IssueTrackerCommand().GetObjects(new Func<IssueTracker, bool>(p => !p.IsDone)).OrderBy(p => p.Created))
+                    Console.WriteLine(new IssueTrackerCommand().GetRepresentation(item));
+               
+            }
             Console.WriteLine();
             Console.WriteLine("Press <Enter> to continue or <ESC> to exit!");
 
@@ -59,8 +65,6 @@ namespace Trigger.CommandLine
 
             Environment.Exit(0);
         }
-
-
 
         static ConsoleColor GetColorOnIssueSate(IssueState state)
         {
@@ -78,33 +82,6 @@ namespace Trigger.CommandLine
             }
 
             return ConsoleColor.White;
-        }
-    }
-
-    public class CommandExecuteStratgy : ConsoleCommand
-    {
-        public static  void ExecuteCommand(string command)
-        {
-            if (command.ToLower().StartsWith(Commands.ADD.ToLower()))
-            {
-                ConsoleInsertUpdateCommand.InsertUpdateItems(command.ToLower().Replace(Commands.ADD.ToLower(), ""));
-            }
-            else if (command.ToLower().StartsWith(Commands.LST.ToLower()))
-            {
-                ConsoleSelectCommand.ListItems(command.ToLower().Replace(Commands.LST.ToLower(), ""));
-            }
-            else if (command.ToLower().Equals(Commands.EXIT.ToLower()))
-            {
-                Environment.Exit(0);
-            }
-            else if (command.ToLower().StartsWith(Commands.DEL.ToLower()))
-            {
-                var tmp = command.Replace(Commands.DEL.ToLower(), "");
-                var splitted = tmp.Split('-');
-                ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
-            }
-            else
-                Console.WriteLine("Command not valid!");
         }
     }
 }

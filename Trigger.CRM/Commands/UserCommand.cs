@@ -19,17 +19,17 @@ namespace Trigger.CRM.Commands
 
         public IEnumerable<Document> GetDocumentLinks(User item)
         {
-            return Map.ResolveType<IStore<Document>>().LoadAll().Where(p => p.User.MappingId == item.MappingId);
+            return Map.ResolveType<IStore<Document>>().LoadAll().Where(p => p.User != null && p.User.MappingId == item.MappingId);
         }
 
         public IEnumerable<IssueTracker> GetIssueTrackerLinks(User item)
         {
-            return Map.ResolveType<IStore<IssueTracker>>().LoadAll().Where(p => p.CreatedBy.MappingId == item.MappingId);
+            return Map.ResolveType<IStore<IssueTracker>>().LoadAll().Where(p => p.CreatedBy != null && p.CreatedBy.MappingId == item.MappingId);
         }
 
         public IEnumerable<TimeTracker> GetTimeTrackerLinks(User item)
         {
-            return Map.ResolveType<IStore<TimeTracker>>().LoadAll().Where(p => p.User.MappingId == item.MappingId);
+            return Map.ResolveType<IStore<TimeTracker>>().LoadAll().Where(p => p.User != null && p.User.MappingId == item.MappingId);
         }
     }
     

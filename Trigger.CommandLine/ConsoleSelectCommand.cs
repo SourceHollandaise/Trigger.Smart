@@ -16,7 +16,7 @@ namespace Trigger.CommandLine
                 var cmd = new UserCommand();
 
                 Console.WriteLine("Load exisiting users...");
-
+                Console.WriteLine();
                 foreach (var item in cmd.GetObjects().OrderBy( p => p.UserName))
                     Console.WriteLine(cmd.GetRepresentation(item));
 
@@ -27,7 +27,7 @@ namespace Trigger.CommandLine
                 var cmd = new IssueTrackerCommand();
 
                 Console.WriteLine("Load exisiting issues...");
-
+                Console.WriteLine();
                 foreach (var item in cmd.GetObjects().OrderBy( p => p.Created))
                     Console.WriteLine(cmd.GetRepresentation(item));
 
@@ -38,7 +38,7 @@ namespace Trigger.CommandLine
                 var cmd = new ProjectCommand();
 
                 Console.WriteLine("Load exisiting projects...");
-
+                Console.WriteLine();
                 foreach (var item in cmd.GetObjects().OrderBy(p => p.Name))
                     Console.WriteLine(cmd.GetRepresentation(item));
             }
@@ -48,7 +48,7 @@ namespace Trigger.CommandLine
                 var cmd = new TimeTrackerCommand();
 
                 Console.WriteLine("Load exisiting tracked times...");
-
+                Console.WriteLine();
                 foreach (var item in cmd.GetObjects().OrderBy(p => p.Begin))
                     Console.WriteLine(cmd.GetRepresentation(item));
             }
@@ -63,7 +63,7 @@ namespace Trigger.CommandLine
                 Console.WriteLine();
 
                 var cmd = new DocumentCommand();
-
+                Console.WriteLine();
                 Console.WriteLine("Load exisiting documents...");
 
                 foreach (var item in cmd.GetObjects().OrderBy(p => p.Subject))
