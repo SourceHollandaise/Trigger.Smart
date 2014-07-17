@@ -1,12 +1,8 @@
 
 namespace Trigger.CRM.Persistent
 {
-    public interface IStorable
+    public interface IPersistentId
     {
         object MappingId { get; set; }
-
-        void Save();
-
-        void Delete();
     }
 }

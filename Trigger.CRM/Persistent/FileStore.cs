@@ -9,7 +9,7 @@ namespace Trigger.CRM.Persistent
 {
     public class FileStore : IStore
     {
-        public void Save(Type type, IStorable item)
+        public void Save(Type type, IPersistentId item)
         {
             string typeDir = CreateTypeDirectory(type);
                     
@@ -21,7 +21,7 @@ namespace Trigger.CRM.Persistent
             File.WriteAllText(path, json);
         }
 
-        public void Save<T>(T item) where T: IStorable
+        public void Save<T>(T item) where T: IPersistentId
         {
             Save(typeof(T), item);
         }
@@ -36,12 +36,12 @@ namespace Trigger.CRM.Persistent
                 File.Delete(path);
         }
 
-        public void DeleteById<T>(object itemId) where T: IStorable
+        public void DeleteById<T>(object itemId) where T: IPersistentId
         {
             DeleteById(typeof(T), itemId);
         }
 
-        public void Delete(Type type, IStorable item)
+        public void Delete(Type type, IPersistentId item)
         {
             string typeDir = CreateTypeDirectory(type);
 
@@ -51,12 +51,12 @@ namespace Trigger.CRM.Persistent
                 File.Delete(path);
         }
 
-        public void Delete<T>(T item) where T: IStorable
+        public void Delete<T>(T item) where T: IPersistentId
         {
             Delete(typeof(T), item);
         }
 
-        public IStorable Load(Type type, object itemId)
+        public IPersistentId Load(Type type, object itemId)
         {
             string typeDir = CreateTypeDirectory(type);
 
@@ -66,18 +66,18 @@ namespace Trigger.CRM.Persistent
             {
                 var content = File.ReadAllText(path);
 
-                return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                return (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
             }
 
             return null;
         }
 
-        public T Load<T>(object itemId) where T: IStorable
+        public T Load<T>(object itemId) where T: IPersistentId
         {
             return (T)Load(typeof(T), itemId);
         }
 
-        public IEnumerable<IStorable> LoadAll(Type type)
+        public IEnumerable<IPersistentId> LoadAll(Type type)
         {
             string typeDir = CreateTypeDirectory(type);
 
@@ -86,18 +86,18 @@ namespace Trigger.CRM.Persistent
 
         }
 
-        public IEnumerable<T> LoadAll<T>() where T: IStorable
+        public IEnumerable<T> LoadAll<T>() where T: IPersistentId
         {
             return LoadAll(typeof(T)).OfType<T>();
         }
 
-        static IStorable Load(Type type, string path)
+        static IPersistentId Load(Type type, string path)
         {
             if (File.Exists(path))
             {
                 var content = File.ReadAllText(path);
 
-                return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                return (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
             }
 
             return null;

@@ -5,7 +5,7 @@ using Trigger.CommandLine.Commands;
 namespace Trigger.CommandLine
 {
 
-    public class CommandExecuteStratgy : ConsoleBaseCommand
+    public class CommandExecuteStrategy : ConsoleBaseCommand
     {
         public static  void ExecuteCommand(string command)
         {

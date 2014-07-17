@@ -1,7 +1,9 @@
+using Trigger.CRM.Persistent;
+
 
 namespace Trigger.CRM.Model
 {
-    public class Project : ModelBase
+    public class Project : PersistentModelBase
     {
         public override string GetRepresentation()
         {

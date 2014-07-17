@@ -6,7 +6,7 @@ using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Repository
 {
-    public class ModelRespository<T> : IModelRepository<T> where T: IStorable
+    public class ModelRespository<T> : IModelRepository<T> where T: IPersistentId
     {
         public event RepositoryHandler ItemAdded;
         public event RepositoryHandler ItemRemoved;

@@ -61,6 +61,7 @@ namespace Trigger.CommandLine.Commands
                 }
 
                 user = new User();
+                user.Initialize();
                 user.UserName = userName;
                 user.Password = password;
 
@@ -134,6 +135,7 @@ namespace Trigger.CommandLine.Commands
             if (project == null)
             {
                 project = new Project();
+                project.Initialize();
                 project.Name = projectName;
             }
 
@@ -160,6 +162,7 @@ namespace Trigger.CommandLine.Commands
             if (document == null)
             {
                 document = new Document();
+                document.Initialize();
                 document.Subject = subject;
                 document.User = CurrentUser;
                 new DocumentService(document).AddFile(fileName);
@@ -193,11 +196,10 @@ namespace Trigger.CommandLine.Commands
                     issue = new IssueTracker
                     {
                         Subject = subject,
-                        CreatedBy = CurrentUser,
-                        Created = DateTime.Now,
                         Issue = IssueType.Incident,
                         State = IssueState.Open
                     };
+                    issue.Initialize();
                 }
                 else
                     return null;

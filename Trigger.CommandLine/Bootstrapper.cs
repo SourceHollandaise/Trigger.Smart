@@ -51,6 +51,7 @@ namespace Trigger.CommandLine
             if (user == null)
             {
                 user = new User{ UserName = "Admin", Password = "a" };
+
                 user.Save();
             }
         }

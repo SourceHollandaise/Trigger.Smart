@@ -44,13 +44,13 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="ConsolePasswordMask.cs" />
     <Compile Include="CommandLineApplication.cs" />
-    <Compile Include="CommandExecuteStratgy.cs" />
     <Compile Include="Commands\ConsoleDeleteCommand.cs" />
     <Compile Include="Commands\ConsoleInsertUpdateCommand.cs" />
     <Compile Include="Commands\ConsoleLogonCommand.cs" />
     <Compile Include="Commands\ConsoleSelectCommand.cs" />
     <Compile Include="Commands\CommandKey.cs" />
     <Compile Include="Commands\ConsoleBaseCommand.cs" />
+    <Compile Include="CommandExecuteStrategy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

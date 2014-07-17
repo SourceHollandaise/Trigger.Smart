@@ -153,6 +153,7 @@ namespace Trigger.Dependency
         {
             registeredTypes = null;
             registeredInstances = null;
+
         }
     }
 }

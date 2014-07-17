@@ -18,8 +18,8 @@ namespace Trigger.CommandLine
 
         public static void Main(string[] args)
         {
-
-            new Bootstrapper().StartUpApplication();
+            var bs = new Bootstrapper();
+            bs.StartUpApplication();
 
             Console.WriteLine("CIT - COMMMANDLINE ISSUE TRACKER 0.1");
             Console.WriteLine("Trigger Smart Solutions");
@@ -51,7 +51,7 @@ namespace Trigger.CommandLine
             while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
                 Console.WriteLine("Type command...");
-                CommandExecuteStratgy.ExecuteCommand(Console.ReadLine());
+                CommandExecuteStrategy.ExecuteCommand(Console.ReadLine());
                 Console.WriteLine("Press <Enter> to continue or <ESC> to exit!");
             }
 

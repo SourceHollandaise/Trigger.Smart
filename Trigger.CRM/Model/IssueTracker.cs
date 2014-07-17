@@ -1,10 +1,11 @@
 
 using System;
 using Trigger.CRM.Security;
+using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public class IssueTracker : ModelBase
+    public class IssueTracker : PersistentModelBase
     {
         public override string GetRepresentation()
         {
@@ -101,6 +102,7 @@ namespace Trigger.CRM.Model
 
         Project project;
 
+        [PersistentReference]
         public Project Project
         {
             get
@@ -112,24 +114,6 @@ namespace Trigger.CRM.Model
                 if (Equals(project, value))
                     return;
                 project = value;
-
-                OnPropertyChanged();
-            }
-        }
-
-        DateTime? created;
-
-        public DateTime? Created
-        {
-            get
-            {
-                return created;
-            }
-            set
-            {
-                if (Equals(created, value))
-                    return;
-                created = value;
 
                 OnPropertyChanged();
             }
@@ -161,26 +145,9 @@ namespace Trigger.CRM.Model
             }
         }
 
-        User createdBy;
-
-        public User CreatedBy
-        {
-            get
-            {
-                return createdBy;
-            }
-            set
-            {
-                if (Equals(createdBy, value))
-                    return;
-                createdBy = value;
-
-                OnPropertyChanged();
-            }
-        }
-
         User resolvedBy;
 
+        [PersistentReference]
         public User ResolvedBy
         {
             get

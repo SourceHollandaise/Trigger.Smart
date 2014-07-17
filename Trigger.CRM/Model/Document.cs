@@ -1,8 +1,9 @@
-using System;
+using Trigger.CRM.Persistent;
+
 
 namespace Trigger.CRM.Model
 {
-    public class Document : ModelBase
+    public class Document : PersistentModelBase
     {
         public override string GetRepresentation()
         {
@@ -50,26 +51,9 @@ namespace Trigger.CRM.Model
             }
         }
 
-        DateTime? created;
-
-        public DateTime? Created
-        {
-            get
-            {
-                return created;
-            }
-            set
-            {
-                if (Equals(created, value))
-                    return;
-                created = value;
-
-                OnPropertyChanged();
-            }
-        }
-
         Project project;
 
+        [PersistentReference]
         public Project Project
         {
             get
@@ -88,6 +72,7 @@ namespace Trigger.CRM.Model
 
         IssueTracker issue;
 
+        [PersistentReference]
         public IssueTracker Issue
         {
             get

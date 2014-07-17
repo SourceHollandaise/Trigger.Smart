@@ -1,9 +1,10 @@
 ﻿
 using System;
+using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public class TimeTracker : ModelBase
+    public class TimeTracker : PersistentModelBase
     {
         public override string GetRepresentation()
         {
@@ -55,6 +56,7 @@ namespace Trigger.CRM.Model
 
         Project project;
 
+        [PersistentReference]
         public Project Project
         {
             get
@@ -73,6 +75,7 @@ namespace Trigger.CRM.Model
 
         User user;
 
+        [PersistentReference]
         public User User
         {
             get
