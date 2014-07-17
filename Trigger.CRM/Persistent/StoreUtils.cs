@@ -27,12 +27,10 @@ namespace Trigger.CRM.Persistent
                 {
                     document = new Document
                     {
-                        Created = DateTime.Now,
                         FileName = fi.Name,
                         Subject = fi.Name.Replace(fi.Extension, ""),
-                        User = DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
                     };
-
+                    document.Initialize();
                     document.Save();
                     counter++;
                 }

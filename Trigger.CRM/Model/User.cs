@@ -1,9 +1,15 @@
 using Trigger.CRM.Persistent;
+using System.Runtime.Serialization;
 
 namespace Trigger.CRM.Model
 {
     public class User : PersistentModelBase
     {
+        public override void Initialize()
+        {
+
+        }
+
         public override string GetRepresentation()
         {
             var sb = new System.Text.StringBuilder();
@@ -31,6 +37,7 @@ namespace Trigger.CRM.Model
             }
         }
 
+        //[DataMember]
         string password;
 
         public string Password
@@ -39,7 +46,7 @@ namespace Trigger.CRM.Model
             {
                 return password;
             }
-            set
+            private set
             {
                 if (Equals(password, value))
                     return;

@@ -24,7 +24,7 @@ namespace Trigger.CRM.Persistent
             {
                 return created;
             }
-            set
+            private set
             {
                 if (Equals(created, value))
                     return;
@@ -42,7 +42,7 @@ namespace Trigger.CRM.Persistent
             {
                 return createdBy;
             }
-            set
+            private set
             {
                 if (Equals(createdBy, value))
                     return;
@@ -54,8 +54,8 @@ namespace Trigger.CRM.Persistent
 
         public virtual void Initialize()
         {
-            Created = DateTime.Now;
-            CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+            created = DateTime.Now;
+            createdBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
         }
 
         public virtual void Save()

@@ -43,6 +43,7 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

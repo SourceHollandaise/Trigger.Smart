@@ -20,7 +20,8 @@ namespace Trigger.CRM.Services
                     throw new ArgumentException("User exists!");
                 else
                 {
-                    user = new User{ UserName = userName, Password = password };
+                    user = new User{ UserName = userName };
+                    user.SetPassword(password);
                     user.Save();
                     return user;
                 }
