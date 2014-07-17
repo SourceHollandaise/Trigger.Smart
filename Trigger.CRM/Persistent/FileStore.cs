@@ -29,28 +29,6 @@ namespace Trigger.CRM.Persistent
             }
         }
 
-        public IStorable Load(Type type, object itemId)
-        {
-            if (Directory.Exists(StorePath))
-            {
-                var subDir = Path.Combine(StorePath, type.FullName);
-
-                if (!Directory.Exists(subDir))
-                    return null;
-
-                var path = Path.Combine(subDir, itemId + ".json");
-
-                if (File.Exists(path))
-                {
-                    var content = File.ReadAllText(path);
-
-                    return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
-                }
-            }
-
-            return null;
-        }
-
         public void DeleteById(Type type, object itemId)
         {
             if (Directory.Exists(StorePath))
@@ -83,18 +61,26 @@ namespace Trigger.CRM.Persistent
             }
         }
 
-        public IEnumerable<T> LoadAll<T>() where T: IStorable
+        public IStorable Load(Type type, object itemId)
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+                var subDir = Path.Combine(StorePath, type.FullName);
 
                 if (!Directory.Exists(subDir))
-                    yield break;
+                    return null;
 
-                foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
-                    yield return (T)Load(typeof(T), item);
+                var path = Path.Combine(subDir, itemId + ".json");
+
+                if (File.Exists(path))
+                {
+                    var content = File.ReadAllText(path);
+
+                    return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                }
             }
+
+            return null;
         }
 
         public IEnumerable<IStorable> LoadAll(Type type)
@@ -108,6 +94,20 @@ namespace Trigger.CRM.Persistent
 
                 foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
                     yield return Load(type, item);
+            }
+        }
+
+        public IEnumerable<T> LoadAll<T>() where T: IStorable
+        {
+            if (Directory.Exists(StorePath))
+            {
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+
+                if (!Directory.Exists(subDir))
+                    yield break;
+
+                foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
+                    yield return (T)Load(typeof(T), item);
             }
         }
 

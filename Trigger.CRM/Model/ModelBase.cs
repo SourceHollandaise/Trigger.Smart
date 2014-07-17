@@ -2,16 +2,10 @@ using System.ComponentModel;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Trigger.CRM.Model
 {
-    public interface IStringRepresentation
-    {
-        string GetRepresentation();
-    }
-
-    public abstract class ModelBase : INotifyPropertyChanged, IStorable, IStringRepresentation
+    public abstract class ModelBase : INotifyPropertyChanged, IStorable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

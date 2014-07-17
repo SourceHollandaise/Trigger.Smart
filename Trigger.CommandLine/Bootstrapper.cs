@@ -5,7 +5,6 @@ using Trigger.CRM.Model;
 using Trigger.Dependency;
 using Trigger.CRM.Security;
 using System.Configuration;
-using Trigger.CommandLine.Commands;
 
 namespace Trigger.CommandLine
 {
@@ -42,13 +41,6 @@ namespace Trigger.CommandLine
                 Map.RegisterType<IAuthenticate, SystemAuthenticate>();
 
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
-
-//            Map.RegisterType<IStore<User>, XmlStore<User>>();
-//            Map.RegisterType<IStore<Project>, XmlStore<Project>>();
-//            Map.RegisterType<IStore<TimeTracker>, XmlStore<TimeTracker>>();
-//            Map.RegisterType<IStore<IssueTracker>, XmlStore<IssueTracker>>();
-//            Map.RegisterType<IStore<Document>, XmlStore<Document>>();
-
             Map.RegisterType<IStore, FileStore>();
         }
 
