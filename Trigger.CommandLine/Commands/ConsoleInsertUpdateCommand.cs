@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Trigger.CRM.Model;
 using Trigger.CRM.Services;
+using Trigger.CRM.Security;
 
 namespace Trigger.CommandLine.Commands
 {
@@ -63,7 +64,7 @@ namespace Trigger.CommandLine.Commands
                 user = new User();
                 user.Initialize();
                 user.UserName = userName;
-                user.Password = password;
+                user.SetPassword(password);
 
                 if (!string.IsNullOrWhiteSpace(email))
                     user.EMail = email;
@@ -81,7 +82,7 @@ namespace Trigger.CommandLine.Commands
                 Console.WriteLine("Current password:");
                 var password = Console.ReadLine();
 
-                if (!password.Equals(currentPassword))
+                if (!SecureText.Compare(password, currentPassword))
                 {
                     Console.WriteLine("Password is not valid!");
                     return user;
@@ -102,7 +103,7 @@ namespace Trigger.CommandLine.Commands
                         return null;
                     }
                     else
-                        user.Password = newPassword;
+                        user.SetPassword(newPassword);
                 }
 
                 Console.WriteLine("Update E-Mail? Press <Enter> to update or any key to continue!");

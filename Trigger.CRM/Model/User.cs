@@ -44,7 +44,7 @@ namespace Trigger.CRM.Model
                 if (Equals(password, value))
                     return;
                 password = value;
-
+    
                 OnPropertyChanged();
             }
         }
@@ -65,6 +65,12 @@ namespace Trigger.CRM.Model
 
                 OnPropertyChanged();
             }
+        }
+
+
+        public void SetPassword(string input)
+        {       
+            Password = Security.SecureText.Secure(input);
         }
     }
 }

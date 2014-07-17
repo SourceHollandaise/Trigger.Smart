@@ -1,6 +1,10 @@
 using Trigger.Dependency;
 using System.Security.Principal;
 using Trigger.CRM.Model;
+using System.Security;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Trigger.CRM.Security
 {

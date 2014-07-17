@@ -76,6 +76,7 @@
     <Compile Include="Model\ModelBase.cs" />
     <Compile Include="Persistent\PersistentModelBase.cs" />
     <Compile Include="Persistent\PersistentReferenceAttribute.cs" />
+    <Compile Include="Security\SecureText.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

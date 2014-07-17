@@ -46,12 +46,12 @@ namespace Trigger.CommandLine
 
         protected void CreateInitialObjects()
         {
-            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
+            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "Admin");
 
             if (user == null)
             {
-                user = new User{ UserName = "Admin", Password = "a" };
-
+                user = new User{ UserName = "Admin" };
+                user.SetPassword("admin");
                 user.Save();
             }
         }
