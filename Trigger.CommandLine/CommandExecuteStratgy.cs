@@ -25,7 +25,8 @@ namespace Trigger.CommandLine
             {
                 var tmp = command.Replace(CommandKey.DEL.ToLower(), "");
                 var splitted = tmp.Split(new []{ '>' }, StringSplitOptions.RemoveEmptyEntries);
-                ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
+                if (splitted.Length == 2)
+                    ConsoleDeleteCommand.DeleteItem(splitted[0], splitted[1]);
             }
         }
     }

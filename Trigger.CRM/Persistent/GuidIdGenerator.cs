@@ -6,7 +6,7 @@ namespace Trigger.CRM.Persistent
     {
         public object GetId()
         {
-            return Guid.NewGuid();
+            return Guid.NewGuid().ToString().Replace("-", "");
         }
     }
 }

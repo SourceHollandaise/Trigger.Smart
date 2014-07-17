@@ -46,7 +46,7 @@ namespace Trigger.CommandLine
 
         protected void CreateInitialObjects()
         {
-            var user = Map.ResolveType<IStore>().LoadAll(typeof(User)).OfType<User>().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
+            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
 
             if (user == null)
             {

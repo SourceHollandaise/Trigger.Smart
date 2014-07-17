@@ -1,6 +1,7 @@
 
 using System;
 using Trigger.CRM.Model;
+using Trigger.CRM.Persistent;
 
 namespace Trigger.CommandLine.Commands
 {
@@ -10,39 +11,40 @@ namespace Trigger.CommandLine.Commands
         {
             if (target.ToLower().Equals("user"))
             {
-                Console.WriteLine("Delete exisiting user...");
-
-                Store.DeleteById(typeof(User), id);
+                DeleteWithMessage<User>(id);
             }
 
             if (target.ToLower().Equals("issue"))
             {
-                Console.WriteLine("Delete exisiting issue...");
-
-                Store.DeleteById(typeof(IssueTracker), id);
+                DeleteWithMessage<IssueTracker>(id);
             }
 
             if (target.ToLower().Equals("project"))
             {
-                Console.WriteLine("Delete exisiting project...");
-
-                Store.DeleteById(typeof(Project), id);
+                DeleteWithMessage<Project>(id);
             }
 
             if (target.ToLower().Equals("times"))
             {
-                Console.WriteLine("Delete exisiting tracked time...");
-
-                Store.DeleteById(typeof(TimeTracker), id);
+                DeleteWithMessage<TimeTracker>(id);
             }
 
             if (target.ToLower().Equals("document"))
             {
-                Console.WriteLine("Delete exisiting document...");
-
-                Store.DeleteById(typeof(Document), id);
-
+                DeleteWithMessage<Document>(id);
             }
+        }
+
+        static void DeleteWithMessage<T>(object id) where T: IStorable
+        {
+            Console.WriteLine("Delete {0} item...", typeof(T).Name);
+
+            Store.DeleteById<T>(id);
+
+            if (Store.Load<T>(id) == null)
+                Console.WriteLine("Item succesful deleted!");
+            else
+                Console.WriteLine("Error delete item with id {0}", id);
         }
     }
 }
