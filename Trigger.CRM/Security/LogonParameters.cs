@@ -1,3 +1,4 @@
+using Trigger.CRM.Model;
 
 namespace Trigger.CRM.Security
 {

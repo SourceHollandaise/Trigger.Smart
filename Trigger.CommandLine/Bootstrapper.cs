@@ -43,22 +43,23 @@ namespace Trigger.CommandLine
 
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
 
-            Map.RegisterType<IStore<User>, XmlStore<User>>();
-            Map.RegisterType<IStore<Project>, XmlStore<Project>>();
-            Map.RegisterType<IStore<TimeTracker>, XmlStore<TimeTracker>>();
-            Map.RegisterType<IStore<IssueTracker>, XmlStore<IssueTracker>>();
-            Map.RegisterType<IStore<Document>, XmlStore<Document>>();
+//            Map.RegisterType<IStore<User>, XmlStore<User>>();
+//            Map.RegisterType<IStore<Project>, XmlStore<Project>>();
+//            Map.RegisterType<IStore<TimeTracker>, XmlStore<TimeTracker>>();
+//            Map.RegisterType<IStore<IssueTracker>, XmlStore<IssueTracker>>();
+//            Map.RegisterType<IStore<Document>, XmlStore<Document>>();
+
+            Map.RegisterType<IStore, FileStore>();
         }
 
         protected void CreateInitialObjects()
         {
-            var userStore = Map.ResolveType<IStore<User>>();
+            var user = Map.ResolveType<IStore>().LoadAll(typeof(User)).OfType<User>().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
 
-            var user = userStore.LoadAll().FirstOrDefault(p => p.UserName == "Admin" && p.Password == "a");
             if (user == null)
             {
                 user = new User{ UserName = "Admin", Password = "a" };
-                userStore.Save(user);
+                user.Save();
             }
         }
     }

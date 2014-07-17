@@ -1,9 +1,17 @@
-using System.ComponentModel;
 
 namespace Trigger.CRM.Model
 {
     public class User : ModelBase
     {
+        public override string GetRepresentation()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine(string.Format("{0}", UserName));
+            sb.AppendLine(string.Format("{0}", EMail));
+            sb.AppendLine(string.Format("ID: {0}", MappingId));
+            return sb.ToString();
+        }
+
         string userName;
 
         public string UserName

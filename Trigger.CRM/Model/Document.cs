@@ -4,6 +4,16 @@ namespace Trigger.CRM.Model
 {
     public class Document : ModelBase
     {
+        public override string GetRepresentation()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, User != null ? User.UserName : "anonymous", Created));
+            sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
+            sb.AppendLine(string.Format("{0}", Description));
+            sb.AppendLine(string.Format("ID: {0}", MappingId));
+            return sb.ToString();
+        }
+
         string subject;
 
         public string Subject

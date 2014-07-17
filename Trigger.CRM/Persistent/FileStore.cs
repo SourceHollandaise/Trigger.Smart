@@ -1,16 +1,18 @@
+﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using Trigger.Dependency;
+using Trigger.CRM.Persistent;
+using System.Collections.Generic;
 
 namespace Trigger.CRM.Persistent
 {
-    public class XmlStore<T> : IStore<T> where T : IStorable
+    public class FileStore : IStore
     {
-        public void Save(T item)
+        public void Save(Type type, IStorable item)
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+                var subDir = Path.Combine(StorePath, type.FullName);
 
                 if (!Directory.Exists(subDir))
                     Directory.CreateDirectory(subDir);
@@ -20,21 +22,21 @@ namespace Trigger.CRM.Persistent
                     var id = DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId().ToString().Replace("-", "");
                     item.MappingId = id;
                 }
-                var json = ServiceStack.Text.JsonSerializer.SerializeToString<T>(item);
+                var json = ServiceStack.Text.JsonSerializer.SerializeToString(item, type);
                 var path = Path.Combine(subDir, item.MappingId + ".json");
 
                 File.WriteAllText(path, json);
             }
         }
 
-        public T Load(object itemId)
+        public IStorable Load(Type type, object itemId)
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+                var subDir = Path.Combine(StorePath, type.FullName);
 
                 if (!Directory.Exists(subDir))
-                    return default(T);
+                    return null;
 
                 var path = Path.Combine(subDir, itemId + ".json");
 
@@ -42,37 +44,34 @@ namespace Trigger.CRM.Persistent
                 {
                     var content = File.ReadAllText(path);
 
-                    var result = ServiceStack.Text.JsonSerializer.DeserializeFromString<T>(content);
-                    return result;
+                    return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
                 }
             }
 
-            return default(T);
+            return null;
         }
 
-        public void DeleteById(object itemId)
+        public void DeleteById(Type type, object itemId)
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+                var subDir = Path.Combine(StorePath, type.FullName);
 
                 if (!Directory.Exists(subDir))
                     return;
 
-                var path = Path.Combine(subDir,itemId + ".json");
+                var path = Path.Combine(subDir, itemId + ".json");
 
                 if (File.Exists(path))
-                {
                     File.Delete(path);
-                }
             }
         }
 
-        public void Delete(T item)
+        public void Delete(Type type, IStorable item)
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof(T).FullName);
+                var subDir = Path.Combine(StorePath, type.FullName);
 
                 if (!Directory.Exists(subDir))
                     return;
@@ -80,39 +79,48 @@ namespace Trigger.CRM.Persistent
                 var path = Path.Combine(subDir, item.MappingId + ".json");
 
                 if (File.Exists(path))
-                {
                     File.Delete(path);
-                }
             }
         }
 
-        public IEnumerable<T> LoadAll()
+        public IEnumerable<T> LoadAll<T>() where T: IStorable
         {
             if (Directory.Exists(StorePath))
             {
-                var subDir = Path.Combine(StorePath, typeof (T).FullName);
+                var subDir = Path.Combine(StorePath, typeof(T).FullName);
 
                 if (!Directory.Exists(subDir))
                     yield break;
 
                 foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
-                {
-                    yield return Load(item);
-                }
+                    yield return (T)Load(typeof(T), item);
             }
         }
 
-        static T Load(string path)
+        public IEnumerable<IStorable> LoadAll(Type type)
+        {
+            if (Directory.Exists(StorePath))
+            {
+                var subDir = Path.Combine(StorePath, type.FullName);
+
+                if (!Directory.Exists(subDir))
+                    yield break;
+
+                foreach (var item in Directory.EnumerateFiles(subDir, "*.json"))
+                    yield return Load(type, item);
+            }
+        }
+
+        static IStorable Load(Type type, string path)
         {
             if (File.Exists(path))
             {
                 var content = File.ReadAllText(path);
 
-                var result = ServiceStack.Text.JsonSerializer.DeserializeFromString<T>(content);
-                return result;
+                return (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
             }
 
-            return default(T);
+            return null;
         }
 
         static string StorePath
@@ -124,3 +132,4 @@ namespace Trigger.CRM.Persistent
         }
     }
 }
+

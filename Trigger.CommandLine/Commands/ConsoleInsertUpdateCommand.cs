@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 using Trigger.CRM.Model;
-using Trigger.CRM.Commands;
 using Trigger.CRM.Services;
 
 namespace Trigger.CommandLine.Commands
@@ -39,11 +38,11 @@ namespace Trigger.CommandLine.Commands
 
         static User InsertUpdateUser()
         {
-            var cmd = new UserCommand();
+           
             Console.WriteLine("Username:");
             var userName = Console.ReadLine();
+            var user = Store.LoadAll<User>().FirstOrDefault(p => p.UserName == userName);
 
-            var user = cmd.GetObjects(new Func<User, bool>(p => p.UserName == userName)).FirstOrDefault();
             if (user == null)
             {
                 Console.WriteLine("User doesn't exists. Add new user informations.");
@@ -68,7 +67,7 @@ namespace Trigger.CommandLine.Commands
                 if (!string.IsNullOrWhiteSpace(email))
                     user.EMail = email;
 
-                cmd.Save(user);
+                user.Save();
                 return user;
 
             }
@@ -115,7 +114,7 @@ namespace Trigger.CommandLine.Commands
                         user.EMail = email;
                 }
 
-                cmd.Save(user);
+                user.Save();
 
                 return user;
             }
@@ -123,7 +122,7 @@ namespace Trigger.CommandLine.Commands
 
         static Project InsertUpdateProject()
         {
-            var cmd = new ProjectCommand();
+           
             Console.WriteLine("Projectname:");
             var projectName = Console.ReadLine();
             Console.WriteLine("Add some informations:");
@@ -131,7 +130,7 @@ namespace Trigger.CommandLine.Commands
             if (string.IsNullOrWhiteSpace(projectName))
                 return null;
 
-            var project = cmd.GetObjects(new Func<Project, bool>(p => p.Name == projectName)).FirstOrDefault();
+            var project = Store.LoadAll<Project>().FirstOrDefault(p => p.Name == projectName);
             if (project == null)
             {
                 project = new Project();
@@ -141,19 +140,23 @@ namespace Trigger.CommandLine.Commands
             if (!string.IsNullOrWhiteSpace(description))
                 project.Description = description;
 
-            cmd.Save(project);
+            project.Save();
 
             return project;
         }
 
         static Document InsertUpdateDocument()
         {
-            var cmd = new DocumentCommand();
+
             Console.WriteLine("Add Subject for document:");
             var subject = Console.ReadLine();
             Console.WriteLine("Filename:");
             var fileName = Console.ReadLine();
-            var document = cmd.GetObjects(new Func<Document, bool>(p => p.Subject == subject && p.FileName == fileName)).FirstOrDefault();
+
+          
+            var document = Store.LoadAll<Document>().FirstOrDefault(p => p.Subject == subject && p.FileName == fileName);
+
+          
             if (document == null)
             {
                 document = new Document();
@@ -167,17 +170,21 @@ namespace Trigger.CommandLine.Commands
                 new DocumentService(document).AddFile(fileName);
 
             document.Project = InsertUpdateProject();
-            cmd.Save(document);
+
+            document.Save();
 
             return document;
         }
 
         static IssueTracker InsertUpdateIssue()
         {
-            var cmd = new IssueTrackerCommand();
             Console.WriteLine("Set Subject: ");
+
             var subject = Console.ReadLine();
-            var issue = cmd.GetObjects().FirstOrDefault(p => p.Subject == subject);
+
+           
+            var issue = Store.LoadAll<IssueTracker>().FirstOrDefault(p => p.Subject == subject);
+
             if (issue == null)
             {
                 Console.WriteLine("Issue does not existing! Press <Enter> to create new or any other key to continue!");
@@ -210,9 +217,8 @@ namespace Trigger.CommandLine.Commands
             var project = InsertUpdateProject();
             if (project != null)
                 issue.Project = project;
-
-            cmd.Save(issue);
-
+            issue.Save();
+            //cmd.Save(issue);
             return issue;
         }
     }

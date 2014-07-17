@@ -8,13 +8,13 @@ using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
-    public static class XmlStoreUtils
+    public static class StoreUtils
     {
         public static int UpdateTypeMapForDocuments()
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore<Document>>();
+            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
             var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
-            var items = store.LoadAll().ToList();            
+            var items = store.LoadAll(typeof(Document)).OfType<Document>().ToList();            
            
             int counter = 0;
             foreach (var file in files)
@@ -33,12 +33,12 @@ namespace Trigger.CRM.Persistent
                         User = DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser
                     };
 
-                    store.Save(document);
+                    document.Save();
                     counter++;
                 }
             }
 
             return counter;
-        } 
+        }
     }
 }

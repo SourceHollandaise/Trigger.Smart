@@ -6,13 +6,13 @@ namespace Trigger.CRM.Security
 {
     public sealed class SystemAuthenticate : IAuthenticate
     {
-        public bool LogOn(LogonParameters logonparamters)
+        public bool LogOn(LogonParameters logonParameters)
         {
             var id = WindowsIdentity.GetCurrent();
 
             if (id != null && id.IsAuthenticated)
             {
-                if (logonparamters.UserName.Equals(id.Name))
+                if (logonParameters.UserName.Equals(id.Name))
                 {
                     var provider = new SecurityInfoProvider();
                     provider.SetUser(new User{ UserName = id.Name });

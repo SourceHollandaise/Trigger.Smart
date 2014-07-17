@@ -3,10 +3,9 @@ using System;
 using System.Linq;
 using Trigger.CRM.Persistent;
 using Trigger.CRM.Model;
-using Trigger.CRM.Security;
 using Trigger.Dependency;
-using Trigger.CRM.Commands;
 using Trigger.CommandLine.Commands;
+using Trigger.CRM.Security;
 
 namespace Trigger.CommandLine
 {
@@ -31,7 +30,7 @@ namespace Trigger.CommandLine
             Console.WriteLine();
             Console.WriteLine("Search for new documents...");
             Console.WriteLine();
-            var count = XmlStoreUtils.UpdateTypeMapForDocuments();
+            var count = StoreUtils.UpdateTypeMapForDocuments();
             if (count == 0)
             {
                 Console.WriteLine("No new documents found!");
@@ -42,8 +41,8 @@ namespace Trigger.CommandLine
                 Console.WriteLine();
                 Console.WriteLine("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName);
                 Console.WriteLine();
-                foreach (var item in new IssueTrackerCommand().GetObjects(p => !p.IsDone).OrderBy(p => p.Created))
-                    Console.WriteLine(new IssueTrackerCommand().GetRepresentation(item));
+                foreach (var item in Map.ResolveType<IStore>().LoadAll<IssueTracker>().Where(p => !p.IsDone).OrderBy(p => p.Created))
+                    Console.WriteLine(item.GetRepresentation());
 
             }
             Console.WriteLine();

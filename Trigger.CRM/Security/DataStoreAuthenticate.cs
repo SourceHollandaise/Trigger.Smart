@@ -7,12 +7,12 @@ namespace Trigger.CRM.Security
 {
     public sealed class DataStoreAuthenticate : IAuthenticate
     {
-        public bool LogOn(LogonParameters logonParamters)
+        public bool LogOn(LogonParameters logonParameters)
         {
-            if (!string.IsNullOrWhiteSpace(logonParamters.UserName) && !string.IsNullOrWhiteSpace(logonParamters.Password))
+            if (!string.IsNullOrWhiteSpace(logonParameters.UserName) && !string.IsNullOrWhiteSpace(logonParameters.Password))
             {
-                var user = DependencyMapProvider.Instance.ResolveType<IStore<User>>().LoadAll()
-                    .FirstOrDefault(p => p.UserName == logonParamters.UserName && p.Password == logonParamters.Password);
+                var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>()
+                    .FirstOrDefault(p => p.UserName == logonParameters.UserName && p.Password == logonParameters.Password);
 
                 if (user != null)
                 {

@@ -1,17 +1,20 @@
 using System.Collections.Generic;
+using System;
 
 namespace Trigger.CRM.Persistent
 {
-    public interface IStore<T> where T: IStorable
+    public interface IStore
     {
-        void Save(T item);
+        void Save(Type type, IStorable item);
 
-        T Load(object itemId);
+        IStorable Load(Type type, object itemId);
 
-        IEnumerable<T>LoadAll();
+        IEnumerable<IStorable>LoadAll(Type type);
 
-        void DeleteById(object itemId);
+        IEnumerable<T> LoadAll<T>() where T: IStorable;
 
-        void Delete(T item);
+        void DeleteById(Type type, object itemId);
+
+        void Delete(Type type, IStorable item);
     }
 }

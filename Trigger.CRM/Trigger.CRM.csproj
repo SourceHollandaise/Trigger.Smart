@@ -67,19 +67,13 @@
     <Compile Include="Security\LogonParameters.cs" />
     <Compile Include="Security\SystemAuthenticate.cs" />
     <Compile Include="Model\Document.cs" />
-    <Compile Include="Persistent\XmlStore.cs" />
-    <Compile Include="Persistent\XmlStoreUtils.cs" />
     <Compile Include="Persistent\IStore.cs" />
     <Compile Include="Persistent\IStorable.cs" />
     <Compile Include="Persistent\StoreConfigurator.cs" />
-    <Compile Include="Commands\DocumentCommand.cs" />
-    <Compile Include="Commands\UserCommand.cs" />
-    <Compile Include="Commands\ProjectCommand.cs" />
-    <Compile Include="Commands\IssueTrackerCommand.cs" />
-    <Compile Include="Commands\TimeTrackerCommand.cs" />
-    <Compile Include="Commands\ModelCommand.cs" />
     <Compile Include="Services\TimeTrackerService.cs" />
     <Compile Include="Services\DocumentService.cs" />
+    <Compile Include="Persistent\FileStore.cs" />
+    <Compile Include="Persistent\StoreUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

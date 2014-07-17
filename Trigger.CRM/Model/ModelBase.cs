@@ -2,11 +2,16 @@ using System.ComponentModel;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
 using System.Runtime.CompilerServices;
-using System;
+using System.Text;
 
 namespace Trigger.CRM.Model
 {
-    public abstract class ModelBase : INotifyPropertyChanged, IStorable
+    public interface IStringRepresentation
+    {
+        string GetRepresentation();
+    }
+
+    public abstract class ModelBase : INotifyPropertyChanged, IStorable, IStringRepresentation
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -14,6 +19,28 @@ namespace Trigger.CRM.Model
         {
             get;
             set;
+        }
+
+        public void Save()
+        {
+            Store.Save(GetType(), this);
+        }
+
+        public void Delete()
+        {
+            Store.Delete(GetType(), this);
+        }
+
+        public virtual string GetRepresentation()
+        {
+            return MappingId.ToString();
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected IDependencyMap Map
@@ -24,11 +51,12 @@ namespace Trigger.CRM.Model
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected IStore Store
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return Map.ResolveType<IStore>();
+            }
         }
     }
 }
