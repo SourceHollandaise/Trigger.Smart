@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     public interface IStore
     {

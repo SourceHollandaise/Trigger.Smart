@@ -5,7 +5,7 @@ using Trigger.CRM.Persistent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     public class FileStore : IStore
     {

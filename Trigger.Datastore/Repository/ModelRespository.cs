@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using System.IO;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Repository
+namespace Trigger.Datastore.Repository
 {
     public class ModelRespository<T> : IModelRepository<T> where T: IPersistentId
     {

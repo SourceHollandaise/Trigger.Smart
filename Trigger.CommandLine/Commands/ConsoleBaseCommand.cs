@@ -1,8 +1,7 @@
 
 using Trigger.Dependency;
-using Trigger.CRM.Security;
-using Trigger.CRM.Model;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Security;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.CommandLine.Commands
 {

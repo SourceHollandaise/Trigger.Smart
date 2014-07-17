@@ -62,6 +62,10 @@
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">
+      <Project>{5D42668B-26EF-4FC8-92A1-D088E7B63FA0}</Project>
+      <Name>Trigger.Datastore</Name>
+    </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

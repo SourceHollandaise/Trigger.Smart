@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Trigger.CRM.Security
+namespace Trigger.Datastore.Security
 {
     public static class SecureText
     {

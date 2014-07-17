@@ -1,6 +1,5 @@
-using Trigger.CRM.Model;
 
-namespace Trigger.CRM.Security
+namespace Trigger.Datastore.Security
 {
     public class LogonParameters
     {

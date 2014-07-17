@@ -1,11 +1,11 @@
 ﻿
 using System;
 using System.Linq;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Persistent;
 using Trigger.CRM.Model;
 using Trigger.Dependency;
 using Trigger.CommandLine.Commands;
-using Trigger.CRM.Security;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CommandLine
 {
@@ -30,7 +30,7 @@ namespace Trigger.CommandLine
             Console.WriteLine();
             Console.WriteLine("Search for new documents...");
             Console.WriteLine();
-            var count = StoreUtils.UpdateTypeMapForDocuments();
+            var count = new Trigger.CRM.Services.DocumentUpdateService().LoadFromDocumentStore();
             if (count == 0)
             {
                 Console.WriteLine("No new documents found!");

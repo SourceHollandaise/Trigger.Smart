@@ -1,7 +1,7 @@
 
 using System;
-using Trigger.CRM.Security;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Security;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Model
 {

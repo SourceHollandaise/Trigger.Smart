@@ -1,12 +1,8 @@
 using Trigger.Dependency;
 using System.Security.Principal;
-using Trigger.CRM.Model;
-using System.Security;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
+using Trigger.Datastore.Security;
 
-namespace Trigger.CRM.Security
+namespace Trigger.Datastore.Security
 {
     public sealed class SystemAuthenticate : IAuthenticate
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class PersistentReferenceAttribute : Attribute

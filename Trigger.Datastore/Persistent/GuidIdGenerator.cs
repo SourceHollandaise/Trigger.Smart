@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     public class GuidIdGenerator : IdGenerator
     {

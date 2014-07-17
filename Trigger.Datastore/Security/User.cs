@@ -1,7 +1,6 @@
-using Trigger.CRM.Persistent;
-using System.Runtime.Serialization;
+using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Model
+namespace Trigger.Datastore.Security
 {
     public class User : PersistentModelBase
     {
@@ -37,7 +36,6 @@ namespace Trigger.CRM.Model
             }
         }
 
-        //[DataMember]
         string password;
 
         public string Password
@@ -77,7 +75,7 @@ namespace Trigger.CRM.Model
 
         public void SetPassword(string input)
         {       
-            Password = Security.SecureText.Secure(input);
+            Password = SecureText.Secure(input);
         }
     }
 }

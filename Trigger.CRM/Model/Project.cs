@@ -1,5 +1,4 @@
-using Trigger.CRM.Persistent;
-
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Model
 {

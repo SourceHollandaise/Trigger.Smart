@@ -1,12 +1,11 @@
 using Trigger.Dependency;
-using Trigger.CRM.Model;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Repository
+namespace Trigger.Datastore.Repository
 {
     public static class ModelRepositoryFactory
     {
-        public static IModelRepository<T> Create<T>() where T: PersistentModelBase
+        public static IModelRepository<T> Create<T>() where T: IPersistentId
         {
             var map = DependencyMapProvider.Instance;
 

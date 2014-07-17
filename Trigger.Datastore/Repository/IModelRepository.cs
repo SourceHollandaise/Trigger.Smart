@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Trigger.CRM.Repository
+namespace Trigger.Datastore.Repository
 {
     public interface IModelRepository<T>
     {

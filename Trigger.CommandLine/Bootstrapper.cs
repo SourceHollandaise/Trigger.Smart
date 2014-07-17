@@ -1,10 +1,10 @@
 
 using System.Linq;
-using Trigger.CRM.Persistent;
-using Trigger.CRM.Model;
+using Trigger.Datastore.Persistent;
 using Trigger.Dependency;
-using Trigger.CRM.Security;
 using System.Configuration;
+using Trigger.CRM.Persistent;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CommandLine
 {

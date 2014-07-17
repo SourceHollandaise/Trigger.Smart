@@ -1,7 +1,6 @@
 
-using Trigger.CRM.Security;
-using Trigger.CRM.Model;
 using System;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CommandLine.Commands
 {

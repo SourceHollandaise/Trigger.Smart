@@ -1,7 +1,7 @@
-using Trigger.CRM.Model;
+using Trigger.Datastore.Security;
 
 
-namespace Trigger.CRM.Security
+namespace Trigger.Datastore.Security
 {
     public class SecurityInfoProvider : ISecurityInfoProvider
     {

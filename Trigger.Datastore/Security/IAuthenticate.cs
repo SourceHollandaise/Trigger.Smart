@@ -1,7 +1,6 @@
-using Trigger.CRM.Model;
 
 
-namespace Trigger.CRM.Security
+namespace Trigger.Datastore.Security
 {
     public interface IAuthenticate
     {

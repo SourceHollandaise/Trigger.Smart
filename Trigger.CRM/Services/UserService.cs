@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Trigger.CRM.Model;
-using Trigger.CRM.Persistent;
 using Trigger.Dependency;
+using Trigger.Datastore.Security;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Services
 {

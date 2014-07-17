@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.CRM.Repository
+namespace Trigger.Datastore.Repository
 {
     public delegate void RepositoryHandler(object sender,ModelRepositoryEventArgs e);
 

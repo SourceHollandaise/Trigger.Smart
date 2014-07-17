@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{28C2C6F6-E38A-4342-8557-9C044E38596D}</ProjectGuid>
+    <ProjectGuid>{5D42668B-26EF-4FC8-92A1-D088E7B63FA0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Trigger.CRM</RootNamespace>
-    <AssemblyName>Trigger.Modules.Base</AssemblyName>
+    <RootNamespace>Trigger.Datastore</RootNamespace>
+    <AssemblyName>Trigger.Datastore</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,12 +28,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
     <Reference Include="ServiceStack.Text">
       <HintPath>..\Trigger.Smart\packages\ServiceStack.Text.4.0.23\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
-    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO">
       <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
     </Reference>
@@ -43,23 +40,34 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\TimeTracker.cs" />
-    <Compile Include="Model\Project.cs" />
-    <Compile Include="Model\IssueType.cs" />
-    <Compile Include="Model\IssueTracker.cs" />
-    <Compile Include="Model\IssueState.cs" />
-    <Compile Include="Services\UserService.cs" />
-    <Compile Include="Model\Document.cs" />
-    <Compile Include="Services\TimeTrackerService.cs" />
-    <Compile Include="Services\DocumentService.cs" />
-    <Compile Include="Services\DocumentUpdateService.cs" />
+    <Compile Include="Persistent\FileStore.cs" />
+    <Compile Include="Persistent\GuidIdGenerator.cs" />
+    <Compile Include="Persistent\IdGenerator.cs" />
+    <Compile Include="Persistent\IPersistentId.cs" />
+    <Compile Include="Persistent\IStore.cs" />
+    <Compile Include="Persistent\PersistentModelBase.cs" />
+    <Compile Include="Persistent\PersistentReferenceAttribute.cs" />
+    <Compile Include="Persistent\PersistentReferenceHelper.cs" />
+    <Compile Include="Persistent\StoreConfigurator.cs" />
+    <Compile Include="Repository\IModelRepository.cs" />
+    <Compile Include="Repository\ModelRepositoryEventArgs.cs" />
+    <Compile Include="Repository\ModelRepositoryFactory.cs" />
+    <Compile Include="Repository\ModelRespository.cs" />
+    <Compile Include="Persistent\ModelBase.cs" />
+    <Compile Include="Security\DataStoreAuthenticate.cs" />
+    <Compile Include="Security\IAuthenticate.cs" />
+    <Compile Include="Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Security\LogonParameters.cs" />
+    <Compile Include="Security\SecureText.cs" />
+    <Compile Include="Security\SecurityInfoProvider.cs" />
+    <Compile Include="Security\SystemAuthenticate.cs" />
+    <Compile Include="Security\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
@@ -70,13 +78,14 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
+    <Folder Include="Persistent\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Trigger.Dependency\Trigger.Dependency.csproj">
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">
-      <Project>{5D42668B-26EF-4FC8-92A1-D088E7B63FA0}</Project>
-      <Name>Trigger.Datastore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

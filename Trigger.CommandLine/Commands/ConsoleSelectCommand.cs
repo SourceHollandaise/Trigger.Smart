@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using Trigger.CRM.Model;
-using Trigger.CRM.Persistent;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CommandLine.Commands
 {
@@ -50,7 +50,7 @@ namespace Trigger.CommandLine.Commands
             {
                 Console.WriteLine();
                 Console.WriteLine("Add new documents to store...");
-                var count = StoreUtils.UpdateTypeMapForDocuments();
+                var count = new Trigger.CRM.Services.DocumentUpdateService().LoadFromDocumentStore();
                 Console.WriteLine();
                 Console.WriteLine(string.Format("{0} documents added!", count));
                 Console.WriteLine();

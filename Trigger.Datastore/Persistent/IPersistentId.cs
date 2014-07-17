@@ -1,5 +1,5 @@
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     public interface IPersistentId
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Trigger.CRM.Model
+namespace Trigger.Datastore.Persistent
 {
     public abstract class ModelBase : INotifyPropertyChanged
     {

@@ -1,11 +1,8 @@
 using System;
-using System.Linq;
-using Trigger.CRM.Model;
-using Trigger.CRM.Persistent;
-using Trigger.CRM.Security;
 using Trigger.Dependency;
+using Trigger.Datastore.Security;
 
-namespace Trigger.CRM.Persistent
+namespace Trigger.Datastore.Persistent
 {
     public abstract class PersistentModelBase : ModelBase, IPersistentId
     {

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using Trigger.CRM.Model;
 using Trigger.CRM.Services;
-using Trigger.CRM.Security;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CommandLine.Commands
 {
@@ -221,7 +221,7 @@ namespace Trigger.CommandLine.Commands
             if (project != null)
                 issue.Project = project;
             issue.Save();
-            //cmd.Save(issue);
+
             return issue;
         }
     }
