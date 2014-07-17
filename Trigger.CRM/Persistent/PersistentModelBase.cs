@@ -7,7 +7,6 @@ using Trigger.Dependency;
 
 namespace Trigger.CRM.Persistent
 {
-
     public abstract class PersistentModelBase : ModelBase, IPersistentId
     {
         public object MappingId
@@ -74,6 +73,11 @@ namespace Trigger.CRM.Persistent
             return MappingId.ToString();
         }
 
+        protected virtual void UpdatePersistentReferences()
+        {
+            PersistentReferenceHelper.UpdatePersistentReferences(this);
+        }
+
         protected IDependencyMap Map
         {
             get
@@ -87,31 +91,6 @@ namespace Trigger.CRM.Persistent
             get
             {
                 return Map.ResolveType<IStore>();
-            }
-        }
-
-        void UpdatePersistentReferences()
-        {
-            var properties = GetType().GetProperties().AsEnumerable()
-                .Where(p => p.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).Length > 0).ToList();
-
-            foreach (var property in properties)
-            {
-                var value = property.GetValue(this, null);
-
-                if (value != null)
-                {
-                    var persistent = value as IPersistentId;
-                    if (persistent != null)
-                    {
-                        var loaded = Store.Load(persistent.GetType(), persistent.MappingId);
-
-                        if (loaded == null)
-                        {
-                            property.SetValue(this, null, null);
-                        }
-                    }
-                }
             }
         }
     }
