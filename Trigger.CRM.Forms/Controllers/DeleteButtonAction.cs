@@ -17,7 +17,7 @@ namespace Trigger.CRM.Forms
 			this.MenuText = "Delete";
 			this.ToolBarText = "Delete item";
 			this.TooltipText = "Deletes the current item from store";
-			//this.Icon = Icon.FromResource ("MyResourceName.ico");
+			this.Icon = Icon.FromResource("MyResourceName.ico");
 			this.Accelerator = Application.Instance.CommonModifier | Keys.Delete;  // control+M or cmd+M
 		}
 
@@ -28,6 +28,4 @@ namespace Trigger.CRM.Forms
 			model.Delete();
 		}
 	}
-
-	
 }

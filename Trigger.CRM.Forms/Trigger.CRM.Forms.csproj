@@ -49,14 +49,15 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Layout\ModelDetailLayoutManager.cs" />
     <Compile Include="Layout\ModelListLayoutManager.cs" />
-    <Compile Include="Templates\MainForm.cs" />
     <Compile Include="Templates\ModelDetailTemplate.cs" />
     <Compile Include="Templates\ModelListTemplate.cs" />
     <Compile Include="Controllers\DeleteButtonAction.cs" />
     <Compile Include="Controllers\NewButtonAction.cs" />
     <Compile Include="Controllers\SaveButtonAction.cs" />
     <Compile Include="WinApplication.cs" />
-    <Compile Include="Templates\LogonForm.cs" />
+    <Compile Include="Layout\ModelLogonLayoutManager.cs" />
+    <Compile Include="Templates\LogonTemplate.cs" />
+    <Compile Include="Templates\MainTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">

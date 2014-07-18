@@ -12,13 +12,10 @@ namespace Trigger.CRM.Forms
 
 			var application = new Application();
 
-			new DataStoreAuthenticate().LogOn(new LogonParameters { UserName = "Admin", Password = "admin" });
-
-			new CRM.Services.DocumentUpdateService().LoadFromDocumentStore();
-
 			application.Initialized += (sender, e) =>
 			{
-				application.MainForm = new MainForm();
+				application.MainForm = new LogonTemplate();
+				application.MainForm.BringToFront();
 				application.MainForm.Show();
 
 			};

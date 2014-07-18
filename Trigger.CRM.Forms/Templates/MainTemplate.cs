@@ -1,13 +1,13 @@
 using System;
 using Eto.Forms;
 using Trigger.CRM.Model;
+using Trigger.Datastore.Security;
 
 namespace Trigger.CRM.Forms.Templates
 {
-
-	public class MainForm : Form
+	public class MainTemplate : Form
 	{
-		public MainForm()
+		public MainTemplate()
 		{
 			Size = new Eto.Drawing.Size(1280, 800);
 
@@ -17,6 +17,7 @@ namespace Trigger.CRM.Forms.Templates
 			listBox.Items.Add(new ListItem{ Text = "Projects", Key = "Project", Tag = typeof(Project) });
 			listBox.Items.Add(new ListItem{ Text = "Documents", Key = "Document", Tag = typeof(Document) });
 			listBox.Items.Add(new ListItem{ Text = "Tracked times", Key = "TimeTracker", Tag = typeof(TimeTracker) });
+			//listBox.Items.Add(new ListItem{ Text = "Users", Key = "User", Tag = typeof(User) });
 
 			Content = listBox;
 
