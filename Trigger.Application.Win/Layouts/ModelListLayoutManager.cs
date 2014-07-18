@@ -5,7 +5,6 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.Application.Win.Layouts
 {
-
 	public class ModelListLayoutManager
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
