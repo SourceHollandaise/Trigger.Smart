@@ -1,13 +1,14 @@
 using Eto.Forms;
-using Trigger.CRM.Forms.Layout;
+using Trigger.Application.Win.Layouts;
+using Eto.Drawing;
 
-namespace Trigger.CRM.Forms.Templates
+namespace Trigger.Application.Win.Templates
 {
 	public class LogonTemplate : Form
 	{
 		public LogonTemplate()
 		{
-			Size = new Eto.Drawing.Size(360, 240);
+			Size = new Size(360, 240);
 			Title = "Logon - Enter username and password";
 
 			Content = new ModelLogonLayoutManager(this).GetLayout();

@@ -1,8 +1,10 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.CRM.Forms.Layout;
+using Trigger.Application.Win.Layouts;
+using Trigger.Application.Win.Actions;
+using Eto.Drawing;
 
-namespace Trigger.CRM.Forms.Templates
+namespace Trigger.Application.Win.Templates
 {
 	public class ModelDetailTemplate : Form
 	{
@@ -12,7 +14,7 @@ namespace Trigger.CRM.Forms.Templates
 		{
 			this.model = model;
 
-			Size = new Eto.Drawing.Size(800, 600);
+			Size = new Size(800, 600);
 			Title = model.GetType().Name + " - " + model.GetRepresentation();
 
 			Content = new ModelDetailLayoutManager().GetLayout(model);

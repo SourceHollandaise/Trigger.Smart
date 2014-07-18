@@ -2,13 +2,13 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{611C10CB-D8D7-4F0E-85F0-83E7F4A7D7F7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Trigger.CRM.Forms</RootNamespace>
-    <AssemblyName>Trigger.CRM.Forms</AssemblyName>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84904569-5029-4F65-B641-198A82C09C01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Trigger.Application.Win</RootNamespace>
+    <AssemblyName>Trigger.Application.Win</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -17,43 +17,44 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="Eto">
       <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System" />
     <Reference Include="Eto.Platform.Gtk">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Layouts\ModelDetailLayoutManager.cs" />
+    <Compile Include="Layouts\ModelListLayoutManager.cs" />
+    <Compile Include="Layouts\ModelLogonLayoutManager.cs" />
+    <Compile Include="Templates\LogonTemplate.cs" />
+    <Compile Include="Templates\MainTemplate.cs" />
+    <Compile Include="Templates\ModelDetailTemplate.cs" />
+    <Compile Include="Templates\ModelListTemplate.cs" />
+    <Compile Include="Actions\DeleteButtonAction.cs" />
+    <Compile Include="Actions\NewButtonAction.cs" />
+    <Compile Include="Actions\SaveButtonAction.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Templates\" />
+    <Folder Include="Layouts\" />
+    <Folder Include="Actions\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="WinApplication.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">
-      <Project>{28C2C6F6-E38A-4342-8557-9C044E38596D}</Project>
-      <Name>Trigger.CRM</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">
       <Project>{5D42668B-26EF-4FC8-92A1-D088E7B63FA0}</Project>
       <Name>Trigger.Datastore</Name>
@@ -62,9 +63,8 @@
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Trigger.Application.Win\Trigger.Application.Win.csproj">
-      <Project>{84904569-5029-4F65-B641-198A82C09C01}</Project>
-      <Name>Trigger.Application.Win</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Forms
+namespace Trigger.Application.Win.Actions
 {
 	public class DeleteButtonAction : ButtonAction
 	{
@@ -17,8 +17,7 @@ namespace Trigger.CRM.Forms
 			this.MenuText = "Delete";
 			this.ToolBarText = "Delete item";
 			this.TooltipText = "Deletes the current item from store";
-			this.Icon = Icon.FromResource("MyResourceName.ico");
-			this.Accelerator = Application.Instance.CommonModifier | Keys.Delete;  // control+M or cmd+M
+			//this.Icon = Icon.FromResource("MyResourceName.ico");
 		}
 
 		protected override void OnActivated(EventArgs e)

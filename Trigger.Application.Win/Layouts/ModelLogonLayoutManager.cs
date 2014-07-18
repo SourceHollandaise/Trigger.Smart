@@ -1,8 +1,8 @@
 using Eto.Forms;
 using Trigger.Datastore.Security;
-using Trigger.CRM.Forms.Templates;
+using Trigger.Application.Win.Templates;
 
-namespace Trigger.CRM.Forms.Layout
+namespace Trigger.Application.Win.Layouts
 {
 	public class ModelLogonLayoutManager
 	{
@@ -52,13 +52,13 @@ namespace Trigger.CRM.Forms.Layout
 			layout.Add(logonButton, true);
 			logonButton.Click += (sender, e) =>
 			{
-				var auth = Dependency.DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
-
-				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
-				{
-					var mainForm = new MainTemplate();
-					mainForm.Show();
-				}
+//				var auth = Dependency.DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
+//
+//				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
+//				{
+//					var mainForm = new MainTemplate();
+//					mainForm.Show();
+//				}
 			};
 
 			layout.EndHorizontal();

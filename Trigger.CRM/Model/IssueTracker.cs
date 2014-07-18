@@ -106,7 +106,7 @@ namespace Trigger.CRM.Model
 
 				OnPropertyChanged();
 
-				UpdateIssue(state);
+				//UpdateIssue(state);
 			}
 		}
 

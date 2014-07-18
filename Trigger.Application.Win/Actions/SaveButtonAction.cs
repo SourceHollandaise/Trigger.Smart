@@ -2,9 +2,8 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Forms
+namespace Trigger.Application.Win.Actions
 {
-
 	public class SaveButtonAction : ButtonAction
 	{
 		public const string ActionID = "save_action";
@@ -19,7 +18,6 @@ namespace Trigger.CRM.Forms
 			this.ToolBarText = "Save item";
 			this.TooltipText = "Saves the current item to store";
 			//this.Icon = Icon.FromResource ("MyResourceName.ico");
-			this.Accelerator = Application.Instance.CommonModifier | Keys.Enter;  // control+M or cmd+M
 		}
 
 		protected override void OnActivated(EventArgs e)

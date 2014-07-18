@@ -2,7 +2,7 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Forms.Layout
+namespace Trigger.Application.Win.Layouts
 {
 	public class ModelDetailLayoutManager
 	{

@@ -1,9 +1,11 @@
 using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.CRM.Forms.Layout;
+using Trigger.Application.Win.Layouts;
+using Trigger.Application.Win.Actions;
+using Eto.Drawing;
 
-namespace Trigger.CRM.Forms.Templates
+namespace Trigger.Application.Win.Templates
 {
 	public class ModelListTemplate : Form
 	{
@@ -15,7 +17,7 @@ namespace Trigger.CRM.Forms.Templates
 		{
 			this.modelType = modelType;
 		
-			Size = new Eto.Drawing.Size(1280, 800);
+			Size = new Size(1280, 800);
 			Title = "List of " + modelType.Name;
 
 			ListBox list = new ModelListLayoutManager().GetLayout(modelType);
@@ -28,9 +30,7 @@ namespace Trigger.CRM.Forms.Templates
 				{
 					var target = store.Load(modelType, list.SelectedKey);
 
-					var detailView = new ModelDetailTemplate(target as PersistentModelBase);
-
-					detailView.Show();
+					new ModelDetailTemplate(target as PersistentModelBase).Show();
 				}
 			};
 
