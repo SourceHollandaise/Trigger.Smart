@@ -3,11 +3,11 @@ using Eto.Forms;
 using System.Collections.Generic;
 using Eto.Drawing;
 
-namespace Trigger.Application.Win.Templates
+namespace Trigger.WinForms.Layout
 {
-	public class MainTemplate : Form
+	public class MainForm : Form
 	{
-		public MainTemplate(IEnumerable<Type> types)
+		public MainForm(IEnumerable<Type> types)
 		{
 			Size = new Size(1280, 800);
 
@@ -23,7 +23,7 @@ namespace Trigger.Application.Win.Templates
 				if (e.Key != Keys.Enter)
 					return;
 
-				new ModelListTemplate((listBox.SelectedValue as ListItem).Tag as Type).Show();
+				new ModelListForm((listBox.SelectedValue as ListItem).Tag as Type).Show();
 			};
 		}
 	}

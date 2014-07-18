@@ -1,9 +1,9 @@
 using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.Application.Win.Templates;
+using Trigger.WinForms.Layout;
 
-namespace Trigger.Application.Win.Actions
+namespace Trigger.WinForms.Actions
 {
 	public class NewButtonAction : ButtonAction
 	{
@@ -27,7 +27,7 @@ namespace Trigger.Application.Win.Actions
 
 			var item = Activator.CreateInstance(modelType) as PersistentModelBase;
 
-			var detailTemplate = new ModelDetailTemplate(item);
+			var detailTemplate = new ModelDetailForm(item);
 			detailTemplate.Show();
 		}
 	}

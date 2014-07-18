@@ -2,7 +2,7 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 
-namespace Trigger.Application.Win.Actions
+namespace Trigger.WinForms.Actions
 {
 	public class DeleteButtonAction : ButtonAction
 	{

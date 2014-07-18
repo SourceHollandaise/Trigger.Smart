@@ -1,16 +1,15 @@
+using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.Application.Win.Layouts;
-using Trigger.Application.Win.Actions;
-using Eto.Drawing;
+using Trigger.WinForms.Actions;
 
-namespace Trigger.Application.Win.Templates
+namespace Trigger.WinForms.Layout
 {
-	public class ModelDetailTemplate : Form
+	public class ModelDetailForm : Form
 	{
 		readonly PersistentModelBase model;
 
-		public ModelDetailTemplate(PersistentModelBase model)
+		public ModelDetailForm(PersistentModelBase model)
 		{
 			this.model = model;
 

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{84904569-5029-4F65-B641-198A82C09C01}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Trigger.Application.Win</RootNamespace>
+    <RootNamespace>Trigger.WinForms</RootNamespace>
     <AssemblyName>Trigger.Application.Win</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,13 +40,13 @@
     <Compile Include="Layouts\ModelDetailLayoutManager.cs" />
     <Compile Include="Layouts\ModelListLayoutManager.cs" />
     <Compile Include="Layouts\ModelLogonLayoutManager.cs" />
-    <Compile Include="Templates\LogonTemplate.cs" />
-    <Compile Include="Templates\MainTemplate.cs" />
-    <Compile Include="Templates\ModelDetailTemplate.cs" />
-    <Compile Include="Templates\ModelListTemplate.cs" />
     <Compile Include="Actions\DeleteButtonAction.cs" />
     <Compile Include="Actions\NewButtonAction.cs" />
     <Compile Include="Actions\SaveButtonAction.cs" />
+    <Compile Include="Templates\LogonForm.cs" />
+    <Compile Include="Templates\MainForm.cs" />
+    <Compile Include="Templates\ModelDetailForm.cs" />
+    <Compile Include="Templates\ModelListForm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

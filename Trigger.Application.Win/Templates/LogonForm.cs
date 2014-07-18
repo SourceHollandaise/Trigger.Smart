@@ -1,12 +1,11 @@
 using Eto.Forms;
-using Trigger.Application.Win.Layouts;
 using Eto.Drawing;
 
-namespace Trigger.Application.Win.Templates
+namespace Trigger.WinForms.Layout
 {
-	public class LogonTemplate : Form
+	public class LogonForm : Form
 	{
-		public LogonTemplate()
+		public LogonForm()
 		{
 			Size = new Size(360, 240);
 			Title = "Logon - Enter username and password";

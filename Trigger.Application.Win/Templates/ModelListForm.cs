@@ -1,19 +1,18 @@
 using System;
+using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.Application.Win.Layouts;
-using Trigger.Application.Win.Actions;
-using Eto.Drawing;
+using Trigger.WinForms.Actions;
 
-namespace Trigger.Application.Win.Templates
+namespace Trigger.WinForms.Layout
 {
-	public class ModelListTemplate : Form
+	public class ModelListForm : Form
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
 		readonly Type modelType;
 
-		public ModelListTemplate(Type modelType)
+		public ModelListForm(Type modelType)
 		{
 			this.modelType = modelType;
 		
@@ -30,7 +29,7 @@ namespace Trigger.Application.Win.Templates
 				{
 					var target = store.Load(modelType, list.SelectedKey);
 
-					new ModelDetailTemplate(target as PersistentModelBase).Show();
+					new ModelDetailForm(target as PersistentModelBase).Show();
 				}
 			};
 

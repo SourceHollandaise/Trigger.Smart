@@ -1,4 +1,5 @@
 using Trigger.CRM.Model;
+using Trigger.WinForms.Layout;
 
 
 namespace Trigger.CRM.Forms
@@ -22,7 +23,7 @@ namespace Trigger.CRM.Forms
 
 			application.Initialized += (sender, e) =>
 			{
-				application.MainForm = new Trigger.Application.Win.Templates.MainTemplate(types);
+				application.MainForm = new MainForm(types);
 				application.MainForm.BringToFront();
 				application.MainForm.Show();
 

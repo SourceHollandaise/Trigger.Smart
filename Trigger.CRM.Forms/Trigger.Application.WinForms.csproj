@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{611C10CB-D8D7-4F0E-85F0-83E7F4A7D7F7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Trigger.CRM.Forms</RootNamespace>
+    <RootNamespace>Trigger.Application.WinForms</RootNamespace>
     <AssemblyName>Trigger.CRM.Forms</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -62,9 +62,9 @@
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Trigger.Application.Win\Trigger.Application.Win.csproj">
+    <ProjectReference Include="..\Trigger.Application.Win\Trigger.WinForms.csproj">
       <Project>{84904569-5029-4F65-B641-198A82C09C01}</Project>
-      <Name>Trigger.Application.Win</Name>
+      <Name>Trigger.WinForms</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

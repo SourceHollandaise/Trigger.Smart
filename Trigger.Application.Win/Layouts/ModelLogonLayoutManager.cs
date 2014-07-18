@@ -1,8 +1,6 @@
 using Eto.Forms;
-using Trigger.Datastore.Security;
-using Trigger.Application.Win.Templates;
 
-namespace Trigger.Application.Win.Layouts
+namespace Trigger.WinForms.Layout
 {
 	public class ModelLogonLayoutManager
 	{
