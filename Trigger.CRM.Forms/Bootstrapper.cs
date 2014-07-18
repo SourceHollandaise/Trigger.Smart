@@ -1,12 +1,8 @@
-using System;
 using Trigger.CRM.Persistent;
-using System.Configuration;
 using Trigger.Datastore.Security;
 using Trigger.Datastore.Persistent;
 using Trigger.Dependency;
 using System.Linq;
-using Eto.Forms;
-using Trigger.CRM.Model;
 
 namespace Trigger.CRM.Forms
 {
@@ -32,11 +28,7 @@ namespace Trigger.CRM.Forms
 
 		protected void Register()
 		{
-
-			Map.RegisterType<IAuthenticate, SystemAuthenticate>();
-
-			new SystemAuthenticate().LogOn(new LogonParameters(){ UserName = "trigger", Password = "1234" });
-
+			Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
 			Map.RegisterType<IdGenerator, GuidIdGenerator>();
 			Map.RegisterType<IStore, FileStore>();
 		}

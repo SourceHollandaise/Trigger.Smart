@@ -46,12 +46,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelDetailLayoutManager.cs" />
-    <Compile Include="ModelDetailTemplate.cs" />
-    <Compile Include="DeleteButtonAction.cs" />
-    <Compile Include="SaveButtonAction.cs" />
-    <Compile Include="CRMApplication.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Layout\ModelDetailLayoutManager.cs" />
+    <Compile Include="Layout\ModelListLayoutManager.cs" />
+    <Compile Include="Templates\MainForm.cs" />
+    <Compile Include="Templates\ModelDetailTemplate.cs" />
+    <Compile Include="Templates\ModelListTemplate.cs" />
+    <Compile Include="Controllers\DeleteButtonAction.cs" />
+    <Compile Include="Controllers\NewButtonAction.cs" />
+    <Compile Include="Controllers\SaveButtonAction.cs" />
+    <Compile Include="WinApplication.cs" />
+    <Compile Include="Templates\LogonForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">
@@ -66,5 +71,10 @@
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
+    <Folder Include="Layout\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

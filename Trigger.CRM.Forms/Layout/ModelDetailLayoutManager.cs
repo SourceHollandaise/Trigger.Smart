@@ -2,7 +2,7 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 
-namespace Trigger.CRM.Forms
+namespace Trigger.CRM.Forms.Layout
 {
 	public class ModelDetailLayoutManager
 	{
@@ -71,12 +71,12 @@ namespace Trigger.CRM.Forms
 						});
 						var textBox = new TextBox
 						{
-							Text = (string)property.GetValue(model, null)
+							//Text = (string)property.GetValue(model, null)
 						};
 
 						textBox.TextChanged += (sender, e) =>
 						{
-							property.SetValue(model, Convert.ToDateTime(textBox.Text), null);
+							//property.SetValue(model, Convert.ToDateTime(textBox.Text), null);
 						};
 
 						layout.Add(textBox, true);
@@ -122,9 +122,13 @@ namespace Trigger.CRM.Forms
 								Tag = pi
 							});
 
-						var selection = (property.GetValue(model, null) as PersistentModelBase);
-						if (selection != null)
-							comboBox.SelectedKey = selection.MappingId.ToString();
+						var value = property.GetValue(model, null);
+						if (value != null)
+						{
+							var selection = (property.GetValue(model, null) as PersistentModelBase);
+							if (selection != null && selection.MappingId != null)
+								comboBox.SelectedKey = selection.MappingId.ToString();
+						}
 
 					
 						comboBox.SelectedValueChanged += (sender, e) =>

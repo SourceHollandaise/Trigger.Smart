@@ -1,27 +1,23 @@
-using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
+using Trigger.CRM.Forms.Layout;
 
-namespace Trigger.CRM.Forms
+namespace Trigger.CRM.Forms.Templates
 {
 	public class ModelDetailTemplate : Form
 	{
-		PersistentModelBase model;
+		readonly PersistentModelBase model;
 
 		public ModelDetailTemplate(PersistentModelBase model)
 		{
 			this.model = model;
+
 			Size = new Eto.Drawing.Size(800, 600);
 			Title = model.GetType().Name + " - " + model.GetRepresentation();
 
 			Content = new ModelDetailLayoutManager().GetLayout(model);
 
 			RegisterActions();
-
-			model.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
-			{
-				Content = new ModelDetailLayoutManager().GetLayout(model);
-			};
 		}
 
 		void RegisterActions()

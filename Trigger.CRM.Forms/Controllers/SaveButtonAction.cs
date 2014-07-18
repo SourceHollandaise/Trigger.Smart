@@ -26,8 +26,6 @@ namespace Trigger.CRM.Forms
 		{
 			base.OnActivated(e);
 
-			MessageBox.Show(Application.Instance.MainForm, "You clicked Save!", "Enter", MessageBoxButtons.OK);
-
 			model.Save();
 		}
 	}

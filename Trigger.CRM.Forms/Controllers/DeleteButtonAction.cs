@@ -4,7 +4,6 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Forms
 {
-
 	public class DeleteButtonAction : ButtonAction
 	{
 		public const string ActionID = "delete_action";
@@ -26,8 +25,9 @@ namespace Trigger.CRM.Forms
 		{
 			base.OnActivated(e);
 
-			MessageBox.Show(Application.Instance.MainForm, "You clicked Delete!", "Del", MessageBoxButtons.OK);
+			model.Delete();
 		}
 	}
+
 	
 }
