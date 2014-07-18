@@ -46,9 +46,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormRun.cs" />
     <Compile Include="ModelDetailLayoutManager.cs" />
     <Compile Include="ModelDetailTemplate.cs" />
+    <Compile Include="DeleteButtonAction.cs" />
+    <Compile Include="SaveButtonAction.cs" />
+    <Compile Include="CRMApplication.cs" />
+    <Compile Include="Bootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">
