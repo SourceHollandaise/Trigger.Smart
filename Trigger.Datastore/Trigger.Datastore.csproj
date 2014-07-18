@@ -57,7 +57,6 @@
     <Compile Include="Repository\ModelRepositoryEventArgs.cs" />
     <Compile Include="Repository\ModelRepositoryFactory.cs" />
     <Compile Include="Repository\ModelRespository.cs" />
-    <Compile Include="Persistent\ModelBase.cs" />
     <Compile Include="Security\DataStoreAuthenticate.cs" />
     <Compile Include="Security\IAuthenticate.cs" />
     <Compile Include="Security\ISecurityInfoProvider.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Security\SecurityInfoProvider.cs" />
     <Compile Include="Security\SystemAuthenticate.cs" />
     <Compile Include="Security\User.cs" />
+    <Compile Include="Persistent\NotifyPropertyChangedBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

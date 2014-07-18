@@ -1,128 +1,141 @@
 using Trigger.Datastore.Persistent;
 using Trigger.Datastore.Security;
+using System.IO;
+using Trigger.CRM.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public class Document : PersistentModelBase
-    {
-        public override string GetRepresentation()
-        {
-            var sb = new System.Text.StringBuilder();
-            sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, User != null ? User.UserName : "anonymous", Created));
-            sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
-            sb.AppendLine(string.Format("{0}", Description));
-            sb.AppendLine(string.Format("ID: {0}", MappingId));
-            return sb.ToString();
-        }
+	public class Document : PersistentModelBase
+	{
+		public override string GetRepresentation()
+		{
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, User != null ? User.UserName : "anonymous", Created));
+			sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
+			sb.AppendLine(string.Format("{0}", Description));
+			sb.AppendLine(string.Format("ID: {0}", MappingId));
+			return sb.ToString();
+		}
 
-        string subject;
+		public override void Delete()
+		{
+			var path = Path.Combine(StoreConfigurator.DocumentStoreLocation, FileName);
 
-        public string Subject
-        {
-            get
-            {
-                return subject;
-            }
-            set
-            {
-                if (Equals(subject, value))
-                    return;
-                subject = value;
+			if (File.Exists(path))
+				File.Delete(path);
 
-                OnPropertyChanged();
-            }
-        }
+			base.Delete();
+		}
 
-        string description;
+		string subject;
 
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                if (Equals(description, value))
-                    return;
-                description = value;
+		public string Subject
+		{
+			get
+			{
+				return subject;
+			}
+			set
+			{
+				if (Equals(subject, value))
+					return;
+				subject = value;
 
-                OnPropertyChanged();
-            }
-        }
+				OnPropertyChanged();
+			}
+		}
 
-        Project project;
+		string description;
 
-        [PersistentReference]
-        public Project Project
-        {
-            get
-            {
-                return project;
-            }
-            set
-            {
-                if (Equals(project, value))
-                    return;
-                project = value;
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set
+			{
+				if (Equals(description, value))
+					return;
+				description = value;
 
-                OnPropertyChanged();
-            }
-        }
+				OnPropertyChanged();
+			}
+		}
 
-        IssueTracker issue;
+		string fileName;
 
-        [PersistentReference]
-        public IssueTracker Issue
-        {
-            get
-            {
-                return issue;
-            }
-            set
-            {
-                if (Equals(issue, value))
-                    return;
-                issue = value;
+		public string FileName
+		{
+			get
+			{
+				return fileName;
+			}
+			set
+			{
+				if (Equals(fileName, value))
+					return;
+				fileName = value;
 
-                OnPropertyChanged();
-            }
-        }
+				OnPropertyChanged();
+			}
+		}
 
-        User user;
+		Project project;
 
-        public User User
-        {
-            get
-            {
-                return user;
-            }
-            set
-            {
-                if (Equals(user, value))
-                    return;
-                user = value;
+		[PersistentReference]
+		public Project Project
+		{
+			get
+			{
+				return project;
+			}
+			set
+			{
+				if (Equals(project, value))
+					return;
+				project = value;
 
-                OnPropertyChanged();
-            }
-        }
+				OnPropertyChanged();
+			}
+		}
 
-        string fileName;
+		IssueTracker issue;
 
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
-            set
-            {
-                if (Equals(fileName, value))
-                    return;
-                fileName = value;
+		[PersistentReference]
+		public IssueTracker Issue
+		{
+			get
+			{
+				return issue;
+			}
+			set
+			{
+				if (Equals(issue, value))
+					return;
+				issue = value;
 
-                OnPropertyChanged();
-            }
-        }
-    }
+				OnPropertyChanged();
+			}
+		}
+
+		User user;
+
+		[PersistentReference]
+		public User User
+		{
+			get
+			{
+				return user;
+			}
+			set
+			{
+				if (Equals(user, value))
+					return;
+				user = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 }

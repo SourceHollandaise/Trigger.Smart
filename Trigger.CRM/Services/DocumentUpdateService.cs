@@ -8,35 +8,43 @@ using System.Linq;
 
 namespace Trigger.CRM.Services
 {
-    public class DocumentUpdateService
-    {
-        public int LoadFromDocumentStore()
-        {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
-            var items = store.LoadAll(typeof(Document)).OfType<Document>().ToList();            
+	public class DocumentUpdateService
+	{
+		public int LoadFromDocumentStore()
+		{
+			var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+			var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
+			var documents = store.LoadAll<Document>().ToList();            
 
-            int counter = 0;
-            foreach (var file in files)
-            {
-                var fi = new FileInfo(file);
+			int counter = 0;
+			foreach (var file in files)
+			{
+				var fi = new FileInfo(file);
 
-                var document = items.FirstOrDefault(p => p.FileName == fi.Name);
+				var document = documents.FirstOrDefault(p => p.FileName == fi.Name);
 
-                if (document == null)
-                {
-                    document = new Document
-                    {
-                        FileName = fi.Name,
-                        Subject = fi.Name.Replace(fi.Extension, ""),
-                    };
-                    document.Initialize();
-                    document.Save();
-                    counter++;
-                }
-            }
+				if (document == null)
+				{
+					document = new Document
+					{
+						FileName = fi.Name,
+						Subject = fi.Name.Replace(fi.Extension, ""),
+					};
+					document.Initialize();
+					document.Save();
+					counter++;
+				}
+			}
 
-            return counter;
-        }
-    }
+			foreach (var doc in documents)
+			{
+				var path = Path.Combine(StoreConfigurator.DocumentStoreLocation, doc.FileName);
+
+				if (!File.Exists(path))
+					doc.Delete();
+			}
+
+			return counter;
+		}
+	}
 }

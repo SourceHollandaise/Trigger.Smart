@@ -5,177 +5,178 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Model
 {
-    public class IssueTracker : PersistentModelBase
-    {
-        public override string GetRepresentation()
-        {
-            var sb = new System.Text.StringBuilder();
-            sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedBy != null ? CreatedBy.UserName : "anonymous", Created));
-            sb.AppendLine(string.Format("{0} is {1}", Issue, State));
-            sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
-            sb.AppendLine(string.Format("{0}", Description));
-            sb.AppendLine(string.Format("ID: {0}", MappingId));
-            return sb.ToString();
-        }
+	public class IssueTracker : PersistentModelBase
+	{
+		public override string GetRepresentation()
+		{
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedBy != null ? CreatedBy.UserName : "anonymous", Created));
+			sb.AppendLine(string.Format("{0} is {1}", Issue, State));
+			sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
+			sb.AppendLine(string.Format("{0}", Description));
+			sb.AppendLine(string.Format("ID: {0}", MappingId));
+			return sb.ToString();
+		}
 
-        IssueType issue;
+		public bool IsDone
+		{
+			get
+			{
+				return Resolved.HasValue && ResolvedBy != null && State == IssueState.Done;
+			}
+		}
 
-        public IssueType Issue
-        {
-            get
-            {
-                return issue;
-            }
-            set
-            {
-                if (Equals(issue, value))
-                    return;
-                issue = value;
 
-                OnPropertyChanged();
-            }
-        }
+		public TimeSpan? Duration
+		{
+			get
+			{
+				return Resolved.HasValue && Created.HasValue ? Resolved - Created : null;
+			}
+		}
 
-        IssueState state;
+		string subject;
 
-        public IssueState State
-        {
-            get
-            {
-                return state;
-            }
-            set
-            {
-                if (Equals(state, value))
-                    return;
-                state = value;
+		public string Subject
+		{
+			get
+			{
+				return subject;
+			}
+			set
+			{
+				if (Equals(subject, value))
+					return;
+				subject = value;
 
-                OnPropertyChanged();
+				OnPropertyChanged();
+			}
+		}
 
-                UpdateIssue(state);
-            }
-        }
+		string description;
 
-        public bool IsDone
-        {
-            get
-            {
-                return Resolved.HasValue && ResolvedBy != null && State == IssueState.Done;
-            }
-        }
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set
+			{
+				if (Equals(description, value))
+					return;
+				description = value;
 
-        string subject;
+				OnPropertyChanged();
+			}
+		}
 
-        public string Subject
-        {
-            get
-            {
-                return subject;
-            }
-            set
-            {
-                if (Equals(subject, value))
-                    return;
-                subject = value;
+		IssueType issue;
 
-                OnPropertyChanged();
-            }
-        }
+		public IssueType Issue
+		{
+			get
+			{
+				return issue;
+			}
+			set
+			{
+				if (Equals(issue, value))
+					return;
+				issue = value;
 
-        string description;
+				OnPropertyChanged();
+			}
+		}
 
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                if (Equals(description, value))
-                    return;
-                description = value;
+		IssueState state;
 
-                OnPropertyChanged();
-            }
-        }
+		public IssueState State
+		{
+			get
+			{
+				return state;
+			}
+			set
+			{
+				if (Equals(state, value))
+					return;
+				state = value;
 
-        Project project;
+				OnPropertyChanged();
 
-        [PersistentReference]
-        public Project Project
-        {
-            get
-            {
-                return project;
-            }
-            set
-            {
-                if (Equals(project, value))
-                    return;
-                project = value;
+				UpdateIssue(state);
+			}
+		}
 
-                OnPropertyChanged();
-            }
-        }
+		Project project;
 
-        DateTime? resolved;
+		[PersistentReference]
+		public Project Project
+		{
+			get
+			{
+				return project;
+			}
+			set
+			{
+				if (Equals(project, value))
+					return;
+				project = value;
 
-        public DateTime? Resolved
-        {
-            get
-            {
-                return resolved;
-            }
-            set
-            {
-                if (Equals(resolved, value))
-                    return;
-                resolved = value;
+				OnPropertyChanged();
+			}
+		}
 
-                OnPropertyChanged();
-            }
-        }
+		DateTime? resolved;
 
-        public TimeSpan? Duration
-        {
-            get
-            {
-                return Resolved.HasValue && Created.HasValue ? Resolved - Created : null;
-            }
-        }
+		public DateTime? Resolved
+		{
+			get
+			{
+				return resolved;
+			}
+			set
+			{
+				if (Equals(resolved, value))
+					return;
+				resolved = value;
 
-        User resolvedBy;
+				OnPropertyChanged();
+			}
+		}
 
-        [PersistentReference]
-        public User ResolvedBy
-        {
-            get
-            {
-                return resolvedBy;
-            }
-            set
-            {
-                if (Equals(resolvedBy, value))
-                    return;
-                resolvedBy = value;
+		User resolvedBy;
 
-                OnPropertyChanged();
-            }
-        }
+		[PersistentReference]
+		public User ResolvedBy
+		{
+			get
+			{
+				return resolvedBy;
+			}
+			set
+			{
+				if (Equals(resolvedBy, value))
+					return;
+				resolvedBy = value;
 
-        void UpdateIssue(IssueState state)
-        {
-            if (state == IssueState.Done)
-            {
-                ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-                Resolved = DateTime.Now;
-            }
-            else
-            {
-                ResolvedBy = null;
-                Resolved = null;
-            }
-        }
-    }
+				OnPropertyChanged();
+			}
+		}
+
+		void UpdateIssue(IssueState state)
+		{
+			if (state == IssueState.Done)
+			{
+				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+				Resolved = DateTime.Now;
+			}
+			else
+			{
+				ResolvedBy = null;
+				Resolved = null;
+			}
+		}
+	}
 }
