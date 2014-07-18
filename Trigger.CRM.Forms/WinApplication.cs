@@ -1,8 +1,7 @@
 using Trigger.CRM.Model;
 using Trigger.WinForms.Layout;
 
-
-namespace Trigger.CRM.Forms
+namespace Trigger.Application.WinForms
 {
 	public static class WinApplication
 	{

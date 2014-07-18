@@ -1,10 +1,10 @@
-using Trigger.CRM.Persistent;
-using Trigger.Datastore.Security;
-using Trigger.Datastore.Persistent;
-using Trigger.Dependency;
 using System.Linq;
+using Trigger.CRM.Persistent;
+using Trigger.Datastore.Persistent;
+using Trigger.Datastore.Security;
+using Trigger.Dependency;
 
-namespace Trigger.CRM.Forms
+namespace Trigger.Application.WinForms
 {
 
 	class Bootstrapper
