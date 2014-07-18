@@ -6,7 +6,7 @@ namespace Trigger.Datastore.Security
     {
         public override void Initialize()
         {
-
+            //INFO: Do not initialize!!! 
         }
 
         public override string GetRepresentation()
@@ -71,7 +71,6 @@ namespace Trigger.Datastore.Security
                 OnPropertyChanged();
             }
         }
-
 
         public void SetPassword(string input)
         {       

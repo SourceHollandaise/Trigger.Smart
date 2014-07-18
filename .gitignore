@@ -33,3 +33,5 @@ Trigger.CommandLine/bin/Debug/Trigger.CommandLine.vshost.exe.config
 Trigger.Smart/Trigger.Smart.userprefs
 
 *.json
+
+Trigger.Datastore/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs

@@ -1,44 +1,43 @@
 using System;
 using System.Linq;
 using Trigger.Dependency;
-using Trigger.CRM.Persistent;
 
 namespace Trigger.Datastore.Persistent
 {
 
-    public static class PersistentReferenceHelper
-    {
-        static IStore Store
-        {
-            get
-            {
-                return DependencyMapProvider.Instance.ResolveType<IStore>();
-            }
-        }
+	public static class PersistentReferenceHelper
+	{
+		static IStore Store
+		{
+			get
+			{
+				return DependencyMapProvider.Instance.ResolveType<IStore>();
+			}
+		}
 
-        public static void UpdatePersistentReferences(IPersistentId target)
-        {
-            var properties = target.GetType().GetProperties().AsEnumerable()
+		public static void UpdatePersistentReferences(IPersistentId persistent)
+		{
+			var properties = persistent.GetType().GetProperties().AsEnumerable()
                 .Where(p => p.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).Length > 0).ToList();
 
-            foreach (var property in properties)
-            {
-                var value = property.GetValue(target, null);
+			foreach (var property in properties)
+			{
+				var propValue = property.GetValue(persistent, null);
 
-                if (value != null)
-                {
-                    var persistent = value as IPersistentId;
-                    if (persistent != null)
-                    {
-                        var loaded = Store.Load(persistent.GetType(), persistent.MappingId);
+				if (propValue != null)
+				{
+					var persistentRef = propValue as IPersistentId;
+					if (persistentRef != null)
+					{
+						var persistentFromStore = Store.Load(persistentRef.GetType(), persistentRef.MappingId);
 
-                        if (loaded == null)
-                        {
-                            property.SetValue(target, null, null);
-                        }
-                    }
-                }
-            }
-        }
-    }
+						if (persistentFromStore == null)
+						{
+							property.SetValue(persistent, null, null);
+						}
+					}
+				}
+			}
+		}
+	}
 }

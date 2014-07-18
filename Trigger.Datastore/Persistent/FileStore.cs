@@ -9,6 +9,8 @@ namespace Trigger.Datastore.Persistent
 {
     public class FileStore : IStore
     {
+        const string StoredFileExtension = ".json";
+
         public void Save(Type type, IPersistentId item)
         {
             string typeDir = CreateTypeDirectory(type);
@@ -16,7 +18,7 @@ namespace Trigger.Datastore.Persistent
             item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
             var json = ServiceStack.Text.JsonSerializer.SerializeToString(item, type);
-            var path = Path.Combine(typeDir, item.MappingId + ".json");
+            var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
             File.WriteAllText(path, json);
         }
@@ -30,7 +32,7 @@ namespace Trigger.Datastore.Persistent
         {
             string typeDir = CreateTypeDirectory(type);
 
-            var path = Path.Combine(typeDir, itemId + ".json");
+            var path = Path.Combine(typeDir, itemId + StoredFileExtension);
 
             if (File.Exists(path))
                 File.Delete(path);
@@ -45,7 +47,7 @@ namespace Trigger.Datastore.Persistent
         {
             string typeDir = CreateTypeDirectory(type);
 
-            var path = Path.Combine(typeDir, item.MappingId + ".json");
+            var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
             if (File.Exists(path))
                 File.Delete(path);
@@ -60,13 +62,15 @@ namespace Trigger.Datastore.Persistent
         {
             string typeDir = CreateTypeDirectory(type);
 
-            var path = Path.Combine(typeDir, itemId + ".json");
+            var path = Path.Combine(typeDir, itemId + StoredFileExtension);
 
             if (File.Exists(path))
             {
                 var content = File.ReadAllText(path);
 
-                return (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                var result = (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                PersistentReferenceHelper.UpdatePersistentReferences(result);
+                return result;
             }
 
             return null;
@@ -81,7 +85,7 @@ namespace Trigger.Datastore.Persistent
         {
             string typeDir = CreateTypeDirectory(type);
 
-            foreach (var item in Directory.EnumerateFiles(typeDir, "*.json"))
+            foreach (var item in Directory.EnumerateFiles(typeDir, "*" + StoredFileExtension))
                 yield return Load(type, item);
 
         }
@@ -97,7 +101,9 @@ namespace Trigger.Datastore.Persistent
             {
                 var content = File.ReadAllText(path);
 
-                return (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                var result = (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+                PersistentReferenceHelper.UpdatePersistentReferences(result);
+                return result;
             }
 
             return null;
