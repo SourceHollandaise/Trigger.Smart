@@ -9,6 +9,7 @@ namespace Trigger.CRM.Model
 	{
 		public override string GetRepresentation()
 		{
+			return Subject;
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, User != null ? User.UserName : "anonymous", Created));
 			sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));

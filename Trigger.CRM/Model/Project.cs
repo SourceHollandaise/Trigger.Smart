@@ -9,6 +9,7 @@ namespace Trigger.CRM.Model
 	{
 		public override string GetRepresentation()
 		{
+			return Name;
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("{0}", Name));
 			sb.AppendLine(string.Format("{0}", Description));
