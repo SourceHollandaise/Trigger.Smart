@@ -47,6 +47,9 @@
     <Compile Include="Actions\ActionBaseController.cs" />
     <Compile Include="Actions\ModelModificationController.cs" />
     <Compile Include="Actions\ModelNewObjectActionController.cs" />
+    <Compile Include="Layouts\LayoutPropertyEditorFactory.cs" />
+    <Compile Include="Actions\ModelRefreshController.cs" />
+    <Compile Include="Templates\TemplateBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

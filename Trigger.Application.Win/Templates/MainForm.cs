@@ -23,7 +23,7 @@ namespace Trigger.WinForms.Layout
 				if (e.Key != Keys.Enter)
 					return;
 
-				new ModelListForm((listBox.SelectedValue as ListItem).Tag as Type).Show();
+				new ModelListForm((listBox.SelectedValue as ListItem).Tag as Type, null).Show();
 			};
 		}
 	}

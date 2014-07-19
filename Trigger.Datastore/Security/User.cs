@@ -2,6 +2,7 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.Datastore.Security
 {
+	[System.ComponentModel.DefaultProperty("UserName")]
 	public class User : PersistentModelBase
 	{
 		public override void Initialize()
@@ -11,7 +12,6 @@ namespace Trigger.Datastore.Security
 
 		public override string GetRepresentation()
 		{
-			return UserName;
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("{0}", UserName));
 			sb.AppendLine(string.Format("{0}", EMail));

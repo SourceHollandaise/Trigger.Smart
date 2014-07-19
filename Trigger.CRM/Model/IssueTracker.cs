@@ -5,11 +5,11 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.CRM.Model
 {
+	[System.ComponentModel.DefaultProperty("Subject")]
 	public class IssueTracker : PersistentModelBase
 	{
 		public override string GetRepresentation()
 		{
-			return Subject;
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedBy != null ? CreatedBy.UserName : "anonymous", Created));
 			sb.AppendLine(string.Format("{0} is {1}", Issue, State));

@@ -5,6 +5,7 @@ using Trigger.Datastore.Security;
 
 namespace Trigger.CRM.Model
 {
+	[System.ComponentModel.DefaultProperty("Subject")]
 	public class TimeTracker : PersistentModelBase
 	{
 		public override string GetRepresentation()

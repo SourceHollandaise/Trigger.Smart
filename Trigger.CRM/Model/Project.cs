@@ -5,11 +5,11 @@ using System;
 
 namespace Trigger.CRM.Model
 {
+	[System.ComponentModel.DefaultProperty("Name")]
 	public class Project : PersistentModelBase
 	{
 		public override string GetRepresentation()
 		{
-			return Name;
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("{0}", Name));
 			sb.AppendLine(string.Format("{0}", Description));

@@ -4,6 +4,7 @@ using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using System;
 using Trigger.WinForms.Layout;
+using System.Collections.Generic;
 
 namespace Trigger.WinForms.Actions
 {
@@ -15,21 +16,15 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public Type ModelType
-		{
-			get;
-			set;
-		}
-
-		public ModelNewObjectActionController(Form container, Type modelType) : base(container)
+		public ModelNewObjectActionController(Form template, Type modelType, PersistentModelBase model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
 
-		public override System.Collections.Generic.IEnumerable<ToolItem> RegisterActions()
+		public override IEnumerable<ToolItem> RegisterActions()
 		{
 			NewAction = new ButtonToolItem();
-			NewAction.Text = "New" + ModelType.Name;
+			NewAction.Text = "New " + ModelType.Name;
 			NewAction.ID = "New_Tool_Action";
 			NewAction.Click += (sender, e) =>
 			{
@@ -41,9 +36,9 @@ namespace Trigger.WinForms.Actions
 
 		protected virtual void NewObjectExecute()
 		{
-			var item = Activator.CreateInstance(ModelType) as PersistentModelBase;
+			CurrentObject = Activator.CreateInstance(ModelType) as PersistentModelBase;
 
-			var detailTemplate = new ModelDetailForm(item);
+			var detailTemplate = new ModelDetailForm(ModelType, CurrentObject);
 			detailTemplate.Show();
 		}
 	}

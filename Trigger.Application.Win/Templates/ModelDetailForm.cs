@@ -2,28 +2,22 @@ using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
+using System;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelDetailForm : Form
+	public class ModelDetailForm : TemplateBase
 	{
-		readonly PersistentModelBase model;
-
-	
-		public ModelDetailForm(PersistentModelBase model)
+		public ModelDetailForm(Type modelType, PersistentModelBase currentObject) : base(modelType, currentObject)
 		{
-			this.model = model;
-
 			Size = new Size(800, 600);
-			Title = model.GetType().Name + " - " + model.GetRepresentation();
+			Title = ModelType.Name + " - " + CurrentObject.GetRepresentation();
 
-			Content = new ModelDetailLayoutManager().GetLayout(model);
+			Content = new ModelDetailLayoutManager().GetLayout(CurrentObject);
 
-			if (this.ToolBar == null)
-				this.ToolBar = new ToolBar();
-				
-			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, model.GetType()).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelModificationController(this, model).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelModificationController(this, CurrentObject).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelRefreshController(this, ModelType, CurrentObject).RegisterActions());
 		}
 	}
 }

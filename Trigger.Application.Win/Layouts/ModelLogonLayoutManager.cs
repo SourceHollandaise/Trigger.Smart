@@ -4,13 +4,6 @@ namespace Trigger.WinForms.Layout
 {
 	public class ModelLogonLayoutManager
 	{
-		Form form;
-
-		public ModelLogonLayoutManager(Form form)
-		{
-			this.form = form;
-		}
-
 		public DynamicLayout GetLayout()
 		{
 			DynamicLayout layout = new DynamicLayout();

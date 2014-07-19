@@ -1,24 +1,12 @@
-using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
+using System.Collections.Generic;
 
 namespace Trigger.WinForms.Actions
 {
-
 	public class ModelModificationController : ActionBaseController
 	{
-		protected PersistentModelBase Model
-		{
-			get;
-			set;
-		}
-
-		public ModelModificationController(Form form, PersistentModelBase model) : base(form)
-		{
-			this.Model = model;
-		}
-
 		public ButtonToolItem SaveAction
 		{
 			get;
@@ -31,14 +19,19 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public override System.Collections.Generic.IEnumerable<ToolItem> RegisterActions()
+		public ModelModificationController(Form template, PersistentModelBase model) : base(template, model)
+		{
+
+		}
+
+		public override IEnumerable<ToolItem> RegisterActions()
 		{
 			SaveAction = new ButtonToolItem();
 			SaveAction.Text = "Save";
 			SaveAction.ID = "Save_Tool_Action";
 			SaveAction.Click += (sender, e) =>
 			{
-				var result = MessageBox.Show("Save " + Model.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
+				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
 					SaveExecute();
 			};
@@ -50,7 +43,7 @@ namespace Trigger.WinForms.Actions
 			DeleteAction.ID = "Delete_Tool_Action";
 			DeleteAction.Click += (sender, e) =>
 			{
-				var result = MessageBox.Show("Delete " + Model.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
+				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
 					DeleteExecute();
 			};
@@ -60,12 +53,12 @@ namespace Trigger.WinForms.Actions
 
 		protected virtual void SaveExecute()
 		{
-			Model.Save();
+			CurrentObject.Save();
 		}
 
 		protected virtual void DeleteExecute()
 		{
-			Model.Delete();
+			CurrentObject.Delete();
 		}
 	}
 }

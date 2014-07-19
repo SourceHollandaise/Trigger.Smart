@@ -6,37 +6,50 @@ using Trigger.WinForms.Actions;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelListForm : Form
+	public class ModelListForm : TemplateBase
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-		readonly Type modelType;
-
-		public ModelListForm(Type modelType)
+		public ListBox CurrentList
 		{
-			this.modelType = modelType;
-		
+			get;
+			set;
+		}
+
+		public ModelListForm(Type modelType, PersistentModelBase currentObject) : base(modelType, currentObject)
+		{
+
 			Size = new Size(1280, 800);
-			Title = "List of " + modelType.Name;
+			Title = "List of " + ModelType.Name;
 
-			ListBox list = new ModelListLayoutManager().GetLayout(modelType);
+			if (CurrentList == null)
+				CurrentList = new ModelListLayoutManager().GetLayout(ModelType);
 
-			Content = list;
+			Content = CurrentList;
 
-			list.KeyDown += (sender, e) =>
+			CurrentList.KeyDown += (sender, e) =>
 			{
 				if (e.Key == Keys.Enter)
-				{
-					var target = store.Load(modelType, list.SelectedKey);
-
-					new ModelDetailForm(target as PersistentModelBase).Show();
-				}
+					ShowDetailFormFromSelecetion();
+			};
+				
+			CurrentList.MouseDoubleClick += (sender, e) =>
+			{
+				if (CurrentList.SelectedKey != null)
+					ShowDetailFormFromSelecetion();
 			};
 
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 
-			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, modelType).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelRefreshController(this, ModelType, CurrentObject).RegisterActions());
+		}
+
+		void ShowDetailFormFromSelecetion()
+		{
+			CurrentObject = (PersistentModelBase)store.Load(ModelType, CurrentList.SelectedKey);
+			new ModelDetailForm(ModelType, CurrentObject).Show();
 		}
 	}
 }
