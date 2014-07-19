@@ -1,4 +1,5 @@
 using Eto.Forms;
+using Trigger.Datastore.Security;
 
 namespace Trigger.WinForms.Layout
 {
@@ -9,10 +10,10 @@ namespace Trigger.WinForms.Layout
 			DynamicLayout layout = new DynamicLayout();
 
 			layout.BeginHorizontal();
-			layout.Add(new Label
-			{
-				Text = "Username"
-			});
+//			layout.Add(new Label
+//			{
+//				Text = "Username"
+//			});
 			var textBoxUserName = new TextBox
 			{
 				PlaceholderText = "Set username..."
@@ -22,10 +23,10 @@ namespace Trigger.WinForms.Layout
 			layout.EndHorizontal();
 
 			layout.BeginHorizontal();
-			layout.Add(new Label
-			{
-				Text = "Password"
-			});
+//			layout.Add(new Label
+//			{
+//				Text = "Password"
+//			});
 			var textBoxPassword = new TextBox
 			{
 				PlaceholderText = "Set password...",
@@ -43,13 +44,12 @@ namespace Trigger.WinForms.Layout
 			layout.Add(logonButton, true);
 			logonButton.Click += (sender, e) =>
 			{
-//				var auth = Dependency.DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
-//
-//				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
-//				{
-//					var mainForm = new MainTemplate();
-//					mainForm.Show();
-//				}
+				var auth = Dependency.DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
+
+				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
+				{
+
+				}
 			};
 
 			layout.EndHorizontal();

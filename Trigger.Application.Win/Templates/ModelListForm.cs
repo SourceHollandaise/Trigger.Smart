@@ -30,26 +30,27 @@ namespace Trigger.WinForms.Layout
 			CurrentList.KeyDown += (sender, e) =>
 			{
 				if (e.Key == Keys.Enter)
-					ShowDetailFormFromSelecetion();
+					ShowDetailExecute();
 			};
-				
+
 			CurrentList.MouseDoubleClick += (sender, e) =>
 			{
 				if (CurrentList.SelectedKey != null)
-					ShowDetailFormFromSelecetion();
+					ShowDetailExecute();
 			};
 
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 
 			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelRefreshController(this, ModelType, CurrentObject).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelRefreshListController(this, ModelType, CurrentObject).RegisterActions());
 		}
 
-		void ShowDetailFormFromSelecetion()
+		protected virtual void ShowDetailExecute()
 		{
 			CurrentObject = (PersistentModelBase)store.Load(ModelType, CurrentList.SelectedKey);
-			new ModelDetailForm(ModelType, CurrentObject).Show();
+			if (CurrentObject != null)
+				new ModelDetailForm(ModelType, CurrentObject).Show();
 		}
 	}
 }

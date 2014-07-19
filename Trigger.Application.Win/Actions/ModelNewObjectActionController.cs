@@ -26,6 +26,7 @@ namespace Trigger.WinForms.Actions
 			NewAction = new ButtonToolItem();
 			NewAction.Text = "New " + ModelType.Name;
 			NewAction.ID = "New_Tool_Action";
+
 			NewAction.Click += (sender, e) =>
 			{
 				NewObjectExecute();

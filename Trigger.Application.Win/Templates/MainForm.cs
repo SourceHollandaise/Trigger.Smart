@@ -26,5 +26,15 @@ namespace Trigger.WinForms.Layout
 				new ModelListForm((listBox.SelectedValue as ListItem).Tag as Type, null).Show();
 			};
 		}
+
+		public override void OnLoadComplete(EventArgs e)
+		{
+			base.OnLoadComplete(e);
+
+			var logon = new LogonForm();
+			logon.Topmost = true;
+			logon.Show();
+
+		}
 	}
 }

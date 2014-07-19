@@ -19,7 +19,7 @@ namespace Trigger.Application.WinForms
 				typeof(TimeTracker),
 
 			};
-
+		
 			application.Initialized += (sender, e) =>
 			{
 				application.MainForm = new MainForm(types);
