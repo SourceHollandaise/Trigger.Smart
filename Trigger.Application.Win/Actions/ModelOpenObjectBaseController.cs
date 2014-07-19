@@ -3,6 +3,7 @@ using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using System;
 using System.Collections.Generic;
+using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
@@ -22,8 +23,9 @@ namespace Trigger.WinForms.Actions
 		public override IEnumerable<ToolItem> RegisterActions()
 		{
 			OpenAction = new ButtonToolItem();
-			OpenAction.Text = "Open";
 			OpenAction.ID = "Open_Tool_Action";
+			OpenAction.Image = Bitmap.FromResource("Edit32.png");
+			OpenAction.Text = "Open";
 
 			OpenAction.Click += (sender, e) =>
 			{

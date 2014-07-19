@@ -1,8 +1,8 @@
 using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 
 namespace Trigger.WinForms.Layout
@@ -18,13 +18,6 @@ namespace Trigger.WinForms.Layout
 		public ModelDetailLayoutManager(IPersistentId model)
 		{
 			this.Model = model;
-		}
-
-		Type GetItemType(object someCollection)
-		{
-			var type = someCollection.GetType();
-			var ienum = type.GetInterface(typeof(IEnumerable<>).Name);
-			return ienum != null ? ienum.GetGenericArguments()[0] : null;
 		}
 
 		public DynamicLayout GetLayout()

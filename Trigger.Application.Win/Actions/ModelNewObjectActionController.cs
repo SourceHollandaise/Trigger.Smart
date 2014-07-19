@@ -4,6 +4,7 @@ using Trigger.WinForms.Actions;
 using System;
 using Trigger.WinForms.Layout;
 using System.Collections.Generic;
+using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
@@ -23,8 +24,9 @@ namespace Trigger.WinForms.Actions
 		public override IEnumerable<ToolItem> RegisterActions()
 		{
 			NewAction = new ButtonToolItem();
-			NewAction.Text = "New " + ModelType.Name;
 			NewAction.ID = "New_Tool_Action";
+			NewAction.Image = Bitmap.FromResource("Add32.png");
+			NewAction.Text = "New " + ModelType.Name;
 
 			NewAction.Click += (sender, e) =>
 			{

@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Layout
 		{
 			Size = new Size(340, 200);
 			Title = "Logon - Enter username and password";
-
+			
 			Content = GetLayout();
 		}
 
@@ -55,7 +55,8 @@ namespace Trigger.WinForms.Layout
 					this.Close();
 				}
 			};
-
+			logonButton.Image = Bitmap.FromResource("Login_in32.png");
+			logonButton.ImagePosition = ButtonImagePosition.Left;
 			layout.EndHorizontal();
 
 			layout.BeginHorizontal();

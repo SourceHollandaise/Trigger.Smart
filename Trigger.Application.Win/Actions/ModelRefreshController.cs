@@ -3,12 +3,13 @@ using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using System.Collections.Generic;
 using System;
+using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
 	public abstract class ModelRefreshController : ActionBaseController
 	{
-		public ButtonToolItem ResfreshAction
+		public ButtonToolItem RefreshAction
 		{
 			get;
 			protected set;
@@ -21,16 +22,17 @@ namespace Trigger.WinForms.Actions
 
 		public override IEnumerable<ToolItem> RegisterActions()
 		{
-			ResfreshAction = new ButtonToolItem();
-			ResfreshAction.Text = "Refresh";
-			ResfreshAction.ID = "Refresh_Tool_Action";
+			RefreshAction = new ButtonToolItem();
+			RefreshAction.ID = "Refresh_Tool_Action";
+			RefreshAction.Image = Bitmap.FromResource("Refresh32.png");
+			RefreshAction.Text = "Refresh";
 
-			ResfreshAction.Click += (sender, e) =>
+			RefreshAction.Click += (sender, e) =>
 			{
 				RefreshExecute();
 			};
 
-			yield return ResfreshAction;
+			yield return RefreshAction;
 		}
 
 		protected virtual void RefreshExecute()

@@ -2,6 +2,7 @@ using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using System.Collections.Generic;
+using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
@@ -27,8 +28,9 @@ namespace Trigger.WinForms.Actions
 		public override IEnumerable<ToolItem> RegisterActions()
 		{
 			SaveAction = new ButtonToolItem();
-			SaveAction.Text = "Save";
 			SaveAction.ID = "Save_Tool_Action";
+			SaveAction.Image = Bitmap.FromResource("Save32.png");
+			SaveAction.Text = "Save";
 			SaveAction.Click += (sender, e) =>
 			{
 				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
@@ -39,8 +41,9 @@ namespace Trigger.WinForms.Actions
 			yield return SaveAction;
 
 			DeleteAction = new ButtonToolItem();
-			DeleteAction.Text = "Delete";
 			DeleteAction.ID = "Delete_Tool_Action";
+			DeleteAction.Image = Bitmap.FromResource("Delete32.png");
+			DeleteAction.Text = "Delete";
 			DeleteAction.Click += (sender, e) =>
 			{
 				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
