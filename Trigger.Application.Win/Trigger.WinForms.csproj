@@ -40,13 +40,13 @@
     <Compile Include="Layouts\ModelDetailLayoutManager.cs" />
     <Compile Include="Layouts\ModelListLayoutManager.cs" />
     <Compile Include="Layouts\ModelLogonLayoutManager.cs" />
-    <Compile Include="Actions\DeleteButtonAction.cs" />
-    <Compile Include="Actions\NewButtonAction.cs" />
-    <Compile Include="Actions\SaveButtonAction.cs" />
     <Compile Include="Templates\LogonForm.cs" />
     <Compile Include="Templates\MainForm.cs" />
     <Compile Include="Templates\ModelDetailForm.cs" />
     <Compile Include="Templates\ModelListForm.cs" />
+    <Compile Include="Actions\ActionBaseController.cs" />
+    <Compile Include="Actions\ModelModificationController.cs" />
+    <Compile Include="Actions\ModelNewObjectActionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

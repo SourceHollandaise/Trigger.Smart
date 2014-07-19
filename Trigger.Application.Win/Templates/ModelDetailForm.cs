@@ -9,6 +9,7 @@ namespace Trigger.WinForms.Layout
 	{
 		readonly PersistentModelBase model;
 
+	
 		public ModelDetailForm(PersistentModelBase model)
 		{
 			this.model = model;
@@ -18,24 +19,11 @@ namespace Trigger.WinForms.Layout
 
 			Content = new ModelDetailLayoutManager().GetLayout(model);
 
-			RegisterActions();
-		}
-
-		void RegisterActions()
-		{
-			var actions = new GenerateActionArgs(this);
-			actions.Actions.Add(new SaveButtonAction(model));
-			actions.Actions.Add(new DeleteButtonAction(model));
-
-			var file = actions.Menu.FindAddSubMenu("&File");
-			file.Actions.Add(SaveButtonAction.ActionID);
-			file.Actions.Add(DeleteButtonAction.ActionID);
-
-			actions.ToolBar.Add(SaveButtonAction.ActionID);
-			actions.ToolBar.Add(DeleteButtonAction.ActionID);
-
-			Menu = actions.Menu.GenerateMenuBar();
-			ToolBar = actions.ToolBar.GenerateToolBar();
+			if (this.ToolBar == null)
+				this.ToolBar = new ToolBar();
+				
+			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, model.GetType()).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelModificationController(this, model).RegisterActions());
 		}
 	}
 }

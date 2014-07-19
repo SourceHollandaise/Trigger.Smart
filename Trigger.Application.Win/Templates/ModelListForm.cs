@@ -33,22 +33,10 @@ namespace Trigger.WinForms.Layout
 				}
 			};
 
-			RegisterActions();
-		}
+			if (this.ToolBar == null)
+				this.ToolBar = new ToolBar();
 
-		void RegisterActions()
-		{
-			var actions = new GenerateActionArgs(this);
-			actions.Actions.Add(new NewButtonAction(modelType));
-		
-			var file = actions.Menu.FindAddSubMenu("&File");
-			file.Actions.Add(NewButtonAction.ActionID);
-
-			actions.ToolBar.Add(NewButtonAction.ActionID);
-
-
-			Menu = actions.Menu.GenerateMenuBar();
-			ToolBar = actions.ToolBar.GenerateToolBar();
+			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, modelType).RegisterActions());
 		}
 	}
 }
