@@ -6,11 +6,22 @@ namespace Trigger.WinForms.Layout
 {
 	public class ModelDetailLayoutManager
 	{
-		public DynamicLayout GetLayout(PersistentModelBase model)
+		protected IPersistentId Model
+		{
+			get;
+			set;
+		}
+
+		public ModelDetailLayoutManager(IPersistentId model)
+		{
+			this.Model = model;
+		}
+
+		public DynamicLayout GetLayout()
 		{
 			var layout = new DynamicLayout();
-			var properties = model.GetType().GetProperties();
-			var editorFactory = new LayoutPropertyEditorFactory(model);
+			var properties = Model.GetType().GetProperties();
+			var editorFactory = new LayoutDetailPropertyEditorFactory(Model);
 
 			foreach (var property in properties)
 			{

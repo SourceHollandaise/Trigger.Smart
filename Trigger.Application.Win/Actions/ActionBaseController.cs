@@ -19,13 +19,13 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
-		protected PersistentModelBase CurrentObject
+		protected IPersistentId CurrentObject
 		{
 			get;
 			set;
 		}
 
-		protected ActionBaseController(Form template, PersistentModelBase currentObject)
+		protected ActionBaseController(Form template, IPersistentId currentObject)
 		{
 			this.Template = template;
 			this.CurrentObject = currentObject;

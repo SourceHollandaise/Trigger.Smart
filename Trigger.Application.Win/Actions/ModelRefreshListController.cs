@@ -8,19 +8,19 @@ namespace Trigger.WinForms.Actions
 {
 	public class ModelRefreshListController : ModelRefreshController
 	{
-		public ModelRefreshListController(Form template, Type modelType, PersistentModelBase model) : base(template, modelType, model)
+		public ModelRefreshListController(Form template, Type modelType, IPersistentId model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
 		}
 
 		protected override void RefreshExecute()
 		{
-			var modelListForm = Template as ModelListForm;
-			if (modelListForm != null)
+			var listForm = Template as ModelListForm;
+			if (listForm != null)
 			{
 				var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-				modelListForm.CurrentGrid.DataStore = new DataStoreCollection(store.LoadAll(ModelType));
+				listForm.CurrentGrid.DataStore = new DataStoreCollection(store.LoadAll(ModelType));
 			}
 		}
 	}

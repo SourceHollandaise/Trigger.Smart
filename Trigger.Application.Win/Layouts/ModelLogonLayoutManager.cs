@@ -10,10 +10,6 @@ namespace Trigger.WinForms.Layout
 			DynamicLayout layout = new DynamicLayout();
 
 			layout.BeginHorizontal();
-//			layout.Add(new Label
-//			{
-//				Text = "Username"
-//			});
 			var textBoxUserName = new TextBox
 			{
 				PlaceholderText = "Set username..."
@@ -23,10 +19,6 @@ namespace Trigger.WinForms.Layout
 			layout.EndHorizontal();
 
 			layout.BeginHorizontal();
-//			layout.Add(new Label
-//			{
-//				Text = "Password"
-//			});
 			var textBoxPassword = new TextBox
 			{
 				PlaceholderText = "Set password...",
@@ -40,6 +32,7 @@ namespace Trigger.WinForms.Layout
 			var logonButton = new Button()
 			{
 				Text = "Log on",
+				Size = new Eto.Drawing.Size(30, -1)
 			};
 			layout.Add(logonButton, true);
 			logonButton.Click += (sender, e) =>

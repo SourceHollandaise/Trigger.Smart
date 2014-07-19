@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using System.Data;
+using System.Reflection;
 
 namespace Trigger.WinForms.Layout
 {
@@ -10,30 +10,45 @@ namespace Trigger.WinForms.Layout
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-		public GridView GetLayout(Type modelType)
+		protected Type ModelType
 		{
-			var items = store.LoadAll(modelType).ToList();
-			var gridView = CreateGrid(modelType);
+			get;
+			set;
+		}
+
+		public ModelListLayoutManager(Type modelType)
+		{
+			this.ModelType = modelType;
+		}
+
+		public GridView GetLayout()
+		{
+			var items = store.LoadAll(ModelType).ToList();
+			var gridView = CreateGrid();
 
 			gridView.DataStore = new DataStoreCollection(items);
 
 			return gridView;
 		}
 
-		public GridView CreateGrid(Type modelType)
+		GridView CreateGrid()
 		{
-			GridView gridView = new GridView();
+			var factory = new LayoutListPropertyEditorFactory(ModelType);
+			var gridView = new GridView();
+			gridView.ShowCellBorders = true;
 
-			foreach (var item in modelType.GetProperties())
+			foreach (var property in ModelType.GetProperties())
 			{
 				var column = new GridColumn();
-				column.AutoSize = true;
-				column.DataCell = new TextBoxCell(item.Name);
-				column.Editable = false;
-				column.HeaderText = item.Name;
-				column.Sortable = true;
-				gridView.Columns.Add(column);
 
+				column.DataCell = factory.CreateDataCell(property);
+				column.HeaderText = property.Name;
+				column.AutoSize = true;
+				column.Editable = false;
+				column.Resizable = true;
+				column.Sortable = true;
+
+				gridView.Columns.Add(column);
 			}
 
 			return gridView;

@@ -1,7 +1,5 @@
-using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.WinForms.Actions;
 using System;
 
 namespace Trigger.WinForms.Layout
@@ -9,7 +7,7 @@ namespace Trigger.WinForms.Layout
 
 	public abstract class TemplateBase : Form
 	{
-		protected PersistentModelBase CurrentObject
+		protected IPersistentId CurrentObject
 		{
 			get;
 			set;
@@ -22,7 +20,7 @@ namespace Trigger.WinForms.Layout
 
 		}
 
-		protected TemplateBase(System.Type type, PersistentModelBase currentObject)
+		protected TemplateBase(Type type, IPersistentId currentObject)
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;
@@ -31,5 +29,4 @@ namespace Trigger.WinForms.Layout
 				this.ToolBar = new ToolBar();
 		}
 	}
-	
 }

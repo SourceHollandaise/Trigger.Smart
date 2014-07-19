@@ -14,7 +14,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelRefreshController(Form template, Type modelType, PersistentModelBase model) : base(template, model)
+		public ModelRefreshController(Form template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}

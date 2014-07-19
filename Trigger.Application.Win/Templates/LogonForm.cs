@@ -1,7 +1,6 @@
 using Eto.Forms;
 using Eto.Drawing;
 using Trigger.Datastore.Security;
-using Trigger.CRM.Model;
 
 namespace Trigger.WinForms.Layout
 {
@@ -25,7 +24,7 @@ namespace Trigger.WinForms.Layout
 			{
 				PlaceholderText = "Set username..."
 			};
-			textBoxUserName.Size = new Eto.Drawing.Size(-1, -1);
+			textBoxUserName.Size = new Size(-1, -1);
 			layout.Add(textBoxUserName, true);
 			layout.EndHorizontal();
 

@@ -19,7 +19,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelModificationController(Form template, PersistentModelBase model) : base(template, model)
+		public ModelModificationController(Form template, IPersistentId model) : base(template, model)
 		{
 
 		}

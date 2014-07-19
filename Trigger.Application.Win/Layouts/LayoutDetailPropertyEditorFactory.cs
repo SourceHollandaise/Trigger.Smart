@@ -2,35 +2,39 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Linq;
+using System.Reflection;
 
 namespace Trigger.WinForms.Layout
 {
-	public class LayoutPropertyEditorFactory
+	public class LayoutDetailPropertyEditorFactory
 	{
-		PersistentModelBase model;
-
-		public LayoutPropertyEditorFactory(PersistentModelBase model)
+		protected IPersistentId Model
 		{
-			this.model = model;
-			
+			get;
+			set;
 		}
 
-		public TextBox StringPropertyEditor(System.Reflection.PropertyInfo property)
+		public LayoutDetailPropertyEditorFactory(IPersistentId model)
+		{
+			this.Model = model;
+		}
+
+		public TextBox StringPropertyEditor(PropertyInfo property)
 		{
 			var textBox = new TextBox
 			{
-				Text = (string)property.GetValue(model, null)
+				Text = (string)property.GetValue(Model, null)
 			};
 			textBox.TextChanged += (sender, e) =>
 			{
-				property.SetValue(model, textBox.Text, null);
+				property.SetValue(Model, textBox.Text, null);
 			};
 			textBox.Size = new Eto.Drawing.Size(-1, -1);
 			textBox.ReadOnly = !property.CanWrite;
 			return textBox;
 		}
 
-		public ComboBox EnumPropertyEditor(System.Reflection.PropertyInfo property)
+		public ComboBox EnumPropertyEditor(PropertyInfo property)
 		{
 			var comboBox = new ComboBox();
 
@@ -42,22 +46,23 @@ namespace Trigger.WinForms.Layout
 					Text = value.ToString(),
 					Tag = value
 				});
-			comboBox.SelectedKey = (property.GetValue(model, null) as Enum).ToString();
+			comboBox.SelectedKey = (property.GetValue(Model, null) as Enum).ToString();
 			comboBox.SelectedValueChanged += (sender, e) =>
 			{
 				var current = comboBox.SelectedValue as ListItem;
-				property.SetValue(model, current.Tag, null);
+				property.SetValue(Model, current.Tag, null);
 			};
 			return comboBox;
 		}
 
-		public ComboBox ReferencePropertyEditor(System.Reflection.PropertyInfo property)
+		public ComboBox ReferencePropertyEditor(PropertyInfo property)
 		{
-			var lookupItem = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true).FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
+			var lookupItem = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true)
+				.FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
 
 			var comboBox = new ComboBox();
 			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
-			foreach (PersistentModelBase pi in items)
+			foreach (IPersistentId pi in items)
 			{
 				var defaultItemValue = pi.GetType().GetProperty(lookupItem.Name).GetValue(pi, null);
 				comboBox.Items.Add(new ListItem()
@@ -67,48 +72,48 @@ namespace Trigger.WinForms.Layout
 					Tag = pi
 				});
 			}
-			var value = property.GetValue(model, null);
+			var value = property.GetValue(Model, null);
 			if (value != null)
 			{
-				var selection = (property.GetValue(model, null) as PersistentModelBase);
+				var selection = (property.GetValue(Model, null) as IPersistentId);
 				if (selection != null && selection.MappingId != null)
 					comboBox.SelectedKey = selection.MappingId.ToString();
 			}
 			comboBox.SelectedValueChanged += (sender, e) =>
 			{
 				var current = comboBox.SelectedValue as ListItem;
-				property.SetValue(model, current.Tag, null);
+				property.SetValue(Model, current.Tag, null);
 			};
 			return comboBox;
 		}
 
-		public CheckBox BooleanPropertyEditor(System.Reflection.PropertyInfo property)
+		public CheckBox BooleanPropertyEditor(PropertyInfo property)
 		{
 			var checkBox = new CheckBox
 			{
-				Checked = (bool)property.GetValue(model, null)
+				Checked = (bool)property.GetValue(Model, null)
 			};
 			checkBox.CheckedChanged += (sender, e) =>
 			{
-				property.SetValue(model, checkBox.Checked.Value, null);
+				property.SetValue(Model, checkBox.Checked.Value, null);
 			};
 			return checkBox;
 		}
 
-		public DateTimePicker DateTimePropertyEditor(System.Reflection.PropertyInfo property)
+		public DateTimePicker DateTimePropertyEditor(PropertyInfo property)
 		{
 			var datePicker = new DateTimePicker
 			{
-				Value = (DateTime?)property.GetValue(model, null)
+				Value = (DateTime?)property.GetValue(Model, null)
 			};
 			datePicker.ValueChanged += (sender, e) =>
 			{
-				property.SetValue(model, datePicker.Value, null);
+				property.SetValue(Model, datePicker.Value, null);
 			};
 			return datePicker;
 		}
 
-		public TextBox TimeSpanPropertyEditor(System.Reflection.PropertyInfo property)
+		public TextBox TimeSpanPropertyEditor(PropertyInfo property)
 		{
 			var textBox = new TextBox
 			{

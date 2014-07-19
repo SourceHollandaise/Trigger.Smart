@@ -15,7 +15,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelNewObjectActionController(Form template, Type modelType, PersistentModelBase model) : base(template, model)
+		public ModelNewObjectActionController(Form template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -36,10 +36,11 @@ namespace Trigger.WinForms.Actions
 
 		protected virtual void NewObjectExecute()
 		{
-			CurrentObject = Activator.CreateInstance(ModelType) as PersistentModelBase;
-
-			var detailTemplate = new ModelDetailForm(ModelType, CurrentObject);
-			detailTemplate.Show();
+			CurrentObject = Activator.CreateInstance(ModelType) as IPersistentId;
+			CurrentObject.Initialize();
+	
+			var detailForm = new ModelDetailForm(ModelType, CurrentObject);
+			detailForm.Show();
 		}
 	}
 	

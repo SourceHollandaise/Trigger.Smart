@@ -8,6 +8,14 @@ namespace Trigger.CRM.Model
 	[System.ComponentModel.DefaultProperty("Subject")]
 	public class IssueTracker : PersistentModelBase
 	{
+		public override void Initialize()
+		{
+			base.Initialize();
+
+			Issue = IssueType.Request;
+			State = IssueState.Open;
+		}
+
 		public override string GetRepresentation()
 		{
 			var sb = new System.Text.StringBuilder();

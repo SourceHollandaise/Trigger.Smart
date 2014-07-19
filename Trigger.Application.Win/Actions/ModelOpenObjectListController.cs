@@ -6,24 +6,23 @@ using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
-
 	public class ModelOpenObjectListController : ModelOpenObjectBaseController
 	{
-		public ModelOpenObjectListController(Form template, Type modelType, PersistentModelBase model) : base(template, modelType, model)
+		public ModelOpenObjectListController(Form template, Type modelType, IPersistentId model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
 		}
 
 		protected override void OpenObjectExecute()
 		{
-			var modelListForm = Template as ModelListForm;
-			if (modelListForm != null)
+			var listForm = Template as ModelListForm;
+			if (listForm != null)
 			{
-				var selection = modelListForm.CurrentGrid.SelectedItem as PersistentModelBase;
+				var selection = listForm.CurrentGrid.SelectedItem as IPersistentId;
 				if (selection != null)
 				{
-					var detailTemplate = new ModelDetailForm(ModelType, selection);
-					detailTemplate.Show();
+					var detailForm = new ModelDetailForm(ModelType, selection);
+					detailForm.Show();
 				}
 			}
 		}

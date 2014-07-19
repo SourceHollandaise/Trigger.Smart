@@ -8,21 +8,19 @@ namespace Trigger.WinForms.Layout
 {
 	public class ModelListForm : TemplateBase
 	{
-		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-
 		public GridView CurrentGrid
 		{
 			get;
 			set;
 		}
 
-		public ModelListForm(Type modelType, PersistentModelBase currentObject) : base(modelType, currentObject)
+		public ModelListForm(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
 		{
 			Size = new Size(1280, 800);
 			Title = "List of " + ModelType.Name;
 
 			if (CurrentGrid == null)
-				CurrentGrid = new ModelListLayoutManager().GetLayout(ModelType);
+				CurrentGrid = new ModelListLayoutManager(ModelType).GetLayout();
 
 			Content = CurrentGrid;
 

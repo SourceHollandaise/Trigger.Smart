@@ -9,22 +9,22 @@ namespace Trigger.WinForms.Actions
 
 	public class ModelRefreshDetailController : ModelRefreshController
 	{
-		public ModelRefreshDetailController(Form template, Type modelType, PersistentModelBase model) : base(template, modelType, model)
+		public ModelRefreshDetailController(Form template, Type modelType, IPersistentId model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
 		}
 
 		protected override void RefreshExecute()
 		{
-			var modelDetailForm = Template as ModelDetailForm;
-			if (modelDetailForm != null)
+			var detailForm = Template as ModelDetailForm;
+			if (detailForm != null)
 			{
 				var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-				var dataObject = store.Load(ModelType, CurrentObject.MappingId) as PersistentModelBase;
+				var dataObject = store.Load(ModelType, CurrentObject.MappingId) as IPersistentId;
 				if (dataObject != null)
 				{
-					var layout = new ModelDetailLayoutManager().GetLayout(dataObject);
-					modelDetailForm.Content = layout;
+					var layout = new ModelDetailLayoutManager(dataObject).GetLayout();
+					detailForm.Content = layout;
 				}
 			}
 		}

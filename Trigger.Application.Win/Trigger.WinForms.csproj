@@ -54,13 +54,14 @@
     <Compile Include="Actions\ActionBaseController.cs" />
     <Compile Include="Actions\ModelModificationController.cs" />
     <Compile Include="Actions\ModelNewObjectActionController.cs" />
-    <Compile Include="Layouts\LayoutPropertyEditorFactory.cs" />
     <Compile Include="Actions\ModelRefreshController.cs" />
     <Compile Include="Templates\TemplateBase.cs" />
     <Compile Include="Actions\ModelRefreshDetailController.cs" />
     <Compile Include="Actions\ModelRefreshListController.cs" />
     <Compile Include="Actions\ModelOpenObjectBaseController.cs" />
     <Compile Include="Actions\ModelOpenObjectListController.cs" />
+    <Compile Include="Layouts\LayoutListPropertyEditorFactory.cs" />
+    <Compile Include="Layouts\LayoutDetailPropertyEditorFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -76,10 +77,6 @@
     <ProjectReference Include="..\Trigger.Dependency\Trigger.Dependency.csproj">
       <Project>{E13C207D-6F8F-4D0C-96AD-B0528387B1E3}</Project>
       <Name>Trigger.Dependency</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">
-      <Project>{28C2C6F6-E38A-4342-8557-9C044E38596D}</Project>
-      <Name>Trigger.CRM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
