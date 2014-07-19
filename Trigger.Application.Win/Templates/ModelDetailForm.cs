@@ -14,7 +14,7 @@ namespace Trigger.WinForms.Layout
 
 			Content = new ModelDetailLayoutManager(CurrentObject).GetLayout();
 
-			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
+			//this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelModificationController(this, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelRefreshDetailController(this, ModelType, CurrentObject).RegisterActions());
 		}

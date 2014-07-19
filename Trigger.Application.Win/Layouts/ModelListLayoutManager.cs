@@ -33,21 +33,23 @@ namespace Trigger.WinForms.Layout
 
 		GridView CreateGrid()
 		{
-			var factory = new LayoutListPropertyEditorFactory(ModelType);
+			var factory = new ListPropertyEditorFactory(ModelType);
 			var gridView = new GridView();
 			gridView.ShowCellBorders = true;
 
 			foreach (var property in ModelType.GetProperties())
 			{
-				var column = new GridColumn();
+				var cell = factory.CreateDataCell(property);
+				if (cell == null)
+					continue;
 
-				column.DataCell = factory.CreateDataCell(property);
+				var column = new GridColumn();
+				column.DataCell = cell;
 				column.HeaderText = property.Name;
 				column.AutoSize = true;
 				column.Editable = false;
 				column.Resizable = true;
 				column.Sortable = true;
-
 				gridView.Columns.Add(column);
 			}
 

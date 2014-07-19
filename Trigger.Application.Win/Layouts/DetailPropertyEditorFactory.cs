@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Trigger.WinForms.Layout
 {
-	public class LayoutDetailPropertyEditorFactory
+	public class DetailPropertyEditorFactory
 	{
 		protected IPersistentId Model
 		{
@@ -14,7 +14,7 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public LayoutDetailPropertyEditorFactory(IPersistentId model)
+		public DetailPropertyEditorFactory(IPersistentId model)
 		{
 			this.Model = model;
 		}
@@ -115,14 +115,14 @@ namespace Trigger.WinForms.Layout
 
 		public TextBox TimeSpanPropertyEditor(PropertyInfo property)
 		{
+			var value = property.GetValue(Model, null) as string;
 			var textBox = new TextBox
 			{
-
-				//Text = (string)property.GetValue(model, null)
+				Text = value
 			};
 			textBox.TextChanged += (sender, e) =>
 			{
-				//property.SetValue(model, Convert.ToDateTime(textBox.Text), null);
+				property.SetValue(Model, textBox.Text, null);
 			};
 			return textBox;
 		}

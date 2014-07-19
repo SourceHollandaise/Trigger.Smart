@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
-	public class LayoutListPropertyEditorFactory
+	public class ListPropertyEditorFactory
 	{
 		protected Type ModelType
 		{
@@ -14,7 +14,7 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public LayoutListPropertyEditorFactory(Type modelType)
+		public ListPropertyEditorFactory(Type modelType)
 		{
 			this.ModelType = modelType;
 		}
@@ -51,7 +51,7 @@ namespace Trigger.WinForms.Layout
 				return new TextBoxCell(property.Name);
 			}
 
-			return new TextBoxCell(property.Name);
+			return null;
 		}
 	}
 	

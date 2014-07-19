@@ -24,9 +24,6 @@ namespace Trigger.WinForms.Layout
 
 			Content = CurrentGrid;
 
-			if (this.ToolBar == null)
-				this.ToolBar = new ToolBar();
-
 			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelRefreshListController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelOpenObjectListController(this, ModelType, CurrentObject).RegisterActions());

@@ -8,7 +8,7 @@ namespace Trigger.WinForms.Layout
 	{
 		public LogonForm()
 		{
-			Size = new Size(360, 240);
+			Size = new Size(340, 200);
 			Title = "Logon - Enter username and password";
 
 			Content = GetLayout();
@@ -22,7 +22,7 @@ namespace Trigger.WinForms.Layout
 		
 			var textBoxUserName = new TextBox
 			{
-				PlaceholderText = "Set username..."
+				PlaceholderText = "Username"
 			};
 			textBoxUserName.Size = new Size(-1, -1);
 			layout.Add(textBoxUserName, true);
@@ -32,8 +32,9 @@ namespace Trigger.WinForms.Layout
 
 			var textBoxPassword = new TextBox
 			{
-				PlaceholderText = "Set password...",
+				PlaceholderText = "Password",
 			};
+
 			textBoxPassword.Size = new Size(-1, -1);
 
 			layout.Add(textBoxPassword, true);
@@ -55,6 +56,9 @@ namespace Trigger.WinForms.Layout
 				}
 			};
 
+			layout.EndHorizontal();
+
+			layout.BeginHorizontal();
 			layout.EndHorizontal();
 
 			return layout;

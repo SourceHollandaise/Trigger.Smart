@@ -17,7 +17,6 @@ namespace Trigger.WinForms.Layout
 		{
 			get;
 			set;
-
 		}
 
 		protected TemplateBase(Type type, IPersistentId currentObject)
@@ -27,6 +26,7 @@ namespace Trigger.WinForms.Layout
 
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
+				
 		}
 	}
 }

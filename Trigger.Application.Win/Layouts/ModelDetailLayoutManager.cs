@@ -1,6 +1,9 @@
 using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
@@ -17,11 +20,18 @@ namespace Trigger.WinForms.Layout
 			this.Model = model;
 		}
 
+		Type GetItemType(object someCollection)
+		{
+			var type = someCollection.GetType();
+			var ienum = type.GetInterface(typeof(IEnumerable<>).Name);
+			return ienum != null ? ienum.GetGenericArguments()[0] : null;
+		}
+
 		public DynamicLayout GetLayout()
 		{
 			var layout = new DynamicLayout();
 			var properties = Model.GetType().GetProperties();
-			var editorFactory = new LayoutDetailPropertyEditorFactory(Model);
+			var editorFactory = new DetailPropertyEditorFactory(Model);
 
 			foreach (var property in properties)
 			{

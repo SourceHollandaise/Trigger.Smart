@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,14 +60,15 @@
     <Compile Include="Actions\ModelRefreshListController.cs" />
     <Compile Include="Actions\ModelOpenObjectBaseController.cs" />
     <Compile Include="Actions\ModelOpenObjectListController.cs" />
-    <Compile Include="Layouts\LayoutListPropertyEditorFactory.cs" />
-    <Compile Include="Layouts\LayoutDetailPropertyEditorFactory.cs" />
+    <Compile Include="Layouts\DetailPropertyEditorFactory.cs" />
+    <Compile Include="Layouts\ListPropertyEditorFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Templates\" />
     <Folder Include="Layouts\" />
     <Folder Include="Actions\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">
@@ -81,5 +82,187 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Accept32.png">
+      <LogicalName>Accept32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_fav32.png">
+      <LogicalName>Add_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_user32.png">
+      <LogicalName>Add_user32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add32.png">
+      <LogicalName>Add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Alert32.png">
+      <LogicalName>Alert32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Billboard32.png">
+      <LogicalName>Billboard32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cancel32.png">
+      <LogicalName>Cancel32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Chat32.png">
+      <LogicalName>Chat32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Close32.png">
+      <LogicalName>Close32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Communicate32.png">
+      <LogicalName>Communicate32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Copy32.png">
+      <LogicalName>Copy32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cut32.png">
+      <LogicalName>Cut32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_user32.png">
+      <LogicalName>Delete_user32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete32.png">
+      <LogicalName>Delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit32.png">
+      <LogicalName>Edit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Faq32.png">
+      <LogicalName>Faq32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Fav32.png">
+      <LogicalName>Fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_add32.png">
+      <LogicalName>File_add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_delete32.png">
+      <LogicalName>File_delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_edit32.png">
+      <LogicalName>File_edit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_info32.png">
+      <LogicalName>File_info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File32.png">
+      <LogicalName>File32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Flag32.png">
+      <LogicalName>Flag32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_add32.png">
+      <LogicalName>Folder_add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_alert32.png">
+      <LogicalName>Folder_alert32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_delete32.png">
+      <LogicalName>Folder_delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_fav32.png">
+      <LogicalName>Folder_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_info32.png">
+      <LogicalName>Folder_info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder32.png">
+      <LogicalName>Folder32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home32.png">
+      <LogicalName>Home32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Info32.png">
+      <LogicalName>Info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Key32.png">
+      <LogicalName>Key32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Lock32.png">
+      <LogicalName>Lock32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_in32.png">
+      <LogicalName>Login_in32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_out32.png">
+      <LogicalName>Login_out32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paperclip32.png">
+      <LogicalName>Paperclip32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paste32.png">
+      <LogicalName>Paste32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Percent32.png">
+      <LogicalName>Percent32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Pools32.png">
+      <LogicalName>Pools32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Prohibit32.png">
+      <LogicalName>Prohibit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh32.png">
+      <LogicalName>Refresh32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Remove_fav32.png">
+      <LogicalName>Remove_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Ruler32.png">
+      <LogicalName>Ruler32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save32.png">
+      <LogicalName>Save32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Search32.png">
+      <LogicalName>Search32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingbag32.png">
+      <LogicalName>Shoppingbag32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingcart32.png">
+      <LogicalName>Shoppingcart32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_empty32.png">
+      <LogicalName>Star_empty32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_full32.png">
+      <LogicalName>Star_full32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_half_full32.png">
+      <LogicalName>Star_half_full32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Telephone32.png">
+      <LogicalName>Telephone32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Tools32.png">
+      <LogicalName>Tools32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Unlock32.png">
+      <LogicalName>Unlock32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User32.png">
+      <LogicalName>User32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Users32.png">
+      <LogicalName>Users32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheel32.png">
+      <LogicalName>Wheel32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheels32.png">
+      <LogicalName>Wheels32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wrench32.png">
+      <LogicalName>Wrench32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_in32.png">
+      <LogicalName>Zoom_in32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_out32.png">
+      <LogicalName>Zoom_out32.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
