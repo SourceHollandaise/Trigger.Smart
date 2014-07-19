@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
+using System.Data;
 
 namespace Trigger.WinForms.Layout
 {
@@ -9,22 +10,33 @@ namespace Trigger.WinForms.Layout
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-		public ListBox GetLayout(Type modelType)
+		public GridView GetLayout(Type modelType)
 		{
-			ListBox list = new ListBox();
-
 			var items = store.LoadAll(modelType).ToList();
+			var gridView = CreateGrid(modelType);
 
-			foreach (PersistentModelBase item in items)
+			gridView.DataStore = new DataStoreCollection(items);
+
+			return gridView;
+		}
+
+		public GridView CreateGrid(Type modelType)
+		{
+			GridView gridView = new GridView();
+
+			foreach (var item in modelType.GetProperties())
 			{
-				var listItem = new ListItem();
-				listItem.Key = item.MappingId.ToString();
-				listItem.Tag = item;
-				listItem.Text = item.GetRepresentation();
-				list.Items.Add(listItem);
+				var column = new GridColumn();
+				column.AutoSize = true;
+				column.DataCell = new TextBoxCell(item.Name);
+				column.Editable = false;
+				column.HeaderText = item.Name;
+				column.Sortable = true;
+				gridView.Columns.Add(column);
+
 			}
 
-			return 	list;
+			return gridView;
 		}
 	}
 }

@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
-
 	public class LayoutPropertyEditorFactory
 	{
 		PersistentModelBase model;

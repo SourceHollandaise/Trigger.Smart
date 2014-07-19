@@ -1,7 +1,6 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
-using System.Collections.Generic;
 using System;
 using Trigger.WinForms.Layout;
 
@@ -19,15 +18,10 @@ namespace Trigger.WinForms.Actions
 			var modelListForm = Template as ModelListForm;
 			if (modelListForm != null)
 			{
-				if (modelListForm != null)
-				{
-					var layout = new ModelListLayoutManager().GetLayout(ModelType);
+				var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-					modelListForm.CurrentList.Items.Clear();
-					modelListForm.CurrentList.Items.AddRange(layout.Items);
-				}
+				modelListForm.CurrentGrid.DataStore = new DataStoreCollection(store.LoadAll(ModelType));
 			}
 		}
 	}
-	
 }

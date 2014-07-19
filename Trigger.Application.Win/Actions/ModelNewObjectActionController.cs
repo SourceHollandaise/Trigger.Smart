@@ -1,4 +1,3 @@
-using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;

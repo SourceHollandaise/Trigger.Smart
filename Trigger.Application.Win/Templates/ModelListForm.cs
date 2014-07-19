@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Layout
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
-		public ListBox CurrentList
+		public GridView CurrentGrid
 		{
 			get;
 			set;
@@ -18,39 +18,20 @@ namespace Trigger.WinForms.Layout
 
 		public ModelListForm(Type modelType, PersistentModelBase currentObject) : base(modelType, currentObject)
 		{
-
 			Size = new Size(1280, 800);
 			Title = "List of " + ModelType.Name;
 
-			if (CurrentList == null)
-				CurrentList = new ModelListLayoutManager().GetLayout(ModelType);
+			if (CurrentGrid == null)
+				CurrentGrid = new ModelListLayoutManager().GetLayout(ModelType);
 
-			Content = CurrentList;
-
-			CurrentList.KeyDown += (sender, e) =>
-			{
-				if (e.Key == Keys.Enter)
-					ShowDetailExecute();
-			};
-
-			CurrentList.MouseDoubleClick += (sender, e) =>
-			{
-				if (CurrentList.SelectedKey != null)
-					ShowDetailExecute();
-			};
+			Content = CurrentGrid;
 
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 
 			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelRefreshListController(this, ModelType, CurrentObject).RegisterActions());
-		}
-
-		protected virtual void ShowDetailExecute()
-		{
-			CurrentObject = (PersistentModelBase)store.Load(ModelType, CurrentList.SelectedKey);
-			if (CurrentObject != null)
-				new ModelDetailForm(ModelType, CurrentObject).Show();
+			this.ToolBar.Items.AddRange(new ModelOpenObjectListController(this, ModelType, CurrentObject).RegisterActions());
 		}
 	}
 }
