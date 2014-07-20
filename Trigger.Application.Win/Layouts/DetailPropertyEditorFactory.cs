@@ -3,6 +3,8 @@ using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Linq;
 using System.Reflection;
+using Eto;
+using System.Collections.Generic;
 
 namespace Trigger.WinForms.Layout
 {
@@ -17,42 +19,64 @@ namespace Trigger.WinForms.Layout
 		public DetailPropertyEditorFactory(IPersistentId model)
 		{
 			this.Model = model;
+
+			Model.PropertyChanged += (sender, e) =>
+			{
+				var prop = Model.GetType().GetProperty(e.PropertyName);
+
+				var control = Bindings[prop.Name];
+
+				if (control is TextBox)
+					((TextBox)control).Text = (string)prop.GetValue(Model, null);
+
+				if (control is DateTimePicker)
+					((DateTimePicker)control).Value = (DateTime?)prop.GetValue(Model, null);
+
+				if (control is CheckBox)
+					((CheckBox)control).Checked = (bool?)prop.GetValue(Model, null);
+					
+			};
 		}
+
+		Dictionary<string, Control> Bindings = new Dictionary<string, Control>();
 
 		public TextBox StringPropertyEditor(PropertyInfo property)
 		{
-			var textBox = new TextBox
+			var control = new TextBox
 			{
 				Text = (string)property.GetValue(Model, null)
 			};
-			textBox.TextChanged += (sender, e) =>
+			control.TextChanged += (sender, e) =>
 			{
-				property.SetValue(Model, textBox.Text, null);
+				property.SetValue(Model, control.Text, null);
 			};
-			textBox.Size = new Eto.Drawing.Size(-1, -1);
-			textBox.ReadOnly = !property.CanWrite;
-			return textBox;
+			control.Size = new Eto.Drawing.Size(-1, -1);
+			control.ReadOnly = !property.CanWrite;
+			Bindings.Add(property.Name, control);
+
+			return control;
 		}
 
 		public ComboBox EnumPropertyEditor(PropertyInfo property)
 		{
-			var comboBox = new ComboBox();
+			var control = new ComboBox();
 
 			var enumValues = Enum.GetValues(property.PropertyType);
 			foreach (var value in enumValues)
-				comboBox.Items.Add(new ListItem
+				control.Items.Add(new ListItem
 				{
 					Key = value.ToString(),
 					Text = value.ToString(),
 					Tag = value
 				});
-			comboBox.SelectedKey = (property.GetValue(Model, null) as Enum).ToString();
-			comboBox.SelectedValueChanged += (sender, e) =>
+			control.SelectedKey = (property.GetValue(Model, null) as Enum).ToString();
+			control.SelectedValueChanged += (sender, e) =>
 			{
-				var current = comboBox.SelectedValue as ListItem;
+				var current = control.SelectedValue as ListItem;
 				property.SetValue(Model, current.Tag, null);
 			};
-			return comboBox;
+			Bindings.Add(property.Name, control);
+			return control;
 		}
 
 		public ComboBox ReferencePropertyEditor(PropertyInfo property)
@@ -60,7 +84,7 @@ namespace Trigger.WinForms.Layout
 			var lookupItem = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true)
 				.FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
 
-			var comboBox = new ComboBox();
+			var control = new ComboBox();
 			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
 			foreach (IPersistentId pi in items)
 			{
@@ -68,7 +92,7 @@ namespace Trigger.WinForms.Layout
 				if (lookupItem != null && !string.IsNullOrWhiteSpace(lookupItem.Name))
 					defaultItemValue = pi.GetType().GetProperty(lookupItem.Name).GetValue(pi, null);
 
-				comboBox.Items.Add(new ListItem
+				control.Items.Add(new ListItem
 				{
 					Key = pi.MappingId.ToString(),
 					Text = defaultItemValue != null ? defaultItemValue as string : null,
@@ -80,24 +104,24 @@ namespace Trigger.WinForms.Layout
 			{
 				var selection = (property.GetValue(Model, null) as IPersistentId);
 				if (selection != null && selection.MappingId != null)
-					comboBox.SelectedKey = selection.MappingId.ToString();
+					control.SelectedKey = selection.MappingId.ToString();
 			}
 				
-			comboBox.SelectedValueChanged += (sender, e) =>
+			control.SelectedValueChanged += (sender, e) =>
 			{
-				if (comboBox.SelectedValue != null)
+				if (control.SelectedValue != null)
 				{
-					var current = comboBox.SelectedValue as ListItem;
+					var current = control.SelectedValue as ListItem;
 					if (current != null && current.Tag != null)
 						property.SetValue(Model, current.Tag, null);
 				}
 			};
 				
-			comboBox.KeyDown += (sender, e) =>
+			control.KeyDown += (sender, e) =>
 			{
 				if (e.Modifiers == Keys.Control && e.Key == Keys.O)
 				{
-					var current = comboBox.SelectedValue as ListItem;
+					var current = control.SelectedValue as ListItem;
 					if (current != null)
 					{
 						var detailForm = new ModelDetailForm(current.Tag.GetType(), current.Tag as IPersistentId);
@@ -105,48 +129,51 @@ namespace Trigger.WinForms.Layout
 					}
 				}
 			};
-				
-			return comboBox;
+			Bindings.Add(property.Name, control);
+			return control;
 		}
 
 		public CheckBox BooleanPropertyEditor(PropertyInfo property)
 		{
-			var checkBox = new CheckBox
+			var control = new CheckBox
 			{
 				Checked = (bool)property.GetValue(Model, null)
 			};
-			checkBox.CheckedChanged += (sender, e) =>
+			control.CheckedChanged += (sender, e) =>
 			{
-				property.SetValue(Model, checkBox.Checked.Value, null);
+				property.SetValue(Model, control.Checked.Value, null);
 			};
-			return checkBox;
+			Bindings.Add(property.Name, control);
+			return control;
 		}
 
 		public DateTimePicker DateTimePropertyEditor(PropertyInfo property)
 		{
-			var datePicker = new DateTimePicker
+			var control = new DateTimePicker
 			{
 				Value = (DateTime?)property.GetValue(Model, null)
 			};
-			datePicker.ValueChanged += (sender, e) =>
+			control.ValueChanged += (sender, e) =>
 			{
-				property.SetValue(Model, datePicker.Value, null);
+				property.SetValue(Model, control.Value, null);
 			};
-			return datePicker;
+			Bindings.Add(property.Name, control);
+			return control;
 		}
 
 		public TextBox TimeSpanPropertyEditor(PropertyInfo property)
 		{
 			var value = property.GetValue(Model, null) as string;
-			var textBox = new TextBox
+			var control = new TextBox
 			{
 				Text = value
 			};
-			textBox.TextChanged += (sender, e) =>
+			control.TextChanged += (sender, e) =>
 			{
 				//property.SetValue(Model, textBox.Text, null);
 			};
-			return textBox;
+			Bindings.Add(property.Name, control);
+			return control;
 		}
 	}
 }

@@ -27,11 +27,21 @@ namespace Trigger.CRM.Model
 			return sb.ToString();
 		}
 
+		bool isDone;
+
 		public bool IsDone
 		{
 			get
 			{
-				return Resolved.HasValue && ResolvedBy != null && State == IssueState.Done;
+				return isDone;
+			}
+			set
+			{
+				if (Equals(IsDone, value))
+					return;
+				isDone = value;
+
+				OnPropertyChanged();
 			}
 		}
 
@@ -114,7 +124,7 @@ namespace Trigger.CRM.Model
 
 				OnPropertyChanged();
 
-				//UpdateIssue(state);
+				UpdateIssue(state);
 			}
 		}
 
@@ -180,11 +190,13 @@ namespace Trigger.CRM.Model
 			{
 				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 				Resolved = DateTime.Now;
+				IsDone = true;
 			}
 			else
 			{
 				ResolvedBy = null;
 				Resolved = null;
+				IsDone = false;
 			}
 		}
 	}

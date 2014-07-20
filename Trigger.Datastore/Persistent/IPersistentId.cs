@@ -1,12 +1,12 @@
-using Trigger.Datastore.Security;
-using System.IO;
-using Trigger.CRM.Persistent;
+using System.ComponentModel;
 
 
 namespace Trigger.Datastore.Persistent
 {
 	public interface IPersistentId
 	{
+		event PropertyChangedEventHandler PropertyChanged;
+
 		object MappingId { get; set; }
 
 		string GetRepresentation();
