@@ -21,13 +21,11 @@ namespace Trigger.WinForms.Layout
 			this.ModelType = modelType;
 		}
 
-		GridView gridView;
-
 		public GridView GetLayout()
 		{
 			var items = store.LoadAll(ModelType).ToList();
 
-			gridView = CreateGrid();
+			var gridView = CreateGrid();
 
 			gridView.DataStore = new DataStoreCollection(items);
 			gridView.AllowColumnReordering = true;
@@ -40,8 +38,8 @@ namespace Trigger.WinForms.Layout
 		GridView CreateGrid()
 		{
 			var factory = new ListPropertyEditorFactory(ModelType);
-			if (gridView == null)
-				gridView = new GridView();
+
+			var	gridView = new GridView();
 
 			foreach (var property in ModelType.GetProperties())
 			{
