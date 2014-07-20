@@ -21,7 +21,7 @@ namespace Trigger.WinForms.Actions
 			this.ModelType = modelType;
 		}
 
-		public override IEnumerable<ToolItem> RegisterActions()
+		public override IEnumerable<ToolItem> ActionItems()
 		{
 			NewAction = new ButtonToolItem();
 			NewAction.ID = "New_Tool_Action";

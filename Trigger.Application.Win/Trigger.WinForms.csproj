@@ -57,6 +57,8 @@
     <Compile Include="Layouts\ListPropertyEditorFactory.cs" />
     <Compile Include="Actions\ModelFilterListController.cs" />
     <Compile Include="Actions\ModelRefreshBaseController.cs" />
+    <Compile Include="Actions\ModelFileDataDetailController.cs" />
+    <Compile Include="Actions\ModelFileDataListController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

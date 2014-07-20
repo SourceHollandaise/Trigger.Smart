@@ -16,6 +16,7 @@ namespace Trigger.WinForms.Actions
 		protected override void OpenObjectExecute()
 		{
 			var listForm = Template as ModelListForm;
+
 			if (listForm != null)
 			{
 				var selection = listForm.CurrentGrid.SelectedItem as IPersistentId;

@@ -8,9 +8,9 @@ using System.Linq;
 
 namespace Trigger.CRM.Services
 {
-	public class DocumentUpdateService
+	public class DocumentDataService : IFileDataService
 	{
-		public int LoadFromDocumentStore()
+		public int LoadFromStore()
 		{
 			var store = DependencyMapProvider.Instance.ResolveType<IStore>();
 			var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
@@ -45,6 +45,33 @@ namespace Trigger.CRM.Services
 			}
 
 			return counter;
+		}
+
+		public void AddFile(IFileData fileData, string sourcePath, bool copy = true)
+		{
+			if (File.Exists(sourcePath))
+			{
+				var file = new FileInfo(sourcePath);
+
+				var targetPath = Path.Combine(StoreConfigurator.DocumentStoreLocation, file.Name);
+
+				try
+				{
+					if (!sourcePath.Equals(targetPath))
+					{
+						if (copy)
+							File.Copy(sourcePath, targetPath);
+						else
+							File.Move(sourcePath, targetPath);
+					}
+
+					fileData.FileName = new FileInfo(targetPath).Name;
+				}
+				catch
+				{
+
+				}
+			}
 		}
 	}
 }

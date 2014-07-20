@@ -33,7 +33,7 @@ namespace Trigger.WinForms.Actions
 				this.ModelType = CurrentObject.GetType();
 		}
 
-		public virtual IEnumerable<ToolItem>  RegisterActions()
+		public virtual IEnumerable<ToolItem>  ActionItems()
 		{
 			yield break;
 		}

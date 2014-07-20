@@ -9,6 +9,8 @@ namespace Trigger.WinForms.Layout
 
 	public abstract class TemplateBase : Form
 	{
+		public IList<ActionBaseController> Controllers = new List<ActionBaseController>();
+
 		protected IPersistentId CurrentObject
 		{
 			get;
@@ -25,16 +27,38 @@ namespace Trigger.WinForms.Layout
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;
-			
+		
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 				
 		}
 
-		public void LazyRegisterControllers(IEnumerable<ActionBaseController> controllers)
+		public override void OnLoadComplete(EventArgs e)
+		{
+			base.OnLoadComplete(e);
+
+			LoadControllers(Controllers);
+		}
+
+		public void LoadControllers(IEnumerable<ActionBaseController> controllers)
 		{
 			foreach (var controller in controllers)
-				this.ToolBar.Items.AddRange(controller.RegisterActions());
+			{
+				foreach (var action in controller.ActionItems())
+					if (!this.ToolBar.Items.Contains(action))
+						this.ToolBar.Items.Add(action);
+			}
+		}
+
+		public void UnloadController(ActionBaseController controller)
+		{
+			if (Controllers.Contains(controller))
+			{
+				foreach (var action in controller.ActionItems())
+					this.ToolBar.Items.Remove(action);
+
+				Controllers.Remove(controller);
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@ using Trigger.CRM.Persistent;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Subject")]
-	public class Document : PersistentModelBase
+	public class Document : PersistentModelBase, IFileData
 	{
 		public override string GetRepresentation()
 		{
@@ -46,24 +46,6 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		string description;
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set
-			{
-				if (Equals(description, value))
-					return;
-				description = value;
-
-				OnPropertyChanged();
-			}
-		}
-
 		string fileName;
 
 		public string FileName
@@ -77,6 +59,24 @@ namespace Trigger.CRM.Model
 				if (Equals(fileName, value))
 					return;
 				fileName = value;
+
+				OnPropertyChanged();
+			}
+		}
+
+		string description;
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set
+			{
+				if (Equals(description, value))
+					return;
+				description = value;
 
 				OnPropertyChanged();
 			}

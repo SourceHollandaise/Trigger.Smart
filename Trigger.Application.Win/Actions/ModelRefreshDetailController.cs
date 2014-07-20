@@ -20,7 +20,7 @@ namespace Trigger.WinForms.Actions
 			if (detailForm != null)
 			{
 				var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-				var dataObject = store.Load(ModelType, CurrentObject.MappingId) as IPersistentId;
+				var dataObject = store.Load(ModelType, CurrentObject.MappingId);
 				if (dataObject != null)
 				{
 					var layout = new ModelDetailLayoutManager(dataObject).GetLayout();

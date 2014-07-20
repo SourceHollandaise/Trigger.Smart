@@ -55,8 +55,7 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Services\TimeTrackerService.cs" />
-    <Compile Include="Services\DocumentService.cs" />
-    <Compile Include="Services\DocumentUpdateService.cs" />
+    <Compile Include="Services\DocumentDataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

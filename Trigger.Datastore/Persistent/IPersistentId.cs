@@ -1,3 +1,7 @@
+using Trigger.Datastore.Security;
+using System.IO;
+using Trigger.CRM.Persistent;
+
 
 namespace Trigger.Datastore.Persistent
 {

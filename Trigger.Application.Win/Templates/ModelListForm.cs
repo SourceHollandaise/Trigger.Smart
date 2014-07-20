@@ -25,9 +25,12 @@ namespace Trigger.WinForms.Layout
 			Size = new Size(1280, 800);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 
-			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelRefreshListController(this, ModelType, CurrentObject).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelOpenObjectListController(this, ModelType, CurrentObject).RegisterActions());
+			Controllers.Add(new ModelNewObjectActionController(this, ModelType, CurrentObject));
+			Controllers.Add(new ModelRefreshListController(this, ModelType, CurrentObject));
+			Controllers.Add(new ModelOpenObjectListController(this, ModelType, CurrentObject));
+
+			if (typeof(IFileData).IsAssignableFrom(ModelType))
+				Controllers.Add(new ModelFileDataListController(this, ModelType, CurrentObject));
 		}
 	}
 }

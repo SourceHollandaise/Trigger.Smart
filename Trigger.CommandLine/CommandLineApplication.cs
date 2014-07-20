@@ -30,7 +30,7 @@ namespace Trigger.CommandLine
 			Console.WriteLine();
 			Console.WriteLine("Search for new documents...");
 			Console.WriteLine();
-			var count = new Trigger.CRM.Services.DocumentUpdateService().LoadFromDocumentStore();
+			var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
 			if (count == 0)
 			{
 				Console.WriteLine("No new documents found!");

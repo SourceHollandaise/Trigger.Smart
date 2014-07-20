@@ -25,7 +25,7 @@ namespace Trigger.WinForms.Actions
 
 		}
 
-		public override IEnumerable<ToolItem> RegisterActions()
+		public override IEnumerable<ToolItem> ActionItems()
 		{
 			SaveAction = new ButtonToolItem();
 			SaveAction.ID = "Save_Tool_Action";

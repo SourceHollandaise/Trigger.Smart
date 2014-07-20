@@ -69,7 +69,7 @@ namespace Trigger.CommandLine.Commands
 			{
 				Console.WriteLine();
 				Console.WriteLine("Add new documents to store...");
-				var count = new Trigger.CRM.Services.DocumentUpdateService().LoadFromDocumentStore();
+				var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
 				Console.WriteLine();
 				Console.WriteLine(string.Format("{0} documents added!", count));
 				Console.WriteLine();

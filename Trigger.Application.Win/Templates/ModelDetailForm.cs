@@ -14,9 +14,12 @@ namespace Trigger.WinForms.Layout
 			Size = new Size(800, 600);
 			Title = ModelType.Name + " - " + CurrentObject.GetRepresentation();
 
-			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelModificationController(this, CurrentObject).RegisterActions());
-			this.ToolBar.Items.AddRange(new ModelRefreshDetailController(this, ModelType, CurrentObject).RegisterActions());
+			Controllers.Add(new ModelNewObjectActionController(this, ModelType, CurrentObject));
+			Controllers.Add(new ModelModificationController(this, CurrentObject));
+			Controllers.Add(new ModelRefreshDetailController(this, ModelType, CurrentObject));
+
+			if (typeof(IFileData).IsAssignableFrom(ModelType))
+				Controllers.Add(new ModelFileDataDetailController(this, ModelType, CurrentObject));
 		}
 	}
 }

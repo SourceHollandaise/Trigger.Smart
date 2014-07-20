@@ -66,6 +66,8 @@
     <Compile Include="Security\SystemAuthenticate.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="Persistent\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Persistent\IFileData.cs" />
+    <Compile Include="Persistent\IFileDataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

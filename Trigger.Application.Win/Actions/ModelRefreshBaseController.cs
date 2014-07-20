@@ -20,7 +20,7 @@ namespace Trigger.WinForms.Actions
 			this.ModelType = modelType;
 		}
 
-		public override IEnumerable<ToolItem> RegisterActions()
+		public override IEnumerable<ToolItem> ActionItems()
 		{
 			RefreshAction = new ButtonToolItem();
 			RefreshAction.ID = "Refresh_Tool_Action";

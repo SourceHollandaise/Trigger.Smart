@@ -6,7 +6,7 @@
     <ProjectGuid>{611C10CB-D8D7-4F0E-85F0-83E7F4A7D7F7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Trigger.Application.WinForms</RootNamespace>
-    <AssemblyName>Trigger.CRM.Forms</AssemblyName>
+    <AssemblyName>Trigger.Application.WinForms</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
