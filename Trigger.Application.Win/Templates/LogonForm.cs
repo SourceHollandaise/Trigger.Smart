@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Layout
 		{
 			Size = new Size(340, 200);
 			Title = "Logon - Enter username and password";
-			
+
 			Content = GetLayout();
 		}
 

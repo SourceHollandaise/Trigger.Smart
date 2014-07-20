@@ -61,7 +61,7 @@ namespace Trigger.WinForms.Layout
 				.FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
 
 			var comboBox = new ComboBox();
-			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
+			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
 			foreach (IPersistentId pi in items)
 			{
 				object defaultItemValue = null;
@@ -100,10 +100,8 @@ namespace Trigger.WinForms.Layout
 					var current = comboBox.SelectedValue as ListItem;
 					if (current != null)
 					{
-						using (var detailForm = new ModelDetailForm(current.Tag.GetType(), current.Tag as IPersistentId))
-						{
-							detailForm.Show();
-						}
+						var detailForm = new ModelDetailForm(current.Tag.GetType(), current.Tag as IPersistentId);
+						detailForm.Show();
 					}
 				}
 			};

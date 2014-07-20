@@ -38,6 +38,7 @@
     <Reference Include="Eto.Platform.Gtk">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

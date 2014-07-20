@@ -41,11 +41,12 @@ namespace Trigger.WinForms.Actions
 			var service = Dependency.DependencyMapProvider.Instance.ResolveType<IFileDataService>();
 			if (CurrentObject != null)
 			{
-				using (var fileDialog = new OpenFileDialog())
+				var fileDialog = new OpenFileDialog();
+				fileDialog.MultiSelect = false;
+				if (fileDialog.ShowDialog(null) == DialogResult.Ok)
 				{
-					fileDialog.MultiSelect = false;
-					if (fileDialog.ShowDialog(null) == DialogResult.Ok)
-						service.AddFile(CurrentObject as IFileData, fileDialog.FileName);
+					service.AddFile(CurrentObject as IFileData, fileDialog.FileName);
+					fileDialog.Dispose();
 				}
 			}
 		}

@@ -21,12 +21,18 @@ namespace Trigger.WinForms.Layout
 			this.ModelType = modelType;
 		}
 
+		GridView gridView;
+
 		public GridView GetLayout()
 		{
-			var items = store.LoadAll(ModelType);
-			var gridView = CreateGrid();
+			var items = store.LoadAll(ModelType).ToList();
+
+			gridView = CreateGrid();
 
 			gridView.DataStore = new DataStoreCollection(items);
+			gridView.AllowColumnReordering = true;
+			gridView.AllowMultipleSelection = true;
+			gridView.ShowCellBorders = true;
 
 			return gridView;
 		}
@@ -34,8 +40,8 @@ namespace Trigger.WinForms.Layout
 		GridView CreateGrid()
 		{
 			var factory = new ListPropertyEditorFactory(ModelType);
-			var gridView = new GridView();
-			gridView.ShowCellBorders = true;
+			if (gridView == null)
+				gridView = new GridView();
 
 			foreach (var property in ModelType.GetProperties())
 			{
@@ -46,10 +52,6 @@ namespace Trigger.WinForms.Layout
 				var column = new GridColumn();
 				column.DataCell = cell;
 				column.HeaderText = property.Name;
-				column.AutoSize = true;
-				column.Editable = false;
-				column.Resizable = true;
-				column.Sortable = true;
 				gridView.Columns.Add(column);
 			}
 

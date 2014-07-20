@@ -118,7 +118,7 @@ namespace Trigger.Datastore.Persistent
 			if (!Directory.Exists(typeDir))
 				Directory.CreateDirectory(typeDir);
 
-			return  typeDir;
+			return typeDir;
 		}
 	}
 }
