@@ -7,7 +7,7 @@ using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
-	public abstract class ModelRefreshController : ActionBaseController
+	public abstract class ModelRefreshBaseController : ActionBaseController
 	{
 		public ButtonToolItem RefreshAction
 		{
@@ -15,7 +15,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelRefreshController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		protected ModelRefreshBaseController(Form template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}

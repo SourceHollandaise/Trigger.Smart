@@ -7,7 +7,7 @@ using Trigger.WinForms.Layout;
 namespace Trigger.WinForms.Actions
 {
 
-	public class ModelRefreshDetailController : ModelRefreshController
+	public class ModelRefreshDetailController : ModelRefreshBaseController
 	{
 		public ModelRefreshDetailController(Form template, Type modelType, IPersistentId model) : base(template, modelType, model)
 		{

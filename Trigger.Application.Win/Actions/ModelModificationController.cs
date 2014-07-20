@@ -56,12 +56,14 @@ namespace Trigger.WinForms.Actions
 
 		protected virtual void SaveExecute()
 		{
-			CurrentObject.Save();
+			if (CurrentObject != null)
+				CurrentObject.Save();
 		}
 
 		protected virtual void DeleteExecute()
 		{
-			CurrentObject.Delete();
+			if (CurrentObject != null)
+				CurrentObject.Delete();
 		}
 	}
 }

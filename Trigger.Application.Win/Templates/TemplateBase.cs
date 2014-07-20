@@ -1,6 +1,8 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System;
+using System.Collections.Generic;
+using Trigger.WinForms.Actions;
 
 namespace Trigger.WinForms.Layout
 {
@@ -23,10 +25,16 @@ namespace Trigger.WinForms.Layout
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;
-
+			
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 				
+		}
+
+		public void LazyRegisterControllers(IEnumerable<ActionBaseController> controllers)
+		{
+			foreach (var controller in controllers)
+				this.ToolBar.Items.AddRange(controller.RegisterActions());
 		}
 	}
 }

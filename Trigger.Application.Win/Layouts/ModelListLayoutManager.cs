@@ -23,7 +23,7 @@ namespace Trigger.WinForms.Layout
 
 		public GridView GetLayout()
 		{
-			var items = store.LoadAll(ModelType).ToList();
+			var items = store.LoadAll(ModelType);
 			var gridView = CreateGrid();
 
 			gridView.DataStore = new DataStoreCollection(items);

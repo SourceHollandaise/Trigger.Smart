@@ -28,7 +28,7 @@ namespace Trigger.Application.WinForms
 
 		protected void Register()
 		{
-			Map.RegisterType<IAuthenticate, SystemAuthenticate>();
+			Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
 			Map.RegisterType<IdGenerator, GuidIdGenerator>();
 			Map.RegisterType<IStore, FileStore>();
 		}

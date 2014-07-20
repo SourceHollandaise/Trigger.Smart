@@ -9,12 +9,12 @@ namespace Trigger.WinForms.Layout
 	{
 		public ModelDetailForm(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
 		{
+			Content = new ModelDetailLayoutManager(CurrentObject).GetLayout();
+
 			Size = new Size(800, 600);
 			Title = ModelType.Name + " - " + CurrentObject.GetRepresentation();
 
-			Content = new ModelDetailLayoutManager(CurrentObject).GetLayout();
-
-			//this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
+			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelModificationController(this, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelRefreshDetailController(this, ModelType, CurrentObject).RegisterActions());
 		}

@@ -34,7 +34,7 @@ namespace Trigger.WinForms.Layout
 			{
 				PlaceholderText = "Password",
 			};
-
+				
 			textBoxPassword.Size = new Size(-1, -1);
 
 			layout.Add(textBoxPassword, true);

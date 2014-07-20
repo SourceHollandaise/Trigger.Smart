@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
@@ -16,13 +17,13 @@ namespace Trigger.WinForms.Layout
 
 		public ModelListForm(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
 		{
-			Size = new Size(1280, 800);
-			Title = "List of " + ModelType.Name;
-
 			if (CurrentGrid == null)
 				CurrentGrid = new ModelListLayoutManager(ModelType).GetLayout();
 
 			Content = CurrentGrid;
+
+			Size = new Size(1280, 800);
+			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 
 			this.ToolBar.Items.AddRange(new ModelNewObjectActionController(this, ModelType, CurrentObject).RegisterActions());
 			this.ToolBar.Items.AddRange(new ModelRefreshListController(this, ModelType, CurrentObject).RegisterActions());

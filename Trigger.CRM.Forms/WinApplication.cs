@@ -27,6 +27,10 @@ namespace Trigger.Application.WinForms
 				application.MainForm.Show();
 
 			};
+			application.Terminating += (sender, e) =>
+			{
+
+			};
 
 			application.Run();
 		}

@@ -45,7 +45,29 @@ namespace Trigger.CommandLine
 					Console.WriteLine(item.GetRepresentation());
 
 			}
-				
+
+			/*
+			for (int i = 1000; i < 6000; i++)
+			{
+				var issue = new IssueTracker();
+				issue.Initialize();
+				issue.Subject = "Test issue number " + i;
+				issue.Description = "Test description from CommandLine with number " + i;
+
+				var project = Map.ResolveType<IStore>().LoadAll<Project>().FirstOrDefault(p => p.Name == "Test project");
+				if (project == null)
+				{
+					project = new Project{ Name = "Test project", Description = "Test description" };
+					project.Save();
+				}
+
+				issue.Project = project;
+				issue.Save();
+
+				Console.WriteLine(issue.GetRepresentation());
+			}
+			*/
+
 			Console.WriteLine();
 			Console.WriteLine("Press <Enter> to continue or <ESC> to exit!");
 

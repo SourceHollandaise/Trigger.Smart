@@ -1,9 +1,7 @@
 using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {

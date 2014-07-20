@@ -40,5 +40,4 @@ namespace Trigger.WinForms.Actions
 
 		}
 	}
-	
 }

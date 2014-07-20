@@ -34,12 +34,6 @@
     <Reference Include="Eto.Platform.Gtk">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper">
-      <HintPath>..\Trigger.Smart\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\Trigger.Smart\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
@@ -54,7 +48,6 @@
     <Compile Include="Actions\ActionBaseController.cs" />
     <Compile Include="Actions\ModelModificationController.cs" />
     <Compile Include="Actions\ModelNewObjectActionController.cs" />
-    <Compile Include="Actions\ModelRefreshController.cs" />
     <Compile Include="Templates\TemplateBase.cs" />
     <Compile Include="Actions\ModelRefreshDetailController.cs" />
     <Compile Include="Actions\ModelRefreshListController.cs" />
@@ -62,6 +55,8 @@
     <Compile Include="Actions\ModelOpenObjectListController.cs" />
     <Compile Include="Layouts\DetailPropertyEditorFactory.cs" />
     <Compile Include="Layouts\ListPropertyEditorFactory.cs" />
+    <Compile Include="Actions\ModelFilterListController.cs" />
+    <Compile Include="Actions\ModelRefreshBaseController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

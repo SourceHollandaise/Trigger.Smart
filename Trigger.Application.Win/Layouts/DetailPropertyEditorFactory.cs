@@ -64,8 +64,11 @@ namespace Trigger.WinForms.Layout
 			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
 			foreach (IPersistentId pi in items)
 			{
-				var defaultItemValue = pi.GetType().GetProperty(lookupItem.Name).GetValue(pi, null);
-				comboBox.Items.Add(new ListItem()
+				object defaultItemValue = null;
+				if (lookupItem != null && !string.IsNullOrWhiteSpace(lookupItem.Name))
+					defaultItemValue = pi.GetType().GetProperty(lookupItem.Name).GetValue(pi, null);
+
+				comboBox.Items.Add(new ListItem
 				{
 					Key = pi.MappingId.ToString(),
 					Text = defaultItemValue != null ? defaultItemValue as string : null,
@@ -79,11 +82,32 @@ namespace Trigger.WinForms.Layout
 				if (selection != null && selection.MappingId != null)
 					comboBox.SelectedKey = selection.MappingId.ToString();
 			}
+				
 			comboBox.SelectedValueChanged += (sender, e) =>
 			{
-				var current = comboBox.SelectedValue as ListItem;
-				property.SetValue(Model, current.Tag, null);
+				if (comboBox.SelectedValue != null)
+				{
+					var current = comboBox.SelectedValue as ListItem;
+					if (current != null && current.Tag != null)
+						property.SetValue(Model, current.Tag, null);
+				}
 			};
+				
+			comboBox.KeyDown += (sender, e) =>
+			{
+				if (e.Modifiers == Keys.Control && e.Key == Keys.O)
+				{
+					var current = comboBox.SelectedValue as ListItem;
+					if (current != null)
+					{
+						using (var detailForm = new ModelDetailForm(current.Tag.GetType(), current.Tag as IPersistentId))
+						{
+							detailForm.Show();
+						}
+					}
+				}
+			};
+				
 			return comboBox;
 		}
 
@@ -122,7 +146,7 @@ namespace Trigger.WinForms.Layout
 			};
 			textBox.TextChanged += (sender, e) =>
 			{
-				property.SetValue(Model, textBox.Text, null);
+				//property.SetValue(Model, textBox.Text, null);
 			};
 			return textBox;
 		}

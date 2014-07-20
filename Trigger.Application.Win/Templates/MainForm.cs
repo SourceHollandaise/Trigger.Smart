@@ -33,6 +33,7 @@ namespace Trigger.WinForms.Layout
 
 			var logon = new LogonForm();
 			logon.Topmost = true;
+
 			logon.Show();
 
 		}
