@@ -9,7 +9,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionSaveController : ActionBaseController
 	{
-		public ButtonToolItem SaveAction
+		public Command SaveAction
 		{
 			get;
 			protected set;
@@ -20,13 +20,13 @@ namespace Trigger.WinForms.Actions
 
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			SaveAction = new ButtonToolItem();
+			SaveAction = new Command();
 			SaveAction.ID = "Save_Tool_Action";
 			SaveAction.Image = ImageExtensions.GetImage("Save32.png", 24);
-			SaveAction.Text = "Save";
-			SaveAction.Click += (sender, e) =>
+			SaveAction.MenuText = "Save";
+			SaveAction.Executed += (sender, e) =>
 			{
 				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)

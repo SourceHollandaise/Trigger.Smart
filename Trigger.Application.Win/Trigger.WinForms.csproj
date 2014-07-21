@@ -61,13 +61,13 @@
     <Compile Include="Actions\ActionDeleteController.cs" />
     <Compile Include="Actions\DetailViewTemplateExtensions.cs" />
     <Compile Include="Actions\ListViewTemplateExtensions.cs" />
-    <Compile Include="Actions\ActionActiveWindowsController.cs" />
     <Compile Include="Utils\TypeExtensions.cs" />
     <Compile Include="Actions\ActionCloseController.cs" />
     <Compile Include="Actions\ActionApplicationExitController.cs" />
     <Compile Include="Layouts\Detail\LogonViewGenerator.cs" />
     <Compile Include="Layouts\MainViewGenerator.cs" />
     <Compile Include="Layouts\WindowManager.cs" />
+    <Compile Include="Actions\ActionActiveWindowsController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

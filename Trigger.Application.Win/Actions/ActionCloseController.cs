@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionCloseController : ActionBaseController
 	{
-		public ButtonToolItem CloseAction
+		public Command CloseAction
 		{
 			get;
 			protected set;
@@ -21,14 +21,14 @@ namespace Trigger.WinForms.Actions
 
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			CloseAction = new ButtonToolItem();
+			CloseAction = new Command();
 			CloseAction.ID = "Close_Tool_Action";
 			CloseAction.Image = ImageExtensions.GetImage("Close32.png", 24);
-			CloseAction.Text = "Close";
+			CloseAction.MenuText = "Close";
 
-			CloseAction.Click += (sender, e) =>
+			CloseAction.Executed += (sender, e) =>
 			{
 				CloseActionExecute();
 			};

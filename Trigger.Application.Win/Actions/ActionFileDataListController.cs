@@ -11,7 +11,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionFileDataListController : ActionBaseController
 	{
-		public ButtonToolItem LoadFilesAction
+		public Command LoadFilesAction
 		{
 			get;
 			protected set;
@@ -19,17 +19,17 @@ namespace Trigger.WinForms.Actions
 
 		public ActionFileDataListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
-			this.ModelType = modelType;
+			Category = "Store";
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			LoadFilesAction = new ButtonToolItem();
+			LoadFilesAction = new Command();
 			LoadFilesAction.ID = "LoadFiles_Tool_Action";
 			LoadFilesAction.Image = ImageExtensions.GetImage("File_add32.png", 24);
-			LoadFilesAction.Text = "Refresh";
+			LoadFilesAction.MenuText = "Load files";
 
-			LoadFilesAction.Click += (sender, e) =>
+			LoadFilesAction.Executed += (sender, e) =>
 			{
 				LoadFilesActionExecute();
 			};

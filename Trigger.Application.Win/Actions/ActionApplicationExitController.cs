@@ -11,13 +11,13 @@ namespace Trigger.WinForms.Actions
 
 	public class ActionApplicationExitController : ActionBaseController
 	{
-		public ButtonToolItem ExitAction
+		public Command ExitAction
 		{
 			get;
 			protected set;
 		}
 
-		public ButtonToolItem LogOffAction
+		public Command LogOffAction
 		{
 			get;
 			protected set;
@@ -25,29 +25,29 @@ namespace Trigger.WinForms.Actions
 
 		public ActionApplicationExitController(TemplateBase template, IPersistent model) : base(template, model)
 		{
-
+			Category = "Application";
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			ExitAction = new ButtonToolItem();
+			ExitAction = new Command();
 			ExitAction.ID = "Exit_Tool_Action";
 			ExitAction.Image = ImageExtensions.GetImage("Close32.png", 24);
-			ExitAction.Text = "Exit";
+			ExitAction.MenuText = "Exit";
 
-			ExitAction.Click += (sender, e) =>
+			ExitAction.Executed += (sender, e) =>
 			{
 				ExitActionExecute();
 			};
 
 			yield return ExitAction;
 
-			LogOffAction = new ButtonToolItem();
+			LogOffAction = new Command();
 			LogOffAction.ID = "LogOff_Tool_Action";
 			LogOffAction.Image = ImageExtensions.GetImage("Login_out32.png", 24);
-			LogOffAction.Text = "Log off";
+			LogOffAction.MenuText = "Log off";
 
-			LogOffAction.Click += (sender, e) =>
+			LogOffAction.Executed += (sender, e) =>
 			{
 				LogOffActionExecute();
 			};

@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Actions
 {
 	public abstract class ActionOpenObjectBaseController : ActionBaseController
 	{
-		public ButtonToolItem OpenAction
+		public Command OpenAction
 		{
 			get;
 			protected set;
@@ -21,14 +21,14 @@ namespace Trigger.WinForms.Actions
 			this.ModelType = modelType;
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			OpenAction = new ButtonToolItem();
+			OpenAction = new Command();
 			OpenAction.ID = "Open_Tool_Action";
 			OpenAction.Image = ImageExtensions.GetImage("Edit32.png", 24);
-			OpenAction.Text = "Open";
+			OpenAction.MenuText = "Open";
 
-			OpenAction.Click += (sender, e) =>
+			OpenAction.Executed += (sender, e) =>
 			{
 				OpenObjectActionExecute();
 			};

@@ -11,7 +11,7 @@ namespace Trigger.WinForms.Actions
 
 	public class ActionNewController : ActionBaseController
 	{
-		public ButtonToolItem NewAction
+		public Command NewAction
 		{
 			get;
 			protected set;
@@ -22,14 +22,14 @@ namespace Trigger.WinForms.Actions
 			this.ModelType = modelType;
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			NewAction = new ButtonToolItem();
+			NewAction = new Command();
 			NewAction.ID = "New_Tool_Action";
 			NewAction.Image = ImageExtensions.GetImage("Add32.png", 24);
-			NewAction.Text = "New " + ModelType.Name;
+			NewAction.MenuText = "New " + ModelType.Name;
 
-			NewAction.Click += (sender, e) =>
+			NewAction.Executed += (sender, e) =>
 			{
 				NewActionExecute();
 			};

@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Actions
 {
 	public abstract class ActionRefreshBaseController : ActionBaseController
 	{
-		public ButtonToolItem RefreshAction
+		public Command RefreshAction
 		{
 			get;
 			protected set;
@@ -21,14 +21,14 @@ namespace Trigger.WinForms.Actions
 			this.ModelType = modelType;
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			RefreshAction = new ButtonToolItem();
+			RefreshAction = new Command();
 			RefreshAction.ID = "Refresh_Tool_Action";
 			RefreshAction.Image = ImageExtensions.GetImage("Refresh32.png", 24);
-			RefreshAction.Text = "Refresh";
+			RefreshAction.MenuText = "Refresh";
 
-			RefreshAction.Click += (sender, e) =>
+			RefreshAction.Executed += (sender, e) =>
 			{
 				RefreshActionExecute();
 			};

@@ -11,7 +11,7 @@ namespace Trigger.WinForms.Actions
 
 	public class ActionFileDataDetailController : ActionBaseController
 	{
-		public ButtonToolItem AddFileAction
+		public Command AddFileAction
 		{
 			get;
 			protected set;
@@ -19,17 +19,17 @@ namespace Trigger.WinForms.Actions
 
 		public ActionFileDataDetailController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
-			this.ModelType = modelType;
+			Category = "Store";
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			AddFileAction = new ButtonToolItem();
+			AddFileAction = new Command();
 			AddFileAction.ID = "AddFile_Tool_Action";
 			AddFileAction.Image = ImageExtensions.GetImage("Paperclip32.png", 24);
-			AddFileAction.Text = "Refresh";
+			AddFileAction.MenuText = "Add file";
 
-			AddFileAction.Click += (sender, e) =>
+			AddFileAction.Executed += (sender, e) =>
 			{
 				AddFileActionExecute();
 			};

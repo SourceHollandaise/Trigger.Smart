@@ -9,7 +9,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionDeleteController : ActionBaseController
 	{
-		public ButtonToolItem DeleteAction
+		public Command DeleteAction
 		{
 			get;
 			protected set;
@@ -20,13 +20,13 @@ namespace Trigger.WinForms.Actions
 
 		}
 
-		public override IEnumerable<ToolItem> ActionItems()
+		public override IEnumerable<Command> Commands()
 		{
-			DeleteAction = new ButtonToolItem();
+			DeleteAction = new Command();
 			DeleteAction.ID = "Delete_Tool_Action";
 			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 24);
-			DeleteAction.Text = "Delete";
-			DeleteAction.Click += (sender, e) =>
+			DeleteAction.MenuText = "Delete";
+			DeleteAction.Executed += (sender, e) =>
 			{
 				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)

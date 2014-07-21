@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{611C10CB-D8D7-4F0E-85F0-83E7F4A7D7F7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Trigger.Application.WinForms</RootNamespace>
     <AssemblyName>Trigger.Application.WinForms</AssemblyName>
   </PropertyGroup>

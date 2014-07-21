@@ -37,7 +37,7 @@ namespace Trigger.WinForms.Layout
 			if (this.Menu == null)
 				this.Menu = new MenuBar();
 
-			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
+			Application.Instance.CreateStandardMenu(Menu.Items);
 
 			if (this as MainViewTemplate == null)
 				Controllers.Add(new ActionCloseController(this, CurrentObject));
@@ -72,23 +72,15 @@ namespace Trigger.WinForms.Layout
 		{
 			foreach (var controller in controllers)
 			{
-				foreach (var action in controller.ActionItems())
+				var currentMenu = Menu.Items.GetSubmenu("&" + controller.Category);
+
+				foreach (var command in controller.Commands())
 				{
-					if (!this.ToolBar.Items.Contains(action))
-					{
-						if (string.IsNullOrWhiteSpace(action.ToolTip))
-							action.ToolTip = action.Text;
-						this.ToolBar.Items.Add(action);
-					}
+					currentMenu.Items.Add(command);
+					this.ToolBar.Items.Add(command);
 				}
 
-				foreach (var action in controller.MenuItems())
-				{
-					if (!this.Menu.Items.Contains(action))
-					if (string.IsNullOrWhiteSpace(action.ToolTip))
-						action.ToolTip = action.Text;
-					this.Menu.Items.Add(action);
-				}
+				this.Menu.Items.Trim();
 			}
 		}
 
@@ -96,12 +88,6 @@ namespace Trigger.WinForms.Layout
 		{
 			if (Controllers.Contains(controller))
 			{
-				foreach (var action in controller.ActionItems())
-					this.ToolBar.Items.Remove(action);
-
-				foreach (var action in controller.MenuItems())
-					this.Menu.Items.Remove(action);
-
 				Controllers.Remove(controller);
 			}
 		}

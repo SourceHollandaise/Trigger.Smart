@@ -8,6 +8,12 @@ namespace Trigger.WinForms.Actions
 {
 	public abstract class ActionBaseController
 	{
+		public string Category
+		{
+			get;
+			set;
+		}
+
 		protected TemplateBase Template
 		{
 			get;
@@ -28,18 +34,15 @@ namespace Trigger.WinForms.Actions
 
 		protected ActionBaseController(TemplateBase template, IPersistent currentObject)
 		{
+			Category = "File";
 			this.Template = template;
 			this.CurrentObject = currentObject;
 			if (this.ModelType == null && CurrentObject != null)
 				this.ModelType = CurrentObject.GetType();
+				
 		}
 
-		public virtual IEnumerable<ToolItem> ActionItems()
-		{
-			yield break;
-		}
-
-		public virtual IEnumerable<MenuItem> MenuItems()
+		public virtual IEnumerable<Command> Commands()
 		{
 			yield break;
 		}
