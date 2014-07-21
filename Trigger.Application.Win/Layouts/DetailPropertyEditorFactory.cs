@@ -22,20 +22,43 @@ namespace Trigger.WinForms.Layout
 
 			Model.PropertyChanged += (sender, e) =>
 			{
-				var prop = Model.GetType().GetProperty(e.PropertyName);
-
-				var control = Bindings[prop.Name];
-
-				if (control is TextBox)
-					((TextBox)control).Text = (string)prop.GetValue(Model, null);
-
-				if (control is DateTimePicker)
-					((DateTimePicker)control).Value = (DateTime?)prop.GetValue(Model, null);
-
-				if (control is CheckBox)
-					((CheckBox)control).Checked = (bool?)prop.GetValue(Model, null);
-					
+				HandleBindings(Model.GetType().GetProperty(e.PropertyName));
 			};
+		}
+
+		void HandleBindings(PropertyInfo property)
+		{
+			var control = Bindings[property.Name];
+
+			if (control is TextBox)
+				((TextBox)control).Text = (string)property.GetValue(Model, null);
+
+			if (control is DateTimePicker)
+				((DateTimePicker)control).Value = (DateTime?)property.GetValue(Model, null);
+
+			if (control is CheckBox)
+				((CheckBox)control).Checked = (bool?)property.GetValue(Model, null);
+
+			if (control is ComboBox)
+			{
+				var value = (property.GetValue(Model, null));
+
+				if (typeof(IPersistentId).IsAssignableFrom(property.PropertyType))
+				{
+					if (value != null)
+						((ComboBox)control).SelectedKey = (string)(value as IPersistentId).MappingId;
+					else
+						((ComboBox)control).SelectedKey = null;
+				}
+
+				if (property.PropertyType == typeof(Enum))
+				{
+					if (value != null)
+						((ComboBox)control).SelectedKey = (string)value;
+					else
+						((ComboBox)control).SelectedKey = null;
+				}
+			}
 		}
 
 		Dictionary<string, Control> Bindings = new Dictionary<string, Control>();

@@ -77,7 +77,8 @@ namespace Trigger.WinForms.Layout
 						layout.EndHorizontal();
 					}
 
-					if (property.PropertyType.BaseType == typeof(PersistentModelBase))
+					if (typeof(IPersistentId).IsAssignableFrom(property.PropertyType))
+					//if (property.PropertyType.BaseType == typeof(PersistentModelBase))
 					{
 						layout.BeginHorizontal();
 						layout.Add(new Label
