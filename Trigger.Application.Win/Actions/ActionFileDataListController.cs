@@ -28,7 +28,7 @@ namespace Trigger.WinForms.Actions
 			LoadFilesAction.ID = "LoadFiles_Tool_Action";
 			LoadFilesAction.Image = ImageExtensions.GetImage("File_add32.png", 24);
 			LoadFilesAction.MenuText = "Load files";
-
+			LoadFilesAction.ToolBarText = "Load files";
 			LoadFilesAction.Executed += (sender, e) =>
 			{
 				LoadFilesActionExecute();

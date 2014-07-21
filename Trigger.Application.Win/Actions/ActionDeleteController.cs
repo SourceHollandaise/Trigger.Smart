@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 
 		public ActionDeleteController(TemplateBase template, IPersistent model) : base(template, model)
 		{
-
+			Category = "Edit";
 		}
 
 		public override IEnumerable<Command> Commands()
@@ -26,6 +26,7 @@ namespace Trigger.WinForms.Actions
 			DeleteAction.ID = "Delete_Tool_Action";
 			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 24);
 			DeleteAction.MenuText = "Delete";
+			DeleteAction.ToolBarText = "Delete";
 			DeleteAction.Executed += (sender, e) =>
 			{
 				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);

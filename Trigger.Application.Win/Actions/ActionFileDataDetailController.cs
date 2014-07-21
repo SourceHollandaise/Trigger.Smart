@@ -28,7 +28,7 @@ namespace Trigger.WinForms.Actions
 			AddFileAction.ID = "AddFile_Tool_Action";
 			AddFileAction.Image = ImageExtensions.GetImage("Paperclip32.png", 24);
 			AddFileAction.MenuText = "Add file";
-
+			AddFileAction.ToolBarText = "Add file";
 			AddFileAction.Executed += (sender, e) =>
 			{
 				AddFileActionExecute();

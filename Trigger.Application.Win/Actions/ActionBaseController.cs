@@ -8,6 +8,12 @@ namespace Trigger.WinForms.Actions
 {
 	public abstract class ActionBaseController
 	{
+		public ActionVisibility Visiblity
+		{
+			get;
+			set;
+		}
+
 		public string Category
 		{
 			get;
@@ -35,6 +41,7 @@ namespace Trigger.WinForms.Actions
 		protected ActionBaseController(TemplateBase template, IPersistent currentObject)
 		{
 			Category = "File";
+			Visiblity = ActionVisibility.MenuAndToolbar;
 			this.Template = template;
 			this.CurrentObject = currentObject;
 			if (this.ModelType == null && CurrentObject != null)

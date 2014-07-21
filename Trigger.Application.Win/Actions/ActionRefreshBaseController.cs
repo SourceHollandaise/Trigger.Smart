@@ -18,7 +18,7 @@ namespace Trigger.WinForms.Actions
 
 		protected ActionRefreshBaseController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
-			this.ModelType = modelType;
+			Category = "Edit";
 		}
 
 		public override IEnumerable<Command> Commands()
@@ -27,7 +27,7 @@ namespace Trigger.WinForms.Actions
 			RefreshAction.ID = "Refresh_Tool_Action";
 			RefreshAction.Image = ImageExtensions.GetImage("Refresh32.png", 24);
 			RefreshAction.MenuText = "Refresh";
-
+			RefreshAction.ToolBarText = "Refresh";
 			RefreshAction.Executed += (sender, e) =>
 			{
 				RefreshActionExecute();

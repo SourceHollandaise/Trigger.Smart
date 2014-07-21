@@ -34,6 +34,7 @@ namespace Trigger.WinForms.Actions
 			ExitAction.ID = "Exit_Tool_Action";
 			ExitAction.Image = ImageExtensions.GetImage("Close32.png", 24);
 			ExitAction.MenuText = "Exit";
+			ExitAction.ToolBarText = "Exit";
 
 			ExitAction.Executed += (sender, e) =>
 			{
@@ -46,7 +47,7 @@ namespace Trigger.WinForms.Actions
 			LogOffAction.ID = "LogOff_Tool_Action";
 			LogOffAction.Image = ImageExtensions.GetImage("Login_out32.png", 24);
 			LogOffAction.MenuText = "Log off";
-
+			LogOffAction.ToolBarText = "Log off";
 			LogOffAction.Executed += (sender, e) =>
 			{
 				LogOffActionExecute();

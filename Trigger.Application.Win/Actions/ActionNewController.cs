@@ -28,7 +28,7 @@ namespace Trigger.WinForms.Actions
 			NewAction.ID = "New_Tool_Action";
 			NewAction.Image = ImageExtensions.GetImage("Add32.png", 24);
 			NewAction.MenuText = "New " + ModelType.Name;
-
+			NewAction.ToolBarText = "New " + ModelType.Name;
 			NewAction.Executed += (sender, e) =>
 			{
 				NewActionExecute();

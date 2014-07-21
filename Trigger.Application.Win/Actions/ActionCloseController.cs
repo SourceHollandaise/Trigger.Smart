@@ -27,7 +27,7 @@ namespace Trigger.WinForms.Actions
 			CloseAction.ID = "Close_Tool_Action";
 			CloseAction.Image = ImageExtensions.GetImage("Close32.png", 24);
 			CloseAction.MenuText = "Close";
-
+			CloseAction.ToolBarText = "Close";
 			CloseAction.Executed += (sender, e) =>
 			{
 				CloseActionExecute();

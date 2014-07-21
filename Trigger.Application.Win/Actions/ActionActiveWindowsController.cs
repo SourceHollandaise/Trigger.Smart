@@ -17,6 +17,7 @@ namespace Trigger.WinForms.Actions
 		public ActionActiveWindowsController(TemplateBase template, IPersistent currentObject) : base(template, currentObject)
 		{
 			Category = "Windows";
+			Visiblity = ActionVisibility.None;
 		}
 
 		public override IEnumerable<Command> Commands()
@@ -24,6 +25,7 @@ namespace Trigger.WinForms.Actions
 			ActiveWindowsCommand = new Command();
 			ActiveWindowsCommand.ID = "ActiveWindows_Menu_Action";
 			ActiveWindowsCommand.MenuText = "Active windows";
+			ActiveWindowsCommand.ToolBarText = "Active windows";
 			ActiveWindowsCommand.Executed += (sender, e) =>
 			{
 				UpdateActiveWindowsActionItems();
@@ -34,10 +36,19 @@ namespace Trigger.WinForms.Actions
 
 		public virtual void UpdateActiveWindowsActionItems()
 		{
+			var windowMenu = Template.Menu.Items.GetSubmenu("Window");
+			windowMenu.Items.Clear();
+
 			foreach (var view in WindowManager.ActiveViews)
 			{
 
+				var item = new CheckCommand();
+				item.ID = view.ID;
+				item.MenuText = view.Title;
+				item.ToolBarText = "V";
 			}
+
+			windowMenu.Items.Trim();
 		}
 	}
 }

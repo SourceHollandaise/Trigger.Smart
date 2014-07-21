@@ -6,7 +6,6 @@ using Trigger.WinForms.Actions;
 
 namespace Trigger.WinForms.Layout
 {
-
 	public abstract class TemplateBase : Form
 	{
 		public IList<ActionBaseController> Controllers = new List<ActionBaseController>();
@@ -38,6 +37,8 @@ namespace Trigger.WinForms.Layout
 				this.Menu = new MenuBar();
 
 			Application.Instance.CreateStandardMenu(Menu.Items);
+
+			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
 
 			if (this as MainViewTemplate == null)
 				Controllers.Add(new ActionCloseController(this, CurrentObject));
@@ -72,12 +73,30 @@ namespace Trigger.WinForms.Layout
 		{
 			foreach (var controller in controllers)
 			{
-				var currentMenu = Menu.Items.GetSubmenu("&" + controller.Category);
+				var currentMenu = Menu.Items.GetSubmenu(controller.Category);
 
-				foreach (var command in controller.Commands())
+				switch (controller.Visiblity)
 				{
-					currentMenu.Items.Add(command);
-					this.ToolBar.Items.Add(command);
+					case ActionVisibility.MenuAndToolbar:
+						currentMenu.Items.AddRange(controller.Commands());
+						this.ToolBar.Items.AddRange(controller.Commands());
+						break;
+					
+					case ActionVisibility.Menu:
+						currentMenu.Items.AddRange(controller.Commands());
+						break;
+					
+					case ActionVisibility.Toolbar:
+						this.ToolBar.Items.AddRange(controller.Commands());
+						break;
+					
+					case ActionVisibility.None:
+						break;
+					
+					default:
+						currentMenu.Items.AddRange(controller.Commands());
+						this.ToolBar.Items.AddRange(controller.Commands());
+						break;
 				}
 
 				this.Menu.Items.Trim();
@@ -91,6 +110,5 @@ namespace Trigger.WinForms.Layout
 				Controllers.Remove(controller);
 			}
 		}
-
 	}
 }
