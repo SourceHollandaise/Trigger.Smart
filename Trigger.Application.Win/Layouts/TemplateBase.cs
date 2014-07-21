@@ -32,6 +32,8 @@ namespace Trigger.WinForms.Layout
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
 
+			this.ToolBar.TextAlign = ToolBarTextAlign.Right;
+
 			if (this.Menu == null)
 				this.Menu = new MenuBar();
 
@@ -46,6 +48,24 @@ namespace Trigger.WinForms.Layout
 			base.OnLoadComplete(e);
 
 			LoadControllers(Controllers);
+
+			if (this is DetailViewTemplate)
+				WindowManager.AddDetailView(CurrentObject, this as DetailViewTemplate);
+
+			if (this is ListViewTemplate)
+				WindowManager.AddListView(ModelType, this as ListViewTemplate);
+		}
+
+
+		public override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+
+			if (this is ListViewTemplate)
+				WindowManager.RemoveListView(ModelType);
+
+			if (this is DetailViewTemplate)
+				WindowManager.RemoveDetailView(CurrentObject);
 		}
 
 		public void LoadControllers(IEnumerable<ActionBaseController> controllers)
@@ -86,15 +106,5 @@ namespace Trigger.WinForms.Layout
 			}
 		}
 
-		public override void OnClosed(EventArgs e)
-		{
-			base.OnClosed(e);
-
-			if (this is ListViewTemplate)
-				TemplateManager.RemoveListTemplate(ModelType);
-
-			if (this is DetailViewTemplate)
-				TemplateManager.RemoveDetailTemplate(CurrentObject);
-		}
 	}
 }

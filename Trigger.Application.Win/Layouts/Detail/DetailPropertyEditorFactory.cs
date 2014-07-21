@@ -235,7 +235,7 @@ namespace Trigger.WinForms.Layout
 		{
 			var current = control.SelectedValue as ListItem;
 			if (current != null)
-				TemplateManager.ShowDetailTemplate(current.Tag as IPersistent);
+				WindowManager.ShowDetailView(current.Tag as IPersistent);
 		}
 
 		void  ClearReference(ComboBox control)

@@ -48,7 +48,6 @@
     <Compile Include="Layouts\Detail\LogonViewTemplate.cs" />
     <Compile Include="Layouts\List\ListViewTemplate.cs" />
     <Compile Include="Layouts\TemplateBase.cs" />
-    <Compile Include="Layouts\TemplateManager.cs" />
     <Compile Include="Actions\ActionFileDataDetailController.cs" />
     <Compile Include="Actions\ActionFileDataListController.cs" />
     <Compile Include="Actions\ActionFilterListController.cs" />
@@ -68,6 +67,7 @@
     <Compile Include="Actions\ActionApplicationExitController.cs" />
     <Compile Include="Layouts\Detail\LogonViewGenerator.cs" />
     <Compile Include="Layouts\MainViewGenerator.cs" />
+    <Compile Include="Layouts\WindowManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -32,7 +32,7 @@ namespace Trigger.WinForms.Layout
 
 				button.Click += (sender, e) =>
 				{
-					TemplateManager.ShowListTemplate(button.Tag as Type);
+					WindowManager.ShowListView(button.Tag as Type);
 				};
 
 				layout.BeginHorizontal();

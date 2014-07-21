@@ -42,7 +42,7 @@ namespace Trigger.WinForms.Layout
 			{
 				e.Cancel = false;
 
-				var templatesToClose = TemplateManager.ActiveTemplates.ToList();
+				var templatesToClose = WindowManager.ActiveViews.ToList();
 				while (templatesToClose[0] != null)
 				{
 					templatesToClose[0].Close();

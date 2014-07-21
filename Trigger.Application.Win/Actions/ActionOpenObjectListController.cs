@@ -18,7 +18,7 @@ namespace Trigger.WinForms.Actions
 
 			if (listForm != null)
 			{
-				TemplateManager.ShowDetailTemplate(listForm.CurrentGrid.SelectedItem as IPersistent);
+				WindowManager.ShowDetailView(listForm.CurrentGrid.SelectedItem as IPersistent);
 			}
 		}
 	}

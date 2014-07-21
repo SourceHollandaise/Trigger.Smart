@@ -1,17 +1,14 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
-using System;
 using Trigger.WinForms.Layout;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Trigger.WinForms.Actions
 {
-
 	public class ActionActiveWindowsController : ActionBaseController
 	{
-		public ButtonMenuItem ActiveWindowsMenuItem
+		public ButtonMenuItem ActiveWindowsAction
 		{
 			get;
 			protected set;
@@ -24,21 +21,29 @@ namespace Trigger.WinForms.Actions
 
 		public override IEnumerable<MenuItem> MenuItems()
 		{
-			ActiveWindowsMenuItem = new ButtonMenuItem();
-			ActiveWindowsMenuItem.ID = "ActiveWindows_Menu_Action";
-			ActiveWindowsMenuItem.Text = "Active windows";
-		
-
-			foreach (var item in TemplateManager.ActiveTemplates)
+			ActiveWindowsAction = new ButtonMenuItem();
+			ActiveWindowsAction.ID = "ActiveWindows_Menu_Action";
+			ActiveWindowsAction.Text = "Active windows";
+			ActiveWindowsAction.Click += (sender, e) =>
 			{
-				var menuItem = new ButtonMenuItem();
-				menuItem.ID = item.ID;
-				menuItem.Text = item.Title;
+				UpdateActiveWindowsActionItems();
+			};
 
-				ActiveWindowsMenuItem.Items.Add(menuItem);
+			yield return ActiveWindowsAction;
+		}
+
+		public virtual void UpdateActiveWindowsActionItems()
+		{
+			ActiveWindowsAction.Items.Clear();
+
+			foreach (var view in WindowManager.ActiveViews)
+			{
+				var item = new CheckMenuItem();
+				item.ID = view.ID;
+				item.Text = view.Title;
+				item.Checked = false;
+				ActiveWindowsAction.Items.Add(item);
 			}
-
-			yield return ActiveWindowsMenuItem;
 		}
 	}
 }
