@@ -30,8 +30,9 @@ namespace Trigger.Application.WinForms
 				application.MainForm = new MainViewTemplate(DeclaredTypes());
 				application.MainForm.BringToFront();
 				application.MainForm.Show();
-		
 			};
+
+			application.Run();
 
 			ExceptionManager.UnhandledException += (args) =>
 			{
@@ -44,8 +45,6 @@ namespace Trigger.Application.WinForms
 					application.RunIteration();
 				}
 			};
-
-			application.Run();
 		}
 	}
 }

@@ -4,18 +4,19 @@ using System.Linq;
 using System.Reflection;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
+using Eto.Drawing;
 
 namespace Trigger.WinForms.Layout
 {
 	public class DetailPropertyEditorFactory
 	{
-		protected IPersistentId Model
+		protected IPersistent Model
 		{
 			get;
 			set;
 		}
 
-		public DetailPropertyEditorFactory(IPersistentId model)
+		public DetailPropertyEditorFactory(IPersistent model)
 		{
 			this.Model = model;
 
@@ -42,10 +43,10 @@ namespace Trigger.WinForms.Layout
 			{
 				var value = (property.GetValue(Model, null));
 
-				if (typeof(IPersistentId).IsAssignableFrom(property.PropertyType))
+				if (typeof(IPersistent).IsAssignableFrom(property.PropertyType))
 				{
 					if (value != null)
-						((ComboBox)control).SelectedKey = (string)(value as IPersistentId).MappingId;
+						((ComboBox)control).SelectedKey = (string)(value as IPersistent).MappingId;
 					else
 						((ComboBox)control).SelectedValue = null;
 				}
@@ -101,18 +102,46 @@ namespace Trigger.WinForms.Layout
 			return control;
 		}
 
+		public Button ReferenceOpenButton(ComboBox control)
+		{
+			var button = new Button();
+			button.Text = "Open";
+			button.Image = ImageExtensions.GetImage("Edit32.png", 12);
+			button.ImagePosition = ButtonImagePosition.Left;
+
+			button.Click += (sender, e) =>
+			{
+				OpenReference(control);
+			};
+
+			return button;
+		}
+
+		public Button ReferenceClearButton(ComboBox control)
+		{
+			var button = new Button();
+			button.Text = "Clear";
+			button.Image = ImageExtensions.GetImage("Delete32.png", 12);
+			button.ImagePosition = ButtonImagePosition.Left;
+			button.Click += (sender, e) =>
+			{
+				ClearReference(control);
+			};
+
+			return button;
+		}
+
 		public ComboBox ReferencePropertyEditor(PropertyInfo property)
 		{
-			var lookupItem = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true)
-				.FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
+			var attribute = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true).FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
 
 			var control = new ComboBox();
 			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
-			foreach (IPersistentId pi in items)
+			foreach (IPersistent pi in items)
 			{
 				object defaultItemValue = null;
-				if (lookupItem != null && !string.IsNullOrWhiteSpace(lookupItem.Name))
-					defaultItemValue = pi.GetType().GetProperty(lookupItem.Name).GetValue(pi, null);
+				if (attribute != null && !string.IsNullOrWhiteSpace(attribute.Name))
+					defaultItemValue = pi.GetType().GetProperty(attribute.Name).GetValue(pi, null);
 
 				control.Items.Add(new ListItem
 				{
@@ -124,9 +153,11 @@ namespace Trigger.WinForms.Layout
 			var value = property.GetValue(Model, null);
 			if (value != null)
 			{
-				var selection = (property.GetValue(Model, null) as IPersistentId);
+				var selection = (property.GetValue(Model, null) as IPersistent);
 				if (selection != null && selection.MappingId != null)
+				{
 					control.SelectedKey = selection.MappingId.ToString();
+				}
 			}
 				
 			control.SelectedValueChanged += (sender, e) =>
@@ -135,22 +166,23 @@ namespace Trigger.WinForms.Layout
 				{
 					var current = control.SelectedValue as ListItem;
 					if (current != null && current.Tag != null)
+					{
 						property.SetValue(Model, current.Tag, null);
+					}
 				}
+				else
+					property.SetValue(Model, null, null);
 			};
 				
 			control.KeyDown += (sender, e) =>
 			{
 				if (e.Modifiers == Keys.Control && e.Key == Keys.O)
-				{
-					var current = control.SelectedValue as ListItem;
-					if (current != null)
-					{
-						var detailForm = new DetailViewTemplate(current.Tag.GetType(), current.Tag as IPersistentId);
-						detailForm.Show();
-					}
-				}
+					OpenReference(control);
+
+				if (e.Modifiers == Keys.Control && e.Key == Keys.Backspace)
+					ClearReference(control);
 			};
+
 			Bindings.Add(property.Name, control);
 			return control;
 		}
@@ -197,6 +229,24 @@ namespace Trigger.WinForms.Layout
 			};
 			Bindings.Add(property.Name, control);
 			return control;
+		}
+
+		void OpenReference(ComboBox control)
+		{
+			var current = control.SelectedValue as ListItem;
+			if (current != null)
+				TemplateManager.ShowDetailTemplate(current.Tag as IPersistent);
+		}
+
+		void  ClearReference(ComboBox control)
+		{
+			var current = control.SelectedValue as ListItem;
+			if (current != null)
+			{
+				control.SelectedValue = null;
+				control.SelectedKey = null;
+
+			}
 		}
 	}
 }

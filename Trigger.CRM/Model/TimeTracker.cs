@@ -89,14 +89,44 @@ namespace Trigger.CRM.Model
 				end = value;
 
 				OnPropertyChanged();
+
+				UpdateTracker();
 			}
 		}
 
-		public TimeSpan? Duration
+		bool isDone;
+
+		public bool IsDone
 		{
 			get
 			{
-				return End.HasValue && Begin.HasValue ? End - Begin : null;
+				return isDone;
+			}
+			protected set
+			{
+				if (Equals(IsDone, value))
+					return;
+				isDone = value;
+
+				OnPropertyChanged();
+			}
+		}
+
+		string duration;
+
+		public string Duration
+		{
+			get
+			{
+				return duration;
+			}
+			protected set
+			{
+				if (Equals(duration, value))
+					return;
+				duration = value;
+
+				OnPropertyChanged();
 			}
 		}
 
@@ -135,6 +165,20 @@ namespace Trigger.CRM.Model
 				user = value;
 
 				OnPropertyChanged();
+			}
+		}
+
+		void UpdateTracker()
+		{
+			if (End.HasValue)
+			{
+				IsDone = true;
+				Duration = (End - Begin).ToString();
+			}
+			else
+			{
+				IsDone = false;
+				Duration = null;
 			}
 		}
 	}

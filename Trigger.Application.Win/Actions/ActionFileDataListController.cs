@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Trigger.WinForms.Actions
 {
-	public class ModelFileDataListController : ActionBaseController
+	public class ActionFileDataListController : ActionBaseController
 	{
 		public ButtonToolItem LoadFilesAction
 		{
@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelFileDataListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		public ActionFileDataListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -26,7 +26,7 @@ namespace Trigger.WinForms.Actions
 		{
 			LoadFilesAction = new ButtonToolItem();
 			LoadFilesAction.ID = "LoadFiles_Tool_Action";
-			LoadFilesAction.Image = Bitmap.FromResource("File_add32.png");
+			LoadFilesAction.Image = ImageExtensions.GetImage("File_add32.png", 24);
 			LoadFilesAction.Text = "Refresh";
 
 			LoadFilesAction.Click += (sender, e) =>

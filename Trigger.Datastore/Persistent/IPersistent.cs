@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Trigger.Datastore.Persistent
 {
-	public interface IPersistentId
+	public interface IPersistent
 	{
 		event PropertyChangedEventHandler PropertyChanged;
 

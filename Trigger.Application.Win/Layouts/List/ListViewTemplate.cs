@@ -15,7 +15,7 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public ListViewTemplate(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
+		public ListViewTemplate(Type modelType, IPersistent currentObject) : base(modelType, currentObject)
 		{
 			if (CurrentGrid == null)
 				CurrentGrid = new ListViewGenerator(ModelType).GetLayout();
@@ -25,19 +25,12 @@ namespace Trigger.WinForms.Layout
 			Size = new Size(1024, 768);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 
-			Controllers.Add(new ModelNewObjectActionController(this, ModelType, CurrentObject));
-			Controllers.Add(new ModelRefreshListController(this, ModelType, CurrentObject));
-			Controllers.Add(new ModelOpenObjectListController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionNewController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionRefreshListController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionOpenObjectListController(this, ModelType, CurrentObject));
 
 			if (typeof(IFileData).IsAssignableFrom(ModelType))
-				Controllers.Add(new ModelFileDataListController(this, ModelType, CurrentObject));
-		}
-
-		public override void OnClosed(EventArgs e)
-		{
-			base.OnClosed(e);
-
-			TemplateManager.RemoveListTemplate(ModelType);
+				Controllers.Add(new ActionFileDataListController(this, ModelType, CurrentObject));
 		}
 	}
 }

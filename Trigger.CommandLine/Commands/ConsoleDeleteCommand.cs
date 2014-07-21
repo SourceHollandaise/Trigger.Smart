@@ -36,7 +36,7 @@ namespace Trigger.CommandLine.Commands
             }
         }
 
-        static void DeleteWithMessage<T>(object id) where T: IPersistentId
+        static void DeleteWithMessage<T>(object id) where T: IPersistent
         {
             Console.WriteLine("Delete {0} item...", typeof(T).Name);
 

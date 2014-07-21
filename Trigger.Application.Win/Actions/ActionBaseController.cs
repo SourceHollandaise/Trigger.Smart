@@ -20,13 +20,13 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
-		protected IPersistentId CurrentObject
+		protected IPersistent CurrentObject
 		{
 			get;
 			set;
 		}
 
-		protected ActionBaseController(TemplateBase template, IPersistentId currentObject)
+		protected ActionBaseController(TemplateBase template, IPersistent currentObject)
 		{
 			this.Template = template;
 			this.CurrentObject = currentObject;
@@ -34,7 +34,12 @@ namespace Trigger.WinForms.Actions
 				this.ModelType = CurrentObject.GetType();
 		}
 
-		public virtual IEnumerable<ToolItem>  ActionItems()
+		public virtual IEnumerable<ToolItem> ActionItems()
+		{
+			yield break;
+		}
+
+		public virtual IEnumerable<MenuItem> MenuItems()
 		{
 			yield break;
 		}

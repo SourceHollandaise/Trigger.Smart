@@ -11,7 +11,7 @@ namespace Trigger.WinForms.Layout
 	{
 		public IList<ActionBaseController> Controllers = new List<ActionBaseController>();
 
-		public IPersistentId CurrentObject
+		public IPersistent CurrentObject
 		{
 			get;
 			set;
@@ -23,14 +23,22 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		protected TemplateBase(Type type, IPersistentId currentObject)
+		protected TemplateBase(Type type, IPersistent currentObject)
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;
+			this.ID = this.Title;
 		
 			if (this.ToolBar == null)
 				this.ToolBar = new ToolBar();
-				
+
+			if (this.Menu == null)
+				this.Menu = new MenuBar();
+
+			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
+
+			if (this as MainViewTemplate == null)
+				Controllers.Add(new ActionCloseController(this, CurrentObject));
 		}
 
 		public override void OnLoadComplete(EventArgs e)
@@ -45,8 +53,22 @@ namespace Trigger.WinForms.Layout
 			foreach (var controller in controllers)
 			{
 				foreach (var action in controller.ActionItems())
+				{
 					if (!this.ToolBar.Items.Contains(action))
+					{
+						if (string.IsNullOrWhiteSpace(action.ToolTip))
+							action.ToolTip = action.Text;
 						this.ToolBar.Items.Add(action);
+					}
+				}
+
+				foreach (var action in controller.MenuItems())
+				{
+					if (!this.Menu.Items.Contains(action))
+					if (string.IsNullOrWhiteSpace(action.ToolTip))
+						action.ToolTip = action.Text;
+					this.Menu.Items.Add(action);
+				}
 			}
 		}
 
@@ -57,8 +79,22 @@ namespace Trigger.WinForms.Layout
 				foreach (var action in controller.ActionItems())
 					this.ToolBar.Items.Remove(action);
 
+				foreach (var action in controller.MenuItems())
+					this.Menu.Items.Remove(action);
+
 				Controllers.Remove(controller);
 			}
+		}
+
+		public override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+
+			if (this is ListViewTemplate)
+				TemplateManager.RemoveListTemplate(ModelType);
+
+			if (this is DetailViewTemplate)
+				TemplateManager.RemoveDetailTemplate(CurrentObject);
 		}
 	}
 }

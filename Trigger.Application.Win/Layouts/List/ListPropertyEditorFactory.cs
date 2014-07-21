@@ -41,7 +41,7 @@ namespace Trigger.WinForms.Layout
 				return new CheckBoxCell(property.Name);
 			}
 
-			if (typeof(IPersistentId).IsAssignableFrom(property.PropertyType.BaseType))
+			if (typeof(IPersistent).IsAssignableFrom(property.PropertyType.BaseType))
 			{
 				return new TextBoxCell(property.Name);
 			}

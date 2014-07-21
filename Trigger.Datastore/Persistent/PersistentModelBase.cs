@@ -4,7 +4,7 @@ using Trigger.Datastore.Security;
 
 namespace Trigger.Datastore.Persistent
 {
-	public abstract class PersistentModelBase : NotifyPropertyChangedBase, IPersistentId
+	public abstract class PersistentModelBase : NotifyPropertyChangedBase, IPersistent
 	{
 		public object MappingId
 		{

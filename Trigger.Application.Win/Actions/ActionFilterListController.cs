@@ -8,9 +8,9 @@ using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
-	public class ModelFilterListController : ActionBaseController
+	public class ActionFilterListController : ActionBaseController
 	{
-		public ModelFilterListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		public ActionFilterListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}

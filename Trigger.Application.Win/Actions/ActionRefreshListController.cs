@@ -5,9 +5,9 @@ using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
-	public class ModelRefreshListController : ModelRefreshBaseController
+	public class ActionRefreshListController : ActionRefreshBaseController
 	{
-		public ModelRefreshListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, modelType, model)
+		public ActionRefreshListController(TemplateBase template, Type modelType, IPersistent model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
 		}

@@ -45,7 +45,7 @@ namespace Trigger.Datastore.Security
 			{
 				return password;
 			}
-			private set
+			set
 			{
 				if (Equals(password, value))
 					return;

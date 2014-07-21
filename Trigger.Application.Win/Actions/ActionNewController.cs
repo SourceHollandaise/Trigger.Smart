@@ -8,7 +8,8 @@ using Eto.Drawing;
 
 namespace Trigger.WinForms.Actions
 {
-	public class ModelNewObjectActionController : ActionBaseController
+
+	public class ActionNewController : ActionBaseController
 	{
 		public ButtonToolItem NewAction
 		{
@@ -16,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelNewObjectActionController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		public ActionNewController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -25,7 +26,7 @@ namespace Trigger.WinForms.Actions
 		{
 			NewAction = new ButtonToolItem();
 			NewAction.ID = "New_Tool_Action";
-			NewAction.Image = Bitmap.FromResource("Add32.png");
+			NewAction.Image = ImageExtensions.GetImage("Add32.png", 24);
 			NewAction.Text = "New " + ModelType.Name;
 
 			NewAction.Click += (sender, e) =>
@@ -36,9 +37,9 @@ namespace Trigger.WinForms.Actions
 			yield return NewAction;
 		}
 
-		protected virtual void NewActionExecute()
+		public virtual void NewActionExecute()
 		{
-			CurrentObject = Activator.CreateInstance(ModelType) as IPersistentId;
+			CurrentObject = Activator.CreateInstance(ModelType) as IPersistent;
 			CurrentObject.Initialize();
 	
 			var detailForm = new DetailViewTemplate(ModelType, CurrentObject);

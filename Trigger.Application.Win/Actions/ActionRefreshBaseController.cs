@@ -8,7 +8,7 @@ using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
-	public abstract class ModelRefreshBaseController : ActionBaseController
+	public abstract class ActionRefreshBaseController : ActionBaseController
 	{
 		public ButtonToolItem RefreshAction
 		{
@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ModelRefreshBaseController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		protected ActionRefreshBaseController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -25,7 +25,7 @@ namespace Trigger.WinForms.Actions
 		{
 			RefreshAction = new ButtonToolItem();
 			RefreshAction.ID = "Refresh_Tool_Action";
-			RefreshAction.Image = Bitmap.FromResource("Refresh32.png");
+			RefreshAction.Image = ImageExtensions.GetImage("Refresh32.png", 24);
 			RefreshAction.Text = "Refresh";
 
 			RefreshAction.Click += (sender, e) =>

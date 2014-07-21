@@ -39,21 +39,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Actions\ActionBaseController.cs" />
-    <Compile Include="Actions\ModelModificationController.cs" />
-    <Compile Include="Actions\ModelNewObjectActionController.cs" />
-    <Compile Include="Actions\ModelRefreshDetailController.cs" />
-    <Compile Include="Actions\ModelRefreshListController.cs" />
-    <Compile Include="Actions\ModelOpenObjectBaseController.cs" />
-    <Compile Include="Actions\ModelOpenObjectListController.cs" />
-    <Compile Include="Actions\ModelFilterListController.cs" />
-    <Compile Include="Actions\ModelRefreshBaseController.cs" />
-    <Compile Include="Actions\ModelFileDataDetailController.cs" />
-    <Compile Include="Actions\ModelFileDataListController.cs" />
-    <Compile Include="Actions\ModelListFormExtensions.cs" />
-    <Compile Include="Actions\ModelDetailFormExtension.cs" />
     <Compile Include="Layouts\Detail\DetailPropertyEditorFactory.cs" />
     <Compile Include="Layouts\Detail\DetailViewGenerator.cs" />
-    <Compile Include="Layouts\Detail\LogonWindowGenerator.cs" />
     <Compile Include="Layouts\List\ListPropertyEditorFactory.cs" />
     <Compile Include="Layouts\List\ListViewGenerator.cs" />
     <Compile Include="Layouts\Detail\DetailViewTemplate.cs" />
@@ -62,6 +49,25 @@
     <Compile Include="Layouts\List\ListViewTemplate.cs" />
     <Compile Include="Layouts\TemplateBase.cs" />
     <Compile Include="Layouts\TemplateManager.cs" />
+    <Compile Include="Actions\ActionFileDataDetailController.cs" />
+    <Compile Include="Actions\ActionFileDataListController.cs" />
+    <Compile Include="Actions\ActionFilterListController.cs" />
+    <Compile Include="Actions\ActionNewController.cs" />
+    <Compile Include="Actions\ActionOpenObjectBaseController.cs" />
+    <Compile Include="Actions\ActionOpenObjectListController.cs" />
+    <Compile Include="Actions\ActionRefreshBaseController.cs" />
+    <Compile Include="Actions\ActionRefreshDetailController.cs" />
+    <Compile Include="Actions\ActionRefreshListController.cs" />
+    <Compile Include="Actions\ActionSaveController.cs" />
+    <Compile Include="Actions\ActionDeleteController.cs" />
+    <Compile Include="Actions\DetailViewTemplateExtensions.cs" />
+    <Compile Include="Actions\ListViewTemplateExtensions.cs" />
+    <Compile Include="Actions\ActionActiveWindowsController.cs" />
+    <Compile Include="Utils\TypeExtensions.cs" />
+    <Compile Include="Actions\ActionCloseController.cs" />
+    <Compile Include="Actions\ActionApplicationExitController.cs" />
+    <Compile Include="Layouts\Detail\LogonViewGenerator.cs" />
+    <Compile Include="Layouts\MainViewGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -70,6 +76,7 @@
     <Folder Include="Images\" />
     <Folder Include="Layouts\Detail\" />
     <Folder Include="Layouts\List\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">

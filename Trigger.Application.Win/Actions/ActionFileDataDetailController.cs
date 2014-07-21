@@ -9,7 +9,7 @@ using Trigger.WinForms.Layout;
 namespace Trigger.WinForms.Actions
 {
 
-	public class ModelFileDataDetailController : ActionBaseController
+	public class ActionFileDataDetailController : ActionBaseController
 	{
 		public ButtonToolItem AddFileAction
 		{
@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelFileDataDetailController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		public ActionFileDataDetailController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -26,7 +26,7 @@ namespace Trigger.WinForms.Actions
 		{
 			AddFileAction = new ButtonToolItem();
 			AddFileAction.ID = "AddFile_Tool_Action";
-			AddFileAction.Image = Bitmap.FromResource("Paperclip32.png");
+			AddFileAction.Image = ImageExtensions.GetImage("Paperclip32.png", 24);
 			AddFileAction.Text = "Refresh";
 
 			AddFileAction.Click += (sender, e) =>

@@ -15,7 +15,7 @@ namespace Trigger.Datastore.Persistent
 			}
 		}
 
-		public static void UpdatePersistentReferences(IPersistentId persistent)
+		public static void UpdatePersistentReferences(IPersistent persistent)
 		{
 			var properties = persistent.GetType().GetProperties().AsEnumerable()
                 .Where(p => p.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).Length > 0).ToList();
@@ -26,7 +26,7 @@ namespace Trigger.Datastore.Persistent
 
 				if (propValue != null)
 				{
-					var persistentRef = propValue as IPersistentId;
+					var persistentRef = propValue as IPersistent;
 					if (persistentRef != null)
 					{
 						var persistentFromStore = Store.Load(persistentRef.GetType(), persistentRef.MappingId);

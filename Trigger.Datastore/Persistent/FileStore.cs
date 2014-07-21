@@ -11,7 +11,7 @@ namespace Trigger.Datastore.Persistent
 	{
 		const string StoredFileExtension = ".json";
 
-		public void Save(Type type, IPersistentId item)
+		public void Save(Type type, IPersistent item)
 		{
 			string typeDir = CreateTypeDirectory(type);
                     
@@ -23,7 +23,7 @@ namespace Trigger.Datastore.Persistent
 			File.WriteAllText(path, json);
 		}
 
-		public void Save<T>(T item) where T: IPersistentId
+		public void Save<T>(T item) where T: IPersistent
 		{
 			Save(typeof(T), item);
 		}
@@ -38,12 +38,12 @@ namespace Trigger.Datastore.Persistent
 				File.Delete(path);
 		}
 
-		public void DeleteById<T>(object itemId) where T: IPersistentId
+		public void DeleteById<T>(object itemId) where T: IPersistent
 		{
 			DeleteById(typeof(T), itemId);
 		}
 
-		public void Delete(Type type, IPersistentId item)
+		public void Delete(Type type, IPersistent item)
 		{
 			string typeDir = CreateTypeDirectory(type);
 
@@ -53,12 +53,12 @@ namespace Trigger.Datastore.Persistent
 				File.Delete(path);
 		}
 
-		public void Delete<T>(T item) where T: IPersistentId
+		public void Delete<T>(T item) where T: IPersistent
 		{
 			Delete(typeof(T), item);
 		}
 
-		public IPersistentId Load(Type type, object itemId)
+		public IPersistent Load(Type type, object itemId)
 		{
 			string typeDir = CreateTypeDirectory(type);
 
@@ -68,7 +68,7 @@ namespace Trigger.Datastore.Persistent
 			{
 				var content = File.ReadAllText(path);
 
-				var result = (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+				var result = (IPersistent)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
 				PersistentReferenceHelper.UpdatePersistentReferences(result);
 				return result;
 			}
@@ -76,12 +76,12 @@ namespace Trigger.Datastore.Persistent
 			return null;
 		}
 
-		public T Load<T>(object itemId) where T: IPersistentId
+		public T Load<T>(object itemId) where T: IPersistent
 		{
 			return (T)Load(typeof(T), itemId);
 		}
 
-		public IEnumerable<IPersistentId> LoadAll(Type type)
+		public IEnumerable<IPersistent> LoadAll(Type type)
 		{
 			string typeDir = CreateTypeDirectory(type);
 
@@ -90,18 +90,18 @@ namespace Trigger.Datastore.Persistent
 
 		}
 
-		public IEnumerable<T> LoadAll<T>() where T: IPersistentId
+		public IEnumerable<T> LoadAll<T>() where T: IPersistent
 		{
 			return LoadAll(typeof(T)).OfType<T>();
 		}
 
-		static IPersistentId Load(Type type, string path)
+		static IPersistent Load(Type type, string path)
 		{
 			if (File.Exists(path))
 			{
 				var content = File.ReadAllText(path);
 
-				var result = (IPersistentId)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+				var result = (IPersistent)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
 				PersistentReferenceHelper.UpdatePersistentReferences(result);
 				return result;
 			}

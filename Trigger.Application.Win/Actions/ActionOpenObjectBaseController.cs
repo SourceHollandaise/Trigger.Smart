@@ -8,7 +8,7 @@ using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
-	public abstract class ModelOpenObjectBaseController : ActionBaseController
+	public abstract class ActionOpenObjectBaseController : ActionBaseController
 	{
 		public ButtonToolItem OpenAction
 		{
@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ModelOpenObjectBaseController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
+		protected ActionOpenObjectBaseController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -25,7 +25,7 @@ namespace Trigger.WinForms.Actions
 		{
 			OpenAction = new ButtonToolItem();
 			OpenAction.ID = "Open_Tool_Action";
-			OpenAction.Image = Bitmap.FromResource("Edit32.png");
+			OpenAction.Image = ImageExtensions.GetImage("Edit32.png", 24);
 			OpenAction.Text = "Open";
 
 			OpenAction.Click += (sender, e) =>

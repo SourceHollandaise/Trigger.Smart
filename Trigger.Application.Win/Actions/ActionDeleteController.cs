@@ -7,43 +7,24 @@ using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
-	public class ModelModificationController : ActionBaseController
+	public class ActionDeleteController : ActionBaseController
 	{
-		public ButtonToolItem SaveAction
-		{
-			get;
-			protected set;
-		}
-
 		public ButtonToolItem DeleteAction
 		{
 			get;
 			protected set;
 		}
 
-		public ModelModificationController(TemplateBase template, IPersistentId model) : base(template, model)
+		public ActionDeleteController(TemplateBase template, IPersistent model) : base(template, model)
 		{
 
 		}
 
 		public override IEnumerable<ToolItem> ActionItems()
 		{
-			SaveAction = new ButtonToolItem();
-			SaveAction.ID = "Save_Tool_Action";
-			SaveAction.Image = Bitmap.FromResource("Save32.png");
-			SaveAction.Text = "Save";
-			SaveAction.Click += (sender, e) =>
-			{
-				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
-				if (result == DialogResult.Yes)
-					SaveActionExecute();
-			};
-
-			yield return SaveAction;
-
 			DeleteAction = new ButtonToolItem();
 			DeleteAction.ID = "Delete_Tool_Action";
-			DeleteAction.Image = Bitmap.FromResource("Delete32.png");
+			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 24);
 			DeleteAction.Text = "Delete";
 			DeleteAction.Click += (sender, e) =>
 			{
@@ -53,12 +34,6 @@ namespace Trigger.WinForms.Actions
 			};
 
 			yield return DeleteAction;
-		}
-
-		public virtual void SaveActionExecute()
-		{
-			if (CurrentObject != null)
-				CurrentObject.Save();
 		}
 
 		public virtual void DeleteActionExecute()

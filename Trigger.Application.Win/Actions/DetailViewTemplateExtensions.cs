@@ -1,14 +1,11 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
-using Trigger.WinForms.Actions;
-using System;
 using Trigger.WinForms.Layout;
-using System.Linq;
 
 namespace Trigger.WinForms.Actions
 {
 	
-	public static class ModelDetailFormExtension
+	public static class DetailViewTemplateExtensions
 	{
 		public static void ReloadObject(this DetailViewTemplate detailForm)
 		{

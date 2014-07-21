@@ -3,8 +3,20 @@ using Trigger.Datastore.Security;
 
 namespace Trigger.WinForms.Layout
 {
-	public class LogonWindowGenerator
+	public class LogonViewGenerator
 	{
+
+		protected LogonViewTemplate LogonViewTemplate
+		{
+			get;
+			set;
+		}
+
+		public LogonViewGenerator(LogonViewTemplate logonViewTemplate)
+		{
+			this.LogonViewTemplate = logonViewTemplate;
+		}
+
 		public DynamicLayout GetLayout()
 		{
 			DynamicLayout layout = new DynamicLayout();
@@ -41,10 +53,13 @@ namespace Trigger.WinForms.Layout
 
 				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
 				{
-
+					LogonViewTemplate.Close();
 				}
 			};
 
+			layout.EndHorizontal();
+
+			layout.BeginHorizontal();
 			layout.EndHorizontal();
 
 			return layout;

@@ -5,8 +5,7 @@ using System.Linq;
 
 namespace Trigger.WinForms.Actions
 {
-
-	public static class ModelListFormExtensions
+	public static class ListViewTemplateExtensions
 	{
 		public static void ReloadList(this ListViewTemplate listForm)
 		{
