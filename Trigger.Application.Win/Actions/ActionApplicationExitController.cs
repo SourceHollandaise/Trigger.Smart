@@ -58,7 +58,9 @@ namespace Trigger.WinForms.Actions
 
 		public virtual void ExitActionExecute()
 		{
-			Template.Close();
+			var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
+			if (result == DialogResult.Yes)
+				Application.Instance.Quit();
 		}
 
 		public virtual void LogOffActionExecute()
@@ -76,7 +78,6 @@ namespace Trigger.WinForms.Actions
 					Template.Title = "User: " + Dependency.DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
 				};
 			}
-
 		}
 	}
 }

@@ -37,23 +37,13 @@ namespace Trigger.WinForms.Layout
 		public override void OnClosing(System.ComponentModel.CancelEventArgs e)
 		{
 			base.OnClosing(e);
-			var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
-			if (result == DialogResult.Yes)
-			{
-				e.Cancel = false;
 
-				var templatesToClose = WindowManager.ActiveViews.ToList();
-				while (templatesToClose[0] != null)
-				{
-					templatesToClose[0].Close();
-					templatesToClose[0].Dispose();
-				}
-					
-				Application.Instance.Quit();
+			var templatesToClose = WindowManager.ActiveViews.ToList();
+			while (templatesToClose.Count > 0)
+			{
+				templatesToClose[0].Close();
+				templatesToClose[0].Dispose();
 			}
-			else
-				e.Cancel = true;
-				
 		}
 	}
 }

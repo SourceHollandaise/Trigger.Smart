@@ -38,13 +38,13 @@ namespace Trigger.Application.WinForms
 
 			ExceptionManager.UnhandledException += (args) =>
 			{
-				args.ExitApplication = false;
+				//args.ExitApplication = false;
 
 				if (args.IsTerminating)
 				{
 					Log.DefaultHandler("App", LogLevelFlags.FlagFatal & LogLevelFlags.Critical, args.ExceptionObject.ToString());
 
-					application.RunIteration();
+					//application.RunIteration();
 				}
 			};
 		}
