@@ -4,6 +4,7 @@ using Trigger.WinForms.Actions;
 using System;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
@@ -16,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelFileDataDetailController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		public ModelFileDataDetailController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -30,13 +31,13 @@ namespace Trigger.WinForms.Actions
 
 			AddFileAction.Click += (sender, e) =>
 			{
-				AddFileExecute();
+				AddFileActionExecute();
 			};
 
 			yield return AddFileAction;
 		}
 
-		protected virtual void AddFileExecute()
+		public virtual void AddFileActionExecute()
 		{
 			var service = Dependency.DependencyMapProvider.Instance.ResolveType<IFileDataService>();
 			if (CurrentObject != null)

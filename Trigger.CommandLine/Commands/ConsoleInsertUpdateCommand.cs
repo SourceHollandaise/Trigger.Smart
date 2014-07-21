@@ -166,13 +166,13 @@ namespace Trigger.CommandLine.Commands
 				document.Initialize();
 				document.Subject = subject;
 				document.User = CurrentUser;
-				new DocumentDataService(document).AddFile(fileName);
+				new DocumentDataService().AddFile(document, fileName);
 			}
 			else
 			{
 				Console.WriteLine("Document exists! Overwrite? Press <Enter> for override or any key to continue!");
 				if (Console.ReadKey().Key == ConsoleKey.Enter)
-					new DocumentDataService(document).AddFile(fileName);
+					new DocumentDataService().AddFile(document, fileName);
 			}
 
 			document.Project = InsertUpdateProject();

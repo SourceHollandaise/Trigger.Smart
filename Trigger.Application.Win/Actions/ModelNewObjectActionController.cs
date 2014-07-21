@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelNewObjectActionController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		public ModelNewObjectActionController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -30,19 +30,26 @@ namespace Trigger.WinForms.Actions
 
 			NewAction.Click += (sender, e) =>
 			{
-				NewObjectExecute();
+				NewActionExecute();
 			};
 
 			yield return NewAction;
 		}
 
-		protected virtual void NewObjectExecute()
+		protected virtual void NewActionExecute()
 		{
 			CurrentObject = Activator.CreateInstance(ModelType) as IPersistentId;
 			CurrentObject.Initialize();
 	
-			var detailForm = new ModelDetailForm(ModelType, CurrentObject);
+			var detailForm = new DetailViewTemplate(ModelType, CurrentObject);
 			detailForm.Show();
+
+			detailForm.Closed += (sender, e) =>
+			{
+				var listForm = Template as ListViewTemplate;
+				if (listForm != null)
+					listForm.ReloadList();
+			};
 		}
 	}
 	

@@ -2,14 +2,15 @@ using System;
 using Eto.Forms;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.WinForms.Layout
 {
-	public class MainForm : Form
+	public class MainViewTemplate : Form
 	{
-		public MainForm(IEnumerable<Type> types)
+		public MainViewTemplate(IEnumerable<Type> types)
 		{
-			Size = new Size(1280, 800);
+			Size = new Size(640, 480);
 
 			ListBox listBox = new ListBox();
 
@@ -23,7 +24,13 @@ namespace Trigger.WinForms.Layout
 				if (e.Key != Keys.Enter)
 					return;
 
-				new ModelListForm((listBox.SelectedValue as ListItem).Tag as Type, null).Show();
+				var type = (listBox.SelectedValue as ListItem).Tag as Type;
+
+				var listTemplate = TemplateManager.GetListTemplate(type);
+				if (listTemplate.Visible)
+					listTemplate.BringToFront();
+				else
+					listTemplate.Show();
 			};
 		}
 
@@ -31,7 +38,7 @@ namespace Trigger.WinForms.Layout
 		{
 			base.OnLoadComplete(e);
 
-			var logon = new LogonForm();
+			var logon = new LogonViewTemplate();
 			logon.Topmost = true;
 
 			logon.Show();

@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelListLayoutManager
+	public class ListViewGenerator
 	{
 		readonly IStore store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public ModelListLayoutManager(Type modelType)
+		public ListViewGenerator(Type modelType)
 		{
 			this.ModelType = modelType;
 		}

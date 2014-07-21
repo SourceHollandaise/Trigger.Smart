@@ -1,29 +1,49 @@
 using Eto.Forms;
+using Eto.Drawing;
 using Trigger.Datastore.Security;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelLogonLayoutManager
+	public class LogonViewTemplate : Form
 	{
+		public LogonViewTemplate()
+		{
+			Size = new Size(340, 200);
+			Title = "Logon - Enter username and password";
+			Topmost = true;
+		
+			Content = GetLayout();
+		}
+
+		public override void OnLoadComplete(System.EventArgs e)
+		{
+			base.OnLoadComplete(e);
+
+			BringToFront();
+		}
+
 		public DynamicLayout GetLayout()
 		{
 			DynamicLayout layout = new DynamicLayout();
 
 			layout.BeginHorizontal();
+		
 			var textBoxUserName = new TextBox
 			{
-				PlaceholderText = "Set username..."
+				PlaceholderText = "Username"
 			};
-			textBoxUserName.Size = new Eto.Drawing.Size(-1, -1);
+			textBoxUserName.Size = new Size(-1, -1);
 			layout.Add(textBoxUserName, true);
 			layout.EndHorizontal();
 
 			layout.BeginHorizontal();
+
 			var textBoxPassword = new TextBox
 			{
-				PlaceholderText = "Set password...",
+				PlaceholderText = "Password",
 			};
-			textBoxPassword.Size = new Eto.Drawing.Size(-1, -1);
+				
+			textBoxPassword.Size = new Size(-1, -1);
 
 			layout.Add(textBoxPassword, true);
 			layout.EndHorizontal();
@@ -32,7 +52,6 @@ namespace Trigger.WinForms.Layout
 			var logonButton = new Button()
 			{
 				Text = "Log on",
-				Size = new Eto.Drawing.Size(30, -1)
 			};
 			layout.Add(logonButton, true);
 			logonButton.Click += (sender, e) =>
@@ -41,10 +60,14 @@ namespace Trigger.WinForms.Layout
 
 				if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
 				{
-
+					this.Close();
 				}
 			};
+			logonButton.Image = Bitmap.FromResource("Login_in32.png");
+			logonButton.ImagePosition = ButtonImagePosition.Left;
+			layout.EndHorizontal();
 
+			layout.BeginHorizontal();
 			layout.EndHorizontal();
 
 			return layout;

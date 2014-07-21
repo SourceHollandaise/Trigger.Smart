@@ -11,13 +11,13 @@ namespace Trigger.WinForms.Layout
 	{
 		public IList<ActionBaseController> Controllers = new List<ActionBaseController>();
 
-		protected IPersistentId CurrentObject
+		public IPersistentId CurrentObject
 		{
 			get;
 			set;
 		}
 
-		protected Type ModelType
+		public Type ModelType
 		{
 			get;
 			set;

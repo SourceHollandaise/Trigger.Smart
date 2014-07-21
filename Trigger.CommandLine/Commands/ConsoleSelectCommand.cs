@@ -67,15 +67,15 @@ namespace Trigger.CommandLine.Commands
 
 			if (target.ToLower().Equals("document"))
 			{
-				Console.WriteLine();
-				Console.WriteLine("Add new documents to store...");
-				var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
-				Console.WriteLine();
-				Console.WriteLine(string.Format("{0} documents added!", count));
-				Console.WriteLine();
-
-				Console.WriteLine();
-				Console.WriteLine("Load documents...");
+//				Console.WriteLine();
+//				Console.WriteLine("Add new documents to store...");
+//				var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
+//				Console.WriteLine();
+//				Console.WriteLine(string.Format("{0} documents added!", count));
+//				Console.WriteLine();
+//
+//				Console.WriteLine();
+//				Console.WriteLine("Load documents...");
 
 				foreach (var item in Store.LoadAll<Document>().OrderBy( p => p.Created).ThenBy(p => p.Subject))
 					Console.WriteLine(item.GetRepresentation());

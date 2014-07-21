@@ -50,8 +50,8 @@ namespace Trigger.Datastore.Persistent
 
 		public virtual void Initialize()
 		{
-			created = DateTime.Now;
-			createdBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+			Created = DateTime.Now;
+			CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 		}
 
 		public virtual void Save()

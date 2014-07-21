@@ -4,6 +4,7 @@ using Trigger.WinForms.Actions;
 using System;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
@@ -15,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ModelOpenObjectBaseController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		protected ModelOpenObjectBaseController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -29,13 +30,13 @@ namespace Trigger.WinForms.Actions
 
 			OpenAction.Click += (sender, e) =>
 			{
-				OpenObjectExecute();
+				OpenObjectActionExecute();
 			};
 
 			yield return OpenAction;
 		}
 
-		protected virtual void OpenObjectExecute()
+		public virtual void OpenObjectActionExecute()
 		{
 
 		}

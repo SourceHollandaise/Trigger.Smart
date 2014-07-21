@@ -8,22 +8,25 @@ namespace Trigger.WinForms.Actions
 {
 	public class ModelOpenObjectListController : ModelOpenObjectBaseController
 	{
-		public ModelOpenObjectListController(Form template, Type modelType, IPersistentId model) : base(template, modelType, model)
+		public ModelOpenObjectListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
 		}
 
-		protected override void OpenObjectExecute()
+		public override void OpenObjectActionExecute()
 		{
-			var listForm = Template as ModelListForm;
+			var listForm = Template as ListViewTemplate;
 
 			if (listForm != null)
 			{
 				var selection = listForm.CurrentGrid.SelectedItem as IPersistentId;
 				if (selection != null)
 				{
-					var detailForm = new ModelDetailForm(ModelType, selection);
-					detailForm.Show();
+					var detailTemplate = TemplateManager.GetDetailTemplate(selection);
+					if (detailTemplate.Visible)
+						detailTemplate.BringToFront();
+					else
+						detailTemplate.Show();
 				}
 			}
 		}

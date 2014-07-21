@@ -4,6 +4,7 @@ using Trigger.WinForms.Actions;
 using System.Collections.Generic;
 using System;
 using Eto.Drawing;
+using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
@@ -15,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ModelRefreshBaseController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		protected ModelRefreshBaseController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -29,13 +30,13 @@ namespace Trigger.WinForms.Actions
 
 			RefreshAction.Click += (sender, e) =>
 			{
-				RefreshExecute();
+				RefreshActionExecute();
 			};
 
 			yield return RefreshAction;
 		}
 
-		protected virtual void RefreshExecute()
+		public virtual void RefreshActionExecute()
 		{
 
 

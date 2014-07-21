@@ -38,34 +38,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Layouts\ModelDetailLayoutManager.cs" />
-    <Compile Include="Layouts\ModelListLayoutManager.cs" />
-    <Compile Include="Layouts\ModelLogonLayoutManager.cs" />
-    <Compile Include="Templates\LogonForm.cs" />
-    <Compile Include="Templates\MainForm.cs" />
-    <Compile Include="Templates\ModelDetailForm.cs" />
-    <Compile Include="Templates\ModelListForm.cs" />
     <Compile Include="Actions\ActionBaseController.cs" />
     <Compile Include="Actions\ModelModificationController.cs" />
     <Compile Include="Actions\ModelNewObjectActionController.cs" />
-    <Compile Include="Templates\TemplateBase.cs" />
     <Compile Include="Actions\ModelRefreshDetailController.cs" />
     <Compile Include="Actions\ModelRefreshListController.cs" />
     <Compile Include="Actions\ModelOpenObjectBaseController.cs" />
     <Compile Include="Actions\ModelOpenObjectListController.cs" />
-    <Compile Include="Layouts\DetailPropertyEditorFactory.cs" />
-    <Compile Include="Layouts\ListPropertyEditorFactory.cs" />
     <Compile Include="Actions\ModelFilterListController.cs" />
     <Compile Include="Actions\ModelRefreshBaseController.cs" />
     <Compile Include="Actions\ModelFileDataDetailController.cs" />
     <Compile Include="Actions\ModelFileDataListController.cs" />
+    <Compile Include="Actions\ModelListFormExtensions.cs" />
+    <Compile Include="Actions\ModelDetailFormExtension.cs" />
+    <Compile Include="Layouts\Detail\DetailPropertyEditorFactory.cs" />
+    <Compile Include="Layouts\Detail\DetailViewGenerator.cs" />
+    <Compile Include="Layouts\Detail\LogonWindowGenerator.cs" />
+    <Compile Include="Layouts\List\ListPropertyEditorFactory.cs" />
+    <Compile Include="Layouts\List\ListViewGenerator.cs" />
+    <Compile Include="Layouts\Detail\DetailViewTemplate.cs" />
+    <Compile Include="Layouts\MainViewTemplate.cs" />
+    <Compile Include="Layouts\Detail\LogonViewTemplate.cs" />
+    <Compile Include="Layouts\List\ListViewTemplate.cs" />
+    <Compile Include="Layouts\TemplateBase.cs" />
+    <Compile Include="Layouts\TemplateManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Templates\" />
     <Folder Include="Layouts\" />
     <Folder Include="Actions\" />
     <Folder Include="Images\" />
+    <Folder Include="Layouts\Detail\" />
+    <Folder Include="Layouts\List\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.Datastore\Trigger.Datastore.csproj">

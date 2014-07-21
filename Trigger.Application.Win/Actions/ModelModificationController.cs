@@ -3,6 +3,7 @@ using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
@@ -20,7 +21,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelModificationController(Form template, IPersistentId model) : base(template, model)
+		public ModelModificationController(TemplateBase template, IPersistentId model) : base(template, model)
 		{
 
 		}
@@ -35,7 +36,7 @@ namespace Trigger.WinForms.Actions
 			{
 				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
-					SaveExecute();
+					SaveActionExecute();
 			};
 
 			yield return SaveAction;
@@ -48,19 +49,19 @@ namespace Trigger.WinForms.Actions
 			{
 				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
-					DeleteExecute();
+					DeleteActionExecute();
 			};
 
 			yield return DeleteAction;
 		}
 
-		protected virtual void SaveExecute()
+		public virtual void SaveActionExecute()
 		{
 			if (CurrentObject != null)
 				CurrentObject.Save();
 		}
 
-		protected virtual void DeleteExecute()
+		public virtual void DeleteActionExecute()
 		{
 			if (CurrentObject != null)
 				CurrentObject.Delete();

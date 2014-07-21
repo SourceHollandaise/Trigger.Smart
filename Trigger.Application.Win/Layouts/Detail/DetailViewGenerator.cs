@@ -1,12 +1,11 @@
 using System;
-using System.Linq;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelDetailLayoutManager
+	public class DetailViewGenerator
 	{
 		protected IPersistentId Model
 		{
@@ -14,7 +13,7 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public ModelDetailLayoutManager(IPersistentId model)
+		public DetailViewGenerator(IPersistentId model)
 		{
 			this.Model = model;
 		}

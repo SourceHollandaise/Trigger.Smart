@@ -30,21 +30,21 @@ namespace Trigger.CommandLine
 			Console.WriteLine();
 			Console.WriteLine("Search for new documents...");
 			Console.WriteLine();
-			var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
-			if (count == 0)
-			{
-				Console.WriteLine("No new documents found!");
-			}
-			else
-			{
-				Console.WriteLine("{0} documents added!", count);
-				Console.WriteLine();
-				Console.WriteLine("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName);
-				Console.WriteLine();
-				foreach (var item in Map.ResolveType<IStore>().LoadAll<IssueTracker>().Where(p => !p.IsDone).OrderBy(p => p.Created))
-					Console.WriteLine(item.GetRepresentation());
-
-			}
+//			var count = new Trigger.CRM.Services.FileUpdateService().LoadFromDocumentStore();
+//			if (count == 0)
+//			{
+//				Console.WriteLine("No new documents found!");
+//			}
+//			else
+//			{
+//				Console.WriteLine("{0} documents added!", count);
+//				Console.WriteLine();
+//				Console.WriteLine("This is an overview for you {0}! Loading current open issues...", Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName);
+//				Console.WriteLine();
+//				foreach (var item in Map.ResolveType<IStore>().LoadAll<IssueTracker>().Where(p => !p.IsDone).OrderBy(p => p.Created))
+//					Console.WriteLine(item.GetRepresentation());
+//
+//			}
 
 			/*
 			for (int i = 1000; i < 6000; i++)

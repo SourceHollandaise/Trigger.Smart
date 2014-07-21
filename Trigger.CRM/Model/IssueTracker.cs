@@ -35,7 +35,7 @@ namespace Trigger.CRM.Model
 			{
 				return isDone;
 			}
-			set
+			protected set
 			{
 				if (Equals(IsDone, value))
 					return;
@@ -45,12 +45,21 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		string duration;
 
-		public TimeSpan? Duration
+		public string Duration
 		{
 			get
 			{
-				return Resolved.HasValue && Created.HasValue ? Resolved - Created : null;
+				return duration;
+			}
+			protected set
+			{
+				if (Equals(duration, value))
+					return;
+				duration = value;
+
+				OnPropertyChanged();
 			}
 		}
 
@@ -191,12 +200,14 @@ namespace Trigger.CRM.Model
 				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 				Resolved = DateTime.Now;
 				IsDone = true;
+				Duration = (Resolved - Created).ToString();
 			}
 			else
 			{
 				ResolvedBy = null;
 				Resolved = null;
 				IsDone = false;
+				Duration = null;
 			}
 		}
 	}

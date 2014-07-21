@@ -5,11 +5,11 @@ using System;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelDetailForm : TemplateBase
+	public class DetailViewTemplate : TemplateBase
 	{
-		public ModelDetailForm(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
+		public DetailViewTemplate(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
 		{
-			Content = new ModelDetailLayoutManager(CurrentObject).GetLayout();
+			Content = new DetailViewGenerator(CurrentObject).GetLayout();
 
 			Size = new Size(800, 600);
 			Title = ModelType.Name + " - " + CurrentObject.GetRepresentation();
@@ -20,6 +20,13 @@ namespace Trigger.WinForms.Layout
 
 			if (typeof(IFileData).IsAssignableFrom(ModelType))
 				Controllers.Add(new ModelFileDataDetailController(this, ModelType, CurrentObject));
+		}
+
+		public override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+
+			TemplateManager.RemoveDetailTemplate(CurrentObject);
 		}
 	}
 }

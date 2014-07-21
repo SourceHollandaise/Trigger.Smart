@@ -2,12 +2,13 @@ using Eto.Forms;
 using System.Collections.Generic;
 using Trigger.Datastore.Persistent;
 using System;
+using Trigger.WinForms.Layout;
 
 namespace Trigger.WinForms.Actions
 {
 	public abstract class ActionBaseController
 	{
-		protected Form Template
+		protected TemplateBase Template
 		{
 			get;
 			set;
@@ -25,7 +26,7 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
-		protected ActionBaseController(Form template, IPersistentId currentObject)
+		protected ActionBaseController(TemplateBase template, IPersistentId currentObject)
 		{
 			this.Template = template;
 			this.CurrentObject = currentObject;

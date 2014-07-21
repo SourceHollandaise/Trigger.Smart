@@ -27,7 +27,7 @@ namespace Trigger.Application.WinForms
 		
 			application.Initialized += (sender, e) =>
 			{
-				application.MainForm = new MainForm(DeclaredTypes());
+				application.MainForm = new MainViewTemplate(DeclaredTypes());
 				application.MainForm.BringToFront();
 				application.MainForm.Show();
 		

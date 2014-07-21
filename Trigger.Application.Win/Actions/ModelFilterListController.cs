@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ModelFilterListController : ActionBaseController
 	{
-		public ModelFilterListController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		public ModelFilterListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}

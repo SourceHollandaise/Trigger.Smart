@@ -1,10 +1,9 @@
 using System;
-using Eto.Forms;
-using Trigger.Datastore.Persistent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Eto;
-using System.Collections.Generic;
+using Eto.Forms;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.WinForms.Layout
 {
@@ -48,7 +47,7 @@ namespace Trigger.WinForms.Layout
 					if (value != null)
 						((ComboBox)control).SelectedKey = (string)(value as IPersistentId).MappingId;
 					else
-						((ComboBox)control).SelectedKey = null;
+						((ComboBox)control).SelectedValue = null;
 				}
 
 				if (property.PropertyType == typeof(Enum))
@@ -56,7 +55,7 @@ namespace Trigger.WinForms.Layout
 					if (value != null)
 						((ComboBox)control).SelectedKey = (string)value;
 					else
-						((ComboBox)control).SelectedKey = null;
+						((ComboBox)control).SelectedValue = null;
 				}
 			}
 		}
@@ -147,7 +146,7 @@ namespace Trigger.WinForms.Layout
 					var current = control.SelectedValue as ListItem;
 					if (current != null)
 					{
-						var detailForm = new ModelDetailForm(current.Tag.GetType(), current.Tag as IPersistentId);
+						var detailForm = new DetailViewTemplate(current.Tag.GetType(), current.Tag as IPersistentId);
 						detailForm.Show();
 					}
 				}
@@ -174,7 +173,8 @@ namespace Trigger.WinForms.Layout
 		{
 			var control = new DateTimePicker
 			{
-				Value = (DateTime?)property.GetValue(Model, null)
+				Value = (DateTime?)property.GetValue(Model, null),
+				Mode = DateTimePickerMode.DateTime
 			};
 			control.ValueChanged += (sender, e) =>
 			{

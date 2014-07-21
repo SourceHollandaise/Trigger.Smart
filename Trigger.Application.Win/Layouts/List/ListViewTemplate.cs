@@ -7,7 +7,7 @@ using Trigger.WinForms.Actions;
 
 namespace Trigger.WinForms.Layout
 {
-	public class ModelListForm : TemplateBase
+	public class ListViewTemplate : TemplateBase
 	{
 		public GridView CurrentGrid
 		{
@@ -15,14 +15,14 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public ModelListForm(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
+		public ListViewTemplate(Type modelType, IPersistentId currentObject) : base(modelType, currentObject)
 		{
 			if (CurrentGrid == null)
-				CurrentGrid = new ModelListLayoutManager(ModelType).GetLayout();
+				CurrentGrid = new ListViewGenerator(ModelType).GetLayout();
 
 			Content = CurrentGrid;
 
-			Size = new Size(1280, 800);
+			Size = new Size(1024, 768);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 
 			Controllers.Add(new ModelNewObjectActionController(this, ModelType, CurrentObject));
@@ -31,6 +31,13 @@ namespace Trigger.WinForms.Layout
 
 			if (typeof(IFileData).IsAssignableFrom(ModelType))
 				Controllers.Add(new ModelFileDataListController(this, ModelType, CurrentObject));
+		}
+
+		public override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+
+			TemplateManager.RemoveListTemplate(ModelType);
 		}
 	}
 }

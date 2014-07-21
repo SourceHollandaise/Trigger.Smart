@@ -4,6 +4,8 @@ using Trigger.WinForms.Actions;
 using System;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.WinForms.Layout;
+using System.Linq;
 
 namespace Trigger.WinForms.Actions
 {
@@ -15,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ModelFileDataListController(Form template, Type modelType, IPersistentId model) : base(template, model)
+		public ModelFileDataListController(TemplateBase template, Type modelType, IPersistentId model) : base(template, model)
 		{
 			this.ModelType = modelType;
 		}
@@ -29,16 +31,20 @@ namespace Trigger.WinForms.Actions
 
 			LoadFilesAction.Click += (sender, e) =>
 			{
-				LoadFilesExecute();
+				LoadFilesActionExecute();
 			};
 
 			yield return LoadFilesAction;
 		}
 
-		protected virtual void LoadFilesExecute()
+		public virtual void LoadFilesActionExecute()
 		{
 			var service = Dependency.DependencyMapProvider.Instance.ResolveType<IFileDataService>();
 			service.LoadFromStore();
+
+			var listForm = Template as ListViewTemplate;
+			if (listForm != null)
+				listForm.ReloadList();				
 		}
 	}
 }
