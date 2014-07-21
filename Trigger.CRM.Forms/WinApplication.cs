@@ -45,6 +45,8 @@ namespace Trigger.Application.WinForms
 					Log.DefaultHandler("App", LogLevelFlags.FlagFatal & LogLevelFlags.Critical, args.ExceptionObject.ToString());
 
 					//application.RunIteration();
+
+					//application.Restart();
 				}
 			};
 		}

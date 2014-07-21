@@ -27,42 +27,6 @@ namespace Trigger.CRM.Model
 			return sb.ToString();
 		}
 
-		bool isDone;
-
-		public bool IsDone
-		{
-			get
-			{
-				return isDone;
-			}
-			protected set
-			{
-				if (Equals(IsDone, value))
-					return;
-				isDone = value;
-
-				OnPropertyChanged();
-			}
-		}
-
-		string duration;
-
-		public string Duration
-		{
-			get
-			{
-				return duration;
-			}
-			protected set
-			{
-				if (Equals(duration, value))
-					return;
-				duration = value;
-
-				OnPropertyChanged();
-			}
-		}
-
 		string subject;
 
 		public string Subject
@@ -192,6 +156,43 @@ namespace Trigger.CRM.Model
 				OnPropertyChanged();
 			}
 		}
+
+		bool isDone;
+
+		public bool IsDone
+		{
+			get
+			{
+				return isDone;
+			}
+			protected set
+			{
+				if (Equals(IsDone, value))
+					return;
+				isDone = value;
+
+				OnPropertyChanged();
+			}
+		}
+
+		string duration;
+
+		public string Duration
+		{
+			get
+			{
+				return duration;
+			}
+			protected set
+			{
+				if (Equals(duration, value))
+					return;
+				duration = value;
+
+				OnPropertyChanged();
+			}
+		}
+
 
 		void UpdateIssue(IssueState state)
 		{
