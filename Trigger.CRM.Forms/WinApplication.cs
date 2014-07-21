@@ -2,6 +2,7 @@ using GLib;
 using Trigger.CRM.Model;
 using Trigger.WinForms.Layout;
 using Trigger.Datastore.Security;
+using System;
 
 namespace Trigger.Application.WinForms
 {
@@ -19,6 +20,7 @@ namespace Trigger.Application.WinForms
 			};
 		}
 
+		[STAThread]
 		static void Main()
 		{
 			new Bootstrapper().StartUpApplication();
