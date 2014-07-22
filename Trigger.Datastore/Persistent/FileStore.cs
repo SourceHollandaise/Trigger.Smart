@@ -68,9 +68,16 @@ namespace Trigger.Datastore.Persistent
 			{
 				var content = File.ReadAllText(path);
 
-				var result = (IPersistent)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
-				PersistentReferenceHelper.UpdatePersistentReferences(result);
-				return result;
+				try
+				{
+					var result = (IPersistent)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
+					PersistentReferenceHelper.UpdatePersistentReferences(result);
+					return result;
+				}
+				catch
+				{
+					return null;
+				}
 			}
 
 			return null;

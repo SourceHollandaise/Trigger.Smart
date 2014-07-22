@@ -22,9 +22,22 @@ namespace Trigger.WinForms.Layout
 
 		public Cell CreateDataCell(PropertyInfo property)
 		{
+			if (typeof(IPersistent).IsAssignableFrom(property.PropertyType.BaseType))
+			{
+				var attribute = property.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).FirstOrDefault() as PersistentReferenceAttribute;
+				if (attribute != null && !string.IsNullOrWhiteSpace(attribute.AliasProperty))
+					return new TextBoxCell(attribute.AliasProperty);
+			}
+
+			if (property.PropertyType == typeof(bool))
+			{
+				return new CheckBoxCell(property.Name);
+			}
+
 			if (property.PropertyType == typeof(string))
 			{
-				return new TextBoxCell(property.Name);
+				if (!property.Name.EndsWith("Alias"))
+					return new TextBoxCell(property.Name);
 			}
 
 			if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
@@ -36,25 +49,7 @@ namespace Trigger.WinForms.Layout
 			{
 				return new TextBoxCell(property.Name);
 			}
-
-			if (property.PropertyType == typeof(bool))
-			{
-				return new CheckBoxCell(property.Name);
-			}
-
-			if (typeof(IPersistent).IsAssignableFrom(property.PropertyType.BaseType))
-			{
-				var attribute = property.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).FirstOrDefault() as PersistentReferenceAttribute;
-				if (attribute != null)
-				{
-					if (string.IsNullOrWhiteSpace(attribute.AliasProperty))
-						return new TextBoxCell(attribute.AliasProperty);
 				
-				}
-
-				return new TextBoxCell(property.Name);
-			}
-
 			if (property.PropertyType.BaseType == typeof(Enum))
 			{
 				return new TextBoxCell(property.Name);

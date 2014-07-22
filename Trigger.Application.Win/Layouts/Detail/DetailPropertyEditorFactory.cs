@@ -63,6 +63,17 @@ namespace Trigger.WinForms.Layout
 
 		Dictionary<string, Control> Bindings = new Dictionary<string, Control>();
 
+		bool IsEnabled(PropertyInfo property)
+		{
+			var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true)
+				.FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
+
+			if (attribute == null)
+				return true;
+
+			return !attribute.IsReadOnly;
+		}
+
 		public TextBox StringPropertyEditor(PropertyInfo property)
 		{
 			var control = new TextBox
@@ -73,8 +84,8 @@ namespace Trigger.WinForms.Layout
 			{
 				property.SetValue(Model, control.Text, null);
 			};
-			control.Size = new Eto.Drawing.Size(-1, -1);
-			control.ReadOnly = !property.CanWrite;
+			control.Size = new Size(-1, -1);
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 
 			return control;
@@ -98,6 +109,7 @@ namespace Trigger.WinForms.Layout
 				var current = control.SelectedValue as ListItem;
 				property.SetValue(Model, current.Tag, null);
 			};
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 			return control;
 		}
@@ -182,7 +194,7 @@ namespace Trigger.WinForms.Layout
 				if (e.Modifiers == Keys.Control && e.Key == Keys.Backspace)
 					ClearReference(control);
 			};
-
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 			return control;
 		}
@@ -197,6 +209,7 @@ namespace Trigger.WinForms.Layout
 			{
 				property.SetValue(Model, control.Checked.Value, null);
 			};
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 			return control;
 		}
@@ -212,6 +225,7 @@ namespace Trigger.WinForms.Layout
 			{
 				property.SetValue(Model, control.Value, null);
 			};
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 			return control;
 		}
@@ -227,6 +241,7 @@ namespace Trigger.WinForms.Layout
 			{
 				//property.SetValue(Model, textBox.Text, null);
 			};
+			control.Enabled = IsEnabled(property);
 			Bindings.Add(property.Name, control);
 			return control;
 		}

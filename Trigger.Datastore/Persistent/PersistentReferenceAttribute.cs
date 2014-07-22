@@ -16,19 +16,4 @@ namespace Trigger.Datastore.Persistent
 			AliasProperty = aliasProperty;
 		}
 	}
-
-	[AttributeUsage(AttributeTargets.Property)]
-	public class PersistentReferenceAliasAttribute : Attribute
-	{
-		public string ReferencePropertyName
-		{
-			get;
-			private set;
-		}
-
-		public PersistentReferenceAliasAttribute(string referencePropertyName)
-		{
-			ReferencePropertyName = referencePropertyName;
-		}
-	}
 }

@@ -41,8 +41,8 @@ namespace Trigger.Application.WinForms
 
 			if (user == null)
 			{
-				user = new User{ UserName = "Admin" };
-				user.SetPassword("admin");
+				user = new User{ UserName = "Admin", Password = "admin" };
+			
 				user.Save();
 			}
 		}

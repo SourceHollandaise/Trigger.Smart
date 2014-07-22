@@ -1,6 +1,4 @@
-using System;
 using Trigger.Dependency;
-using Trigger.Datastore.Security;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -30,9 +28,9 @@ namespace Trigger.Datastore.Persistent
 				IPersistent value = property.GetValue(CurrentObject, null) as IPersistent;
 				if (value != null)
 				{
-					var List = store.LoadAll(property.GetType()).Where(p => p.MappingId != null && p.MappingId == value.MappingId);
+					var list = store.LoadAll(property.GetType()).Where(p => p.MappingId != null && p.MappingId == value.MappingId);
 
-					yield return List;
+					yield return list;
 				}
 			}
 		}

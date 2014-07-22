@@ -36,7 +36,7 @@ namespace Trigger.WinForms.Layout
 				{
 					if (property.Name.EndsWith("Alias"))
 						continue;
-
+						
 					if (property.PropertyType == typeof(string))
 					{
 						layout.BeginHorizontal();
@@ -44,7 +44,7 @@ namespace Trigger.WinForms.Layout
 						{
 							Text = property.Name
 						});
-	
+
 						layout.Add(editorFactory.StringPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
