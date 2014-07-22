@@ -253,24 +253,27 @@ namespace Trigger.CRM.Model
 
 		void UpdateIssue()
 		{
-			if (IssueState == IssueState.InProgress)
+			switch (IssueState)
 			{
-				Start = DateTime.Now;
-			}
-			if (IssueState == IssueState.Done || IssueState == IssueState.Rejected)
-			{
-				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-				Resolved = DateTime.Now;
-				IsDone = true;
-				Duration = (Resolved - Start).ToString();
-			}
-			else
-			{
-				Start = null;
-				ResolvedBy = null;
-				Resolved = null;
-				IsDone = false;
-				Duration = null;
+				case IssueState.Open:
+				case IssueState.Accepted:
+					ResolvedBy = null;
+					Resolved = null;
+					Start = null;
+					Duration = null;
+					IsDone = false;
+					break;
+				case IssueState.InProgress:
+					if (!Start.HasValue)
+						Start = DateTime.Now;
+					break;
+				case IssueState.Done:
+				case IssueState.Rejected:
+					ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+					Resolved = DateTime.Now;
+					IsDone = true;
+					Duration = (Resolved - Start).ToString();
+					break;
 			}
 		}
 	}

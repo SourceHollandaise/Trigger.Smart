@@ -16,7 +16,7 @@ namespace Trigger.Application.WinForms
 				typeof(IssueTracker),
 				typeof(Area),
 				typeof(Document),
-				typeof(TimeTracker),
+				//typeof(TimeTracker),
 				typeof(Contact),
 				typeof(Person),
 				typeof(User)

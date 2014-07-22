@@ -12,7 +12,6 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionLinkedListController : ActionBaseController
 	{
-
 		public ActionLinkedListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Links";

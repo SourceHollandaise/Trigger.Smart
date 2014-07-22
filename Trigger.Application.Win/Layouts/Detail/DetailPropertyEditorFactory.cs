@@ -18,7 +18,6 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-
 		public DetailPropertyEditorFactory(IPersistent model)
 		{
 			this.Model = model;
