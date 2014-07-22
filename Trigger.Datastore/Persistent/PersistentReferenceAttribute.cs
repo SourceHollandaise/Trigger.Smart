@@ -16,4 +16,19 @@ namespace Trigger.Datastore.Persistent
 			AliasProperty = aliasProperty;
 		}
 	}
+
+	[AttributeUsage(AttributeTargets.Property)]
+	public class LinkedListAttribute : Attribute
+	{
+		public Type LinkType
+		{
+			get;
+			private set;
+		}
+
+		public LinkedListAttribute(Type linkType)
+		{
+			LinkType = linkType;
+		}
+	}
 }

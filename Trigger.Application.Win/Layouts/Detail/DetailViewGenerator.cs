@@ -2,14 +2,16 @@ using System;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
 	public class DetailViewGenerator
 	{
-		DetailPropertyEditorFactory editorFactory;
+		protected DetailPropertyEditorFactory EditorFactory
+		{
+			get;
+			set;
+		}
 
 		protected IPersistent Model
 		{
@@ -20,12 +22,11 @@ namespace Trigger.WinForms.Layout
 		public DetailViewGenerator(IPersistent model)
 		{
 			this.Model = model;
-			editorFactory = new DetailPropertyEditorFactory(Model);
+			EditorFactory = new DetailPropertyEditorFactory(Model);
 		}
 
 		public DynamicLayout GetContent()
 		{
-
 			var layout = new DynamicLayout();
 
 			var properties = Model.GetType().GetProperties();
@@ -45,7 +46,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 
-						layout.Add(editorFactory.StringPropertyEditor(property), true);
+						layout.Add(EditorFactory.StringPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
@@ -57,7 +58,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 			
-						layout.Add(editorFactory.DateTimePropertyEditor(property), true);
+						layout.Add(EditorFactory.DateTimePropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
@@ -69,7 +70,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 			
-						layout.Add(editorFactory.TimeSpanPropertyEditor(property), true);
+						layout.Add(EditorFactory.TimeSpanPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
@@ -81,7 +82,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 		
-						layout.Add(editorFactory.BooleanPropertyEditor(property), true);
+						layout.Add(EditorFactory.BooleanPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
@@ -93,7 +94,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 
-						var referenceComboBox = editorFactory.ReferencePropertyEditor(property);
+						var referenceComboBox = EditorFactory.ReferencePropertyEditor(property);
 
 						layout.Add(referenceComboBox, true);
 
@@ -110,7 +111,7 @@ namespace Trigger.WinForms.Layout
 							Text = property.Name
 						});
 
-						layout.Add(editorFactory.EnumPropertyEditor(property), true);
+						layout.Add(EditorFactory.EnumPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 				}
@@ -126,8 +127,8 @@ namespace Trigger.WinForms.Layout
 		{
 			layout.BeginVertical();
 			layout.BeginHorizontal();
-			layout.Add(editorFactory.ReferenceOpenButton(referenceComboBox), true);
-			layout.Add(editorFactory.ReferenceClearButton(referenceComboBox), true);
+			layout.Add(EditorFactory.ReferenceOpenButton(referenceComboBox), true);
+			layout.Add(EditorFactory.ReferenceClearButton(referenceComboBox), true);
 			layout.EndHorizontal();
 			layout.EndVertical();
 		}

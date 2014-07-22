@@ -10,11 +10,14 @@ namespace Trigger.WinForms.Layout
 {
 	public class DetailPropertyEditorFactory
 	{
+		Dictionary<string, Control> bindings = new Dictionary<string, Control>();
+
 		protected IPersistent Model
 		{
 			get;
 			set;
 		}
+
 
 		public DetailPropertyEditorFactory(IPersistent model)
 		{
@@ -28,7 +31,7 @@ namespace Trigger.WinForms.Layout
 
 		void HandleBindings(PropertyInfo property)
 		{
-			var control = Bindings[property.Name];
+			var control = bindings[property.Name];
 
 			if (control is TextBox)
 				((TextBox)control).Text = (string)property.GetValue(Model, null);
@@ -61,17 +64,11 @@ namespace Trigger.WinForms.Layout
 			}
 		}
 
-		Dictionary<string, Control> Bindings = new Dictionary<string, Control>();
-
 		bool IsEnabled(PropertyInfo property)
 		{
-			var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true)
-				.FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
+			var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true).FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
 
-			if (attribute == null)
-				return true;
-
-			return !attribute.IsReadOnly;
+			return attribute == null || !attribute.IsReadOnly;
 		}
 
 		public TextBox StringPropertyEditor(PropertyInfo property)
@@ -86,7 +83,7 @@ namespace Trigger.WinForms.Layout
 			};
 			control.Size = new Size(-1, -1);
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 
 			return control;
 		}
@@ -110,7 +107,7 @@ namespace Trigger.WinForms.Layout
 				property.SetValue(Model, current.Tag, null);
 			};
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 			return control;
 		}
 
@@ -120,7 +117,6 @@ namespace Trigger.WinForms.Layout
 			button.Text = "Open";
 			button.Image = ImageExtensions.GetImage("Edit32.png", 12);
 			button.ImagePosition = ButtonImagePosition.Left;
-
 			button.Click += (sender, e) =>
 			{
 				OpenReference(control);
@@ -153,7 +149,9 @@ namespace Trigger.WinForms.Layout
 			{
 				object defaultItemValue = null;
 				if (attribute != null && !string.IsNullOrWhiteSpace(attribute.Name))
+				{
 					defaultItemValue = pi.GetType().GetProperty(attribute.Name).GetValue(pi, null);
+				}
 
 				control.Items.Add(new ListItem
 				{
@@ -195,7 +193,7 @@ namespace Trigger.WinForms.Layout
 					ClearReference(control);
 			};
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 			return control;
 		}
 
@@ -210,7 +208,7 @@ namespace Trigger.WinForms.Layout
 				property.SetValue(Model, control.Checked.Value, null);
 			};
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 			return control;
 		}
 
@@ -226,7 +224,7 @@ namespace Trigger.WinForms.Layout
 				property.SetValue(Model, control.Value, null);
 			};
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 			return control;
 		}
 
@@ -242,7 +240,7 @@ namespace Trigger.WinForms.Layout
 				//property.SetValue(Model, textBox.Text, null);
 			};
 			control.Enabled = IsEnabled(property);
-			Bindings.Add(property.Name, control);
+			bindings.Add(property.Name, control);
 			return control;
 		}
 

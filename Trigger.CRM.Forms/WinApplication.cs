@@ -1,6 +1,5 @@
 using GLib;
 using Trigger.CRM.Model;
-using Trigger.CRM.Actions;
 using Trigger.WinForms.Actions;
 using Trigger.WinForms.Layout;
 using Trigger.Datastore.Security;
@@ -18,6 +17,8 @@ namespace Trigger.Application.WinForms
 				typeof(Area),
 				typeof(Document),
 				typeof(TimeTracker),
+				typeof(Contact),
+				typeof(Person),
 				typeof(User)
 			};
 		}
@@ -28,11 +29,11 @@ namespace Trigger.Application.WinForms
 			{
 				typeof(ActionActiveWindowsController),
 				typeof(ActionApplicationExitController),
-				typeof(ActionAreaController),
 				typeof(ActionCloseController),
 				typeof(ActionDeleteController),
 				typeof(ActionFileDataDetailController),
 				typeof(ActionFileDataListController),
+				typeof(ActionLinkedListController),
 				typeof(ActionNewController),
 				typeof(ActionOpenObjectListController),
 				typeof(ActionRefreshDetailController),

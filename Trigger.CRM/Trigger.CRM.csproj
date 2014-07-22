@@ -59,7 +59,9 @@
     <Compile Include="Services\TimeTrackerService.cs" />
     <Compile Include="Services\DocumentDataService.cs" />
     <Compile Include="Model\Area.cs" />
-    <Compile Include="Actions\ActionAreaController.cs" />
+    <Compile Include="Model\Priority.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Contact.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

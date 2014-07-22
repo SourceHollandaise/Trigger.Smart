@@ -1,7 +1,6 @@
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System;
-using System.Collections.Generic;
 using Trigger.WinForms.Actions;
 using System.Linq;
 

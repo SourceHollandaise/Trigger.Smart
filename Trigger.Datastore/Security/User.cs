@@ -14,7 +14,7 @@ namespace Trigger.Datastore.Security
 		{
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("{0}", UserName));
-			sb.AppendLine(string.Format("{0}", EMail));
+			sb.AppendLine(string.Format("{0}", Email));
 			sb.AppendLine(string.Format("ID: {0}", MappingId));
 			return sb.ToString();
 		}
@@ -55,19 +55,19 @@ namespace Trigger.Datastore.Security
 			}
 		}
 
-		string eMail;
+		string email;
 
-		public string EMail
+		public string Email
 		{
 			get
 			{
-				return eMail;
+				return email;
 			}
 			set
 			{
-				if (Equals(eMail, value))
+				if (Equals(email, value))
 					return;
-				eMail = value;
+				email = value;
 
 				OnPropertyChanged();
 			}

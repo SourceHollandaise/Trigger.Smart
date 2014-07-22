@@ -14,12 +14,6 @@ namespace Trigger.WinForms.Layout
 			protected set;
 		}
 
-		public Func<object, bool> GridFilter
-		{
-			get;
-			set;
-		}
-
 		public ListViewTemplate(Type modelType, IPersistent currentObject) : base(modelType, currentObject)
 		{
 			if (CurrentGrid == null)
@@ -29,7 +23,6 @@ namespace Trigger.WinForms.Layout
 
 			Size = new Size(1024, 600);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
-
 		}
 	}
 }

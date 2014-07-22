@@ -32,7 +32,6 @@ namespace Trigger.WinForms.Layout
 			gridView.AllowMultipleSelection = true;
 			gridView.ShowCellBorders = true;
 
-
 			return gridView;
 		}
 

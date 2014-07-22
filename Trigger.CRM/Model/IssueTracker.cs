@@ -12,15 +12,17 @@ namespace Trigger.CRM.Model
 		{
 			base.Initialize();
 
-			Issue = IssueType.Request;
-			State = IssueState.Open;
+			IssuePriority = Priority.High;
+			IssueType = IssueType.Request;
+			IssueState = IssueState.Open;
 		}
 
 		public override string GetRepresentation()
 		{
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedByAlias, Created));
-			sb.AppendLine(string.Format("{0} is {1}", Issue, State));
+			sb.AppendLine(string.Format("{0} is {1}", IssueType, IssueState));
+			sb.AppendLine(string.Format("Priority: {0}", IssuePriority));
 			sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
 			sb.AppendLine(string.Format("{0}", Description));
 			sb.AppendLine(string.Format("ID: {0}", MappingId));
@@ -63,37 +65,55 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		IssueType issue;
+		Priority issuePriority;
 
-		public IssueType Issue
+		public Priority IssuePriority
 		{
 			get
 			{
-				return issue;
+				return issuePriority;
 			}
 			set
 			{
-				if (Equals(issue, value))
+				if (Equals(issuePriority, value))
 					return;
-				issue = value;
+				issuePriority = value;
 
 				OnPropertyChanged();
 			}
 		}
 
-		IssueState state;
+		IssueType issueType;
 
-		public IssueState State
+		public IssueType IssueType
 		{
 			get
 			{
-				return state;
+				return issueType;
 			}
 			set
 			{
-				if (Equals(state, value))
+				if (Equals(issueType, value))
 					return;
-				state = value;
+				issueType = value;
+
+				OnPropertyChanged();
+			}
+		}
+
+		IssueState issueState;
+
+		public IssueState IssueState
+		{
+			get
+			{
+				return issueState;
+			}
+			set
+			{
+				if (Equals(issueState, value))
+					return;
+				issueState = value;
 
 				OnPropertyChanged();
 
@@ -195,6 +215,7 @@ namespace Trigger.CRM.Model
 
 		bool isDone;
 
+		[System.ComponentModel.ReadOnly(true)]
 		public bool IsDone
 		{
 			get
@@ -213,6 +234,7 @@ namespace Trigger.CRM.Model
 
 		string duration;
 
+		[System.ComponentModel.ReadOnly(true)]
 		public string Duration
 		{
 			get
@@ -231,11 +253,11 @@ namespace Trigger.CRM.Model
 
 		void UpdateIssue()
 		{
-			if (State == IssueState.InProgress)
+			if (IssueState == IssueState.InProgress)
 			{
 				Start = DateTime.Now;
 			}
-			if (State == IssueState.Done || State == IssueState.Rejected)
+			if (IssueState == IssueState.Done || IssueState == IssueState.Rejected)
 			{
 				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 				Resolved = DateTime.Now;

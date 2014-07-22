@@ -55,8 +55,11 @@ namespace Trigger.WinForms.Layout
 		{
 			foreach (var type in ActionControllerDeclaration.DeclaredControllerTypes)
 			{
-				var controller = Activator.CreateInstance(type, Template, Template.ModelType, Template.CurrentObject);
-				yield return controller as ActionBaseController;
+				if (typeof(ActionBaseController).IsAssignableFrom(type))
+				{
+					var controller = Activator.CreateInstance(type, Template, Template.ModelType, Template.CurrentObject);
+					yield return controller as ActionBaseController;
+				}
 			}
 		}
 	}
