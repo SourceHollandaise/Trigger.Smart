@@ -18,7 +18,7 @@ namespace Trigger.WinForms.Layout
 			this.DeclaredTypes = declaredTypes;
 		}
 
-		public DynamicLayout GetLayout()
+		public DynamicLayout GetContent()
 		{
 			DynamicLayout layout = new DynamicLayout();
 		

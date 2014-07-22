@@ -69,6 +69,7 @@
     <Compile Include="Layouts\WindowManager.cs" />
     <Compile Include="Actions\ActionActiveWindowsController.cs" />
     <Compile Include="Actions\ActionVisibility.cs" />
+    <Compile Include="Actions\ActionControllerManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

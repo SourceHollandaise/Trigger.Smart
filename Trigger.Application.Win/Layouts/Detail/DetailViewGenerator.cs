@@ -22,7 +22,7 @@ namespace Trigger.WinForms.Layout
 			editorFactory = new DetailPropertyEditorFactory(Model);
 		}
 
-		public DynamicLayout GetLayout()
+		public DynamicLayout GetContent()
 		{
 			var layout = new DynamicLayout();
 			var properties = Model.GetType().GetProperties();

@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Layout
 			this.LogonViewTemplate = logonViewTemplate;
 		}
 
-		public DynamicLayout GetLayout()
+		public DynamicLayout GetContent()
 		{
 			DynamicLayout layout = new DynamicLayout();
 

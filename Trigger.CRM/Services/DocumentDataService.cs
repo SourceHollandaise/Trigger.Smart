@@ -28,7 +28,7 @@ namespace Trigger.CRM.Services
 					document = new Document
 					{
 						FileName = fi.Name,
-						Subject = fi.Name.Replace(fi.Extension, ""),
+						Subject = !string.IsNullOrWhiteSpace(fi.Name) ? !string.IsNullOrWhiteSpace(fi.Extension) ? fi.Name.Replace(fi.Extension, "") : fi.Name : "Unknown filename",
 					};
 					document.Initialize();
 					document.Save();

@@ -14,7 +14,7 @@ namespace Trigger.WinForms.Layout
 		{
 			Size = new Size(640, 480);
 
-			Content = new MainViewGenerator(types).GetLayout();
+			Content = new MainViewGenerator(types).GetContent();
 
 			Controllers.Add(new ActionApplicationExitController(this, null));
 		}

@@ -8,7 +8,7 @@ namespace Trigger.Application.WinForms
 {
 	public static class WinApplication
 	{
-		static System.Type[] DeclaredTypes()
+		static Type[] DeclaredTypes()
 		{
 			return new[]
 			{

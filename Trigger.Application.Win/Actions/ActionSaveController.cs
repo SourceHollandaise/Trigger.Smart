@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 
 		public ActionSaveController(TemplateBase template, IPersistent model) : base(template, model)
 		{
-
+			TargetView = ActionControllerTargetView.DetailView;
 		}
 
 		public override IEnumerable<Command> Commands()

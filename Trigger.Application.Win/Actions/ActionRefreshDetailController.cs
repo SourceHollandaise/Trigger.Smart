@@ -11,6 +11,7 @@ namespace Trigger.WinForms.Actions
 		public ActionRefreshDetailController(TemplateBase template, Type modelType, IPersistent model) : base(template, modelType, model)
 		{
 			this.ModelType = modelType;
+			TargetView = ActionControllerTargetView.DetailView;
 		}
 
 		public override void RefreshActionExecute()

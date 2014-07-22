@@ -14,6 +14,12 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
+		public ActionControllerTargetView TargetView
+		{
+			get;
+			set;
+		}
+
 		public string Category
 		{
 			get;
@@ -42,6 +48,7 @@ namespace Trigger.WinForms.Actions
 		{
 			Category = "File";
 			Visiblity = ActionVisibility.MenuAndToolbar;
+			TargetView = ActionControllerTargetView.Any;
 			this.Template = template;
 			this.CurrentObject = currentObject;
 			if (this.ModelType == null && CurrentObject != null)

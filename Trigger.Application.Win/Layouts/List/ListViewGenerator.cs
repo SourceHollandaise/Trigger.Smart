@@ -21,7 +21,7 @@ namespace Trigger.WinForms.Layout
 			this.ModelType = modelType;
 		}
 
-		public GridView GetLayout()
+		public GridView GetContent()
 		{
 			var items = store.LoadAll(ModelType).ToList();
 

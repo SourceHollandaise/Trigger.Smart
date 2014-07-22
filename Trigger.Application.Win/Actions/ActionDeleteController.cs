@@ -18,6 +18,7 @@ namespace Trigger.WinForms.Actions
 		public ActionDeleteController(TemplateBase template, IPersistent model) : base(template, model)
 		{
 			Category = "Edit";
+			TargetView = ActionControllerTargetView.DetailView;
 		}
 
 		public override IEnumerable<Command> Commands()

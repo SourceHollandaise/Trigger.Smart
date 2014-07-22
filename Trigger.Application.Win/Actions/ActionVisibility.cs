@@ -13,5 +13,13 @@ namespace Trigger.WinForms.Actions
 		Toolbar,
 		None
 	}
-	
+
+
+	public enum ActionControllerTargetView
+	{
+		Any,
+		DetailView,
+		ListView,
+		Main
+	}
 }

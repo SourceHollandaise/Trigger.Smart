@@ -11,7 +11,7 @@ namespace Trigger.WinForms.Layout
 			Size = new Size(340, 200);
 			Title = "Logon";
 		
-			Content = new LogonViewGenerator(this).GetLayout();
+			Content = new LogonViewGenerator(this).GetContent();
 		}
 
 		public override void OnLoadComplete(System.EventArgs e)

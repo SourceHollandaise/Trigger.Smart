@@ -41,11 +41,9 @@ namespace Trigger.WinForms.Actions
 
 			foreach (var view in WindowManager.ActiveViews)
 			{
-
 				var item = new CheckCommand();
 				item.ID = view.ID;
 				item.MenuText = view.Title;
-				item.ToolBarText = "V";
 			}
 
 			windowMenu.Items.Trim();

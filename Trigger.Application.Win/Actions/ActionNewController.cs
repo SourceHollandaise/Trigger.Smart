@@ -20,6 +20,7 @@ namespace Trigger.WinForms.Actions
 		public ActionNewController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
+			TargetView = ActionControllerTargetView.ListView;
 		}
 
 		public override IEnumerable<Command> Commands()

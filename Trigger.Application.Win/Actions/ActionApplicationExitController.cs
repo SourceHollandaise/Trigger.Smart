@@ -26,6 +26,7 @@ namespace Trigger.WinForms.Actions
 		public ActionApplicationExitController(TemplateBase template, IPersistent model) : base(template, model)
 		{
 			Category = "Application";
+			TargetView = ActionControllerTargetView.Main;
 		}
 
 		public override IEnumerable<Command> Commands()

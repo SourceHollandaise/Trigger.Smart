@@ -13,6 +13,8 @@ namespace Trigger.WinForms.Actions
 		public ActionFilterListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			this.ModelType = modelType;
+			Visiblity = ActionVisibility.Toolbar;
+			TargetView = ActionControllerTargetView.ListView;
 		}
 	}
 }

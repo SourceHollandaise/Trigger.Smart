@@ -22,7 +22,7 @@ namespace Trigger.CRM.Model
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedBy != null ? CreatedBy.UserName : "anonymous", Created));
 			sb.AppendLine(string.Format("{0} is {1}", Issue, State));
-			sb.AppendLine(string.Format("Linked to '{0}' project", Area != null ? Area.Name : "anonymous"));
+			sb.AppendLine(string.Format("Linked to '{0}' area", Area != null ? Area.Name : "anonymous"));
 			sb.AppendLine(string.Format("{0}", Description));
 			sb.AppendLine(string.Format("ID: {0}", MappingId));
 			return sb.ToString();
@@ -102,20 +102,20 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		Area project;
+		Area area;
 
 		[PersistentReference]
 		public Area Area
 		{
 			get
 			{
-				return project;
+				return area;
 			}
 			set
 			{
-				if (Equals(project, value))
+				if (Equals(area, value))
 					return;
-				project = value;
+				area = value;
 
 				OnPropertyChanged();
 			}

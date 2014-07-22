@@ -20,6 +20,7 @@ namespace Trigger.WinForms.Actions
 		public ActionFileDataListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
 		{
 			Category = "Store";
+			TargetView = ActionControllerTargetView.ListView;
 		}
 
 		public override IEnumerable<Command> Commands()

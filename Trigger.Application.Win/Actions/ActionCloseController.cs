@@ -18,7 +18,8 @@ namespace Trigger.WinForms.Actions
 
 		public ActionCloseController(TemplateBase template, IPersistent model) : base(template, model)
 		{
-
+			Category = "File";
+			TargetView = ActionControllerTargetView.Any;
 		}
 
 		public override IEnumerable<Command> Commands()

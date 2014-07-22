@@ -3,6 +3,7 @@ using Trigger.Datastore.Persistent;
 using System;
 using System.Collections.Generic;
 using Trigger.WinForms.Actions;
+using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
@@ -37,18 +38,15 @@ namespace Trigger.WinForms.Layout
 				this.Menu = new MenuBar();
 
 			Application.Instance.CreateStandardMenu(Menu.Items);
-
-			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
-
-			if (this as MainViewTemplate == null)
-				Controllers.Add(new ActionCloseController(this, CurrentObject));
 		}
 
 		public override void OnLoadComplete(EventArgs e)
 		{
 			base.OnLoadComplete(e);
 
-			LoadControllers(Controllers);
+			AddControllers();
+
+			LoadControllers(new ActionControllerManager(this).ValidControllers().ToList());
 
 			if (this is DetailViewTemplate)
 				WindowManager.AddDetailView(CurrentObject, this as DetailViewTemplate);
@@ -56,7 +54,6 @@ namespace Trigger.WinForms.Layout
 			if (this is ListViewTemplate)
 				WindowManager.AddListView(ModelType, this as ListViewTemplate);
 		}
-
 
 		public override void OnClosed(EventArgs e)
 		{
@@ -67,6 +64,24 @@ namespace Trigger.WinForms.Layout
 
 			if (this is DetailViewTemplate)
 				WindowManager.RemoveDetailView(CurrentObject);
+		}
+
+		public virtual void AddControllers()
+		{
+			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
+			Controllers.Add(new ActionCloseController(this, CurrentObject));
+			Controllers.Add(new ActionNewController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionRefreshListController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionOpenObjectListController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionDeleteController(this, CurrentObject));
+			Controllers.Add(new ActionSaveController(this, CurrentObject));
+			Controllers.Add(new ActionRefreshDetailController(this, ModelType, CurrentObject));
+
+			if (typeof(IFileData).IsAssignableFrom(ModelType))
+			{
+				Controllers.Add(new ActionFileDataDetailController(this, ModelType, CurrentObject));
+				Controllers.Add(new ActionFileDataListController(this, ModelType, CurrentObject));
+			}
 		}
 
 		public void LoadControllers(IEnumerable<ActionBaseController> controllers)
@@ -100,14 +115,6 @@ namespace Trigger.WinForms.Layout
 				}
 
 				this.Menu.Items.Trim();
-			}
-		}
-
-		public void UnloadController(ActionBaseController controller)
-		{
-			if (Controllers.Contains(controller))
-			{
-				Controllers.Remove(controller);
 			}
 		}
 	}
