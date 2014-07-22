@@ -7,7 +7,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionRefreshListController : ActionRefreshBaseController
 	{
-		public ActionRefreshListController(TemplateBase template, Type modelType, IPersistent model) : base(template, modelType, model)
+		public ActionRefreshListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.ListView;

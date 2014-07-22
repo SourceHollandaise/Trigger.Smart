@@ -14,8 +14,7 @@ namespace Trigger.WinForms.Layout
 
 		public ActionControllerManager(TemplateBase template)
 		{
-			this.Template = template;
-			
+			this.Template = template;	
 		}
 
 		public IEnumerable<ActionBaseController> ValidControllers()
@@ -24,7 +23,8 @@ namespace Trigger.WinForms.Layout
 			{
 				foreach (var controller in Template.Controllers.Where(p => p.TargetView == ActionControllerTargetView.DetailView || p.TargetView == ActionControllerTargetView.Any))
 				{
-					yield return controller;
+					if (controller.TargetModelType.IsAssignableFrom(Template.ModelType))
+						yield return controller;
 				}
 			}
 
@@ -32,7 +32,8 @@ namespace Trigger.WinForms.Layout
 			{
 				foreach (var controller in Template.Controllers.Where(p => p.TargetView == ActionControllerTargetView.ListView || p.TargetView == ActionControllerTargetView.Any))
 				{
-					yield return controller;
+					if (controller.TargetModelType.IsAssignableFrom(Template.ModelType))
+						yield return controller;
 				}
 			}
 
@@ -40,9 +41,15 @@ namespace Trigger.WinForms.Layout
 			{
 				foreach (var controller in Template.Controllers.Where(p => p.TargetView == ActionControllerTargetView.Main))
 				{
-					yield return controller;
+					if (controller.TargetModelType.IsAssignableFrom(Template.ModelType))
+						yield return controller;
 				}
 			}
+		}
+
+		void CreateControllers()
+		{
+
 		}
 	}
 	

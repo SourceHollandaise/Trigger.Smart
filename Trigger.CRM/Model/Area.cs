@@ -2,9 +2,15 @@ using Trigger.Datastore.Persistent;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Trigger.WinForms.Actions;
+using Trigger.WinForms.Layout;
+using Eto.Forms;
+using Eto.Drawing;
 
 namespace Trigger.CRM.Model
 {
+
+
 	[System.ComponentModel.DefaultProperty("Name")]
 	public class Area : PersistentModelBase
 	{

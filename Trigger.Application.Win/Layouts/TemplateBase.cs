@@ -14,13 +14,13 @@ namespace Trigger.WinForms.Layout
 		public IPersistent CurrentObject
 		{
 			get;
-			set;
+			private set;
 		}
 
 		public Type ModelType
 		{
 			get;
-			set;
+			private set;
 		}
 
 		protected TemplateBase(Type type, IPersistent currentObject)
@@ -66,22 +66,18 @@ namespace Trigger.WinForms.Layout
 				WindowManager.RemoveDetailView(CurrentObject);
 		}
 
-		public virtual void AddControllers()
+		protected virtual void AddControllers()
 		{
-			Controllers.Add(new ActionActiveWindowsController(this, CurrentObject));
-			Controllers.Add(new ActionCloseController(this, CurrentObject));
+			Controllers.Add(new ActionActiveWindowsController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionCloseController(this, ModelType, CurrentObject));
 			Controllers.Add(new ActionNewController(this, ModelType, CurrentObject));
 			Controllers.Add(new ActionRefreshListController(this, ModelType, CurrentObject));
 			Controllers.Add(new ActionOpenObjectListController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionDeleteController(this, CurrentObject));
-			Controllers.Add(new ActionSaveController(this, CurrentObject));
+			Controllers.Add(new ActionDeleteController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionSaveController(this, ModelType, CurrentObject));
 			Controllers.Add(new ActionRefreshDetailController(this, ModelType, CurrentObject));
-
-			if (typeof(IFileData).IsAssignableFrom(ModelType))
-			{
-				Controllers.Add(new ActionFileDataDetailController(this, ModelType, CurrentObject));
-				Controllers.Add(new ActionFileDataListController(this, ModelType, CurrentObject));
-			}
+			Controllers.Add(new ActionFileDataDetailController(this, ModelType, CurrentObject));
+			Controllers.Add(new ActionFileDataListController(this, ModelType, CurrentObject));
 		}
 
 		public void LoadControllers(IEnumerable<ActionBaseController> controllers)

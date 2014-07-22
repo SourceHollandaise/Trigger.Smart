@@ -2,7 +2,6 @@
 using System;
 using Trigger.Datastore.Security;
 using Trigger.Datastore.Persistent;
-using System.Linq;
 
 namespace Trigger.CRM.Model
 {
@@ -98,7 +97,7 @@ namespace Trigger.CRM.Model
 
 				OnPropertyChanged();
 
-				UpdateIssue(state);
+				UpdateIssue();
 			}
 		}
 
@@ -194,9 +193,9 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		void UpdateIssue(IssueState state)
+		void UpdateIssue()
 		{
-			if (state == IssueState.Done || state == IssueState.Rejected)
+			if (State == IssueState.Done || State == IssueState.Rejected)
 			{
 				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 				Resolved = DateTime.Now;

@@ -17,10 +17,11 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionFileDataListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
+		public ActionFileDataListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Store";
 			TargetView = ActionControllerTargetView.ListView;
+			TargetModelType = typeof(IFileData);
 		}
 
 		public override IEnumerable<Command> Commands()

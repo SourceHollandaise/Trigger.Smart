@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ActionOpenObjectBaseController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
+		protected ActionOpenObjectBaseController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 		}

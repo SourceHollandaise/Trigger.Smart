@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionCloseController(TemplateBase template, IPersistent model) : base(template, model)
+		public ActionCloseController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "File";
 			TargetView = ActionControllerTargetView.Any;
@@ -42,5 +42,4 @@ namespace Trigger.WinForms.Actions
 			Template.Close();
 		}
 	}
-
 }

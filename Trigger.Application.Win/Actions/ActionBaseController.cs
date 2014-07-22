@@ -26,6 +26,12 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
+		public Type TargetModelType
+		{
+			get;
+			set;
+		}
+
 		protected TemplateBase Template
 		{
 			get;
@@ -44,11 +50,13 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
-		protected ActionBaseController(TemplateBase template, IPersistent currentObject)
+		protected ActionBaseController(TemplateBase template, Type modelType, IPersistent currentObject)
 		{
 			Category = "File";
 			Visiblity = ActionVisibility.MenuAndToolbar;
 			TargetView = ActionControllerTargetView.Any;
+			TargetModelType = typeof(IPersistent);
+
 			this.Template = template;
 			this.CurrentObject = currentObject;
 			if (this.ModelType == null && CurrentObject != null)

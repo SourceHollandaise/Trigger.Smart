@@ -5,6 +5,7 @@ using Trigger.WinForms.Layout;
 using System.Collections.Generic;
 using Eto.Drawing;
 using Trigger.Datastore.Security;
+using System;
 
 namespace Trigger.WinForms.Actions
 {
@@ -23,7 +24,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionApplicationExitController(TemplateBase template, IPersistent model) : base(template, model)
+		public ActionApplicationExitController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Application";
 			TargetView = ActionControllerTargetView.Main;

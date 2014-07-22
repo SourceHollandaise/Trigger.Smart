@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionFilterListController : ActionBaseController
 	{
-		public ActionFilterListController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
+		public ActionFilterListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			Visiblity = ActionVisibility.Toolbar;

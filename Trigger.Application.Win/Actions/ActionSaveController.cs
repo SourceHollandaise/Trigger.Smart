@@ -4,6 +4,7 @@ using Trigger.WinForms.Actions;
 using System.Collections.Generic;
 using Eto.Drawing;
 using Trigger.WinForms.Layout;
+using System;
 
 namespace Trigger.WinForms.Actions
 {
@@ -15,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionSaveController(TemplateBase template, IPersistent model) : base(template, model)
+		public ActionSaveController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			TargetView = ActionControllerTargetView.DetailView;
 		}

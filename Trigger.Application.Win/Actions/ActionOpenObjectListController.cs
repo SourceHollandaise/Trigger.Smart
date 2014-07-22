@@ -7,7 +7,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionOpenObjectListController : ActionOpenObjectBaseController
 	{
-		public ActionOpenObjectListController(TemplateBase template, Type modelType, IPersistent model) : base(template, modelType, model)
+		public ActionOpenObjectListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.ListView;

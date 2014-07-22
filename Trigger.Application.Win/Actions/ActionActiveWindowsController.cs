@@ -3,6 +3,7 @@ using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Actions;
 using Trigger.WinForms.Layout;
 using System.Collections.Generic;
+using System;
 
 namespace Trigger.WinForms.Actions
 {
@@ -14,7 +15,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionActiveWindowsController(TemplateBase template, IPersistent currentObject) : base(template, currentObject)
+		public ActionActiveWindowsController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Windows";
 			Visiblity = ActionVisibility.None;

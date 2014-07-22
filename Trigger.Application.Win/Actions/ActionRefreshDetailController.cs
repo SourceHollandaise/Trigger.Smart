@@ -8,7 +8,7 @@ namespace Trigger.WinForms.Actions
 
 	public class ActionRefreshDetailController : ActionRefreshBaseController
 	{
-		public ActionRefreshDetailController(TemplateBase template, Type modelType, IPersistent model) : base(template, modelType, model)
+		public ActionRefreshDetailController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.DetailView;

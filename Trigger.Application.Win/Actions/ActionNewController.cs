@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionNewController(TemplateBase template, Type modelType, IPersistent model) : base(template, model)
+		public ActionNewController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.ListView;

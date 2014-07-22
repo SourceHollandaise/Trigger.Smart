@@ -44,6 +44,9 @@
       <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="Services\TimeTrackerService.cs" />
     <Compile Include="Services\DocumentDataService.cs" />
     <Compile Include="Model\Area.cs" />
+    <Compile Include="Actions\ActionAreaController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -77,8 +81,15 @@
       <Project>{5D42668B-26EF-4FC8-92A1-D088E7B63FA0}</Project>
       <Name>Trigger.Datastore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.Application.Win\Trigger.WinForms.csproj">
+      <Project>{84904569-5029-4F65-B641-198A82C09C01}</Project>
+      <Name>Trigger.WinForms</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Actions\" />
   </ItemGroup>
 </Project>
