@@ -3,6 +3,7 @@ using System.Linq;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Trigger.WinForms.Layout
 {
