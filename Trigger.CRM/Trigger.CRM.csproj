@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\TimeTracker.cs" />
-    <Compile Include="Model\Project.cs" />
     <Compile Include="Model\IssueType.cs" />
     <Compile Include="Model\IssueTracker.cs" />
     <Compile Include="Model\IssueState.cs" />
@@ -56,6 +55,7 @@
     <Compile Include="Model\Document.cs" />
     <Compile Include="Services\TimeTrackerService.cs" />
     <Compile Include="Services\DocumentDataService.cs" />
+    <Compile Include="Model\Area.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

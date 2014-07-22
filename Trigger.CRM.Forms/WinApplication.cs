@@ -13,7 +13,7 @@ namespace Trigger.Application.WinForms
 			return new[]
 			{
 				typeof(IssueTracker),
-				typeof(Project),
+				typeof(Area),
 				typeof(Document),
 				typeof(TimeTracker),
 				typeof(User)

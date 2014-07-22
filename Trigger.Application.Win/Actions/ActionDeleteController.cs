@@ -41,6 +41,10 @@ namespace Trigger.WinForms.Actions
 		{
 			if (CurrentObject != null)
 				CurrentObject.Delete();
+
+			var listForm = WindowManager.GetListView(ModelType);
+			if (listForm != null)
+				listForm.ReloadList();
 		}
 	}
 }

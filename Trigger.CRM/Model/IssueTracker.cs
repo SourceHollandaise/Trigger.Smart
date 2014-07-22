@@ -2,6 +2,7 @@
 using System;
 using Trigger.Datastore.Security;
 using Trigger.Datastore.Persistent;
+using System.Linq;
 
 namespace Trigger.CRM.Model
 {
@@ -21,7 +22,7 @@ namespace Trigger.CRM.Model
 			var sb = new System.Text.StringBuilder();
 			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedBy != null ? CreatedBy.UserName : "anonymous", Created));
 			sb.AppendLine(string.Format("{0} is {1}", Issue, State));
-			sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
+			sb.AppendLine(string.Format("Linked to '{0}' project", Area != null ? Area.Name : "anonymous"));
 			sb.AppendLine(string.Format("{0}", Description));
 			sb.AppendLine(string.Format("ID: {0}", MappingId));
 			return sb.ToString();
@@ -101,10 +102,10 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		Project project;
+		Area project;
 
 		[PersistentReference]
-		public Project Project
+		public Area Area
 		{
 			get
 			{
@@ -193,10 +194,9 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-
 		void UpdateIssue(IssueState state)
 		{
-			if (state == IssueState.Done)
+			if (state == IssueState.Done || state == IssueState.Rejected)
 			{
 				ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 				Resolved = DateTime.Now;

@@ -14,7 +14,7 @@ namespace Trigger.CRM.Model
 			sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, User != null ? User.UserName : "anonymous", Begin));
 			if (Duration != null)
 				sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
-			sb.AppendLine(string.Format("Linked to '{0}' project", Project != null ? Project.Name : "anonymous"));
+			sb.AppendLine(string.Format("Linked to '{0}' project", Area != null ? Area.Name : "anonymous"));
 			sb.AppendLine(string.Format("{0}", Description));
 			sb.AppendLine(string.Format("ID: {0}", MappingId));
 			return sb.ToString();
@@ -130,10 +130,10 @@ namespace Trigger.CRM.Model
 			}
 		}
 
-		Project project;
+		Area project;
 
 		[PersistentReference]
-		public Project Project
+		public Area Area
 		{
 			get
 			{

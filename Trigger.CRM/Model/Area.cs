@@ -6,7 +6,7 @@ using System;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Name")]
-	public class Project : PersistentModelBase
+	public class Area : PersistentModelBase
 	{
 		public override string GetRepresentation()
 		{
@@ -61,7 +61,7 @@ namespace Trigger.CRM.Model
 		{
 			get
 			{
-				return Store.LoadAll<Document>().Where(p => p.Project != null && p.Project.MappingId.Equals(MappingId));
+				return Store.LoadAll<Document>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace Trigger.CRM.Model
 		{
 			get
 			{
-				return Store.LoadAll<IssueTracker>().Where(p => p.Project != null && p.Project.MappingId.Equals(MappingId));
+				return Store.LoadAll<IssueTracker>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
 			}
 		}
 
@@ -79,7 +79,7 @@ namespace Trigger.CRM.Model
 		{
 			get
 			{
-				return Store.LoadAll<TimeTracker>().Where(p => p.Project != null && p.Project.MappingId.Equals(MappingId));
+				return Store.LoadAll<TimeTracker>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
 			}
 		}
 	}
