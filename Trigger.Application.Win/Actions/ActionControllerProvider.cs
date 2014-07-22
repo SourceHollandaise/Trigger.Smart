@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Trigger.WinForms.Actions;
 using System.Linq;
 using System;
+using Eto.Forms;
 
 namespace Trigger.WinForms.Layout
 {
@@ -11,6 +12,11 @@ namespace Trigger.WinForms.Layout
 		{
 			get;
 			set;
+		}
+
+		public ActionControllerProvider()
+		{
+			
 		}
 
 		public ActionControllerProvider(TemplateBase template)
@@ -51,7 +57,7 @@ namespace Trigger.WinForms.Layout
 			}
 		}
 
-		IEnumerable<ActionBaseController> CreateControllers()
+		public IEnumerable<ActionBaseController> CreateControllers()
 		{
 			foreach (var type in ActionControllerDeclaration.DeclaredControllerTypes)
 			{

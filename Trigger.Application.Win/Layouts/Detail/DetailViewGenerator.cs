@@ -40,25 +40,28 @@ namespace Trigger.WinForms.Layout
 					if (property.Name.EndsWith("Alias"))
 						continue;
 	
-//					if (property.PropertyType.IsGenericType)
-//					{
-//						var value = property.GetValue(Model, null);
-//						if (value is IEnumerable<IPersistent>)
-//						{
-//							var firstItem = (value as IEnumerable<IPersistent>).FirstOrDefault();
-//
-//							if (firstItem != null)
-//							{
-//								AddLabel(layout, property);
-//
-//								var gridLayout = new ListViewGenerator(firstItem.GetType()).GetContent();
-//								gridLayout.DataStore = new DataStoreCollection(value as IEnumerable<IPersistent>);
-//								gridLayout.Size = new Eto.Drawing.Size(-1, 120);
-//								layout.Add(gridLayout, true, false);
-//								layout.EndHorizontal();
-//							}
-//						}
-//					}
+					if (property.PropertyType.IsGenericType)
+					{
+						var value = property.GetValue(Model, null);
+						if (value is IEnumerable<IPersistent>)
+						{
+							var firstItem = (value as IEnumerable<IPersistent>).FirstOrDefault();
+
+							if (firstItem != null)
+							{
+								/*
+								AddLabel(layout, property);
+					
+								var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
+								gridView.DataStore = new DataStoreCollection(value as IEnumerable<IPersistent>);
+								gridView.Size = new Eto.Drawing.Size(-1, 120);
+								layout.Add(gridView, true, false);
+								layout.EndHorizontal();
+								*/
+							}
+						}
+
+					}
 
 					if (property.PropertyType == typeof(string))
 					{

@@ -71,6 +71,7 @@
     <Compile Include="Actions\ActionControllerDeclaration.cs" />
     <Compile Include="Actions\ActionControllerProvider.cs" />
     <Compile Include="Actions\ActionLinkedListController.cs" />
+    <Compile Include="Layouts\List\ListViewControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
