@@ -9,6 +9,7 @@ namespace Trigger.Datastore.Persistent
 	public abstract class PersistentModelBase : NotifyPropertyChangedBase, IPersistent
 	{
 		[System.ComponentModel.ReadOnly(true)]
+		[System.ComponentModel.DisplayName("ID")]
 		public object MappingId
 		{
 			get;
@@ -35,6 +36,7 @@ namespace Trigger.Datastore.Persistent
 		}
 
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[System.ComponentModel.DisplayName("Created by")]
 		public string CreatedByAlias
 		{
 			get
@@ -47,6 +49,7 @@ namespace Trigger.Datastore.Persistent
 
 		[PersistentReference("CreatedByAlias")]
 		[System.ComponentModel.ReadOnly(true)]
+		[System.ComponentModel.DisplayName("Created by")]
 		public User CreatedBy
 		{
 			get

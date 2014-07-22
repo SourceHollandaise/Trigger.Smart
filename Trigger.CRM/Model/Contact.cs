@@ -13,6 +13,7 @@ namespace Trigger.CRM.Model
 			return sb.ToString();
 		}
 
+		[System.ComponentModel.DisplayName("Person")]
 		public string PersonAlias
 		{
 			get
@@ -23,6 +24,7 @@ namespace Trigger.CRM.Model
 
 		Person person;
 
+		[System.ComponentModel.DisplayName("Person")]
 		[PersistentReference("PersonAlias")]
 		public Person Person
 		{
@@ -42,6 +44,7 @@ namespace Trigger.CRM.Model
 
 		ContactType contactType;
 
+		[System.ComponentModel.DisplayName("Contact")]
 		public ContactType ContactType
 		{
 			get
@@ -60,6 +63,7 @@ namespace Trigger.CRM.Model
 
 		string phoneNumber;
 
+		[System.ComponentModel.DisplayName("Phone")]
 		public string PhoneNumber
 		{
 			get
@@ -78,6 +82,7 @@ namespace Trigger.CRM.Model
 
 		string mobileNumber;
 
+		[System.ComponentModel.DisplayName("Mobile")]
 		public string MobileNumber
 		{
 			get
@@ -96,6 +101,7 @@ namespace Trigger.CRM.Model
 
 		string email;
 
+		[System.ComponentModel.DisplayName("E-Mail")]
 		public string Email
 		{
 			get

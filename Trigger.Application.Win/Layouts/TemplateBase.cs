@@ -50,6 +50,14 @@ namespace Trigger.WinForms.Layout
 				WindowManager.AddListView(ModelType, this as ListViewTemplate);
 		}
 
+		public override void OnKeyDown(KeyEventArgs e)
+		{
+			base.OnKeyDown(e);
+
+			if (e.Modifiers == Keys.Control & e.Key == Keys.W)
+				this.Close();
+		}
+
 		public override void OnClosed(EventArgs e)
 		{
 			base.OnClosed(e);

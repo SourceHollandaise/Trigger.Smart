@@ -67,6 +67,7 @@ namespace Trigger.CRM.Model
 
 		Priority issuePriority;
 
+		[System.ComponentModel.DisplayName("Priority")]
 		public Priority IssuePriority
 		{
 			get
@@ -85,6 +86,7 @@ namespace Trigger.CRM.Model
 
 		IssueType issueType;
 
+		[System.ComponentModel.DisplayName("Type")]
 		public IssueType IssueType
 		{
 			get
@@ -103,6 +105,7 @@ namespace Trigger.CRM.Model
 
 		IssueState issueState;
 
+		[System.ComponentModel.DisplayName("State")]
 		public IssueState IssueState
 		{
 			get
@@ -121,6 +124,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string AreaAlias
 		{
@@ -185,6 +189,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Resolved by")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string ResolvedByAlias
 		{
@@ -196,6 +201,7 @@ namespace Trigger.CRM.Model
 
 		User resolvedBy;
 
+		[System.ComponentModel.DisplayName("Resolved by")]
 		[PersistentReference("ResolvedByAlias")]
 		public User ResolvedBy
 		{
@@ -215,6 +221,7 @@ namespace Trigger.CRM.Model
 
 		bool isDone;
 
+		[System.ComponentModel.DisplayName("Done")]
 		[System.ComponentModel.ReadOnly(true)]
 		public bool IsDone
 		{

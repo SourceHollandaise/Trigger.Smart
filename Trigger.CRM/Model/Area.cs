@@ -55,6 +55,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Linked documents")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		[LinkedList(typeof(Document))]
 		public IEnumerable<Document> LinkedDocuments
@@ -65,6 +66,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Linked issues")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		[LinkedList(typeof(IssueTracker))]
 		public IEnumerable<IssueTracker> LinkedIssues
@@ -75,6 +77,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Linked tracked times")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		[LinkedList(typeof(TimeTracker))]
 		public IEnumerable<TimeTracker> LinkedTrackedTimes

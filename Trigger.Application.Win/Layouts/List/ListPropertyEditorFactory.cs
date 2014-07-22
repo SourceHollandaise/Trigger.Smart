@@ -29,6 +29,11 @@ namespace Trigger.WinForms.Layout
 					return new TextBoxCell(attribute.AliasProperty);
 			}
 
+			if (property.PropertyType.IsGenericType)
+			{
+				return null;
+			}
+
 			if (property.PropertyType == typeof(bool))
 			{
 				return new CheckBoxCell(property.Name);

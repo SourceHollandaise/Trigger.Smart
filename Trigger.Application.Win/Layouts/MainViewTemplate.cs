@@ -33,6 +33,16 @@ namespace Trigger.WinForms.Layout
 			};
 		}
 
+		public override void OnKeyDown(KeyEventArgs e)
+		{
+			if (e.Modifiers == Keys.Control & e.Key == Keys.W)
+			{
+				var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
+				if (result == DialogResult.Yes)
+					Application.Instance.Quit();
+			}
+		}
+
 		public override void OnClosing(System.ComponentModel.CancelEventArgs e)
 		{
 			base.OnClosing(e);

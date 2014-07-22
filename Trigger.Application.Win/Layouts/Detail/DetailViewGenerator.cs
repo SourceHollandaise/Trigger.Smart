@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
+using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
@@ -35,65 +37,47 @@ namespace Trigger.WinForms.Layout
 			{
 				if (property.CanRead)
 				{
+					var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+
 					if (property.Name.EndsWith("Alias"))
 						continue;
-						
+
+					if (property.PropertyType.IsGenericType)
+					{
+						continue;
+					}
+					layout.BeginHorizontal();
+					layout.Add(new Label
+					{
+						Text = attribute != null ? attribute.DisplayName : property.Name
+					});
+
 					if (property.PropertyType == typeof(string))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-
 						layout.Add(EditorFactory.StringPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
 					if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-			
 						layout.Add(EditorFactory.DateTimePropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
 					if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-			
 						layout.Add(EditorFactory.TimeSpanPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
 					if (property.PropertyType == typeof(bool))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-		
 						layout.Add(EditorFactory.BooleanPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}
 
 					if (typeof(IPersistent).IsAssignableFrom(property.PropertyType))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-
 						var referenceComboBox = EditorFactory.ReferencePropertyEditor(property);
 
 						layout.Add(referenceComboBox, true);
@@ -105,12 +89,6 @@ namespace Trigger.WinForms.Layout
 
 					if (property.PropertyType.BaseType == typeof(Enum))
 					{
-						layout.BeginHorizontal();
-						layout.Add(new Label
-						{
-							Text = property.Name
-						});
-
 						layout.Add(EditorFactory.EnumPropertyEditor(property), true);
 						layout.EndHorizontal();
 					}

@@ -43,6 +43,8 @@ namespace Trigger.WinForms.Layout
 
 			foreach (var property in ModelType.GetProperties())
 			{
+				var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+
 				var cell = factory.CreateDataCell(property);
 				if (cell == null)
 					continue;
@@ -50,7 +52,8 @@ namespace Trigger.WinForms.Layout
 				var column = new GridColumn();
 
 				column.DataCell = cell;
-				column.HeaderText = property.Name;
+
+				column.HeaderText = attribute != null ? attribute.DisplayName : property.Name;
 				column.Sortable = true;
 
 				gridView.Columns.Add(column);

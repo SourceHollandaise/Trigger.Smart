@@ -16,6 +16,7 @@ namespace Trigger.CRM.Model
 
 		string firstName;
 
+		[System.ComponentModel.DisplayName("First name")]
 		public string FirstName
 		{
 			get
@@ -34,6 +35,7 @@ namespace Trigger.CRM.Model
 
 		string middleName;
 
+		[System.ComponentModel.DisplayName("Middle name")]
 		public string MiddleName
 		{
 			get
@@ -52,6 +54,7 @@ namespace Trigger.CRM.Model
 
 		string lastName;
 
+		[System.ComponentModel.DisplayName("Last name")]
 		public string LastName
 		{
 			get
@@ -122,6 +125,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Linked contacts")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		[LinkedList(typeof(Contact))]
 		public IEnumerable<Contact> LinkedContacts

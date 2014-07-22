@@ -96,6 +96,7 @@ namespace Trigger.CRM.Model
 
 		bool isDone;
 
+		[System.ComponentModel.DisplayName("Done")]
 		public bool IsDone
 		{
 			get
@@ -130,6 +131,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string AreaAlias
 		{
@@ -158,6 +160,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("User")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string UserAlias
 		{

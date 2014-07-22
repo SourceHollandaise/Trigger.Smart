@@ -82,6 +82,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string AreaAlias
 		{
@@ -110,6 +111,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("Issue")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string IssueAlias
 		{
@@ -138,6 +140,7 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		[System.ComponentModel.DisplayName("From user")]
 		[System.Runtime.Serialization.IgnoreDataMember]
 		public string UserAlias
 		{
@@ -149,6 +152,7 @@ namespace Trigger.CRM.Model
 
 		User user;
 
+		[System.ComponentModel.DisplayName("From user")]
 		[PersistentReference("UserAlias")]
 		public User User
 		{
