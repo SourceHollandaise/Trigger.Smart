@@ -130,9 +130,17 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		public string AreaAlias
+		{
+			get
+			{
+				return Area != null ? Area.Name : null;
+			}
+		}
+
 		Area area;
 
-		[PersistentReference]
+		[PersistentReference("AreaAlias")]
 		public Area Area
 		{
 			get
@@ -149,9 +157,17 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		public string UserAlias
+		{
+			get
+			{
+				return User != null ? User.UserName : null;
+			}
+		}
+
 		User user;
 
-		[PersistentReference]
+		[PersistentReference("UserAlias")]
 		public User User
 		{
 			get

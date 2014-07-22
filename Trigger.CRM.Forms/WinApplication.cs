@@ -1,5 +1,7 @@
 using GLib;
 using Trigger.CRM.Model;
+using Trigger.CRM.Actions;
+using Trigger.WinForms.Actions;
 using Trigger.WinForms.Layout;
 using Trigger.Datastore.Security;
 using System;
@@ -20,6 +22,26 @@ namespace Trigger.Application.WinForms
 			};
 		}
 
+		static Type[] DeclaredControllers()
+		{
+			return new []
+			{
+				typeof(ActionActiveWindowsController),
+				typeof(ActionApplicationExitController),
+				typeof(ActionAreaController),
+				typeof(ActionCloseController),
+				typeof(ActionDeleteController),
+				typeof(ActionFileDataDetailController),
+				typeof(ActionFileDataListController),
+				typeof(ActionNewController),
+				typeof(ActionOpenObjectListController),
+				typeof(ActionRefreshDetailController),
+				typeof(ActionRefreshListController),
+				typeof(ActionSaveController),
+			
+			};
+		}
+
 		[STAThread]
 		static void Main()
 		{
@@ -27,9 +49,12 @@ namespace Trigger.Application.WinForms
 		
 			var application = new Eto.Forms.Application();
 		
+			ModelTypesDeclaration.DeclareModelTypes(DeclaredTypes());
+			ActionControllerDeclaration.DeclareControllerTypes(DeclaredControllers());
+
 			application.Initialized += (sender, e) =>
 			{
-				application.MainForm = new MainViewTemplate(DeclaredTypes());
+				application.MainForm = new MainViewTemplate();
 				application.MainForm.BringToFront();
 				application.MainForm.Show();
 			};

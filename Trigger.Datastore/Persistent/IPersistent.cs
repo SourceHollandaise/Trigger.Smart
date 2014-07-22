@@ -3,10 +3,8 @@ using System.ComponentModel;
 
 namespace Trigger.Datastore.Persistent
 {
-	public interface IPersistent
+	public interface IPersistent : INotifyPropertyChanged
 	{
-		event PropertyChangedEventHandler PropertyChanged;
-
 		object MappingId { get; set; }
 
 		string GetRepresentation();

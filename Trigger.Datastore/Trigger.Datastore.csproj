@@ -68,6 +68,7 @@
     <Compile Include="Persistent\IFileData.cs" />
     <Compile Include="Persistent\IFileDataService.cs" />
     <Compile Include="Persistent\IPersistent.cs" />
+    <Compile Include="Persistent\LinkedObjectsProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -9,8 +9,6 @@ using Eto.Drawing;
 
 namespace Trigger.CRM.Model
 {
-
-
 	[System.ComponentModel.DefaultProperty("Name")]
 	public class Area : PersistentModelBase
 	{

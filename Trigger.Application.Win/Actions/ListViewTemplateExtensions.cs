@@ -2,6 +2,7 @@ using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using Trigger.WinForms.Layout;
 using System.Linq;
+using System;
 
 namespace Trigger.WinForms.Actions
 {
@@ -14,6 +15,7 @@ namespace Trigger.WinForms.Actions
 				var store = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
 
 				listForm.CurrentGrid.DataStore = new DataStoreCollection(store.LoadAll(listForm.ModelType));
+
 				listForm.Title = listForm.ModelType.Name + "-List - Items: " + listForm.CurrentGrid.DataStore.AsEnumerable().Count();
 			}
 		}

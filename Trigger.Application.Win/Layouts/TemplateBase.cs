@@ -9,8 +9,6 @@ namespace Trigger.WinForms.Layout
 {
 	public abstract class TemplateBase : Form
 	{
-		public IList<ActionBaseController> Controllers = new List<ActionBaseController>();
-
 		public IPersistent CurrentObject
 		{
 			get;
@@ -44,9 +42,7 @@ namespace Trigger.WinForms.Layout
 		{
 			base.OnLoadComplete(e);
 
-			AddControllers();
-
-			LoadControllers(new ActionControllerManager(this).ValidControllers().ToList());
+			LoadControllers();
 
 			if (this is DetailViewTemplate)
 				WindowManager.AddDetailView(CurrentObject, this as DetailViewTemplate);
@@ -66,23 +62,9 @@ namespace Trigger.WinForms.Layout
 				WindowManager.RemoveDetailView(CurrentObject);
 		}
 
-		protected virtual void AddControllers()
+		public void LoadControllers()
 		{
-			Controllers.Add(new ActionActiveWindowsController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionCloseController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionNewController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionRefreshListController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionOpenObjectListController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionDeleteController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionSaveController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionRefreshDetailController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionFileDataDetailController(this, ModelType, CurrentObject));
-			Controllers.Add(new ActionFileDataListController(this, ModelType, CurrentObject));
-		}
-
-		public void LoadControllers(IEnumerable<ActionBaseController> controllers)
-		{
-			foreach (var controller in controllers)
+			foreach (var controller in new ActionControllerProvider(this).ValidControllers().ToList())
 			{
 				var currentMenu = Menu.Items.GetSubmenu(controller.Category);
 

@@ -32,6 +32,7 @@ namespace Trigger.WinForms.Layout
 			gridView.AllowMultipleSelection = true;
 			gridView.ShowCellBorders = true;
 
+
 			return gridView;
 		}
 
@@ -48,8 +49,11 @@ namespace Trigger.WinForms.Layout
 					continue;
 
 				var column = new GridColumn();
+
 				column.DataCell = cell;
 				column.HeaderText = property.Name;
+				column.Sortable = true;
+
 				gridView.Columns.Add(column);
 			}
 

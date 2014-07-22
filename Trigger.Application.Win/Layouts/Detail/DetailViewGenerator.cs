@@ -3,6 +3,7 @@ using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Trigger.WinForms.Layout
 {
@@ -24,13 +25,18 @@ namespace Trigger.WinForms.Layout
 
 		public DynamicLayout GetContent()
 		{
+
 			var layout = new DynamicLayout();
+
 			var properties = Model.GetType().GetProperties();
 
 			foreach (var property in properties)
 			{
 				if (property.CanRead)
 				{
+					if (property.Name.EndsWith("Alias"))
+						continue;
+
 					if (property.PropertyType == typeof(string))
 					{
 						layout.BeginHorizontal();
@@ -112,7 +118,7 @@ namespace Trigger.WinForms.Layout
 
 			layout.BeginHorizontal();
 			layout.EndHorizontal();
-
+		
 			return layout;
 		}
 

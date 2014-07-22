@@ -18,37 +18,65 @@ namespace Trigger.CRM.Actions
 			protected set;
 		}
 
+		public Command ShowLinkedIssuesAction
+		{
+			get;
+			protected set;
+		}
+
 		public ActionAreaController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
 		{
-			Category = "Edit";
+			Category = "Links";
 			TargetView = ActionControllerTargetView.DetailView;
 			TargetModelType = typeof(Area);
+			Visiblity = ActionVisibility.Menu;
 		}
 
 		public override IEnumerable<Command> Commands()
 		{
 			ShowLinkedDocumentsAction = new Command();
 			ShowLinkedDocumentsAction.ID = "Linked_documents_Tool_Action";
-			ShowLinkedDocumentsAction.Image = ImageExtensions.GetImage("Close32.png", 24);
-			ShowLinkedDocumentsAction.MenuText = "Linked documents";
-			ShowLinkedDocumentsAction.ToolBarText = "Linked documents";
+			ShowLinkedDocumentsAction.Image = ImageExtensions.GetImage("Folder_add32.png", 24);
+			ShowLinkedDocumentsAction.MenuText = "All area documents";
+			ShowLinkedDocumentsAction.ToolBarText = "All area documents";
 			ShowLinkedDocumentsAction.Executed += (sender, e) =>
 			{
 				ShowLinkedDocumentsExecute();
 			};
 
 			yield return ShowLinkedDocumentsAction;
+
+			ShowLinkedIssuesAction = new Command();
+			ShowLinkedIssuesAction.ID = "Linked_issues_Tool_Action";
+			ShowLinkedIssuesAction.Image = ImageExtensions.GetImage("Folder_add32.png", 24);
+			ShowLinkedIssuesAction.MenuText = "All ares issues";
+			ShowLinkedIssuesAction.ToolBarText = "All ares issues";
+			ShowLinkedIssuesAction.Executed += (sender, e) =>
+			{
+				ShowLinkedIssuesExecute();
+			};
+
+			yield return ShowLinkedIssuesAction;
 		}
 
 		protected virtual void ShowLinkedDocumentsExecute()
 		{
+			CreateLinkView((CurrentObject as Area).LinkedDocuments);
+		}
+
+		protected virtual void ShowLinkedIssuesExecute()
+		{
+			CreateLinkView((CurrentObject as Area).LinkedIssues);
+		}
+
+		void CreateLinkView(IEnumerable<IPersistent> list)
+		{
 			var area = CurrentObject as Area;
-			if (area.LinkedDocuments.Any())
+			if (area != null && list.Any())
 			{
 				var listTemplate = new ListViewTemplate(typeof(Document), area);
 				listTemplate.CurrentGrid.DataStore = new DataStoreCollection(area.LinkedDocuments);
 				listTemplate.Show();
-
 			}
 		}
 	}

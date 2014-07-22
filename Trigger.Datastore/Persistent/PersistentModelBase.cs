@@ -1,6 +1,8 @@
 using System;
 using Trigger.Dependency;
 using Trigger.Datastore.Security;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Trigger.Datastore.Persistent
 {
@@ -30,8 +32,17 @@ namespace Trigger.Datastore.Persistent
 			}
 		}
 
+		public string CreatedByAlias
+		{
+			get
+			{
+				return CreatedBy != null ? CreatedBy.UserName : null;
+			}
+		}
+
 		User createdBy;
 
+		[PersistentReference("CreatedByAlias")]
 		public User CreatedBy
 		{
 			get

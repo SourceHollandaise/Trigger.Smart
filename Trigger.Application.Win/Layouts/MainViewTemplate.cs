@@ -5,16 +5,17 @@ using Eto.Drawing;
 using System.Linq;
 using Trigger.WinForms.Actions;
 using Trigger.Datastore.Security;
+using Trigger.Datastore.Persistent;
 
 namespace Trigger.WinForms.Layout
 {
 	public class MainViewTemplate : TemplateBase
 	{
-		public MainViewTemplate(IEnumerable<Type> types) : base(types.FirstOrDefault(), null)
+		public MainViewTemplate() : base(typeof(IPersistent), null)
 		{
 			Size = new Size(640, 480);
 
-			Content = new MainViewGenerator(types).GetContent();
+			Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
 		}
 
 		public override void OnLoadComplete(EventArgs e)

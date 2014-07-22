@@ -3,6 +3,7 @@ using Eto.Forms;
 using Trigger.Datastore.Persistent;
 using System.Reflection;
 using System.Linq;
+using Eto;
 
 namespace Trigger.WinForms.Layout
 {
@@ -43,6 +44,14 @@ namespace Trigger.WinForms.Layout
 
 			if (typeof(IPersistent).IsAssignableFrom(property.PropertyType.BaseType))
 			{
+				var attribute = property.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).FirstOrDefault() as PersistentReferenceAttribute;
+				if (attribute != null)
+				{
+					if (string.IsNullOrWhiteSpace(attribute.AliasProperty))
+						return new TextBoxCell(attribute.AliasProperty);
+				
+				}
+
 				return new TextBoxCell(property.Name);
 			}
 
@@ -54,5 +63,4 @@ namespace Trigger.WinForms.Layout
 			return null;
 		}
 	}
-	
 }
