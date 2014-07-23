@@ -21,12 +21,14 @@ namespace Trigger.WinForms.Layout
 
 		public Cell CreateDataCell(PropertyInfo property)
 		{
-			if (typeof(IPersistent).IsAssignableFrom(property.PropertyType.BaseType))
+			/*
+			if (typeof(IStorable).IsAssignableFrom(property.PropertyType.BaseType))
 			{
-				var attribute = property.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).FirstOrDefault() as PersistentReferenceAttribute;
+				var attribute = property.GetCustomAttributes(typeof(LinkedObjectAttribute), true).FirstOrDefault() as LinkedObjectAttribute;
 				if (attribute != null && !string.IsNullOrWhiteSpace(attribute.AliasProperty))
 					return new TextBoxCell(attribute.AliasProperty);
 			}
+			*/
 
 			if (property.PropertyType.IsGenericType)
 			{
@@ -40,8 +42,7 @@ namespace Trigger.WinForms.Layout
 
 			if (property.PropertyType == typeof(string))
 			{
-				if (!property.Name.EndsWith("Alias"))
-					return new TextBoxCell(property.Name);
+				return new TextBoxCell(property.Name);
 			}
 
 			if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))

@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionFileDataDetailController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionFileDataDetailController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Store";
 			TargetView = ActionControllerTargetView.DetailView;

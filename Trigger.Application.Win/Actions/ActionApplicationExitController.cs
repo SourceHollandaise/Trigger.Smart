@@ -24,7 +24,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionApplicationExitController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionApplicationExitController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Application";
 			TargetView = ActionControllerTargetView.Main;

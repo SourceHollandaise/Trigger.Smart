@@ -11,9 +11,9 @@ namespace Trigger.WinForms.Layout
 {
 	public class MainViewTemplate : TemplateBase
 	{
-		public MainViewTemplate() : base(typeof(IPersistent), null)
+		public MainViewTemplate() : base(typeof(IStorable), null)
 		{
-			Size = new Size(640, 480);
+			Size = new Size(400, 800);
 
 			Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
 		}

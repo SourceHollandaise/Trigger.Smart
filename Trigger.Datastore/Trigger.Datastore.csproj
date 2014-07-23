@@ -49,9 +49,6 @@
     <Compile Include="Persistent\GuidIdGenerator.cs" />
     <Compile Include="Persistent\IdGenerator.cs" />
     <Compile Include="Persistent\IStore.cs" />
-    <Compile Include="Persistent\PersistentModelBase.cs" />
-    <Compile Include="Persistent\PersistentReferenceAttribute.cs" />
-    <Compile Include="Persistent\PersistentReferenceHelper.cs" />
     <Compile Include="Persistent\StoreConfigurator.cs" />
     <Compile Include="Repository\IModelRepository.cs" />
     <Compile Include="Repository\ModelRepositoryEventArgs.cs" />
@@ -68,7 +65,10 @@
     <Compile Include="Persistent\NotifyPropertyChangedBase.cs" />
     <Compile Include="Persistent\IFileData.cs" />
     <Compile Include="Persistent\IFileDataService.cs" />
-    <Compile Include="Persistent\IPersistent.cs" />
+    <Compile Include="Persistent\LinkedObjectAttribute.cs" />
+    <Compile Include="Persistent\LinkedObjectHelper.cs" />
+    <Compile Include="Persistent\IStorable.cs" />
+    <Compile Include="Persistent\StorableBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

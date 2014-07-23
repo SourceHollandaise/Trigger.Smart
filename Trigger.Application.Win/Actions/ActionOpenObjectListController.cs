@@ -7,7 +7,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionOpenObjectListController : ActionOpenObjectBaseController
 	{
-		public ActionOpenObjectListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionOpenObjectListController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.ListView;
@@ -19,7 +19,7 @@ namespace Trigger.WinForms.Actions
 
 			if (listForm != null)
 			{
-				WindowManager.ShowDetailView(listForm.CurrentGrid.SelectedItem as IPersistent);
+				WindowManager.ShowDetailView(listForm.CurrentGrid.SelectedItem as IStorable);
 			}
 		}
 	}

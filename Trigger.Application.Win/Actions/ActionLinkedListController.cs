@@ -12,7 +12,7 @@ namespace Trigger.WinForms.Actions
 {
 	public class ActionLinkedListController : ActionBaseController
 	{
-		public ActionLinkedListController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionLinkedListController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Links";
 			TargetView = ActionControllerTargetView.DetailView;
@@ -50,7 +50,7 @@ namespace Trigger.WinForms.Actions
 			if (linkList != null)
 			{
 				var listView = new ListViewTemplate(link.LinkType, null);
-				listView.CurrentGrid.DataStore = new DataStoreCollection(linkList as IEnumerable<IPersistent>);
+				listView.CurrentGrid.DataStore = new DataStoreCollection(linkList as IEnumerable<IStorable>);
 				listView.Show();
 			}
 		}

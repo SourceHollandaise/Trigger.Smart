@@ -6,7 +6,7 @@ using Trigger.CRM.Persistent;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Subject")]
-	public class Document : PersistentModelBase, IFileData
+	public class Document : StorableBase, IFileData
 	{
 		public override string GetRepresentation()
 		{
@@ -48,6 +48,7 @@ namespace Trigger.CRM.Model
 
 		string fileName;
 
+		[VisibleOnView(TargetView.DetailOnly)]
 		public string FileName
 		{
 			get
@@ -84,6 +85,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string AreaAlias
 		{
 			get
@@ -94,7 +96,8 @@ namespace Trigger.CRM.Model
 
 		Area area;
 
-		[PersistentReference("AreaAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public Area Area
 		{
 			get
@@ -113,6 +116,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("Issue")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string IssueAlias
 		{
 			get
@@ -123,7 +127,8 @@ namespace Trigger.CRM.Model
 
 		IssueTracker issue;
 
-		[PersistentReference("IssueAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public IssueTracker Issue
 		{
 			get
@@ -142,6 +147,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("From user")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string UserAlias
 		{
 			get
@@ -153,7 +159,8 @@ namespace Trigger.CRM.Model
 		User user;
 
 		[System.ComponentModel.DisplayName("From user")]
-		[PersistentReference("UserAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public User User
 		{
 			get

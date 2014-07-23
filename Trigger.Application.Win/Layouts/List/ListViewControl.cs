@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Layout
 	//INFO: UserControl for GridView
 	public class ListViewControl : Window
 	{
-		public IPersistent CurrentObject
+		public IStorable CurrentObject
 		{
 			get;
 			private set;
@@ -29,7 +29,7 @@ namespace Trigger.WinForms.Layout
 		}
 
 
-		public ListViewControl(Type type, IPersistent currentObject) : base(Application.Instance.Generator, Application.Instance.Generator.GetType())
+		public ListViewControl(Type type, IStorable currentObject) : base(Application.Instance.Generator, Application.Instance.Generator.GetType())
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;

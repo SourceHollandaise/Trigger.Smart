@@ -3,7 +3,7 @@ using Trigger.Datastore.Persistent;
 namespace Trigger.Datastore.Security
 {
 	[System.ComponentModel.DefaultProperty("UserName")]
-	public class User : PersistentModelBase
+	public class User : StorableBase
 	{
 		public override void Initialize()
 		{
@@ -39,6 +39,7 @@ namespace Trigger.Datastore.Security
 
 		string password;
 
+		[VisibleOnView(TargetView.DetailOnly)]
 		public string Password
 		{
 			get

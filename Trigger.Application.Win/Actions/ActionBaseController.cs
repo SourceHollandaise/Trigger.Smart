@@ -44,18 +44,18 @@ namespace Trigger.WinForms.Actions
 			set;
 		}
 
-		protected IPersistent CurrentObject
+		protected IStorable CurrentObject
 		{
 			get;
 			set;
 		}
 
-		protected ActionBaseController(TemplateBase template, Type modelType, IPersistent currentObject)
+		protected ActionBaseController(TemplateBase template, Type modelType, IStorable currentObject)
 		{
 			Category = "File";
 			Visiblity = ActionVisibility.MenuAndToolbar;
 			TargetView = ActionControllerTargetView.Any;
-			TargetModelType = typeof(IPersistent);
+			TargetModelType = typeof(IStorable);
 
 			this.Template = template;
 			this.CurrentObject = currentObject;

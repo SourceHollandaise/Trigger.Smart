@@ -6,11 +6,11 @@ namespace Trigger.WinForms.Layout
 {
 	public class DetailViewTemplate : TemplateBase
 	{
-		public DetailViewTemplate(Type modelType, IPersistent currentObject) : base(modelType, currentObject)
+		public DetailViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
 		{
 			Content = new DetailViewGenerator(CurrentObject).GetContent();
 
-			Size = new Size(800, 600);
+			Size = new Size(400, 800);
 			Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
 		}
 	}

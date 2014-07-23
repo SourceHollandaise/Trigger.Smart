@@ -5,7 +5,7 @@ namespace Trigger.Datastore.Repository
 {
     public static class ModelRepositoryFactory
     {
-        public static IModelRepository<T> Create<T>() where T: IPersistent
+        public static IModelRepository<T> Create<T>() where T: IStorable
         {
             var map = DependencyMapProvider.Instance;
 

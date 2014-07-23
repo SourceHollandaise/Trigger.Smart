@@ -6,7 +6,7 @@ using Trigger.Datastore.Persistent;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Subject")]
-	public class IssueTracker : PersistentModelBase
+	public class IssueTracker : StorableBase
 	{
 		public override void Initialize()
 		{
@@ -42,24 +42,6 @@ namespace Trigger.CRM.Model
 				if (Equals(subject, value))
 					return;
 				subject = value;
-
-				OnPropertyChanged();
-			}
-		}
-
-		string description;
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set
-			{
-				if (Equals(description, value))
-					return;
-				description = value;
 
 				OnPropertyChanged();
 			}
@@ -124,8 +106,27 @@ namespace Trigger.CRM.Model
 			}
 		}
 
+		string description;
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set
+			{
+				if (Equals(description, value))
+					return;
+				description = value;
+
+				OnPropertyChanged();
+			}
+		}
+
 		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string AreaAlias
 		{
 			get
@@ -136,7 +137,8 @@ namespace Trigger.CRM.Model
 
 		Area area;
 
-		[PersistentReference("AreaAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public Area Area
 		{
 			get
@@ -191,6 +193,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("Resolved by")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string ResolvedByAlias
 		{
 			get
@@ -202,7 +205,8 @@ namespace Trigger.CRM.Model
 		User resolvedBy;
 
 		[System.ComponentModel.DisplayName("Resolved by")]
-		[PersistentReference("ResolvedByAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public User ResolvedBy
 		{
 			get

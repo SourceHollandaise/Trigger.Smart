@@ -15,7 +15,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionActiveWindowsController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionActiveWindowsController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Windows";
 			Visiblity = ActionVisibility.None;

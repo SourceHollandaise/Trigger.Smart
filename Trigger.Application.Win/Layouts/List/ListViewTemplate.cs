@@ -14,14 +14,14 @@ namespace Trigger.WinForms.Layout
 			protected set;
 		}
 
-		public ListViewTemplate(Type modelType, IPersistent currentObject) : base(modelType, currentObject)
+		public ListViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
 		{
 			if (CurrentGrid == null)
 				CurrentGrid = new ListViewGenerator(ModelType).GetContent();
 
 			Content = CurrentGrid;
 
-			Size = new Size(1024, 600);
+			Size = new Size(800, 400);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 		}
 	}

@@ -10,7 +10,7 @@ namespace Trigger.WinForms.Layout
 
 		static readonly Dictionary<Type, ListViewTemplate> listTemplates = new Dictionary<Type, ListViewTemplate>();
 
-		public static void ShowDetailView(IPersistent targetObject)
+		public static void ShowDetailView(IStorable targetObject)
 		{
 			if (targetObject == null)
 				return;
@@ -43,7 +43,7 @@ namespace Trigger.WinForms.Layout
 			}
 		}
 
-		public static void RemoveDetailView(IPersistent targetObject)
+		public static void RemoveDetailView(IStorable targetObject)
 		{
 			if (targetObject == null)
 				return;
@@ -61,7 +61,7 @@ namespace Trigger.WinForms.Layout
 				listTemplates.Remove(targetType);
 		}
 
-		public static void AddDetailView(IPersistent targetObject, DetailViewTemplate template)
+		public static void AddDetailView(IStorable targetObject, DetailViewTemplate template)
 		{
 			if (targetObject == null)
 				return;
@@ -79,7 +79,7 @@ namespace Trigger.WinForms.Layout
 				listTemplates.Add(targetType, template);
 		}
 
-		public static DetailViewTemplate GetDetailView(IPersistent targetObject)
+		public static DetailViewTemplate GetDetailView(IStorable targetObject)
 		{
 			if (targetObject == null)
 				return null;

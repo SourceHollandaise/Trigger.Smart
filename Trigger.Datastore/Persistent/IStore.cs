@@ -5,24 +5,24 @@ namespace Trigger.Datastore.Persistent
 {
     public interface IStore
     {
-        void Save(Type type, IPersistent item);
+        void Save(Type type, IStorable item);
 
-        void Save<T>(T item) where T: IPersistent;
+        void Save<T>(T item) where T: IStorable;
 
         void DeleteById(Type type, object itemId);
 
-        void DeleteById<T>(object itemId) where T: IPersistent;
+        void DeleteById<T>(object itemId) where T: IStorable;
 
-        void Delete(Type type, IPersistent item);
+        void Delete(Type type, IStorable item);
 
-        void Delete<T>(T item) where T: IPersistent;
+        void Delete<T>(T item) where T: IStorable;
 
-        IPersistent Load(Type type, object itemId);
+        IStorable Load(Type type, object itemId);
 
-        T Load<T>(object itemId) where T: IPersistent;
+        T Load<T>(object itemId) where T: IStorable;
 
-        IEnumerable<IPersistent>LoadAll(Type type);
+        IEnumerable<IStorable>LoadAll(Type type);
 
-        IEnumerable<T> LoadAll<T>() where T: IPersistent;
+        IEnumerable<T> LoadAll<T>() where T: IStorable;
     }
 }

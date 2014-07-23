@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Trigger.Datastore.Persistent
 {
-	public abstract class PersistentModelBase : NotifyPropertyChangedBase, IPersistent
+	public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
 	{
 		[System.ComponentModel.ReadOnly(true)]
 		[System.ComponentModel.DisplayName("ID")]
@@ -19,6 +19,7 @@ namespace Trigger.Datastore.Persistent
 		DateTime? created;
 
 		[System.ComponentModel.ReadOnly(true)]
+		[VisibleOnView(TargetView.None)]
 		public DateTime? Created
 		{
 			get
@@ -35,8 +36,9 @@ namespace Trigger.Datastore.Persistent
 			}
 		}
 
-		[System.Runtime.Serialization.IgnoreDataMember]
 		[System.ComponentModel.DisplayName("Created by")]
+		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.None)]
 		public string CreatedByAlias
 		{
 			get
@@ -47,9 +49,10 @@ namespace Trigger.Datastore.Persistent
 
 		User createdBy;
 
-		[PersistentReference("CreatedByAlias")]
 		[System.ComponentModel.ReadOnly(true)]
 		[System.ComponentModel.DisplayName("Created by")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.None)]
 		public User CreatedBy
 		{
 			get
@@ -90,7 +93,7 @@ namespace Trigger.Datastore.Persistent
 
 		protected virtual void UpdatePersistentReferences()
 		{
-			PersistentReferenceHelper.UpdatePersistentReferences(this);
+			LinkedObjectHelper.UpdatePersistentReferences(this);
 		}
 
 		protected IDependencyMap Map

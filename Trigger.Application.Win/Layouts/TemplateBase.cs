@@ -8,7 +8,7 @@ namespace Trigger.WinForms.Layout
 {
 	public abstract class TemplateBase : Form
 	{
-		public IPersistent CurrentObject
+		public IStorable CurrentObject
 		{
 			get;
 			private set;
@@ -20,7 +20,7 @@ namespace Trigger.WinForms.Layout
 			private set;
 		}
 
-		protected TemplateBase(Type type, IPersistent currentObject)
+		protected TemplateBase(Type type, IStorable currentObject)
 		{
 			this.ModelType = type;
 			this.CurrentObject = currentObject;

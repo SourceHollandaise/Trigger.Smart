@@ -6,7 +6,7 @@ using Trigger.Datastore.Security;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Subject")]
-	public class TimeTracker : PersistentModelBase
+	public class TimeTracker : StorableBase
 	{
 		public override string GetRepresentation()
 		{
@@ -133,6 +133,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("Area")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string AreaAlias
 		{
 			get
@@ -143,7 +144,8 @@ namespace Trigger.CRM.Model
 
 		Area area;
 
-		[PersistentReference("AreaAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public Area Area
 		{
 			get
@@ -162,6 +164,7 @@ namespace Trigger.CRM.Model
 
 		[System.ComponentModel.DisplayName("User")]
 		[System.Runtime.Serialization.IgnoreDataMember]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string UserAlias
 		{
 			get
@@ -172,7 +175,8 @@ namespace Trigger.CRM.Model
 
 		User user;
 
-		[PersistentReference("UserAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public User User
 		{
 			get

@@ -44,7 +44,11 @@ namespace Trigger.WinForms.Layout
 
 			foreach (var property in ModelType.GetProperties())
 			{
-				var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+				var displayNameAttribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+				var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+
+				if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.DetailOnly || visibilityAttribute.TargetView == TargetView.None))
+					continue;
 
 				var cell = factory.CreateDataCell(property);
 				if (cell == null)
@@ -54,7 +58,7 @@ namespace Trigger.WinForms.Layout
 
 				column.DataCell = cell;
 
-				column.HeaderText = attribute != null ? attribute.DisplayName : property.Name;
+				column.HeaderText = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
 				column.Sortable = true;
 
 				gridView.Columns.Add(column);

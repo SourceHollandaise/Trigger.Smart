@@ -5,7 +5,7 @@ using System.Linq;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("Name")]
-	public class Area : PersistentModelBase
+	public class Area : StorableBase
 	{
 		public override string GetRepresentation()
 		{

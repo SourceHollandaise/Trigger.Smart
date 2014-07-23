@@ -15,13 +15,13 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		protected IPersistent Model
+		protected IStorable Model
 		{
 			get;
 			set;
 		}
 
-		public DetailViewGenerator(IPersistent model)
+		public DetailViewGenerator(IStorable model)
 		{
 			this.Model = model;
 			EditorFactory = new DetailPropertyEditorFactory(Model);
@@ -40,12 +40,17 @@ namespace Trigger.WinForms.Layout
 					if (property.Name.EndsWith("Alias"))
 						continue;
 	
+					var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+
+					if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.ListOnly || visibilityAttribute.TargetView == TargetView.None))
+						continue;
+
 					if (property.PropertyType.IsGenericType)
 					{
 						var value = property.GetValue(Model, null);
-						if (value is IEnumerable<IPersistent>)
+						if (value is IEnumerable<IStorable>)
 						{
-							var firstItem = (value as IEnumerable<IPersistent>).FirstOrDefault();
+							var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
 
 							if (firstItem != null)
 							{
@@ -91,14 +96,14 @@ namespace Trigger.WinForms.Layout
 						layout.EndHorizontal();
 					}
 
-					if (typeof(IPersistent).IsAssignableFrom(property.PropertyType))
+					if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
 					{
 						AddLabel(layout, property);
 						var referenceComboBox = EditorFactory.ReferencePropertyEditor(property);
 
 						layout.Add(referenceComboBox, true);
 
-						AddReferenceButtons(layout, referenceComboBox);
+						//AddReferenceButtons(layout, referenceComboBox);
 
 						layout.EndHorizontal();
 					}
@@ -123,10 +128,13 @@ namespace Trigger.WinForms.Layout
 			var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
 
 			layout.BeginVertical();
-			layout.Add(new Label
+			var label = new Label
 			{
 				Text = (attribute != null ? attribute.DisplayName : property.Name) + ":"
-			});
+			};
+
+			label.Font = new Eto.Drawing.Font(label.Font.Family, 8f);
+			layout.Add(label, true);
 			layout.EndVertical();
 			layout.BeginHorizontal();
 		}

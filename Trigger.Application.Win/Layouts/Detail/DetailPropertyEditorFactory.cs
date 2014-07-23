@@ -12,13 +12,13 @@ namespace Trigger.WinForms.Layout
 	{
 		Dictionary<string, Control> bindings = new Dictionary<string, Control>();
 
-		protected IPersistent Model
+		protected IStorable Model
 		{
 			get;
 			set;
 		}
 
-		public DetailPropertyEditorFactory(IPersistent model)
+		public DetailPropertyEditorFactory(IStorable model)
 		{
 			this.Model = model;
 
@@ -45,10 +45,10 @@ namespace Trigger.WinForms.Layout
 			{
 				var value = (property.GetValue(Model, null));
 
-				if (typeof(IPersistent).IsAssignableFrom(property.PropertyType))
+				if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
 				{
 					if (value != null)
-						((ComboBox)control).SelectedKey = (string)(value as IPersistent).MappingId;
+						((ComboBox)control).SelectedKey = (string)(value as IStorable).MappingId;
 					else
 						((ComboBox)control).SelectedValue = null;
 				}
@@ -144,7 +144,7 @@ namespace Trigger.WinForms.Layout
 
 			var control = new ComboBox();
 			var items = Dependency.DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
-			foreach (IPersistent pi in items)
+			foreach (IStorable pi in items)
 			{
 				object defaultItemValue = null;
 				if (attribute != null && !string.IsNullOrWhiteSpace(attribute.Name))
@@ -162,7 +162,7 @@ namespace Trigger.WinForms.Layout
 			var value = property.GetValue(Model, null);
 			if (value != null)
 			{
-				var selection = (property.GetValue(Model, null) as IPersistent);
+				var selection = (property.GetValue(Model, null) as IStorable);
 				if (selection != null && selection.MappingId != null)
 				{
 					control.SelectedKey = selection.MappingId.ToString();
@@ -247,7 +247,7 @@ namespace Trigger.WinForms.Layout
 		{
 			var current = control.SelectedValue as ListItem;
 			if (current != null)
-				WindowManager.ShowDetailView(current.Tag as IPersistent);
+				WindowManager.ShowDetailView(current.Tag as IStorable);
 		}
 
 		void  ClearReference(ComboBox control)

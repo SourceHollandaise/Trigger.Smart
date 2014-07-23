@@ -5,7 +5,7 @@ using Trigger.Dependency;
 namespace Trigger.Datastore.Persistent
 {
 
-	public static class PersistentReferenceHelper
+	public static class LinkedObjectHelper
 	{
 		static IStore Store
 		{
@@ -15,10 +15,10 @@ namespace Trigger.Datastore.Persistent
 			}
 		}
 
-		public static void UpdatePersistentReferences(IPersistent persistent)
+		public static void UpdatePersistentReferences(IStorable persistent)
 		{
 			var properties = persistent.GetType().GetProperties().AsEnumerable()
-                .Where(p => p.GetCustomAttributes(typeof(PersistentReferenceAttribute), true).Length > 0).ToList();
+                .Where(p => p.GetCustomAttributes(typeof(LinkedObjectAttribute), true).Length > 0).ToList();
 
 			foreach (var property in properties)
 			{
@@ -26,7 +26,7 @@ namespace Trigger.Datastore.Persistent
 
 				if (propValue != null)
 				{
-					var persistentRef = propValue as IPersistent;
+					var persistentRef = propValue as IStorable;
 					if (persistentRef != null)
 					{
 						var persistentFromStore = Store.Load(persistentRef.GetType(), persistentRef.MappingId);

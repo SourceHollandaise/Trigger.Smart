@@ -16,7 +16,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		protected ActionRefreshBaseController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		protected ActionRefreshBaseController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			Category = "Edit";
 		}

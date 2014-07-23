@@ -17,7 +17,7 @@ namespace Trigger.WinForms.Actions
 			protected set;
 		}
 
-		public ActionNewController(TemplateBase template, Type modelType, IPersistent currentObject) : base(template, modelType, currentObject)
+		public ActionNewController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
 		{
 			this.ModelType = modelType;
 			TargetView = ActionControllerTargetView.ListView;
@@ -40,7 +40,7 @@ namespace Trigger.WinForms.Actions
 
 		public virtual void NewActionExecute()
 		{
-			CurrentObject = Activator.CreateInstance(ModelType) as IPersistent;
+			CurrentObject = Activator.CreateInstance(ModelType) as IStorable;
 			CurrentObject.Initialize();
 	
 			var detailForm = new DetailViewTemplate(ModelType, CurrentObject);

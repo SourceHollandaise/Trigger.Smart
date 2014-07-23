@@ -8,7 +8,7 @@ namespace Trigger.WinForms.Layout
 	{
 		public LogonViewTemplate()
 		{
-			Size = new Size(340, 200);
+			Size = new Size(240, 200);
 			Title = "Logon";
 		
 			Content = new LogonViewGenerator(this).GetContent();

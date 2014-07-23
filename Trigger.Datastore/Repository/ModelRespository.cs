@@ -5,7 +5,7 @@ using Trigger.Datastore.Persistent;
 
 namespace Trigger.Datastore.Repository
 {
-    public class ModelRespository<T> : IModelRepository<T> where T: IPersistent
+    public class ModelRespository<T> : IModelRepository<T> where T: IStorable
     {
         public event RepositoryHandler ItemAdded;
         public event RepositoryHandler ItemRemoved;

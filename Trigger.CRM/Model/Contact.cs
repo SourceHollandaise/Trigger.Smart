@@ -4,7 +4,7 @@ namespace Trigger.CRM.Model
 {
 
 	[System.ComponentModel.DefaultProperty("PhoneNumber")]
-	public class Contact : PersistentModelBase
+	public class Contact : StorableBase
 	{
 		public override string GetRepresentation()
 		{
@@ -14,6 +14,7 @@ namespace Trigger.CRM.Model
 		}
 
 		[System.ComponentModel.DisplayName("Person")]
+		[VisibleOnView(TargetView.ListOnly)]
 		public string PersonAlias
 		{
 			get
@@ -25,7 +26,8 @@ namespace Trigger.CRM.Model
 		Person person;
 
 		[System.ComponentModel.DisplayName("Person")]
-		[PersistentReference("PersonAlias")]
+		[LinkedObject]
+		[VisibleOnView(TargetView.DetailOnly)]
 		public Person Person
 		{
 			get

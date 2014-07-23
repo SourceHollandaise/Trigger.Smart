@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Trigger.Datastore.Persistent
 {
-	public interface IPersistent : INotifyPropertyChanged
+	public interface IStorable : INotifyPropertyChanged
 	{
 		object MappingId { get; set; }
 
