@@ -33,7 +33,7 @@ namespace Trigger.WinForms.Layout
 			gridView.DataStore = new DataStoreCollection(items);
 			gridView.AllowColumnReordering = true;
 			gridView.AllowMultipleSelection = true;
-			gridView.ShowCellBorders = true;
+			//gridView.ShowCellBorders = true;
 
 			return gridView;
 		}
@@ -51,6 +51,8 @@ namespace Trigger.WinForms.Layout
 					var column = CreateColumn(property);
 					if (column != null)
 						gridView.Columns.Add(column);
+
+					return gridView;
 				}
 			}
 			else
@@ -84,7 +86,8 @@ namespace Trigger.WinForms.Layout
 			column.DataCell = cell;
 			column.HeaderText = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
 			column.Sortable = true;
-
+			column.Resizable = true;
+			column.AutoSize = true;
 			return column;
 		}
 	}

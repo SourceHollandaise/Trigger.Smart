@@ -1,7 +1,7 @@
-using Trigger.Datastore.Persistent;
-using Trigger.Datastore.Security;
+using Trigger.XStorable.DataStore;
 using System.IO;
 using Trigger.CRM.Persistent;
+using Trigger.XStore.Security;
 
 namespace Trigger.CRM.Model
 {
@@ -18,7 +18,7 @@ namespace Trigger.CRM.Model
 				sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, UserAlias, Created));
 				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
 				sb.AppendLine(string.Format("{0}", Description));
-				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				//sb.AppendLine(string.Format("ID: {0}", MappingId));
 				return sb.ToString();
 			}
 		}

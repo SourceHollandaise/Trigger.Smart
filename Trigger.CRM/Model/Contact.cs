@@ -1,4 +1,4 @@
-using Trigger.Datastore.Persistent;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.CRM.Model
 {

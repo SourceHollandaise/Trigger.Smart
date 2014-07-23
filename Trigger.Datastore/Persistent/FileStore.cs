@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Trigger.Dependency;
 using Trigger.CRM.Persistent;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Trigger.Datastore.Persistent
 {

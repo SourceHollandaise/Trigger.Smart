@@ -1,4 +1,4 @@
-using Trigger.Datastore.Persistent;
+using Trigger.XStorable.DataStore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +23,7 @@ namespace Trigger.CRM.Model
 					sb.AppendLine(string.Format("Issues linked: {0}", LinkedIssues.Count()));
 				if (LinkedTrackedTimes.Any())
 					sb.AppendLine(string.Format("Tracked times linked: {0}", LinkedTrackedTimes.Count()));
-				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				//sb.AppendLine(string.Format("ID: {0}", MappingId));
 				return sb.ToString();
 			}
 		}

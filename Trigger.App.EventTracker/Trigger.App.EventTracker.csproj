@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E522C014-2E66-498B-892A-487C68762ABE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Trigger.App.EventTracker</RootNamespace>
+    <AssemblyName>Trigger.App.EventTracker</AssemblyName>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CrossPlatform|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\CrossPlatform</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Eto.Platform.Wpf">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Wpf.1.3.0\lib\net40\Eto.Platform.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Gtk">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Gtk">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Windows">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.1.3.0\lib\net40\Eto.Platform.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Windows">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.1.3.0\lib\net40\Eto.Platform.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="AppEventTracker.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Trigger.BCL.EventTracker\Trigger.BCL.EventTracker.csproj">
+      <Project>{7525B10F-A5C1-4438-ABE2-376B8FBAF991}</Project>
+      <Name>Trigger.BCL.EventTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
+      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
+      <Name>Trigger.XForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
+      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
+      <Name>Trigger.XStorable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>

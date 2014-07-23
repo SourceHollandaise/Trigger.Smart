@@ -1,7 +1,6 @@
 
 namespace Trigger.CRM.Model
 {
-
 	public enum Priority
 	{
 		Low = 1,

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17097A62-E252-4F77-8E0D-646C8FD335D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Trigger.XStorable</RootNamespace>
+    <AssemblyName>Trigger.XStorable</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CrossPlatform|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\CrossPlatform</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\Trigger.Smart\packages\ServiceStack.Text.4.0.23\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Datastore\FileStore.cs" />
+    <Compile Include="Datastore\GuidIdGenerator.cs" />
+    <Compile Include="Datastore\IdGenerator.cs" />
+    <Compile Include="Datastore\IFileData.cs" />
+    <Compile Include="Datastore\IFileDataService.cs" />
+    <Compile Include="Datastore\IStorable.cs" />
+    <Compile Include="Datastore\IStore.cs" />
+    <Compile Include="Datastore\LinkedObjectAttribute.cs" />
+    <Compile Include="Datastore\LinkedObjectHelper.cs" />
+    <Compile Include="Datastore\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Datastore\StoreConfigurator.cs" />
+    <Compile Include="Dependency\DefaultDependencyAttribute.cs" />
+    <Compile Include="Dependency\DependencyMap.cs" />
+    <Compile Include="Dependency\DependencyMapProvider.cs" />
+    <Compile Include="Dependency\IDependencyMap.cs" />
+    <Compile Include="Datastore\LinkedListAttribute.cs" />
+    <Compile Include="Datastore\VisibleOnViewAttribute.cs" />
+    <Compile Include="Datastore\CompactViewRepresentationAttribute.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Datastore\" />
+    <Folder Include="Dependency\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

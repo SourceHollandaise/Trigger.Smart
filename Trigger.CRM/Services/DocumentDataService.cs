@@ -2,9 +2,9 @@ using System.IO;
 using Trigger.CRM.Persistent;
 using System;
 using Trigger.CRM.Model;
-using Trigger.Dependency;
-using Trigger.Datastore.Persistent;
+using Trigger.XStorable.DataStore;
 using System.Linq;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.CRM.Services
 {

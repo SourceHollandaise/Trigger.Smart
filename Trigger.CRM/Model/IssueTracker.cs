@@ -1,7 +1,7 @@
 
 using System;
-using Trigger.Datastore.Security;
-using Trigger.Datastore.Persistent;
+using Trigger.XStorable.DataStore;
+using Trigger.XStore.Security;
 
 namespace Trigger.CRM.Model
 {
@@ -29,7 +29,7 @@ namespace Trigger.CRM.Model
 				sb.AppendLine(string.Format("Priority: {0}", IssuePriority));
 				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
 				sb.AppendLine(string.Format("{0}", Description));
-				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				//sb.AppendLine(string.Format("ID: {0}", MappingId));
 				return sb.ToString();
 			}
 		}
