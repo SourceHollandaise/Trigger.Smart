@@ -1,8 +1,0 @@
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/bin/Release/Trigger.Modules.Base.dll.mdb
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/bin/Release/Trigger.Modules.Base.dll
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/obj/Release/Trigger.Modules.Base.dll
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/obj/Release/Trigger.Modules.Base.dll.mdb
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/bin/Release/ServiceStack.Text.dll
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/bin/Release/DependencyMaps.dll
-/Users/trigger/trigger/Repositories/Trigger.Smart/Trigger.CRM/bin/Release/DependencyMaps.dll.mdb
