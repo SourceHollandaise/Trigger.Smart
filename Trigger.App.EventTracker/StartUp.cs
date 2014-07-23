@@ -10,11 +10,8 @@ namespace Trigger.App.EventTracker
 		{
 			var application = new AppEventTracker();
 
-			var g = Eto.EtoEnvironment.Platform.IsMac;
-
 			application.InitalizeApplication();
 			application.Run();
-
 
 			ExceptionManager.UnhandledException += (args) =>
 			{
