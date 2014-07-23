@@ -1,6 +1,6 @@
 
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
     public interface IAuthenticate
     {

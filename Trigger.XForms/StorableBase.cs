@@ -1,119 +1,141 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Trigger.XStore.Security;
 using Trigger.XStorable.Dependency;
+using Trigger.XStorable.DataStore;
+using Trigger.XForms.Security;
 
 namespace Trigger.XStorable.DataStore
 {
-	public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
-	{
-		[System.ComponentModel.DisplayName("Mapping")]
-		public virtual string GetRepresentation
-		{
-			get
-			{
-				return MappingId.ToString();
-			}
-		}
+    public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
+    {
+        [System.ComponentModel.DisplayName("Mapping")]
+        public virtual string GetRepresentation
+        {
+            get
+            {
+                return MappingId.ToString();
+            }
+        }
 
-		[System.ComponentModel.ReadOnly(true)]
-		[System.ComponentModel.DisplayName("ID")]
-		public object MappingId
-		{
-			get;
-			set;
-		}
+        [System.ComponentModel.ReadOnly(true)]
+        [System.ComponentModel.DisplayName("ID")]
+        public object MappingId
+        {
+            get;
+            set;
+        }
 
-		DateTime? created;
+        DateTime? created;
 
-		[System.ComponentModel.ReadOnly(true)]
-		[VisibleOnView(TargetView.None)]
-		public DateTime? Created
-		{
-			get
-			{
-				return created;
-			}
-			private set
-			{
-				if (Equals(created, value))
-					return;
-				created = value;
+        [System.ComponentModel.ReadOnly(true)]
+        [VisibleOnView(TargetView.None)]
+        public DateTime? Created
+        {
+            get
+            {
+                return created;
+            }
+            private set
+            {
+                if (Equals(created, value))
+                    return;
+                created = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		[System.ComponentModel.DisplayName("Created by")]
-		[System.Runtime.Serialization.IgnoreDataMember]
-		[VisibleOnView(TargetView.None)]
-		public string CreatedByAlias
-		{
-			get
-			{
-				return CreatedBy != null ? CreatedBy.UserName : null;
-			}
-		}
+        DateTime? lastSaved;
 
-		User createdBy;
+        [System.ComponentModel.ReadOnly(true)]
+        [VisibleOnView(TargetView.None)]
+        public DateTime? LastSaved
+        {
+            get
+            {
+                return lastSaved;
+            }
+            set
+            {
+                if (Equals(lastSaved, value))
+                    return;
+                lastSaved = value;
 
-		[System.ComponentModel.ReadOnly(true)]
-		[System.ComponentModel.DisplayName("Created by")]
-		[LinkedObject]
-		[VisibleOnView(TargetView.None)]
-		public User CreatedBy
-		{
-			get
-			{
-				return createdBy;
-			}
-			private set
-			{
-				if (Equals(createdBy, value))
-					return;
-				createdBy = value;
+                OnPropertyChanged();
+            }
+        }
 
-				OnPropertyChanged();
-			}
-		}
+        [System.ComponentModel.DisplayName("Created by")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.None)]
+        public string CreatedByAlias
+        {
+            get
+            {
+                return CreatedBy != null ? CreatedBy.UserName : null;
+            }
+        }
 
-		public virtual void Initialize()
-		{
-			Created = DateTime.Now;
-			CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-		}
+        User createdBy;
 
-		public virtual void Save()
-		{
-			UpdatePersistentReferences();
-			Store.Save(GetType(), this);
-		}
+        [System.ComponentModel.ReadOnly(true)]
+        [System.ComponentModel.DisplayName("Created by")]
+        [LinkedObject]
+        [VisibleOnView(TargetView.None)]
+        public User CreatedBy
+        {
+            get
+            {
+                return createdBy;
+            }
+            private set
+            {
+                if (Equals(createdBy, value))
+                    return;
+                createdBy = value;
 
-		public virtual void Delete()
-		{
-			Store.Delete(GetType(), this);
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		protected virtual void UpdatePersistentReferences()
-		{
-			LinkedObjectHelper.UpdatePersistentReferences(this);
-		}
+        public virtual void Initialize()
+        {
+            Created = DateTime.Now;
+            CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+        }
 
-		protected IDependencyMap Map
-		{
-			get
-			{
-				return DependencyMapProvider.Instance;
-			}
-		}
+        public virtual void Save()
+        {
+            LastSaved = DateTime.Now;
+            UpdatePersistentReferences();
+            Store.Save(GetType(), this);
+        }
 
-		protected IStore Store
-		{
-			get
-			{
-				return Map.ResolveType<IStore>();
-			}
-		}
-	}
+        public virtual void Delete()
+        {
+            Store.Delete(GetType(), this);
+        }
+
+        protected virtual void UpdatePersistentReferences()
+        {
+            LinkedObjectHelper.UpdatePersistentReferences(this);
+        }
+
+        protected IDependencyMap Map
+        {
+            get
+            {
+                return DependencyMapProvider.Instance;
+            }
+        }
+
+        protected IStore Store
+        {
+            get
+            {
+                return Map.ResolveType<IStore>();
+            }
+        }
+    }
 }

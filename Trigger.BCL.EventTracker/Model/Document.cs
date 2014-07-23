@@ -1,6 +1,6 @@
 using Trigger.XStorable.DataStore;
 using System.IO;
-using Trigger.XStore.Security;
+using Trigger.XForms.Security;
 
 namespace Trigger.BCL.EventTracker.Model
 {

@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Trigger.XStorable.Dependency;
-using Trigger.XStore.Security;
-using Trigger.XStorable.DataStore;
+using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
 using Trigger.XForms.Controllers;
-using Trigger.BCL.EventTracker.Model;
+using Trigger.XForms.Security;
+using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.App.EventTracker
 {

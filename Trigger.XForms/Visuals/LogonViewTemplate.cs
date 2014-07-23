@@ -1,6 +1,5 @@
 using Eto.Forms;
 using Eto.Drawing;
-using Trigger.XStore.Security;
 
 namespace Trigger.XForms.Visuals
 {

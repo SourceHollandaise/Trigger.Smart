@@ -1,8 +1,7 @@
 using System.Security.Principal;
-using Trigger.XStore.Security;
 using Trigger.XStorable.Dependency;
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
 	public sealed class SystemAuthenticate : IAuthenticate
 	{

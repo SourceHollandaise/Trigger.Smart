@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 
 namespace Trigger.XStorable.DataStore
@@ -13,5 +14,7 @@ namespace Trigger.XStorable.DataStore
 		void Delete();
 
 		void Initialize();
+
+        DateTime? LastSaved { get; set; }
 	}
 }

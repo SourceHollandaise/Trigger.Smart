@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using Trigger.XStorable.DataStore;
-using Trigger.XStore.Security;
 using Trigger.XStorable.Dependency;
+using Trigger.XForms.Security;
 
 namespace Trigger.BCL.EventTracker.Services
 {

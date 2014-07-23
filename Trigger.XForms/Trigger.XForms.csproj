@@ -48,18 +48,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="StorableBase.cs" />
     <Compile Include="Visuals\MainViewGenerator.cs" />
-    <Compile Include="Visuals\MainViewTemplate.cs" />
-    <Compile Include="Visuals\TemplateBase.cs" />
+    <Compile Include="Visuals\MainViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Visuals\TemplateBase.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Visuals\WindowManager.cs" />
     <Compile Include="Visuals\DetailPropertyEditorFactory.cs" />
     <Compile Include="Visuals\DetailViewGenerator.cs" />
-    <Compile Include="Visuals\DetailViewTemplate.cs" />
+    <Compile Include="Visuals\DetailViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Visuals\LogonViewGenerator.cs" />
-    <Compile Include="Visuals\LogonViewTemplate.cs" />
+    <Compile Include="Visuals\LogonViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Visuals\ListPropertyEditorFactory.cs" />
     <Compile Include="Visuals\ListViewGenerator.cs" />
-    <Compile Include="Visuals\ListViewTemplate.cs" />
+    <Compile Include="Visuals\ListViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Controllers\ActionActiveWindowsController.cs" />
     <Compile Include="Controllers\ActionApplicationExitController.cs" />
     <Compile Include="Controllers\ActionBaseController.cs" />
@@ -89,8 +101,6 @@
     <Compile Include="Security\SecureText.cs" />
     <Compile Include="Security\SecurityInfoProvider.cs" />
     <Compile Include="Security\SystemAuthenticate.cs" />
-    <Compile Include="Security\User.cs" />
-    <Compile Include="StorableBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

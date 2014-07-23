@@ -3,10 +3,10 @@ using Eto.Forms;
 using System.Collections.Generic;
 using Eto.Drawing;
 using System.Linq;
-using Trigger.XStore.Security;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms.Controllers;
 using Trigger.XStorable.Dependency;
+using Trigger.XForms.Security;
 
 namespace Trigger.XForms.Visuals
 {

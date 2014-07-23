@@ -1,9 +1,8 @@
 using System.Linq;
-using Trigger.XStore.Security;
 using Trigger.XStorable.Dependency;
 using Trigger.XStorable.DataStore;
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
 	public sealed class DataStoreAuthenticate : IAuthenticate
 	{

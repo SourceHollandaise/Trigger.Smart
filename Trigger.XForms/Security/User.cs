@@ -1,6 +1,6 @@
 using Trigger.XStorable.DataStore;
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
 	[System.ComponentModel.DefaultProperty("UserName")]
 	public class User : StorableBase

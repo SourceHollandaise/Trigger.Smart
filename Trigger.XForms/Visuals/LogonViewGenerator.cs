@@ -1,5 +1,5 @@
 using Eto.Forms;
-using Trigger.XStore.Security;
+using Trigger.XForms.Security;
 using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals

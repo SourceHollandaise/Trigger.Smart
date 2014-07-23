@@ -1,5 +1,5 @@
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
 	public class LogonParameters
 	{

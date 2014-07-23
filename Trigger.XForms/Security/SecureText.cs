@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Trigger.XStore.Security
+namespace Trigger.XForms.Security
 {
     public static class SecureText
     {
