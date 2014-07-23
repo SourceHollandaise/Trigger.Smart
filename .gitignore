@@ -34,4 +34,6 @@ Trigger.Smart/Trigger.Smart.userprefs
 
 *.json
 
-Trigger.Datastore/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/bin
+**/bin/**
+**/obj/**
