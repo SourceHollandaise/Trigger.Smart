@@ -13,7 +13,7 @@ namespace Trigger.WinForms.Layout
 	{
 		public MainViewTemplate() : base(typeof(IStorable), null)
 		{
-			Size = new Size(400, 800);
+			Size = new Size(400, 768);
 
 			Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
 			Content = new Scrollable{ Content = this.Content };

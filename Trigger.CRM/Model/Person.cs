@@ -5,13 +5,20 @@ using System.Linq;
 namespace Trigger.CRM.Model
 {
 	[System.ComponentModel.DefaultProperty("FirstName")]
+	[CompactViewRepresentationAttribute]
 	public class Person : StorableBase
 	{
-		public override string GetRepresentation()
+		[System.ComponentModel.DisplayName("Person")]
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("{0} {1}", FirstName, LastName));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("{0} {1}", FirstName, LastName));
+				sb.AppendLine(string.Format("{0} {1} {2}", PostalCode, City, Street));
+				return sb.ToString();
+			}
 		}
 
 		string firstName;

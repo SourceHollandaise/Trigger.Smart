@@ -2,20 +2,19 @@ using System;
 
 namespace Trigger.Datastore.Persistent
 {
+	public enum TargetView
+	{
+		Any,
+		DetailOnly,
+		ListOnly,
+		None
+	}
+
 	[System.ComponentModel.Category("Store")]
 	[AttributeUsage(AttributeTargets.Property)]
 	public sealed class LinkedObjectAttribute : Attribute
 	{
-		//		public string AliasProperty
-		//		{
-		//			get;
-		//			private set;
-		//		}
-		//
-		//		public LinkedObjectAttribute(string aliasProperty)
-		//		{
-		//			this.AliasProperty = aliasProperty;
-		//		}
+
 	}
 
 	[System.ComponentModel.Category("Store")]
@@ -34,11 +33,10 @@ namespace Trigger.Datastore.Persistent
 		}
 	}
 
-	[System.ComponentModel.Category("View")]
+	[System.ComponentModel.Category("XForms")]
 	[AttributeUsage(AttributeTargets.Property)]
 	public sealed class VisibleOnViewAttribute : Attribute
 	{
-
 		public TargetView TargetView
 		{
 			get;
@@ -48,15 +46,22 @@ namespace Trigger.Datastore.Persistent
 		public VisibleOnViewAttribute(TargetView targetView)
 		{
 			this.TargetView = targetView;
-			
 		}
 	}
 
-	public enum TargetView
+	[System.ComponentModel.Category("XForms")]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = false, Inherited = true)]
+	public sealed class CompactViewRepresentationAttribute : Attribute
 	{
-		Any,
-		DetailOnly,
-		ListOnly,
-		None
+		public string VisualProperty
+		{
+			get;
+			set;
+		}
+
+		public CompactViewRepresentationAttribute(string visualProperty = "GetRepresentation")
+		{
+			this.VisualProperty = visualProperty;
+		}
 	}
 }

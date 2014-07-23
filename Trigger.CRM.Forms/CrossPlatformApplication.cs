@@ -1,15 +1,13 @@
 //using GLib;
-using Trigger.CRM.Model;
-using Trigger.WinForms.Actions;
-using Trigger.WinForms.Layout;
-using Trigger.Datastore.Security;
 using System;
+using Trigger.WinForms.Layout;
+using Eto.Misc;
 
 namespace Trigger.Application.WinForms
 {
 	public class CrossPlatformApplication : Eto.Forms.Application
 	{
-		public virtual void Initialize()
+		public virtual void InitalizeApplication()
 		{
 			var init = new ApplicationInitializer();
 			init.InitalizeDataStore();
@@ -25,11 +23,6 @@ namespace Trigger.Application.WinForms
 			MainForm = new MainViewTemplate();
 			MainForm.BringToFront();
 			MainForm.Show();
-		}
-
-		public override void OnTerminating(System.ComponentModel.CancelEventArgs e)
-		{
-			base.OnTerminating(e);
 		}
 	}
 }

@@ -22,7 +22,10 @@ namespace Trigger.WinForms.Layout
 			Content = CurrentGrid;
 			Content = new Scrollable{ Content = this.Content };
 
-			Size = new Size(800, 400);
+			if (modelType.GetCustomAttributes(typeof(CompactViewRepresentationAttribute), true).FirstOrDefault() != null)
+				Size = new Size(400, 768);
+			else
+				Size = new Size(768, 400);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
 		}
 	}

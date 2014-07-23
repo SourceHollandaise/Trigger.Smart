@@ -10,13 +10,17 @@ namespace Trigger.Datastore.Security
 			//INFO: Do not initialize!!! 
 		}
 
-		public override string GetRepresentation()
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("{0}", UserName));
-			sb.AppendLine(string.Format("{0}", Email));
-			sb.AppendLine(string.Format("ID: {0}", MappingId));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("{0}", UserName));
+				sb.AppendLine(string.Format("{0}", Email));
+				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				return sb.ToString();
+			}
 		}
 
 		string userName;

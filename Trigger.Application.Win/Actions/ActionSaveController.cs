@@ -31,7 +31,7 @@ namespace Trigger.WinForms.Actions
 			SaveAction.Shortcut = Keys.Control & Keys.S;
 			SaveAction.Executed += (sender, e) =>
 			{
-				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
+				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
 					SaveActionExecute();
 			};

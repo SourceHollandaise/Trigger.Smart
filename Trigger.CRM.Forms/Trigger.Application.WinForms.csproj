@@ -42,12 +42,19 @@
     <Reference Include="Eto.Platform.Windows">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.1.3.0\lib\net40\Eto.Platform.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="Eto.Platform.XamMac">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.XamMac.1.3.0\lib\net40\Eto.Platform.XamMac.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Platform.Wpf">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Wpf.1.3.0\lib\net40\Eto.Platform.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInitializer.cs" />

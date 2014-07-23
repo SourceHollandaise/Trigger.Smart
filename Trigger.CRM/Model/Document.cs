@@ -8,14 +8,19 @@ namespace Trigger.CRM.Model
 	[System.ComponentModel.DefaultProperty("Subject")]
 	public class Document : StorableBase, IFileData
 	{
-		public override string GetRepresentation()
+		[System.ComponentModel.DisplayName("Document")]
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, UserAlias, Created));
-			sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
-			sb.AppendLine(string.Format("{0}", Description));
-			sb.AppendLine(string.Format("ID: {0}", MappingId));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, UserAlias, Created));
+				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
+				sb.AppendLine(string.Format("{0}", Description));
+				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				return sb.ToString();
+			}
 		}
 
 		public override void Delete()

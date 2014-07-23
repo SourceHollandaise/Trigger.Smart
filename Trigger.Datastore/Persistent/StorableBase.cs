@@ -8,6 +8,15 @@ namespace Trigger.Datastore.Persistent
 {
 	public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
 	{
+		[System.ComponentModel.DisplayName("Mapping")]
+		public virtual string GetRepresentation
+		{
+			get
+			{
+				return MappingId.ToString();
+			}
+		}
+
 		[System.ComponentModel.ReadOnly(true)]
 		[System.ComponentModel.DisplayName("ID")]
 		public object MappingId
@@ -84,11 +93,6 @@ namespace Trigger.Datastore.Persistent
 		public virtual void Delete()
 		{
 			Store.Delete(GetType(), this);
-		}
-
-		public virtual string GetRepresentation()
-		{
-			return MappingId.ToString();
 		}
 
 		protected virtual void UpdatePersistentReferences()

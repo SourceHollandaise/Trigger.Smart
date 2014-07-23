@@ -8,8 +8,11 @@ namespace Trigger.Application.WinForms
 		[STAThread]
 		static void Main()
 		{
+			var generator = Eto.EtoEnvironment.Platform.IsMac;
+
 			var application = new CrossPlatformApplication();
-			application.Initialize();
+
+			application.InitalizeApplication();
 			application.Run();
 
 			/*

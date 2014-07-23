@@ -32,7 +32,7 @@ namespace Trigger.WinForms.Actions
 			DeleteAction.Shortcut = Keys.Control & Keys.D;
 			DeleteAction.Executed += (sender, e) =>
 			{
-				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
+				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);
 				if (result == DialogResult.Yes)
 					DeleteActionExecute();
 			};

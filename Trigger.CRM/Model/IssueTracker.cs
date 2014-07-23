@@ -17,16 +17,21 @@ namespace Trigger.CRM.Model
 			IssueState = IssueState.Open;
 		}
 
-		public override string GetRepresentation()
+		[System.ComponentModel.DisplayName("Issue")]
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedByAlias, Created));
-			sb.AppendLine(string.Format("{0} is {1}", IssueType, IssueState));
-			sb.AppendLine(string.Format("Priority: {0}", IssuePriority));
-			sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
-			sb.AppendLine(string.Format("{0}", Description));
-			sb.AppendLine(string.Format("ID: {0}", MappingId));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("'{0}' by {1} on {2}", Subject, CreatedByAlias, Created));
+				sb.AppendLine(string.Format("{0} is {1}", IssueType, IssueState));
+				sb.AppendLine(string.Format("Priority: {0}", IssuePriority));
+				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
+				sb.AppendLine(string.Format("{0}", Description));
+				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				return sb.ToString();
+			}
 		}
 
 		string subject;

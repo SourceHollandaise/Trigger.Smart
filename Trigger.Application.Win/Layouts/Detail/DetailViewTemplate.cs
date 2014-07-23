@@ -12,7 +12,7 @@ namespace Trigger.WinForms.Layout
 			Content = new DetailViewGenerator(CurrentObject).GetContent();
 			Content = new Scrollable{ Content = this.Content };
 
-			Size = new Size(400, 800);
+			Size = new Size(400, 768);
 			Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
 		}
 	}

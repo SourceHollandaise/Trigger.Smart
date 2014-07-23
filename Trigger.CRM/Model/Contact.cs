@@ -4,13 +4,25 @@ namespace Trigger.CRM.Model
 {
 
 	[System.ComponentModel.DefaultProperty("PhoneNumber")]
+	[CompactViewRepresentationAttribute]
 	public class Contact : StorableBase
 	{
-		public override string GetRepresentation()
+		[System.ComponentModel.DisplayName("Contact")]
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("{0} - {1} / {2}", PersonAlias, PhoneNumber, Email));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("{0}", PersonAlias));
+				if (!string.IsNullOrEmpty(PhoneNumber))
+					sb.AppendLine(string.Format("Phone: {0}", PhoneNumber));
+				if (!string.IsNullOrEmpty(MobileNumber))
+					sb.AppendLine(string.Format("Mobile: {0}", MobileNumber));
+				if (!string.IsNullOrEmpty(Email))
+					sb.AppendLine(string.Format("E-Mail: {0}", Email));
+				return sb.ToString();
+			}
 		}
 
 		[System.ComponentModel.DisplayName("Person")]

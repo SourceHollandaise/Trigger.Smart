@@ -7,7 +7,7 @@ namespace Trigger.Datastore.Persistent
 	{
 		object MappingId { get; set; }
 
-		string GetRepresentation();
+		string GetRepresentation { get; }
 
 		void Save();
 

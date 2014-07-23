@@ -8,16 +8,21 @@ namespace Trigger.CRM.Model
 	[System.ComponentModel.DefaultProperty("Subject")]
 	public class TimeTracker : StorableBase
 	{
-		public override string GetRepresentation()
+		[System.ComponentModel.DisplayName("Tracked Times")]
+		[VisibleOnView(TargetView.None)]
+		public override string GetRepresentation
 		{
-			var sb = new System.Text.StringBuilder();
-			sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, UserAlias, Begin));
-			if (Duration != null)
-				sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
-			sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
-			sb.AppendLine(string.Format("{0}", Description));
-			sb.AppendLine(string.Format("ID: {0}", MappingId));
-			return sb.ToString();
+			get
+			{
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, UserAlias, Begin));
+				if (Duration != null)
+					sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
+				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
+				sb.AppendLine(string.Format("{0}", Description));
+				sb.AppendLine(string.Format("ID: {0}", MappingId));
+				return sb.ToString();
+			}
 		}
 
 		string subject;
