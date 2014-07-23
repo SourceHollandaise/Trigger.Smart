@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA2761A1-68B9-4873-B439-2FA978D40E33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Trigger.XForms</RootNamespace>
+    <AssemblyName>Trigger.XForms</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CrossPlatform|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\CrossPlatform</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visuals\MainViewGenerator.cs" />
+    <Compile Include="Visuals\MainViewTemplate.cs" />
+    <Compile Include="Visuals\TemplateBase.cs" />
+    <Compile Include="Visuals\WindowManager.cs" />
+    <Compile Include="Visuals\DetailPropertyEditorFactory.cs" />
+    <Compile Include="Visuals\DetailViewGenerator.cs" />
+    <Compile Include="Visuals\DetailViewTemplate.cs" />
+    <Compile Include="Visuals\LogonViewGenerator.cs" />
+    <Compile Include="Visuals\LogonViewTemplate.cs" />
+    <Compile Include="Visuals\ListPropertyEditorFactory.cs" />
+    <Compile Include="Visuals\ListViewGenerator.cs" />
+    <Compile Include="Visuals\ListViewTemplate.cs" />
+    <Compile Include="Controllers\ActionActiveWindowsController.cs" />
+    <Compile Include="Controllers\ActionApplicationExitController.cs" />
+    <Compile Include="Controllers\ActionBaseController.cs" />
+    <Compile Include="Controllers\ActionCloseController.cs" />
+    <Compile Include="Controllers\ActionControllerDeclaration.cs" />
+    <Compile Include="Controllers\ActionControllerProvider.cs" />
+    <Compile Include="Controllers\ActionDeleteController.cs" />
+    <Compile Include="Controllers\ActionFileDataDetailController.cs" />
+    <Compile Include="Controllers\ActionFileDataListController.cs" />
+    <Compile Include="Controllers\ActionLinkedListController.cs" />
+    <Compile Include="Controllers\ActionNewController.cs" />
+    <Compile Include="Controllers\ActionOpenObjectBaseController.cs" />
+    <Compile Include="Controllers\ActionOpenObjectListController.cs" />
+    <Compile Include="Controllers\ActionRefreshBaseController.cs" />
+    <Compile Include="Controllers\ActionRefreshDetailController.cs" />
+    <Compile Include="Controllers\ActionRefreshListController.cs" />
+    <Compile Include="Controllers\ActionSaveController.cs" />
+    <Compile Include="Controllers\ActionVisibility.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\DetailViewTemplateExtensions.cs" />
+    <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Security\DataStoreAuthenticate.cs" />
+    <Compile Include="Security\IAuthenticate.cs" />
+    <Compile Include="Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Security\LogonParameters.cs" />
+    <Compile Include="Security\SecureText.cs" />
+    <Compile Include="Security\SecurityInfoProvider.cs" />
+    <Compile Include="Security\SystemAuthenticate.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="StorableBase.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Visuals\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Security\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
+      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
+      <Name>Trigger.XStorable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Accept16.png">
+      <LogicalName>Accept16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Accept24.png">
+      <LogicalName>Accept24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Accept32.png">
+      <LogicalName>Accept32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Accept48.png">
+      <LogicalName>Accept48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_fav16.png">
+      <LogicalName>Add_fav16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_fav24.png">
+      <LogicalName>Add_fav24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_fav32.png">
+      <LogicalName>Add_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_fav48.png">
+      <LogicalName>Add_fav48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_user16.png">
+      <LogicalName>Add_user16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_user24.png">
+      <LogicalName>Add_user24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_user32.png">
+      <LogicalName>Add_user32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_user48.png">
+      <LogicalName>Add_user48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add16.png">
+      <LogicalName>Add16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add24.png">
+      <LogicalName>Add24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add32.png">
+      <LogicalName>Add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add48.png">
+      <LogicalName>Add48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Alert16.png">
+      <LogicalName>Alert16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Alert24.png">
+      <LogicalName>Alert24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Alert32.png">
+      <LogicalName>Alert32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Alert48.png">
+      <LogicalName>Alert48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Billboard16.png">
+      <LogicalName>Billboard16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Billboard24.png">
+      <LogicalName>Billboard24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Billboard32.png">
+      <LogicalName>Billboard32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Billboard48.png">
+      <LogicalName>Billboard48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cancel16.png">
+      <LogicalName>Cancel16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cancel24.png">
+      <LogicalName>Cancel24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cancel32.png">
+      <LogicalName>Cancel32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cancel48.png">
+      <LogicalName>Cancel48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Chat16.png">
+      <LogicalName>Chat16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Chat24.png">
+      <LogicalName>Chat24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Chat32.png">
+      <LogicalName>Chat32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Chat48.png">
+      <LogicalName>Chat48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Close16.png">
+      <LogicalName>Close16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Close24.png">
+      <LogicalName>Close24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Close32.png">
+      <LogicalName>Close32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Close48.png">
+      <LogicalName>Close48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Communicate16.png">
+      <LogicalName>Communicate16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Communicate24.png">
+      <LogicalName>Communicate24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Communicate32.png">
+      <LogicalName>Communicate32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Communicate48.png">
+      <LogicalName>Communicate48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Copy16.png">
+      <LogicalName>Copy16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Copy24.png">
+      <LogicalName>Copy24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Copy32.png">
+      <LogicalName>Copy32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Copy48.png">
+      <LogicalName>Copy48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cut16.png">
+      <LogicalName>Cut16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cut24.png">
+      <LogicalName>Cut24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cut32.png">
+      <LogicalName>Cut32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cut48.png">
+      <LogicalName>Cut48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_user16.png">
+      <LogicalName>Delete_user16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_user24.png">
+      <LogicalName>Delete_user24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_user32.png">
+      <LogicalName>Delete_user32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_user48.png">
+      <LogicalName>Delete_user48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete16.png">
+      <LogicalName>Delete16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete24.png">
+      <LogicalName>Delete24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete32.png">
+      <LogicalName>Delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete48.png">
+      <LogicalName>Delete48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit16.png">
+      <LogicalName>Edit16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit24.png">
+      <LogicalName>Edit24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit32.png">
+      <LogicalName>Edit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit48.png">
+      <LogicalName>Edit48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Faq16.png">
+      <LogicalName>Faq16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Faq24.png">
+      <LogicalName>Faq24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Faq32.png">
+      <LogicalName>Faq32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Faq48.png">
+      <LogicalName>Faq48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Fav16.png">
+      <LogicalName>Fav16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Fav24.png">
+      <LogicalName>Fav24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Fav32.png">
+      <LogicalName>Fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Fav48.png">
+      <LogicalName>Fav48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_add16.png">
+      <LogicalName>File_add16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_add24.png">
+      <LogicalName>File_add24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_add32.png">
+      <LogicalName>File_add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_add48.png">
+      <LogicalName>File_add48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_delete16.png">
+      <LogicalName>File_delete16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_delete24.png">
+      <LogicalName>File_delete24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_delete32.png">
+      <LogicalName>File_delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_delete48.png">
+      <LogicalName>File_delete48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_edit16.png">
+      <LogicalName>File_edit16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_edit24.png">
+      <LogicalName>File_edit24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_edit32.png">
+      <LogicalName>File_edit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_edit48.png">
+      <LogicalName>File_edit48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_info16.png">
+      <LogicalName>File_info16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_info24.png">
+      <LogicalName>File_info24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_info32.png">
+      <LogicalName>File_info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File_info48.png">
+      <LogicalName>File_info48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File16.png">
+      <LogicalName>File16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File24.png">
+      <LogicalName>File24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File32.png">
+      <LogicalName>File32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\File48.png">
+      <LogicalName>File48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Flag16.png">
+      <LogicalName>Flag16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Flag24.png">
+      <LogicalName>Flag24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Flag32.png">
+      <LogicalName>Flag32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Flag48.png">
+      <LogicalName>Flag48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_add16.png">
+      <LogicalName>Folder_add16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_add24.png">
+      <LogicalName>Folder_add24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_add32.png">
+      <LogicalName>Folder_add32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_add48.png">
+      <LogicalName>Folder_add48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_alert16.png">
+      <LogicalName>Folder_alert16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_alert24.png">
+      <LogicalName>Folder_alert24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_alert32.png">
+      <LogicalName>Folder_alert32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_alert48.png">
+      <LogicalName>Folder_alert48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_delete16.png">
+      <LogicalName>Folder_delete16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_delete24.png">
+      <LogicalName>Folder_delete24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_delete32.png">
+      <LogicalName>Folder_delete32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_delete48.png">
+      <LogicalName>Folder_delete48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_fav16.png">
+      <LogicalName>Folder_fav16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_fav24.png">
+      <LogicalName>Folder_fav24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_fav32.png">
+      <LogicalName>Folder_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_fav48.png">
+      <LogicalName>Folder_fav48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_info16.png">
+      <LogicalName>Folder_info16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_info24.png">
+      <LogicalName>Folder_info24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_info32.png">
+      <LogicalName>Folder_info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder_info48.png">
+      <LogicalName>Folder_info48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder16.png">
+      <LogicalName>Folder16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder24.png">
+      <LogicalName>Folder24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder32.png">
+      <LogicalName>Folder32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Folder48.png">
+      <LogicalName>Folder48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home16.png">
+      <LogicalName>Home16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home24.png">
+      <LogicalName>Home24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home32.png">
+      <LogicalName>Home32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home48.png">
+      <LogicalName>Home48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Info16.png">
+      <LogicalName>Info16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Info24.png">
+      <LogicalName>Info24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Info32.png">
+      <LogicalName>Info32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Info48.png">
+      <LogicalName>Info48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Key16.png">
+      <LogicalName>Key16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Key24.png">
+      <LogicalName>Key24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Key32.png">
+      <LogicalName>Key32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Key48.png">
+      <LogicalName>Key48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Lock16.png">
+      <LogicalName>Lock16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Lock24.png">
+      <LogicalName>Lock24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Lock32.png">
+      <LogicalName>Lock32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Lock48.png">
+      <LogicalName>Lock48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_in16.png">
+      <LogicalName>Login_in16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_in24.png">
+      <LogicalName>Login_in24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_in32.png">
+      <LogicalName>Login_in32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_in48.png">
+      <LogicalName>Login_in48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_out16.png">
+      <LogicalName>Login_out16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_out24.png">
+      <LogicalName>Login_out24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_out32.png">
+      <LogicalName>Login_out32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Login_out48.png">
+      <LogicalName>Login_out48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paperclip16.png">
+      <LogicalName>Paperclip16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paperclip24.png">
+      <LogicalName>Paperclip24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paperclip32.png">
+      <LogicalName>Paperclip32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paperclip48.png">
+      <LogicalName>Paperclip48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paste16.png">
+      <LogicalName>Paste16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paste24.png">
+      <LogicalName>Paste24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paste32.png">
+      <LogicalName>Paste32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Paste48.png">
+      <LogicalName>Paste48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Percent16.png">
+      <LogicalName>Percent16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Percent24.png">
+      <LogicalName>Percent24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Percent32.png">
+      <LogicalName>Percent32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Percent48.png">
+      <LogicalName>Percent48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Pools16.png">
+      <LogicalName>Pools16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Pools24.png">
+      <LogicalName>Pools24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Pools32.png">
+      <LogicalName>Pools32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Pools48.png">
+      <LogicalName>Pools48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Prohibit16.png">
+      <LogicalName>Prohibit16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Prohibit24.png">
+      <LogicalName>Prohibit24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Prohibit32.png">
+      <LogicalName>Prohibit32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Prohibit48.png">
+      <LogicalName>Prohibit48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh16.png">
+      <LogicalName>Refresh16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh24.png">
+      <LogicalName>Refresh24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh32.png">
+      <LogicalName>Refresh32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh48.png">
+      <LogicalName>Refresh48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Remove_fav16.png">
+      <LogicalName>Remove_fav16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Remove_fav24.png">
+      <LogicalName>Remove_fav24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Remove_fav32.png">
+      <LogicalName>Remove_fav32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Remove_fav48.png">
+      <LogicalName>Remove_fav48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Ruler16.png">
+      <LogicalName>Ruler16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Ruler24.png">
+      <LogicalName>Ruler24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Ruler32.png">
+      <LogicalName>Ruler32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Ruler48.png">
+      <LogicalName>Ruler48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save16.png">
+      <LogicalName>Save16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save24.png">
+      <LogicalName>Save24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save32.png">
+      <LogicalName>Save32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save48.png">
+      <LogicalName>Save48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Search16.png">
+      <LogicalName>Search16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Search24.png">
+      <LogicalName>Search24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Search32.png">
+      <LogicalName>Search32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Search48.png">
+      <LogicalName>Search48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingbag16.png">
+      <LogicalName>Shoppingbag16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingbag24.png">
+      <LogicalName>Shoppingbag24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingbag32.png">
+      <LogicalName>Shoppingbag32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingbag48.png">
+      <LogicalName>Shoppingbag48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingcart16.png">
+      <LogicalName>Shoppingcart16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingcart24.png">
+      <LogicalName>Shoppingcart24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingcart32.png">
+      <LogicalName>Shoppingcart32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Shoppingcart48.png">
+      <LogicalName>Shoppingcart48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_empty16.png">
+      <LogicalName>Star_empty16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_empty24.png">
+      <LogicalName>Star_empty24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_empty32.png">
+      <LogicalName>Star_empty32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_empty48.png">
+      <LogicalName>Star_empty48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_full16.png">
+      <LogicalName>Star_full16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_full24.png">
+      <LogicalName>Star_full24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_full32.png">
+      <LogicalName>Star_full32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_full48.png">
+      <LogicalName>Star_full48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_half_full16.png">
+      <LogicalName>Star_half_full16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_half_full24.png">
+      <LogicalName>Star_half_full24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_half_full32.png">
+      <LogicalName>Star_half_full32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Star_half_full48.png">
+      <LogicalName>Star_half_full48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Telephone16.png">
+      <LogicalName>Telephone16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Telephone24.png">
+      <LogicalName>Telephone24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Telephone32.png">
+      <LogicalName>Telephone32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Telephone48.png">
+      <LogicalName>Telephone48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Thumbs.db">
+      <LogicalName>Thumbs.db</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Tools16.png">
+      <LogicalName>Tools16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Tools24.png">
+      <LogicalName>Tools24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Tools32.png">
+      <LogicalName>Tools32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Tools48.png">
+      <LogicalName>Tools48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Unlock16.png">
+      <LogicalName>Unlock16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Unlock24.png">
+      <LogicalName>Unlock24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Unlock32.png">
+      <LogicalName>Unlock32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Unlock48.png">
+      <LogicalName>Unlock48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User16.png">
+      <LogicalName>User16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User24.png">
+      <LogicalName>User24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User32.png">
+      <LogicalName>User32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User48.png">
+      <LogicalName>User48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Users16.png">
+      <LogicalName>Users16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Users24.png">
+      <LogicalName>Users24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Users32.png">
+      <LogicalName>Users32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Users48.png">
+      <LogicalName>Users48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheel16.png">
+      <LogicalName>Wheel16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheel24.png">
+      <LogicalName>Wheel24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheel32.png">
+      <LogicalName>Wheel32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheel48.png">
+      <LogicalName>Wheel48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheels16.png">
+      <LogicalName>Wheels16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheels24.png">
+      <LogicalName>Wheels24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheels32.png">
+      <LogicalName>Wheels32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wheels48.png">
+      <LogicalName>Wheels48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wrench16.png">
+      <LogicalName>Wrench16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wrench24.png">
+      <LogicalName>Wrench24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wrench32.png">
+      <LogicalName>Wrench32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wrench48.png">
+      <LogicalName>Wrench48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_in16.png">
+      <LogicalName>Zoom_in16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_in24.png">
+      <LogicalName>Zoom_in24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_in32.png">
+      <LogicalName>Zoom_in32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_in48.png">
+      <LogicalName>Zoom_in48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_out16.png">
+      <LogicalName>Zoom_out16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_out24.png">
+      <LogicalName>Zoom_out24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_out32.png">
+      <LogicalName>Zoom_out32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Zoom_out48.png">
+      <LogicalName>Zoom_out48.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
