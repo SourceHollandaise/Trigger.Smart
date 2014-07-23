@@ -7,10 +7,9 @@ using System;
 
 namespace Trigger.Application.WinForms
 {
-
 	public class CrossPlatformApplication : Eto.Forms.Application
 	{
-		public CrossPlatformApplication()
+		public virtual void Initialize()
 		{
 			var init = new ApplicationInitializer();
 			init.InitalizeDataStore();

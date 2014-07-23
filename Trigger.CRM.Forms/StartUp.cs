@@ -8,7 +8,9 @@ namespace Trigger.Application.WinForms
 		[STAThread]
 		static void Main()
 		{
-			new CrossPlatformApplication().Run();
+			var application = new CrossPlatformApplication();
+			application.Initialize();
+			application.Run();
 
 			/*
 			ExceptionManager.UnhandledException += (args) =>

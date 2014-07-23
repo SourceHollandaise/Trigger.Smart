@@ -50,9 +50,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WinApplication.cs" />
     <Compile Include="ApplicationInitializer.cs" />
     <Compile Include="CrossPlatformApplication.cs" />
+    <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.CRM\Trigger.CRM.csproj">
