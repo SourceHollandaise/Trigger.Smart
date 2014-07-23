@@ -14,11 +14,6 @@ namespace Trigger.WinForms.Layout
 			set;
 		}
 
-		public ActionControllerProvider()
-		{
-			
-		}
-
 		public ActionControllerProvider(TemplateBase template)
 		{
 			this.Template = template;
@@ -57,7 +52,7 @@ namespace Trigger.WinForms.Layout
 			}
 		}
 
-		public IEnumerable<ActionBaseController> CreateControllers()
+		IEnumerable<ActionBaseController> CreateControllers()
 		{
 			foreach (var type in ActionControllerDeclaration.DeclaredControllerTypes)
 			{

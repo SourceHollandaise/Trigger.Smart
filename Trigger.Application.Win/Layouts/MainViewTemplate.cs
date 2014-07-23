@@ -16,6 +16,7 @@ namespace Trigger.WinForms.Layout
 			Size = new Size(400, 800);
 
 			Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
+			Content = new Scrollable{ Content = this.Content };
 		}
 
 		public override void OnLoadComplete(EventArgs e)

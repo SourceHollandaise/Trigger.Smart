@@ -29,6 +29,7 @@ namespace Trigger.WinForms.Actions
 			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 24);
 			DeleteAction.MenuText = "Delete";
 			DeleteAction.ToolBarText = "Delete";
+			DeleteAction.Shortcut = Keys.Control & Keys.D;
 			DeleteAction.Executed += (sender, e) =>
 			{
 				var result = MessageBox.Show("Delete " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Warning, MessageBoxDefaultButton.No);

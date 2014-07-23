@@ -133,7 +133,7 @@ namespace Trigger.WinForms.Layout
 				Text = (attribute != null ? attribute.DisplayName : property.Name) + ":"
 			};
 
-			label.Font = new Eto.Drawing.Font(label.Font.Family, 8f);
+			//label.Font = new Eto.Drawing.Font(label.Font.Family, 8f);
 			layout.Add(label, true);
 			layout.EndVertical();
 			layout.BeginHorizontal();

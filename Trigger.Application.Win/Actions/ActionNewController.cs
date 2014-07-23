@@ -30,6 +30,7 @@ namespace Trigger.WinForms.Actions
 			NewAction.Image = ImageExtensions.GetImage("Add32.png", 24);
 			NewAction.MenuText = "New " + ModelType.Name;
 			NewAction.ToolBarText = "New " + ModelType.Name;
+			NewAction.Shortcut = Keys.Control & Keys.N;
 			NewAction.Executed += (sender, e) =>
 			{
 				NewActionExecute();

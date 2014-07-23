@@ -28,6 +28,7 @@ namespace Trigger.WinForms.Actions
 			SaveAction.Image = ImageExtensions.GetImage("Save32.png", 24);
 			SaveAction.MenuText = "Save";
 			SaveAction.ToolBarText = "Save";
+			SaveAction.Shortcut = Keys.Control & Keys.S;
 			SaveAction.Executed += (sender, e) =>
 			{
 				var result = MessageBox.Show("Save " + CurrentObject.GetRepresentation() + "?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);

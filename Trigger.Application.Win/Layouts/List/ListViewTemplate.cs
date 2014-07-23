@@ -20,6 +20,7 @@ namespace Trigger.WinForms.Layout
 				CurrentGrid = new ListViewGenerator(ModelType).GetContent();
 
 			Content = CurrentGrid;
+			Content = new Scrollable{ Content = this.Content };
 
 			Size = new Size(800, 400);
 			Title = ModelType.Name + "-List - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
