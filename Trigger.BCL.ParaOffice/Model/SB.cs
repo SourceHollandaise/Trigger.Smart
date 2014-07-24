@@ -8,6 +8,7 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
+    [System.ComponentModel.DisplayName("Sachbearbeiter")]
     [CompactViewRepresentationAttribute]
     public class SB : StorableBase
     {

@@ -28,8 +28,10 @@ namespace Trigger.XForms.Visuals
 
             foreach (var type in mainViewTypes)
             {
+                var displayNameAttribute = type.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+
                 var button = new Button();
-                button.Text = type.Name;
+                button.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : type.Name;
                 button.Tag = type;
                 button.Image = ImageExtensions.GetImage("Info32.png", 32);
                 button.ImagePosition = ButtonImagePosition.Left;

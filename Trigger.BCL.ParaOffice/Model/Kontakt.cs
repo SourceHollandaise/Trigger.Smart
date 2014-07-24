@@ -8,6 +8,7 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Telefon")]
+    [System.ComponentModel.DisplayName("Kontakt")]
     [CompactViewRepresentationAttribute]
     [MainViewItem]
     public class Kontakt : StorableBase

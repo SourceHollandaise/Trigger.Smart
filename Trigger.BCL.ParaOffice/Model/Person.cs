@@ -9,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("PersonenName")]
+    [System.ComponentModel.DisplayName("Person")]
     [CompactViewRepresentation]
     [MainViewItem]
     public class Person : StorableBase

@@ -5,6 +5,7 @@ namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Subject")]
+    [System.ComponentModel.DisplayName("Dokument")]
     [CompactViewRepresentation]
     [MainViewItem]
     public class Dokument : StorableBase, IFileData
