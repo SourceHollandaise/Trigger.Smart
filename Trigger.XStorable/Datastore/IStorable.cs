@@ -3,18 +3,18 @@ using System.ComponentModel;
 
 namespace Trigger.XStorable.DataStore
 {
-	public interface IStorable : INotifyPropertyChanged
-	{
-		object MappingId { get; set; }
+    public interface IStorable : INotifyPropertyChanged
+    {
+        object MappingId { get; set; }
 
-		string GetRepresentation { get; }
+        string GetRepresentation { get; }
 
-		void Save();
+        void Save();
 
-		void Delete();
+        void Delete();
 
-		void Initialize();
+        void Initialize();
 
-        DateTime? LastSaved { get; set; }
-	}
+        //DateTime? LastSaved { get; set; }
+    }
 }

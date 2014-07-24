@@ -1,216 +1,217 @@
 ﻿
 using System;
-using Trigger.XForms.Security;
+using Trigger.XStorable.Security;
 using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Model;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-	[System.ComponentModel.DefaultProperty("Subject")]
-	public class TimeTracker : StorableBase
-	{
-		[System.ComponentModel.DisplayName("Tracked Times")]
-		[VisibleOnView(TargetView.None)]
-		public override string GetRepresentation
-		{
-			get
-			{
-				var sb = new System.Text.StringBuilder();
-				sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, UserAlias, Begin));
-				if (Duration != null)
-					sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
-				sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
-				sb.AppendLine(string.Format("{0}", Description));
-				//sb.AppendLine(string.Format("ID: {0}", MappingId));
-				return sb.ToString();
-			}
-		}
+    [System.ComponentModel.DefaultProperty("Subject")]
+    public class TimeTracker : StorableBase
+    {
+        [System.ComponentModel.DisplayName("Tracked Times")]
+        [VisibleOnView(TargetView.None)]
+        public override string GetRepresentation
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, UserAlias, Begin));
+                if (Duration != null)
+                    sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
+                sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
+                sb.AppendLine(string.Format("{0}", Description));
+                //sb.AppendLine(string.Format("ID: {0}", MappingId));
+                return sb.ToString();
+            }
+        }
 
-		string subject;
+        string subject;
 
-		public string Subject
-		{
-			get
-			{
-				return subject;
-			}
-			set
-			{
-				if (Equals(subject, value))
-					return;
-				subject = value;
+        public string Subject
+        {
+            get
+            {
+                return subject;
+            }
+            set
+            {
+                if (Equals(subject, value))
+                    return;
+                subject = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		string description;
+        string description;
 
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set
-			{
-				if (Equals(description, value))
-					return;
-				description = value;
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                if (Equals(description, value))
+                    return;
+                description = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		DateTime? begin;
+        DateTime? begin;
 
-		public DateTime? Begin
-		{
-			get
-			{
-				return begin;
-			}
-			set
-			{
-				if (Equals(begin, value))
-					return;
-				begin = value;
+        public DateTime? Begin
+        {
+            get
+            {
+                return begin;
+            }
+            set
+            {
+                if (Equals(begin, value))
+                    return;
+                begin = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		DateTime? end;
+        DateTime? end;
 
-		public DateTime? End
-		{
-			get
-			{
-				return end;
-			}
-			set
-			{
-				if (Equals(end, value))
-					return;
-				end = value;
+        public DateTime? End
+        {
+            get
+            {
+                return end;
+            }
+            set
+            {
+                if (Equals(end, value))
+                    return;
+                end = value;
 
-				OnPropertyChanged();
+                OnPropertyChanged();
 
-				UpdateTracker();
-			}
-		}
+                UpdateTracker();
+            }
+        }
 
-		bool isDone;
+        bool isDone;
 
-		[System.ComponentModel.DisplayName("Done")]
-		public bool IsDone
-		{
-			get
-			{
-				return isDone;
-			}
-			protected set
-			{
-				if (Equals(IsDone, value))
-					return;
-				isDone = value;
+        [System.ComponentModel.DisplayName("Done")]
+        public bool IsDone
+        {
+            get
+            {
+                return isDone;
+            }
+            protected set
+            {
+                if (Equals(IsDone, value))
+                    return;
+                isDone = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		string duration;
+        string duration;
 
-		public string Duration
-		{
-			get
-			{
-				return duration;
-			}
-			protected set
-			{
-				if (Equals(duration, value))
-					return;
-				duration = value;
+        public string Duration
+        {
+            get
+            {
+                return duration;
+            }
+            protected set
+            {
+                if (Equals(duration, value))
+                    return;
+                duration = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		[System.ComponentModel.DisplayName("Area")]
-		[System.Runtime.Serialization.IgnoreDataMember]
-		[VisibleOnView(TargetView.ListOnly)]
-		public string AreaAlias
-		{
-			get
-			{
-				return Area != null ? Area.Name : null;
-			}
-		}
+        [System.ComponentModel.DisplayName("Area")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string AreaAlias
+        {
+            get
+            {
+                return Area != null ? Area.Name : null;
+            }
+        }
 
-		Area area;
+        Area area;
 
-		[LinkedObject]
-		[VisibleOnView(TargetView.DetailOnly)]
-		public Area Area
-		{
-			get
-			{
-				return area;
-			}
-			set
-			{
-				if (Equals(area, value))
-					return;
-				area = value;
+        [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
+        public Area Area
+        {
+            get
+            {
+                return area;
+            }
+            set
+            {
+                if (Equals(area, value))
+                    return;
+                area = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		[System.ComponentModel.DisplayName("User")]
-		[System.Runtime.Serialization.IgnoreDataMember]
-		[VisibleOnView(TargetView.ListOnly)]
-		public string UserAlias
-		{
-			get
-			{
-				return User != null ? User.UserName : null;
-			}
-		}
+        [System.ComponentModel.DisplayName("User")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string UserAlias
+        {
+            get
+            {
+                return User != null ? User.UserName : null;
+            }
+        }
 
-		User user;
+        User user;
 
-		[LinkedObject]
-		[VisibleOnView(TargetView.DetailOnly)]
-		public User User
-		{
-			get
-			{
-				return user;
-			}
-			set
-			{
-				if (Equals(user, value))
-					return;
-				user = value;
+        [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
+        public User User
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                if (Equals(user, value))
+                    return;
+                user = value;
 
-				OnPropertyChanged();
-			}
-		}
+                OnPropertyChanged();
+            }
+        }
 
-		void UpdateTracker()
-		{
-			if (End.HasValue)
-			{
-				IsDone = true;
-				Duration = (End - Begin).ToString();
-			}
-			else
-			{
-				IsDone = false;
-				Duration = null;
-			}
-		}
-	}
+        void UpdateTracker()
+        {
+            if (End.HasValue)
+            {
+                IsDone = true;
+                Duration = (End - Begin).ToString();
+            }
+            else
+            {
+                IsDone = false;
+                Duration = null;
+            }
+        }
+    }
 }
 

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using Trigger.XStorable.Dependency;
 using Trigger.XStorable.DataStore;
-using Trigger.XForms.Security;
+using Trigger.XStorable.Security;
 
-namespace Trigger.XStorable.DataStore
+namespace Trigger.XStorable.Model
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
@@ -26,6 +26,7 @@ namespace Trigger.XStorable.DataStore
             set;
         }
 
+        /*
         DateTime? created;
 
         [System.ComponentModel.ReadOnly(true)]
@@ -45,7 +46,7 @@ namespace Trigger.XStorable.DataStore
                 OnPropertyChanged();
             }
         }
-
+            
         DateTime? lastSaved;
 
         [System.ComponentModel.ReadOnly(true)]
@@ -61,10 +62,11 @@ namespace Trigger.XStorable.DataStore
                 if (Equals(lastSaved, value))
                     return;
                 lastSaved = value;
-
+        
                 OnPropertyChanged();
             }
         }
+
 
         [System.ComponentModel.DisplayName("Created by")]
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -98,16 +100,17 @@ namespace Trigger.XStorable.DataStore
                 OnPropertyChanged();
             }
         }
+        */
 
         public virtual void Initialize()
         {
-            Created = DateTime.Now;
-            CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+            //Created = DateTime.Now;
+            //CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
         }
 
         public virtual void Save()
         {
-            LastSaved = DateTime.Now;
+            //LastSaved = DateTime.Now;
             UpdatePersistentReferences();
             Store.Save(GetType(), this);
         }

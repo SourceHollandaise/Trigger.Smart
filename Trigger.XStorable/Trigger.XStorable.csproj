@@ -82,10 +82,23 @@
     <Compile Include="Attributes\LinkedListAttribute.cs" />
     <Compile Include="Attributes\VisibleOnViewAttribute.cs" />
     <Compile Include="Attributes\CompactViewRepresentationAttribute.cs" />
+    <Compile Include="Model\StorableBase.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Security\DataStoreAuthenticate.cs" />
+    <Compile Include="Security\IAuthenticate.cs" />
+    <Compile Include="Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Security\LogonParameters.cs" />
+    <Compile Include="Security\SecureText.cs" />
+    <Compile Include="Security\SecurityInfoProvider.cs" />
+    <Compile Include="Security\SystemAuthenticate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Security\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
+using Trigger.XStorable.Model;
 
-namespace Trigger.XForms.Security
+
+namespace Trigger.XStorable.Security
 {
     public interface ISecurityInfoProvider
     {

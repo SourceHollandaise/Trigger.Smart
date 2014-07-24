@@ -6,7 +6,7 @@ using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms.Controllers;
 using Trigger.XStorable.Dependency;
-using Trigger.XForms.Security;
+using Trigger.XStorable.Security;
 
 namespace Trigger.XForms.Visuals
 {
