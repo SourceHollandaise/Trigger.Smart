@@ -3,7 +3,7 @@ using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Security;
 
-namespace Trigger.BCL.Commom.Services
+namespace Trigger.BCL.Common.Services
 {
     public sealed class SystemAuthenticate : IAuthenticate
     {

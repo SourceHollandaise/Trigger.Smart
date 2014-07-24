@@ -10,7 +10,7 @@ namespace Trigger.XStorable.Model
         {
             get
             {
-                return MappingId.ToString();
+                return MappingId != null ? MappingId.ToString() : string.Empty;
             }
         }
 

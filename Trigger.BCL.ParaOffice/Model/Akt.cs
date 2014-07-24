@@ -10,53 +10,193 @@ namespace Trigger.BCL.ParaOffice
     [System.ComponentModel.DefaultProperty("Bezeichnung")]
     public class Akt : StorableBase
     {
+
+        public override string GetRepresentation
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine(string.Format("{0} {1} - {2}", Bezeichnung, AktArt, AnlageDatum));
+                sb.AppendLine(string.Format("RA: {0} SK: {1}", SB1, SB2));
+                return sb.ToString();
+            }
+        }
+
+        public override void Initialize()
+        {
+            AnlageDatum = DateTime.Now;
+
+            SB2 = CurrentSBService.CurrentSB;
+        }
+
+        string bezeichnung;
+
         public string Bezeichnung
         {
-            get;
-            set;
+            get
+            {
+                return bezeichnung;
+            }
+            set
+            {
+                if (Equals(bezeichnung, value))
+                    return;
+                bezeichnung = value;
+
+                OnPropertyChanged();
+            }
         }
+
+        string bemerkung;
 
         public string Bemerkung
         {
-            get;
+            get
+            {
+                return bemerkung;
+            }
+            set
+            {
+                if (Equals(bemerkung, value))
+                    return;
+                bemerkung = value;
 
-            set;
+                OnPropertyChanged();
+            }
         }
 
+        string archivZahl;
+
+        [System.ComponentModel.DisplayName("Archivzahl")]
+        public string ArchivZahl
+        {
+            get
+            {
+                return archivZahl;
+            }
+            set
+            {
+                if (Equals(archivZahl, value))
+                    return;
+                archivZahl = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        AktArt aktArt;
+
+        [System.ComponentModel.DisplayName("Aktart")]
+        [LinkedObject]
         public AktArt AktArt
         {
-            get;
-            set;
+            get
+            {
+                return aktArt;
+            }
+            set
+            {
+                if (Equals(aktArt, value))
+                    return;
+                aktArt = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        DateTime anlageDatum;
+
+        [System.ComponentModel.DisplayName("Anlage")]
         public DateTime AnlageDatum
         {
-            get;
-            set;
+            get
+            {
+                return anlageDatum;
+            }
+            set
+            {
+                if (Equals(anlageDatum, value))
+                    return;
+                anlageDatum = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        DateTime? erledigungDatum;
+
+        [System.ComponentModel.DisplayName("Erledigung")]
         public DateTime? ErledigungDatum
         {
-            get;
-            set;
+            get
+            {
+                return erledigungDatum;
+            }
+            set
+            {
+                if (Equals(erledigungDatum, value))
+                    return;
+                erledigungDatum = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        SB sb1;
+
+        [LinkedObject]
         public SB SB1
         {
-            get;
-            set;
+            get
+            {
+                return sb1;
+            }
+            set
+            {
+                if (Equals(sb1, value))
+                    return;
+                sb1 = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        SB sb2;
+
+        [LinkedObject]
         public SB SB2
         {
-            get;
-            set;
+            get
+            {
+                return sb2;
+            }
+            set
+            {
+                if (Equals(sb2, value))
+                    return;
+                sb2 = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        SB sb3;
+
+        [LinkedObject]
         public SB SB3
         {
-            get;
-            set;
+            get
+            {
+                return sb3;
+            }
+            set
+            {
+                if (Equals(sb3, value))
+                    return;
+                sb3 = value;
+
+                OnPropertyChanged();
+            }
         }
 
         [System.ComponentModel.DisplayName("Dokumente zu Akt")]
@@ -66,7 +206,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Dokument>().Where(p => p.Akt != null && p.MappingId == this.MappingId);
+                return Store.LoadAll<Dokument>().Where(p => p.Akt != null && p.MappingId.Equals(MappingId));
             }
         }
     }

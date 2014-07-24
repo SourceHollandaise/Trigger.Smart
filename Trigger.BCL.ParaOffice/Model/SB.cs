@@ -10,16 +10,42 @@ namespace Trigger.BCL.ParaOffice
     [System.ComponentModel.DefaultProperty("ID")]
     public class SB : StorableBase
     {
+        string id;
+
+        [System.ComponentModel.DisplayName("SB-Kürzel")]
         public string ID
         {
-            get;
-            set;
+            get
+            {
+                return id;
+            }
+            set
+            {
+                if (Equals(id, value))
+                    return;
+                id = value;
+
+                OnPropertyChanged();
+            }
         }
 
+        User user;
+
+        [LinkedObject]
         public User User
         {
-            get;
-            set;
+            get
+            {
+                return user;
+            }
+            set
+            {
+                if (Equals(user, value))
+                    return;
+                user = value;
+
+                OnPropertyChanged();
+            }
         }
     }
     
