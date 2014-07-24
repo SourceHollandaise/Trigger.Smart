@@ -8,6 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
     [CompactViewRepresentationAttribute]
+    [MainViewItem]
     public class Area : StorableBase
     {
         [System.ComponentModel.DisplayName("Area")]

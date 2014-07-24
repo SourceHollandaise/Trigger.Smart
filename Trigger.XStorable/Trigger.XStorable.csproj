@@ -84,6 +84,7 @@
     <Compile Include="Attributes\VisibleOnViewAttribute.cs" />
     <Compile Include="Attributes\CompactViewRepresentationAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
+    <Compile Include="Attributes\MainViewItemAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

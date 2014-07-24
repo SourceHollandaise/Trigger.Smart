@@ -6,6 +6,8 @@ namespace Trigger.BCL.Common.Model
 {
 
     [System.ComponentModel.DefaultProperty("UserName")]
+    [CompactViewRepresentation]
+    [MainViewItem]
     public class User : StorableBase
     {
         public override void Initialize()

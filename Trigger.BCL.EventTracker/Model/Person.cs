@@ -7,6 +7,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
     [CompactViewRepresentationAttribute]
+    [MainViewItem]
     public class Person : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]

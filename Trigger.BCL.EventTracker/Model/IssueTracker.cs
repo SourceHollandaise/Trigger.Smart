@@ -9,6 +9,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
     [CompactViewRepresentation]
+    [MainViewItem]
     public class IssueTracker : StorableBase
     {
         public override void Initialize()

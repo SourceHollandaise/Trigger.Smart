@@ -1,50 +1,54 @@
 using System;
+using System.Linq;
 using Eto.Forms;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
 {
-	public class MainViewGenerator
-	{
-		protected IEnumerable<Type> DeclaredTypes
-		{
-			get;
-			set;
-		}
+    public class MainViewGenerator
+    {
+        protected IEnumerable<Type> DeclaredTypes
+        {
+            get;
+            set;
+        }
 
-		public MainViewGenerator(IEnumerable<Type> declaredTypes)
-		{
-			this.DeclaredTypes = declaredTypes;
-		}
+        public MainViewGenerator(IEnumerable<Type> declaredTypes)
+        {
+            this.DeclaredTypes = declaredTypes;
+        }
 
-		public DynamicLayout GetContent()
-		{
-			DynamicLayout layout = new DynamicLayout();
+        public DynamicLayout GetContent()
+        {
+            DynamicLayout layout = new DynamicLayout();
 		
-			foreach (var type in DeclaredTypes)
-			{
-				var button = new Button();
-				button.Text = type.Name;
-				button.Tag = type;
-				button.Image = ImageExtensions.GetImage("Info32.png", 32);
-				button.ImagePosition = ButtonImagePosition.Left;
+            var mainViewTypes = DeclaredTypes.Where(p => p.GetCustomAttributes(typeof(MainViewItemAttribute), true).Any());
 
-				button.Click += (sender, e) =>
-				{
-					WindowManager.ShowListView(button.Tag as Type);
-				};
+            foreach (var type in mainViewTypes)
+            {
+                var button = new Button();
+                button.Text = type.Name;
+                button.Tag = type;
+                button.Image = ImageExtensions.GetImage("Info32.png", 32);
+                button.ImagePosition = ButtonImagePosition.Left;
 
-				layout.BeginHorizontal();
-				layout.Add(button, true);
-				layout.EndHorizontal();
-			}
+                button.Click += (sender, e) =>
+                {
+                    WindowManager.ShowListView(button.Tag as Type);
+                };
+
+                layout.BeginHorizontal();
+                layout.Add(button, true);
+                layout.EndHorizontal();
+            }
 				
-			layout.BeginHorizontal();
-			layout.EndHorizontal();
+            layout.BeginHorizontal();
+            layout.EndHorizontal();
 
-			return layout;
-		}
-	}
+            return layout;
+        }
+    }
 	
 }

@@ -7,6 +7,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
     [CompactViewRepresentation]
+    [MainViewItem]
     public class Document : StorableBase, IFileData
     {
         [System.ComponentModel.DisplayName("Document")]

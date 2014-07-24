@@ -9,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Telefon")]
     [CompactViewRepresentationAttribute]
+    [MainViewItem]
     public class Kontakt : StorableBase
     {
         [System.ComponentModel.DisplayName("Kontakt")]
