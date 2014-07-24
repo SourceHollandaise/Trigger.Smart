@@ -4,7 +4,6 @@
 *._
 *.targets
 *.nupkg
-*.xml
 *.ps1
 *.rtf
 *.cache
@@ -12,7 +11,7 @@
 *.pdb
 *.manifest
 *.userprefs
-*.txt
 *.json
 **/bin/**
 **/obj/**
+**/packages/**
