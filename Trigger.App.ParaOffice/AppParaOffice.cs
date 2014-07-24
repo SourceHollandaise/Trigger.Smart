@@ -1,10 +1,11 @@
 //using GLib;
 using System;
 using Trigger.XForms.Visuals;
+using Eto.Forms;
 
 namespace Trigger.App.ParaOffice
 {
-    public class AppParaOffice : Eto.Forms.Application
+    public class AppParaOffice : Application
     {
         public virtual void InitalizeApplication()
         {

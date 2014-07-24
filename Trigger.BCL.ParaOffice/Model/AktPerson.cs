@@ -9,6 +9,19 @@ namespace Trigger.BCL.ParaOffice
     [MainViewItem]
     public class AktPerson : StorableBase
     {
+        [System.ComponentModel.DisplayName("Person")]
+        [VisibleOnView(TargetView.None)]
+        public override string GetRepresentation
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine(string.Format("{0} zu Akt {1}", PersonAlias, AktAlias));
+                sb.AppendLine(string.Format("{0} mit Nummer {1}", Partei, Reihung));
+                return sb.ToString();
+            }
+        }
+
         public override void Initialize()
         {
             base.Initialize();

@@ -5,7 +5,7 @@ namespace Trigger.XStorable.Model
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
-        [System.ComponentModel.DisplayName("Mapping")]
+        [VisibleOnView(TargetView.None)]
         public virtual string GetRepresentation
         {
             get

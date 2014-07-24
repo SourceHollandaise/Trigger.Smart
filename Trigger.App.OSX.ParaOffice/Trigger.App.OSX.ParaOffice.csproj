@@ -10,6 +10,7 @@
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>Trigger.App.OSX.ParaOffice</AssemblyName>
     <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -86,12 +87,12 @@
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\paragraph_128x128.icns" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Trigger.App.ParaOffice\Trigger.App.ParaOffice.csproj">
       <Project>{A1C293B3-EC0A-449A-8994-C0245992EB00}</Project>
       <Name>Trigger.App.ParaOffice</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\paragraph_128x128.icns" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ namespace Trigger.XStorable.DataStore
     }
 
     [System.ComponentModel.Category("XForms")]
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     public sealed class VisibleOnViewAttribute : Attribute
     {
         public TargetView TargetView
