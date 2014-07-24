@@ -2,6 +2,7 @@ using Trigger.XStorable.DataStore;
 using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker.Model
 {

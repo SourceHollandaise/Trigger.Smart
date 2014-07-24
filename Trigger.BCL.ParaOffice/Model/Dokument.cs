@@ -1,14 +1,27 @@
-using System;
 using Trigger.XStorable.Model;
-using System.Collections.Generic;
-using System.Linq;
 using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
+    [System.ComponentModel.DefaultProperty("Subject")]
+    [CompactViewRepresentation]
     public class Dokument : StorableBase, IFileData
     {
+        [System.ComponentModel.DisplayName("Datei")]
+        [VisibleOnView(TargetView.None)]
+        public override string GetRepresentation
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine(string.Format("'{0}' by {1}", Subject, SK != null ? SK.ID : "Kein"));
+                sb.AppendLine(string.Format("Zu Akt '{0}'", AktAlias));
+                sb.AppendLine(string.Format("{0}", Bemerkung));
+                //sb.AppendLine(string.Format("ID: {0}", MappingId));
+                return sb.ToString();
+            }
+        }
+
         string subject;
 
         [System.ComponentModel.DisplayName("Bezeichnung")]
@@ -85,6 +98,17 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [System.ComponentModel.DisplayName("Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string AktAlias
+        {
+            get
+            {
+                return Akt != null ? Akt.Bezeichnung : null;
+            }
+        }
+
         Akt akt;
 
         [LinkedObject]
@@ -103,6 +127,26 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
+
+        string bemerkung;
+
+        [System.ComponentModel.DisplayName("Bemerkung")]
+        public string Bemerkung
+        {
+            get
+            {
+                return bemerkung;
+            }
+            set
+            {
+                if (Equals(bemerkung, value))
+                    return;
+                bemerkung = value;
+
+                OnPropertyChanged();
+            }
+        }
+
     }
     
 }

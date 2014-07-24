@@ -1,15 +1,17 @@
-using Trigger.XStorable.DataStore;
+using System;
 using Trigger.XStorable.Model;
+using System.Collections.Generic;
+using System.Linq;
+using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 
-namespace Trigger.BCL.EventTracker.Model
+namespace Trigger.BCL.ParaOffice
 {
-
-    [System.ComponentModel.DefaultProperty("PhoneNumber")]
+    [System.ComponentModel.DefaultProperty("Telefon")]
     [CompactViewRepresentationAttribute]
-    public class Contact : StorableBase
+    public class Kontakt : StorableBase
     {
-        [System.ComponentModel.DisplayName("Contact")]
+        [System.ComponentModel.DisplayName("Kontakt")]
         [VisibleOnView(TargetView.None)]
         public override string GetRepresentation
         {
@@ -17,10 +19,10 @@ namespace Trigger.BCL.EventTracker.Model
             {
                 var sb = new System.Text.StringBuilder();
                 sb.AppendLine(string.Format("{0}", PersonAlias));
-                if (!string.IsNullOrEmpty(PhoneNumber))
-                    sb.AppendLine(string.Format("Phone: {0}", PhoneNumber));
-                if (!string.IsNullOrEmpty(MobileNumber))
-                    sb.AppendLine(string.Format("Mobile: {0}", MobileNumber));
+                if (!string.IsNullOrEmpty(Telefon))
+                    sb.AppendLine(string.Format("Phone: {0}", Telefon));
+                if (!string.IsNullOrEmpty(MobilTelefon))
+                    sb.AppendLine(string.Format("Mobile: {0}", MobilTelefon));
                 if (!string.IsNullOrEmpty(Email))
                     sb.AppendLine(string.Format("E-Mail: {0}", Email));
                 return sb.ToString();
@@ -33,7 +35,7 @@ namespace Trigger.BCL.EventTracker.Model
         {
             get
             {
-                return Person != null ? (Person.FirstName + " " + Person.LastName) : null;
+                return Person != null ? (Person.Vorname + " " + Person.Nachname) : null;
             }
         }
 
@@ -58,58 +60,58 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        ContactType contactType;
+        KontaktArt art;
 
-        [System.ComponentModel.DisplayName("Contact")]
-        public ContactType ContactType
+        [System.ComponentModel.DisplayName("Art")]
+        public KontaktArt Art
         {
             get
             {
-                return contactType;
+                return art;
             }
             set
             {
-                if (Equals(contactType, value))
+                if (Equals(art, value))
                     return;
-                contactType = value;
+                art = value;
 
                 OnPropertyChanged();
             }
         }
 
-        string phoneNumber;
+        string telefon;
 
-        [System.ComponentModel.DisplayName("Phone")]
-        public string PhoneNumber
+        [System.ComponentModel.DisplayName("Telefon")]
+        public string Telefon
         {
             get
             {
-                return phoneNumber;
+                return telefon;
             }
             set
             {
-                if (Equals(phoneNumber, value))
+                if (Equals(telefon, value))
                     return;
-                phoneNumber = value;
+                telefon = value;
 
                 OnPropertyChanged();
             }
         }
 
-        string mobileNumber;
+        string mobilTelefon;
 
-        [System.ComponentModel.DisplayName("Mobile")]
-        public string MobileNumber
+        [System.ComponentModel.DisplayName("Mobiltelefon")]
+        public string MobilTelefon
         {
             get
             {
-                return mobileNumber;
+                return mobilTelefon;
             }
             set
             {
-                if (Equals(mobileNumber, value))
+                if (Equals(mobilTelefon, value))
                     return;
-                mobileNumber = value;
+                mobilTelefon = value;
 
                 OnPropertyChanged();
             }

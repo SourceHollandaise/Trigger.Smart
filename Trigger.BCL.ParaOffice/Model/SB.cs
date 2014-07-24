@@ -8,8 +8,19 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
+    [CompactViewRepresentationAttribute]
     public class SB : StorableBase
     {
+        [System.ComponentModel.DisplayName("SB")]
+        [VisibleOnView(TargetView.None)]
+        public override string GetRepresentation
+        {
+            get
+            {
+                return ID;
+            }
+        }
+
         string id;
 
         [System.ComponentModel.DisplayName("SB-Kürzel")]
@@ -48,5 +59,4 @@ namespace Trigger.BCL.ParaOffice
             }
         }
     }
-    
 }

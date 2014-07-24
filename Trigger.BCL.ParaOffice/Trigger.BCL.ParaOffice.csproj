@@ -39,6 +39,9 @@
     <Compile Include="Model\SB.cs" />
     <Compile Include="Model\Dokument.cs" />
     <Compile Include="Services\ParaOfficeDocumentDataService.cs" />
+    <Compile Include="Model\Kontakt.cs" />
+    <Compile Include="Model\KontaktArt.cs" />
+    <Compile Include="Model\Person.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

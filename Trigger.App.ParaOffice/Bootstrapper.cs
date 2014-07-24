@@ -75,6 +75,8 @@ namespace Trigger.App.ParaOffice
                 typeof(Akt),
                 typeof(AktArt),
                 typeof(Dokument),
+                typeof(Kontakt),
+                typeof(Person),
                 typeof(SB),
                 typeof(User)
             };

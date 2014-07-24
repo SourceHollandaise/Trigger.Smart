@@ -8,16 +8,20 @@ namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Bezeichnung")]
+    [CompactViewRepresentation]
     public class Akt : StorableBase
     {
-
+        [System.ComponentModel.DisplayName("Akt")]
+        [VisibleOnView(TargetView.None)]
         public override string GetRepresentation
         {
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} {1} - {2}", Bezeichnung, AktArt, AnlageDatum));
-                sb.AppendLine(string.Format("RA: {0} SK: {1}", SB1, SB2));
+                sb.AppendLine(string.Format("{0} - {1}", Bezeichnung, AktArtAlias));
+                sb.AppendLine(string.Format("RA: {0} - SK: {1}", SB1 != null ? SB1.ID : "Kein", SB2 != null ? SB2.ID : "Kein"));
+                if (LinkedDokumente.Any())
+                    sb.AppendLine(string.Format("Dokumente: {0}", LinkedDokumente.Count()));
                 return sb.ToString();
             }
         }
@@ -84,10 +88,22 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [System.ComponentModel.DisplayName("Aktart")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string AktArtAlias
+        {
+            get
+            {
+                return AktArt != null ? AktArt.Art : null;
+            }
+        }
+
         AktArt aktArt;
 
         [System.ComponentModel.DisplayName("Aktart")]
         [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
         public AktArt AktArt
         {
             get
@@ -206,7 +222,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Dokument>().Where(p => p.Akt != null && p.MappingId.Equals(MappingId));
+                return Store.LoadAll<Dokument>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId));
             }
         }
     }
