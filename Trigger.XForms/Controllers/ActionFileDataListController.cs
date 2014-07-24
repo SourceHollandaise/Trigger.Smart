@@ -28,7 +28,7 @@ namespace Trigger.XForms.Controllers
 		{
 			LoadFilesAction = new Command();
 			LoadFilesAction.ID = "LoadFiles_Tool_Action";
-			LoadFilesAction.Image = ImageExtensions.GetImage("File_add32.png", 24);
+			LoadFilesAction.Image = ImageExtensions.GetImage("File_add32.png", 32);
 			LoadFilesAction.MenuText = "Load files";
 			LoadFilesAction.ToolBarText = "Load files";
 			LoadFilesAction.Executed += (sender, e) =>

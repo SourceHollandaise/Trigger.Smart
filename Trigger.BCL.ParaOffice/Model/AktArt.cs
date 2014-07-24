@@ -42,6 +42,7 @@ namespace Trigger.BCL.ParaOffice
         string idText;
 
         [System.ComponentModel.DisplayName("ID-Text")]
+        [VisibleOnView(TargetView.DetailOnly)]
         public string IdText
         {
             get

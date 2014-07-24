@@ -3,6 +3,7 @@ using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {
+
     [System.ComponentModel.DefaultProperty("Subject")]
     [CompactViewRepresentation]
     [MainViewItem]
@@ -45,6 +46,7 @@ namespace Trigger.BCL.ParaOffice
         string fileName;
 
         [System.ComponentModel.DisplayName("Datei")]
+        [VisibleOnView(TargetView.DetailOnly)]
         public string FileName
         {
             get
@@ -113,6 +115,7 @@ namespace Trigger.BCL.ParaOffice
         Akt akt;
 
         [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
         public Akt Akt
         {
             get
@@ -129,9 +132,28 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        DokumentArt art;
+
+        public DokumentArt Art
+        {
+            get
+            {
+                return art;
+            }
+            set
+            {
+                if (Equals(art, value))
+                    return;
+                art = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         string bemerkung;
 
         [System.ComponentModel.DisplayName("Bemerkung")]
+        [VisibleOnView(TargetView.DetailOnly)]
         public string Bemerkung
         {
             get
@@ -147,7 +169,5 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
-
     }
-    
 }

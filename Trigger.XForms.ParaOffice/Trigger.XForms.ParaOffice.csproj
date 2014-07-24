@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</ProjectGuid>
+    <ProjectGuid>{6CEDF187-90A3-499B-9297-443256C0B7AF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Trigger.BCL.ParaOffice</RootNamespace>
-    <AssemblyName>Trigger.BCL.ParaOffice</AssemblyName>
+    <RootNamespace>Trigger.XForms.ParaOffice</RootNamespace>
+    <AssemblyName>Trigger.XForms.ParaOffice</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,35 +30,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Akt.cs" />
-    <Compile Include="Model\AktArt.cs" />
-    <Compile Include="Model\SB.cs" />
-    <Compile Include="Model\Dokument.cs" />
-    <Compile Include="Services\ParaOfficeDocumentDataService.cs" />
-    <Compile Include="Model\Kontakt.cs" />
-    <Compile Include="Model\KontaktArt.cs" />
-    <Compile Include="Model\DokumentArt.cs" />
-    <Compile Include="Model\AktPerson.cs" />
-    <Compile Include="Model\Partei.cs" />
-    <Compile Include="Model\Person.cs" />
+    <Compile Include="Controllers\ActionAktPersonController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="Services\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
+      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
+      <Name>Trigger.XForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
       <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
       <Name>Trigger.XStorable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
-      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
-      <Name>Trigger.BCL.Common</Name>
+    <ProjectReference Include="..\Trigger.BCL.ParaOffice\Trigger.BCL.ParaOffice.csproj">
+      <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
+      <Name>Trigger.BCL.ParaOffice</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

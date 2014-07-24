@@ -26,7 +26,7 @@ namespace Trigger.XForms.Controllers
 		{
 			CloseAction = new Command();
 			CloseAction.ID = "Close_Tool_Action";
-			CloseAction.Image = ImageExtensions.GetImage("Close32.png", 24);
+			CloseAction.Image = ImageExtensions.GetImage("Close32.png", 32);
 			CloseAction.MenuText = "Close";
 			CloseAction.ToolBarText = "Close";
 			CloseAction.Executed += (sender, e) =>

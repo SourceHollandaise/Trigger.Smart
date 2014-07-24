@@ -30,7 +30,7 @@ namespace Trigger.XForms.Controllers
 				linkCommand.ID = "Linked_" + attribute.LinkType.Name + "_Menu_Action";
 				linkCommand.MenuText = "Linked " + attribute.LinkType.Name;
 				linkCommand.ToolBarText = "Linked " + attribute.LinkType.Name;
-				linkCommand.Image = ImageExtensions.GetImage("Folder_add32.png", 24);
+				linkCommand.Image = ImageExtensions.GetImage("Folder_add32.png", 32);
 				linkCommand.Tag = new Link { LinkType = attribute.LinkType, LinkProperty = property };
 
 				linkCommand.Executed += (sender, e) =>

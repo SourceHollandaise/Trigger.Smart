@@ -9,6 +9,7 @@
     <RootNamespace>Trigger.App.OSX.EventTracker</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>Trigger.App.OSX.EventTracker</AssemblyName>
+    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,28 +82,12 @@
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
-      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
-      <Name>Trigger.BCL.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.BCL.EventTracker\Trigger.BCL.EventTracker.csproj">
-      <Project>{7525B10F-A5C1-4438-ABE2-376B8FBAF991}</Project>
-      <Name>Trigger.BCL.EventTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
-      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
-      <Name>Trigger.XForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
-      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
-      <Name>Trigger.XStorable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Trigger.App.EventTracker\Trigger.App.EventTracker.csproj">
       <Project>{E522C014-2E66-498B-892A-487C68762ABE}</Project>
       <Name>Trigger.App.EventTracker</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\gluebirne.png" />
+    <BundleResource Include="Resources\fucking.icns" />
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@
     <RootNamespace>Trigger.App.OSX.ParaOffice</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>Trigger.App.OSX.ParaOffice</AssemblyName>
+    <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,7 @@
     <CodeSigningKey>Developer ID Application</CodeSigningKey>
     <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -55,6 +57,7 @@
     <CodeSigningKey>3rd Party Mac Developer Application</CodeSigningKey>
     <EnableCodeSigning>true</EnableCodeSigning>
     <EnablePackageSigning>true</EnablePackageSigning>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -76,34 +79,19 @@
     <None Include="Info.plist" />
     <None Include="packages.config" />
     <None Include="app.config" />
+    <None Include="Entitlements.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
-      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
-      <Name>Trigger.BCL.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.BCL.ParaOffice\Trigger.BCL.ParaOffice.csproj">
-      <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
-      <Name>Trigger.BCL.ParaOffice</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
-      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
-      <Name>Trigger.XForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
-      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
-      <Name>Trigger.XStorable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Trigger.App.ParaOffice\Trigger.App.ParaOffice.csproj">
       <Project>{A1C293B3-EC0A-449A-8994-C0245992EB00}</Project>
       <Name>Trigger.App.ParaOffice</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\paragraph_128x128.png" />
+    <BundleResource Include="Resources\paragraph_128x128.icns" />
   </ItemGroup>
 </Project>

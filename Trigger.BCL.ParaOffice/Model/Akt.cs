@@ -54,6 +54,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
+        [VisibleOnView(TargetView.DetailOnly)]
         public string Bemerkung
         {
             get
@@ -73,6 +74,7 @@ namespace Trigger.BCL.ParaOffice
         string archivZahl;
 
         [System.ComponentModel.DisplayName("Archivzahl")]
+        [VisibleOnView(TargetView.DetailOnly)]
         public string ArchivZahl
         {
             get
@@ -200,6 +202,7 @@ namespace Trigger.BCL.ParaOffice
         SB sb3;
 
         [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
         public SB SB3
         {
             get
@@ -224,6 +227,17 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 return Store.LoadAll<Dokument>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId));
+            }
+        }
+
+        [System.ComponentModel.DisplayName("Personen zu Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Person))]
+        public IEnumerable<Person> LinkedAktPersonen
+        {
+            get
+            {
+                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).Select(p => p.Person);
             }
         }
     }

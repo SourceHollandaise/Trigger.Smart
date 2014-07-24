@@ -24,7 +24,7 @@ namespace Trigger.XForms.Controllers
 		{
 			RefreshAction = new Command();
 			RefreshAction.ID = "Refresh_Tool_Action";
-			RefreshAction.Image = ImageExtensions.GetImage("Refresh32.png", 24);
+			RefreshAction.Image = ImageExtensions.GetImage("Refresh32.png", 32);
 			RefreshAction.MenuText = "Refresh";
 			RefreshAction.ToolBarText = "Refresh";
 			RefreshAction.Executed += (sender, e) =>

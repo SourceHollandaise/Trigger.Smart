@@ -24,7 +24,7 @@ namespace Trigger.XForms.Controllers
 		{
 			OpenAction = new Command();
 			OpenAction.ID = "Open_Tool_Action";
-			OpenAction.Image = ImageExtensions.GetImage("Edit32.png", 24);
+			OpenAction.Image = ImageExtensions.GetImage("Edit32.png", 32);
 			OpenAction.MenuText = "Open";
 			OpenAction.ToolBarText = "Open";
 			OpenAction.Executed += (sender, e) =>

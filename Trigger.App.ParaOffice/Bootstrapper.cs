@@ -1,12 +1,13 @@
 using System;
 using System.Linq;
+using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Security;
+using Trigger.BCL.Common.Services;
+using Trigger.BCL.ParaOffice;
 using Trigger.XForms.Controllers;
+using Trigger.XForms.ParaOffice.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Services;
-using Trigger.BCL.Common.Security;
-using Trigger.BCL.ParaOffice;
 
 namespace Trigger.App.ParaOffice
 {
@@ -98,7 +99,7 @@ namespace Trigger.App.ParaOffice
                 typeof(ActionRefreshDetailController),
                 typeof(ActionRefreshListController),
                 typeof(ActionSaveController),
-
+                typeof(ActionAktPersonenController)
             };
         }
     }

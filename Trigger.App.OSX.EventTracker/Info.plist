@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.Trigger.App.OSX.EventTracker</string>
 	<key>CFBundleName</key>
-	<string>Trigger.App.OSX.EventTracker</string>
+	<string>eventTrax for Mac</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
@@ -13,7 +13,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
-	<string>gluebirne</string>
+	<string>fucking</string>
 	<key>CFBundleDisplayName</key>
 	<string>eventTrax for Mac</string>
 	<key>LSApplicationCategoryType</key>

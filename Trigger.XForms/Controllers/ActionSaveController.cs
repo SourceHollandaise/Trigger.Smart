@@ -24,7 +24,7 @@ namespace Trigger.XForms.Controllers
 		{
 			SaveAction = new Command();
 			SaveAction.ID = "Save_Tool_Action";
-			SaveAction.Image = ImageExtensions.GetImage("Save32.png", 24);
+			SaveAction.Image = ImageExtensions.GetImage("Save32.png", 32);
 			SaveAction.MenuText = "Save";
 			SaveAction.ToolBarText = "Save";
 			SaveAction.Shortcut = Keys.Control & Keys.S;

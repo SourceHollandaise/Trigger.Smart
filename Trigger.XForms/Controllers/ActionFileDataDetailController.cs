@@ -28,7 +28,7 @@ namespace Trigger.XForms.Controllers
 		{
 			AddFileAction = new Command();
 			AddFileAction.ID = "AddFile_Tool_Action";
-			AddFileAction.Image = ImageExtensions.GetImage("Paperclip32.png", 24);
+			AddFileAction.Image = ImageExtensions.GetImage("Paperclip32.png", 32);
 			AddFileAction.MenuText = "Add file";
 			AddFileAction.ToolBarText = "Add file";
 			AddFileAction.Executed += (sender, e) =>

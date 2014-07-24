@@ -7,6 +7,7 @@ using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
+
     [System.ComponentModel.DefaultProperty("PersonenName")]
     [CompactViewRepresentation]
     [MainViewItem]
@@ -19,7 +20,7 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} {1} (2)", Titel, Vorname, Nachname));
+                sb.AppendLine(string.Format("{0} {1} {2}", Vorname, Nachname, Titel));
                 sb.AppendLine(string.Format("{0} {1} - {2}", PLZ, Ort, Strasse));
                 return sb.ToString();
             }

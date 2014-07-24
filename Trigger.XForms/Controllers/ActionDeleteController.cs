@@ -25,7 +25,7 @@ namespace Trigger.XForms.Controllers
 		{
 			DeleteAction = new Command();
 			DeleteAction.ID = "Delete_Tool_Action";
-			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 24);
+			DeleteAction.Image = ImageExtensions.GetImage("Delete32.png", 32);
 			DeleteAction.MenuText = "Delete";
 			DeleteAction.ToolBarText = "Delete";
 			DeleteAction.Shortcut = Keys.Control & Keys.D;

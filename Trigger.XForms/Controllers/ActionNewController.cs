@@ -26,7 +26,7 @@ namespace Trigger.XForms.Controllers
 		{
 			NewAction = new Command();
 			NewAction.ID = "New_Tool_Action";
-			NewAction.Image = ImageExtensions.GetImage("Add32.png", 24);
+			NewAction.Image = ImageExtensions.GetImage("Add32.png", 32);
 			NewAction.MenuText = "New " + ModelType.Name;
 			NewAction.ToolBarText = "New " + ModelType.Name;
 			NewAction.Shortcut = Keys.Control & Keys.N;

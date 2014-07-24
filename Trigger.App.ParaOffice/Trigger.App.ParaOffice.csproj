@@ -8,6 +8,7 @@
     <RootNamespace>Trigger.App.ParaOffice</RootNamespace>
     <AssemblyName>Trigger.App.ParaOffice</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
+    <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,6 +88,10 @@
     <ProjectReference Include="..\Trigger.BCL.ParaOffice\Trigger.BCL.ParaOffice.csproj">
       <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
       <Name>Trigger.BCL.ParaOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.XForms.ParaOffice\Trigger.XForms.ParaOffice.csproj">
+      <Project>{6CEDF187-90A3-499B-9297-443256C0B7AF}</Project>
+      <Name>Trigger.XForms.ParaOffice</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

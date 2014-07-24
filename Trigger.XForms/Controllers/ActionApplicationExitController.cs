@@ -34,7 +34,7 @@ namespace Trigger.XForms.Controllers
         {
             ExitAction = new Command();
             ExitAction.ID = "Exit_Tool_Action";
-            ExitAction.Image = ImageExtensions.GetImage("Close32.png", 24);
+            ExitAction.Image = ImageExtensions.GetImage("Close32.png", 32);
             ExitAction.MenuText = "Exit";
             ExitAction.ToolBarText = "Exit";
 
@@ -47,7 +47,7 @@ namespace Trigger.XForms.Controllers
 
             LogOffAction = new Command();
             LogOffAction.ID = "LogOff_Tool_Action";
-            LogOffAction.Image = ImageExtensions.GetImage("Login_out32.png", 24);
+            LogOffAction.Image = ImageExtensions.GetImage("Login_out32.png", 32);
             LogOffAction.MenuText = "Log off";
             LogOffAction.ToolBarText = "Log off";
             LogOffAction.Executed += (sender, e) =>
