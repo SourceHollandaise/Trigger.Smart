@@ -393,7 +393,7 @@ Global
 		{7525B10F-A5C1-4438-ABE2-376B8FBAF991} = {2D2F8CBA-6852-40E9-AB03-482AF5701D69}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\Trigger.App.OSX.EventTracker\Trigger.App.OSX.EventTracker.csproj
+		StartupItem = ..\Trigger.App.OSX.ParaOffice\Trigger.App.OSX.ParaOffice.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.FileWidth = 120

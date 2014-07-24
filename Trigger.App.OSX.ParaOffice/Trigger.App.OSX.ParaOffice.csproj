@@ -79,9 +79,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="StartUp.cs" />
-    <Compile Include="AppParaOffice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
@@ -99,6 +97,10 @@
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
       <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
       <Name>Trigger.XStorable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.App.ParaOffice\Trigger.App.ParaOffice.csproj">
+      <Project>{A1C293B3-EC0A-449A-8994-C0245992EB00}</Project>
+      <Name>Trigger.App.ParaOffice</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

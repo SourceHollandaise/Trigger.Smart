@@ -1,5 +1,6 @@
 
 using System;
+using Trigger.App.ParaOffice;
 
 namespace Trigger.App.OSX.ParaOffice
 {

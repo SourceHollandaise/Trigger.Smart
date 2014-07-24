@@ -1,5 +1,6 @@
 
 using System;
+using Trigger.App.EventTracker;
 
 namespace Trigger.App.OSX.EventTracker
 {
