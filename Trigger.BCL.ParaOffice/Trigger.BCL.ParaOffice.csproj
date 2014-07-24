@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{26480786-A624-404A-BDD8-D5577BE3AE43}</ProjectGuid>
+    <ProjectGuid>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Trigger.BCL.Common</RootNamespace>
-    <AssemblyName>Trigger.BCL.Common</AssemblyName>
+    <RootNamespace>Trigger.BCL.ParaOffice</RootNamespace>
+    <AssemblyName>Trigger.BCL.ParaOffice</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,29 +30,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DataStoreAuthenticate.cs" />
-    <Compile Include="Services\SystemAuthenticate.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Security\IAuthenticate.cs" />
-    <Compile Include="Security\ISecurityInfoProvider.cs" />
-    <Compile Include="Security\LogonParameters.cs" />
-    <Compile Include="Security\SecureText.cs" />
-    <Compile Include="Security\SecurityInfoProvider.cs" />
-    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Model\Akt.cs" />
+    <Compile Include="Model\AktArt.cs" />
+    <Compile Include="Model\SB.cs" />
+    <Compile Include="Model\Dokument.cs" />
+    <Compile Include="Services\ParaOfficeDocumentDataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Services\" />
-    <Folder Include="Security\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
       <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
       <Name>Trigger.XStorable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
+      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
+      <Name>Trigger.BCL.Common</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

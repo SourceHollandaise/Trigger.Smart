@@ -3,18 +3,25 @@ using Eto.Drawing;
 
 namespace Eto.Drawing
 {
-	public static class ImageExtensions
-	{
-		public static Image GetImage(string imageName, int size)
-		{
+    public struct ImageSize
+    {
+        public const int Size16 = 16;
+        public const int Size24 = 24;
+        public const int Size32 = 32;
+        public const int Size48 = 48;
+    }
 
-			Image bitMap = Bitmap.FromResource(imageName);
-			if (size > bitMap.Height)
-				size = bitMap.Height;
+    public static class ImageExtensions
+    {
+        public static Image GetImage(string imageName, int size)
+        {
+            Image bitMap = Bitmap.FromResource(imageName);
+            if (size > bitMap.Height)
+                size = bitMap.Height;
 
-			var image = new Bitmap(bitMap, size, size);
-			bitMap.Dispose();
-			return image;
-		}
-	}
+            var image = new Bitmap(bitMap, size, size);
+            bitMap.Dispose();
+            return image;
+        }
+    }
 }

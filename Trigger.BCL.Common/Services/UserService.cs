@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.XStorable.Model;
-using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.Common.Model;
 
-namespace Trigger.BCL.EventTracker.Services
+namespace Trigger.BCL.Common.Services
 {
     public class UserService
     {

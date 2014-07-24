@@ -56,15 +56,10 @@
     <Compile Include="Model\TimeTracker.cs" />
     <Compile Include="Services\DocumentDataService.cs" />
     <Compile Include="Services\TimeTrackerService.cs" />
-    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
-      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
-      <Name>Trigger.XForms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
       <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
       <Name>Trigger.XStorable</Name>
