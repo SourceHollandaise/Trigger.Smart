@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Trigger.XStorable.Security
+namespace Trigger.BCL.Common.Security
 {
     public static class SecureText
     {

@@ -1,6 +1,5 @@
 
-
-namespace Trigger.XStorable.Security
+namespace Trigger.BCL.Common.Security
 {
     public interface IAuthenticate
     {

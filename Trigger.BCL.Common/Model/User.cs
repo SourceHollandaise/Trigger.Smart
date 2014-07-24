@@ -1,8 +1,10 @@
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Security;
+using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Security;
 
-namespace Trigger.XStorable.Model
+namespace Trigger.BCL.Common.Model
 {
+
     [System.ComponentModel.DefaultProperty("UserName")]
     public class User : StorableBase
     {

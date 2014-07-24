@@ -1,6 +1,6 @@
 using Eto.Forms;
-using Trigger.XStorable.Security;
 using Trigger.XStorable.Dependency;
+using Trigger.BCL.Common.Security;
 
 namespace Trigger.XForms.Visuals
 {

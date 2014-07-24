@@ -1,6 +1,6 @@
-using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Model;
 
-namespace Trigger.XStorable.Security
+namespace Trigger.BCL.Common.Security
 {
     public class SecurityInfoProvider : ISecurityInfoProvider
     {
@@ -14,7 +14,7 @@ namespace Trigger.XStorable.Security
             }
         }
 
-        internal void SetUser(User user)
+        public void SetUser(User user)
         {
             currentUser = user;
         }

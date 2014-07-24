@@ -3,6 +3,8 @@ using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XStorable.Model;
+using Trigger.BCL.EventTracker.Model;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker.Services
 {
@@ -20,7 +22,8 @@ namespace Trigger.BCL.EventTracker.Services
                     throw new ArgumentException("User exists!");
                 else
                 {
-                    user = new User{ UserName = userName };
+                    user = new User();
+                    user.UserName = userName;
                     user.SetPassword(password);
                     user.Save();
                     return user;

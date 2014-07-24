@@ -1,8 +1,9 @@
 
 using System;
-using Trigger.XStorable.Security;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Security;
 
 namespace Trigger.BCL.EventTracker.Model
 {

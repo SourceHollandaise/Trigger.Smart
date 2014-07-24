@@ -1,9 +1,10 @@
 using System.Linq;
 using Trigger.XStorable.Dependency;
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Security;
 
-namespace Trigger.XStorable.Security
+namespace Trigger.BCL.Common.Services
 {
     public sealed class DataStoreAuthenticate : IAuthenticate
     {

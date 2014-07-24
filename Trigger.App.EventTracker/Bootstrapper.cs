@@ -3,10 +3,11 @@ using System.Linq;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
 using Trigger.XForms.Controllers;
-using Trigger.XStorable.Security;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.XStorable.Model;
+using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Services;
+using Trigger.BCL.Common.Security;
 
 namespace Trigger.App.EventTracker
 {
@@ -39,7 +40,11 @@ namespace Trigger.App.EventTracker
 
             if (user == null)
             {
-                user = new User{ UserName = "Admin", Password = "admin" };
+                user = new User
+                {
+                    UserName = "Admin",
+                    Password = "admin"
+                };
 			
                 user.Save();
             }
