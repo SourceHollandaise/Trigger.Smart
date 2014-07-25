@@ -6,126 +6,127 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XStorable.DataStore
 {
-	public class FileStore : IStore
-	{
-		const string StoredFileExtension = ".json";
+    public class FileStore : IStore
+    {
+        const string StoredFileExtension = ".json";
 
-		public void Save(Type type, IStorable item)
-		{
-			string typeDir = CreateTypeDirectory(type);
+        public void Save(Type type, IStorable item)
+        {
+            string typeDir = CreateTypeDirectory(type);
                     
-			item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
+            item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
-			var json = ServiceStack.Text.JsonSerializer.SerializeToString(item, type);
-			var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(item, type);
+            //var json = ServiceStack.Text.JsonSerializer.SerializeToString(item, type);
+            var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
-			File.WriteAllText(path, json);
-		}
+            File.WriteAllText(path, json);
+        }
 
-		public void Save<T>(T item) where T: IStorable
-		{
-			Save(typeof(T), item);
-		}
+        public void Save<T>(T item) where T: IStorable
+        {
+            Save(typeof(T), item);
+        }
 
-		public void DeleteById(Type type, object itemId)
-		{
-			string typeDir = CreateTypeDirectory(type);
+        public void DeleteById(Type type, object itemId)
+        {
+            string typeDir = CreateTypeDirectory(type);
 
-			var path = Path.Combine(typeDir, itemId + StoredFileExtension);
+            var path = Path.Combine(typeDir, itemId + StoredFileExtension);
 
-			if (File.Exists(path))
-				File.Delete(path);
-		}
+            if (File.Exists(path))
+                File.Delete(path);
+        }
 
-		public void DeleteById<T>(object itemId) where T: IStorable
-		{
-			DeleteById(typeof(T), itemId);
-		}
+        public void DeleteById<T>(object itemId) where T: IStorable
+        {
+            DeleteById(typeof(T), itemId);
+        }
 
-		public void Delete(Type type, IStorable item)
-		{
-			string typeDir = CreateTypeDirectory(type);
+        public void Delete(Type type, IStorable item)
+        {
+            string typeDir = CreateTypeDirectory(type);
 
-			var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
+            var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
-			if (File.Exists(path))
-				File.Delete(path);
-		}
+            if (File.Exists(path))
+                File.Delete(path);
+        }
 
-		public void Delete<T>(T item) where T: IStorable
-		{
-			Delete(typeof(T), item);
-		}
+        public void Delete<T>(T item) where T: IStorable
+        {
+            Delete(typeof(T), item);
+        }
 
-		public IStorable Load(Type type, object itemId)
-		{
-			string typeDir = CreateTypeDirectory(type);
+        public IStorable Load(Type type, object itemId)
+        {
+            string typeDir = CreateTypeDirectory(type);
 
-			var path = Path.Combine(typeDir, itemId + StoredFileExtension);
+            var path = Path.Combine(typeDir, itemId + StoredFileExtension);
 
-			if (File.Exists(path))
-			{
-				var content = File.ReadAllText(path);
+            if (File.Exists(path))
+            {
+                var content = File.ReadAllText(path);
 
-				try
-				{
-					var result = (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
-					LinkedObjectHelper.UpdatePersistentReferences(result);
-					return result;
-				}
-				catch
-				{
-					return null;
-				}
-			}
+                try
+                {
+                    var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
+                    LinkedObjectHelper.UpdatePersistentReferences(result);
+                    return result;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		public T Load<T>(object itemId) where T: IStorable
-		{
-			return (T)Load(typeof(T), itemId);
-		}
+        public T Load<T>(object itemId) where T: IStorable
+        {
+            return (T)Load(typeof(T), itemId);
+        }
 
-		public IEnumerable<IStorable> LoadAll(Type type)
-		{
-			string typeDir = CreateTypeDirectory(type);
+        public IEnumerable<IStorable> LoadAll(Type type)
+        {
+            string typeDir = CreateTypeDirectory(type);
 
-			foreach (var item in Directory.EnumerateFiles(typeDir, "*" + StoredFileExtension))
-				yield return Load(type, item);
+            foreach (var item in Directory.EnumerateFiles(typeDir, "*" + StoredFileExtension))
+                yield return Load(type, item);
 
-		}
+        }
 
-		public IEnumerable<T> LoadAll<T>() where T: IStorable
-		{
-			return LoadAll(typeof(T)).OfType<T>();
-		}
+        public IEnumerable<T> LoadAll<T>() where T: IStorable
+        {
+            return LoadAll(typeof(T)).OfType<T>();
+        }
 
-		static IStorable Load(Type type, string path)
-		{
-			if (File.Exists(path))
-			{
-				var content = File.ReadAllText(path);
+        static IStorable Load(Type type, string path)
+        {
+            if (File.Exists(path))
+            {
+                var content = File.ReadAllText(path);
 
-				var result = (IStorable)ServiceStack.Text.JsonSerializer.DeserializeFromString(content, type);
-				LinkedObjectHelper.UpdatePersistentReferences(result);
-				return result;
-			}
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
+                LinkedObjectHelper.UpdatePersistentReferences(result);
+                return result;
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		static string CreateTypeDirectory(Type type)
-		{
-			if (!Directory.Exists(StoreConfigurator.DataStoreLocation))
-				return string.Empty;
+        static string CreateTypeDirectory(Type type)
+        {
+            if (!Directory.Exists(StoreConfigurator.DataStoreLocation))
+                return string.Empty;
 
-			var typeDir = Path.Combine(StoreConfigurator.DataStoreLocation, type.FullName);
-			if (!Directory.Exists(typeDir))
-				Directory.CreateDirectory(typeDir);
+            var typeDir = Path.Combine(StoreConfigurator.DataStoreLocation, type.FullName);
+            if (!Directory.Exists(typeDir))
+                Directory.CreateDirectory(typeDir);
 
-			return typeDir;
-		}
-	}
+            return typeDir;
+        }
+    }
 }
 

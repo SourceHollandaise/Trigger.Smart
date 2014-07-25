@@ -5,9 +5,14 @@ using Eto.Forms;
 
 namespace Trigger.App.ParaOffice
 {
-    public class AppParaOffice : Application
+    public class AppParaOffice : Eto.Forms.Application
     {
-        public virtual void InitalizeApplication()
+        public AppParaOffice(Eto.Platform p) : base(p)
+        {
+
+        }
+
+        public  void InitalizeApplication()
         {
             var init = new Bootstrapper();
             init.InitalizeDataStore();
@@ -16,9 +21,11 @@ namespace Trigger.App.ParaOffice
             init.RegisterDeclaredTypes();
         }
 
-        public override void OnInitialized(EventArgs e)
+        protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+
+
 
             MainForm = new MainViewTemplate();
             MainForm.BringToFront();
