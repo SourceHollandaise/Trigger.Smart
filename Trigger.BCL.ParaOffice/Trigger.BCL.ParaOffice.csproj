@@ -49,6 +49,7 @@
     <Compile Include="Model\TerminModel\TerminArt.cs" />
     <Compile Include="Model\AktModel\Partei.cs" />
     <Compile Include="Model\PersonModel\SB.cs" />
+    <Compile Include="Model\PersonModel\PersonenArt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

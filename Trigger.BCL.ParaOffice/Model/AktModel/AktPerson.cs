@@ -93,6 +93,37 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [System.ComponentModel.DisplayName("Vertreter")]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string VertreterAlias
+        {
+            get
+            {
+                return Person != null ? (Vertreter.Vorname + " " + Vertreter.Nachname) : null;
+            }
+        }
+
+        Person vertreter;
+
+        [System.ComponentModel.DisplayName("Vertreter")]
+        [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
+        public Person Vertreter
+        {
+            get
+            {
+                return vertreter;
+            }
+            set
+            {
+                if (Equals(vertreter, value))
+                    return;
+                vertreter = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         Partei partei;
 
         [System.ComponentModel.DisplayName("Klient/Gegner")]

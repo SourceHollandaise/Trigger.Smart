@@ -7,7 +7,7 @@ using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
-
+  
     [System.ComponentModel.DefaultProperty("PersonenName")]
     [System.ComponentModel.DisplayName("Person")]
     [CompactViewRepresentation]
@@ -123,6 +123,24 @@ namespace Trigger.BCL.ParaOffice
                 if (Equals(anrede, value))
                     return;
                 anrede = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        PersonenArt art;
+
+        public PersonenArt Art
+        {
+            get
+            {
+                return art;
+            }
+            set
+            {
+                if (Equals(art, value))
+                    return;
+                art = value;
 
                 OnPropertyChanged();
             }
