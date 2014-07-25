@@ -234,11 +234,22 @@ namespace Trigger.BCL.ParaOffice
         [System.ComponentModel.DisplayName("Personen zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Person))]
-        public IEnumerable<Person> LinkedAktPersonen
+        public IEnumerable<Person> LinkedPersonen
         {
             get
             {
                 return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).Select(p => p.Person);
+            }
+        }
+
+        [System.ComponentModel.DisplayName("Termine zu Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Termin))]
+        public IEnumerable<Termin> LinkedTermine
+        {
+            get
+            {
+                return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId));
             }
         }
     }

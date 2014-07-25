@@ -192,5 +192,16 @@ namespace Trigger.BCL.ParaOffice
                 return Store.LoadAll<Kontakt>().Where(p => p.Person != null && p.Person.MappingId.Equals(MappingId));
             }
         }
+
+        [System.ComponentModel.DisplayName("Akten zu Person")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Akt))]
+        public IEnumerable<Akt> LinkedAkten
+        {
+            get
+            {
+                return Store.LoadAll<AktPerson>().Where(p => p.Person != null && p.Person.MappingId.Equals(MappingId)).Select(p => p.Akt);
+            }
+        }
     }
 }

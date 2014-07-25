@@ -1,5 +1,3 @@
-using Trigger.XStorable.Model;
-using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {

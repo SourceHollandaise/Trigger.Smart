@@ -151,6 +151,42 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        DokumentMedium medium;
+
+        public DokumentMedium Medium
+        {
+            get
+            {
+                return medium;
+            }
+            set
+            {
+                if (Equals(medium, value))
+                    return;
+                medium = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        DokumentStatus status;
+
+        public DokumentStatus Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                if (Equals(status, value))
+                    return;
+                status = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         string bemerkung;
 
         [System.ComponentModel.DisplayName("Bemerkung")]

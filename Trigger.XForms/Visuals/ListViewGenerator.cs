@@ -36,6 +36,19 @@ namespace Trigger.XForms.Visuals
             gridView.AllowMultipleSelection = true;
             //gridView.ShowCellBorders = true;
 
+            gridView.KeyDown += (sender, e) =>
+            {
+                if (e.Key == Keys.Enter)
+                {
+                    ExecuteListOpenCommand(gridView);
+                }
+            };
+
+            gridView.MouseDoubleClick += (sender, e) =>
+            {
+                ExecuteListOpenCommand(gridView);
+            };
+
             return gridView;
         }
 
@@ -90,6 +103,12 @@ namespace Trigger.XForms.Visuals
             column.Resizable = true;
             column.AutoSize = true;
             return column;
+        }
+
+        void ExecuteListOpenCommand(GridView gridView)
+        {
+            if (gridView.SelectedItem != null)
+                WindowManager.ShowDetailView(gridView.SelectedItem as IStorable);
         }
     }
 }

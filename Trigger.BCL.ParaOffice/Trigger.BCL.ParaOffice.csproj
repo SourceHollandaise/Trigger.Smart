@@ -34,22 +34,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Akt.cs" />
-    <Compile Include="Model\AktArt.cs" />
-    <Compile Include="Model\SB.cs" />
-    <Compile Include="Model\Dokument.cs" />
     <Compile Include="Services\ParaOfficeDocumentDataService.cs" />
-    <Compile Include="Model\Kontakt.cs" />
-    <Compile Include="Model\KontaktArt.cs" />
-    <Compile Include="Model\DokumentArt.cs" />
-    <Compile Include="Model\AktPerson.cs" />
-    <Compile Include="Model\Partei.cs" />
-    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\AktModel\Akt.cs" />
+    <Compile Include="Model\AktModel\AktArt.cs" />
+    <Compile Include="Model\AktModel\AktPerson.cs" />
+    <Compile Include="Model\DokumentModel\Dokument.cs" />
+    <Compile Include="Model\DokumentModel\DokumentArt.cs" />
+    <Compile Include="Model\DokumentModel\DokumentMedium.cs" />
+    <Compile Include="Model\DokumentModel\DokumentStatus.cs" />
+    <Compile Include="Model\PersonModel\Kontakt.cs" />
+    <Compile Include="Model\PersonModel\KontaktArt.cs" />
+    <Compile Include="Model\PersonModel\Person.cs" />
+    <Compile Include="Model\TerminModel\Termin.cs" />
+    <Compile Include="Model\TerminModel\TerminArt.cs" />
+    <Compile Include="Model\AktModel\Partei.cs" />
+    <Compile Include="Model\PersonModel\SB.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Services\" />
+    <Folder Include="Model\AktModel\" />
+    <Folder Include="Model\PersonModel\" />
+    <Folder Include="Model\DokumentModel\" />
+    <Folder Include="Model\TerminModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">

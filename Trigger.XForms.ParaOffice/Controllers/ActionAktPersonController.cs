@@ -25,8 +25,8 @@ namespace Trigger.XForms.ParaOffice.Controllers
             ActionAddAktPerson = new Command();
             ActionAddAktPerson.ID = "AddAktPerson_Tool_Action";
             ActionAddAktPerson.Image = ImageExtensions.GetImage("User32.png", 32);
-            ActionAddAktPerson.MenuText = "Aktperson";
-            ActionAddAktPerson.ToolBarText = "Aktperson";
+            ActionAddAktPerson.MenuText = "Neue Aktperson";
+            ActionAddAktPerson.ToolBarText = "Neue Aktperson";
           
             ActionAddAktPerson.Executed += (sender, e) =>
             {
