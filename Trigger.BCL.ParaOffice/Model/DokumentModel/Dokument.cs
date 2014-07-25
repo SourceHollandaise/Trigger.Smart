@@ -20,7 +20,6 @@ namespace Trigger.BCL.ParaOffice
                 sb.AppendLine(string.Format("'{0}' by {1}", Subject, SK != null ? SK.ID : "Kein"));
                 sb.AppendLine(string.Format("Zu Akt '{0}'", AktAlias));
                 sb.AppendLine(string.Format("{0}", Bemerkung));
-                //sb.AppendLine(string.Format("ID: {0}", MappingId));
                 return sb.ToString();
             }
         }
@@ -48,6 +47,7 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Datei")]
         [VisibleOnView(TargetView.DetailOnly)]
+        [System.ComponentModel.ReadOnly(true)]
         public string FileName
         {
             get
