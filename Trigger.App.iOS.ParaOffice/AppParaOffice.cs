@@ -7,7 +7,7 @@ namespace Trigger.App.ParaOffice
 {
     public class AppParaOffice : Application
     {
-        public AppParaOffice(Eto.Platform p) : base(p)
+        public AppParaOffice(Eto.Platform platform) : base(platform)
         {
 
         }

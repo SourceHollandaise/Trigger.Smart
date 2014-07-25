@@ -16,8 +16,8 @@ namespace Trigger.XStorable.DataStore
                     
             item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(item, type);
-            //var json = ServiceStack.Text.JsonSerializer.SerializeToString(item, type);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(item, type, new Newtonsoft.Json.JsonSerializerSettings());
+           
             var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
             File.WriteAllText(path, json);

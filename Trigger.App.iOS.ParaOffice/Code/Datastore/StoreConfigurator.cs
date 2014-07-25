@@ -21,7 +21,6 @@ namespace Trigger.XStorable.DataStore
         static string SetStoreLocation()
         {
             var value = "/Users/trigger/Dropbox/ParaOffice_datastore/";
-          
 
             if (!Directory.Exists(value))
                 Directory.CreateDirectory(value);

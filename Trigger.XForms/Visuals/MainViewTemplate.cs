@@ -1,12 +1,9 @@
-using System;
 using Eto.Forms;
 using System.Collections.Generic;
 using Eto.Drawing;
 using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms.Controllers;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
 
 namespace Trigger.XForms.Visuals
 {
@@ -18,21 +15,6 @@ namespace Trigger.XForms.Visuals
 
             Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
             Content = new Scrollable{ Content = this.Content };
-        }
-
-        public override void OnLoadComplete(EventArgs e)
-        {
-            base.OnLoadComplete(e);
-
-            var logon = new LogonViewTemplate();
-            logon.Topmost = true;
-            logon.Focus();
-            logon.Show();
-
-            logon.Closed += (sender, args) =>
-            {
-                Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
-            };
         }
 
         public override void OnKeyDown(KeyEventArgs e)
