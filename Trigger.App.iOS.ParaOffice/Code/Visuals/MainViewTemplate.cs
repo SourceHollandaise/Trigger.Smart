@@ -14,8 +14,7 @@ namespace Trigger.XForms.Visuals
     {
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            Size = 
-
+        
             Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
             Content = new Scrollable{ Content = this.Content };
         }

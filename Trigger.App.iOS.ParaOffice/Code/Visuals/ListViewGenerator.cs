@@ -56,7 +56,7 @@ namespace Trigger.XForms.Visuals
         {
             var	gridView = new GridView();
 
-            var visualRepresentationAttribute = ModelType.GetCustomAttributes(typeof(CompactViewRepresentationAttribute), true).FirstOrDefault() as CompactViewRepresentationAttribute;
+            var visualRepresentationAttribute = ModelType.GetCustomAttributes(typeof(CompactViewItemAttribute), true).FirstOrDefault() as CompactViewItemAttribute;
             if (visualRepresentationAttribute != null)
             {
                 var property = ModelType.GetProperty(visualRepresentationAttribute.VisualProperty);

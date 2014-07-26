@@ -4,6 +4,7 @@ using Trigger.XStorable.DataStore;
 using System.Reflection;
 using System.Linq;
 using System.Collections.Generic;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -37,9 +38,6 @@ namespace Trigger.XForms.Visuals
             {
                 if (property.CanRead)
                 {
-                    if (property.Name.EndsWith("Alias"))
-                        continue;
-	
                     var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
 
                     if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.ListOnly || visibilityAttribute.TargetView == TargetView.None))
@@ -62,10 +60,7 @@ namespace Trigger.XForms.Visuals
                                 var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
                                 gridView.DataStore = new DataStoreCollection(list);
 
-                                var height = list.Count() * 144;
-
-                                if (height > 144 * 3)
-                                    height = 144 * 3;
+                                const int height = 144;
 
                                 gridView.Size = new Eto.Drawing.Size(-1, height);
                                 layout.Add(gridView, true, false);
@@ -111,7 +106,7 @@ namespace Trigger.XForms.Visuals
 
                         layout.Add(referenceComboBox, true);
 
-                        //AddReferenceButtons(layout, referenceComboBox);
+                        AddReferenceButtons(layout, referenceComboBox);
 
                         layout.EndHorizontal();
                     }
@@ -148,8 +143,9 @@ namespace Trigger.XForms.Visuals
                 Text = (attribute != null ? attribute.DisplayName : property.Name) + ":"
             };
 
+            //label.Size = new Size(100, -1);
             //label.Font = new Eto.Drawing.Font(label.Font.Family, 8f);
-            layout.Add(label, true);
+            layout.Add(label, false, true);
             layout.EndVertical();
             layout.BeginHorizontal();
         }

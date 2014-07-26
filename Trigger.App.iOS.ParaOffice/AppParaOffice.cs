@@ -25,15 +25,15 @@ namespace Trigger.App.ParaOffice
         {
             base.OnInitialized(e);
 
-            var logonForm = new LogonViewTemplate();
-            logonForm.Show();
-
-            logonForm.Closed += (o, args) =>
-            {
-                MainForm = new MainViewTemplate();
-                MainForm.BringToFront();
-                MainForm.Show();
-            };
+//            var logonForm = new LogonViewTemplate();
+//            logonForm.Show();
+//
+//            logonForm.Closed += (o, args) =>
+//            {
+            MainForm = new MainViewTemplate();
+            MainForm.BringToFront();
+            MainForm.Show();
+            //};
         }
     }
 }

@@ -80,6 +80,7 @@ namespace Trigger.XForms.Visuals
             {
                 Text = (string)property.GetValue(Model, null)
             };
+
             control.TextChanged += (sender, e) =>
             {
                 property.SetValue(Model, control.Text, null);
