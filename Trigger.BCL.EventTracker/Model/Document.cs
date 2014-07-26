@@ -6,7 +6,7 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class Document : StorableBase, IFileData
     {

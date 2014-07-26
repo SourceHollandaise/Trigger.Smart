@@ -14,24 +14,10 @@ namespace Trigger.XForms.Visuals
     {
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            Size = new Size(400, 768);
+            Size = 
 
             Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
             Content = new Scrollable{ Content = this.Content };
-        }
-
-        protected override void OnLoadComplete(EventArgs e)
-        {
-            base.OnLoadComplete(e);
-
-//            var logon = new LogonViewTemplate();
-// 
-//            logon.Show();
-//
-//            logon.Closed += (sender, args) =>
-//            {
-//                Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
-//            };
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

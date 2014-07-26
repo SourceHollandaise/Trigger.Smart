@@ -11,7 +11,7 @@ namespace Trigger.XForms.Visuals
     {
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            Size = new Size(400, 768);
+            Size = CompactViewConfig.ListViewCompactSize;
 
             Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
             Content = new Scrollable{ Content = this.Content };
@@ -24,6 +24,10 @@ namespace Trigger.XForms.Visuals
                 var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
                 if (result == DialogResult.Yes)
                     Application.Instance.Quit();
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 

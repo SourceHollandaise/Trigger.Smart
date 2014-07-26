@@ -8,7 +8,7 @@ using Trigger.BCL.Common.Security;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class IssueTracker : StorableBase
     {

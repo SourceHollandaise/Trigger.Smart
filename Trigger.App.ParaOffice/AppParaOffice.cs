@@ -23,17 +23,14 @@ namespace Trigger.App.ParaOffice
             base.OnInitialized(e);
 
             var logonForm = new LogonViewTemplate();
-            logonForm.Show();
-
-            logonForm.Closed += (o, args) =>
+            if (logonForm.ShowDialog() == DialogResult.Ok)
             {
-
-
                 MainForm = new MainViewTemplate();
                 MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 MainForm.BringToFront();
                 MainForm.Show();
-            };
+            }
+            ;
         }
     }
 }

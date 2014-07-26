@@ -3,21 +3,22 @@ using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
-	public class LogonViewTemplate : Form
-	{
-		public LogonViewTemplate()
-		{
-			Size = new Size(240, 200);
-			Title = "Logon";
+    public class LogonViewTemplate : Dialog
+    {
+   
+        public LogonViewTemplate()
+        {
+            Size = new Size(240, 200);
+            Title = "Logon";
 		
-			Content = new LogonViewGenerator(this).GetContent();
-		}
+            Content = new LogonViewGenerator(this).GetContent();
+        }
 
-		public override void OnLoadComplete(System.EventArgs e)
-		{
-			base.OnLoadComplete(e);
+        public override void OnLoadComplete(System.EventArgs e)
+        {
+            base.OnLoadComplete(e);
 
-			BringToFront();
-		}
-	}
+            BringToFront();
+        }
+    }
 }

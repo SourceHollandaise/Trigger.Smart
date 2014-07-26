@@ -6,7 +6,6 @@ namespace Trigger.XForms.Visuals
 {
     public class LogonViewGenerator
     {
-
         protected LogonViewTemplate LogonViewTemplate
         {
             get;
@@ -47,13 +46,19 @@ namespace Trigger.XForms.Visuals
                 Text = "Log on",
                 Size = new Eto.Drawing.Size(30, -1)
             };
+            LogonViewTemplate.DefaultButton = logonButton;
+
             layout.Add(logonButton, true);
             logonButton.Click += (sender, e) =>
             {
+                LogonViewTemplate.DialogResult = DialogResult.No;
+               
                 var auth = DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
 
                 if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
                 {
+                    LogonViewTemplate.DialogResult = DialogResult.Ok;
+
                     LogonViewTemplate.Close();
                 }
             };

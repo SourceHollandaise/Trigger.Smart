@@ -70,15 +70,12 @@ namespace Trigger.XForms.Controllers
             var result = MessageBox.Show("Log off from application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
             if (result == DialogResult.Yes)
             {
-                var logon = new LogonViewTemplate();
-                logon.Topmost = true;
-                logon.Focus();
-                logon.Show();
-
-                logon.Closed += (sender, args) =>
+                var logonForm = new LogonViewTemplate();
+                logonForm.Topmost = true;
+                if (logonForm.ShowDialog() == DialogResult.Ok)
                 {
-                    Template.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
-                };
+
+                }
             }
         }
     }

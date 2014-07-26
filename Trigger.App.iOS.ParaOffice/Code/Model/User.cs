@@ -6,7 +6,7 @@ namespace Trigger.BCL.Common.Model
 {
 
     [System.ComponentModel.DefaultProperty("UserName")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class User : StorableBase
     {

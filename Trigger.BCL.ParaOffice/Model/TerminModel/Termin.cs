@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Betreff")]
     [System.ComponentModel.DisplayName("Termin")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class Termin : StorableBase
     {

@@ -6,7 +6,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class AktPerson : StorableBase
     {
