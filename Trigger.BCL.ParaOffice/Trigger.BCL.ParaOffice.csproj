@@ -50,6 +50,7 @@
     <Compile Include="Model\AktModel\Partei.cs" />
     <Compile Include="Model\PersonModel\SB.cs" />
     <Compile Include="Model\PersonModel\PersonenArt.cs" />
+    <Compile Include="Services\CurrentSBService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

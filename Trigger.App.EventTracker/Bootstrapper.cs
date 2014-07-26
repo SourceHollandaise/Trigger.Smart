@@ -23,7 +23,7 @@ namespace Trigger.App.EventTracker
 
         public virtual void InitalizeDataStore()
         {
-            StoreConfigurator.InitStore();
+            StoreConfiguration.InitStore();
         }
 
         public virtual void RegisterDependencies()

@@ -75,7 +75,6 @@
     <Compile Include="Attributes\LinkedObjectAttribute.cs" />
     <Compile Include="Datastore\LinkedObjectHelper.cs" />
     <Compile Include="Datastore\NotifyPropertyChangedBase.cs" />
-    <Compile Include="Datastore\StoreConfigurator.cs" />
     <Compile Include="Dependency\DefaultDependencyAttribute.cs" />
     <Compile Include="Dependency\DependencyMap.cs" />
     <Compile Include="Dependency\DependencyMapProvider.cs" />
@@ -85,6 +84,8 @@
     <Compile Include="Attributes\CompactViewRepresentationAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Attributes\MainViewItemAttribute.cs" />
+    <Compile Include="Datastore\StoreConfiguration.cs" />
+    <Compile Include="Datastore\IStoreConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

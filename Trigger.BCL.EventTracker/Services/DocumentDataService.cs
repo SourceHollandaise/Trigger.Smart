@@ -12,7 +12,7 @@ namespace Trigger.BCL.EventTracker.Services
         public int LoadFromStore()
         {
             var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
+            var files = Directory.GetFiles(StoreConfiguration.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
             var documents = store.LoadAll<Document>().ToList();            
 
             int counter = 0;
@@ -37,7 +37,7 @@ namespace Trigger.BCL.EventTracker.Services
 
             foreach (var doc in documents)
             {
-                var path = Path.Combine(StoreConfigurator.DocumentStoreLocation, doc.FileName);
+                var path = Path.Combine(StoreConfiguration.DocumentStoreLocation, doc.FileName);
 
                 if (!File.Exists(path))
                     doc.Delete();
@@ -52,7 +52,7 @@ namespace Trigger.BCL.EventTracker.Services
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(StoreConfigurator.DocumentStoreLocation, file.Name);
+                var targetPath = Path.Combine(StoreConfiguration.DocumentStoreLocation, file.Name);
 
                 try
                 {

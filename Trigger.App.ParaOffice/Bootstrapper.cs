@@ -23,7 +23,10 @@ namespace Trigger.App.ParaOffice
 
         public virtual void InitalizeDataStore()
         {
-            StoreConfigurator.InitStore();
+            var config = new StoreConfiguration();
+            config.InitStore();
+
+            Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
         public virtual void RegisterDependencies()

@@ -7,25 +7,22 @@ using Trigger.BCL.Common.Security;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class CurrentSBService
-    {
-        public static SB CurrentSB
-        {
-            get
-            {
-                var user = DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-
-                return DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<SB>().FirstOrDefault(p => p.ID.Equals(user.UserName));
-            }
-        }
-    }
 
     public class ParaOfficeDocumentDataService : IFileDataService
     {
+        IStoreConfiguration StoreConfig
+        {
+            get
+            {
+                return  DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+            }
+        }
+
         public int LoadFromStore()
         {
             var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var files = Directory.GetFiles(StoreConfigurator.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
+         
+            var files = Directory.GetFiles(StoreConfig.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
             var dokumentList = store.LoadAll<Dokument>().ToList();            
 
             int counter = 0;
@@ -50,7 +47,7 @@ namespace Trigger.BCL.ParaOffice
 
             foreach (var dokument in dokumentList)
             {
-                var path = Path.Combine(StoreConfigurator.DocumentStoreLocation, dokument.FileName);
+                var path = Path.Combine(StoreConfig.DocumentStoreLocation, dokument.FileName);
 
                 if (!File.Exists(path))
                     dokument.Delete();
@@ -65,7 +62,7 @@ namespace Trigger.BCL.ParaOffice
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(StoreConfigurator.DocumentStoreLocation, file.Name);
+                var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, file.Name);
 
                 try
                 {

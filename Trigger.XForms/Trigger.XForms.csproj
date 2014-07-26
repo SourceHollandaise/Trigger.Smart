@@ -100,16 +100,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
-      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
-      <Name>Trigger.XStorable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
-      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
-      <Name>Trigger.BCL.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Images\Accept16.png">
       <LogicalName>Accept16.png</LogicalName>
     </EmbeddedResource>
@@ -833,5 +823,15 @@
     <EmbeddedResource Include="Images\Zoom_out48.png">
       <LogicalName>Zoom_out48.png</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
+      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
+      <Name>Trigger.XStorable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
+      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
+      <Name>Trigger.BCL.Common</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
