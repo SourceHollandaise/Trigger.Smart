@@ -86,6 +86,7 @@
     <Compile Include="Datastore\StoreConfiguration.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
     <Compile Include="Attributes\CompactViewItemAttribute.cs" />
+    <Compile Include="Attributes\RuleRequiredFieldAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

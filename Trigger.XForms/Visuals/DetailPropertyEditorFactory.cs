@@ -11,7 +11,7 @@ namespace Trigger.XForms.Visuals
 {
     public class DetailPropertyEditorFactory
     {
-        Dictionary<string, Control> bindings = new Dictionary<string, Control>();
+        Dictionary<string, Control> controlCollection = new Dictionary<string, Control>();
 
         protected IStorable Model
         {
@@ -31,7 +31,7 @@ namespace Trigger.XForms.Visuals
 
         void HandleBindings(PropertyInfo property)
         {
-            var control = bindings[property.Name];
+            var control = controlCollection[property.Name];
 
             if (control is NumericUpDown)
                 ((NumericUpDown)control).Value = Convert.ToDouble(property.GetValue(Model, null));
@@ -87,7 +87,7 @@ namespace Trigger.XForms.Visuals
             };
             control.Size = new Size(-1, -1);
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
 
             return control;
         }
@@ -111,7 +111,7 @@ namespace Trigger.XForms.Visuals
                 property.SetValue(Model, current.Tag, null);
             };
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
             return control;
         }
 
@@ -197,7 +197,7 @@ namespace Trigger.XForms.Visuals
                     ClearReference(control);
             };
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
             return control;
         }
 
@@ -212,7 +212,7 @@ namespace Trigger.XForms.Visuals
                 property.SetValue(Model, control.Checked.Value, null);
             };
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
             return control;
         }
 
@@ -235,7 +235,7 @@ namespace Trigger.XForms.Visuals
             };
             control.Size = new Size(-1, -1);
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
 
             return control;
         }
@@ -252,7 +252,7 @@ namespace Trigger.XForms.Visuals
                 property.SetValue(Model, control.Value, null);
             };
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
             return control;
         }
 
@@ -268,7 +268,7 @@ namespace Trigger.XForms.Visuals
                 //property.SetValue(Model, textBox.Text, null);
             };
             control.Enabled = IsEnabled(property);
-            bindings.Add(property.Name, control);
+            controlCollection.Add(property.Name, control);
             return control;
         }
 

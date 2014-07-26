@@ -19,8 +19,8 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} - {1} ({2})", SB.ID, Betreff, Ort));
-                sb.AppendLine(string.Format("{0} - {1}", Beginn, Ende));
+                sb.AppendLine(string.Format("{0} - {1} ({2})", SB.ID, Betreff, Beginn));
+                sb.AppendLine(string.Format("{0} - {1}", AktAlias, KlientGegner));
                 return sb.ToString();
             }
         }
@@ -46,6 +46,24 @@ namespace Trigger.BCL.ParaOffice
                 if (Equals(art, value))
                     return;
                 art = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        bool ok;
+
+        public bool OK
+        {
+            get
+            {
+                return ok;
+            }
+            set
+            {
+                if (Equals(ok, value))
+                    return;
+                ok = value;
 
                 OnPropertyChanged();
             }

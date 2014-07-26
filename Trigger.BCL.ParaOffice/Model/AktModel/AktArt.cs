@@ -9,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
     [CompactViewItem]
+    [MainViewItem]
     public class AktArt : StorableBase
     {
         [System.ComponentModel.DisplayName("Art")]

@@ -106,7 +106,7 @@ namespace Trigger.XForms.Visuals
 
                         layout.Add(referenceComboBox, true);
 
-                        AddReferenceButtons(layout, referenceComboBox);
+                        //AddReferenceButtons(layout, referenceComboBox);
 
                         layout.EndHorizontal();
                     }

@@ -24,6 +24,8 @@ namespace Trigger.BCL.ParaOffice
                 sb.AppendLine(string.Format("RA: {0} - SK: {1}", SB1 != null ? SB1.ID : "Kein", SB2 != null ? SB2.ID : "Kein"));
                 if (LinkedDokumente.Any())
                     sb.AppendLine(string.Format("Dokumente: {0}", LinkedDokumente.Count()));
+                if (LinkedTermine.Any())
+                    sb.AppendLine(string.Format("Termine: {0}", LinkedTermine.Count()));
                 return sb.ToString();
             }
         }
@@ -233,12 +235,12 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Personen zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [LinkedList(typeof(Person))]
-        public IEnumerable<Person> LinkedPersonen
+        [LinkedList(typeof(AktPerson))]
+        public IEnumerable<AktPerson> LinkedPersonen
         {
             get
             {
-                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).Select(p => p.Person);
+                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
             }
         }
 
@@ -249,7 +251,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId));
+                return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderByDescending(p => p.Beginn);
             }
         }
     }

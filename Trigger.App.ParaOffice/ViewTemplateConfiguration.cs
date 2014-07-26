@@ -10,7 +10,7 @@ namespace Trigger.App.ParaOffice
         {
             get
             {
-                return false;
+                return true;
             }
         }
 

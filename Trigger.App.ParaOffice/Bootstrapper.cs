@@ -79,12 +79,12 @@ namespace Trigger.App.ParaOffice
             return new[]
             {
                 typeof(Akt),
-                typeof(AktArt),
+                typeof(Termin),
                 typeof(Dokument),
                 typeof(Kontakt),
                 typeof(Person),
-                typeof(Termin),
                 typeof(AktPerson),
+                typeof(AktArt),
                 typeof(SB),
                 typeof(User)
             };
