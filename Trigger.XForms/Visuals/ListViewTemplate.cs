@@ -22,10 +22,7 @@ namespace Trigger.XForms.Visuals
             Content = CurrentGrid;
             Content = new Scrollable{ Content = this.Content };
 
-            if (modelType.GetCustomAttributes(typeof(CompactViewRepresentationAttribute), true).FirstOrDefault() != null)
-                Size = new Size(400, 768);
-            else
-                Size = new Size(768, 400);
+            Size = CompactViewConfig.IsCompactViewMode ? CompactViewConfig.DetailViewCompactSize : CompactViewConfig.DetailViewDefaultSize;
 			
             var displayNameAttribute = ModelType.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
             if (displayNameAttribute != null)

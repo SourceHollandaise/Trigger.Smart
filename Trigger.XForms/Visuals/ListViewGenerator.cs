@@ -56,8 +56,10 @@ namespace Trigger.XForms.Visuals
         {
             var	gridView = new GridView();
 
-            var visualRepresentationAttribute = ModelType.GetCustomAttributes(typeof(CompactViewRepresentationAttribute), true).FirstOrDefault() as CompactViewRepresentationAttribute;
-            if (visualRepresentationAttribute != null)
+            var config = DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
+
+            var visualRepresentationAttribute = ModelType.GetCustomAttributes(typeof(CompactViewItemAttribute), true).FirstOrDefault() as CompactViewItemAttribute;
+            if (config.IsCompactViewMode)
             {
                 var property = ModelType.GetProperty(visualRepresentationAttribute.VisualProperty);
                 if (property != null)

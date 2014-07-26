@@ -9,7 +9,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
     [System.ComponentModel.DisplayName("Sachbearbeiter")]
-    [CompactViewRepresentationAttribute]
+    [CompactViewItem]
     [MainViewItem]
     public class SB : StorableBase
     {

@@ -6,7 +6,7 @@ using Trigger.XStorable.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
-    [CompactViewRepresentationAttribute]
+    [CompactViewItem]
     [MainViewItem]
     public class Person : StorableBase
     {

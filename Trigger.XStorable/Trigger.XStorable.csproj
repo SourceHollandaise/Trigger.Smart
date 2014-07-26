@@ -81,11 +81,11 @@
     <Compile Include="Dependency\IDependencyMap.cs" />
     <Compile Include="Attributes\LinkedListAttribute.cs" />
     <Compile Include="Attributes\VisibleOnViewAttribute.cs" />
-    <Compile Include="Attributes\CompactViewRepresentationAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Attributes\MainViewItemAttribute.cs" />
     <Compile Include="Datastore\StoreConfiguration.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
+    <Compile Include="Attributes\CompactViewItemAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

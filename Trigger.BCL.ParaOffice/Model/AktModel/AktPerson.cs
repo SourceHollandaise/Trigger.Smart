@@ -6,7 +6,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
-    [CompactViewRepresentation]
+    [CompactViewItem]
     [MainViewItem]
     public class AktPerson : StorableBase
     {
@@ -99,7 +99,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Person != null ? (Vertreter.Vorname + " " + Vertreter.Nachname) : null;
+                return Person != null && Vertreter != null ? Vertreter.Vorname + " " + Vertreter.Nachname : null;
             }
         }
 

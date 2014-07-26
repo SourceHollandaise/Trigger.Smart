@@ -27,7 +27,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         public override void Delete()
         {
-            var path = Path.Combine(StoreConfiguration.DocumentStoreLocation, FileName);
+            var path = Path.Combine(Map.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, FileName);
 
             if (File.Exists(path))
                 File.Delete(path);

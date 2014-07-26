@@ -3,9 +3,11 @@ using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using System;
 using System.Linq;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
+
     public class DetailViewTemplate : TemplateBase
     {
         public DetailViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
@@ -13,7 +15,9 @@ namespace Trigger.XForms.Visuals
             Content = new DetailViewGenerator(CurrentObject).GetContent();
             Content = new Scrollable{ Content = this.Content };
 
-            Size = new Size(400, 768);
+           
+
+            Size = CompactViewConfig.IsCompactViewMode ? CompactViewConfig.DetailViewCompactSize : CompactViewConfig.DetailViewDefaultSize;
 
             var displayNameAttribute = ModelType.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
             if (displayNameAttribute != null)

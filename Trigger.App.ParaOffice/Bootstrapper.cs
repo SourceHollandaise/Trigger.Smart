@@ -8,6 +8,7 @@ using Trigger.XForms.Controllers;
 using Trigger.XForms.ParaOffice.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
+using Trigger.XForms.Visuals;
 
 namespace Trigger.App.ParaOffice
 {
@@ -31,6 +32,7 @@ namespace Trigger.App.ParaOffice
 
         public virtual void RegisterDependencies()
         {
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();

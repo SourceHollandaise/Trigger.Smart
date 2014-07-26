@@ -6,7 +6,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
 
     [System.ComponentModel.DefaultProperty("PhoneNumber")]
-    [CompactViewRepresentationAttribute]
+    [CompactViewItem]
     [MainViewItem]
     public class Contact : StorableBase
     {
