@@ -39,6 +39,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bezeichnung;
 
+        [InGroup("Akt", 1, 1)]
         public string Bezeichnung
         {
             get
@@ -57,6 +58,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
+        [InGroup("Akt", 1, 2)]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Bemerkung
         {
@@ -76,6 +78,7 @@ namespace Trigger.BCL.ParaOffice
 
         string archivZahl;
 
+        [InGroup("Akt", 1, 3)]
         [System.ComponentModel.DisplayName("Archivzahl")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string ArchivZahl
@@ -107,6 +110,7 @@ namespace Trigger.BCL.ParaOffice
 
         AktArt aktArt;
 
+        [InGroup("Akt", 1, 2)]
         [System.ComponentModel.DisplayName("Aktart")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
@@ -128,6 +132,7 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime anlageDatum;
 
+        [InGroup("Datum", 3, 1)]
         [System.ComponentModel.DisplayName("Anlage")]
         public DateTime AnlageDatum
         {
@@ -147,6 +152,7 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime? erledigungDatum;
 
+        [InGroup("Datum", 3, 2)]
         [System.ComponentModel.DisplayName("Erledigung")]
         public DateTime? ErledigungDatum
         {
@@ -166,6 +172,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb1;
 
+        [InGroup("Zuweisung", 2, 1)]
         [LinkedObject]
         public SB SB1
         {
@@ -185,6 +192,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb2;
 
+        [InGroup("Zuweisung", 2, 2)]
         [LinkedObject]
         public SB SB2
         {
@@ -204,6 +212,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb3;
 
+        [InGroup("Zuweisung", 2, 3)]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
         public SB SB3
@@ -222,6 +231,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [InGroup("Verknüpfungen", 5, 1)]
         [System.ComponentModel.DisplayName("Dokumente zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Dokument))]
@@ -233,17 +243,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [System.ComponentModel.DisplayName("Personen zu Akt")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [LinkedList(typeof(AktPerson))]
-        public IEnumerable<AktPerson> LinkedPersonen
-        {
-            get
-            {
-                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
-            }
-        }
-
+        [InGroup("Verknüpfungen", 5, 2)]
         [System.ComponentModel.DisplayName("Termine zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
@@ -252,6 +252,18 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderByDescending(p => p.Beginn);
+            }
+        }
+
+        [InGroup("Verknüpfungen", 5, 3)]
+        [System.ComponentModel.DisplayName("Personen zu Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(AktPerson))]
+        public IEnumerable<AktPerson> LinkedPersonen
+        {
+            get
+            {
+                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
             }
         }
     }

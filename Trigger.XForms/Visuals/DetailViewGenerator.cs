@@ -64,36 +64,43 @@ namespace Trigger.XForms.Visuals
                 if (property.PropertyType == typeof(string))
                 {
                     item.Control = EditorFactory.StringPropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
                 {
                     item.Control = EditorFactory.DateTimePropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
                 {
                     item.Control = EditorFactory.TimeSpanPropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType == typeof(bool))
                 {
                     item.Control = EditorFactory.BooleanPropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
                 {
                     item.Control = EditorFactory.ReferencePropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType == typeof(int) || property.PropertyType == typeof(double) || property.PropertyType == typeof(decimal))
                 {
                     item.Control = EditorFactory.NumberPropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType.BaseType == typeof(Enum))
                 {
-                    item.Control = EditorFactory.EnumPropertyEditor(property);      
+                    item.Control = EditorFactory.EnumPropertyEditor(property);
+                    creatableControls.Add(item);
                 }
 
                 if (property.PropertyType.IsGenericType)
@@ -109,12 +116,11 @@ namespace Trigger.XForms.Visuals
                             var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
                             gridView.DataStore = new DataStoreCollection(list);
                             item.Control = gridView;
+                            creatableControls.Add(item);
 
                         }
                     }
                 }
-
-                creatableControls.Add(item);
             }
         }
 

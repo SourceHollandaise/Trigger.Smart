@@ -26,6 +26,7 @@ namespace Trigger.BCL.ParaOffice
 
         string subject;
 
+        [InGroup("Datei", 1, 1)]
         [System.ComponentModel.DisplayName("Bezeichnung")]
         public string Subject
         {
@@ -43,29 +44,11 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        string fileName;
-
-        [System.ComponentModel.DisplayName("Datei")]
-        [VisibleOnView(TargetView.DetailOnly)]
-        [System.ComponentModel.ReadOnly(true)]
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
-            set
-            {
-                if (Equals(fileName, value))
-                    return;
-                fileName = value;
-
-                OnPropertyChanged();
-            }
-        }
+       
 
         SB ra;
 
+        [InGroup("Zuweisung", 2, 1)]
         [LinkedObject]
         public SB RA
         {
@@ -85,6 +68,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sk;
 
+        [InGroup("Zuweisung", 2, 2)]
         [LinkedObject]
         public SB SK
         {
@@ -115,6 +99,7 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
+        [InGroup("Zuweisung", 2, 3)]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
         public Akt Akt
@@ -135,6 +120,7 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentArt art;
 
+        [InGroup("Status", 3, 1)]
         public DokumentArt Art
         {
             get
@@ -153,6 +139,7 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentMedium medium;
 
+        [InGroup("Status", 3, 2)]
         public DokumentMedium Medium
         {
             get
@@ -169,8 +156,10 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+
         DokumentStatus status;
 
+        [InGroup("Status", 3, 3)]
         public DokumentStatus Status
         {
             get
@@ -189,6 +178,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
+        [InGroup("Sonstige Informationen", 4, 1)]
         [System.ComponentModel.DisplayName("Bemerkung")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Bemerkung
@@ -202,6 +192,28 @@ namespace Trigger.BCL.ParaOffice
                 if (Equals(bemerkung, value))
                     return;
                 bemerkung = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        string fileName;
+
+        [InGroup("Sonstige Informationen", 4, 2)]
+        [System.ComponentModel.DisplayName("Datei")]
+        [VisibleOnView(TargetView.DetailOnly)]
+        [System.ComponentModel.ReadOnly(true)]
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                if (Equals(fileName, value))
+                    return;
+                fileName = value;
 
                 OnPropertyChanged();
             }
