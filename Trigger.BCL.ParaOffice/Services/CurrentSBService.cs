@@ -21,7 +21,7 @@ namespace Trigger.BCL.ParaOffice
         }
     }
 
-    public  class StoreConfiguration : IStoreConfiguration
+    public class StoreConfiguration : IStoreConfiguration
     {
         public string DataStoreLocation { get; protected set; }
 

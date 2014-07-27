@@ -836,4 +836,7 @@
       <Name>Trigger.BCL.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
 </Project>
