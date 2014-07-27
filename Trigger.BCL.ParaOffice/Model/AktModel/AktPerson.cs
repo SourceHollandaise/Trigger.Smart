@@ -46,6 +46,7 @@ namespace Trigger.BCL.ParaOffice
 
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
+        [InGroup("Verbindung", 1, 1)]
         public Akt Akt
         {
             get
@@ -77,6 +78,7 @@ namespace Trigger.BCL.ParaOffice
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
+        [InGroup("Verbindung", 1, 2)]
         public Person Person
         {
             get
@@ -108,6 +110,7 @@ namespace Trigger.BCL.ParaOffice
         [System.ComponentModel.DisplayName("Vertreter")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
+        [InGroup("Vetretung", 2, 1)]
         public Person Vertreter
         {
             get
@@ -126,6 +129,7 @@ namespace Trigger.BCL.ParaOffice
 
         Partei partei;
 
+        [InGroup("Erweitert", 3, 1)]
         [System.ComponentModel.DisplayName("Klient/Gegner")]
         public Partei Partei
         {
@@ -145,6 +149,7 @@ namespace Trigger.BCL.ParaOffice
 
         bool streitgenosse;
 
+        [InGroup("Erweitert", 3, 2)]
         public bool Streitgenosse
         {
             get
@@ -163,6 +168,7 @@ namespace Trigger.BCL.ParaOffice
 
         int reihung;
 
+        [InGroup("Erweitert", 3, 3)]
         public int Reihung
         {
             get

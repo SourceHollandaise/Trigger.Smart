@@ -29,6 +29,7 @@ namespace Trigger.BCL.ParaOffice
 
         string personenName;
 
+      
         [System.ComponentModel.DisplayName("Personenname")]
         [VisibleOnView(TargetView.ListOnly)]
         public string PersonenName
@@ -50,6 +51,7 @@ namespace Trigger.BCL.ParaOffice
 
         string vorname;
 
+        [InGroup("Name", 1, 1)]
         [System.ComponentModel.DisplayName("Vorname (Name1)")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Vorname
@@ -70,6 +72,7 @@ namespace Trigger.BCL.ParaOffice
 
         string nachname;
 
+        [InGroup("Name", 1, 2)]
         [System.ComponentModel.DisplayName("Nachname (Name2)")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Nachname
@@ -90,6 +93,7 @@ namespace Trigger.BCL.ParaOffice
 
         string titel;
 
+        [InGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Titel")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Titel
@@ -110,6 +114,7 @@ namespace Trigger.BCL.ParaOffice
 
         string anrede;
 
+        [InGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Anrede")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string Anrede
@@ -130,6 +135,7 @@ namespace Trigger.BCL.ParaOffice
 
         PersonenArt art;
 
+        [InGroup("Person", 2, 1)]
         public PersonenArt Art
         {
             get
@@ -148,6 +154,7 @@ namespace Trigger.BCL.ParaOffice
 
         string plz;
 
+        [InGroup("Adresse", 3, 1)]
         public string PLZ
         {
             get
@@ -166,6 +173,7 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
+        [InGroup("Adresse", 3, 2)]
         public string Ort
         {
             get
@@ -184,6 +192,7 @@ namespace Trigger.BCL.ParaOffice
 
         string strasse;
 
+        [InGroup("Adresse", 3, 3)]
         public string Strasse
         {
             get
@@ -200,6 +209,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [InGroup("Verknüpfungen", 4, 1)]
         [System.ComponentModel.DisplayName("Kontakte zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Kontakt))]
@@ -211,6 +221,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        [InGroup("Verknüpfungen", 4, 2)]
         [System.ComponentModel.DisplayName("Akten zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Akt))]
