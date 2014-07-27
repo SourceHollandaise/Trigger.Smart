@@ -1,4 +1,5 @@
 using System;
+using Trigger.XForms.Visuals;
 
 namespace Trigger.App.EventTracker
 {

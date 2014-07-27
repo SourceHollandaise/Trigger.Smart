@@ -28,101 +28,159 @@ namespace Trigger.XForms.Visuals
             EditorFactory = new DetailPropertyEditorFactory(Model);
         }
 
+        List<CreatableItem> creatableControls = new List<CreatableItem>();
+
+
         public DynamicLayout GetContent()
         {
-            var layout = new DynamicLayout();
+            ResolveDetailViewControls();
+            return GetDynamicContent();
+        }
 
+
+        void ResolveDetailViewControls()
+        {
             var properties = Model.GetType().GetProperties();
 
             foreach (var property in properties)
             {
-                if (property.CanRead)
+                var item = new CreatableItem();
+
+                var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+
+                if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.ListOnly || visibilityAttribute.TargetView == TargetView.None))
+                    continue;
+
+                var inGroupAttribute = property.GetCustomAttributes(typeof(InGroupAttribute), true).FirstOrDefault() as InGroupAttribute;
+                if (inGroupAttribute != null)
                 {
-                    var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+                    item.Group = inGroupAttribute.GroupName;
+                    item.GroupIndex = inGroupAttribute.GroupIndex;
+                    item.PropertyIndex = inGroupAttribute.PropertyIndex;
+                }
 
-                    if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.ListOnly || visibilityAttribute.TargetView == TargetView.None))
-                        continue;
+                item.Property = property;
 
-                    layout.BeginHorizontal();
+                if (property.PropertyType == typeof(string))
+                {
+                    item.Control = EditorFactory.StringPropertyEditor(property);
+                }
 
-                    if (property.PropertyType.IsGenericType)
+                if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
+                {
+                    item.Control = EditorFactory.DateTimePropertyEditor(property);
+                }
+
+                if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
+                {
+                    item.Control = EditorFactory.TimeSpanPropertyEditor(property);
+                }
+
+                if (property.PropertyType == typeof(bool))
+                {
+                    item.Control = EditorFactory.BooleanPropertyEditor(property);
+                }
+
+                if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
+                {
+                    item.Control = EditorFactory.ReferencePropertyEditor(property);
+                }
+
+                if (property.PropertyType == typeof(int) || property.PropertyType == typeof(double) || property.PropertyType == typeof(decimal))
+                {
+                    item.Control = EditorFactory.NumberPropertyEditor(property);
+                }
+
+                if (property.PropertyType.BaseType == typeof(Enum))
+                {
+                    item.Control = EditorFactory.EnumPropertyEditor(property);      
+                }
+
+                if (property.PropertyType.IsGenericType)
+                {
+                    var value = property.GetValue(Model, null);
+                    if (value is IEnumerable<IStorable>)
                     {
-                        var value = property.GetValue(Model, null);
-                        if (value is IEnumerable<IStorable>)
+                        var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
+
+                        if (firstItem != null)
                         {
-                            var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
+                            var list = (value as IEnumerable<IStorable>).ToList();
+                            var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
+                            gridView.DataStore = new DataStoreCollection(list);
+                            item.Control = gridView;
 
-                            if (firstItem != null)
-                            {
-                                var list = (value as IEnumerable<IStorable>).ToList();
-
-                                AddLabel(layout, property);
-					
-                                var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
-                                gridView.DataStore = new DataStoreCollection(list);
-
-                                const int height = 144;
-
-                                gridView.Size = new Eto.Drawing.Size(-1, height);
-                                layout.Add(gridView, true, false);
-                            }
                         }
                     }
-
-                    if (property.PropertyType == typeof(string))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.StringPropertyEditor(property), true, false);
-                    }
-
-                    if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.DateTimePropertyEditor(property), true, false);
-                    }
-
-                    if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.TimeSpanPropertyEditor(property), true, false);
-                    }
-
-                    if (property.PropertyType == typeof(bool))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.BooleanPropertyEditor(property), true, false);
-                    }
-
-                    if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
-                    {
-                        AddLabel(layout, property);
-                        var referenceComboBox = EditorFactory.ReferencePropertyEditor(property);
-
-                        layout.Add(referenceComboBox, true, false);
-
-                        //AddReferenceButtons(layout, referenceComboBox);
-                    }
-
-                    if (property.PropertyType == typeof(int) || property.PropertyType == typeof(double) || property.PropertyType == typeof(decimal))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.NumberPropertyEditor(property), true, false);
-                    }
-
-                    if (property.PropertyType.BaseType == typeof(Enum))
-                    {
-                        AddLabel(layout, property);
-                        layout.Add(EditorFactory.EnumPropertyEditor(property), true, false);                       
-                    }
-
-                    layout.EndHorizontal();
                 }
+
+                creatableControls.Add(item);
             }
-               
+        }
+
+        DynamicLayout GetDynamicContent()
+        {
+            var layout = new DynamicLayout();
+            layout.BeginVertical();
+
+            var subGroups = creatableControls.Where(p => !string.IsNullOrWhiteSpace(p.Group)).OrderBy(p => p.GroupIndex)
+                .GroupBy(item => item.Group)
+                .Select(p => new List<CreatableItem>(p))
+                .ToArray();
+
+            foreach (var item in creatableControls.Where(p => string.IsNullOrWhiteSpace(p.Group)))
+            {
+                layout.BeginHorizontal();
+                layout.Add(GetLabel(item.Property), false);
+                layout.Add(item.Control, false);
+                layout.EndHorizontal();
+            }
+
+            foreach (var items in subGroups)
+            {
+                var group = GetLayoutGroup(items);
+                if (group != null)
+                    layout.Add(group, false, false);
+            }
+                
+            layout.EndVertical();
+
+            layout.BeginVertical();
+            layout.EndVertical();
+
             return layout;
         }
 
-        void AddLabel(DynamicLayout layout, PropertyInfo property)
+        GroupBox GetLayoutGroup(IEnumerable<CreatableItem> items)
+        {
+            if (items.Any())
+            {
+                var layout = new DynamicLayout();
+                layout.BeginVertical();
+
+                var groupBox = new GroupBox();
+
+                foreach (var item in items.OrderBy( p => p.PropertyIndex).ToArray())
+                {
+                    if (string.IsNullOrWhiteSpace(groupBox.Text))
+                        groupBox.Text = item.Group;
+               
+                    layout.BeginHorizontal();
+                    layout.Add(GetLabel(item.Property), false);
+                    layout.Add(item.Control, true);
+                    layout.EndHorizontal();
+                }
+                
+                layout.EndHorizontal();
+
+                groupBox.Content = layout;
+
+                return groupBox;
+            }
+            return null;
+        }
+
+        Label GetLabel(PropertyInfo property)
         {
             var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
 
@@ -133,7 +191,7 @@ namespace Trigger.XForms.Visuals
                 Wrap = WrapMode.Word
             };
 
-            layout.Add(label, false, true);
+            return label;
         }
 
         void AddReferenceButtons(DynamicLayout layout, ComboBox referenceComboBox)

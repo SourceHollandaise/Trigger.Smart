@@ -16,6 +16,7 @@ namespace Trigger.XStorable.Model
 
         [System.ComponentModel.ReadOnly(true)]
         [System.ComponentModel.DisplayName("ID")]
+        [VisibleOnView(TargetView.None)]
         public object MappingId
         {
             get;

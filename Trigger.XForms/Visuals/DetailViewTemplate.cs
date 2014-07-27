@@ -1,9 +1,7 @@
-using Eto.Drawing;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using System;
 using System.Linq;
-using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
@@ -14,8 +12,6 @@ namespace Trigger.XForms.Visuals
         {
             Content = new DetailViewGenerator(CurrentObject).GetContent();
             Content = new Scrollable{ Content = this.Content };
-
-           
 
             Size = CompactViewConfig.IsCompactViewMode ? CompactViewConfig.DetailViewCompactSize : CompactViewConfig.DetailViewDefaultSize;
 

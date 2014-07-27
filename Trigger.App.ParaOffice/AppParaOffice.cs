@@ -30,7 +30,6 @@ namespace Trigger.App.ParaOffice
                 MainForm.BringToFront();
                 MainForm.Show();
             }
-            ;
         }
     }
 }

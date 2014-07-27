@@ -8,6 +8,7 @@ using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.Common.Security;
+using Trigger.XForms.Visuals;
 
 namespace Trigger.App.EventTracker
 {
@@ -23,11 +24,15 @@ namespace Trigger.App.EventTracker
 
         public virtual void InitalizeDataStore()
         {
-            StoreConfiguration.InitStore();
+            var config = new StoreConfiguration();
+            config.InitStore();
+
+            Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
         public virtual void RegisterDependencies()
         {
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();

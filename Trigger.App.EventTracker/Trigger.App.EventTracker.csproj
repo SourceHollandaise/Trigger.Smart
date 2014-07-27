@@ -63,6 +63,7 @@
     <Compile Include="StartUp.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="AppEventTracker.cs" />
+    <Compile Include="ViewTemplateConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

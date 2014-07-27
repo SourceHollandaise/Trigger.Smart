@@ -35,6 +35,7 @@ namespace Trigger.BCL.ParaOffice
 
         TerminArt art;
 
+        [InGroup("Zuweisung", 3, 1)]
         public TerminArt Art
         {
             get
@@ -51,26 +52,11 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        bool ok;
-
-        public bool OK
-        {
-            get
-            {
-                return ok;
-            }
-            set
-            {
-                if (Equals(ok, value))
-                    return;
-                ok = value;
-
-                OnPropertyChanged();
-            }
-        }
+     
 
         DateTime beginn;
 
+        [InGroup("Datum", 2, 1)]
         public DateTime Beginn
         {
             get
@@ -91,6 +77,7 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime ende;
 
+        [InGroup("Datum", 2, 2)]
         public DateTime Ende
         {
             get
@@ -109,6 +96,7 @@ namespace Trigger.BCL.ParaOffice
 
         string betreff;
 
+        [InGroup("Beschreibung", 1, 1)]
         public string Betreff
         {
             get
@@ -127,6 +115,7 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
+        [InGroup("Beschreibung", 1, 2)]
         public string Ort
         {
             get
@@ -145,6 +134,7 @@ namespace Trigger.BCL.ParaOffice
 
         string beschreibung;
 
+        [InGroup("Beschreibung", 1, 3)]
         public string Beschreibung
         {
             get
@@ -163,6 +153,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb;
 
+        [InGroup("Zuweisung", 3, 2)]
         public SB SB
         {
             get
@@ -181,6 +172,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB erzeuger;
 
+        [InGroup("Zuweisung", 3, 3)]
         public SB Erzeuger
         {
             get
@@ -192,6 +184,25 @@ namespace Trigger.BCL.ParaOffice
                 if (Equals(erzeuger, value))
                     return;
                 erzeuger = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        bool ok;
+
+        [InGroup("Zuweisung", 3, 4)]
+        public bool OK
+        {
+            get
+            {
+                return ok;
+            }
+            set
+            {
+                if (Equals(ok, value))
+                    return;
+                ok = value;
 
                 OnPropertyChanged();
             }
@@ -210,6 +221,7 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
+        [InGroup("Akt - Klient/Gegner", 4, 1)]
         [VisibleOnView(TargetView.DetailOnly)]
         public Akt Akt
         {
@@ -231,6 +243,7 @@ namespace Trigger.BCL.ParaOffice
 
         string klientGegner;
 
+        [InGroup("Akt - Klient/Gegner", 4, 2)]
         [System.ComponentModel.ReadOnly(true)]
         public string KlientGegner
         {

@@ -94,6 +94,7 @@
     <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Visuals\IViewTemplateConfiguration.cs" />
+    <Compile Include="Visuals\CreatableItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
