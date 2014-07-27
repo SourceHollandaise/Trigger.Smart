@@ -31,6 +31,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +55,7 @@
     <Compile Include="Model\PersonModel\SB.cs" />
     <Compile Include="Model\PersonModel\PersonenArt.cs" />
     <Compile Include="Services\CurrentSBService.cs" />
+    <Compile Include="Controllers\ActionAktPersonController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -60,6 +65,7 @@
     <Folder Include="Model\PersonModel\" />
     <Folder Include="Model\DokumentModel\" />
     <Folder Include="Model\TerminModel\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
@@ -70,5 +76,12 @@
       <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
       <Name>Trigger.BCL.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
+      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
+      <Name>Trigger.XForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

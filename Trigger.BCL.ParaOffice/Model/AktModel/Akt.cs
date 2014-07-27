@@ -110,7 +110,7 @@ namespace Trigger.BCL.ParaOffice
 
         AktArt aktArt;
 
-        [InGroup("Akt", 1, 2)]
+        [InGroup("Akt", 1, 4)]
         [System.ComponentModel.DisplayName("Aktart")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]

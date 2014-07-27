@@ -5,7 +5,6 @@ using Trigger.BCL.Common.Security;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.ParaOffice;
 using Trigger.XForms.Controllers;
-using Trigger.XForms.ParaOffice.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;

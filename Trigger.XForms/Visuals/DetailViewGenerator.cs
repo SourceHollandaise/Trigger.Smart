@@ -10,6 +10,8 @@ namespace Trigger.XForms.Visuals
 {
     public class DetailViewGenerator
     {
+        List<CreatableItem> creatableItems = new List<CreatableItem>();
+
         protected DetailPropertyEditorFactory EditorFactory
         {
             get;
@@ -28,15 +30,11 @@ namespace Trigger.XForms.Visuals
             EditorFactory = new DetailPropertyEditorFactory(Model);
         }
 
-        List<CreatableItem> creatableControls = new List<CreatableItem>();
-
-
         public DynamicLayout GetContent()
         {
             ResolveDetailViewControls();
             return GetDynamicContent();
         }
-
 
         void ResolveDetailViewControls()
         {
@@ -64,43 +62,43 @@ namespace Trigger.XForms.Visuals
                 if (property.PropertyType == typeof(string))
                 {
                     item.Control = EditorFactory.StringPropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
                 {
                     item.Control = EditorFactory.DateTimePropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
                 {
                     item.Control = EditorFactory.TimeSpanPropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType == typeof(bool))
                 {
                     item.Control = EditorFactory.BooleanPropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
                 {
                     item.Control = EditorFactory.ReferencePropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType == typeof(int) || property.PropertyType == typeof(double) || property.PropertyType == typeof(decimal))
                 {
                     item.Control = EditorFactory.NumberPropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType.BaseType == typeof(Enum))
                 {
                     item.Control = EditorFactory.EnumPropertyEditor(property);
-                    creatableControls.Add(item);
+                    creatableItems.Add(item);
                 }
 
                 if (property.PropertyType.IsGenericType)
@@ -116,7 +114,7 @@ namespace Trigger.XForms.Visuals
                             var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
                             gridView.DataStore = new DataStoreCollection(list);
                             item.Control = gridView;
-                            creatableControls.Add(item);
+                            creatableItems.Add(item);
 
                         }
                     }
@@ -129,12 +127,12 @@ namespace Trigger.XForms.Visuals
             var layout = new DynamicLayout();
             layout.BeginVertical();
 
-            var subGroups = creatableControls.Where(p => !string.IsNullOrWhiteSpace(p.Group)).OrderBy(p => p.GroupIndex)
+            var subGroups = creatableItems.Where(p => !string.IsNullOrWhiteSpace(p.Group)).OrderBy(p => p.GroupIndex)
                 .GroupBy(item => item.Group)
                 .Select(p => new List<CreatableItem>(p))
                 .ToArray();
 
-            foreach (var item in creatableControls.Where(p => string.IsNullOrWhiteSpace(p.Group)))
+            foreach (var item in creatableItems.Where(p => string.IsNullOrWhiteSpace(p.Group)))
             {
                 layout.BeginHorizontal();
                 layout.Add(GetLabel(item.Property), false);
@@ -186,7 +184,7 @@ namespace Trigger.XForms.Visuals
             return null;
         }
 
-        Label GetLabel(PropertyInfo property)
+        static Label GetLabel(MemberInfo property)
         {
             var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
 

@@ -87,9 +87,5 @@
       <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
       <Name>Trigger.BCL.ParaOffice</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Trigger.XForms.ParaOffice\Trigger.XForms.ParaOffice.csproj">
-      <Project>{6CEDF187-90A3-499B-9297-443256C0B7AF}</Project>
-      <Name>Trigger.XForms.ParaOffice</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>
