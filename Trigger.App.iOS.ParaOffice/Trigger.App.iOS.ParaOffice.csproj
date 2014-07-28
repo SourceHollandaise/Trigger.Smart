@@ -93,16 +93,16 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="Eto">
-      <HintPath>..\..\Eto\BuildOutput\Pcl\Debug\Eto.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto.iOS">
-      <HintPath>..\..\Eto\BuildOutput\Pcl\Debug\Eto.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Trigger.Smart\packages\Newtonsoft.Json.6.0.3\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Eto">
+      <HintPath>..\Vendors\Eto\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.iOS">
+      <HintPath>..\Vendors\Eto\Eto.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
