@@ -5,11 +5,11 @@ using Trigger.BCL.Common.Security;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.ParaOffice;
 using Trigger.XForms.Controllers;
-using Trigger.XForms.ParaOffice.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
+using Trigger.XForms.Visuals;
 
-namespace Trigger.App.ParaOffice
+namespace Trigger.App.iOS.ParaOffice
 {
     public class Bootstrapper
     {
@@ -23,11 +23,15 @@ namespace Trigger.App.ParaOffice
 
         public virtual void InitalizeDataStore()
         {
-            StoreConfigurator.InitStore();
+            var config = new StoreConfiguration();
+            config.InitStore();
+
+            Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
         public virtual void RegisterDependencies()
         {
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();
@@ -61,6 +65,10 @@ namespace Trigger.App.ParaOffice
 
                 sb.Save();
             }
+
+            var auth = DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
+           
+            auth.LogOn(new LogonParameters { UserName = "JE", Password = "a" });
         }
 
         public virtual void RegisterDeclaredTypes()
