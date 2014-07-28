@@ -122,7 +122,7 @@ namespace Trigger.XForms.Visuals
                     if (value is IEnumerable<IStorable>)
                     {
                         var list = (value as IEnumerable<IStorable>).ToList();
-                        if (!list.Any)
+                        if (!list.Any())
                             continue;
 
                         var openLinkedListButton = new Button
