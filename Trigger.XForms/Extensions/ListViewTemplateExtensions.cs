@@ -16,10 +16,10 @@ namespace Trigger.XForms
             if (listForm != null)
             {
                 var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-
-                listForm.CurrentGrid.DataStore = customDataSource == null 
-                    ? new DataStoreCollection(store.LoadAll(listForm.ModelType)) 
-                    : new DataStoreCollection(customDataSource);
+                if (customDataSource == null)
+                    listForm.CurrentGrid.DataStore = new DataStoreCollection(store.LoadAll(listForm.ModelType));
+                else
+                    listForm.CurrentGrid.DataStore = new DataStoreCollection(customDataSource);
 
                 listForm.Title = listForm.ModelType.Name + "-List - Items: " + listForm.CurrentGrid.DataStore.AsEnumerable().Count();
             }
