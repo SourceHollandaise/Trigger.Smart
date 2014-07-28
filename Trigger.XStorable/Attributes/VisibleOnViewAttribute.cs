@@ -20,7 +20,7 @@ namespace Trigger.XStorable.DataStore
             private set;
         }
 
-        public VisibleOnViewAttribute(TargetView targetView)
+        public VisibleOnViewAttribute(TargetView targetView = TargetView.Any)
         {
             this.TargetView = targetView;
         }

@@ -24,7 +24,7 @@ namespace Trigger.XForms.Visuals
             layout.BeginHorizontal();
             var textBoxUserName = new TextBox
             {
-                PlaceholderText = "Your username"
+                PlaceholderText = "Username"
             };
             textBoxUserName.Size = new Eto.Drawing.Size(-1, -1);
             layout.Add(textBoxUserName, true);

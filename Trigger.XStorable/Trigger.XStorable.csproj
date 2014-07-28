@@ -81,7 +81,6 @@
     <Compile Include="Dependency\IDependencyMap.cs" />
     <Compile Include="Attributes\LinkedListAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
-    <Compile Include="Datastore\StoreConfiguration.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
     <Compile Include="Attributes\CompactViewItemAttribute.cs" />
     <Compile Include="Attributes\InGroupAttribute.cs" />

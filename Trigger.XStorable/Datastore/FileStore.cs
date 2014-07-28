@@ -66,18 +66,7 @@ namespace Trigger.XStorable.DataStore
 
             if (File.Exists(path))
             {
-                var content = File.ReadAllText(path);
-
-                try
-                {
-                    var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
-                    LinkedObjectHelper.UpdatePersistentReferences(result);
-                    return result;
-                }
-                catch
-                {
-                    return null;
-                }
+                return Load(type, path);
             }
 
             return null;
@@ -108,9 +97,16 @@ namespace Trigger.XStorable.DataStore
             {
                 var content = File.ReadAllText(path);
 
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
-                LinkedObjectHelper.UpdatePersistentReferences(result);
-                return result;
+                try
+                {
+                    var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
+                    LinkedObjectHelper.UpdatePersistentReferences(result);
+                    return result;
+                }
+                catch
+                {
+                    return null;
+                }
             }
 
             return null;
@@ -118,16 +114,22 @@ namespace Trigger.XStorable.DataStore
 
         static string CreateTypeDirectory(Type type)
         {
-            var config = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
-
-            if (!Directory.Exists(config.DataStoreLocation))
+            if (!Directory.Exists(StoreConfig.DataStoreLocation))
                 return string.Empty;
 
-            var typeDir = Path.Combine(config.DataStoreLocation, type.FullName);
+            var typeDir = Path.Combine(StoreConfig.DataStoreLocation, type.FullName);
             if (!Directory.Exists(typeDir))
                 Directory.CreateDirectory(typeDir);
 
             return typeDir;
+        }
+
+        static IStoreConfiguration StoreConfig
+        {
+            get
+            {
+                return DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+            }
         }
     }
 }
