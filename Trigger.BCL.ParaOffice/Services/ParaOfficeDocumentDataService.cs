@@ -38,6 +38,9 @@ namespace Trigger.BCL.ParaOffice
                     {
                         FileName = fi.Name,
                         Subject = !string.IsNullOrWhiteSpace(fi.Name) ? !string.IsNullOrWhiteSpace(fi.Extension) ? fi.Name.Replace(fi.Extension, "") : fi.Name : "Unknown filename",
+                        Art = DokumentArt.Eingang,
+                        Medium = DokumentMedium.Sonstiges,
+                        Status = DokumentStatus.Geschrieben
                     };
                     dokument.Initialize();
                     dokument.Save();

@@ -56,6 +56,7 @@
     <Compile Include="Model\PersonModel\PersonenArt.cs" />
     <Compile Include="Services\CurrentSBService.cs" />
     <Compile Include="Controllers\ActionAktPersonController.cs" />
+    <Compile Include="Services\StoreConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

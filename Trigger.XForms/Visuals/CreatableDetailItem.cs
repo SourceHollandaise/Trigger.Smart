@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Trigger.XForms.Visuals
 {
-    public class CreatableItem
+    public class CreatableDetailItem
     {
         public PropertyInfo Property
         {

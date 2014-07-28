@@ -12,5 +12,4 @@ namespace Trigger.BCL.ParaOffice
         Frist,
         Termin
     }
-    
 }

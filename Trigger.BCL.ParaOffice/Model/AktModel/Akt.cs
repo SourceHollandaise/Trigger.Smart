@@ -33,8 +33,8 @@ namespace Trigger.BCL.ParaOffice
         public override void Initialize()
         {
             AnlageDatum = DateTime.Now;
-
             SB2 = CurrentSBService.CurrentSB;
+            AktArt = Store.LoadAll<AktArt>().FirstOrDefault(p => p.Art.Equals("Zivil"));
         }
 
         string bezeichnung;
@@ -232,6 +232,19 @@ namespace Trigger.BCL.ParaOffice
         }
 
         [InGroup("Verknüpfungen", 5, 1)]
+        [System.ComponentModel.DisplayName("Kontakte zu Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Kontakt))]
+        public IEnumerable<Kontakt> LinkedKontakte
+        {
+            get
+            {
+                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId))
+                    .SelectMany(p => p.Person.LinkedKontakte);
+            }
+        }
+
+        [InGroup("Verknüpfungen", 5, 2)]
         [System.ComponentModel.DisplayName("Dokumente zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Dokument))]
@@ -243,7 +256,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [InGroup("Verknüpfungen", 5, 2)]
+        [InGroup("Verknüpfungen", 5, 3)]
         [System.ComponentModel.DisplayName("Termine zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
@@ -251,11 +264,12 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderByDescending(p => p.Beginn);
+                return Store.LoadAll<Termin>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId))
+                    .OrderByDescending(p => p.Beginn);
             }
         }
 
-        [InGroup("Verknüpfungen", 5, 3)]
+        [InGroup("Verknüpfungen", 5, 4)]
         [System.ComponentModel.DisplayName("Personen zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(AktPerson))]
@@ -263,7 +277,8 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId)).OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
+                return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId))
+                    .OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
             }
         }
     }

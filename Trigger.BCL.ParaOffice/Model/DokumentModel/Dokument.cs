@@ -10,6 +10,11 @@ namespace Trigger.BCL.ParaOffice
     [MainViewItem]
     public class Dokument : StorableBase, IFileData
     {
+        public override void Initialize()
+        {
+            SK = CurrentSBService.CurrentSB;
+        }
+
         [System.ComponentModel.DisplayName("Datei")]
         [VisibleOnView(TargetView.None)]
         public override string GetRepresentation
@@ -115,6 +120,9 @@ namespace Trigger.BCL.ParaOffice
                 akt = value;
 
                 OnPropertyChanged();
+
+                if (RA == null && akt != null)
+                    RA = akt.SB1;
             }
         }
 

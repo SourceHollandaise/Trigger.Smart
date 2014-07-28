@@ -10,7 +10,7 @@ namespace Trigger.XForms.Visuals
 {
     public class DetailViewGenerator
     {
-        List<CreatableItem> creatableItems = new List<CreatableItem>();
+        List<CreatableDetailItem> creatableItems = new List<CreatableDetailItem>();
 
         protected DetailPropertyEditorFactory EditorFactory
         {
@@ -42,7 +42,7 @@ namespace Trigger.XForms.Visuals
 
             foreach (var property in properties)
             {
-                var item = new CreatableItem();
+                var item = new CreatableDetailItem();
 
                 var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
 
@@ -129,7 +129,7 @@ namespace Trigger.XForms.Visuals
 
             var subGroups = creatableItems.Where(p => !string.IsNullOrWhiteSpace(p.Group)).OrderBy(p => p.GroupIndex)
                 .GroupBy(item => item.Group)
-                .Select(p => new List<CreatableItem>(p))
+                .Select(p => new List<CreatableDetailItem>(p))
                 .ToArray();
 
             foreach (var item in creatableItems.Where(p => string.IsNullOrWhiteSpace(p.Group)))
@@ -155,7 +155,7 @@ namespace Trigger.XForms.Visuals
             return layout;
         }
 
-        GroupBox GetLayoutGroup(IEnumerable<CreatableItem> items)
+        GroupBox GetLayoutGroup(IList<CreatableDetailItem> items)
         {
             if (items.Any())
             {
@@ -169,10 +169,20 @@ namespace Trigger.XForms.Visuals
                     if (string.IsNullOrWhiteSpace(groupBox.Text))
                         groupBox.Text = item.Group;
                
-                    layout.BeginHorizontal();
-                    layout.Add(GetLabel(item.Property), false);
-                    layout.Add(item.Control, true);
-                    layout.EndHorizontal();
+                    if (item.Control is GridView)
+                    {
+                        layout.BeginVertical();
+                        layout.Add(GetLabel(item.Property), false);
+                        layout.Add(item.Control, true);
+                        layout.EndVertical();
+                    }
+                    else
+                    {
+                        layout.BeginHorizontal();
+                        layout.Add(GetLabel(item.Property), false);
+                        layout.Add(item.Control, true);
+                        layout.EndHorizontal();
+                    }
                 }
                 
                 layout.EndHorizontal();
@@ -191,7 +201,7 @@ namespace Trigger.XForms.Visuals
             var label = new Label
             {
                 Text = (attribute != null ? attribute.DisplayName : property.Name) + ":",
-                Size = new Size(120, -1),
+                Size = new Size(116, -1),
                 Wrap = WrapMode.Word
             };
 

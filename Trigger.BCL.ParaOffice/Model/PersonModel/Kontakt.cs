@@ -16,13 +16,13 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0}", PersonAlias));
+                sb.Append(string.Format("{0}", PersonAlias));
                 if (!string.IsNullOrEmpty(Telefon))
-                    sb.AppendLine(string.Format("Phone: {0}", Telefon));
-                if (!string.IsNullOrEmpty(MobilTelefon))
-                    sb.AppendLine(string.Format("Mobile: {0}", MobilTelefon));
+                    sb.Append(string.Format(" {0}", Telefon));
+                //if (!string.IsNullOrEmpty(MobilTelefon))
+                //   sb.Append(string.Format(" {0}", MobilTelefon));
                 if (!string.IsNullOrEmpty(Email))
-                    sb.AppendLine(string.Format("E-Mail: {0}", Email));
+                    sb.Append(string.Format(" {0}", Email));
                 return sb.ToString();
             }
         }
