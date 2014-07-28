@@ -58,10 +58,10 @@ namespace Trigger.XForms.Visuals
 
             var config = DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
 
-            var visualRepresentationAttribute = ModelType.GetCustomAttributes(typeof(CompactViewItemAttribute), true).FirstOrDefault() as CompactViewItemAttribute;
+            var compactViewAttribute = ModelType.GetCustomAttributes(typeof(CompactViewItemAttribute), true).FirstOrDefault() as CompactViewItemAttribute;
             if (config.IsCompactViewMode)
             {
-                var property = ModelType.GetProperty(visualRepresentationAttribute.VisualProperty);
+                var property = ModelType.GetProperty(compactViewAttribute.VisualProperty);
                 if (property != null)
                 {
                     var column = CreateColumn(property);

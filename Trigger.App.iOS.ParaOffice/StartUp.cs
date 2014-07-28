@@ -7,9 +7,9 @@ namespace Trigger.App.iOS.ParaOffice
         [STAThread]
         static void Main()
         {
-            var platForm = new Eto.iOS.Platform();
+            var platform = new Eto.iOS.Platform();
 
-            var application = new AppParaOffice(platForm);
+            var application = new AppParaOffice(platform);
 
             application.InitalizeApplication();
             application.Run();

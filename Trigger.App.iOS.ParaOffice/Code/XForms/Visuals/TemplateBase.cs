@@ -38,7 +38,7 @@ namespace Trigger.XForms.Visuals
             if (this.ToolBar == null)
                 this.ToolBar = new ToolBar();
 
-            this.ToolBar.TextAlign = ToolBarTextAlign.Right;
+            //this.ToolBar.TextAlign = ToolBarTextAlign.Right;
 
 //            if (this.Menu == null)
 //                this.Menu = new MenuBar();
@@ -82,6 +82,8 @@ namespace Trigger.XForms.Visuals
         {
             foreach (var controller in new ActionControllerProvider(this).ValidControllers().ToList())
             {
+                if (controller.Visiblity == ActionVisibility.Menu)
+                    continue;
                 this.ToolBar.Items.AddRange(controller.Commands());
                 /*
                 var currentMenu = Menu.Items.GetSubmenu(controller.Category);

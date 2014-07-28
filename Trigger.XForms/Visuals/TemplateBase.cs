@@ -21,7 +21,7 @@ namespace Trigger.XForms.Visuals
             private set;
         }
 
-        protected IViewTemplateConfiguration CompactViewConfig
+        protected IViewTemplateConfiguration ViewTemplateConfig
         {
             get
             {

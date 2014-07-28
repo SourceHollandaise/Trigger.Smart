@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Linq;
 using System.Collections.Generic;
 using Eto.Drawing;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
@@ -22,6 +23,16 @@ namespace Trigger.XForms.Visuals
         {
             get;
             set;
+        }
+
+
+        protected IViewTemplateConfiguration ViewTemplateConfig
+        {
+            get
+            {
+                return DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
+            }
+        
         }
 
         public DetailViewGenerator(IStorable model)
@@ -101,8 +112,42 @@ namespace Trigger.XForms.Visuals
                     creatableItems.Add(item);
                 }
 
-                if (property.PropertyType.IsGenericType)
+                var linkedListAttribute = item.Property.GetCustomAttributes(typeof(LinkedListAttribute), true).FirstOrDefault() as LinkedListAttribute; 
+
+                if (linkedListAttribute != null)
                 {
+                    var value = item.Property.GetValue(Model, null);
+                    if (value is IEnumerable<IStorable>)
+                    {
+                        var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
+
+                        if (firstItem != null)
+                        {  
+                            var openLinkedListButton = new Button();
+
+                            var displayNameAttribute = item.Property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+                            if (displayNameAttribute != null)
+                                openLinkedListButton.Text = displayNameAttribute.DisplayName;
+                            else
+                                openLinkedListButton.Text = property.PropertyType.Name;
+
+                            openLinkedListButton.Tag = value;
+
+                            openLinkedListButton.Click += (sender, e) =>
+                            {
+                           
+                                var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
+                                listView.CurrentGrid.DataStore = new DataStoreCollection(openLinkedListButton.Tag as IEnumerable<object>);
+                                listView.Show();
+                            };
+
+                            item.Control = openLinkedListButton;
+                            creatableItems.Add(item);
+
+                        }
+                    }
+
+                    /*
                     var value = property.GetValue(Model, null);
                     if (value is IEnumerable<IStorable>)
                     {
@@ -118,6 +163,7 @@ namespace Trigger.XForms.Visuals
 
                         }
                     }
+                    */
                 }
             }
         }
@@ -169,19 +215,41 @@ namespace Trigger.XForms.Visuals
                     if (string.IsNullOrWhiteSpace(groupBox.Text))
                         groupBox.Text = item.Group;
                
-                    if (item.Control is GridView)
+                    if (string.IsNullOrWhiteSpace(groupBox.Text))
+                        groupBox.Text = item.Group;
+
+                    if (item.Control is Button && item.Property.PropertyType.IsGenericType)
                     {
                         layout.BeginVertical();
-                        layout.Add(GetLabel(item.Property), false);
+                        //layout.Add(GetLabel(item.Property), false);
                         layout.Add(item.Control, true);
                         layout.EndVertical();
+
                     }
                     else
-                    {
-                        layout.BeginHorizontal();
-                        layout.Add(GetLabel(item.Property), false);
-                        layout.Add(item.Control, true);
-                        layout.EndHorizontal();
+                    { 
+                        switch (ViewTemplateConfig.LabelLocation)
+                        {
+                            case LabelControlLocation.AboveControl:
+                                layout.BeginVertical();
+                                layout.Add(GetLabel(item.Property), false);
+                                layout.Add(item.Control, true);
+                                layout.EndVertical();
+                                break;
+                            case LabelControlLocation.BeforeControl:
+                                layout.BeginHorizontal();
+                                layout.Add(GetLabel(item.Property), false);
+                                layout.Add(item.Control, true);
+                                layout.EndHorizontal();
+                                break;
+                            case LabelControlLocation.None:
+                                layout.BeginHorizontal();
+                                layout.Add(item.Control, true);
+                                layout.EndHorizontal();
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     }
                 }
                 
@@ -194,14 +262,14 @@ namespace Trigger.XForms.Visuals
             return null;
         }
 
-        static Label GetLabel(MemberInfo property)
+        Label GetLabel(MemberInfo property)
         {
             var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
 
             var label = new Label
             {
                 Text = (attribute != null ? attribute.DisplayName : property.Name) + ":",
-                Size = new Size(116, -1),
+                Size = ViewTemplateConfig.LabelLocation == LabelControlLocation.BeforeControl ? new Size(116, -1) : new Size(-1, -1),
                 Wrap = WrapMode.Word
             };
 

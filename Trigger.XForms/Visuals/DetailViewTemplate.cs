@@ -13,7 +13,7 @@ namespace Trigger.XForms.Visuals
             Content = new DetailViewGenerator(CurrentObject).GetContent();
             Content = new Scrollable{ Content = this.Content };
 
-            Size = CompactViewConfig.IsCompactViewMode ? CompactViewConfig.DetailViewCompactSize : CompactViewConfig.DetailViewDefaultSize;
+            Size = ViewTemplateConfig.IsCompactViewMode ? ViewTemplateConfig.DetailViewCompactSize : ViewTemplateConfig.DetailViewDefaultSize;
 
             var displayNameAttribute = ModelType.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
             if (displayNameAttribute != null)

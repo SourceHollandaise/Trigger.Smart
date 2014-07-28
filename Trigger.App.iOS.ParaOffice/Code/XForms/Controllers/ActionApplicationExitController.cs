@@ -61,7 +61,7 @@ namespace Trigger.XForms.Controllers
         public virtual void ExitActionExecute()
         {
             var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.Ok)
                 Application.Instance.Quit();
         }
 

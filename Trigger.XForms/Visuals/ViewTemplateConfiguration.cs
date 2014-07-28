@@ -14,6 +14,14 @@ namespace Trigger.XForms.Visuals
             }
         }
 
+        public LabelControlLocation LabelLocation
+        {
+            get
+            {
+                return LabelControlLocation.BeforeControl;
+            }
+        }
+
         public Size ListViewCompactSize
         {
             get
