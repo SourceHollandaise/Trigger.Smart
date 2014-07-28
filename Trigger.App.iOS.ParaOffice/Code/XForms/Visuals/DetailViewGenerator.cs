@@ -1,10 +1,12 @@
 using System;
-using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using System.Reflection;
-using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using Eto.Drawing;
+using Eto.Forms;
+using Trigger.XForms;
+using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
@@ -119,51 +121,28 @@ namespace Trigger.XForms.Visuals
                     var value = item.Property.GetValue(Model, null);
                     if (value is IEnumerable<IStorable>)
                     {
-                        var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
+                        var list = (value as IEnumerable<IStorable>).ToList();
+                        if (!list.Any())
+                            continue;
 
-                        if (firstItem != null)
-                        {  
-                            var openLinkedListButton = new Button();
-
-                            var displayNameAttribute = item.Property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
-                            if (displayNameAttribute != null)
-                                openLinkedListButton.Text = displayNameAttribute.DisplayName;
-                            else
-                                openLinkedListButton.Text = property.PropertyType.Name;
-
-                            openLinkedListButton.Tag = value;
-
-                            openLinkedListButton.Click += (sender, e) =>
-                            {
-
-                                var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
-                                listView.CurrentGrid.DataStore = new DataStoreCollection(openLinkedListButton.Tag as IEnumerable<object>);
-                                listView.Show();
-                            };
-
-                            item.Control = openLinkedListButton;
-                            creatableItems.Add(item);
-
-                        }
-                    }
-
-                    /*
-                    var value = property.GetValue(Model, null);
-                    if (value is IEnumerable<IStorable>)
-                    {
-                        var firstItem = (value as IEnumerable<IStorable>).FirstOrDefault();
-
-                        if (firstItem != null)
+                        var openLinkedListButton = new Button
                         {
-                            var list = (value as IEnumerable<IStorable>).ToList();
-                            var gridView = new ListViewGenerator(firstItem.GetType()).GetContent();
-                            gridView.DataStore = new DataStoreCollection(list);
-                            item.Control = gridView;
-                            creatableItems.Add(item);
+                            Tag = value
+                        };
 
-                        }
+                        var displayNameAttribute = item.Property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                        openLinkedListButton.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.PropertyType.Name;
+
+                        openLinkedListButton.Click += (sender, e) =>
+                        {
+                            var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
+                            listView.ReloadList((IEnumerable<IStorable>)openLinkedListButton.Tag);
+                            listView.Show();
+                        };
+
+                        item.Control = openLinkedListButton;
+                        creatableItems.Add(item);
                     }
-                    */
                 }
             }
         }

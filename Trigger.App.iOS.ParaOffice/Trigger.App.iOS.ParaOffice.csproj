@@ -945,4 +945,7 @@
       <LogicalName>Zoom_out48.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+  </ItemGroup>
 </Project>
