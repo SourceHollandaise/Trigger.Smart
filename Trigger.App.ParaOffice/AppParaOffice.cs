@@ -27,7 +27,6 @@ namespace Trigger.App.ParaOffice
             {
                 MainForm = new MainViewTemplate();
                 MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
-                MainForm.BringToFront();
                 MainForm.Show();
             }
         }

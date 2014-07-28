@@ -74,7 +74,7 @@ namespace Trigger.XForms.Controllers
                 logonForm.Topmost = true;
                 if (logonForm.ShowDialog() == DialogResult.Ok)
                 {
-
+                    Template.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 }
             }
         }

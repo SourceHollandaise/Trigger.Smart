@@ -10,7 +10,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return true;
+                return false;
             }
         }
 
@@ -26,7 +26,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return new Size(480, 800);
+                return new Size(480, 680);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return new Size(800, 480);
+                return new Size(800, 680);
             }
         }
 
@@ -42,7 +42,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return new Size(480, 800);
+                return new Size(480, 680);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return new Size(800, 480);
+                return new Size(680, 680);
             }
         }
 

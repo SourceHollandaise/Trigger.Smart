@@ -199,10 +199,9 @@ namespace Trigger.XForms.Visuals
 
                     if (item.Control is Button && item.Property.PropertyType.IsGenericType)
                     {
-                        layout.BeginVertical();
-                        //layout.Add(GetLabel(item.Property), false);
+                        //layout.BeginVertical();
                         layout.Add(item.Control, true);
-                        layout.EndVertical();
+                        //layout.EndVertical();
 
                     }
                     else
