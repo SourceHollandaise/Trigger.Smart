@@ -8,6 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Subject")]
     [ViewCompact]
     [ViewNavigation]
+    [ViewDescriptor(typeof(DocumentViewDescriptor))]
     public class Document : StorableBase, IFileData
     {
         [System.ComponentModel.DisplayName("Document")]
@@ -17,8 +18,8 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("'{0}' by {1}", Subject, UserAlias));
-                sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
+                sb.AppendLine(string.Format("'{0}' by {1}", Subject, User.UserName));
+                sb.AppendLine(string.Format("Linked to '{0}' area", Area.Name));
                 sb.AppendLine(string.Format("{0}", Description));
                 //sb.AppendLine(string.Format("ID: {0}", MappingId));
                 return sb.ToString();
@@ -78,10 +79,9 @@ namespace Trigger.BCL.EventTracker.Model
        
         User user;
 
-        [FieldGroup("Document-Details", 1, 4)]
+
         [System.ComponentModel.DisplayName("From user")]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public User User
         {
             get
@@ -98,23 +98,9 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-
-        [System.ComponentModel.DisplayName("Area")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
-        public string AreaAlias
-        {
-            get
-            {
-                return Area != null ? Area.Name : null;
-            }
-        }
-
         Area area;
 
-        [FieldGroup("Links", 2, 1)]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public Area Area
         {
             get
@@ -131,22 +117,9 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("Issue")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
-        public string IssueAlias
-        {
-            get
-            {
-                return Issue != null ? Issue.Subject : null;
-            }
-        }
-
         IssueTracker issue;
 
-        [FieldGroup("Links", 2, 2)]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public IssueTracker Issue
         {
             get
@@ -163,19 +136,6 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("From user")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
-        public string UserAlias
-        {
-            get
-            {
-                return User != null ? User.UserName : null;
-            }
-        }
-
-        [FieldGroup("Preview-Details", 3, 1)]
-        [FieldVisible(TargetView.DetailOnly)]
         [FieldFileData]
         public string FileName
         {

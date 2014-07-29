@@ -177,7 +177,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? start;
 
-        [FieldGroup("Start and resolved", 3, 1)]
+        [FieldGroup("Completition", 3, 1)]
         public DateTime? Start
         {
             get
@@ -196,7 +196,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? resolved;
 
-        [FieldGroup("Start and resolved", 3, 2)]
+        [FieldGroup("Completition", 3, 2)]
         public DateTime? Resolved
         {
             get
@@ -226,7 +226,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         User resolvedBy;
 
-        [FieldGroup("Start and resolved", 3, 3)]
+        [FieldGroup("Completition", 3, 3)]
         [System.ComponentModel.DisplayName("Resolved by")]
         [LinkedObject]
         [FieldVisible(TargetView.DetailOnly)]
@@ -248,7 +248,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         bool isDone;
 
-        [FieldGroup("Start and resolved", 3, 4)]
+        [FieldGroup("Completition", 3, 4)]
         [System.ComponentModel.DisplayName("Done")]
         [System.ComponentModel.ReadOnly(true)]
         [FieldVisible(TargetView.ListOnly)]
@@ -270,7 +270,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string duration;
 
-        [FieldGroup("Start and resolved", 3, 5)]
+        [FieldGroup("Completition", 3, 5)]
         [System.ComponentModel.ReadOnly(true)]
         [FieldVisible(TargetView.ListOnly)]
         public string Duration

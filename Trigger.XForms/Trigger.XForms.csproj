@@ -98,6 +98,8 @@
     <Compile Include="Visuals\CreatableDetailItem.cs" />
     <Compile Include="Visuals\LabelLocation.cs" />
     <Compile Include="Controllers\Link.cs" />
+    <Compile Include="Views\ViewDescriptor.cs" />
+    <Compile Include="Visuals\DetailViewInterpreter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -838,5 +840,8 @@
       <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
       <Name>Trigger.BCL.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

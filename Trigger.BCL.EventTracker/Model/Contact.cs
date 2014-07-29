@@ -9,6 +9,7 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("Contact")]
     [ViewCompact]
     [ViewNavigation]
+    [ViewDescriptor(typeof(ContactViewDescriptor))]
     public class Contact : StorableBase
     {
         [System.ComponentModel.DisplayName("Contact")]
@@ -29,22 +30,10 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("Person")]
-        [FieldVisible(TargetView.ListOnly)]
-        public string PersonAlias
-        {
-            get
-            {
-                return Person != null ? (Person.FirstName + " " + Person.LastName) : null;
-            }
-        }
-
         Person person;
 
-        [FieldGroup("Person", 1, 1)]
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public Person Person
         {
             get
@@ -63,7 +52,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         ContactType contactType;
 
-        [FieldGroup("Person", 1, 2)]
         [System.ComponentModel.DisplayName("Contact")]
         public ContactType ContactType
         {
@@ -83,7 +71,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string phoneNumber;
 
-        [FieldGroup("Contact-Details", 2, 1)]
         [System.ComponentModel.DisplayName("Phone")]
         public string PhoneNumber
         {
@@ -103,7 +90,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string mobileNumber;
 
-        [FieldGroup("Contact-Details", 2, 2)]
         [System.ComponentModel.DisplayName("Mobile")]
         public string MobileNumber
         {
@@ -123,7 +109,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string email;
 
-        [FieldGroup("Contact-Details", 2, 3)]
         [System.ComponentModel.DisplayName("E-Mail")]
         public string Email
         {

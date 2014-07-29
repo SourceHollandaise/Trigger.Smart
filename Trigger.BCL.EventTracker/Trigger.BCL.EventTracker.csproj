@@ -58,6 +58,9 @@
     <Compile Include="Model\ContactType.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Services\DocumentFileDataService.cs" />
+    <Compile Include="Views\PersonViewDescriptor.cs" />
+    <Compile Include="Views\DocumentViewDescriptor.cs" />
+    <Compile Include="Views\ContactViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -70,5 +73,12 @@
       <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
       <Name>Trigger.BCL.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
+      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
+      <Name>Trigger.XForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

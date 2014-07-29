@@ -11,6 +11,8 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
+
+
     public class DetailViewGenerator
     {
         List<CreatableDetailItem> creatableItems = new List<CreatableDetailItem>();
@@ -75,19 +77,20 @@ namespace Trigger.XForms.Visuals
 
                 item.Property = property;
 
-                var fileDataAttribute = item.Property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
-
-                if (fileDataAttribute != null)
-                {
-                    item.Control = EditorFactory.DocumentPreviewPropertyEditor(property);
-                    creatableItems.Add(item);
-                    continue;
-                }
-
                 if (property.PropertyType == typeof(string))
                 {
-                    item.Control = EditorFactory.StringPropertyEditor(property);
-                    creatableItems.Add(item);
+                    var fileDataAttribute = item.Property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
+
+                    if (fileDataAttribute != null)
+                    {
+                        item.Control = EditorFactory.FilePreviewPropertyEditor(property);
+                        creatableItems.Add(item);
+                    }
+                    else
+                    {
+                        item.Control = EditorFactory.StringPropertyEditor(property);
+                        creatableItems.Add(item);
+                    }
                 }
 
                 if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))

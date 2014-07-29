@@ -7,6 +7,7 @@ using Trigger.XStorable.DataStore;
 using Eto.Drawing;
 using Trigger.XStorable.Dependency;
 using System.IO;
+using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
@@ -80,7 +81,7 @@ namespace Trigger.XForms.Visuals
             }
         }
 
-        public WebView DocumentPreviewPropertyEditor(PropertyInfo property)
+        public WebView FilePreviewPropertyEditor(PropertyInfo property)
         {
             var webView = new WebView();
 
@@ -329,6 +330,84 @@ namespace Trigger.XForms.Visuals
                 control.SelectedKey = null;
 
             }
+        }
+
+        public Control GetControl(PropertyInfo property)
+        {
+            if (property.PropertyType == typeof(string))
+            {
+                var fileDataAttribute = property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
+
+                if (fileDataAttribute != null)
+                    return FilePreviewPropertyEditor(property);
+                else
+                    return StringPropertyEditor(property);
+                    
+            }
+
+            if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
+            {
+                return DateTimePropertyEditor(property);
+            }
+
+            if (property.PropertyType == typeof(TimeSpan?) || property.PropertyType == typeof(TimeSpan))
+            {
+                return TimeSpanPropertyEditor(property);
+            }
+
+            if (property.PropertyType == typeof(bool))
+            {
+                return BooleanPropertyEditor(property);
+            }
+
+            if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
+            {
+                return ReferencePropertyEditor(property);
+            }
+
+            if (property.PropertyType == typeof(int) || property.PropertyType == typeof(double) || property.PropertyType == typeof(decimal))
+            {
+                return NumberPropertyEditor(property);
+            }
+
+            if (property.PropertyType.BaseType == typeof(Enum))
+            {
+                return EnumPropertyEditor(property);
+            }
+
+            var linkedListAttribute = property.GetCustomAttributes(typeof(LinkedListAttribute), true).FirstOrDefault() as LinkedListAttribute; 
+
+            if (linkedListAttribute != null)
+            {
+                var value = property.GetValue(Model, null);
+                if (value is IEnumerable<IStorable>)
+                {
+                    var list = (value as IEnumerable<IStorable>).ToList();
+                    if (!list.Any())
+                        return null;
+
+                    var control = new Button
+                    {
+                        Tag = value
+                    };
+                            
+                    var displayNameAttribute = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+
+                    control.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
+
+                    control.Click += (sender, e) =>
+                    {
+                        var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
+                        listView.ReloadList((IEnumerable<IStorable>)control.Tag);
+                        listView.Show();
+                    };
+
+                    return control;
+                
+                }
+            }
+
+            return null;
         }
     }
 }

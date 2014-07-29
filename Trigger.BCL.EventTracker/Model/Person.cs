@@ -8,6 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("DisplayName")]
     [ViewCompact]
     [ViewNavigation]
+    [ViewDescriptor(typeof(PersonViewDescriptor))]
     public class Person : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]
@@ -25,7 +26,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string displayName;
 
-        [FieldVisible(TargetView.ListOnly)]
         public string DisplayName
         {
             get
@@ -45,10 +45,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string firstName;
 
-        [FieldGroup("Name", 1, 1)]
-        [System.ComponentModel.DisplayName("First name")]
-        [FieldVisible(TargetView.DetailOnly)]
-        [FieldLabelBehaviour(false, "First name")]
         public string FirstName
         {
             get
@@ -67,10 +63,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string middleName;
 
-        [FieldGroup("Name", 1, 2)]
-        [System.ComponentModel.DisplayName("Middle name")]
-        [FieldVisible(TargetView.DetailOnly)]
-        [FieldLabelBehaviour(false, "Middle name")]
         public string MiddleName
         {
             get
@@ -89,10 +81,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string lastName;
 
-        [FieldGroup("Name", 1, 3)]
-        [System.ComponentModel.DisplayName("Last name")]
-        [FieldVisible(TargetView.DetailOnly)]
-        [FieldLabelBehaviour(false, "Last name")]
         public string LastName
         {
             get
@@ -111,8 +99,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string postalCode;
 
-        [FieldGroup("Address", 2, 1)]
-        [FieldLabelBehaviour(false, "Postal code")]
         public string PostalCode
         {
             get
@@ -131,8 +117,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string city;
 
-        [FieldGroup("Address", 2, 2)]
-        [FieldLabelBehaviour(false, "City")]
         public string City
         {
             get
@@ -151,8 +135,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string street;
 
-        [FieldGroup("Address", 2, 3)]
-        [FieldLabelBehaviour(false, "Street")]
         public string Street
         {
             get
@@ -169,7 +151,6 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [FieldGroup("Links", 3, 1)]
         [System.ComponentModel.DisplayName("Linked contacts")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Contact))]
