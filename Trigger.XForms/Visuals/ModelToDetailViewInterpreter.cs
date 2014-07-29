@@ -53,20 +53,23 @@ namespace Trigger.XForms.Visuals
 
             var tabControl = new TabControl();
 
-            var scrollable = new Scrollable();
-
             foreach (var tabItem in tabItems)
             { 
+               
                 var tabPage = new TabPage();
                 tabPage.Text = tabItem.TabHeaderText;
 
                 tabControl.TabPages.Add(tabPage);
-                tabPage.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);
+           
+                var scrollable = new Scrollable();
+                scrollable.Border = BorderType.None;
+                scrollable.Size = new Eto.Drawing.Size(-1, -1);
+               
+                scrollable.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);
+                tabPage.Content = scrollable;
             }
 
-            scrollable.Content = tabControl;
-
-            return scrollable;
+            return tabControl;
         }
 
         Control CreateViewLayout()
