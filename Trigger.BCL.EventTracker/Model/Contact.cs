@@ -7,12 +7,12 @@ namespace Trigger.BCL.EventTracker.Model
 
     [System.ComponentModel.DefaultProperty("PhoneNumber")]
     [System.ComponentModel.DisplayName("Contact")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Contact : StorableBase
     {
         [System.ComponentModel.DisplayName("Contact")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -30,7 +30,7 @@ namespace Trigger.BCL.EventTracker.Model
         }
 
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string PersonAlias
         {
             get
@@ -41,10 +41,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         Person person;
 
-        [InGroup("Person", 1, 1)]
+        [FieldGroup("Person", 1, 1)]
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Person Person
         {
             get
@@ -63,7 +63,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         ContactType contactType;
 
-        [InGroup("Person", 1, 2)]
+        [FieldGroup("Person", 1, 2)]
         [System.ComponentModel.DisplayName("Contact")]
         public ContactType ContactType
         {
@@ -83,7 +83,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string phoneNumber;
 
-        [InGroup("Contact-Details", 2, 1)]
+        [FieldGroup("Contact-Details", 2, 1)]
         [System.ComponentModel.DisplayName("Phone")]
         public string PhoneNumber
         {
@@ -103,7 +103,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string mobileNumber;
 
-        [InGroup("Contact-Details", 2, 2)]
+        [FieldGroup("Contact-Details", 2, 2)]
         [System.ComponentModel.DisplayName("Mobile")]
         public string MobileNumber
         {
@@ -123,7 +123,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string email;
 
-        [InGroup("Contact-Details", 2, 3)]
+        [FieldGroup("Contact-Details", 2, 3)]
         [System.ComponentModel.DisplayName("E-Mail")]
         public string Email
         {

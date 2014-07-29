@@ -34,5 +34,11 @@ namespace Trigger.XForms.Visuals
             get;
             set;
         }
+
+        public bool ShowLabel
+        { 
+            get;
+            set;
+        }
     }
 }

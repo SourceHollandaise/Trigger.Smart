@@ -24,7 +24,7 @@ namespace Trigger.XForms.Visuals
         {
             DynamicLayout layout = new DynamicLayout();
 		
-            var mainViewTypes = DeclaredTypes.Where(p => p.GetCustomAttributes(typeof(MainViewItemAttribute), true).Any());
+            var mainViewTypes = DeclaredTypes.Where(p => p.GetCustomAttributes(typeof(ViewNavigationAttribute), true).Any());
 
             foreach (var type in mainViewTypes)
             {

@@ -7,11 +7,11 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewItem]
+    [ViewCompact]
     public class TimeTracker : StorableBase
     {
         [System.ComponentModel.DisplayName("Tracked Times")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -140,7 +140,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AreaAlias
         {
             get
@@ -152,7 +152,7 @@ namespace Trigger.BCL.EventTracker.Model
         Area area;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Area Area
         {
             get
@@ -171,7 +171,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("User")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string UserAlias
         {
             get
@@ -183,7 +183,7 @@ namespace Trigger.BCL.EventTracker.Model
         User user;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public User User
         {
             get

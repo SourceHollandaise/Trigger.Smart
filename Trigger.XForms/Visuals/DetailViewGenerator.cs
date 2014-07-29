@@ -55,23 +55,27 @@ namespace Trigger.XForms.Visuals
             foreach (var property in properties)
             {
                 var item = new CreatableDetailItem();
+                item.ShowLabel = true;
 
-                var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+                var visibilityAttribute = property.GetCustomAttributes(typeof(FieldVisibleAttribute), true).FirstOrDefault() as FieldVisibleAttribute;
 
                 if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.ListOnly || visibilityAttribute.TargetView == TargetView.None))
                     continue;
 
-                var inGroupAttribute = property.GetCustomAttributes(typeof(InGroupAttribute), true).FirstOrDefault() as InGroupAttribute;
+                var inGroupAttribute = property.GetCustomAttributes(typeof(FieldGroupAttribute), true).FirstOrDefault() as FieldGroupAttribute;
                 if (inGroupAttribute != null)
                 {
                     item.Group = inGroupAttribute.GroupName;
                     item.GroupIndex = inGroupAttribute.GroupIndex;
                     item.PropertyIndex = inGroupAttribute.PropertyIndex;
                 }
+                var viewLabelAttribute = property.GetCustomAttributes(typeof(FieldLabelBehaviourAttribute), true).FirstOrDefault() as FieldLabelBehaviourAttribute;
+                if (viewLabelAttribute != null)
+                    item.ShowLabel = viewLabelAttribute.ShowLabel;
 
                 item.Property = property;
 
-                var fileDataAttribute = item.Property.GetCustomAttributes(typeof(FileDataAttribute), true).FirstOrDefault() as FileDataAttribute;
+                var fileDataAttribute = item.Property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
 
                 if (fileDataAttribute != null)
                 {
@@ -169,10 +173,15 @@ namespace Trigger.XForms.Visuals
 
             foreach (var item in creatableItems.Where(p => string.IsNullOrWhiteSpace(p.Group)))
             {
-                layout.BeginHorizontal();
-                layout.Add(GetLabel(item.Property), false);
-                layout.Add(item.Control, false);
-                layout.EndHorizontal();
+                if (item.ShowLabel)
+                {
+                    layout.BeginHorizontal();
+                    layout.Add(GetLabel(item.Property), false);
+                    layout.Add(item.Control, false);
+                    layout.EndHorizontal();
+                }
+                else
+                    layout.Add(item.Control, false);
             }
 
             foreach (var items in subGroups)
@@ -222,29 +231,37 @@ namespace Trigger.XForms.Visuals
                         continue;
                     }
 
-                    switch (ViewTemplateConfig.LabelLocation)
+                    if (!item.ShowLabel)
+                        layout.Add(item.Control, true);
+                    else
                     {
-                        case LabelLocation.AboveControl:
-                            layout.BeginVertical();
-                            layout.Add(GetLabel(item.Property), false);
-                            layout.Add(item.Control, true);
-                            layout.EndVertical();
-                            break;
-                        case LabelLocation.BeforeControl:
-                            layout.BeginHorizontal();
-                            layout.Add(GetLabel(item.Property), false);
-                            layout.Add(item.Control, true);
-                            layout.EndHorizontal();
-                            break;
-                        case LabelLocation.None:
-                            layout.BeginHorizontal();
-                            layout.Add(item.Control, true);
-                            layout.EndHorizontal();
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                        switch (ViewTemplateConfig.LabelLocation)
+                        {
 
+
+                            case LabelLocation.AboveControl:
+                      
+                                layout.BeginVertical();
+                                layout.Add(GetLabel(item.Property), false);
+                                layout.Add(item.Control, true);
+                                layout.EndVertical();
+                                break;
+                            case LabelLocation.BeforeControl:
+
+                                layout.BeginHorizontal();
+                                layout.Add(GetLabel(item.Property), false);
+                                layout.Add(item.Control, true);
+                                layout.EndHorizontal();
+                                break;
+                            case LabelLocation.None:
+                                layout.BeginHorizontal();
+                                layout.Add(item.Control, true);
+                                layout.EndHorizontal();
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
                 }
                 
                 layout.EndHorizontal();

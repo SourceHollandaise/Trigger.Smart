@@ -7,11 +7,11 @@ namespace Trigger.BCL.EventTracker.Model
 
     [System.ComponentModel.DefaultProperty("PhoneNumber")]
     [CompactViewRepresentationAttribute]
-    [MainViewItem]
+    [ViewNavigation]
     public class Contact : StorableBase
     {
         [System.ComponentModel.DisplayName("Contact")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -29,7 +29,7 @@ namespace Trigger.BCL.EventTracker.Model
         }
 
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string PersonAlias
         {
             get
@@ -42,7 +42,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Person Person
         {
             get

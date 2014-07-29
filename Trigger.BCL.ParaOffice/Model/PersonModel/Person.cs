@@ -10,12 +10,12 @@ namespace Trigger.BCL.ParaOffice
   
     [System.ComponentModel.DefaultProperty("PersonenName")]
     [System.ComponentModel.DisplayName("Person")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Person : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -31,7 +31,7 @@ namespace Trigger.BCL.ParaOffice
 
       
         [System.ComponentModel.DisplayName("Personenname")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string PersonenName
         {
             get
@@ -51,9 +51,9 @@ namespace Trigger.BCL.ParaOffice
 
         string vorname;
 
-        [InGroup("Name", 1, 1)]
+        [FieldGroup("Name", 1, 1)]
         [System.ComponentModel.DisplayName("Vorname (Name1)")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Vorname
         {
             get
@@ -72,9 +72,9 @@ namespace Trigger.BCL.ParaOffice
 
         string nachname;
 
-        [InGroup("Name", 1, 2)]
+        [FieldGroup("Name", 1, 2)]
         [System.ComponentModel.DisplayName("Nachname (Name2)")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Nachname
         {
             get
@@ -93,9 +93,9 @@ namespace Trigger.BCL.ParaOffice
 
         string titel;
 
-        [InGroup("Name", 1, 3)]
+        [FieldGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Titel")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Titel
         {
             get
@@ -114,9 +114,9 @@ namespace Trigger.BCL.ParaOffice
 
         string anrede;
 
-        [InGroup("Name", 1, 3)]
+        [FieldGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Anrede")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Anrede
         {
             get
@@ -135,7 +135,7 @@ namespace Trigger.BCL.ParaOffice
 
         PersonenArt art;
 
-        [InGroup("Person", 2, 1)]
+        [FieldGroup("Person", 2, 1)]
         public PersonenArt Art
         {
             get
@@ -154,7 +154,7 @@ namespace Trigger.BCL.ParaOffice
 
         string plz;
 
-        [InGroup("Adresse", 3, 1)]
+        [FieldGroup("Adresse", 3, 1)]
         public string PLZ
         {
             get
@@ -173,7 +173,7 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
-        [InGroup("Adresse", 3, 2)]
+        [FieldGroup("Adresse", 3, 2)]
         public string Ort
         {
             get
@@ -192,7 +192,7 @@ namespace Trigger.BCL.ParaOffice
 
         string strasse;
 
-        [InGroup("Adresse", 3, 3)]
+        [FieldGroup("Adresse", 3, 3)]
         public string Strasse
         {
             get
@@ -209,7 +209,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [InGroup("Verknüpfungen", 4, 1)]
+        [FieldGroup("Verknüpfungen", 4, 1)]
         [System.ComponentModel.DisplayName("Kontakte zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Kontakt))]
@@ -221,7 +221,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [InGroup("Verknüpfungen", 4, 2)]
+        [FieldGroup("Verknüpfungen", 4, 2)]
         [System.ComponentModel.DisplayName("Akten zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Akt))]

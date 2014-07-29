@@ -158,6 +158,7 @@
     <Compile Include="Code\XForms\Controllers\ActionRefreshListController.cs" />
     <Compile Include="Code\XForms\Controllers\ActionSaveController.cs" />
     <Compile Include="Code\XForms\Controllers\ActionVisibility.cs" />
+    <Compile Include="Code\XForms\Controllers\Link.cs" />
     <Compile Include="Code\XForms\Extensions\DetailViewTemplateExtensions.cs" />
     <Compile Include="Code\XForms\Extensions\ImageExtensions.cs" />
     <Compile Include="Code\XForms\Extensions\ListViewTemplateExtensions.cs" />
@@ -169,6 +170,7 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Code\XForms\Visuals\IViewTemplateConfiguration.cs" />
+    <Compile Include="Code\XForms\Visuals\LabelLocation.cs" />
     <Compile Include="Code\XForms\Visuals\ListPropertyEditorFactory.cs" />
     <Compile Include="Code\XForms\Visuals\ListViewGenerator.cs" />
     <Compile Include="Code\XForms\Visuals\ListViewTemplate.cs">
@@ -187,16 +189,6 @@
     </Compile>
     <Compile Include="Code\XForms\Visuals\ViewTemplateConfiguration.cs" />
     <Compile Include="Code\XForms\Visuals\WindowManager.cs" />
-    <Compile Include="Code\Common\Model\User.cs" />
-    <Compile Include="Code\Common\Security\IAuthenticate.cs" />
-    <Compile Include="Code\Common\Security\ISecurityInfoProvider.cs" />
-    <Compile Include="Code\Common\Security\LogonParameters.cs" />
-    <Compile Include="Code\Common\Security\SecureText.cs" />
-    <Compile Include="Code\Common\Security\SecurityInfoProvider.cs" />
-    <Compile Include="Code\Common\Services\DataStoreAuthenticate.cs" />
-    <Compile Include="Code\Common\Services\SystemAuthenticate.cs" />
-    <Compile Include="Code\Common\Services\UserService.cs" />
-    <Compile Include="Code\BCL\Controllers\ActionAktPersonController.cs" />
     <Compile Include="Code\BCL\Model\AktModel\Akt.cs" />
     <Compile Include="Code\BCL\Model\AktModel\AktArt.cs" />
     <Compile Include="Code\BCL\Model\AktModel\AktPerson.cs" />
@@ -213,8 +205,17 @@
     <Compile Include="Code\BCL\Model\TerminModel\Termin.cs" />
     <Compile Include="Code\BCL\Model\TerminModel\TerminArt.cs" />
     <Compile Include="Code\BCL\Services\CurrentSBService.cs" />
-    <Compile Include="Code\BCL\Services\ParaOfficeDocumentDataService.cs" />
-    <Compile Include="Code\BCL\Services\StoreConfiguration.cs" />
+    <Compile Include="Code\BCL\Services\DokumentFileDataService.cs" />
+    <Compile Include="Code\Common\Model\User.cs" />
+    <Compile Include="Code\Common\Security\IAuthenticate.cs" />
+    <Compile Include="Code\Common\Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Code\Common\Security\LogonParameters.cs" />
+    <Compile Include="Code\Common\Security\SecureText.cs" />
+    <Compile Include="Code\Common\Security\SecurityInfoProvider.cs" />
+    <Compile Include="Code\Common\Services\DataStoreAuthenticate.cs" />
+    <Compile Include="Code\Common\Services\SystemAuthenticate.cs" />
+    <Compile Include="Code\Common\Services\UserService.cs" />
+    <Compile Include="StoreConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -223,6 +224,9 @@
     <Folder Include="Code\XForms\" />
     <Folder Include="Code\Common\" />
     <Folder Include="Code\BCL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Code\XForms\Images\Accept16.png">
@@ -948,8 +952,5 @@
     <EmbeddedResource Include="Code\XForms\Images\Zoom_out48.png">
       <LogicalName>Zoom_out48.png</LogicalName>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
   </ItemGroup>
 </Project>

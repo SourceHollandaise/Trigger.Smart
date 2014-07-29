@@ -35,7 +35,7 @@ namespace Trigger.App.iOS.ParaOffice
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();
-            Map.RegisterType<IFileDataService, ParaOfficeDocumentDataService>();
+            Map.RegisterType<IFileDataService, DokumentFileDataService>();
         }
 
         public virtual void CreateInitialObjects()
@@ -109,7 +109,7 @@ namespace Trigger.App.iOS.ParaOffice
                 typeof(ActionRefreshDetailController),
                 typeof(ActionRefreshListController),
                 typeof(ActionSaveController),
-                typeof(ActionAktPersonenController)
+                //typeof(ActionAktPersonenController)
             };
         }
     }

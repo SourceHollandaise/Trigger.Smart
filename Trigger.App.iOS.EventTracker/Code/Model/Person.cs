@@ -7,11 +7,11 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
     [CompactViewRepresentationAttribute]
-    [MainViewItem]
+    [ViewNavigation]
     public class Person : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -25,7 +25,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string displayName;
 
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string DisplayName
         {
             get
@@ -46,7 +46,7 @@ namespace Trigger.BCL.EventTracker.Model
         string firstName;
 
         [System.ComponentModel.DisplayName("First name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string FirstName
         {
             get
@@ -66,7 +66,7 @@ namespace Trigger.BCL.EventTracker.Model
         string middleName;
 
         [System.ComponentModel.DisplayName("Middle name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string MiddleName
         {
             get
@@ -86,7 +86,7 @@ namespace Trigger.BCL.EventTracker.Model
         string lastName;
 
         [System.ComponentModel.DisplayName("Last name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string LastName
         {
             get

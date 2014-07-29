@@ -5,12 +5,12 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Telefon")]
     [System.ComponentModel.DisplayName("Kontakt")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Kontakt : StorableBase
     {
         [System.ComponentModel.DisplayName("Kontakt")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -28,7 +28,7 @@ namespace Trigger.BCL.ParaOffice
         }
 
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string PersonAlias
         {
             get
@@ -39,10 +39,10 @@ namespace Trigger.BCL.ParaOffice
 
         Person person;
 
-        [InGroup("Zuweisung", 1, 1)]
+        [FieldGroup("Zuweisung", 1, 1)]
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Person Person
         {
             get
@@ -61,7 +61,7 @@ namespace Trigger.BCL.ParaOffice
 
         KontaktArt art;
 
-        [InGroup("Zuweisung", 1, 2)]
+        [FieldGroup("Zuweisung", 1, 2)]
         [System.ComponentModel.DisplayName("Art")]
         public KontaktArt Art
         {
@@ -81,7 +81,7 @@ namespace Trigger.BCL.ParaOffice
 
         string telefon;
 
-        [InGroup("Kontaktdaten", 2, 1)]
+        [FieldGroup("Kontaktdaten", 2, 1)]
         [System.ComponentModel.DisplayName("Telefon")]
         public string Telefon
         {
@@ -101,7 +101,7 @@ namespace Trigger.BCL.ParaOffice
 
         string mobilTelefon;
 
-        [InGroup("Kontaktdaten", 2, 2)]
+        [FieldGroup("Kontaktdaten", 2, 2)]
         [System.ComponentModel.DisplayName("Mobiltelefon")]
         public string MobilTelefon
         {
@@ -121,7 +121,7 @@ namespace Trigger.BCL.ParaOffice
 
         string email;
 
-        [InGroup("Kontaktdaten", 2, 3)]
+        [FieldGroup("Kontaktdaten", 2, 3)]
         [System.ComponentModel.DisplayName("E-Mail")]
         public string Email
         {

@@ -7,12 +7,12 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Area : StorableBase
     {
         [System.ComponentModel.DisplayName("Area")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -33,7 +33,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string name;
 
-        [InGroup("Area-Details", 1, 1)]
+        [FieldGroup("Area-Details", 1, 1)]
         public string Name
         {
             get
@@ -52,7 +52,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
-        [InGroup("Area-Details", 1, 2)]
+        [FieldGroup("Area-Details", 1, 2)]
         public string Description
         {
             get
@@ -69,7 +69,7 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [InGroup("Links", 2, 1)]
+        [FieldGroup("Links", 2, 1)]
         [System.ComponentModel.DisplayName("Linked documents")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Document))]
@@ -81,7 +81,7 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [InGroup("Links", 2, 2)]
+        [FieldGroup("Links", 2, 2)]
         [System.ComponentModel.DisplayName("Linked issues")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(IssueTracker))]
@@ -93,7 +93,7 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [InGroup("Links", 2, 3)]
+        [FieldGroup("Links", 2, 3)]
         [System.ComponentModel.DisplayName("Linked tracked times")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(TimeTracker))]

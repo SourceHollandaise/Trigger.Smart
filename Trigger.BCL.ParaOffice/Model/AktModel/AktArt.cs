@@ -8,12 +8,12 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class AktArt : StorableBase
     {
         [System.ComponentModel.DisplayName("Art")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -43,7 +43,7 @@ namespace Trigger.BCL.ParaOffice
         string idText;
 
         [System.ComponentModel.DisplayName("ID-Text")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string IdText
         {
             get

@@ -8,12 +8,12 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Betreff")]
     [System.ComponentModel.DisplayName("Termin")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Termin : StorableBase
     {
         [System.ComponentModel.DisplayName("Termin")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -35,7 +35,7 @@ namespace Trigger.BCL.ParaOffice
 
         TerminArt art;
 
-        [InGroup("Zuweisung", 3, 1)]
+        [FieldGroup("Zuweisung", 3, 1)]
         public TerminArt Art
         {
             get
@@ -56,7 +56,7 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime beginn;
 
-        [InGroup("Datum", 2, 1)]
+        [FieldGroup("Datum", 2, 1)]
         public DateTime Beginn
         {
             get
@@ -77,7 +77,7 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime ende;
 
-        [InGroup("Datum", 2, 2)]
+        [FieldGroup("Datum", 2, 2)]
         public DateTime Ende
         {
             get
@@ -96,7 +96,7 @@ namespace Trigger.BCL.ParaOffice
 
         string betreff;
 
-        [InGroup("Beschreibung", 1, 1)]
+        [FieldGroup("Beschreibung", 1, 1)]
         public string Betreff
         {
             get
@@ -115,7 +115,7 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
-        [InGroup("Beschreibung", 1, 2)]
+        [FieldGroup("Beschreibung", 1, 2)]
         public string Ort
         {
             get
@@ -134,7 +134,7 @@ namespace Trigger.BCL.ParaOffice
 
         string beschreibung;
 
-        [InGroup("Beschreibung", 1, 3)]
+        [FieldGroup("Beschreibung", 1, 3)]
         public string Beschreibung
         {
             get
@@ -153,7 +153,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb;
 
-        [InGroup("Zuweisung", 3, 2)]
+        [FieldGroup("Zuweisung", 3, 2)]
         public SB SB
         {
             get
@@ -172,7 +172,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB erzeuger;
 
-        [InGroup("Zuweisung", 3, 3)]
+        [FieldGroup("Zuweisung", 3, 3)]
         public SB Erzeuger
         {
             get
@@ -191,7 +191,7 @@ namespace Trigger.BCL.ParaOffice
 
         bool ok;
 
-        [InGroup("Zuweisung", 3, 4)]
+        [FieldGroup("Zuweisung", 3, 4)]
         public bool OK
         {
             get
@@ -210,7 +210,7 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AktAlias
         {
             get
@@ -221,8 +221,8 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
-        [InGroup("Akt - Klient/Gegner", 4, 1)]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldGroup("Akt - Klient/Gegner", 4, 1)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Akt Akt
         {
             get
@@ -243,7 +243,7 @@ namespace Trigger.BCL.ParaOffice
 
         string klientGegner;
 
-        [InGroup("Akt - Klient/Gegner", 4, 2)]
+        [FieldGroup("Akt - Klient/Gegner", 4, 2)]
         [System.ComponentModel.ReadOnly(true)]
         public string KlientGegner
         {

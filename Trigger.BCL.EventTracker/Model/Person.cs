@@ -6,12 +6,12 @@ using Trigger.XStorable.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Person : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -25,7 +25,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string displayName;
 
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string DisplayName
         {
             get
@@ -45,9 +45,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         string firstName;
 
-        [InGroup("Name", 1, 1)]
+        [FieldGroup("Name", 1, 1)]
         [System.ComponentModel.DisplayName("First name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldLabelBehaviour(false, "First name")]
         public string FirstName
         {
             get
@@ -66,9 +67,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         string middleName;
 
-        [InGroup("Name", 1, 2)]
+        [FieldGroup("Name", 1, 2)]
         [System.ComponentModel.DisplayName("Middle name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldLabelBehaviour(false, "Middle name")]
         public string MiddleName
         {
             get
@@ -87,9 +89,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         string lastName;
 
-        [InGroup("Name", 1, 3)]
+        [FieldGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Last name")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldLabelBehaviour(false, "Last name")]
         public string LastName
         {
             get
@@ -108,7 +111,8 @@ namespace Trigger.BCL.EventTracker.Model
 
         string postalCode;
 
-        [InGroup("Address", 2, 1)]
+        [FieldGroup("Address", 2, 1)]
+        [FieldLabelBehaviour(false, "Postal code")]
         public string PostalCode
         {
             get
@@ -127,7 +131,8 @@ namespace Trigger.BCL.EventTracker.Model
 
         string city;
 
-        [InGroup("Address", 2, 2)]
+        [FieldGroup("Address", 2, 2)]
+        [FieldLabelBehaviour(false, "City")]
         public string City
         {
             get
@@ -146,7 +151,8 @@ namespace Trigger.BCL.EventTracker.Model
 
         string street;
 
-        [InGroup("Address", 2, 3)]
+        [FieldGroup("Address", 2, 3)]
+        [FieldLabelBehaviour(false, "Street")]
         public string Street
         {
             get
@@ -163,7 +169,7 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [InGroup("Links", 3, 1)]
+        [FieldGroup("Links", 3, 1)]
         [System.ComponentModel.DisplayName("Linked contacts")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Contact))]

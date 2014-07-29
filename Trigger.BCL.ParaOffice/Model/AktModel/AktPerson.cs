@@ -6,12 +6,12 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class AktPerson : StorableBase
     {
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -33,7 +33,7 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AktAlias
         {
             get
@@ -45,8 +45,8 @@ namespace Trigger.BCL.ParaOffice
         Akt akt;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
-        [InGroup("Verbindung", 1, 1)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldGroup("Verbindung", 1, 1)]
         public Akt Akt
         {
             get
@@ -64,7 +64,7 @@ namespace Trigger.BCL.ParaOffice
         }
 
         [System.ComponentModel.DisplayName("Person")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string PersonAlias
         {
             get
@@ -77,8 +77,8 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
-        [InGroup("Verbindung", 1, 2)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldGroup("Verbindung", 1, 2)]
         public Person Person
         {
             get
@@ -96,7 +96,7 @@ namespace Trigger.BCL.ParaOffice
         }
 
         [System.ComponentModel.DisplayName("Vertreter")]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string VertreterAlias
         {
             get
@@ -109,8 +109,8 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Vertreter")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
-        [InGroup("Vetretung", 2, 1)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldGroup("Vetretung", 2, 1)]
         public Person Vertreter
         {
             get
@@ -129,7 +129,7 @@ namespace Trigger.BCL.ParaOffice
 
         Partei partei;
 
-        [InGroup("Erweitert", 3, 1)]
+        [FieldGroup("Erweitert", 3, 1)]
         [System.ComponentModel.DisplayName("Klient/Gegner")]
         public Partei Partei
         {
@@ -149,7 +149,7 @@ namespace Trigger.BCL.ParaOffice
 
         bool streitgenosse;
 
-        [InGroup("Erweitert", 3, 2)]
+        [FieldGroup("Erweitert", 3, 2)]
         public bool Streitgenosse
         {
             get
@@ -168,7 +168,7 @@ namespace Trigger.BCL.ParaOffice
 
         int reihung;
 
-        [InGroup("Erweitert", 3, 3)]
+        [FieldGroup("Erweitert", 3, 3)]
         public int Reihung
         {
             get

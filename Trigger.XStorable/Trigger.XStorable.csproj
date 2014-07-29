@@ -82,11 +82,13 @@
     <Compile Include="Attributes\LinkedListAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
-    <Compile Include="Attributes\CompactViewItemAttribute.cs" />
-    <Compile Include="Attributes\InGroupAttribute.cs" />
-    <Compile Include="Attributes\MainViewItemAttribute.cs" />
-    <Compile Include="Attributes\RuleRequiredFieldAttribute.cs" />
-    <Compile Include="Attributes\VisibleOnViewAttribute.cs" />
+    <Compile Include="Attributes\FieldVisibleAttribute.cs" />
+    <Compile Include="Attributes\FieldGroupAttribute.cs" />
+    <Compile Include="Attributes\FieldLabelBehaviourAttribute.cs" />
+    <Compile Include="Attributes\FieldRequiredAttribute.cs" />
+    <Compile Include="Attributes\ViewCompactAttribute.cs" />
+    <Compile Include="Attributes\ViewNavigationAttribute.cs" />
+    <Compile Include="Attributes\FieldFileDataAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

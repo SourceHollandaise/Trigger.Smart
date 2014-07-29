@@ -7,8 +7,8 @@ namespace Trigger.BCL.Common.Model
 {
 
     [System.ComponentModel.DefaultProperty("UserName")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class User : StorableBase
     {
         public override void Initialize()
@@ -16,7 +16,7 @@ namespace Trigger.BCL.Common.Model
             //INFO: Do not initialize!!! 
         }
 
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -49,7 +49,7 @@ namespace Trigger.BCL.Common.Model
 
         string password;
 
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Password
         {
             get

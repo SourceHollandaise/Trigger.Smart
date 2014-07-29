@@ -58,7 +58,7 @@ namespace Trigger.XForms.Visuals
 
             var config = DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
 
-            var compactViewAttribute = ModelType.GetCustomAttributes(typeof(CompactViewItemAttribute), true).FirstOrDefault() as CompactViewItemAttribute;
+            var compactViewAttribute = ModelType.GetCustomAttributes(typeof(ViewCompactAttribute), true).FirstOrDefault() as ViewCompactAttribute;
             if (config.IsCompactViewMode)
             {
                 var property = ModelType.GetProperty(compactViewAttribute.VisualProperty);
@@ -75,7 +75,7 @@ namespace Trigger.XForms.Visuals
             {
                 foreach (var property in ModelType.GetProperties())
                 {
-                    var visibilityAttribute = property.GetCustomAttributes(typeof(VisibleOnViewAttribute), true).FirstOrDefault() as VisibleOnViewAttribute;
+                    var visibilityAttribute = property.GetCustomAttributes(typeof(FieldVisibleAttribute), true).FirstOrDefault() as FieldVisibleAttribute;
 
                     if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.DetailOnly || visibilityAttribute.TargetView == TargetView.None))
                         continue;

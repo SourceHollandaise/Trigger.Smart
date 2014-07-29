@@ -8,11 +8,11 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
     [CompactViewRepresentationAttribute]
-    [MainViewItem]
+    [ViewNavigation]
     public class Area : StorableBase
     {
         [System.ComponentModel.DisplayName("Area")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get

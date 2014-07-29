@@ -8,8 +8,8 @@ using Trigger.BCL.Common.Security;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class IssueTracker : StorableBase
     {
         public override void Initialize()
@@ -22,7 +22,7 @@ namespace Trigger.BCL.EventTracker.Model
         }
 
         [System.ComponentModel.DisplayName("Issue")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -138,7 +138,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AreaAlias
         {
             get
@@ -150,7 +150,7 @@ namespace Trigger.BCL.EventTracker.Model
         Area area;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Area Area
         {
             get
@@ -205,7 +205,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Resolved by")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string ResolvedByAlias
         {
             get
@@ -218,7 +218,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Resolved by")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public User ResolvedBy
         {
             get

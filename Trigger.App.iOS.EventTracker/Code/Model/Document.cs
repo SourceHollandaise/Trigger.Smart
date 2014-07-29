@@ -6,12 +6,12 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Document : StorableBase, IFileData
     {
         [System.ComponentModel.DisplayName("Document")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -55,7 +55,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string FileName
         {
             get
@@ -92,7 +92,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AreaAlias
         {
             get
@@ -104,7 +104,7 @@ namespace Trigger.BCL.EventTracker.Model
         Area area;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Area Area
         {
             get
@@ -123,7 +123,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Issue")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string IssueAlias
         {
             get
@@ -135,7 +135,7 @@ namespace Trigger.BCL.EventTracker.Model
         IssueTracker issue;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public IssueTracker Issue
         {
             get
@@ -154,7 +154,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("From user")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string UserAlias
         {
             get
@@ -167,7 +167,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("From user")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public User User
         {
             get

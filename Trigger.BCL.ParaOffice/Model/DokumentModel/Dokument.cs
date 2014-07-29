@@ -6,8 +6,8 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Dokument")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class Dokument : StorableBase, IFileData
     {
         public override void Initialize()
@@ -16,7 +16,7 @@ namespace Trigger.BCL.ParaOffice
         }
 
         [System.ComponentModel.DisplayName("Datei")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -31,7 +31,7 @@ namespace Trigger.BCL.ParaOffice
 
         string subject;
 
-        [InGroup("Datei", 1, 1)]
+        [FieldGroup("Datei", 1, 1)]
         [System.ComponentModel.DisplayName("Bezeichnung")]
         public string Subject
         {
@@ -53,7 +53,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB ra;
 
-        [InGroup("Zuweisung", 2, 1)]
+        [FieldGroup("Zuweisung", 2, 1)]
         [LinkedObject]
         public SB RA
         {
@@ -73,7 +73,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sk;
 
-        [InGroup("Zuweisung", 2, 2)]
+        [FieldGroup("Zuweisung", 2, 2)]
         [LinkedObject]
         public SB SK
         {
@@ -93,7 +93,7 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AktAlias
         {
             get
@@ -104,9 +104,9 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
-        [InGroup("Zuweisung", 2, 3)]
+        [FieldGroup("Zuweisung", 2, 3)]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public Akt Akt
         {
             get
@@ -128,7 +128,7 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentArt art;
 
-        [InGroup("Status", 3, 1)]
+        [FieldGroup("Status", 3, 1)]
         public DokumentArt Art
         {
             get
@@ -147,7 +147,7 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentMedium medium;
 
-        [InGroup("Status", 3, 2)]
+        [FieldGroup("Status", 3, 2)]
         public DokumentMedium Medium
         {
             get
@@ -167,7 +167,7 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentStatus status;
 
-        [InGroup("Status", 3, 3)]
+        [FieldGroup("Status", 3, 3)]
         public DokumentStatus Status
         {
             get
@@ -186,9 +186,9 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
-        [InGroup("Sonstige Informationen", 4, 1)]
+        [FieldGroup("Sonstige Informationen", 4, 1)]
         [System.ComponentModel.DisplayName("Bemerkung")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public string Bemerkung
         {
             get
@@ -207,11 +207,11 @@ namespace Trigger.BCL.ParaOffice
 
         string fileName;
 
-        [InGroup("Vorschau", 5, 1)]
+        [FieldGroup("Vorschau", 5, 1)]
         [System.ComponentModel.DisplayName("Datei")]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         [System.ComponentModel.ReadOnly(true)]
-        [FileData]
+        [FieldFileData]
         public string FileName
         {
             get

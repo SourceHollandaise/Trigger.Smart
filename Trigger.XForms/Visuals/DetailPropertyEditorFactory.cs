@@ -37,10 +37,13 @@ namespace Trigger.XForms.Visuals
             if (control is WebView)
             {
                 var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
-
-                var path = Path.Combine(storeConfig.DocumentStoreLocation, (string)property.GetValue(Model, null));
-
-                ((WebView)control).Url = new Uri(path, UriKind.RelativeOrAbsolute);
+                var fileName = (string)property.GetValue(Model, null);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
+                    if (File.Exists(path))
+                        ((WebView)control).Url = new Uri(path, UriKind.RelativeOrAbsolute);
+                }
             }
 
             if (control is NumericUpDown)
@@ -107,14 +110,20 @@ namespace Trigger.XForms.Visuals
 
         public TextBox StringPropertyEditor(PropertyInfo property)
         {
+            var attribute = property.GetCustomAttributes(typeof(FieldLabelBehaviourAttribute), true).FirstOrDefault() as FieldLabelBehaviourAttribute;
+
             var control = new TextBox
             {
-                Text = (string)property.GetValue(Model, null)
+                Text = (string)property.GetValue(Model, null),
             };
+
+            if (attribute != null)
+                control.PlaceholderText = attribute.PlaceholderText;
 
             control.TextChanged += (sender, e) =>
             {
-                property.SetValue(Model, control.Text, null);
+                if (!control.Text.Equals(control.PlaceholderText))
+                    property.SetValue(Model, control.Text, null);
             };
             control.Size = new Size(-1, -1);
             control.Enabled = IsEnabled(property);
@@ -253,6 +262,7 @@ namespace Trigger.XForms.Visuals
             {
                 Value = Convert.ToDouble(property.GetValue(Model, null))
             };
+
             control.ValueChanged += (sender, e) =>
             {
                 if (property.PropertyType == typeof(int))

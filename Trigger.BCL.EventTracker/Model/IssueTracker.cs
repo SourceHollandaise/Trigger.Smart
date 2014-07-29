@@ -8,8 +8,8 @@ using Trigger.BCL.Common.Security;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [CompactViewItem]
-    [MainViewItem]
+    [ViewCompact]
+    [ViewNavigation]
     public class IssueTracker : StorableBase, IFileData
     {
         public override void Initialize()
@@ -22,7 +22,7 @@ namespace Trigger.BCL.EventTracker.Model
         }
 
         [System.ComponentModel.DisplayName("Issue")]
-        [VisibleOnView(TargetView.None)]
+        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -43,7 +43,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string subject;
 
-        [InGroup("Issue-Details", 1, 1)]
+        [FieldGroup("Issue-Details", 1, 1)]
         public string Subject
         {
             get
@@ -62,7 +62,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         Priority issuePriority;
 
-        [InGroup("Issue-Details", 1, 2)]
+        [FieldGroup("Issue-Details", 1, 2)]
         [System.ComponentModel.DisplayName("Priority")]
         public Priority IssuePriority
         {
@@ -82,7 +82,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         IssueType issueType;
 
-        [InGroup("Issue-Details", 1, 3)]
+        [FieldGroup("Issue-Details", 1, 3)]
         [System.ComponentModel.DisplayName("Type")]
         public IssueType IssueType
         {
@@ -102,7 +102,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         IssueState issueState;
 
-        [InGroup("Issue-Details", 1, 4)]
+        [FieldGroup("Issue-Details", 1, 4)]
         [System.ComponentModel.DisplayName("State")]
         public IssueState IssueState
         {
@@ -124,7 +124,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
-        [InGroup("Further Informations", 2, 1)]
+        [FieldGroup("Further Informations", 2, 1)]
         public string Description
         {
             get
@@ -144,8 +144,8 @@ namespace Trigger.BCL.EventTracker.Model
         Area area;
 
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
-        [InGroup("Further Informations", 2, 2)]
+        [FieldVisible(TargetView.DetailOnly)]
+        [FieldGroup("Further Informations", 2, 2)]
         public Area Area
         {
             get
@@ -164,7 +164,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string AreaAlias
         {
             get
@@ -177,7 +177,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? start;
 
-        [InGroup("Start and resolved", 3, 1)]
+        [FieldGroup("Start and resolved", 3, 1)]
         public DateTime? Start
         {
             get
@@ -196,7 +196,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? resolved;
 
-        [InGroup("Start and resolved", 3, 2)]
+        [FieldGroup("Start and resolved", 3, 2)]
         public DateTime? Resolved
         {
             get
@@ -215,7 +215,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Resolved by")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string ResolvedByAlias
         {
             get
@@ -226,10 +226,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         User resolvedBy;
 
-        [InGroup("Start and resolved", 3, 3)]
+        [FieldGroup("Start and resolved", 3, 3)]
         [System.ComponentModel.DisplayName("Resolved by")]
         [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
+        [FieldVisible(TargetView.DetailOnly)]
         public User ResolvedBy
         {
             get
@@ -248,10 +248,10 @@ namespace Trigger.BCL.EventTracker.Model
 
         bool isDone;
 
-        [InGroup("Start and resolved", 3, 4)]
+        [FieldGroup("Start and resolved", 3, 4)]
         [System.ComponentModel.DisplayName("Done")]
         [System.ComponentModel.ReadOnly(true)]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public bool IsDone
         {
             get
@@ -270,9 +270,9 @@ namespace Trigger.BCL.EventTracker.Model
 
         string duration;
 
-        [InGroup("Start and resolved", 3, 5)]
+        [FieldGroup("Start and resolved", 3, 5)]
         [System.ComponentModel.ReadOnly(true)]
-        [VisibleOnView(TargetView.ListOnly)]
+        [FieldVisible(TargetView.ListOnly)]
         public string Duration
         {
             get
@@ -291,9 +291,9 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
-        [InGroup("Preview", 4, 1)]
+        [FieldGroup("Preview", 4, 1)]
         [System.ComponentModel.ReadOnly(true)]
-        [FileData]
+        [FieldFileData]
         public string FileName
         {
             get
