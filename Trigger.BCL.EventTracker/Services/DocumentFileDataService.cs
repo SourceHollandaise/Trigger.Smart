@@ -55,7 +55,7 @@ namespace Trigger.BCL.EventTracker.Services
 
             foreach (var doc in documents)
             {
-                var path = Path.Combine(StoreConfiguration.DocumentStoreLocation, doc.FileName);
+                var path = Path.Combine(StoreConfig.DocumentStoreLocation, doc.FileName);
 
                 if (!File.Exists(path))
                     doc.Delete();

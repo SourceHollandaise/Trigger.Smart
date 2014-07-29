@@ -82,14 +82,17 @@ namespace Trigger.XForms.Visuals
             var webView = new WebView();
 
             webView.Size = new Size(-1, 400);
+
             var fileName = property.GetValue(Model, null) as string;
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
 
-            var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
+                if (File.Exists(path))
+                    webView.Url = new Uri(path, UriKind.RelativeOrAbsolute);
 
-            var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
-            if (File.Exists(path))
-                webView.Url = new Uri(path, UriKind.RelativeOrAbsolute);
-
+            }
             webView.BrowserContextMenuEnabled = true;
 
             return webView;

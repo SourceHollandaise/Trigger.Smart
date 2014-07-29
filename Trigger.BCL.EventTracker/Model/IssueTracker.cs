@@ -10,7 +10,7 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Subject")]
     [CompactViewItem]
     [MainViewItem]
-    public class IssueTracker : StorableBase
+    public class IssueTracker : StorableBase, IFileData
     {
         public override void Initialize()
         {
@@ -251,6 +251,7 @@ namespace Trigger.BCL.EventTracker.Model
         [InGroup("Start and resolved", 3, 4)]
         [System.ComponentModel.DisplayName("Done")]
         [System.ComponentModel.ReadOnly(true)]
+        [VisibleOnView(TargetView.ListOnly)]
         public bool IsDone
         {
             get
@@ -271,6 +272,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         [InGroup("Start and resolved", 3, 5)]
         [System.ComponentModel.ReadOnly(true)]
+        [VisibleOnView(TargetView.ListOnly)]
         public string Duration
         {
             get
@@ -282,6 +284,27 @@ namespace Trigger.BCL.EventTracker.Model
                 if (Equals(duration, value))
                     return;
                 duration = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        string fileName;
+
+        [InGroup("Preview", 4, 1)]
+        [System.ComponentModel.ReadOnly(true)]
+        [FileData]
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                if (Equals(fileName, value))
+                    return;
+                fileName = value;
 
                 OnPropertyChanged();
             }

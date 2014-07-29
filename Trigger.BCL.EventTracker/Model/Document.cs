@@ -75,24 +75,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
-        [InGroup("Document-Details", 1, 3)]
-        [VisibleOnView(TargetView.DetailOnly)]
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
-            set
-            {
-                if (Equals(fileName, value))
-                    return;
-                fileName = value;
-
-                OnPropertyChanged();
-            }
-        }
-
+       
         User user;
 
         [InGroup("Document-Details", 1, 4)]
@@ -190,5 +173,25 @@ namespace Trigger.BCL.EventTracker.Model
                 return User != null ? User.UserName : null;
             }
         }
+
+        [InGroup("Preview-Details", 3, 1)]
+        [VisibleOnView(TargetView.DetailOnly)]
+        [FileData]
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                if (Equals(fileName, value))
+                    return;
+                fileName = value;
+
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
