@@ -17,11 +17,11 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Subject", 1){ LabelText = "Name", ShowLabel = true },
-                                new ViewItemDescription("IssuePriority", 2){ LabelText = "Priority", ShowLabel = true },
-                                new ViewItemDescription("IssueType", 3){ LabelText = "Type", ShowLabel = true },
-                                new ViewItemDescription("IssueState", 4){ LabelText = "State", ShowLabel = true },
-                                new ViewItemDescription("Area", 5){ LabelText = "Area", ShowLabel = true },
+                                new ViewItemDescription("Subject", 1){ LabelText = "Name" },
+                                new ViewItemDescription("IssuePriority", 2){ LabelText = "Priority" },
+                                new ViewItemDescription("IssueType", 3){ LabelText = "Type" },
+                                new ViewItemDescription("IssueState", 4){ LabelText = "State" },
+                                new ViewItemDescription("Area", 5){ LabelText = "Area" },
                             }
                         },
                         new GroupItemDescription("Description", 2)
@@ -35,9 +35,9 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Start", 1){ LabelText = "Start", ShowLabel = true },
-                                new ViewItemDescription("Resolved", 2){ LabelText = "Resolved", ShowLabel = true },
-                                new ViewItemDescription("ResolvedBy", 3){ LabelText = "Resolved by", ShowLabel = true },
+                                new ViewItemDescription("Start", 1){ LabelText = "Start" },
+                                new ViewItemDescription("Resolved", 2){ LabelText = "Resolved" },
+                                new ViewItemDescription("ResolvedBy", 3){ LabelText = "Resolved by" },
                             }
                         }
                     }
@@ -46,7 +46,7 @@ namespace Trigger.BCL.EventTracker
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new GroupItemDescription("Preview", 1)
+                        new GroupItemDescription(null, 1)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>

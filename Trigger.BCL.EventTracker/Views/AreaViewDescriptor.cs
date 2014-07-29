@@ -17,8 +17,8 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Name", 1){ LabelText = "Name", ShowLabel = true },
-                                new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
+                                new ViewItemDescription("Name", 1){ LabelText = "Name" },
+                                new ViewItemDescription("Description", 2){ LabelText = "Description" },
                             }
                         },
                         new GroupItemDescription("Links", 2)

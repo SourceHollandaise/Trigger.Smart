@@ -31,9 +31,9 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("PhoneNumber", 1){ LabelText = "Phone", ShowLabel = true },
-                                new ViewItemDescription("MobileNumber", 2){ LabelText = "Mobile", ShowLabel = true },
-                                new ViewItemDescription("Email", 3){ LabelText = "E-Mail", ShowLabel = true },
+                                new ViewItemDescription("PhoneNumber", 1){ LabelText = "Phone" },
+                                new ViewItemDescription("MobileNumber", 2){ LabelText = "Mobile" },
+                                new ViewItemDescription("Email", 3){ LabelText = "E-Mail" },
                             }
                         }
                     }

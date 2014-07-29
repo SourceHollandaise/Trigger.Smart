@@ -9,6 +9,7 @@ namespace Trigger.XForms
             FieldName = fieldName;
             Index = index;
             LabelOrientation = LabelOrientation.Left;
+            ShowLabel = true;
         }
 
         public string FieldName { get; set; }

@@ -17,17 +17,17 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Subject", 1){ LabelText = "Name", ShowLabel = true },
-                                new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
-                                new ViewItemDescription("User", 3){ LabelText = "From", ShowLabel = true },
+                                new ViewItemDescription("Subject", 1){ LabelText = "Name" },
+                                new ViewItemDescription("Description", 2){ LabelText = "Description" },
+                                new ViewItemDescription("User", 3){ LabelText = "From" },
                             }
                         },
                         new GroupItemDescription("Links", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Area", 1){ LabelText = "Area", ShowLabel = true },
-                                new ViewItemDescription("Issue", 2){ LabelText = "Issue", ShowLabel = true },
+                                new ViewItemDescription("Area", 1){ LabelText = "Area" },
+                                new ViewItemDescription("Issue", 2){ LabelText = "Issue" },
                             }
                         }
                     }
@@ -36,7 +36,7 @@ namespace Trigger.BCL.EventTracker
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new GroupItemDescription("Preview", 1)
+                        new GroupItemDescription(null, 1)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>

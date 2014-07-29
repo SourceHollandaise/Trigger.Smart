@@ -57,7 +57,7 @@ namespace Trigger.XForms.Visuals
             { 
                 var tabPage = new TabPage()
                 {
-                    Text = tabItem.TabHeaderText
+                    Text = tabItem.TabHeaderText,
                 };
 
                 tabControl.TabPages.Add(tabPage);
@@ -109,10 +109,9 @@ namespace Trigger.XForms.Visuals
 
             layout.BeginVertical();
 
-            var groupBox = new GroupBox()
-            {
-                Text = group.GroupHeaderText
-            };
+            var groupBox = new GroupBox();
+            if (!string.IsNullOrEmpty(group.GroupHeaderText))
+                groupBox.Text = group.GroupHeaderText;
 
             foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
             {
@@ -142,18 +141,18 @@ namespace Trigger.XForms.Visuals
                         break;
                     case LabelOrientation.Right:
                         layout.BeginHorizontal();
-                        layout.Add(control);
+                        layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         layout.EndHorizontal();
                         break;
                     case LabelOrientation.Top:
                         if (viewItem.ShowLabel)
-                            layout.Add(label, !viewItem.Fill, !viewItem.Fill);
-                        layout.Add(control);
+                            layout.Add(label);
+                        layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         break;
                     case LabelOrientation.Bottom:
-                        layout.Add(control);
+                        layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         break;
