@@ -90,6 +90,8 @@ namespace Trigger.XForms.Visuals
             if (File.Exists(path))
                 webView.Url = new Uri(path, UriKind.RelativeOrAbsolute);
 
+            webView.BrowserContextMenuEnabled = true;
+
             return webView;
         }
 
