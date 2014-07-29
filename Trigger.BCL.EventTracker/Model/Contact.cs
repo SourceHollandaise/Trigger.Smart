@@ -8,7 +8,6 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("Contact")]
     [ViewCompact]
     [ViewNavigation]
-    [ViewDescriptor(typeof(ContactViewDescriptor))]
     public class Contact : StorableBase
     {
         [System.ComponentModel.DisplayName("Contact")]

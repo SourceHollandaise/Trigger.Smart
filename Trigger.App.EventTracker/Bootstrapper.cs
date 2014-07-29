@@ -9,6 +9,8 @@ using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.Common.Security;
 using Trigger.XForms.Visuals;
+using Trigger.BCL.EventTracker;
+using Trigger.XForms;
 
 namespace Trigger.App.EventTracker
 {
@@ -37,6 +39,13 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
+
+            ViewDescriptorDeclarator.Declare<Area, AreaViewDescriptor>();
+            ViewDescriptorDeclarator.Declare<Contact, ContactViewDescriptor>();
+            ViewDescriptorDeclarator.Declare<Document, DocumentViewDescriptor>();
+            ViewDescriptorDeclarator.Declare<IssueTracker, IssueTrackerViewDescriptor>();
+            ViewDescriptorDeclarator.Declare<Person, PersonViewDescriptor>();
+            ViewDescriptorDeclarator.Declare<User, UserViewDescriptor>();
         }
 
         public virtual void CreateInitialObjects()

@@ -9,4 +9,10 @@ namespace Trigger.XForms
         Top,
         Bottom
     }
+
+    public enum ViewItemOrientation
+    {
+        Vertical,
+        Horizontal
+    }
 }

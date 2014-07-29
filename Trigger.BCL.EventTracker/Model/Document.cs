@@ -8,7 +8,6 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Subject")]
     [ViewCompact]
     [ViewNavigation]
-    [ViewDescriptor(typeof(DocumentViewDescriptor))]
     public class Document : StorableBase, IFileData
     {
         public override void Delete()

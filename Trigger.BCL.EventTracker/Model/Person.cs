@@ -8,7 +8,6 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("DisplayName")]
     [ViewCompact]
     [ViewNavigation]
-    [ViewDescriptor(typeof(PersonViewDescriptor))]
     public class Person : StorableBase
     {
         string displayName;

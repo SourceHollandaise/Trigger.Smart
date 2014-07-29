@@ -8,6 +8,7 @@ namespace Trigger.XForms
         {
             GroupHeaderText = groupHeadertext;
             Index = index;
+            ViewItemOrientation = ViewItemOrientation.Vertical;
         }
 
         public string GroupHeaderText { get; set; }
@@ -17,6 +18,8 @@ namespace Trigger.XForms
         public IList<ViewItemDescription> ViewItemDescriptions { get; set; }
 
         public bool Fill { get; set; }
+
+        public ViewItemOrientation ViewItemOrientation { get; set; }
     }
     
 }

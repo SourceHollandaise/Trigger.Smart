@@ -18,10 +18,10 @@ namespace Trigger.XForms.Visuals
 
         public void SetContent(IStorable currentObject)
         {
-            var descriptorAttribute = currentObject.GetType().GetCustomAttributes(typeof(ViewDescriptorAttribute), true).FirstOrDefault() as ViewDescriptorAttribute;
-            if (descriptorAttribute != null)
+            var descriptorType = ViewDescriptorDeclarator.GetDescriptor(currentObject.GetType());
+            if (descriptorType != null)
             {
-                var descriptor = Activator.CreateInstance(descriptorAttribute.DescriptorType) as ViewDescriptor;
+                var descriptor = Activator.CreateInstance(descriptorType) as ViewDescriptor;
                 Content = new ModelToDetailViewInterpreter(descriptor, currentObject).GetContent();
             }
             else

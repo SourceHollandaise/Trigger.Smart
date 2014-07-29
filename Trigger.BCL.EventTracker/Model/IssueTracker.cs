@@ -10,7 +10,6 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Subject")]
     [ViewCompact]
     [ViewNavigation]
-    [ViewDescriptor(typeof(IssueTrackerViewDescriptor))]
     public class IssueTracker : StorableBase, IFileData
     {
         public override void Initialize()

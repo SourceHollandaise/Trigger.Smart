@@ -8,7 +8,6 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Name")]
     [ViewCompact]
     [ViewNavigation]
-    [ViewDescriptor(typeof(AreaViewDescriptor))]
     public class Area : StorableBase
     {
         string name;

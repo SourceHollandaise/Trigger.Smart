@@ -24,5 +24,4 @@ namespace Trigger.XForms
 
         public bool Fill { get; set; }
     }
-    
 }

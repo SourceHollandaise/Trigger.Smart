@@ -6,6 +6,7 @@ using System;
 namespace Trigger.BCL.Common.Model
 {
 
+
     [System.ComponentModel.DefaultProperty("UserName")]
     [ViewCompact]
     [ViewNavigation]

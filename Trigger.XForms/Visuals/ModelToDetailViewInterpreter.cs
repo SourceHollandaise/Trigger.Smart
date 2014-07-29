@@ -107,20 +107,30 @@ namespace Trigger.XForms.Visuals
         {
             var layout = new DynamicLayout();
 
-            layout.BeginVertical();
-
             var groupBox = new GroupBox();
             if (!string.IsNullOrEmpty(group.GroupHeaderText))
                 groupBox.Text = group.GroupHeaderText;
 
+            if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
+                layout.BeginHorizontal();
+
             foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
             {
-                var property = CurrentType.GetProperty(viewItem.FieldName);
+                Control control = null;
 
-                if (property == null)
-                    continue;
+                if (!viewItem.FieldName.Equals(ViewDescriptor.EmptySpaceFieldName))
+                {
+                    var property = CurrentType.GetProperty(viewItem.FieldName);
 
-                var control = controlFactory.GetControl(property);
+                    if (property == null)
+                        continue;
+
+                    control = controlFactory.GetControl(property);
+                }
+                else
+                {
+                    control = new DynamicLayout();
+                }
 
                 if (control == null)
                     continue;
@@ -133,11 +143,13 @@ namespace Trigger.XForms.Visuals
                 switch (viewItem.LabelOrientation)
                 {
                     case LabelOrientation.Left:
-                        layout.BeginHorizontal();
+                        if (group.ViewItemOrientation != ViewItemOrientation.Horizontal)
+                            layout.BeginHorizontal();
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
-                        layout.EndHorizontal();
+                        if (group.ViewItemOrientation != ViewItemOrientation.Horizontal)
+                            layout.EndHorizontal();
                         break;
                     
                     case LabelOrientation.Right:
@@ -149,9 +161,11 @@ namespace Trigger.XForms.Visuals
                         break;
                     
                     case LabelOrientation.Top:
+                        layout.BeginVertical();
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
+                        layout.EndVertical();
                         break;
                     
                     case LabelOrientation.Bottom:
@@ -162,7 +176,9 @@ namespace Trigger.XForms.Visuals
                 }
             }
 
-            layout.EndVertical();
+            if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
+                layout.EndHorizontal();
+
             if (!group.Fill)
             {
                 layout.BeginVertical();
