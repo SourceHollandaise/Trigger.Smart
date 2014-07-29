@@ -43,6 +43,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string subject;
 
+        [InGroup("Issue-Details", 1, 1)]
         public string Subject
         {
             get
@@ -61,6 +62,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         Priority issuePriority;
 
+        [InGroup("Issue-Details", 1, 2)]
         [System.ComponentModel.DisplayName("Priority")]
         public Priority IssuePriority
         {
@@ -80,6 +82,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         IssueType issueType;
 
+        [InGroup("Issue-Details", 1, 3)]
         [System.ComponentModel.DisplayName("Type")]
         public IssueType IssueType
         {
@@ -99,6 +102,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         IssueState issueState;
 
+        [InGroup("Issue-Details", 1, 4)]
         [System.ComponentModel.DisplayName("State")]
         public IssueState IssueState
         {
@@ -120,6 +124,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
+        [InGroup("Further Informations", 2, 1)]
         public string Description
         {
             get
@@ -136,21 +141,11 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("Area")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [VisibleOnView(TargetView.ListOnly)]
-        public string AreaAlias
-        {
-            get
-            {
-                return Area != null ? Area.Name : null;
-            }
-        }
-
         Area area;
 
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
+        [InGroup("Further Informations", 2, 2)]
         public Area Area
         {
             get
@@ -167,8 +162,22 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        [System.ComponentModel.DisplayName("Area")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [VisibleOnView(TargetView.ListOnly)]
+        public string AreaAlias
+        {
+            get
+            {
+                return Area != null ? Area.Name : null;
+            }
+        }
+
+
+
         DateTime? start;
 
+        [InGroup("Start and resolved", 3, 1)]
         public DateTime? Start
         {
             get
@@ -187,6 +196,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? resolved;
 
+        [InGroup("Start and resolved", 3, 2)]
         public DateTime? Resolved
         {
             get
@@ -216,6 +226,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         User resolvedBy;
 
+        [InGroup("Start and resolved", 3, 3)]
         [System.ComponentModel.DisplayName("Resolved by")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
@@ -237,6 +248,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         bool isDone;
 
+        [InGroup("Start and resolved", 3, 4)]
         [System.ComponentModel.DisplayName("Done")]
         [System.ComponentModel.ReadOnly(true)]
         public bool IsDone
@@ -257,6 +269,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string duration;
 
+        [InGroup("Start and resolved", 3, 5)]
         [System.ComponentModel.ReadOnly(true)]
         public string Duration
         {

@@ -41,6 +41,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         Person person;
 
+        [InGroup("Person", 1, 1)]
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
@@ -62,6 +63,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         ContactType contactType;
 
+        [InGroup("Person", 1, 2)]
         [System.ComponentModel.DisplayName("Contact")]
         public ContactType ContactType
         {
@@ -81,6 +83,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string phoneNumber;
 
+        [InGroup("Contact-Details", 2, 1)]
         [System.ComponentModel.DisplayName("Phone")]
         public string PhoneNumber
         {
@@ -100,6 +103,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string mobileNumber;
 
+        [InGroup("Contact-Details", 2, 2)]
         [System.ComponentModel.DisplayName("Mobile")]
         public string MobileNumber
         {
@@ -119,6 +123,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string email;
 
+        [InGroup("Contact-Details", 2, 3)]
         [System.ComponentModel.DisplayName("E-Mail")]
         public string Email
         {

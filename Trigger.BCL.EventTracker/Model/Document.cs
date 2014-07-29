@@ -37,6 +37,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string subject;
 
+        [InGroup("Document-Details", 1, 1)]
         public string Subject
         {
             get
@@ -53,8 +54,28 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        string description;
+
+        [InGroup("Document-Details", 1, 2)]
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                if (Equals(description, value))
+                    return;
+                description = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         string fileName;
 
+        [InGroup("Document-Details", 1, 3)]
         [VisibleOnView(TargetView.DetailOnly)]
         public string FileName
         {
@@ -72,23 +93,28 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        string description;
+        User user;
 
-        public string Description
+        [InGroup("Document-Details", 1, 4)]
+        [System.ComponentModel.DisplayName("From user")]
+        [LinkedObject]
+        [VisibleOnView(TargetView.DetailOnly)]
+        public User User
         {
             get
             {
-                return description;
+                return user;
             }
             set
             {
-                if (Equals(description, value))
+                if (Equals(user, value))
                     return;
-                description = value;
+                user = value;
 
                 OnPropertyChanged();
             }
         }
+
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -103,6 +129,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         Area area;
 
+        [InGroup("Links", 2, 1)]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
         public Area Area
@@ -134,6 +161,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         IssueTracker issue;
 
+        [InGroup("Links", 2, 2)]
         [LinkedObject]
         [VisibleOnView(TargetView.DetailOnly)]
         public IssueTracker Issue
@@ -160,27 +188,6 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 return User != null ? User.UserName : null;
-            }
-        }
-
-        User user;
-
-        [System.ComponentModel.DisplayName("From user")]
-        [LinkedObject]
-        [VisibleOnView(TargetView.DetailOnly)]
-        public User User
-        {
-            get
-            {
-                return user;
-            }
-            set
-            {
-                if (Equals(user, value))
-                    return;
-                user = value;
-
-                OnPropertyChanged();
             }
         }
     }

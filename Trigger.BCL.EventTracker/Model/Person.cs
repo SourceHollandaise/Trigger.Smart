@@ -45,6 +45,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string firstName;
 
+        [InGroup("Name", 1, 1)]
         [System.ComponentModel.DisplayName("First name")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string FirstName
@@ -65,6 +66,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string middleName;
 
+        [InGroup("Name", 1, 2)]
         [System.ComponentModel.DisplayName("Middle name")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string MiddleName
@@ -85,6 +87,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string lastName;
 
+        [InGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Last name")]
         [VisibleOnView(TargetView.DetailOnly)]
         public string LastName
@@ -105,6 +108,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string postalCode;
 
+        [InGroup("Address", 2, 1)]
         public string PostalCode
         {
             get
@@ -123,6 +127,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string city;
 
+        [InGroup("Address", 2, 2)]
         public string City
         {
             get
@@ -141,6 +146,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string street;
 
+        [InGroup("Address", 2, 3)]
         public string Street
         {
             get
@@ -157,6 +163,7 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        [InGroup("Links", 3, 1)]
         [System.ComponentModel.DisplayName("Linked contacts")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Contact))]

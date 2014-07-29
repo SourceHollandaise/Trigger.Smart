@@ -12,13 +12,13 @@ namespace Trigger.XForms.Visuals
         public IStorable CurrentObject
         {
             get;
-            private set;
+            internal set;
         }
 
         public Type ModelType
         {
             get;
-            private set;
+            internal set;
         }
 
         protected IViewTemplateConfiguration ViewTemplateConfig
@@ -34,6 +34,7 @@ namespace Trigger.XForms.Visuals
             this.ModelType = type;
             this.CurrentObject = currentObject;
             this.ID = this.Title;
+            this.BackgroundColor = Eto.Drawing.Colors.White;
 		
             if (this.ToolBar == null)
                 this.ToolBar = new ToolBar();

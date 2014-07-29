@@ -34,7 +34,6 @@ namespace Trigger.XForms.Visuals
             {
                 return DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
             }
-        
         }
 
         public DetailViewGenerator(IStorable model)
@@ -187,7 +186,10 @@ namespace Trigger.XForms.Visuals
                 var layout = new DynamicLayout();
                 layout.BeginVertical();
 
-                var groupBox = new GroupBox();
+                var groupBox = new GroupBox
+                {
+                    BackgroundColor = Colors.White
+                };
 
                 foreach (var item in items.OrderBy( p => p.PropertyIndex).ToArray())
                 {
@@ -199,10 +201,7 @@ namespace Trigger.XForms.Visuals
 
                     if (item.Control is Button && item.Property.PropertyType.IsGenericType)
                     {
-                        //layout.BeginVertical();
                         layout.Add(item.Control, true);
-                        //layout.EndVertical();
-
                     }
                     else
                     { 
