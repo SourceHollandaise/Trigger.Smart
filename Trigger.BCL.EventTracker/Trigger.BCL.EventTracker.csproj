@@ -59,10 +59,10 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Services\DocumentFileDataService.cs" />
     <Compile Include="Views\PersonViewDescriptor.cs" />
-    <Compile Include="Views\DocumentViewDescriptor.cs" />
     <Compile Include="Views\ContactViewDescriptor.cs" />
     <Compile Include="Views\IssueTrackerViewDescriptor.cs" />
     <Compile Include="Views\AreaViewDescriptor.cs" />
+    <Compile Include="Views\DocumentViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

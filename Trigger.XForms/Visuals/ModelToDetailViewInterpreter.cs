@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Eto.Forms;
-using Trigger.XForms;
 using Trigger.XStorable.DataStore;
+using Trigger.XForms;
 
 namespace Trigger.XForms.Visuals
 {
@@ -39,25 +39,60 @@ namespace Trigger.XForms.Visuals
             controlFactory = new DetailViewControlFactory(this.CurrentObject);
         }
 
-        public DynamicLayout GetContent()
+        public Control GetContent()
         {
+            if (Descriptor.TabItemDescriptions != null && Descriptor.TabItemDescriptions.Any())
+                return CreateTabbedViewLayout();
+
             return CreateViewLayout();
         }
 
-        DynamicLayout CreateViewLayout()
+        Control CreateTabbedViewLayout()
         {
-            var groups = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
+            var tabItems = Descriptor.TabItemDescriptions.OrderBy(p => p.Index).ToList();
 
-            var layout = new DynamicLayout();
-            foreach (var group in groups)
+            var tabControl = new TabControl();
+
+            var scrollable = new Scrollable();
+
+            foreach (var tabItem in tabItems)
             { 
-                var groupLayout = CreateGroupLayout(group);
-                layout.Add(groupLayout);
+                var tabPage = new TabPage();
+                tabPage.Text = tabItem.TabHeaderText;
+
+                tabControl.TabPages.Add(tabPage);
+                tabPage.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);
             }
 
-            layout.BeginVertical();
-            layout.EndVertical();
+            scrollable.Content = tabControl;
 
+            return scrollable;
+        }
+
+        Control CreateViewLayout()
+        {
+            var groupItems = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
+
+            var scrollable = new Scrollable();
+
+            scrollable.Content = AddGroupLayouts(groupItems);
+            return scrollable;
+        }
+
+        DynamicLayout AddGroupLayouts(IList<GroupItemDescription> groupItems)
+        {
+            var layout = new DynamicLayout();
+            foreach (var groupItem in groupItems)
+            {
+                var groupLayout = CreateGroupLayout(groupItem);
+                layout.Add(groupLayout);
+                if (!groupItem.Fill)
+                {
+                    layout.BeginHorizontal();
+                    layout.EndHorizontal();
+                }
+            }
+           
             return layout;
         }
 
@@ -68,7 +103,7 @@ namespace Trigger.XForms.Visuals
             layout.BeginVertical();
 
             var groupBox = new GroupBox();
-            groupBox.Text = group.HeaderText;
+            groupBox.Text = group.GroupHeaderText;
 
             foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
             {
@@ -82,18 +117,48 @@ namespace Trigger.XForms.Visuals
                 if (control == null)
                     continue;
 
-                if (viewItem.ShowLabel)
+                if (viewItem.Fill)
+                    control.Size = new Eto.Drawing.Size(-1, -1);
+
+                var label = new Label{ Text = viewItem.LabelText };
+
+                switch (viewItem.LabelOrientation)
                 {
-                    layout.Add(new Label
-                    {
-                        Text = viewItem.LabelText
-                    });
+                    case LabelOrientation.Left:
+                        layout.BeginHorizontal();
+                        if (viewItem.ShowLabel)
+                            layout.Add(label);
+                        layout.Add(control, !viewItem.Fill, !viewItem.Fill);
+                        layout.EndHorizontal();
+                        break;
+                    case LabelOrientation.Right:
+                        layout.BeginHorizontal();
+                        layout.Add(control);
+                        if (viewItem.ShowLabel)
+                            layout.Add(label);
+                        layout.EndHorizontal();
+                        break;
+                    case LabelOrientation.Top:
+                        if (viewItem.ShowLabel)
+                            layout.Add(label, !viewItem.Fill, !viewItem.Fill);
+                        layout.Add(control);
+                        break;
+                    case LabelOrientation.Bottom:
+                        layout.Add(control);
+                        if (viewItem.ShowLabel)
+                            layout.Add(label);
+                        break;
                 }
-                layout.Add(control);
             }
 
             layout.EndVertical();
+            if (!group.Fill)
+            {
+                layout.BeginVertical();
+                layout.EndVertical();
+            }
             groupBox.Content = layout;
+
             return groupBox;
         }
     }

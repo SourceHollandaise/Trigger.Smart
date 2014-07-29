@@ -1,7 +1,6 @@
-using Eto.Forms;
-using Trigger.XStorable.DataStore;
 using System;
 using System.Linq;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
 {
@@ -10,17 +9,14 @@ namespace Trigger.XForms.Visuals
     {
         public DetailViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
         {
-
             SetContent(currentObject);
-
 
             SetSize();
 
             SetTitle();
-
         }
 
-        void SetContent(IStorable currentObject)
+        public void SetContent(IStorable currentObject)
         {
             var descriptorAttribute = currentObject.GetType().GetCustomAttributes(typeof(ViewDescriptorAttribute), true).FirstOrDefault() as ViewDescriptorAttribute;
             if (descriptorAttribute != null)
@@ -30,11 +26,6 @@ namespace Trigger.XForms.Visuals
             }
             else
                 Content = new DetailViewGenerator(CurrentObject).GetContent();
-
-            Content = new Scrollable
-            {
-                Content = this.Content
-            };
         }
 
         void SetSize()

@@ -16,8 +16,7 @@ namespace Trigger.XForms
                 var dataObject = store.Load(detailForm.ModelType, detailForm.CurrentObject.MappingId);
                 if (dataObject != null)
                 {
-                    var layout = new DetailViewGenerator(dataObject).GetContent();
-                    detailForm.Content = layout;
+                    detailForm.SetContent(dataObject);
                 }
             }
         }
