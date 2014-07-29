@@ -34,7 +34,6 @@ namespace Trigger.XForms.Visuals
             this.ModelType = type;
             this.CurrentObject = currentObject;
             this.ID = this.Title;
-            this.BackgroundColor = Eto.Drawing.Colors.White;
 		
             if (this.ToolBar == null)
                 this.ToolBar = new ToolBar();

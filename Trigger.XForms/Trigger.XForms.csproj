@@ -100,6 +100,10 @@
     <Compile Include="Visuals\DetailViewControlFactory.cs" />
     <Compile Include="Visuals\ModelToDetailViewInterpreter.cs" />
     <Compile Include="Visuals\ModelToListViewInterpreter.cs" />
+    <Compile Include="Views\TabItemDescription.cs" />
+    <Compile Include="Views\GroupItemDescription.cs" />
+    <Compile Include="Views\ViewItemDescription.cs" />
+    <Compile Include="Views\LabelOrientation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

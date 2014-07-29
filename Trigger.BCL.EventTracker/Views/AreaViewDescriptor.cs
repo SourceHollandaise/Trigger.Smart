@@ -7,22 +7,28 @@ namespace Trigger.BCL.EventTracker
     {
         public AreaViewDescriptor()
         {
-            GroupItemDescriptions = new List<GroupItemDescription>
+            TabItemDescriptions = new List<TabItemDescription>
             {
-                new GroupItemDescription("Area", 1)
+                new TabItemDescription("Area", 1)
                 {
-                    ViewItemDescriptions = new List<ViewItemDescription>
+                    GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new ViewItemDescription("Name", 1){ LabelText = "Name", ShowLabel = true },
-                        new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
-                    }
-                },
-                new GroupItemDescription("Links", 2)
-                {
-                    ViewItemDescriptions = new List<ViewItemDescription>
-                    {
-                        new ViewItemDescription("LinkedDocuments", 1){ LabelText = "Documents", ShowLabel = false },
-                        new ViewItemDescription("LinkedIssues", 1){ LabelText = "Issues", ShowLabel = false }
+                        new GroupItemDescription("Name", 1)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("Name", 1){ LabelText = "Name", ShowLabel = true },
+                                new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
+                            }
+                        },
+                        new GroupItemDescription("Links", 2)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("LinkedDocuments", 1){ LabelText = "Documents", ShowLabel = false },
+                                new ViewItemDescription("LinkedIssues", 1){ LabelText = "Issues", ShowLabel = false }
+                            }
+                        }
                     }
                 }
             };

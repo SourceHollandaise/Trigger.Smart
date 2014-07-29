@@ -55,17 +55,20 @@ namespace Trigger.XForms.Visuals
 
             foreach (var tabItem in tabItems)
             { 
-               
-                var tabPage = new TabPage();
-                tabPage.Text = tabItem.TabHeaderText;
+                var tabPage = new TabPage()
+                {
+                    Text = tabItem.TabHeaderText
+                };
 
                 tabControl.TabPages.Add(tabPage);
            
-                var scrollable = new Scrollable();
-                scrollable.Border = BorderType.None;
-                scrollable.Size = new Eto.Drawing.Size(-1, -1);
+                var scrollable = new Scrollable()
+                {
+                    Border = BorderType.None,
+                    Size = new Eto.Drawing.Size(-1, -1),
+                    Content = AddGroupLayouts(tabItem.GroupItemDescriptions)
+                };
                
-                scrollable.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);
                 tabPage.Content = scrollable;
             }
 
@@ -76,15 +79,16 @@ namespace Trigger.XForms.Visuals
         {
             var groupItems = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
 
-            var scrollable = new Scrollable();
-
-            scrollable.Content = AddGroupLayouts(groupItems);
-            return scrollable;
+            return new Scrollable()
+            {
+                Content = AddGroupLayouts(groupItems)
+            };
         }
 
         DynamicLayout AddGroupLayouts(IList<GroupItemDescription> groupItems)
         {
             var layout = new DynamicLayout();
+
             foreach (var groupItem in groupItems)
             {
                 var groupLayout = CreateGroupLayout(groupItem);
@@ -105,8 +109,10 @@ namespace Trigger.XForms.Visuals
 
             layout.BeginVertical();
 
-            var groupBox = new GroupBox();
-            groupBox.Text = group.GroupHeaderText;
+            var groupBox = new GroupBox()
+            {
+                Text = group.GroupHeaderText
+            };
 
             foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
             {

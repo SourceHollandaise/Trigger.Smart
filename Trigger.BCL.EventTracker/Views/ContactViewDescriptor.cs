@@ -7,23 +7,35 @@ namespace Trigger.BCL.EventTracker
     {
         public ContactViewDescriptor()
         {
-            GroupItemDescriptions = new List<GroupItemDescription>
+            TabItemDescriptions = new List<TabItemDescription>
             {
-                new GroupItemDescription("Person", 1)
+                new TabItemDescription("Contact", 1)
                 {
-                    ViewItemDescriptions = new List<ViewItemDescription>
+                    GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new ViewItemDescription("Person", 1){ LabelText = "Person", ShowLabel = true }
-                    }
-                },
-                new GroupItemDescription("Contacts", 2)
-                {
-                    ViewItemDescriptions = new List<ViewItemDescription>
-                    {
-                        new ViewItemDescription("ContactType", 1){ LabelText = "Type", ShowLabel = true },
-                        new ViewItemDescription("PhoneNumber", 2){ LabelText = "Phone", ShowLabel = true },
-                        new ViewItemDescription("MobileNumber", 3){ LabelText = "Mobile", ShowLabel = true },
-                        new ViewItemDescription("Email", 4){ LabelText = "E-Mail", ShowLabel = true },
+                        new GroupItemDescription("Person", 1)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("Person", 1){ LabelText = "Person", ShowLabel = false }
+                            }
+                        },
+                        new GroupItemDescription("Type", 2)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("ContactType", 1){ LabelText = "Type", ShowLabel = false },
+                            }
+                        },
+                        new GroupItemDescription("Contact items", 3)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("PhoneNumber", 1){ LabelText = "Phone", ShowLabel = true },
+                                new ViewItemDescription("MobileNumber", 2){ LabelText = "Mobile", ShowLabel = true },
+                                new ViewItemDescription("Email", 3){ LabelText = "E-Mail", ShowLabel = true },
+                            }
+                        }
                     }
                 }
             };
