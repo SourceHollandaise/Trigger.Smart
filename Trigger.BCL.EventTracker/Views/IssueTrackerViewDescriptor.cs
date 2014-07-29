@@ -24,14 +24,7 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription("Area", 5){ LabelText = "Area" },
                             }
                         },
-                        new GroupItemDescription("Description", 2)
-                        {
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = false },
-                            }
-                        },
-                        new GroupItemDescription("Completition", 3)
+                        new GroupItemDescription("Completition", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
@@ -42,7 +35,21 @@ namespace Trigger.BCL.EventTracker
                         }
                     }
                 },
-                new TabItemDescription("Preview", 2)
+                new TabItemDescription("Description", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription("Description", 1){ LabelText = "Description", ShowLabel = false, Fill = true },
+                            }
+                        }
+                    }
+                },
+                new TabItemDescription("Preview", 3)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -59,5 +66,4 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
-    
 }

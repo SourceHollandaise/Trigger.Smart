@@ -139,6 +139,7 @@ namespace Trigger.XForms.Visuals
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         layout.EndHorizontal();
                         break;
+                    
                     case LabelOrientation.Right:
                         layout.BeginHorizontal();
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
@@ -146,11 +147,13 @@ namespace Trigger.XForms.Visuals
                             layout.Add(label);
                         layout.EndHorizontal();
                         break;
+                    
                     case LabelOrientation.Top:
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         break;
+                    
                     case LabelOrientation.Bottom:
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (viewItem.ShowLabel)

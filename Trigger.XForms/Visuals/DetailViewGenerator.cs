@@ -11,8 +11,7 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
-
-
+    [Obsolete("Use ViewDescriptors instead!", false)]
     public class DetailViewGenerator
     {
         List<CreatableDetailItem> creatableItems = new List<CreatableDetailItem>();

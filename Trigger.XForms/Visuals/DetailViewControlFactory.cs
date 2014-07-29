@@ -133,6 +133,24 @@ namespace Trigger.XForms.Visuals
             return control;
         }
 
+        public TextArea TextAreaPropertyEditor(PropertyInfo property)
+        {
+            var control = new TextArea
+            {
+                Text = (string)property.GetValue(Model, null),
+            };
+                
+            control.TextChanged += (sender, e) =>
+            {
+                property.SetValue(Model, control.Text, null);
+            };
+            control.Size = new Size(-1, -1);
+            control.Enabled = IsEnabled(property);
+            controlCollection.Add(property.Name, control);
+
+            return control;
+        }
+
         public ComboBox EnumPropertyEditor(PropertyInfo property)
         {
             var control = new ComboBox();
@@ -336,12 +354,15 @@ namespace Trigger.XForms.Visuals
         {
             if (property.PropertyType == typeof(string))
             {
-                var fileDataAttribute = property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
+                var fieldFileDataAttribute = property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
+                var fieldTextAreaAttribute = property.GetCustomAttributes(typeof(FieldTextAreaAttribute), true).FirstOrDefault() as FieldTextAreaAttribute;
 
-                if (fileDataAttribute != null)
+                if (fieldTextAreaAttribute != null)
+                    return TextAreaPropertyEditor(property);
+
+                if (fieldFileDataAttribute != null)
                     return FilePreviewPropertyEditor(property);
-                else
-                    return StringPropertyEditor(property);
+                return StringPropertyEditor(property);
                     
             }
 
