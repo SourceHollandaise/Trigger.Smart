@@ -7,12 +7,30 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker.Services
 {
-    public class DocumentDataService : IFileDataService
+    public class DocumentFileDataService : IFileDataService
     {
+        IStoreConfiguration StoreConfig
+        {
+            get
+            {
+                return  DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+            }
+        }
+
+        public void OpenFile(IFileData fileData)
+        {
+            var path = Path.Combine(StoreConfig.DocumentStoreLocation, fileData.FileName);
+
+            if (!File.Exists(path))
+                return;
+
+            System.Diagnostics.Process.Start(path);
+        }
+
         public int LoadFromStore()
         {
             var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var files = Directory.GetFiles(DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
+            var files = Directory.GetFiles(StoreConfig.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
             var documents = store.LoadAll<Document>().ToList();            
 
             int counter = 0;
@@ -37,7 +55,7 @@ namespace Trigger.BCL.EventTracker.Services
 
             foreach (var doc in documents)
             {
-                var path = Path.Combine(DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, doc.FileName);
+                var path = Path.Combine(StoreConfiguration.DocumentStoreLocation, doc.FileName);
 
                 if (!File.Exists(path))
                     doc.Delete();
@@ -52,7 +70,7 @@ namespace Trigger.BCL.EventTracker.Services
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, file.Name);
+                var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, file.Name);
 
                 try
                 {

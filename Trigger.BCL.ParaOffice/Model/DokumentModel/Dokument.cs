@@ -207,10 +207,11 @@ namespace Trigger.BCL.ParaOffice
 
         string fileName;
 
-        [InGroup("Sonstige Informationen", 4, 2)]
+        [InGroup("Vorschau", 5, 1)]
         [System.ComponentModel.DisplayName("Datei")]
         [VisibleOnView(TargetView.DetailOnly)]
         [System.ComponentModel.ReadOnly(true)]
+        [FileData]
         public string FileName
         {
             get

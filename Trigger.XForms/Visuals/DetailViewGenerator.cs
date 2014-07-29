@@ -71,6 +71,15 @@ namespace Trigger.XForms.Visuals
 
                 item.Property = property;
 
+                var fileDataAttribute = item.Property.GetCustomAttributes(typeof(FileDataAttribute), true).FirstOrDefault() as FileDataAttribute;
+
+                if (fileDataAttribute != null)
+                {
+                    item.Control = EditorFactory.DocumentPreviewPropertyEditor(property);
+                    creatableItems.Add(item);
+                    continue;
+                }
+
                 if (property.PropertyType == typeof(string))
                 {
                     item.Control = EditorFactory.StringPropertyEditor(property);
@@ -143,6 +152,8 @@ namespace Trigger.XForms.Visuals
                         creatableItems.Add(item);
                     }
                 }
+
+               
             }
         }
 
@@ -202,32 +213,38 @@ namespace Trigger.XForms.Visuals
                     if (item.Control is Button && item.Property.PropertyType.IsGenericType)
                     {
                         layout.Add(item.Control, true);
+                        continue;
                     }
-                    else
-                    { 
-                        switch (ViewTemplateConfig.LabelLocation)
-                        {
-                            case LabelControlLocation.AboveControl:
-                                layout.BeginVertical();
-                                layout.Add(GetLabel(item.Property), false);
-                                layout.Add(item.Control, true);
-                                layout.EndVertical();
-                                break;
-                            case LabelControlLocation.BeforeControl:
-                                layout.BeginHorizontal();
-                                layout.Add(GetLabel(item.Property), false);
-                                layout.Add(item.Control, true);
-                                layout.EndHorizontal();
-                                break;
-                            case LabelControlLocation.None:
-                                layout.BeginHorizontal();
-                                layout.Add(item.Control, true);
-                                layout.EndHorizontal();
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+
+                    if (item.Control is WebView)
+                    {
+                        layout.Add(item.Control, true, false);
+                        continue;
                     }
+
+                    switch (ViewTemplateConfig.LabelLocation)
+                    {
+                        case LabelLocation.AboveControl:
+                            layout.BeginVertical();
+                            layout.Add(GetLabel(item.Property), false);
+                            layout.Add(item.Control, true);
+                            layout.EndVertical();
+                            break;
+                        case LabelLocation.BeforeControl:
+                            layout.BeginHorizontal();
+                            layout.Add(GetLabel(item.Property), false);
+                            layout.Add(item.Control, true);
+                            layout.EndHorizontal();
+                            break;
+                        case LabelLocation.None:
+                            layout.BeginHorizontal();
+                            layout.Add(item.Control, true);
+                            layout.EndHorizontal();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
                 }
                 
                 layout.EndHorizontal();
@@ -246,7 +263,7 @@ namespace Trigger.XForms.Visuals
             var label = new Label
             {
                 Text = (attribute != null ? attribute.DisplayName : property.Name) + ":",
-                Size = ViewTemplateConfig.LabelLocation == LabelControlLocation.BeforeControl ? new Size(116, -1) : new Size(-1, -1),
+                Size = ViewTemplateConfig.LabelLocation == LabelLocation.BeforeControl ? new Size(116, -1) : new Size(-1, -1),
                 Wrap = WrapMode.Word
             };
 

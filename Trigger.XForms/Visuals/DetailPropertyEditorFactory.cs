@@ -6,6 +6,7 @@ using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using Eto.Drawing;
 using Trigger.XStorable.Dependency;
+using System.IO;
 
 namespace Trigger.XForms.Visuals
 {
@@ -22,16 +23,25 @@ namespace Trigger.XForms.Visuals
         public DetailPropertyEditorFactory(IStorable model)
         {
             this.Model = model;
-
-            Model.PropertyChanged += (sender, e) =>
-            {
-                HandleBindings(Model.GetType().GetProperty(e.PropertyName));
-            };
+            if (Model != null)
+                Model.PropertyChanged += (sender, e) =>
+                {
+                    HandleBindings(Model.GetType().GetProperty(e.PropertyName));
+                };
         }
 
         void HandleBindings(PropertyInfo property)
         {
             var control = controlCollection[property.Name];
+           
+            if (control is WebView)
+            {
+                var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+
+                var path = Path.Combine(storeConfig.DocumentStoreLocation, (string)property.GetValue(Model, null));
+
+                ((WebView)control).Url = new Uri(path, UriKind.RelativeOrAbsolute);
+            }
 
             if (control is NumericUpDown)
                 ((NumericUpDown)control).Value = Convert.ToDouble(property.GetValue(Model, null));
@@ -65,6 +75,22 @@ namespace Trigger.XForms.Visuals
                         ((ComboBox)control).SelectedValue = null;
                 }
             }
+        }
+
+        public WebView DocumentPreviewPropertyEditor(PropertyInfo property)
+        {
+            var webView = new WebView();
+
+            webView.Size = new Size(-1, 400);
+            var fileName = property.GetValue(Model, null) as string;
+
+            var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+
+            var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
+            if (File.Exists(path))
+                webView.Url = new Uri(path, UriKind.RelativeOrAbsolute);
+
+            return webView;
         }
 
         bool IsEnabled(PropertyInfo property)

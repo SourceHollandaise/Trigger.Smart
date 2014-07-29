@@ -6,6 +6,7 @@ using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.Common.Services
 {
+    [Obsolete("Do not use!", true)]
     public class UserService
     {
         public User CreateUser(string userName, string password, string passwordToCompare)

@@ -7,7 +7,7 @@ using Eto.Forms;
 using Eto.Drawing;
 using Trigger.BCL.ParaOffice;
 
-namespace Trigger.BCL.ParaOffice
+namespace Trigger.App.ParaOffice
 {
     public class ActionAktPersonenController : ActionBaseController
     {

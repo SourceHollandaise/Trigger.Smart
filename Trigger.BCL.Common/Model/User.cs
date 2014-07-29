@@ -1,6 +1,7 @@
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Model;
 using Trigger.BCL.Common.Security;
+using System;
 
 namespace Trigger.BCL.Common.Model
 {
@@ -83,6 +84,7 @@ namespace Trigger.BCL.Common.Model
             }
         }
 
+        [Obsolete("Not in use!", false)]
         public void SetPassword(string input)
         {       
             Password = SecureText.Secure(input);

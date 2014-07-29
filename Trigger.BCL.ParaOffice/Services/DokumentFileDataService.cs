@@ -3,12 +3,11 @@ using Trigger.XStorable.DataStore;
 using System.IO;
 using Trigger.XStorable.Dependency;
 using System.Linq;
-using Trigger.BCL.Common.Security;
 
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class ParaOfficeDocumentDataService : IFileDataService
+    public class DokumentFileDataService : IFileDataService
     {
         IStoreConfiguration StoreConfig
         {
@@ -16,6 +15,16 @@ namespace Trigger.BCL.ParaOffice
             {
                 return  DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
             }
+        }
+
+        public void OpenFile(IFileData fileData)
+        {
+            var path = Path.Combine(StoreConfig.DocumentStoreLocation, fileData.FileName);
+
+            if (!File.Exists(path))
+                return;
+
+            System.Diagnostics.Process.Start(path);
         }
 
         public int LoadFromStore()

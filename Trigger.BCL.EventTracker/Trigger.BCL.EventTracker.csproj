@@ -54,10 +54,10 @@
     <Compile Include="Model\TimeTracker.cs" />
     <Compile Include="Services\TimeTrackerService.cs" />
     <Compile Include="Model\Document.cs" />
-    <Compile Include="Services\DocumentDataService.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\ContactType.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="Services\DocumentFileDataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

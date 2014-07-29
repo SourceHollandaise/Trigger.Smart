@@ -14,11 +14,11 @@ namespace Trigger.XForms.Visuals
             }
         }
 
-        public LabelControlLocation LabelLocation
+        public LabelLocation LabelLocation
         {
             get
             {
-                return LabelControlLocation.BeforeControl;
+                return LabelLocation.BeforeControl;
             }
         }
 

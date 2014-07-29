@@ -25,4 +25,11 @@ namespace Trigger.XStorable.DataStore
             this.TargetView = targetView;
         }
     }
+
+    [System.ComponentModel.Category("XForms")]
+    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
+    public sealed class FileDataAttribute : Attribute
+    {
+       
+    }
 }

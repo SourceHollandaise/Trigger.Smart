@@ -12,7 +12,7 @@ namespace Trigger.BCL.Common.Services
         {
             if (!string.IsNullOrWhiteSpace(logonParameters.UserName) && !string.IsNullOrWhiteSpace(logonParameters.Password))
             {
-                var securePassword = logonParameters.Password;//SecureText.Secure(logonParameters.Password);
+                var securePassword = logonParameters.Password;
 
                 var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName.ToLowerInvariant() == logonParameters.UserName.ToLowerInvariant() && p.Password == securePassword);
 

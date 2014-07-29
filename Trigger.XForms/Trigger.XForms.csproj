@@ -96,6 +96,8 @@
     <Compile Include="Visuals\IViewTemplateConfiguration.cs" />
     <Compile Include="Visuals\ViewTemplateConfiguration.cs" />
     <Compile Include="Visuals\CreatableDetailItem.cs" />
+    <Compile Include="Visuals\LabelLocation.cs" />
+    <Compile Include="Controllers\Link.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

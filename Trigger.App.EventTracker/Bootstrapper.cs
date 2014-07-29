@@ -36,7 +36,7 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();
-            Map.RegisterType<IFileDataService, DocumentDataService>();
+            Map.RegisterType<IFileDataService, DocumentFileDataService>();
         }
 
         public virtual void CreateInitialObjects()
