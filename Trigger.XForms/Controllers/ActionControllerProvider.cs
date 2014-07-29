@@ -55,7 +55,7 @@ namespace Trigger.XForms.Controllers
 
 		IEnumerable<ActionBaseController> CreateControllers()
 		{
-			foreach (var type in ActionControllerDeclaration.DeclaredControllerTypes)
+			foreach (var type in ActionControllerDeclarator.DeclaredControllerTypes)
 			{
 				if (typeof(ActionBaseController).IsAssignableFrom(type))
 				{

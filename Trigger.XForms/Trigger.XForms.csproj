@@ -73,7 +73,6 @@
     <Compile Include="Controllers\ActionApplicationExitController.cs" />
     <Compile Include="Controllers\ActionBaseController.cs" />
     <Compile Include="Controllers\ActionCloseController.cs" />
-    <Compile Include="Controllers\ActionControllerDeclaration.cs" />
     <Compile Include="Controllers\ActionControllerProvider.cs" />
     <Compile Include="Controllers\ActionDeleteController.cs" />
     <Compile Include="Controllers\ActionFileDataDetailController.cs" />
@@ -104,6 +103,9 @@
     <Compile Include="Views\GroupItemDescription.cs" />
     <Compile Include="Views\ViewItemDescription.cs" />
     <Compile Include="Views\LabelOrientation.cs" />
+    <Compile Include="Controllers\ActionControllerDeclarator.cs" />
+    <Compile Include="Controllers\ModelTypesDeclarator.cs" />
+    <Compile Include="Views\ViewDescriptorDeclarator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

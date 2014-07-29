@@ -1,11 +1,11 @@
-﻿using Trigger.XForms;
+using Trigger.XForms;
 using System.Collections.Generic;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class PersonViewDescriptor : ViewDescriptor
+    public class PersonViewLayoutDemoDescriptor : ViewDescriptor
     {
-        public PersonViewDescriptor()
+        public PersonViewLayoutDemoDescriptor()
         {
             TabItemDescriptions = new List<TabItemDescription>
             {
@@ -18,9 +18,10 @@ namespace Trigger.BCL.EventTracker
                             ViewItemOrientation = ViewItemOrientation.Horizontal,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("FirstName", 1){ LabelText = "Name" },
-                                new ViewItemDescription("MiddleName", 2){ LabelText = "Middle name" },
-                                new ViewItemDescription("LastName", 3){ LabelText = "Last name" },
+                                new ViewItemDescription("FirstName", 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription("MiddleName", 2){ LabelText = "Middle name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription("LastName", 3){ LabelText = "Last name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(ViewDescriptor.EmptySpaceFieldName, 4){ ShowLabel = false }
                             }
                         },
                         new GroupItemDescription("Address", 2)
@@ -28,9 +29,9 @@ namespace Trigger.BCL.EventTracker
                             ViewItemOrientation = ViewItemOrientation.Horizontal,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("PostalCode", 1){ LabelText = "Postal Code" },
-                                new ViewItemDescription("City", 2){ LabelText = "City" },
-                                new ViewItemDescription("Street", 3){ LabelText = "Address" }
+                                new ViewItemDescription("PostalCode", 1){ LabelText = "Postal Code", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription("City", 2){ LabelText = "City", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription("Street", 3){ LabelText = "Address", LabelOrientation = LabelOrientation.Top }
                             }
                         },
                         new GroupItemDescription("Links", 3)
@@ -45,5 +46,5 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
+    
 }
-

@@ -11,23 +11,5 @@ namespace Trigger.XForms
 
         public IList<TabItemDescription> TabItemDescriptions { get; set; }
     }
-
-    public static class ViewDescriptorDeclarator
-    {
-        static readonly Dictionary<Type, Type> descriptors = new Dictionary<Type, Type>();
-
-        public static void Declare<T,U>()
-        {
-            if (!descriptors.ContainsKey(typeof(T)))
-                descriptors.Add(typeof(T), typeof(U));
-        }
-
-        public static Type GetDescriptor(Type type)
-        {
-            if (descriptors.ContainsKey(type))
-                return descriptors[type];
-            return null;
-        }
-    }
 }
 

@@ -13,7 +13,7 @@ namespace Trigger.XForms.Visuals
         {
             Size = ViewTemplateConfig.ListViewCompactSize;
 
-            Content = new MainViewGenerator(ModelTypesDeclaration.DeclaredModelTypes).GetContent();
+            Content = new MainViewGenerator(ModelTypesDeclarator.DeclaredModelTypes).GetContent();
             Content = new Scrollable{ Content = this.Content };
         }
 

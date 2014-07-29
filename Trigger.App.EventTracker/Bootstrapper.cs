@@ -66,8 +66,8 @@ namespace Trigger.App.EventTracker
 
         public virtual void RegisterDeclaredTypes()
         {
-            ModelTypesDeclaration.DeclareModelTypes(DeclaredTypes());
-            ActionControllerDeclaration.DeclareControllerTypes(DeclaredControllers());
+            ModelTypesDeclarator.DeclareModelTypes(DeclaredTypes());
+            ActionControllerDeclarator.DeclareControllerTypes(DeclaredControllers());
         }
 
         protected virtual Type[] DeclaredTypes()
