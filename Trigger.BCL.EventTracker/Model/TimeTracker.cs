@@ -10,23 +10,6 @@ namespace Trigger.BCL.EventTracker.Model
     [ViewCompact]
     public class TimeTracker : StorableBase
     {
-        [System.ComponentModel.DisplayName("Tracked Times")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("'{0}' by {1} started at {2}", Subject, UserAlias, Begin));
-                if (Duration != null)
-                    sb.AppendLine(string.Format("{0} - {1} with duration {2}", Begin, End, Duration));
-                sb.AppendLine(string.Format("Linked to '{0}' area", AreaAlias));
-                sb.AppendLine(string.Format("{0}", Description));
-                //sb.AppendLine(string.Format("ID: {0}", MappingId));
-                return sb.ToString();
-            }
-        }
-
         string subject;
 
         public string Subject
@@ -140,7 +123,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         [System.ComponentModel.DisplayName("Area")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
         public string AreaAlias
         {
             get
@@ -152,7 +134,6 @@ namespace Trigger.BCL.EventTracker.Model
         Area area;
 
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public Area Area
         {
             get
@@ -169,21 +150,9 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("User")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
-        public string UserAlias
-        {
-            get
-            {
-                return User != null ? User.UserName : null;
-            }
-        }
-
         User user;
 
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public User User
         {
             get

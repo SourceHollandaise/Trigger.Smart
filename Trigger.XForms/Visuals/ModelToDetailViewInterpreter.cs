@@ -46,7 +46,7 @@ namespace Trigger.XForms.Visuals
 
         DynamicLayout CreateViewLayout()
         {
-            var groups = Descriptor.GroupItems.OrderBy(p => p.Index).ToList();
+            var groups = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
 
             var layout = new DynamicLayout();
             foreach (var group in groups)
@@ -61,7 +61,7 @@ namespace Trigger.XForms.Visuals
             return layout;
         }
 
-        GroupBox CreateGroupLayout(GroupItem group)
+        GroupBox CreateGroupLayout(GroupItemDescription group)
         {
             var layout = new DynamicLayout();
 
@@ -70,7 +70,7 @@ namespace Trigger.XForms.Visuals
             var groupBox = new GroupBox();
             groupBox.Text = group.HeaderText;
 
-            foreach (var viewItem in group.ViewItems.OrderBy(p => p.Index).ToList())
+            foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var property = CurrentType.GetProperty(viewItem.FieldName);
 

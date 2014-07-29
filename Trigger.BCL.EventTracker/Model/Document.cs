@@ -11,21 +11,6 @@ namespace Trigger.BCL.EventTracker.Model
     [ViewDescriptor(typeof(DocumentViewDescriptor))]
     public class Document : StorableBase, IFileData
     {
-        [System.ComponentModel.DisplayName("Document")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("'{0}' by {1}", Subject, User.UserName));
-                sb.AppendLine(string.Format("Linked to '{0}' area", Area.Name));
-                sb.AppendLine(string.Format("{0}", Description));
-                //sb.AppendLine(string.Format("ID: {0}", MappingId));
-                return sb.ToString();
-            }
-        }
-
         public override void Delete()
         {
             var path = Path.Combine(Map.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, FileName);

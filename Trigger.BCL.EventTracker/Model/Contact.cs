@@ -1,11 +1,10 @@
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Model;
-using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker.Model
 {
 
-    [System.ComponentModel.DefaultProperty("PhoneNumber")]
+    [System.ComponentModel.DefaultProperty("Person")]
     [System.ComponentModel.DisplayName("Contact")]
     [ViewCompact]
     [ViewNavigation]

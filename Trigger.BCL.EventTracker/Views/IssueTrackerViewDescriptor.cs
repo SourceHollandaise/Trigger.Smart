@@ -7,40 +7,40 @@ namespace Trigger.BCL.EventTracker
     {
         public IssueTrackerViewDescriptor()
         {
-            GroupItems = new List<GroupItem>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItem("Details", 1)
+                new GroupItemDescription("Details", 1)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Subject", 1){ LabelText = "Name", ShowLabel = true },
-                        new ViewItem("IssuePriority", 2){ LabelText = "Priority", ShowLabel = true },
-                        new ViewItem("IssueType", 3){ LabelText = "Type", ShowLabel = true },
-                        new ViewItem("IssueState", 4){ LabelText = "State", ShowLabel = true },
-                        new ViewItem("Area", 5){ LabelText = "Area", ShowLabel = true },
+                        new ViewItemDescription("Subject", 1){ LabelText = "Name", ShowLabel = true },
+                        new ViewItemDescription("IssuePriority", 2){ LabelText = "Priority", ShowLabel = true },
+                        new ViewItemDescription("IssueType", 3){ LabelText = "Type", ShowLabel = true },
+                        new ViewItemDescription("IssueState", 4){ LabelText = "State", ShowLabel = true },
+                        new ViewItemDescription("Area", 5){ LabelText = "Area", ShowLabel = true },
                     }
                 },
-                new GroupItem("Description", 2)
+                new GroupItemDescription("Description", 2)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Description", 2){ LabelText = "Description", ShowLabel = false },
+                        new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = false },
                     }
                 },
-                new GroupItem("Completition", 3)
+                new GroupItemDescription("Completition", 3)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Start", 1){ LabelText = "Start", ShowLabel = true },
-                        new ViewItem("Resolved", 2){ LabelText = "Resolved", ShowLabel = true },
-                        new ViewItem("ResolvedBy", 3){ LabelText = "Resolved by", ShowLabel = true },
+                        new ViewItemDescription("Start", 1){ LabelText = "Start", ShowLabel = true },
+                        new ViewItemDescription("Resolved", 2){ LabelText = "Resolved", ShowLabel = true },
+                        new ViewItemDescription("ResolvedBy", 3){ LabelText = "Resolved by", ShowLabel = true },
                     }
                 },
-                new GroupItem("Preview", 4)
+                new GroupItemDescription("Preview", 4)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("FileName", 1){ LabelText = "Preview", ShowLabel = false }
+                        new ViewItemDescription("FileName", 1){ LabelText = "Preview", ShowLabel = false }
                     }
                 }
             };

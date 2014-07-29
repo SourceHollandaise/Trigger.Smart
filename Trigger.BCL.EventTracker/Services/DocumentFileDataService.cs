@@ -19,12 +19,14 @@ namespace Trigger.BCL.EventTracker.Services
 
         public void OpenFile(IFileData fileData)
         {
-            var path = Path.Combine(StoreConfig.DocumentStoreLocation, fileData.FileName);
+            if (!string.IsNullOrWhiteSpace(fileData.FileName))
+            {
+                var path = Path.Combine(StoreConfig.DocumentStoreLocation, fileData.FileName);
 
-            if (!File.Exists(path))
-                return;
-
-            System.Diagnostics.Process.Start(path);
+                if (!File.Exists(path))
+                    return;
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         public int LoadFromStore()

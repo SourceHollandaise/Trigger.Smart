@@ -382,8 +382,6 @@ namespace Trigger.XForms.Visuals
                 var value = property.GetValue(Model, null);
                 if (value is IEnumerable<IStorable>)
                 {
-                    var list = (value as IEnumerable<IStorable>).ToList();
-
                     var control = new Button
                     {
                         Tag = value

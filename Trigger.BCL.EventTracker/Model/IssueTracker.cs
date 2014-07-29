@@ -22,26 +22,6 @@ namespace Trigger.BCL.EventTracker.Model
             IssueState = IssueState.Open;
         }
 
-        [System.ComponentModel.DisplayName("Issue")]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("'{0}' / {1} - {2}", Subject, IssueType, IssueState));
-                sb.AppendLine(string.Format("Priority: {0}", IssuePriority));
-                if (Area != null)
-                    sb.AppendLine(string.Format("Linked to '{0}' area", Area.Name));
-                //sb.AppendLine(string.Format("{0}", Description));
-                if (IsDone && ResolvedBy != null)
-                    sb.AppendLine(string.Format("Resolved by {0} / {1}", ResolvedBy.UserName, Resolved));
-                else
-                    sb.AppendLine(string.Format("InProgress since {0}", Start));
-                //sb.AppendLine(string.Format("ID: {0}", MappingId));
-                return sb.ToString();
-            }
-        }
-
         string subject;
 
         public string Subject

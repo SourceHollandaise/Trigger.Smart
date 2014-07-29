@@ -7,31 +7,31 @@ namespace Trigger.BCL.EventTracker
     {
         public PersonViewDescriptor()
         {
-            GroupItems = new List<GroupItem>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItem("Names", 1)
+                new GroupItemDescription("Names", 1)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("FirstName", 1){ LabelText = "Name", ShowLabel = true },
-                        new ViewItem("MiddleName", 2){ LabelText = "Middle name", ShowLabel = true },
-                        new ViewItem("LastName", 3){ LabelText = "Last name", ShowLabel = true }
+                        new ViewItemDescription("FirstName", 1){ LabelText = "Name", ShowLabel = true },
+                        new ViewItemDescription("MiddleName", 2){ LabelText = "Middle name", ShowLabel = true },
+                        new ViewItemDescription("LastName", 3){ LabelText = "Last name", ShowLabel = true }
                     }
                 },
-                new GroupItem("Address", 2)
+                new GroupItemDescription("Address", 2)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("PostalCode", 1){ LabelText = "Postal Code", ShowLabel = true },
-                        new ViewItem("City", 2){ LabelText = "City", ShowLabel = true },
-                        new ViewItem("Street", 3){ LabelText = "Address", ShowLabel = true }
+                        new ViewItemDescription("PostalCode", 1){ LabelText = "Postal Code", ShowLabel = true },
+                        new ViewItemDescription("City", 2){ LabelText = "City", ShowLabel = true },
+                        new ViewItemDescription("Street", 3){ LabelText = "Address", ShowLabel = true }
                     }
                 },
-                new GroupItem("Links", 3)
+                new GroupItemDescription("Links", 3)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("LinkedContacts", 1){ LabelText = "Contacts", ShowLabel = false }
+                        new ViewItemDescription("LinkedContacts", 1){ LabelText = "Contacts", ShowLabel = false }
                     }
                 }
             };

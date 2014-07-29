@@ -7,30 +7,30 @@ namespace Trigger.BCL.EventTracker
     {
         public DocumentViewDescriptor()
         {
-            GroupItems = new List<GroupItem>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItem("Details", 1)
+                new GroupItemDescription("Details", 1)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Subject", 1){ LabelText = "Name", ShowLabel = true },
-                        new ViewItem("Description", 2){ LabelText = "Middle name", ShowLabel = true },
-                        new ViewItem("User", 3){ LabelText = "From", ShowLabel = true },
+                        new ViewItemDescription("Subject", 1){ LabelText = "Name", ShowLabel = true },
+                        new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
+                        new ViewItemDescription("User", 3){ LabelText = "From", ShowLabel = true },
                     }
                 },
-                new GroupItem("Links", 2)
+                new GroupItemDescription("Links", 2)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Area", 1){ LabelText = "Area", ShowLabel = true },
-                        new ViewItem("Issue", 2){ LabelText = "Issue", ShowLabel = true },
+                        new ViewItemDescription("Area", 1){ LabelText = "Area", ShowLabel = true },
+                        new ViewItemDescription("Issue", 2){ LabelText = "Issue", ShowLabel = true },
                     }
                 },
-                new GroupItem("Preview", 3)
+                new GroupItemDescription("Preview", 3)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("FileName", 1){ LabelText = "Preview file", ShowLabel = false },
+                        new ViewItemDescription("FileName", 1){ LabelText = "Preview file", ShowLabel = false },
                     }
                 }
             };

@@ -7,22 +7,22 @@ namespace Trigger.BCL.EventTracker
     {
         public AreaViewDescriptor()
         {
-            GroupItems = new List<GroupItem>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItem("Area", 1)
+                new GroupItemDescription("Area", 1)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Name", 1){ LabelText = "Name", ShowLabel = true },
-                        new ViewItem("Description", 2){ LabelText = "Middle name", ShowLabel = true },
+                        new ViewItemDescription("Name", 1){ LabelText = "Name", ShowLabel = true },
+                        new ViewItemDescription("Description", 2){ LabelText = "Description", ShowLabel = true },
                     }
                 },
-                new GroupItem("Links", 2)
+                new GroupItemDescription("Links", 2)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("LinkedDocuments", 1){ LabelText = "Documents", ShowLabel = false },
-                        new ViewItem("LinkedIssues", 1){ LabelText = "Issues", ShowLabel = false }
+                        new ViewItemDescription("LinkedDocuments", 1){ LabelText = "Documents", ShowLabel = false },
+                        new ViewItemDescription("LinkedIssues", 1){ LabelText = "Issues", ShowLabel = false }
                     }
                 }
             };

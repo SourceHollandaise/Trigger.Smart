@@ -11,19 +11,6 @@ namespace Trigger.BCL.EventTracker.Model
     [ViewDescriptor(typeof(PersonViewDescriptor))]
     public class Person : StorableBase
     {
-        [System.ComponentModel.DisplayName("Person")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} {1}", FirstName, LastName));
-                sb.AppendLine(string.Format("{0} {1} - {2}", PostalCode, City, Street));
-                return sb.ToString();
-            }
-        }
-
         string displayName;
 
         public string DisplayName

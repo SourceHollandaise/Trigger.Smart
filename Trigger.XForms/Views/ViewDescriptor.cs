@@ -1,17 +1,15 @@
-﻿using System;
-using Trigger.XStorable.DataStore;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Trigger.XForms
 {
     public abstract class ViewDescriptor
     {
-        public IList<GroupItem> GroupItems { get; set; }
+        public IList<GroupItemDescription> GroupItemDescriptions { get; set; }
     }
 
-    public class GroupItem
+    public class GroupItemDescription
     {
-        public GroupItem(string headertext, int index)
+        public GroupItemDescription(string headertext, int index)
         {
             HeaderText = headertext;
             Index = index;
@@ -21,12 +19,12 @@ namespace Trigger.XForms
 
         public int Index { get; set; }
 
-        public IList<ViewItem> ViewItems { get; set; }
+        public IList<ViewItemDescription> ViewItemDescriptions { get; set; }
     }
 
-    public class ViewItem
+    public class ViewItemDescription
     {
-        public ViewItem(string fieldName, int index)
+        public ViewItemDescription(string fieldName, int index)
         {
             FieldName = fieldName;
             Index = index;

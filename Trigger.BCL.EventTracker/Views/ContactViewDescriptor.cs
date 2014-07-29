@@ -7,23 +7,23 @@ namespace Trigger.BCL.EventTracker
     {
         public ContactViewDescriptor()
         {
-            GroupItems = new List<GroupItem>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItem("Person", 1)
+                new GroupItemDescription("Person", 1)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("Person", 1){ LabelText = "Person", ShowLabel = true }
+                        new ViewItemDescription("Person", 1){ LabelText = "Person", ShowLabel = true }
                     }
                 },
-                new GroupItem("Contacts", 2)
+                new GroupItemDescription("Contacts", 2)
                 {
-                    ViewItems = new List<ViewItem>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItem("ContactType", 1){ LabelText = "Type", ShowLabel = true },
-                        new ViewItem("PhoneNumber", 2){ LabelText = "Phone", ShowLabel = true },
-                        new ViewItem("MobileNumber", 3){ LabelText = "Mobile phone", ShowLabel = true },
-                        new ViewItem("Email", 4){ LabelText = "E-Mail", ShowLabel = true },
+                        new ViewItemDescription("ContactType", 1){ LabelText = "Type", ShowLabel = true },
+                        new ViewItemDescription("PhoneNumber", 2){ LabelText = "Phone", ShowLabel = true },
+                        new ViewItemDescription("MobileNumber", 3){ LabelText = "Mobile", ShowLabel = true },
+                        new ViewItemDescription("Email", 4){ LabelText = "E-Mail", ShowLabel = true },
                     }
                 }
             };
