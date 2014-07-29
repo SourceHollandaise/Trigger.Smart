@@ -26,7 +26,7 @@ namespace Trigger.XForms.Visuals
             if (descriptorAttribute != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorAttribute.DescriptorType) as ViewDescriptor;
-                Content = new DetailViewInterpreter(descriptor, currentObject).CreateFromDescriptor();
+                Content = new ModelToDetailViewInterpreter(descriptor, currentObject).GetContent();
             }
             else
                 Content = new DetailViewGenerator(CurrentObject).GetContent();

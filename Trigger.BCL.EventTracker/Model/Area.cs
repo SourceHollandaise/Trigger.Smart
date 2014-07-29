@@ -9,10 +9,10 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Name")]
     [ViewCompact]
     [ViewNavigation]
+    [ViewDescriptor(typeof(AreaViewDescriptor))]
     public class Area : StorableBase
     {
         [System.ComponentModel.DisplayName("Area")]
-        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -24,8 +24,6 @@ namespace Trigger.BCL.EventTracker.Model
                     sb.AppendLine(string.Format("Documents linked: {0}", LinkedDocuments.Count()));
                 if (LinkedIssues.Any())
                     sb.AppendLine(string.Format("Issues linked: {0}", LinkedIssues.Count()));
-                if (LinkedTrackedTimes.Any())
-                    sb.AppendLine(string.Format("Tracked times linked: {0}", LinkedTrackedTimes.Count()));
                 //sb.AppendLine(string.Format("ID: {0}", MappingId));
                 return sb.ToString();
             }
@@ -33,7 +31,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string name;
 
-        [FieldGroup("Area-Details", 1, 1)]
         public string Name
         {
             get
@@ -52,7 +49,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
-        [FieldGroup("Area-Details", 1, 2)]
         public string Description
         {
             get
@@ -69,7 +65,6 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [FieldGroup("Links", 2, 1)]
         [System.ComponentModel.DisplayName("Linked documents")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Document))]
@@ -81,7 +76,6 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [FieldGroup("Links", 2, 2)]
         [System.ComponentModel.DisplayName("Linked issues")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(IssueTracker))]
@@ -90,18 +84,6 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 return Store.LoadAll<IssueTracker>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
-            }
-        }
-
-        [FieldGroup("Links", 2, 3)]
-        [System.ComponentModel.DisplayName("Linked tracked times")]
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [LinkedList(typeof(TimeTracker))]
-        public IEnumerable<TimeTracker> LinkedTrackedTimes
-        {
-            get
-            {
-                return Store.LoadAll<TimeTracker>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
             }
         }
     }

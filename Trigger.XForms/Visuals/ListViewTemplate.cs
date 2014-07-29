@@ -17,7 +17,7 @@ namespace Trigger.XForms.Visuals
         public ListViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
         {
             if (CurrentGrid == null)
-                CurrentGrid = new ListViewGenerator(ModelType).GetContent();
+                CurrentGrid = new ModelToListViewInterpreter(ModelType).GetContent();
 
             Content = CurrentGrid;
             Content = new Scrollable{ Content = this.Content };

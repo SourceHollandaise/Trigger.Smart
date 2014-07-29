@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.EventTracker
 {
-
     public class DocumentViewDescriptor : ViewDescriptor
     {
         public DocumentViewDescriptor()
@@ -27,7 +26,7 @@ namespace Trigger.BCL.EventTracker
                         new ViewItem("Issue", 2){ LabelText = "Issue", ShowLabel = true },
                     }
                 },
-                new GroupItem("Preview", 2)
+                new GroupItem("Preview", 3)
                 {
                     ViewItems = new List<ViewItem>
                     {

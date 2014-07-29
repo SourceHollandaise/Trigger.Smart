@@ -19,7 +19,8 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0}", PersonAlias));
+                if (Person != null)
+                    sb.AppendLine(string.Format("{0}", Person.DisplayName));
                 if (!string.IsNullOrEmpty(PhoneNumber))
                     sb.AppendLine(string.Format("Phone: {0}", PhoneNumber));
                 if (!string.IsNullOrEmpty(MobileNumber))

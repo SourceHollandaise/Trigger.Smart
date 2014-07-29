@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
-    public class DetailPropertyEditorFactory
+    public class DetailViewControlFactory
     {
         Dictionary<string, Control> controlCollection = new Dictionary<string, Control>();
 
@@ -21,7 +21,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public DetailPropertyEditorFactory(IStorable model)
+        public DetailViewControlFactory(IStorable model)
         {
             this.Model = model;
             if (Model != null)
@@ -383,8 +383,6 @@ namespace Trigger.XForms.Visuals
                 if (value is IEnumerable<IStorable>)
                 {
                     var list = (value as IEnumerable<IStorable>).ToList();
-                    if (!list.Any())
-                        return null;
 
                     var control = new Button
                     {

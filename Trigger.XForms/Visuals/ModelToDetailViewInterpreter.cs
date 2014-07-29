@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using Eto.Drawing;
 using Eto.Forms;
 using Trigger.XForms;
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
-
-    public class DetailViewInterpreter
+    public class ModelToDetailViewInterpreter
     {
+        readonly DetailViewControlFactory controlFactory;
 
         protected ViewDescriptor Descriptor
         {
@@ -33,32 +30,29 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        protected DetailPropertyEditorFactory ControlFactory
-        {
-            get;
-            set;
-        }
-
-
-        public DetailViewInterpreter(ViewDescriptor descriptor, IStorable currentObject)
+        public ModelToDetailViewInterpreter(ViewDescriptor descriptor, IStorable currentObject)
         {
             this.Descriptor = descriptor;
             this.CurrentObject = currentObject;
             this.CurrentType = this.CurrentObject.GetType();
 
-            ControlFactory = new DetailPropertyEditorFactory(this.CurrentObject);
+            controlFactory = new DetailViewControlFactory(this.CurrentObject);
         }
 
-        public DynamicLayout CreateFromDescriptor()
+        public DynamicLayout GetContent()
+        {
+            return CreateViewLayout();
+        }
+
+        DynamicLayout CreateViewLayout()
         {
             var groups = Descriptor.GroupItems.OrderBy(p => p.Index).ToList();
 
             var layout = new DynamicLayout();
             foreach (var group in groups)
             { 
-                var groupLayout = CreateGroupFromDescriptor(group);
+                var groupLayout = CreateGroupLayout(group);
                 layout.Add(groupLayout);
- 
             }
 
             layout.BeginVertical();
@@ -67,7 +61,7 @@ namespace Trigger.XForms.Visuals
             return layout;
         }
 
-        GroupBox CreateGroupFromDescriptor(GroupItem group)
+        GroupBox CreateGroupLayout(GroupItem group)
         {
             var layout = new DynamicLayout();
 
@@ -83,7 +77,7 @@ namespace Trigger.XForms.Visuals
                 if (property == null)
                     continue;
 
-                var control = ControlFactory.GetControl(property);
+                var control = controlFactory.GetControl(property);
 
                 if (control == null)
                     continue;

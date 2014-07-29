@@ -17,7 +17,7 @@ namespace Trigger.XForms.Visuals
     {
         List<CreatableDetailItem> creatableItems = new List<CreatableDetailItem>();
 
-        protected DetailPropertyEditorFactory EditorFactory
+        protected DetailViewControlFactory EditorFactory
         {
             get;
             set;
@@ -41,7 +41,7 @@ namespace Trigger.XForms.Visuals
         public DetailViewGenerator(IStorable model)
         {
             this.Model = model;
-            EditorFactory = new DetailPropertyEditorFactory(Model);
+            EditorFactory = new DetailViewControlFactory(Model);
         }
 
         public DynamicLayout GetContent()

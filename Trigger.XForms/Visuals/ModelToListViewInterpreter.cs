@@ -8,7 +8,7 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
-    public class ListViewGenerator
+    public class ModelToListViewInterpreter
     {
         readonly IStore store = DependencyMapProvider.Instance.ResolveType<IStore>();
         readonly ListPropertyEditorFactory factory;
@@ -19,7 +19,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ListViewGenerator(Type modelType)
+        public ModelToListViewInterpreter(Type modelType)
         {
             this.ModelType = modelType;
             factory = new ListPropertyEditorFactory(ModelType);

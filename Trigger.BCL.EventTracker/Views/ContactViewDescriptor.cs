@@ -21,9 +21,9 @@ namespace Trigger.BCL.EventTracker
                     ViewItems = new List<ViewItem>
                     {
                         new ViewItem("ContactType", 1){ LabelText = "Type", ShowLabel = true },
-                        new ViewItem("PhoneNumber", 2){ LabelText = "Phone", ShowLabel = false },
-                        new ViewItem("MobileNumber", 3){ LabelText = "Mobile phone", ShowLabel = false },
-                        new ViewItem("Email", 4){ LabelText = "E-Mail", ShowLabel = false },
+                        new ViewItem("PhoneNumber", 2){ LabelText = "Phone", ShowLabel = true },
+                        new ViewItem("MobileNumber", 3){ LabelText = "Mobile phone", ShowLabel = true },
+                        new ViewItem("Email", 4){ LabelText = "E-Mail", ShowLabel = true },
                     }
                 }
             };
