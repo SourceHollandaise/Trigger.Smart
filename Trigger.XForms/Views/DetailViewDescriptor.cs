@@ -3,7 +3,7 @@ using System;
 
 namespace Trigger.XForms
 {
-    public abstract class ViewDescriptor<T> : IViewDescriptor
+    public abstract class DetailViewDescriptor<T> : IDetailViewDescriptor
     {
         public IList<GroupItemDescription> GroupItemDescriptions { get; set; }
 

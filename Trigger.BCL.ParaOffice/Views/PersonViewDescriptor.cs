@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class PersonViewDescriptor : ViewDescriptor<Person>
+    public class PersonViewDescriptor : DetailViewDescriptor<Person>
     {
         public PersonViewDescriptor()
         {

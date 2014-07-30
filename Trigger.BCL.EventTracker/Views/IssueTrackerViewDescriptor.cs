@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class IssueTrackerViewDescriptor : ViewDescriptor<IssueTracker>
+    public class IssueTrackerViewDescriptor : DetailViewDescriptor<IssueTracker>
     {
         public IssueTrackerViewDescriptor()
         {

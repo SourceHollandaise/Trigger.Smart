@@ -24,11 +24,11 @@ namespace Trigger.XForms.Visuals
 
         public void SetContent()
         {
-            var descriptorType = ListDescriptorProvider.GetDescriptor(ModelType);
+            var descriptorType = ListViewDescriptorProvider.GetDescriptor(ModelType);
             if (descriptorType != null)
             {
-                var descriptor = Activator.CreateInstance(descriptorType) as IListDescriptor;
-                Content = new ModelToListViewInterpreter(descriptor, ModelType).GetContent();
+                var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+                Content = new ListViewBuilder(descriptor, ModelType).GetContent();
             }
 
             CurrentGrid = Content as GridView;

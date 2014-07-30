@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class PersonViewDescriptor : ViewDescriptor<Person>
+    public class PersonViewDescriptor : DetailViewDescriptor<Person>
     {
         public PersonViewDescriptor()
         {

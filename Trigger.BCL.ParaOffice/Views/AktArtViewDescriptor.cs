@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class AktArtViewDescriptor : ViewDescriptor<AktArt>
+    public class AktArtViewDescriptor : DetailViewDescriptor<AktArt>
     {
         public AktArtViewDescriptor()
         {

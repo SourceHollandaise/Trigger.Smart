@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class DocumentViewDescriptor : ViewDescriptor<Document>
+    public class DocumentViewDescriptor : DetailViewDescriptor<Document>
     {
         public DocumentViewDescriptor()
         {

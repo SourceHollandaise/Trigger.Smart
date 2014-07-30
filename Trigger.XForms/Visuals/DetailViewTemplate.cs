@@ -17,11 +17,11 @@ namespace Trigger.XForms.Visuals
 
         public void SetContent(IStorable currentObject)
         {
-            var descriptorType = ViewDescriptorProvider.GetDescriptor(currentObject.GetType());
+            var descriptorType = DetailViewDescriptorProvider.GetDescriptor(currentObject.GetType());
             if (descriptorType != null)
             {
-                var descriptor = Activator.CreateInstance(descriptorType) as IViewDescriptor;
-                Content = new ModelToDetailViewInterpreter(descriptor, currentObject).GetContent();
+                var descriptor = Activator.CreateInstance(descriptorType) as IDetailViewDescriptor;
+                Content = new DetailViewBuilder(descriptor, currentObject).GetContent();
             }
         }
 

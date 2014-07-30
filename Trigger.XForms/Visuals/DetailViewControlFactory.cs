@@ -398,12 +398,12 @@ namespace Trigger.XForms.Visuals
                 var value = property.GetValue(Model, null);
                 if (value is IEnumerable<IStorable>)
                 {
-                    var descriptorType = ListDescriptorProvider.GetDescriptor(linkedListAttribute.LinkType);
+                    var descriptorType = ListViewDescriptorProvider.GetDescriptor(linkedListAttribute.LinkType);
 
                     if (descriptorType != null)
                     {
-                        var descriptor = Activator.CreateInstance(descriptorType) as IListDescriptor;
-                        var control = new ModelToListViewInterpreter(descriptor, linkedListAttribute.LinkType, value as IEnumerable<IStorable>).GetContent();
+                        var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+                        var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, value as IEnumerable<IStorable>).GetContent();
 
                         if (control != null)
                         {

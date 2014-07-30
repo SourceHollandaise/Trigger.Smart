@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class AktViewDescriptor : ViewDescriptor<Akt>
+    public class AktViewDescriptor : DetailViewDescriptor<Akt>
     {
         public AktViewDescriptor()
         {

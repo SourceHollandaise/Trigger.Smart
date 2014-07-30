@@ -8,11 +8,11 @@ using Trigger.XForms;
 
 namespace Trigger.XForms.Visuals
 {
-    public class ModelToDetailViewInterpreter
+    public class DetailViewBuilder
     {
         readonly DetailViewControlFactory controlFactory;
 
-        protected IViewDescriptor Descriptor
+        protected IDetailViewDescriptor Descriptor
         {
             get;
             set;
@@ -30,7 +30,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ModelToDetailViewInterpreter(IViewDescriptor descriptor, IStorable currentObject)
+        public DetailViewBuilder(IDetailViewDescriptor descriptor, IStorable currentObject)
         {
             this.Descriptor = descriptor;
             this.CurrentObject = currentObject;

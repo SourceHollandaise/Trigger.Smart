@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class ContactViewDescriptor : ViewDescriptor<Contact>
+    public class ContactViewDescriptor : DetailViewDescriptor<Contact>
     {
         public ContactViewDescriptor()
         {

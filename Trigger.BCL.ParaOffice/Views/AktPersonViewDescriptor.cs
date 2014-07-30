@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class KontaktViewDescriptor : DetailViewDescriptor<Kontakt>
+
+    public class AktPersonViewDescriptor : DetailViewDescriptor<AktPerson>
     {
-        public KontaktViewDescriptor()
+        public AktPersonViewDescriptor()
         {
             TabItemDescriptions = new List<TabItemDescription>
             {
-                new TabItemDescription("Kontakt", 1)
+                new TabItemDescription("Aktperson", 1)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -18,16 +19,17 @@ namespace Trigger.BCL.ParaOffice
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person" },
-                                new ViewItemDescription(Fields.GetName(m => m.Art), 2){ LabelText = "Art" },
+                                new ViewItemDescription(Fields.GetName(m => m.Vertreter), 1){ LabelText = "Vertreter zu Person" },
+                                new ViewItemDescription(Fields.GetName(m => m.Akt), 2){ LabelText = "Akt" },
                             }
                         },
                         new GroupItemDescription("Details", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.MobilTelefon), 1){ LabelText = "Mobil" },
-                                new ViewItemDescription(Fields.GetName(m => m.Telefon), 2){ LabelText = "Telefon" },
-                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
+                                new ViewItemDescription(Fields.GetName(m => m.Partei), 1){ LabelText = "Partei" },
+                                new ViewItemDescription(Fields.GetName(m => m.Streitgenosse), 2){ LabelText = "Streitgenosse" },
+                                new ViewItemDescription(Fields.GetName(m => m.Reihung), 3){ LabelText = "Reihung" },
                             }
                         },
                     }

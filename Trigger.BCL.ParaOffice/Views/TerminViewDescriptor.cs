@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class TerminViewDescriptor : ViewDescriptor<Termin>
+    public class TerminViewDescriptor : DetailViewDescriptor<Termin>
     {
         public TerminViewDescriptor()
         {

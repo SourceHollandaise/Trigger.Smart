@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class AktArtListDescriptor : ListDescriptor<AktArt>
+    public class AktArtListDescriptor : ListViewDescriptor<AktArt>
     {
         public AktArtListDescriptor()
         {

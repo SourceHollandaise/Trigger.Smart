@@ -71,6 +71,7 @@
     <Compile Include="Views\AktListDescriptor.cs" />
     <Compile Include="Views\SBViewDescriptor.cs" />
     <Compile Include="Views\SBListDescriptor.cs" />
+    <Compile Include="Views\AktPersonViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

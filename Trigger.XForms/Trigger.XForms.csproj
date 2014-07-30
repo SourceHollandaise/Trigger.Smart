@@ -94,22 +94,22 @@
     <Compile Include="Visuals\CreatableDetailItem.cs" />
     <Compile Include="Visuals\LabelLocation.cs" />
     <Compile Include="Controllers\Link.cs" />
-    <Compile Include="Views\ViewDescriptor.cs" />
     <Compile Include="Visuals\DetailViewControlFactory.cs" />
-    <Compile Include="Visuals\ModelToDetailViewInterpreter.cs" />
     <Compile Include="Views\TabItemDescription.cs" />
     <Compile Include="Views\GroupItemDescription.cs" />
     <Compile Include="Views\ViewItemDescription.cs" />
     <Compile Include="Views\LabelOrientation.cs" />
     <Compile Include="Controllers\ActionControllerDeclarator.cs" />
     <Compile Include="Controllers\ModelTypesDeclarator.cs" />
-    <Compile Include="Views\ListDescriptor.cs" />
     <Compile Include="Views\ColumnDescription.cs" />
     <Compile Include="Views\ColumnSorting.cs" />
-    <Compile Include="Views\IListDescriptor.cs" />
-    <Compile Include="Views\IViewDescriptor.cs" />
-    <Compile Include="Views\ViewDescriptorProvider.cs" />
-    <Compile Include="Visuals\ModelToListViewInterpreter.cs" />
+    <Compile Include="Views\DetailViewDescriptorProvider.cs" />
+    <Compile Include="Views\IListViewDescriptor.cs" />
+    <Compile Include="Views\IDetailViewDescriptor.cs" />
+    <Compile Include="Views\DetailViewDescriptor.cs" />
+    <Compile Include="Views\ListViewDescriptor.cs" />
+    <Compile Include="Visuals\DetailViewBuilder.cs" />
+    <Compile Include="Visuals\ListViewBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

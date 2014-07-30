@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class AreaListDescriptor : ListDescriptor<Area>
+    public class AreaListDescriptor : ListViewDescriptor<Area>
     {
         public AreaListDescriptor()
         {

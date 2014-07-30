@@ -3,9 +3,9 @@ using System;
 
 namespace Trigger.XForms
 {
-    public abstract class ListDescriptor<T> : IListDescriptor
+    public abstract class ListViewDescriptor<T> : IListViewDescriptor
     {
-        protected ListDescriptor()
+        protected ListViewDescriptor()
         {
             AllowColumnReorder = true;
             AllowMultiSelection = false;

@@ -3,7 +3,7 @@ using System;
 
 namespace Trigger.XForms
 {
-    public interface IListDescriptor
+    public interface IListViewDescriptor
     {
         bool AllowColumnReorder { get; set; }
 

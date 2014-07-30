@@ -8,11 +8,11 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
-    public class ModelToListViewInterpreter
+    public class ListViewBuilder
     {
         readonly ListPropertyEditorFactory editorFactory;
 
-        protected IListDescriptor Descriptor
+        protected IListViewDescriptor Descriptor
         {
             get;
             set;
@@ -24,14 +24,13 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-
         protected IEnumerable<IStorable> DataSet
         {
             get;
             set;
         }
 
-        public ModelToListViewInterpreter(IListDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
+        public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
         {
             this.DataSet = dataSet;
             this.ModelType = modelType;
@@ -55,6 +54,12 @@ namespace Trigger.XForms.Visuals
             gridView.DataStore = new DataStoreCollection(DataSet);
             gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
             gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
+
+            gridView.MouseDoubleClick += (sender, e) =>
+            {
+                if (gridView.SelectedItem != null)
+                    WindowManager.ShowDetailView(gridView.SelectedItem as IStorable);
+            };
 
             return gridView;
         }

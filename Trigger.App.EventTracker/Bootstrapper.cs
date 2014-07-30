@@ -40,17 +40,17 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IStore, FileStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
 
-            ViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
-            ViewDescriptorProvider.Declare<Contact, ContactViewDescriptor>();
-            ViewDescriptorProvider.Declare<Document, DocumentViewDescriptor>();
-            ViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
-            ViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
-            ViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Contact, ContactViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Document, DocumentViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
 
-            ListDescriptorProvider.Declare<Area, AreaListDescriptor>();
-            ListDescriptorProvider.Declare<Contact, ContactListDescriptor>();
-            ListDescriptorProvider.Declare<Document, DocumentListDescriptor>();
-            ListDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
+            ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
+            ListViewDescriptorProvider.Declare<Contact, ContactListDescriptor>();
+            ListViewDescriptorProvider.Declare<Document, DocumentListDescriptor>();
+            ListViewDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()

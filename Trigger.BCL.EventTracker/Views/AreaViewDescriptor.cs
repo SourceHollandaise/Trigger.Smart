@@ -4,7 +4,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class AreaViewDescriptor : ViewDescriptor<Area>
+    public class AreaViewDescriptor : DetailViewDescriptor<Area>
     {
         public AreaViewDescriptor()
         {
