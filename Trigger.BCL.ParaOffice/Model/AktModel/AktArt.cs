@@ -12,16 +12,6 @@ namespace Trigger.BCL.ParaOffice
     [ViewNavigation]
     public class AktArt : StorableBase
     {
-        [System.ComponentModel.DisplayName("Art")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                return Art;
-            }
-        }
-
         string art;
 
         public string Art

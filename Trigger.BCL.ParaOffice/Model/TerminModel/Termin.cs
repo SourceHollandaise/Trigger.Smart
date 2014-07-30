@@ -13,7 +13,6 @@ namespace Trigger.BCL.ParaOffice
     public class Termin : StorableBase
     {
         [System.ComponentModel.DisplayName("Termin")]
-        [FieldVisible(TargetView.None)]
         public override string GetRepresentation
         {
             get
@@ -35,7 +34,6 @@ namespace Trigger.BCL.ParaOffice
 
         TerminArt art;
 
-        [FieldGroup("Zuweisung", 3, 1)]
         public TerminArt Art
         {
             get
@@ -56,7 +54,6 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime beginn;
 
-        [FieldGroup("Datum", 2, 1)]
         public DateTime Beginn
         {
             get
@@ -77,7 +74,6 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime ende;
 
-        [FieldGroup("Datum", 2, 2)]
         public DateTime Ende
         {
             get
@@ -96,7 +92,6 @@ namespace Trigger.BCL.ParaOffice
 
         string betreff;
 
-        [FieldGroup("Beschreibung", 1, 1)]
         public string Betreff
         {
             get
@@ -115,7 +110,6 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
-        [FieldGroup("Beschreibung", 1, 2)]
         public string Ort
         {
             get
@@ -134,7 +128,7 @@ namespace Trigger.BCL.ParaOffice
 
         string beschreibung;
 
-        [FieldGroup("Beschreibung", 1, 3)]
+        [FieldTextArea]
         public string Beschreibung
         {
             get
@@ -153,7 +147,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb;
 
-        [FieldGroup("Zuweisung", 3, 2)]
         public SB SB
         {
             get
@@ -172,7 +165,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB erzeuger;
 
-        [FieldGroup("Zuweisung", 3, 3)]
         public SB Erzeuger
         {
             get
@@ -191,7 +183,6 @@ namespace Trigger.BCL.ParaOffice
 
         bool ok;
 
-        [FieldGroup("Zuweisung", 3, 4)]
         public bool OK
         {
             get
@@ -210,7 +201,6 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
         public string AktAlias
         {
             get
@@ -221,8 +211,6 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
-        [FieldGroup("Akt - Klient/Gegner", 4, 1)]
-        [FieldVisible(TargetView.DetailOnly)]
         public Akt Akt
         {
             get
@@ -243,7 +231,6 @@ namespace Trigger.BCL.ParaOffice
 
         string klientGegner;
 
-        [FieldGroup("Akt - Klient/Gegner", 4, 2)]
         [System.ComponentModel.ReadOnly(true)]
         public string KlientGegner
         {

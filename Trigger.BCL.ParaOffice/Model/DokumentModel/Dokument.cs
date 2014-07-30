@@ -164,6 +164,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
+        [FieldTextArea]
         public string Bemerkung
         {
             get

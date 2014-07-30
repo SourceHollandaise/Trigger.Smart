@@ -39,7 +39,7 @@ namespace Trigger.BCL.ParaOffice
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 1){ LabelText = "Anlage" },
                                 new ViewItemDescription(Fields.GetName(m => m.ErledigungDatum), 2){ LabelText = "Abschluss" },
-                                new ViewItemDescription(Fields.GetName(m => m.ArchivZahl), 1){ LabelText = "Archiv" }
+                                new ViewItemDescription(Fields.GetName(m => m.ArchivZahl), 3){ LabelText = "Archiv" }
                             }
                         }
                     }

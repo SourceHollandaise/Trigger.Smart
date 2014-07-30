@@ -64,6 +64,13 @@
     <Compile Include="Views\PersonViewDescriptor.cs" />
     <Compile Include="Views\KontaktViewDescriptor.cs" />
     <Compile Include="Views\AktArtViewDescriptor.cs" />
+    <Compile Include="Views\TerminViewDescriptor.cs" />
+    <Compile Include="Views\AktPersonListDescriptor.cs" />
+    <Compile Include="Views\AktArtListDescriptor.cs" />
+    <Compile Include="Views\PersonListDescriptor.cs" />
+    <Compile Include="Views\AktListDescriptor.cs" />
+    <Compile Include="Views\SBViewDescriptor.cs" />
+    <Compile Include="Views\SBListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

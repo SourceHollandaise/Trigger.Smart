@@ -403,7 +403,8 @@ namespace Trigger.XForms.Visuals
                     if (descriptorType != null)
                     {
                         var descriptor = Activator.CreateInstance(descriptorType) as IListDescriptor;
-                        var control = new ModelToListViewInterpreter(descriptor, linkedListAttribute.LinkType).GetContent();
+                        var control = new ModelToListViewInterpreter(descriptor, linkedListAttribute.LinkType, value as IEnumerable<IStorable>).GetContent();
+
                         if (control != null)
                         {
                             control.MouseDoubleClick += (sender, e) =>

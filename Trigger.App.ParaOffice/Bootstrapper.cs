@@ -39,12 +39,20 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
 
             ViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
+            ViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();
             ViewDescriptorProvider.Declare<Dokument, DokumentViewDescriptor>();
             ViewDescriptorProvider.Declare<Kontakt, KontaktViewDescriptor>();
             ViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
+            ViewDescriptorProvider.Declare<SB, SBViewDescriptor>();
+            ViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
 
+            ListDescriptorProvider.Declare<Akt, AktListDescriptor>();
+            ListDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
+            ListDescriptorProvider.Declare<AktPerson, AktPersonListDescriptor>();
             ListDescriptorProvider.Declare<Dokument, DokumentListDescriptor>();
             ListDescriptorProvider.Declare<Kontakt, KontaktListDescriptor>();
+            ListDescriptorProvider.Declare<Person, PersonListDescriptor>();
+            ListDescriptorProvider.Declare<SB, SBViewDescriptor>();
             ListDescriptorProvider.Declare<Termin, TerminListDescriptor>();
         }
 

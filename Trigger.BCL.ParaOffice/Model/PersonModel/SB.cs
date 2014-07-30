@@ -13,19 +13,8 @@ namespace Trigger.BCL.ParaOffice
     [ViewNavigation]
     public class SB : StorableBase
     {
-        [System.ComponentModel.DisplayName("SB")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                return ID;
-            }
-        }
-
         string id;
 
-        [FieldGroup("Sachbearbeiter / User", 1, 1)]
         [System.ComponentModel.DisplayName("SB-Kürzel")]
         public string ID
         {
@@ -45,7 +34,6 @@ namespace Trigger.BCL.ParaOffice
 
         User user;
 
-        [FieldGroup("Sachbearbeiter / User", 1, 2)]
         [LinkedObject]
         public User User
         {
@@ -63,7 +51,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 2, 1)]
         [System.ComponentModel.DisplayName("Termine zu SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
@@ -75,7 +62,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 2, 2)]
         [System.ComponentModel.DisplayName("Akten zu SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Akt))]

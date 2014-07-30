@@ -24,8 +24,16 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ModelToListViewInterpreter(IListDescriptor descriptor, Type modelType)
+
+        protected IEnumerable<IStorable> DataSet
         {
+            get;
+            set;
+        }
+
+        public ModelToListViewInterpreter(IListDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
+        {
+            this.DataSet = dataSet;
             this.ModelType = modelType;
             this.Descriptor = descriptor;
             editorFactory = new ListPropertyEditorFactory(ModelType);   
@@ -41,9 +49,10 @@ namespace Trigger.XForms.Visuals
                 if (gridColumn != null)
                     gridView.Columns.Add(gridColumn);
             }
+            if (DataSet == null)
+                DataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
 
-            var data = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
-            gridView.DataStore = new DataStoreCollection(data);
+            gridView.DataStore = new DataStoreCollection(DataSet);
             gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
             gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
 

@@ -1,15 +1,17 @@
+using System;
 using Trigger.XForms;
 using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class AktArtViewDescriptor : ViewDescriptor<AktArt>
+
+    public class SBViewDescriptor : ViewDescriptor<SB>
     {
-        public AktArtViewDescriptor()
+        public SBViewDescriptor()
         {
             TabItemDescriptions = new List<TabItemDescription>
             {
-                new TabItemDescription("Aktart", 1)
+                new TabItemDescription("Sachbearbeiter", 1)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -17,16 +19,16 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Art), 1){ LabelText = "Art" },
-                                new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 2){ LabelText = "Bemerkung" },
+                                new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel" },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer" },
                             }
                         },
-                        new GroupItemDescription("Akten", 2)
+                        new GroupItemDescription("Termine", 2)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.LinkedAkten), 1){ LabelText = "Akten", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedTermine), 1){ LabelText = "Termine", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
                             }
                         },
                     }
