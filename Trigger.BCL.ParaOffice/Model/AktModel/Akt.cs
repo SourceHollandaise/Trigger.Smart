@@ -3,6 +3,7 @@ using Trigger.XStorable.Model;
 using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.DataStore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -38,6 +39,7 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
+        [FieldTextArea]
         public string Bemerkung
         {
             get
