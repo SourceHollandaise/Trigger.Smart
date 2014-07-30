@@ -56,6 +56,14 @@
     <Compile Include="Services\CurrentSBService.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
     <Compile Include="Services\DokumentFileDataService.cs" />
+    <Compile Include="Views\AktViewDescriptor.cs" />
+    <Compile Include="Views\DokumentListDescriptor.cs" />
+    <Compile Include="Views\KontaktListDescriptor.cs" />
+    <Compile Include="Views\TerminListDescriptor.cs" />
+    <Compile Include="Views\DokumentViewDescriptor.cs" />
+    <Compile Include="Views\PersonViewDescriptor.cs" />
+    <Compile Include="Views\KontaktViewDescriptor.cs" />
+    <Compile Include="Views\AktArtViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -65,6 +73,7 @@
     <Folder Include="Model\PersonModel\" />
     <Folder Include="Model\DokumentModel\" />
     <Folder Include="Model\TerminModel\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
@@ -74,6 +83,10 @@
     <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
       <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
       <Name>Trigger.BCL.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
+      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
+      <Name>Trigger.XForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

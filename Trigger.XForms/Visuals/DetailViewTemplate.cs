@@ -23,8 +23,6 @@ namespace Trigger.XForms.Visuals
                 var descriptor = Activator.CreateInstance(descriptorType) as IViewDescriptor;
                 Content = new ModelToDetailViewInterpreter(descriptor, currentObject).GetContent();
             }
-            else
-                Content = new DetailViewGenerator(CurrentObject).GetContent();
         }
 
         void SetSize()

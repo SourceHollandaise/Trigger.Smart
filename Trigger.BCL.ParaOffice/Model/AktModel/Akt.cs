@@ -13,23 +13,6 @@ namespace Trigger.BCL.ParaOffice
     [ViewNavigation]
     public class Akt : StorableBase
     {
-        [System.ComponentModel.DisplayName("Akt")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} - {1}", Bezeichnung, AktArtAlias));
-                sb.AppendLine(string.Format("RA: {0} - SK: {1}", SB1 != null ? SB1.ID : "Kein", SB2 != null ? SB2.ID : "Kein"));
-                if (LinkedDokumente.Any())
-                    sb.AppendLine(string.Format("Dokumente: {0}", LinkedDokumente.Count()));
-                if (LinkedTermine.Any())
-                    sb.AppendLine(string.Format("Termine: {0}", LinkedTermine.Count()));
-                return sb.ToString();
-            }
-        }
-
         public override void Initialize()
         {
             AnlageDatum = DateTime.Now;
@@ -39,7 +22,6 @@ namespace Trigger.BCL.ParaOffice
 
         string bezeichnung;
 
-        [FieldGroup("Akt", 1, 1)]
         public string Bezeichnung
         {
             get
@@ -58,8 +40,6 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
-        [FieldGroup("Akt", 1, 2)]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Bemerkung
         {
             get
@@ -78,9 +58,7 @@ namespace Trigger.BCL.ParaOffice
 
         string archivZahl;
 
-        [FieldGroup("Akt", 1, 3)]
         [System.ComponentModel.DisplayName("Archivzahl")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string ArchivZahl
         {
             get
@@ -99,7 +77,6 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Aktart")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
         public string AktArtAlias
         {
             get
@@ -110,10 +87,8 @@ namespace Trigger.BCL.ParaOffice
 
         AktArt aktArt;
 
-        [FieldGroup("Akt", 1, 4)]
         [System.ComponentModel.DisplayName("Aktart")]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public AktArt AktArt
         {
             get
@@ -132,7 +107,6 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime anlageDatum;
 
-        [FieldGroup("Datum", 3, 1)]
         [System.ComponentModel.DisplayName("Anlage")]
         public DateTime AnlageDatum
         {
@@ -152,7 +126,6 @@ namespace Trigger.BCL.ParaOffice
 
         DateTime? erledigungDatum;
 
-        [FieldGroup("Datum", 3, 2)]
         [System.ComponentModel.DisplayName("Erledigung")]
         public DateTime? ErledigungDatum
         {
@@ -172,7 +145,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb1;
 
-        [FieldGroup("Zuweisung", 2, 1)]
         [LinkedObject]
         public SB SB1
         {
@@ -192,7 +164,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb2;
 
-        [FieldGroup("Zuweisung", 2, 2)]
         [LinkedObject]
         public SB SB2
         {
@@ -212,9 +183,7 @@ namespace Trigger.BCL.ParaOffice
 
         SB sb3;
 
-        [FieldGroup("Zuweisung", 2, 3)]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public SB SB3
         {
             get
@@ -231,7 +200,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 5, 1)]
         [System.ComponentModel.DisplayName("Kontakte zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Kontakt))]
@@ -244,7 +212,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 5, 2)]
         [System.ComponentModel.DisplayName("Dokumente zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Dokument))]
@@ -256,7 +223,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 5, 3)]
         [System.ComponentModel.DisplayName("Termine zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
@@ -269,7 +235,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 5, 4)]
         [System.ComponentModel.DisplayName("Personen zu Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(AktPerson))]

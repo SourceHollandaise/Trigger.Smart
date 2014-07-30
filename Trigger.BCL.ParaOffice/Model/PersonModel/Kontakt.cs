@@ -9,26 +9,8 @@ namespace Trigger.BCL.ParaOffice
     [ViewNavigation]
     public class Kontakt : StorableBase
     {
-        [System.ComponentModel.DisplayName("Kontakt")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.Append(string.Format("{0}", PersonAlias));
-                if (!string.IsNullOrEmpty(Telefon))
-                    sb.Append(string.Format(" {0}", Telefon));
-                //if (!string.IsNullOrEmpty(MobilTelefon))
-                //   sb.Append(string.Format(" {0}", MobilTelefon));
-                if (!string.IsNullOrEmpty(Email))
-                    sb.Append(string.Format(" {0}", Email));
-                return sb.ToString();
-            }
-        }
 
         [System.ComponentModel.DisplayName("Person")]
-        [FieldVisible(TargetView.ListOnly)]
         public string PersonAlias
         {
             get
@@ -39,10 +21,8 @@ namespace Trigger.BCL.ParaOffice
 
         Person person;
 
-        [FieldGroup("Zuweisung", 1, 1)]
         [System.ComponentModel.DisplayName("Person")]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public Person Person
         {
             get
@@ -61,7 +41,6 @@ namespace Trigger.BCL.ParaOffice
 
         KontaktArt art;
 
-        [FieldGroup("Zuweisung", 1, 2)]
         [System.ComponentModel.DisplayName("Art")]
         public KontaktArt Art
         {
@@ -81,7 +60,6 @@ namespace Trigger.BCL.ParaOffice
 
         string telefon;
 
-        [FieldGroup("Kontaktdaten", 2, 1)]
         [System.ComponentModel.DisplayName("Telefon")]
         public string Telefon
         {
@@ -101,7 +79,6 @@ namespace Trigger.BCL.ParaOffice
 
         string mobilTelefon;
 
-        [FieldGroup("Kontaktdaten", 2, 2)]
         [System.ComponentModel.DisplayName("Mobiltelefon")]
         public string MobilTelefon
         {
@@ -121,7 +98,6 @@ namespace Trigger.BCL.ParaOffice
 
         string email;
 
-        [FieldGroup("Kontaktdaten", 2, 3)]
         [System.ComponentModel.DisplayName("E-Mail")]
         public string Email
         {

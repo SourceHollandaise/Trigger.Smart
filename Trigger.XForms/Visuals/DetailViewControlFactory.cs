@@ -111,15 +111,11 @@ namespace Trigger.XForms.Visuals
 
         public TextBox StringPropertyEditor(PropertyInfo property)
         {
-            var attribute = property.FindAttribute<FieldLabelBehaviourAttribute>();  //property.GetCustomAttributes(typeof(FieldLabelBehaviourAttribute), true).FirstOrDefault() as FieldLabelBehaviourAttribute;
 
             var control = new TextBox
             {
                 Text = (string)property.GetValue(Model, null),
             };
-
-            if (attribute != null)
-                control.PlaceholderText = attribute.PlaceholderText;
 
             control.TextChanged += (sender, e) =>
             {
@@ -396,13 +392,31 @@ namespace Trigger.XForms.Visuals
                 return EnumPropertyEditor(property);
             }
 
-            var linkedListAttribute = property.FindAttribute<LinkedListAttribute>(); //property.GetCustomAttributes(typeof(LinkedListAttribute), true).FirstOrDefault() as LinkedListAttribute; 
-
+            var linkedListAttribute = property.FindAttribute<LinkedListAttribute>();
             if (linkedListAttribute != null)
             {
                 var value = property.GetValue(Model, null);
                 if (value is IEnumerable<IStorable>)
                 {
+                    var descriptorType = ListDescriptorProvider.GetDescriptor(linkedListAttribute.LinkType);
+
+                    if (descriptorType != null)
+                    {
+                        var descriptor = Activator.CreateInstance(descriptorType) as IListDescriptor;
+                        var control = new ModelToListViewInterpreter(descriptor, linkedListAttribute.LinkType).GetContent();
+                        if (control != null)
+                        {
+                            control.MouseDoubleClick += (sender, e) =>
+                            {
+                                if (control.SelectedItem != null)
+                                    WindowManager.ShowDetailView(control.SelectedItem as IStorable);
+                            };
+                        }
+                        return control;
+                    }
+
+                    return null;
+                    /*
                     var control = new Button
                     {
                         Tag = value
@@ -420,7 +434,9 @@ namespace Trigger.XForms.Visuals
                     };
 
                     return control;
-                
+                    */
+
+
                 }
             }
 

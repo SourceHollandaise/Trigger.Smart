@@ -14,24 +14,9 @@ namespace Trigger.BCL.ParaOffice
     [ViewNavigation]
     public class Person : StorableBase
     {
-        [System.ComponentModel.DisplayName("Person")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} {1} {2}", Vorname, Nachname, Titel));
-                sb.AppendLine(string.Format("{0} {1} - {2}", PLZ, Ort, Strasse));
-                return sb.ToString();
-            }
-        }
-
         string personenName;
 
-      
         [System.ComponentModel.DisplayName("Personenname")]
-        [FieldVisible(TargetView.ListOnly)]
         public string PersonenName
         {
             get
@@ -51,9 +36,7 @@ namespace Trigger.BCL.ParaOffice
 
         string vorname;
 
-        [FieldGroup("Name", 1, 1)]
         [System.ComponentModel.DisplayName("Vorname (Name1)")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Vorname
         {
             get
@@ -72,9 +55,7 @@ namespace Trigger.BCL.ParaOffice
 
         string nachname;
 
-        [FieldGroup("Name", 1, 2)]
         [System.ComponentModel.DisplayName("Nachname (Name2)")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Nachname
         {
             get
@@ -93,9 +74,7 @@ namespace Trigger.BCL.ParaOffice
 
         string titel;
 
-        [FieldGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Titel")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Titel
         {
             get
@@ -114,9 +93,7 @@ namespace Trigger.BCL.ParaOffice
 
         string anrede;
 
-        [FieldGroup("Name", 1, 3)]
         [System.ComponentModel.DisplayName("Anrede")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Anrede
         {
             get
@@ -135,7 +112,6 @@ namespace Trigger.BCL.ParaOffice
 
         PersonenArt art;
 
-        [FieldGroup("Person", 2, 1)]
         public PersonenArt Art
         {
             get
@@ -154,7 +130,6 @@ namespace Trigger.BCL.ParaOffice
 
         string plz;
 
-        [FieldGroup("Adresse", 3, 1)]
         public string PLZ
         {
             get
@@ -173,7 +148,6 @@ namespace Trigger.BCL.ParaOffice
 
         string ort;
 
-        [FieldGroup("Adresse", 3, 2)]
         public string Ort
         {
             get
@@ -192,7 +166,6 @@ namespace Trigger.BCL.ParaOffice
 
         string strasse;
 
-        [FieldGroup("Adresse", 3, 3)]
         public string Strasse
         {
             get
@@ -209,7 +182,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 4, 1)]
         [System.ComponentModel.DisplayName("Kontakte zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Kontakt))]
@@ -221,7 +193,6 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [FieldGroup("Verknüpfungen", 4, 2)]
         [System.ComponentModel.DisplayName("Akten zu Person")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Akt))]

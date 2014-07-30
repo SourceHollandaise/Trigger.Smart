@@ -8,6 +8,7 @@ using Trigger.XForms.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
+using Trigger.XForms;
 
 namespace Trigger.App.ParaOffice
 {
@@ -36,6 +37,15 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileStore>();
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
+
+            ViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
+            ViewDescriptorProvider.Declare<Dokument, DokumentViewDescriptor>();
+            ViewDescriptorProvider.Declare<Kontakt, KontaktViewDescriptor>();
+            ViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
+
+            ListDescriptorProvider.Declare<Dokument, DokumentListDescriptor>();
+            ListDescriptorProvider.Declare<Kontakt, KontaktListDescriptor>();
+            ListDescriptorProvider.Declare<Termin, TerminListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()

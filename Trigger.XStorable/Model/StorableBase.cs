@@ -5,7 +5,6 @@ namespace Trigger.XStorable.Model
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
-        [FieldVisible(TargetView.None)]
         public virtual string GetRepresentation
         {
             get
@@ -16,7 +15,6 @@ namespace Trigger.XStorable.Model
 
         [System.ComponentModel.ReadOnly(true)]
         [System.ComponentModel.DisplayName("ID")]
-        [FieldVisible(TargetView.None)]
         public object MappingId
         {
             get;

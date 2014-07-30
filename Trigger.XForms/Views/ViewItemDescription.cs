@@ -23,5 +23,13 @@ namespace Trigger.XForms
         public int Index { get; set; }
 
         public bool Fill { get; set; }
+
+        public ListPropertyMode ListMode { get; set; }
+    }
+
+    public enum ListPropertyMode
+    {
+        Button,
+        List
     }
 }

@@ -1,5 +1,6 @@
 using Trigger.XStorable.Model;
 using Trigger.XStorable.DataStore;
+using System;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -15,23 +16,8 @@ namespace Trigger.BCL.ParaOffice
             SK = CurrentSBService.CurrentSB;
         }
 
-        [System.ComponentModel.DisplayName("Datei")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("'{0}' by {1}", Subject, SK != null ? SK.ID : "Kein"));
-                sb.AppendLine(string.Format("Zu Akt '{0}'", AktAlias));
-                sb.AppendLine(string.Format("{0}", Bemerkung));
-                return sb.ToString();
-            }
-        }
-
         string subject;
 
-        [FieldGroup("Datei", 1, 1)]
         [System.ComponentModel.DisplayName("Bezeichnung")]
         public string Subject
         {
@@ -53,7 +39,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB ra;
 
-        [FieldGroup("Zuweisung", 2, 1)]
         [LinkedObject]
         public SB RA
         {
@@ -73,7 +58,6 @@ namespace Trigger.BCL.ParaOffice
 
         SB sk;
 
-        [FieldGroup("Zuweisung", 2, 2)]
         [LinkedObject]
         public SB SK
         {
@@ -93,7 +77,6 @@ namespace Trigger.BCL.ParaOffice
 
         [System.ComponentModel.DisplayName("Akt")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [FieldVisible(TargetView.ListOnly)]
         public string AktAlias
         {
             get
@@ -104,9 +87,7 @@ namespace Trigger.BCL.ParaOffice
 
         Akt akt;
 
-        [FieldGroup("Zuweisung", 2, 3)]
         [LinkedObject]
-        [FieldVisible(TargetView.DetailOnly)]
         public Akt Akt
         {
             get
@@ -128,7 +109,6 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentArt art;
 
-        [FieldGroup("Status", 3, 1)]
         public DokumentArt Art
         {
             get
@@ -147,7 +127,6 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentMedium medium;
 
-        [FieldGroup("Status", 3, 2)]
         public DokumentMedium Medium
         {
             get
@@ -167,7 +146,6 @@ namespace Trigger.BCL.ParaOffice
 
         DokumentStatus status;
 
-        [FieldGroup("Status", 3, 3)]
         public DokumentStatus Status
         {
             get
@@ -186,9 +164,6 @@ namespace Trigger.BCL.ParaOffice
 
         string bemerkung;
 
-        [FieldGroup("Sonstige Informationen", 4, 1)]
-        [System.ComponentModel.DisplayName("Bemerkung")]
-        [FieldVisible(TargetView.DetailOnly)]
         public string Bemerkung
         {
             get
@@ -207,10 +182,7 @@ namespace Trigger.BCL.ParaOffice
 
         string fileName;
 
-        [FieldGroup("Vorschau", 5, 1)]
         [System.ComponentModel.DisplayName("Datei")]
-        [FieldVisible(TargetView.DetailOnly)]
-        [System.ComponentModel.ReadOnly(true)]
         [FieldFileData]
         public string FileName
         {
@@ -227,5 +199,44 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
+
+        DateTime anlageDatum;
+
+        [System.ComponentModel.DisplayName("Anlage")]
+        public DateTime AnlageDatum
+        {
+            get
+            {
+                return anlageDatum;
+            }
+            set
+            {
+                if (Equals(anlageDatum, value))
+                    return;
+                anlageDatum = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        DateTime? erledigungDatum;
+
+        [System.ComponentModel.DisplayName("Erledigung")]
+        public DateTime? ErledigungDatum
+        {
+            get
+            {
+                return erledigungDatum;
+            }
+            set
+            {
+                if (Equals(erledigungDatum, value))
+                    return;
+                erledigungDatum = value;
+
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

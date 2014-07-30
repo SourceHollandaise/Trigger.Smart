@@ -57,7 +57,6 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Visuals\WindowManager.cs" />
-    <Compile Include="Visuals\DetailViewGenerator.cs" />
     <Compile Include="Visuals\DetailViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
@@ -110,7 +109,6 @@
     <Compile Include="Views\IListDescriptor.cs" />
     <Compile Include="Views\IViewDescriptor.cs" />
     <Compile Include="Views\ViewDescriptorProvider.cs" />
-    <Compile Include="Visuals\ListViewGenerator.cs" />
     <Compile Include="Visuals\ModelToListViewInterpreter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

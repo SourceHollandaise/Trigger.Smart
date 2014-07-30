@@ -30,8 +30,6 @@ namespace Trigger.XForms.Visuals
                 var descriptor = Activator.CreateInstance(descriptorType) as IListDescriptor;
                 Content = new ModelToListViewInterpreter(descriptor, ModelType).GetContent();
             }
-            else
-                Content = new ListViewGenerator(ModelType).GetContent();
 
             CurrentGrid = Content as GridView;
         }

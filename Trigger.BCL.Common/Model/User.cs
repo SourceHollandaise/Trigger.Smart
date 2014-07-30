@@ -17,19 +17,6 @@ namespace Trigger.BCL.Common.Model
             //INFO: Do not initialize!!! 
         }
 
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0}", UserName));
-                sb.AppendLine(string.Format("{0}", Email));
-                sb.AppendLine(string.Format("ID: {0}", MappingId));
-                return sb.ToString();
-            }
-        }
-
         string userName;
 
         public string UserName
@@ -50,7 +37,6 @@ namespace Trigger.BCL.Common.Model
 
         string password;
 
-        [FieldVisible(TargetView.DetailOnly)]
         public string Password
         {
             get
