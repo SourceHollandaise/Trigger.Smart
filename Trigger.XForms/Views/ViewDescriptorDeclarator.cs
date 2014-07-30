@@ -8,7 +8,7 @@ namespace Trigger.XForms
     {
         static readonly Dictionary<Type, Type> descriptors = new Dictionary<Type, Type>();
 
-        public static void Declare<TStorable,TDescriptor>() where TStorable: IStorable where TDescriptor: ViewDescriptor
+        public static void Declare<TStorable,TDescriptor>() where TStorable: IStorable where TDescriptor: IViewDescriptor
         {
             if (!descriptors.ContainsKey(typeof(TStorable)))
                 descriptors.Add(typeof(TStorable), typeof(TDescriptor));

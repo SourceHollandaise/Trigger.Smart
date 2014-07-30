@@ -1,9 +1,10 @@
 using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class ContactViewDescriptor : ViewDescriptor
+    public class ContactViewDescriptor : ViewDescriptor<Contact>
     {
         public ContactViewDescriptor()
         {
@@ -17,23 +18,23 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Person", 1){ LabelText = "Person", ShowLabel = false }
+                                new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false }
                             }
                         },
                         new GroupItemDescription("Type", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("ContactType", 1){ LabelText = "Type", ShowLabel = false },
+                                new ViewItemDescription(Fields.GetName(m => m.ContactType), 1){ LabelText = "Type", ShowLabel = false },
                             }
                         },
                         new GroupItemDescription("Contact items", 3)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("PhoneNumber", 1){ LabelText = "Phone" },
-                                new ViewItemDescription("MobileNumber", 2){ LabelText = "Mobile" },
-                                new ViewItemDescription("Email", 3){ LabelText = "E-Mail" },
+                                new ViewItemDescription(Fields.GetName(m => m.PhoneNumber), 1){ LabelText = "Phone" },
+                                new ViewItemDescription(Fields.GetName(m => m.MobileNumber), 2){ LabelText = "Mobile" },
+                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                             }
                         }
                     }

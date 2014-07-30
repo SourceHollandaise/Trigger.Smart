@@ -4,7 +4,7 @@ using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class UserViewDescriptor : ViewDescriptor
+    public class UserViewDescriptor : ViewDescriptor<User>
     {
         public UserViewDescriptor()
         {
@@ -18,9 +18,9 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("UserName", 1){ LabelText = "Username" },
-                                new ViewItemDescription("Password", 2){ LabelText = "Password" },
-                                new ViewItemDescription("Email", 3){ LabelText = "E-Mail" },
+                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Username" },
+                                new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Password" },
+                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                             }
                         },
                     }

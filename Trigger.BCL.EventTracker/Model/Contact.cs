@@ -5,7 +5,6 @@ namespace Trigger.BCL.EventTracker.Model
 {
 
     [System.ComponentModel.DefaultProperty("Person")]
-    [System.ComponentModel.DisplayName("Contact")]
     [ViewCompact]
     [ViewNavigation]
     public class Contact : StorableBase

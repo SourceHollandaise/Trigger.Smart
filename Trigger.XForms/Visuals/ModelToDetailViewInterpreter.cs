@@ -12,7 +12,7 @@ namespace Trigger.XForms.Visuals
     {
         readonly DetailViewControlFactory controlFactory;
 
-        protected ViewDescriptor Descriptor
+        protected IViewDescriptor Descriptor
         {
             get;
             set;
@@ -30,7 +30,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ModelToDetailViewInterpreter(ViewDescriptor descriptor, IStorable currentObject)
+        public ModelToDetailViewInterpreter(IViewDescriptor descriptor, IStorable currentObject)
         {
             this.Descriptor = descriptor;
             this.CurrentObject = currentObject;
@@ -118,7 +118,7 @@ namespace Trigger.XForms.Visuals
             {
                 Control control = null;
 
-                if (!viewItem.FieldName.Equals(ViewDescriptor.EmptySpaceFieldName))
+                if (!viewItem.FieldName.Equals("EmptySpace"))
                 {
                     var property = CurrentType.GetProperty(viewItem.FieldName);
 

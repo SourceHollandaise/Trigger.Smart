@@ -156,7 +156,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         DateTime? resolved;
 
-        [FieldGroup("Completition", 3, 2)]
         public DateTime? Resolved
         {
             get

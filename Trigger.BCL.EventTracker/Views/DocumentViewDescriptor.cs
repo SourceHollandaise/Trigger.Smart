@@ -1,9 +1,10 @@
 using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class DocumentViewDescriptor : ViewDescriptor
+    public class DocumentViewDescriptor : ViewDescriptor<Document>
     {
         public DocumentViewDescriptor()
         {
@@ -17,17 +18,17 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Subject", 1){ LabelText = "Name" },
-                                new ViewItemDescription("Description", 2){ LabelText = "Description" },
-                                new ViewItemDescription("User", 3){ LabelText = "From" },
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description" },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "From" },
                             }
                         },
                         new GroupItemDescription("Links", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Area", 1){ LabelText = "Area" },
-                                new ViewItemDescription("Issue", 2){ LabelText = "Issue" },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area" },
+                                new ViewItemDescription(Fields.GetName(m => m.Issue), 2){ LabelText = "Issue" },
                             }
                         }
                     }
@@ -41,7 +42,7 @@ namespace Trigger.BCL.EventTracker
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("FileName", 1){ LabelText = "Preview file", ShowLabel = false, Fill = true },
+                                new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Preview file", ShowLabel = false, Fill = true },
                             }
                         }
                     }

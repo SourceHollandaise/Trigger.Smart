@@ -1,9 +1,12 @@
 using Trigger.XForms;
 using System.Collections.Generic;
+using System;
+using Trigger.BCL.EventTracker.Model;
+
 
 namespace Trigger.BCL.EventTracker
 {
-    public class AreaViewDescriptor : ViewDescriptor
+    public class AreaViewDescriptor : ViewDescriptor<Area>
     {
         public AreaViewDescriptor()
         {
@@ -17,16 +20,16 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("Name", 1){ LabelText = "Name" },
-                                new ViewItemDescription("Description", 2){ LabelText = "Description" },
+                                new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name" },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description" },
                             }
                         },
                         new GroupItemDescription("Links", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("LinkedDocuments", 1){ LabelText = "Documents", ShowLabel = false },
-                                new ViewItemDescription("LinkedIssues", 1){ LabelText = "Issues", ShowLabel = false }
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedDocuments), 1){ LabelText = "Documents", ShowLabel = false },
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedIssues), 1){ LabelText = "Issues", ShowLabel = false }
                             }
                         }
                     }

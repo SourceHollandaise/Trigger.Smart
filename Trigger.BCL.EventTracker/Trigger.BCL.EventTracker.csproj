@@ -65,6 +65,7 @@
     <Compile Include="Views\DocumentViewDescriptor.cs" />
     <Compile Include="Views\UserViewDescriptor.cs" />
     <Compile Include="Views\PersonViewLayoutDemoDescriptor.cs" />
+    <Compile Include="Views\AreaListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

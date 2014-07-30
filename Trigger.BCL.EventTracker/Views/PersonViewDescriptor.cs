@@ -1,9 +1,10 @@
 ﻿using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class PersonViewDescriptor : ViewDescriptor
+    public class PersonViewDescriptor : ViewDescriptor<Person>
     {
         public PersonViewDescriptor()
         {
@@ -15,29 +16,27 @@ namespace Trigger.BCL.EventTracker
                     {
                         new GroupItemDescription("Name", 1)
                         {
-                            ViewItemOrientation = ViewItemOrientation.Horizontal,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("FirstName", 1){ LabelText = "Name" },
-                                new ViewItemDescription("MiddleName", 2){ LabelText = "Middle name" },
-                                new ViewItemDescription("LastName", 3){ LabelText = "Last name" },
+                                new ViewItemDescription(Fields.GetName(m => m.FirstName), 1){ LabelText = "Name" },
+                                new ViewItemDescription(Fields.GetName(m => m.MiddleName), 2){ LabelText = "Middle name" },
+                                new ViewItemDescription(Fields.GetName(m => m.LastName), 3){ LabelText = "Last name" },
                             }
                         },
                         new GroupItemDescription("Address", 2)
                         {
-                            ViewItemOrientation = ViewItemOrientation.Horizontal,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("PostalCode", 1){ LabelText = "Postal Code" },
-                                new ViewItemDescription("City", 2){ LabelText = "City" },
-                                new ViewItemDescription("Street", 3){ LabelText = "Address" }
+                                new ViewItemDescription(Fields.GetName(m => m.PostalCode), 1){ LabelText = "Postal Code" },
+                                new ViewItemDescription(Fields.GetName(m => m.City), 2){ LabelText = "City" },
+                                new ViewItemDescription(Fields.GetName(m => m.Street), 3){ LabelText = "Address" }
                             }
                         },
                         new GroupItemDescription("Links", 3)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription("LinkedContacts", 1){ LabelText = "Contacts", ShowLabel = false }
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedContacts), 1){ LabelText = "Contacts", ShowLabel = false }
                             }
                         }
                     }
