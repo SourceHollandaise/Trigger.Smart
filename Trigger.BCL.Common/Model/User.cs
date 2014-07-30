@@ -1,15 +1,10 @@
-using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Model;
 using Trigger.BCL.Common.Security;
 using System;
 
 namespace Trigger.BCL.Common.Model
 {
-
-
     [System.ComponentModel.DefaultProperty("UserName")]
-    [ViewCompact]
-    [ViewNavigation]
     public class User : StorableBase
     {
         public override void Initialize()

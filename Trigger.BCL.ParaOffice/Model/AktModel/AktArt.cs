@@ -8,8 +8,6 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
-    [ViewCompact]
-    [ViewNavigation]
     public class AktArt : StorableBase
     {
         string art;

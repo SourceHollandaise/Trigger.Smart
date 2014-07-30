@@ -82,10 +82,6 @@
     <Compile Include="Attributes\LinkedListAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
-    <Compile Include="Attributes\FieldRequiredAttribute.cs" />
-    <Compile Include="Attributes\ViewCompactAttribute.cs" />
-    <Compile Include="Attributes\ViewNavigationAttribute.cs" />
-    <Compile Include="Attributes\FieldFileDataAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

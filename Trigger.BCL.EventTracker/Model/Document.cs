@@ -2,12 +2,11 @@ using Trigger.XStorable.DataStore;
 using System.IO;
 using Trigger.XStorable.Model;
 using Trigger.BCL.Common.Model;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [ViewCompact]
-    [ViewNavigation]
     public class Document : StorableBase, IFileData
     {
         public override void Delete()

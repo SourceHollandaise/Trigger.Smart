@@ -1,14 +1,13 @@
 using Trigger.XStorable.Model;
 using Trigger.XStorable.DataStore;
 using System;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Dokument")]
-    [ViewCompact]
-    [ViewNavigation]
     public class Dokument : StorableBase, IFileData
     {
         public override void Initialize()

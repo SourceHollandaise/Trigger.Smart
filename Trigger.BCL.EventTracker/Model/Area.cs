@@ -2,12 +2,11 @@ using Trigger.XStorable.DataStore;
 using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.Model;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
-    [ViewCompact]
-    [ViewNavigation]
     public class Area : StorableBase
     {
         string name;

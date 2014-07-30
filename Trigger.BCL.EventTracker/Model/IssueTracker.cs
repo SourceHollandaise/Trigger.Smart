@@ -4,12 +4,11 @@ using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Model;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Security;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [ViewCompact]
-    [ViewNavigation]
     public class IssueTracker : StorableBase, IFileData
     {
         public override void Initialize()

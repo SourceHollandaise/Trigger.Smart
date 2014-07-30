@@ -2,14 +2,13 @@ using Trigger.XStorable.Model;
 using Trigger.XStorable.DataStore;
 using System;
 using System.Linq;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Betreff")]
     [System.ComponentModel.DisplayName("Termin")]
-    [ViewCompact]
-    [ViewNavigation]
     public class Termin : StorableBase
     {
         [System.ComponentModel.DisplayName("Termin")]

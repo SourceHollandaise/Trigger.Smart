@@ -110,6 +110,8 @@
     <Compile Include="Views\ListViewDescriptor.cs" />
     <Compile Include="Visuals\DetailViewBuilder.cs" />
     <Compile Include="Visuals\ListViewBuilder.cs" />
+    <Compile Include="Attributes\FieldFileDataAttribute.cs" />
+    <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -853,5 +855,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+    <Folder Include="Attributes\" />
   </ItemGroup>
 </Project>

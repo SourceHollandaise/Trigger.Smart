@@ -6,8 +6,6 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
-    [ViewCompact]
-    [ViewNavigation]
     public class AktPerson : StorableBase
     {
         public override void Initialize()

@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.XStorable.DataStore
+namespace Trigger.XForms
 {
 
     [System.ComponentModel.Category("XForms")]
