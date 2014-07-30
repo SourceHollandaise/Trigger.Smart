@@ -22,7 +22,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string subject;
 
-        [FieldGroup("Document-Details", 1, 1)]
         public string Subject
         {
             get
@@ -41,7 +40,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
-        [FieldGroup("Document-Details", 1, 2)]
+        [FieldTextArea]
         public string Description
         {
             get
@@ -60,9 +59,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
-       
         User user;
-
 
         [System.ComponentModel.DisplayName("From user")]
         [LinkedObject]

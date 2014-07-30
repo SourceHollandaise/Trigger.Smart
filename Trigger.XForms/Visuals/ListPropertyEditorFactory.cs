@@ -3,6 +3,7 @@ using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using System.Reflection;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
@@ -49,6 +50,20 @@ namespace Trigger.XForms.Visuals
             if (property.PropertyType.BaseType == typeof(Enum))
             {
                 return new TextBoxCell(property.Name);
+            }
+
+            if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
+            {
+                return new TextBoxCell(property.Name);
+
+                /*
+                var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>();
+                if (attribute != null)
+                {
+                    var nestedProperty = property.PropertyType.GetProperty(attribute.Name);
+                    return new TextBoxCell(property.Name + "." + nestedProperty.Name);
+                }
+                */
             }
 
             return null;

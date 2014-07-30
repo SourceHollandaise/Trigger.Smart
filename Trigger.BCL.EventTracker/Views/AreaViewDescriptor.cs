@@ -1,8 +1,6 @@
 using Trigger.XForms;
 using System.Collections.Generic;
-using System;
 using Trigger.BCL.EventTracker.Model;
-
 
 namespace Trigger.BCL.EventTracker
 {
@@ -21,7 +19,7 @@ namespace Trigger.BCL.EventTracker
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description" },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", Fill = true },
                             }
                         },
                         new GroupItemDescription("Links", 2)

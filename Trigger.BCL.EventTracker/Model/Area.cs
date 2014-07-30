@@ -30,6 +30,7 @@ namespace Trigger.BCL.EventTracker.Model
 
         string description;
 
+        [FieldTextArea]
         public string Description
         {
             get

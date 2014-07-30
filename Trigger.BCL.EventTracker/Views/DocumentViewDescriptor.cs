@@ -19,7 +19,7 @@ namespace Trigger.BCL.EventTracker
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description" },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", Fill = true },
                                 new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "From" },
                             }
                         },

@@ -46,6 +46,11 @@ namespace Trigger.App.EventTracker
             ViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
             ViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             ViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+
+            ListDescriptorProvider.Declare<Area, AreaListDescriptor>();
+            ListDescriptorProvider.Declare<Contact, ContactListDescriptor>();
+            ListDescriptorProvider.Declare<Document, DocumentListDescriptor>();
+            ListDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()

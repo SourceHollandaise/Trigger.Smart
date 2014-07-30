@@ -4,7 +4,6 @@ using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
-
     public class DetailViewTemplate : TemplateBase
     {
         public DetailViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)

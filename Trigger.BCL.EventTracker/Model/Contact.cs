@@ -9,25 +9,6 @@ namespace Trigger.BCL.EventTracker.Model
     [ViewNavigation]
     public class Contact : StorableBase
     {
-        [System.ComponentModel.DisplayName("Contact")]
-        [FieldVisible(TargetView.None)]
-        public override string GetRepresentation
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder();
-                if (Person != null)
-                    sb.AppendLine(string.Format("{0}", Person.DisplayName));
-                if (!string.IsNullOrEmpty(PhoneNumber))
-                    sb.AppendLine(string.Format("Phone: {0}", PhoneNumber));
-                if (!string.IsNullOrEmpty(MobileNumber))
-                    sb.AppendLine(string.Format("Mobile: {0}", MobileNumber));
-                if (!string.IsNullOrEmpty(Email))
-                    sb.AppendLine(string.Format("E-Mail: {0}", Email));
-                return sb.ToString();
-            }
-        }
-
         Person person;
 
         [System.ComponentModel.DisplayName("Person")]

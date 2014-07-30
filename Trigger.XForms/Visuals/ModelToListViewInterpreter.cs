@@ -10,107 +10,65 @@ namespace Trigger.XForms.Visuals
 {
     public class ModelToListViewInterpreter
     {
-        readonly IStore store = DependencyMapProvider.Instance.ResolveType<IStore>();
-        readonly ListPropertyEditorFactory factory;
+        readonly ListPropertyEditorFactory editorFactory;
 
-        protected Type ModelType
+        protected IListDescriptor Descriptor
         {
             get;
             set;
         }
 
-        public ModelToListViewInterpreter(Type modelType)
+        public Type ModelType
+        {
+            get;
+            set;
+        }
+
+        public ModelToListViewInterpreter(IListDescriptor descriptor, Type modelType)
         {
             this.ModelType = modelType;
-            factory = new ListPropertyEditorFactory(ModelType);
+            this.Descriptor = descriptor;
+            editorFactory = new ListPropertyEditorFactory(ModelType);   
         }
 
         public GridView GetContent()
         {
-            var items = store.LoadAll(ModelType).ToList();
-
-            var gridView = CreateGrid();
-
-            gridView.DataStore = new DataStoreCollection(items);
-            gridView.AllowColumnReordering = true;
-            gridView.AllowMultipleSelection = true;
-            //gridView.ShowCellBorders = true;
-
-            gridView.KeyDown += (sender, e) =>
+            var gridView = new GridView();
+           
+            foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
-                if (e.Key == Keys.Enter)
-                {
-                    ExecuteListOpenCommand(gridView);
-                }
-            };
+                var gridColumn = CreateColumn(columnItem);
+                if (gridColumn != null)
+                    gridView.Columns.Add(gridColumn);
+            }
 
-            gridView.MouseDoubleClick += (sender, e) =>
-            {
-                ExecuteListOpenCommand(gridView);
-            };
+            var data = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
+            gridView.DataStore = new DataStoreCollection(data);
+            gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
+            gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
 
             return gridView;
         }
 
-        GridView CreateGrid()
+        GridColumn CreateColumn(ColumnDescription columnItem)
         {
-            var	gridView = new GridView();
-
-            var config = DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
-
-            var compactViewAttribute = ModelType.GetCustomAttributes(typeof(ViewCompactAttribute), true).FirstOrDefault() as ViewCompactAttribute;
-            if (config.IsCompactViewMode)
-            {
-                var property = ModelType.GetProperty(compactViewAttribute.VisualProperty);
-                if (property != null)
-                {
-                    var column = CreateColumn(property);
-                    if (column != null)
-                        gridView.Columns.Add(column);
-
-                    return gridView;
-                }
-            }
-            else
-            {
-                foreach (var property in ModelType.GetProperties())
-                {
-                    var visibilityAttribute = property.GetCustomAttributes(typeof(FieldVisibleAttribute), true).FirstOrDefault() as FieldVisibleAttribute;
-
-                    if (visibilityAttribute != null && (visibilityAttribute.TargetView == TargetView.DetailOnly || visibilityAttribute.TargetView == TargetView.None))
-                        continue;
-
-                    var column = CreateColumn(property);
-                    if (column != null)
-                        gridView.Columns.Add(column);
-                }
-            }
-
-            return gridView;
-        }
-
-        GridColumn CreateColumn(PropertyInfo property)
-        {
-            var displayNameAttribute = property.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
-
-            var cell = factory.CreateDataCell(property);
+            var property = ModelType.GetProperty(columnItem.FieldName);
+            if (property == null)
+                return null;
+                
+            var cell = editorFactory.CreateDataCell(property);
 
             if (cell == null)
                 return null;
 
-            var column = new GridColumn();
-            column.DataCell = cell;
-            column.HeaderText = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
-            column.Sortable = true;
-            column.Resizable = true;
-            column.AutoSize = true;
-            return column;
-        }
-
-        void ExecuteListOpenCommand(GridView gridView)
-        {
-            if (gridView.SelectedItem != null)
-                WindowManager.ShowDetailView(gridView.SelectedItem as IStorable);
+            var gridColumn = new GridColumn();
+            gridColumn.DataCell = cell;
+            gridColumn.HeaderText = columnItem.ColumnHeaderText;
+            gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
+            gridColumn.Resizable = true;
+            gridColumn.AutoSize = true;
+            return gridColumn;
         }
     }
+    
 }

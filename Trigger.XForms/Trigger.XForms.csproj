@@ -98,7 +98,6 @@
     <Compile Include="Views\ViewDescriptor.cs" />
     <Compile Include="Visuals\DetailViewControlFactory.cs" />
     <Compile Include="Visuals\ModelToDetailViewInterpreter.cs" />
-    <Compile Include="Visuals\ModelToListViewInterpreter.cs" />
     <Compile Include="Views\TabItemDescription.cs" />
     <Compile Include="Views\GroupItemDescription.cs" />
     <Compile Include="Views\ViewItemDescription.cs" />
@@ -111,6 +110,8 @@
     <Compile Include="Views\IListDescriptor.cs" />
     <Compile Include="Views\IViewDescriptor.cs" />
     <Compile Include="Views\ViewDescriptorProvider.cs" />
+    <Compile Include="Visuals\ListViewGenerator.cs" />
+    <Compile Include="Visuals\ModelToListViewInterpreter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
