@@ -2,8 +2,6 @@ using System;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using System.Reflection;
-using System.Linq;
-using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {

@@ -6,8 +6,6 @@ namespace Trigger.XForms.Visuals
     {
         bool IsCompactViewMode { get; }
 
-        LabelLocation LabelLocation { get; }
-
         Size ListViewCompactSize { get; }
 
         Size ListViewDefaultSize { get; }

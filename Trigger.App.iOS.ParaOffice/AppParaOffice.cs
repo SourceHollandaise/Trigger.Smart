@@ -1,9 +1,6 @@
 //using GLib;
 using System;
-using Trigger.XForms.Visuals;
 using Eto.Forms;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
 
 namespace Trigger.App.iOS.ParaOffice
 {
@@ -16,20 +13,21 @@ namespace Trigger.App.iOS.ParaOffice
 
         public virtual void InitalizeApplication()
         {
-            var init = new Bootstrapper();
-            init.InitalizeDataStore();
-            init.RegisterDependencies();
-            init.CreateInitialObjects();
-            init.RegisterDeclaredTypes();
+
         }
 
         protected override void OnInitialized(EventArgs e)
         {
-            base.OnInitialized(e);
+            base.OnInitialized(e);  
+        }
+    }
 
-            MainForm = new MainViewTemplate();
+    public class StartUp
+    {
+        [STAThread]
+        public static void Main()
+        {
 
-            MainForm.Show();
         }
     }
 }

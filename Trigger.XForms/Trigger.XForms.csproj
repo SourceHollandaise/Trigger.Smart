@@ -91,27 +91,27 @@
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Visuals\IViewTemplateConfiguration.cs" />
     <Compile Include="Visuals\ViewTemplateConfiguration.cs" />
-    <Compile Include="Visuals\CreatableDetailItem.cs" />
-    <Compile Include="Visuals\LabelLocation.cs" />
     <Compile Include="Controllers\Link.cs" />
     <Compile Include="Visuals\DetailViewControlFactory.cs" />
-    <Compile Include="Views\TabItemDescription.cs" />
-    <Compile Include="Views\GroupItemDescription.cs" />
-    <Compile Include="Views\ViewItemDescription.cs" />
-    <Compile Include="Views\LabelOrientation.cs" />
     <Compile Include="Controllers\ActionControllerDeclarator.cs" />
     <Compile Include="Controllers\ModelTypesDeclarator.cs" />
-    <Compile Include="Views\ColumnDescription.cs" />
-    <Compile Include="Views\ColumnSorting.cs" />
-    <Compile Include="Views\DetailViewDescriptorProvider.cs" />
-    <Compile Include="Views\IListViewDescriptor.cs" />
-    <Compile Include="Views\IDetailViewDescriptor.cs" />
-    <Compile Include="Views\DetailViewDescriptor.cs" />
-    <Compile Include="Views\ListViewDescriptor.cs" />
     <Compile Include="Visuals\DetailViewBuilder.cs" />
     <Compile Include="Visuals\ListViewBuilder.cs" />
     <Compile Include="Attributes\FieldFileDataAttribute.cs" />
     <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
+    <Compile Include="ViewDescriptions\DetailViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\TabItemDescription.cs" />
+    <Compile Include="ViewDescriptions\GroupItemDescription.cs" />
+    <Compile Include="ViewDescriptions\ViewItemDescription.cs" />
+    <Compile Include="ViewDescriptions\LabelOrientation.cs" />
+    <Compile Include="ViewDescriptions\ListViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\ColumnDescription.cs" />
+    <Compile Include="ViewDescriptions\ColumnSorting.cs" />
+    <Compile Include="ViewDescriptions\IListViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\IDetailViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\DetailViewDescriptorProvider.cs" />
+    <Compile Include="ViewDescriptions\ListPropertyMode.cs" />
+    <Compile Include="ViewDescriptions\ViewItemOrientation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -854,7 +854,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
     <Folder Include="Attributes\" />
+    <Folder Include="ViewDescriptions\" />
   </ItemGroup>
 </Project>
