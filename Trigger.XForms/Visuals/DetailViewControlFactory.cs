@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using Eto.Drawing;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
-using Eto.Drawing;
 using Trigger.XStorable.Dependency;
-using System.IO;
-using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
@@ -104,14 +104,14 @@ namespace Trigger.XForms.Visuals
 
         bool IsEnabled(PropertyInfo property)
         {
-            var attribute = property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true).FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
+            var attribute = property.FindAttribute<ReadOnlyAttribute>(); //property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true).FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
 
             return attribute == null || !attribute.IsReadOnly;
         }
 
         public TextBox StringPropertyEditor(PropertyInfo property)
         {
-            var attribute = property.GetCustomAttributes(typeof(FieldLabelBehaviourAttribute), true).FirstOrDefault() as FieldLabelBehaviourAttribute;
+            var attribute = property.FindAttribute<FieldLabelBehaviourAttribute>();  //property.GetCustomAttributes(typeof(FieldLabelBehaviourAttribute), true).FirstOrDefault() as FieldLabelBehaviourAttribute;
 
             var control = new TextBox
             {
@@ -204,7 +204,7 @@ namespace Trigger.XForms.Visuals
 
         public ComboBox ReferencePropertyEditor(PropertyInfo property)
         {
-            var attribute = property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true).FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
+            var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>(); //property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true).FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
 
             var control = new ComboBox();
             var items = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
@@ -354,8 +354,8 @@ namespace Trigger.XForms.Visuals
         {
             if (property.PropertyType == typeof(string))
             {
-                var fieldFileDataAttribute = property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
-                var fieldTextAreaAttribute = property.GetCustomAttributes(typeof(FieldTextAreaAttribute), true).FirstOrDefault() as FieldTextAreaAttribute;
+                var fieldFileDataAttribute = property.FindAttribute<FieldFileDataAttribute>(); // property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
+                var fieldTextAreaAttribute = property.FindAttribute<FieldTextAreaAttribute>(); //property.GetCustomAttributes(typeof(FieldTextAreaAttribute), true).FirstOrDefault() as FieldTextAreaAttribute;
 
                 if (fieldTextAreaAttribute != null)
                     return TextAreaPropertyEditor(property);
@@ -396,7 +396,7 @@ namespace Trigger.XForms.Visuals
                 return EnumPropertyEditor(property);
             }
 
-            var linkedListAttribute = property.GetCustomAttributes(typeof(LinkedListAttribute), true).FirstOrDefault() as LinkedListAttribute; 
+            var linkedListAttribute = property.FindAttribute<LinkedListAttribute>(); //property.GetCustomAttributes(typeof(LinkedListAttribute), true).FirstOrDefault() as LinkedListAttribute; 
 
             if (linkedListAttribute != null)
             {
@@ -408,7 +408,7 @@ namespace Trigger.XForms.Visuals
                         Tag = value
                     };
                             
-                    var displayNameAttribute = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                    var displayNameAttribute = property.FindAttribute<DisplayNameAttribute>(); //property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
 
                     control.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
 

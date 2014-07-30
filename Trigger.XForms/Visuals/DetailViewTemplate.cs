@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using Trigger.XStorable.DataStore;
+using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
@@ -18,7 +18,7 @@ namespace Trigger.XForms.Visuals
 
         public void SetContent(IStorable currentObject)
         {
-            var descriptorType = ViewDescriptorDeclarator.GetDescriptor(currentObject.GetType());
+            var descriptorType = ViewDescriptorProvider.GetDescriptor(currentObject.GetType());
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IViewDescriptor;
@@ -35,7 +35,7 @@ namespace Trigger.XForms.Visuals
 
         void SetTitle()
         {
-            var displayNameAttribute = ModelType.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+            var displayNameAttribute = ModelType.FindAttribute<DisplayNameAttribute>();
             if (displayNameAttribute != null)
                 Title = displayNameAttribute.DisplayName + " - " + CurrentObject.GetDefaultPropertyValue();
             else

@@ -105,12 +105,12 @@
     <Compile Include="Views\LabelOrientation.cs" />
     <Compile Include="Controllers\ActionControllerDeclarator.cs" />
     <Compile Include="Controllers\ModelTypesDeclarator.cs" />
-    <Compile Include="Views\ViewDescriptorDeclarator.cs" />
     <Compile Include="Views\ListDescriptor.cs" />
     <Compile Include="Views\ColumnDescription.cs" />
     <Compile Include="Views\ColumnSorting.cs" />
     <Compile Include="Views\IListDescriptor.cs" />
     <Compile Include="Views\IViewDescriptor.cs" />
+    <Compile Include="Views\ViewDescriptorProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

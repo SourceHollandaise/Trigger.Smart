@@ -1,6 +1,7 @@
 using System.Linq;
 using Eto.Drawing;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace System
 {
@@ -20,6 +21,22 @@ namespace System
 
             return null;
 
+        }
+
+        public static T FindAttribute<T>(this Type type) where T: Attribute
+        {
+            var attribute = type.GetCustomAttributes(typeof(T), true).FirstOrDefault();
+            if (attribute != null)
+                return (T)attribute;
+            return null;
+        }
+
+        public static T FindAttribute<T>(this PropertyInfo info) where T: Attribute
+        {
+            var attribute = info.GetCustomAttributes(typeof(T), true).FirstOrDefault();
+            if (attribute != null)
+                return (T)attribute;
+            return null;
         }
     }
 
