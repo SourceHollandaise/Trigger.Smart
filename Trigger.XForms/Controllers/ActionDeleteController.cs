@@ -44,9 +44,21 @@ namespace Trigger.XForms.Controllers
             if (CurrentObject != null)
                 CurrentObject.Delete();
 
-            var listForm = WindowManager.GetListView(ModelType);
-            if (listForm != null)
-                listForm.ReloadList();
+            var detailForm = Template as DetailViewTemplate;
+            if (detailForm != null)
+            {
+                detailForm.Closed += (sender, e) =>
+                {
+
+                    var startupView = Template as StartupView;
+                    if (startupView != null)
+                        startupView.CurrentActiveGrid.ReloadList(startupView.CurrentActiveType);
+
+                    var listForm = Template as ListViewTemplate;
+                    if (listForm != null)
+                        listForm.ReloadList();
+                };
+            }
         }
     }
 }

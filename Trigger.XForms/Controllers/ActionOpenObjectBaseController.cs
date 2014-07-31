@@ -7,37 +7,37 @@ using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Controllers
 {
-	public abstract class ActionOpenObjectBaseController : ActionBaseController
-	{
-		public Command OpenAction
-		{
-			get;
-			protected set;
-		}
+    public abstract class ActionOpenObjectBaseController : ActionBaseController
+    {
+        public Command OpenAction
+        {
+            get;
+            protected set;
+        }
 
-		protected ActionOpenObjectBaseController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
-		{
-			this.ModelType = modelType;
-		}
+        protected ActionOpenObjectBaseController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
+        {
+            this.ModelType = modelType;
+        }
 
-		public override IEnumerable<Command> Commands()
-		{
-			OpenAction = new Command();
-			OpenAction.ID = "Open_Tool_Action";
-			OpenAction.Image = ImageExtensions.GetImage("Edit32.png", 32);
-			OpenAction.MenuText = "Open";
-			OpenAction.ToolBarText = "Open";
-			OpenAction.Executed += (sender, e) =>
-			{
-				OpenObjectActionExecute();
-			};
+        public override IEnumerable<Command> Commands()
+        {
+            OpenAction = new Command();
+            OpenAction.ID = "Open_Tool_Action";
+            OpenAction.Image = ImageExtensions.GetImage("Search32.png", 32);
+            OpenAction.MenuText = "Open";
+            OpenAction.ToolBarText = "Open";
+            OpenAction.Executed += (sender, e) =>
+            {
+                OpenObjectActionExecute();
+            };
 
-			yield return OpenAction;
-		}
+            yield return OpenAction;
+        }
 
-		public virtual void OpenObjectActionExecute()
-		{
+        public virtual void OpenObjectActionExecute()
+        {
 
-		}
-	}
+        }
+    }
 }

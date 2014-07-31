@@ -55,7 +55,13 @@ namespace Trigger.XForms.Visuals
             gridView.DataStore = new DataStoreCollection(DataSet);
             gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
             gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
+            gridView.ShowCellBorders = false;
+            gridView.RowHeight = 30;
 
+            gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
+            {
+                e.Font = new Eto.Drawing.Font(e.Font.Family, 14f);
+            };
             gridView.MouseDoubleClick += (sender, e) =>
             {
                 if (gridView.SelectedItem != null)
@@ -82,6 +88,7 @@ namespace Trigger.XForms.Visuals
             gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
             gridColumn.Resizable = true;
             gridColumn.AutoSize = true;
+           
             return gridColumn;
         }
     }

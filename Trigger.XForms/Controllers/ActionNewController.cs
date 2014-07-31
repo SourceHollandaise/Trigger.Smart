@@ -49,12 +49,10 @@ namespace Trigger.XForms.Controllers
 
             detailForm.Closed += (sender, e) =>
             {
+
                 var startupView = Template as StartupView;
                 if (startupView != null)
-                {
-                    var items = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(startupView.CurrentActiveType);
-                    startupView.CurrentActiveGrid.DataStore = new DataStoreCollection(items);
-                }
+                    startupView.CurrentActiveGrid.ReloadList(startupView.CurrentActiveType);
 
                 var listForm = Template as ListViewTemplate;
                 if (listForm != null)
