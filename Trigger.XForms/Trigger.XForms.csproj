@@ -58,14 +58,8 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Visuals\WindowManager.cs" />
-    <Compile Include="Visuals\DetailViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
     <Compile Include="Visuals\LogonViewGenerator.cs" />
     <Compile Include="Visuals\LogonViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
-    <Compile Include="Visuals\ListViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Controllers\ActionActiveWindowsController.cs" />
@@ -91,11 +85,8 @@
     <Compile Include="Visuals\IViewTemplateConfiguration.cs" />
     <Compile Include="Visuals\ViewTemplateConfiguration.cs" />
     <Compile Include="Controllers\Link.cs" />
-    <Compile Include="Visuals\DetailViewControlFactory.cs" />
     <Compile Include="Controllers\ActionControllerDeclarator.cs" />
     <Compile Include="Controllers\ModelTypesDeclarator.cs" />
-    <Compile Include="Visuals\DetailViewBuilder.cs" />
-    <Compile Include="Visuals\ListViewBuilder.cs" />
     <Compile Include="Attributes\FieldFileDataAttribute.cs" />
     <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
     <Compile Include="ViewDescriptions\DetailViewDescriptor.cs" />
@@ -111,7 +102,17 @@
     <Compile Include="ViewDescriptions\DetailViewDescriptorProvider.cs" />
     <Compile Include="ViewDescriptions\ListPropertyMode.cs" />
     <Compile Include="ViewDescriptions\ViewItemOrientation.cs" />
-    <Compile Include="Visuals\ListViewControlFactory.cs" />
+    <Compile Include="Visuals\Details\DetailViewBuilder.cs" />
+    <Compile Include="Visuals\Details\DetailViewControlFactory.cs" />
+    <Compile Include="Visuals\Details\DetailViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Visuals\Lists\ListViewBuilder.cs" />
+    <Compile Include="Visuals\Lists\ListViewControlFactory.cs" />
+    <Compile Include="Visuals\Lists\ListViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Visuals\StartupView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -860,5 +861,7 @@
   <ItemGroup>
     <Folder Include="Attributes\" />
     <Folder Include="ViewDescriptions\" />
+    <Folder Include="Visuals\Details\" />
+    <Folder Include="Visuals\Lists\" />
   </ItemGroup>
 </Project>

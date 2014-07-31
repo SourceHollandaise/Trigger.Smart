@@ -115,7 +115,7 @@ namespace Trigger.App.ParaOffice
         {
             return new []
             {
-                typeof(ActionActiveWindowsController),
+                //typeof(ActionActiveWindowsController),
                 typeof(ActionApplicationExitController),
                 typeof(ActionCloseController),
                 typeof(ActionDeleteController),

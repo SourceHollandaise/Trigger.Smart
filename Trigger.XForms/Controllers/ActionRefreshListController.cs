@@ -1,22 +1,32 @@
 using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
 using System;
 using Trigger.XForms.Visuals;
+using Eto.Forms;
 
 namespace Trigger.XForms.Controllers
 {
-	public class ActionRefreshListController : ActionRefreshBaseController
-	{
-		public ActionRefreshListController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
-		{
-			this.ModelType = modelType;
-			TargetView = ActionControllerTargetView.ListView;
-		}
+    public class ActionRefreshListController : ActionRefreshBaseController
+    {
+        public ActionRefreshListController(TemplateBase template, Type modelType, IStorable currentObject) : base(template, modelType, currentObject)
+        {
+            this.ModelType = modelType;
+            TargetView = ActionControllerTargetView.ListView;
+        }
 
-		public override void RefreshActionExecute()
-		{
-			var listForm = Template as ListViewTemplate;
-			if (listForm != null)
-				listForm.ReloadList();
-		}
-	}
+        public override void RefreshActionExecute()
+        {
+            var startupView = Template as StartupView;
+            if (startupView != null)
+            {
+                var items = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(startupView.CurrentActiveType);
+                startupView.CurrentActiveGrid.DataStore = new DataStoreCollection(items);
+
+            }
+
+            var listForm = Template as ListViewTemplate;
+            if (listForm != null)
+                listForm.ReloadList();
+        }
+    }
 }

@@ -15,7 +15,7 @@ namespace Trigger.XForms.Controllers
         {
             Category = "Links";
             TargetView = ActionControllerTargetView.DetailView;
-            Visiblity = ActionVisibility.Menu;
+            Visiblity = ActionVisibility.None;
         }
 
         public override IEnumerable<Command> Commands()

@@ -34,23 +34,28 @@ namespace Trigger.XForms.Visuals
             this.ModelType = type;
             this.CurrentObject = currentObject;
             this.ID = this.Title;
-		
-            if (this.ToolBar == null)
-                this.ToolBar = new ToolBar();
+		    
+            if (!(this is StartupView))
+            {
+                if (this.ToolBar == null)
+                    this.ToolBar = new ToolBar();
 
-            this.ToolBar.TextAlign = ToolBarTextAlign.Right;
+                this.ToolBar.TextAlign = ToolBarTextAlign.Right;
 
-            if (this.Menu == null)
-                this.Menu = new MenuBar();
+                if (this.Menu == null)
+                    this.Menu = new MenuBar();
 
-            Application.Instance.CreateStandardMenu(Menu.Items);
+                Application.Instance.CreateStandardMenu(Menu.Items);
+
+                LoadControllers();
+            }
         }
 
         public override void OnLoadComplete(EventArgs e)
         {
             base.OnLoadComplete(e);
 
-            LoadControllers();
+           
 
             if (this is DetailViewTemplate)
                 WindowManager.AddDetailView(CurrentObject, this as DetailViewTemplate);

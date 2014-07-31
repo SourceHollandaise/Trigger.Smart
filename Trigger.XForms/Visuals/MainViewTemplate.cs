@@ -7,6 +7,7 @@ using Trigger.XForms.Controllers;
 
 namespace Trigger.XForms.Visuals
 {
+
     public class MainViewTemplate : TemplateBase
     {
         public MainViewTemplate() : base(typeof(IStorable), null)
