@@ -50,7 +50,7 @@ namespace Trigger.XForms.Controllers
                 detailForm.Closed += (sender, e) =>
                 {
 
-                    var startupView = Template as MainViewTemplate;
+                    var startupView = Template as StartupView;
                     if (startupView != null)
                         startupView.CurrentGridView.ReloadList(startupView.CurrentActiveType);
 

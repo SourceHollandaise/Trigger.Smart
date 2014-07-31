@@ -25,7 +25,7 @@ namespace Trigger.App.ParaOffice
             var logonForm = new LogonViewTemplate();
             if (logonForm.ShowDialog() == DialogResult.Ok)
             {
-                MainForm = new MainViewTemplate();
+                MainForm = new StartupView();
                 MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 MainForm.Show();
             }

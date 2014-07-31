@@ -35,7 +35,7 @@ namespace Trigger.XForms.Visuals
             this.CurrentObject = currentObject;
             this.ID = this.Title;
 		    
-            if (!(this is MainViewTemplate))
+            if (!(this is StartupView))
             {
                 if (this.ToolBar == null)
                     this.ToolBar = new ToolBar();

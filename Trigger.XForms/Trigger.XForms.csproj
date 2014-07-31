@@ -108,7 +108,7 @@
     <Compile Include="Visuals\Lists\ListViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
-    <Compile Include="Visuals\MainViewTemplate.cs" />
+    <Compile Include="Visuals\StartupView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
