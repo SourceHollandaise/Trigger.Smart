@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
   
     [System.ComponentModel.DefaultProperty("PersonenName")]
     [System.ComponentModel.DisplayName("Person")]
-    public class Person : StorableBase
+    public class Person : ExportableBase
     {
         string personenName;
 

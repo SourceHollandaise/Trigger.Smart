@@ -88,5 +88,9 @@
       <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
       <Name>Trigger.BCL.ParaOffice</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.Dependency\Trigger.Dependency.csproj">
+      <Project>{2CA29A29-7553-4801-8D29-8892E7BCB209}</Project>
+      <Name>Trigger.Dependency</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

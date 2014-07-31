@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
-using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Bezeichnung")]
     [System.ComponentModel.DisplayName("Akt")]
-    public class Akt : StorableBase
+    public class Akt : ExportableBase
     {
         public override void Initialize()
         {

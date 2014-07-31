@@ -86,6 +86,10 @@
       <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
       <Name>Trigger.XForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trigger.Dependency\Trigger.Dependency.csproj">
+      <Project>{2CA29A29-7553-4801-8D29-8892E7BCB209}</Project>
+      <Name>Trigger.Dependency</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

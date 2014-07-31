@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
-    public class AktArt : StorableBase
+    public class AktArt : ExportableBase
     {
         string art;
 

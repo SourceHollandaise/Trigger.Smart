@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Betreff")]
     [System.ComponentModel.DisplayName("Termin")]
-    public class Termin : StorableBase
+    public class Termin : ExportableBase
     {
         [System.ComponentModel.DisplayName("Termin")]
         public override string GetRepresentation

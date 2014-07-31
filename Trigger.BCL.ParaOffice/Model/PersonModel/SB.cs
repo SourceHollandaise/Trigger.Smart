@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
     [System.ComponentModel.DisplayName("Sachbearbeiter")]
-    public class SB : StorableBase
+    public class SB : ExportableBase
     {
         string id;
 

@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Dokument")]
-    public class Dokument : StorableBase, IFileData
+    public class Dokument : ExportableBase, IFileData
     {
         public override void Initialize()
         {

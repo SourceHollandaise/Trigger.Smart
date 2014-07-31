@@ -5,7 +5,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Telefon")]
     [System.ComponentModel.DisplayName("Kontakt")]
-    public class Kontakt : StorableBase
+    public class Kontakt : ExportableBase
     {
 
         [System.ComponentModel.DisplayName("Person")]
