@@ -66,7 +66,7 @@ namespace Trigger.XForms.Visuals
                 {
                     Border = BorderType.None,
                     Size = new Eto.Drawing.Size(-1, -1),
-                    Content = AddGroupLayouts(tabItem.GroupItemDescriptions)
+                    Content = AddGroupLayouts(tabItem.GroupItemDescriptions),
                 };
                
                 tabPage.Content = scrollable;

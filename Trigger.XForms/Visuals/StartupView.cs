@@ -24,7 +24,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public GridView CurrentActiveGrid
+        public GridView CurrentGridView
         {
             get;
             set;
@@ -78,8 +78,7 @@ namespace Trigger.XForms.Visuals
 
                     CurrentActiveType = navigationButton.Tag as Type;
 
-                    CommandButtons.Clear();
-                    UpdateCommands(CurrentActiveType);
+                    UpdateListCommands(CurrentActiveType);
 
                     var listLayout = new DynamicLayout();
 
@@ -98,21 +97,53 @@ namespace Trigger.XForms.Visuals
                     listLayout.Add(commandButtonGroupLayout);
 
                     var listGroup = new GroupBox();
+
                     var listGroupLayout = new DynamicLayout();
 
                     listGroupLayout.BeginVertical();
 
-                    var dscrType = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
-                    var dscr = Activator.CreateInstance(dscrType) as IListViewDescriptor;
-                    CurrentActiveGrid = new ListViewBuilder(dscr, CurrentActiveType).GetContent();
+                    //var listDetail = new Splitter();
+                    //listDetail.Orientation = SplitterOrientation.Horizontal;
+                   
+                    var descriptorTypeListView = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
+                    var dscr = Activator.CreateInstance(descriptorTypeListView) as IListViewDescriptor;
+                    CurrentGridView = new ListViewBuilder(dscr, CurrentActiveType).GetContent();
 
-                    CurrentActiveGrid.Size = new Size(-1, -1);
-                    listGroupLayout.Add(CurrentActiveGrid);
+                    CurrentGridView.Size = new Size(-1, -1);
+
+                    /*
+                    listDetail.Panel1 = CurrentGridView;
+                    listDetail.Panel1.Size = new Size(300, -1);
+
+                    CurrentGridView.SelectionChanged += (o, args) =>
+                    {
+                        if (CurrentGridView.SelectedItem != null)
+                        {
+
+                            var descriptorTypeDetailView = DetailViewDescriptorProvider.GetDescriptor(CurrentGridView.SelectedItem.GetType());
+                            var descriptorDetailView = Activator.CreateInstance(descriptorTypeDetailView) as IDetailViewDescriptor;
+                            var detailView = new DetailViewBuilder(descriptorDetailView, CurrentGridView.SelectedItem as IStorable).GetContent();
+  
+                            listDetail.Panel2 = detailView;
+                           
+                            listDetail.Panel2.Size = new Size(-1, -1);
+                        }
+                    };
+                    */
+                    listGroupLayout.Add(CurrentGridView);
                    
                     listGroupLayout.EndVertical();
                     listGroup.Content = listGroupLayout;
 
                     listLayout.Add(listGroupLayout);
+
+                    /*
+                    if (CurrentGridView != null)
+                        CurrentGridView.GotFocus += (l, u) =>
+                        {
+                            UpdateListCommands(CurrentActiveType);
+                        };
+                        */
 
                     ListViewPanel.Content = listLayout;
                 };
@@ -128,9 +159,39 @@ namespace Trigger.XForms.Visuals
             return layout;
         }
 
-        void UpdateCommands(Type type)
+        void UpdateListCommands(Type type)
         {
+            CommandButtons.Clear();
             var contollers = new ActionControllerProvider(this).GetListContentController(type);
+
+            foreach (var controller in contollers)
+            {
+                var commands = controller.Commands();
+
+                foreach (var command in commands)
+                {
+                    var commandButton = new Button()
+                    {
+                        ToolTip = command.ToolBarText,
+                        Image = command.Image,
+                        ImagePosition = ButtonImagePosition.Overlay,
+                        Size = new Size(60, 60)
+                    };
+
+                    commandButton.Click += (sender, e) =>
+                    {
+                        command.Execute();
+                    };
+
+                    CommandButtons.Add(commandButton);
+                }
+            }
+        }
+
+        void UpdateDetailCommands(Type type)
+        {
+            CommandButtons.Clear();
+            var contollers = new ActionControllerProvider(this).GetDetailContentController(type);
 
             foreach (var controller in contollers)
             {

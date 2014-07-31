@@ -60,6 +60,32 @@ namespace Trigger.XForms.Controllers
             }
         }
 
+        public IEnumerable<ActionBaseController> GetDetailContentController(Type type)
+        {
+            IList<ActionBaseController> controllers = new List<ActionBaseController>();
+
+            foreach (var ctrlType in ActionControllerDeclarator.DeclaredControllerTypes)
+            {
+                if (typeof(ActionBaseController).IsAssignableFrom(ctrlType))
+                {
+                    var controller = Activator.CreateInstance(ctrlType, Template, type, Template.CurrentObject);
+                    controllers.Add(controller as ActionBaseController);
+                }
+            }
+
+            foreach (var controller in controllers.Where(p => p.TargetView == ActionControllerTargetView.Main))
+            {
+                if (controller.TargetModelType.IsAssignableFrom(Template.ModelType))
+                    yield return controller;
+            }
+
+            foreach (var controller in controllers.Where(p => p.TargetView == ActionControllerTargetView.DetailView || p.TargetView == ActionControllerTargetView.Any))
+            {
+                if (controller.TargetModelType.IsAssignableFrom(type))
+                    yield return controller;
+            }
+        }
+
         public IEnumerable<ActionBaseController> ValidControllers()
         {
             var controllers = CreateControllers().ToList();

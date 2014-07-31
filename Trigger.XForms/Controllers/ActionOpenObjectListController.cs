@@ -24,7 +24,7 @@ namespace Trigger.XForms.Controllers
             var startupView = Template as StartupView;
             if (startupView != null)
             {
-                WindowManager.ShowDetailView(startupView.CurrentActiveGrid.SelectedItem as IStorable);
+                WindowManager.ShowDetailView(startupView.CurrentGridView.SelectedItem as IStorable);
 
             }
         }
