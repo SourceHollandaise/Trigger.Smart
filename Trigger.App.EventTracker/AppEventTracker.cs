@@ -25,7 +25,7 @@ namespace Trigger.App.EventTracker
             var logonForm = new LogonViewTemplate();
             if (logonForm.ShowDialog() == DialogResult.Ok)
             {
-                MainForm = new StartupView();
+                MainForm = new MainViewTemplate();
                 MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 MainForm.Show();
             }

@@ -108,7 +108,7 @@ namespace Trigger.XForms.Controllers
                 }
             }
 
-            if (Template is StartupView)
+            if (Template is MainViewTemplate)
             {
                 foreach (var controller in controllers.Where(p => p.TargetView == ActionControllerTargetView.Main))
                 {
