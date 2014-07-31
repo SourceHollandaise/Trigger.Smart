@@ -1,7 +1,8 @@
 using Trigger.XStorable.Dependency;
 using Trigger.XStorable.DataStore;
+using System;
 
-namespace Trigger.XStorable.Model
+namespace Trigger.BCL.Common.Datastore
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
@@ -9,6 +10,10 @@ namespace Trigger.XStorable.Model
         {
             get
             {
+                var displayAttribute = GetType().FindAttribute<System.ComponentModel.DisplayNameAttribute>();
+                if (displayAttribute != null)
+                    return displayAttribute.DisplayName;
+
                 return MappingId != null ? MappingId.ToString() : string.Empty;
             }
         }
@@ -39,7 +44,7 @@ namespace Trigger.XStorable.Model
 
         protected virtual void UpdatePersistentReferences()
         {
-            LinkedObjectHelper.UpdatePersistentReferences(this);
+            LinkedObjectHelper.UpdateStoredReferences(this);
         }
 
         protected IDependencyMap Map

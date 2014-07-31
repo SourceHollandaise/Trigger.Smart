@@ -1,8 +1,6 @@
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
-using Trigger.XForms.Controllers;
 using System.Linq;
-using System;
 using Trigger.XForms.Visuals;
 using Trigger.XStorable.Dependency;
 using System.Collections.Generic;

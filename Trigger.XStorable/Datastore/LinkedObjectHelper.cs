@@ -15,26 +15,26 @@ namespace Trigger.XStorable.DataStore
             }
         }
 
-        public static void UpdatePersistentReferences(IStorable persistent)
+        public static void UpdateStoredReferences(IStorable storable)
         {
-            var properties = persistent.GetType().GetProperties().AsEnumerable()
+            var properties = storable.GetType().GetProperties().AsEnumerable()
                 .Where(p => p.GetCustomAttributes(typeof(LinkedObjectAttribute), true).FirstOrDefault() != null)
                 .ToList();
 
             foreach (var property in properties)
             {
-                var propValue = property.GetValue(persistent, null);
+                var value = property.GetValue(storable, null);
 
-                if (propValue != null)
+                if (value != null)
                 {
-                    var persistentRef = propValue as IStorable;
+                    var persistentRef = value as IStorable;
                     if (persistentRef != null)
                     {
-                        var persistentFromStore = Store.Load(persistentRef.GetType(), persistentRef.MappingId);
+                        var fromStore = Store.Load(persistentRef.GetType(), persistentRef.MappingId);
 
-                        if (persistentFromStore == null)
+                        if (fromStore == null)
                         {
-                            property.SetValue(persistent, null, null);
+                            property.SetValue(storable, null, null);
                         }
                     }
                 }

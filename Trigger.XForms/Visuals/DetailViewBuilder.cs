@@ -10,7 +10,7 @@ namespace Trigger.XForms.Visuals
 {
     public class DetailViewBuilder
     {
-        readonly DetailViewControlFactory controlFactory;
+        readonly DetailViewControlFactory factory;
 
         protected IDetailViewDescriptor Descriptor
         {
@@ -36,7 +36,7 @@ namespace Trigger.XForms.Visuals
             this.CurrentObject = currentObject;
             this.CurrentType = this.CurrentObject.GetType();
 
-            controlFactory = new DetailViewControlFactory(this.CurrentObject);
+            factory = new DetailViewControlFactory(this.CurrentObject);
         }
 
         public Control GetContent()
@@ -125,7 +125,7 @@ namespace Trigger.XForms.Visuals
                     if (property == null)
                         continue;
 
-                    control = controlFactory.GetControl(property);
+                    control = factory.GetControl(property);
                 }
                 else
                 {

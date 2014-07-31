@@ -21,7 +21,13 @@ namespace Trigger.BCL.ParaOffice
                                 new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 2){ LabelText = "Bemerkung" },
                             }
                         },
-                        new GroupItemDescription("Akten", 2)
+                    }
+                },
+                new TabItemDescription("Akten", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>

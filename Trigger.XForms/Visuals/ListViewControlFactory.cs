@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Trigger.XForms.Visuals
 {
-    public class ListPropertyEditorFactory
+    public class ListViewControlFactory
     {
         protected Type ModelType
         {
@@ -13,7 +13,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ListPropertyEditorFactory(Type modelType)
+        public ListViewControlFactory(Type modelType)
         {
             this.ModelType = modelType;
         }

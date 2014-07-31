@@ -10,7 +10,7 @@ namespace Trigger.XForms.Visuals
 {
     public class ListViewBuilder
     {
-        readonly ListPropertyEditorFactory editorFactory;
+        readonly ListViewControlFactory factory;
 
         protected IListViewDescriptor Descriptor
         {
@@ -35,7 +35,7 @@ namespace Trigger.XForms.Visuals
             this.DataSet = dataSet;
             this.ModelType = modelType;
             this.Descriptor = descriptor;
-            editorFactory = new ListPropertyEditorFactory(ModelType);   
+            factory = new ListViewControlFactory(ModelType);   
         }
 
         public GridView GetContent()
@@ -48,6 +48,7 @@ namespace Trigger.XForms.Visuals
                 if (gridColumn != null)
                     gridView.Columns.Add(gridColumn);
             }
+
             if (DataSet == null)
                 DataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
 
@@ -70,7 +71,7 @@ namespace Trigger.XForms.Visuals
             if (property == null)
                 return null;
                 
-            var cell = editorFactory.CreateDataCell(property);
+            var cell = factory.CreateDataCell(property);
 
             if (cell == null)
                 return null;

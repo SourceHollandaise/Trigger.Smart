@@ -1,6 +1,7 @@
 ﻿using System;
 using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -31,6 +32,7 @@ namespace Trigger.BCL.ParaOffice
                                 new ViewItemDescription(Fields.GetName(m => m.SB1), 1){ LabelText = "SB 1" },
                                 new ViewItemDescription(Fields.GetName(m => m.SB2), 2){ LabelText = "SB 2" },
                                 new ViewItemDescription(Fields.GetName(m => m.SB3), 3){ LabelText = "SB 3" },
+                                new ViewItemDescription(EmptySpaceFieldName, 4)
                             }
                         },
                         new GroupItemDescription("Anlage/Erledigung", 3)
@@ -89,5 +91,6 @@ namespace Trigger.BCL.ParaOffice
             };
         }
     }
+
 }
 

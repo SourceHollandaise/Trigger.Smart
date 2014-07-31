@@ -8,6 +8,7 @@
     <RootNamespace>Trigger.XStorable</RootNamespace>
     <AssemblyName>Trigger.XStorable</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
+    <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,17 +57,9 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO">
-      <HintPath>..\Trigger.Smart\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Trigger.Smart\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Datastore\FileStore.cs" />
-    <Compile Include="Datastore\GuidIdGenerator.cs" />
     <Compile Include="Datastore\IdGenerator.cs" />
     <Compile Include="Datastore\IFileData.cs" />
     <Compile Include="Datastore\IFileDataService.cs" />
@@ -74,14 +67,14 @@
     <Compile Include="Datastore\IStore.cs" />
     <Compile Include="Attributes\LinkedObjectAttribute.cs" />
     <Compile Include="Datastore\LinkedObjectHelper.cs" />
-    <Compile Include="Datastore\NotifyPropertyChangedBase.cs" />
     <Compile Include="Dependency\DefaultDependencyAttribute.cs" />
     <Compile Include="Dependency\DependencyMap.cs" />
     <Compile Include="Dependency\DependencyMapProvider.cs" />
     <Compile Include="Dependency\IDependencyMap.cs" />
     <Compile Include="Attributes\LinkedListAttribute.cs" />
-    <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Datastore\IStoreConfiguration.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\FieldNames.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -89,6 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

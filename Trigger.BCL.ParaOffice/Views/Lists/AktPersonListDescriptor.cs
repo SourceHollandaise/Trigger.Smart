@@ -1,4 +1,3 @@
-using System;
 using Trigger.XForms;
 using System.Collections.Generic;
 
@@ -11,8 +10,9 @@ namespace Trigger.BCL.ParaOffice
         {
             ColumnDescriptions = new List<ColumnDescription>
             {
-                new ColumnDescription(Fields.GetName(m => m.PersonAlias), 1){ ColumnHeaderText = "Person" },
-                new ColumnDescription(Fields.GetName(m => m.AktAlias), 2){ ColumnHeaderText = "Akt" },
+                new ColumnDescription(Fields.GetName(m => m.AktAlias), 1){ ColumnHeaderText = "Akt" },
+                new ColumnDescription(Fields.GetName(m => m.PersonAlias), 2){ ColumnHeaderText = "Person" },
+                new ColumnDescription(Fields.GetName(m => m.VertreterAlias), 3){ ColumnHeaderText = "Vertreter" },
             };
         }
     }

@@ -25,18 +25,20 @@ namespace Trigger.XForms.Visuals
         {
             this.Model = model;
             if (Model != null)
+            {
                 Model.PropertyChanged += (sender, e) =>
                 {
                     HandleBindings(Model.GetType().GetProperty(e.PropertyName));
                 };
+            }
         }
 
         public Control GetControl(PropertyInfo property)
         {
             if (property.PropertyType == typeof(string))
             {
-                var fieldFileDataAttribute = property.FindAttribute<FieldFileDataAttribute>(); // property.GetCustomAttributes(typeof(FieldFileDataAttribute), true).FirstOrDefault() as FieldFileDataAttribute;
-                var fieldTextAreaAttribute = property.FindAttribute<FieldTextAreaAttribute>(); //property.GetCustomAttributes(typeof(FieldTextAreaAttribute), true).FirstOrDefault() as FieldTextAreaAttribute;
+                var fieldFileDataAttribute = property.FindAttribute<FieldFileDataAttribute>();
+                var fieldTextAreaAttribute = property.FindAttribute<FieldTextAreaAttribute>();
 
                 if (fieldTextAreaAttribute != null)
                     return TextAreaPropertyEditor(property);
@@ -202,8 +204,7 @@ namespace Trigger.XForms.Visuals
 
         bool IsEnabled(PropertyInfo property)
         {
-            var attribute = property.FindAttribute<ReadOnlyAttribute>(); //property.GetCustomAttributes(typeof(System.ComponentModel.ReadOnlyAttribute), true).FirstOrDefault() as System.ComponentModel.ReadOnlyAttribute;
-
+            var attribute = property.FindAttribute<ReadOnlyAttribute>(); 
             return attribute == null || !attribute.IsReadOnly;
         }
 
@@ -298,7 +299,7 @@ namespace Trigger.XForms.Visuals
 
         ComboBox ReferencePropertyEditor(PropertyInfo property)
         {
-            var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>(); //property.PropertyType.GetCustomAttributes(typeof(System.ComponentModel.DefaultPropertyAttribute), true).FirstOrDefault() as System.ComponentModel.DefaultPropertyAttribute;
+            var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>();
 
             var control = new ComboBox();
             var items = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();

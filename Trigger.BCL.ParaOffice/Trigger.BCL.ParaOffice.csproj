@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Trigger.BCL.ParaOffice</RootNamespace>
     <AssemblyName>Trigger.BCL.ParaOffice</AssemblyName>
+    <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,22 +57,24 @@
     <Compile Include="Services\CurrentSBService.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
     <Compile Include="Services\DokumentFileDataService.cs" />
-    <Compile Include="Views\AktViewDescriptor.cs" />
-    <Compile Include="Views\DokumentListDescriptor.cs" />
-    <Compile Include="Views\KontaktListDescriptor.cs" />
-    <Compile Include="Views\TerminListDescriptor.cs" />
-    <Compile Include="Views\DokumentViewDescriptor.cs" />
-    <Compile Include="Views\PersonViewDescriptor.cs" />
-    <Compile Include="Views\KontaktViewDescriptor.cs" />
-    <Compile Include="Views\AktArtViewDescriptor.cs" />
-    <Compile Include="Views\TerminViewDescriptor.cs" />
-    <Compile Include="Views\AktPersonListDescriptor.cs" />
-    <Compile Include="Views\AktArtListDescriptor.cs" />
-    <Compile Include="Views\PersonListDescriptor.cs" />
-    <Compile Include="Views\AktListDescriptor.cs" />
-    <Compile Include="Views\SBViewDescriptor.cs" />
-    <Compile Include="Views\SBListDescriptor.cs" />
-    <Compile Include="Views\AktPersonViewDescriptor.cs" />
+    <Compile Include="Views\Lists\AktArtListDescriptor.cs" />
+    <Compile Include="Views\Lists\AktListDescriptor.cs" />
+    <Compile Include="Views\Lists\AktPersonListDescriptor.cs" />
+    <Compile Include="Views\Lists\DokumentListDescriptor.cs" />
+    <Compile Include="Views\Lists\KontaktListDescriptor.cs" />
+    <Compile Include="Views\Lists\PersonListDescriptor.cs" />
+    <Compile Include="Views\Lists\SBListDescriptor.cs" />
+    <Compile Include="Views\Lists\TerminListDescriptor.cs" />
+    <Compile Include="Views\Details\AktArtViewDescriptor.cs" />
+    <Compile Include="Views\Details\AktPersonViewDescriptor.cs" />
+    <Compile Include="Views\Details\AktViewDescriptor.cs" />
+    <Compile Include="Views\Details\DokumentViewDescriptor.cs" />
+    <Compile Include="Views\Details\KontaktViewDescriptor.cs" />
+    <Compile Include="Views\Details\PersonViewDescriptor.cs" />
+    <Compile Include="Views\Details\SBViewDescriptor.cs" />
+    <Compile Include="Views\Details\TerminViewDescriptor.cs" />
+    <Compile Include="Views\Details\UserViewDescriptor.cs" />
+    <Compile Include="Views\Lists\UserListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -82,6 +85,8 @@
     <Folder Include="Model\DokumentModel\" />
     <Folder Include="Model\TerminModel\" />
     <Folder Include="Views\" />
+    <Folder Include="Views\Lists\" />
+    <Folder Include="Views\Details\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">

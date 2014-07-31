@@ -11,6 +11,7 @@
     <AssemblyName>Trigger.App.OSX.ParaOffice</AssemblyName>
     <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
     <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
+    <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

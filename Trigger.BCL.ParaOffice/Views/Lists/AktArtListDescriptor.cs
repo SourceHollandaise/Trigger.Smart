@@ -1,4 +1,3 @@
-using System;
 using Trigger.XForms;
 using System.Collections.Generic;
 
@@ -16,5 +15,4 @@ namespace Trigger.BCL.ParaOffice
             };
         }
     }
-
 }

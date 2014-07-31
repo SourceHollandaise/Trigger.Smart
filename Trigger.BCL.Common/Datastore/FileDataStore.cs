@@ -3,10 +3,11 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.Dependency;
+using Trigger.XStorable.DataStore;
 
-namespace Trigger.XStorable.DataStore
+namespace Trigger.BCL.Common.Datastore
 {
-    public class FileStore : IStore
+    public class FileDataStore : IStore
     {
         const string StoredFileExtension = ".json";
 
@@ -100,7 +101,7 @@ namespace Trigger.XStorable.DataStore
                 try
                 {
                     var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
-                    LinkedObjectHelper.UpdatePersistentReferences(result);
+                    LinkedObjectHelper.UpdateStoredReferences(result);
                     return result;
                 }
                 catch

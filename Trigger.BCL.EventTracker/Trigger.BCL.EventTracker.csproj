@@ -8,6 +8,7 @@
     <RootNamespace>Trigger.BCL.EventTracker</RootNamespace>
     <AssemblyName>Trigger.BCL.EventTracker</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
+    <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,17 +59,17 @@
     <Compile Include="Model\ContactType.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Services\DocumentFileDataService.cs" />
-    <Compile Include="Views\PersonViewDescriptor.cs" />
-    <Compile Include="Views\ContactViewDescriptor.cs" />
-    <Compile Include="Views\IssueTrackerViewDescriptor.cs" />
-    <Compile Include="Views\AreaViewDescriptor.cs" />
-    <Compile Include="Views\DocumentViewDescriptor.cs" />
-    <Compile Include="Views\UserViewDescriptor.cs" />
     <Compile Include="Views\PersonViewLayoutDemoDescriptor.cs" />
-    <Compile Include="Views\AreaListDescriptor.cs" />
-    <Compile Include="Views\IssueTrackerListDescriptor.cs" />
-    <Compile Include="Views\DocumentListDescriptor.cs" />
-    <Compile Include="Views\ContactListDescriptor.cs" />
+    <Compile Include="Views\Lists\AreaListDescriptor.cs" />
+    <Compile Include="Views\Lists\ContactListDescriptor.cs" />
+    <Compile Include="Views\Lists\DocumentListDescriptor.cs" />
+    <Compile Include="Views\Lists\IssueTrackerListDescriptor.cs" />
+    <Compile Include="Views\Details\AreaViewDescriptor.cs" />
+    <Compile Include="Views\Details\ContactViewDescriptor.cs" />
+    <Compile Include="Views\Details\DocumentViewDescriptor.cs" />
+    <Compile Include="Views\Details\IssueTrackerViewDescriptor.cs" />
+    <Compile Include="Views\Details\PersonViewDescriptor.cs" />
+    <Compile Include="Views\Details\UserViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -88,5 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+    <Folder Include="Views\Lists\" />
+    <Folder Include="Views\Details\" />
   </ItemGroup>
 </Project>

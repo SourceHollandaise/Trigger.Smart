@@ -9,6 +9,7 @@
     <AssemblyName>Trigger.App.ParaOffice</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
     <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
+    <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

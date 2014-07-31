@@ -9,6 +9,7 @@ using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
 using Trigger.XForms;
+using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.App.ParaOffice
 {
@@ -35,7 +36,7 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
-            Map.RegisterType<IStore, FileStore>();
+            Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
 
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
@@ -46,6 +47,7 @@ namespace Trigger.App.ParaOffice
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<SB, SBViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
@@ -55,6 +57,7 @@ namespace Trigger.App.ParaOffice
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<SB, SBListDescriptor>();
             ListViewDescriptorProvider.Declare<Termin, TerminListDescriptor>();
+            ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()
@@ -118,7 +121,7 @@ namespace Trigger.App.ParaOffice
                 typeof(ActionDeleteController),
                 typeof(ActionFileDataDetailController),
                 typeof(ActionFileDataListController),
-                typeof(ActionLinkedListController),
+                //typeof(ActionLinkedListController),
                 typeof(ActionNewController),
                 typeof(ActionOpenObjectListController),
                 typeof(ActionRefreshDetailController),

@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Trigger.XStorable.DataStore
+namespace Trigger.BCL.Common
 {
     public abstract class NotifyPropertyChangedBase : INotifyPropertyChanged
     {

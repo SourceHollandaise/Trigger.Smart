@@ -22,13 +22,33 @@ namespace Trigger.BCL.ParaOffice
                                 new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel" },
                                 new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer" },
                             }
-                        },
-                        new GroupItemDescription("Termine", 2)
+                        }
+                    }
+                },
+                new TabItemDescription("Termine", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.LinkedTermine), 1){ LabelText = "Termine", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        },
+                    }
+                },
+                new TabItemDescription("Akten", 3)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedAkten), 1){ LabelText = "Akten", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
                             }
                         },
                     }

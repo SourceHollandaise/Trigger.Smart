@@ -1,4 +1,3 @@
-using System.Linq;
 using Eto.Drawing;
 
 namespace Eto.Drawing
@@ -13,7 +12,7 @@ namespace Eto.Drawing
 
     public static class ImageExtensions
     {
-        public static Image GetImage(string imageName, int size)
+        public static Image GetImage(string imageName, int size = 32)
         {
             Image bitMap = Bitmap.FromResource(imageName);
             if (size > bitMap.Height)
