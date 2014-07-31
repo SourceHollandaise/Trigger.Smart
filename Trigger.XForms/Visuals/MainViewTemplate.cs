@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms.Controllers;
+using System.ComponentModel;
 
 namespace Trigger.XForms.Visuals
 {
@@ -12,17 +12,9 @@ namespace Trigger.XForms.Visuals
     {
         protected List<Button> CommandButtons = new List<Button>();
 
-        public Panel ListViewPanel
-        {
-            get;
-            set;
-        }
+        protected Panel ListViewPanel;
 
-        public Panel NavigationPanel
-        {
-            get;
-            set;
-        }
+        protected Panel NavigationPanel;
 
         public GridView CurrentGridView
         {
@@ -45,90 +37,101 @@ namespace Trigger.XForms.Visuals
 
         void CreateMainContent()
         {
+            CreateSplitPanels();
+
+            Content = CreateSplitLayout();
+        }
+
+        void CreateSplitPanels()
+        {
             NavigationPanel = new Panel();
             NavigationPanel.Content = GetNavigationPanelContent();
             ListViewPanel = new Panel();
+        }
 
-            Splitter splitter = new Splitter();
-            splitter.Panel1 = NavigationPanel;
+        Splitter CreateSplitLayout()
+        {
+            var splitter = new Splitter()
+            {
+                Panel1 = NavigationPanel,
+                Panel2 = ListViewPanel,
+                Orientation = SplitterOrientation.Horizontal,
+                FixedPanel = SplitterFixedPanel.Panel1
+            };
             splitter.Panel1.Size = new Size(200, -1);
-            splitter.Panel2 = ListViewPanel;
             splitter.Panel2.Size = new Size(-1, -1);
-            splitter.Orientation = SplitterOrientation.Horizontal;
-            splitter.FixedPanel = SplitterFixedPanel.Panel1;
-            this.Content = splitter;
+            return splitter;
         }
 
         DynamicLayout GetNavigationPanelContent()
         {
-            DynamicLayout layout = new DynamicLayout();
+            var layout = new DynamicLayout();
 
-            foreach (var type in ModelTypesDeclarator.DeclaredModelTypes)
+            foreach (var modelType in ModelTypesDeclarator.DeclaredModelTypes)
             {
-                var displayNameAttribute = type.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
+                var displayNameAttribute = modelType.FindAttribute<DisplayNameAttribute>();
 
-                var navigationButton = new Button();
-                navigationButton.Size = new Size(-1, 60);
-                navigationButton.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : type.Name;
-                navigationButton.Tag = type;
-                navigationButton.ImagePosition = ButtonImagePosition.Left;
-
-                navigationButton.Click += (sender, e) =>
+                var button = new Button()
                 {
+                    Size = new Size(-1, 60),
+                    Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name,
+                    Tag = modelType,
+                    ImagePosition = ButtonImagePosition.Left
+                };
 
-                    CurrentActiveType = navigationButton.Tag as Type;
+                button.Click += (sender, e) =>
+                {
+                    CurrentActiveType = button.Tag as Type;
 
                     UpdateListCommands(CurrentActiveType);
 
                     var listLayout = new DynamicLayout();
-
-                    var commandButtonGroup = new GroupBox();
-                    var commandButtonGroupLayout = new DynamicLayout();
-                    commandButtonGroupLayout.BeginHorizontal();
-
-                    foreach (var item in CommandButtons)
-                    {
-                        commandButtonGroupLayout.Add(item, false, false);
-                    }
-                    commandButtonGroupLayout.Add(new DynamicLayout(), false, false);
-                    commandButtonGroupLayout.EndHorizontal();
-
-                    commandButtonGroup.Content = commandButtonGroupLayout;
-                    listLayout.Add(commandButtonGroupLayout);
-
-                    var listGroup = new GroupBox();
-
-                    var listGroupLayout = new DynamicLayout();
-
-                    listGroupLayout.BeginVertical();
-
-                    var descriptorTypeListView = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
-                    if (descriptorTypeListView != null)
-                    {
-                        var dscr = Activator.CreateInstance(descriptorTypeListView) as IListViewDescriptor;
-                        CurrentGridView = new ListViewBuilder(dscr, CurrentActiveType).GetContent();
-
-                        CurrentGridView.Size = new Size(-1, -1);
-
-                        listGroupLayout.Add(CurrentGridView);
-                    }
-                   
-                    listGroupLayout.EndVertical();
-                    listGroup.Content = listGroupLayout;
-
-                    listLayout.Add(listGroupLayout);
-
+                    listLayout.Add(CreateCommandButtonGrouplayout());
+                    listLayout.Add(CreateListViewLayout());
                     ListViewPanel.Content = listLayout;
                 };
 
                 layout.BeginHorizontal();
-                layout.Add(navigationButton, true);
+                layout.Add(button, true);
                 layout.EndHorizontal();
             }
 
             layout.BeginHorizontal();
             layout.EndHorizontal();
 
+            return layout;
+        }
+
+        DynamicLayout CreateCommandButtonGrouplayout()
+        {
+            var groupBox = new GroupBox();
+            var layout = new DynamicLayout();
+            layout.BeginHorizontal();
+            foreach (var item in CommandButtons)
+            {
+                layout.Add(item, false, false);
+            }
+            layout.Add(new DynamicLayout(), false, false);
+            layout.EndHorizontal();
+            groupBox.Content = layout;
+            return layout;
+        }
+
+        DynamicLayout CreateListViewLayout()
+        {
+            var groupBox = new GroupBox();
+            var layout = new DynamicLayout();
+            layout.BeginVertical();
+            var descriptorType = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
+            if (descriptorType != null)
+            {
+                var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+                CurrentGridView = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
+                CurrentGridView.Size = new Size(-1, -1);
+                layout.Add(CurrentGridView);
+            }
+            layout.EndVertical();
+            groupBox.Content = layout;
             return layout;
         }
 
@@ -159,36 +162,6 @@ namespace Trigger.XForms.Visuals
                     CommandButtons.Add(commandButton);
                 }
             }
-        }
-
-        void UpdateDetailCommands(Type type)
-        {
-            CommandButtons.Clear();
-            var contollers = new ActionControllerProvider(this).GetDetailContentController(type);
-
-            foreach (var controller in contollers)
-            {
-                var commands = controller.Commands();
-
-                foreach (var command in commands)
-                {
-                    var commandButton = new Button()
-                    {
-                        ToolTip = command.ToolBarText,
-                        Image = command.Image,
-                        ImagePosition = ButtonImagePosition.Overlay,
-                        Size = new Size(60, 60)
-                    };
-
-                    commandButton.Click += (sender, e) =>
-                    {
-                        command.Execute();
-                    };
-
-                    CommandButtons.Add(commandButton);
-                }
-            }
-
         }
 
         public override void OnKeyDown(KeyEventArgs e)
