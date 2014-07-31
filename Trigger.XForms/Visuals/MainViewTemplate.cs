@@ -8,7 +8,7 @@ using Trigger.XForms.Controllers;
 
 namespace Trigger.XForms.Visuals
 {
-    public class StartupView : TemplateBase
+    public class MainViewTemplate : TemplateBase
     {
         protected List<Button> CommandButtons = new List<Button>();
 
@@ -36,7 +36,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public StartupView() : base(typeof(IStorable), null)
+        public MainViewTemplate() : base(typeof(IStorable), null)
         {
             this.WindowState = WindowState.Maximized;
 
@@ -102,9 +102,6 @@ namespace Trigger.XForms.Visuals
 
                     listGroupLayout.BeginVertical();
 
-                    //var listDetail = new Splitter();
-                    //listDetail.Orientation = SplitterOrientation.Horizontal;
-                   
                     var descriptorTypeListView = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
                     if (descriptorTypeListView != null)
                     {
@@ -113,25 +110,6 @@ namespace Trigger.XForms.Visuals
 
                         CurrentGridView.Size = new Size(-1, -1);
 
-                        /*
-                    listDetail.Panel1 = CurrentGridView;
-                    listDetail.Panel1.Size = new Size(300, -1);
-
-                    CurrentGridView.SelectionChanged += (o, args) =>
-                    {
-                        if (CurrentGridView.SelectedItem != null)
-                        {
-
-                            var descriptorTypeDetailView = DetailViewDescriptorProvider.GetDescriptor(CurrentGridView.SelectedItem.GetType());
-                            var descriptorDetailView = Activator.CreateInstance(descriptorTypeDetailView) as IDetailViewDescriptor;
-                            var detailView = new DetailViewBuilder(descriptorDetailView, CurrentGridView.SelectedItem as IStorable).GetContent();
-  
-                            listDetail.Panel2 = detailView;
-                           
-                            listDetail.Panel2.Size = new Size(-1, -1);
-                        }
-                    };
-                    */
                         listGroupLayout.Add(CurrentGridView);
                     }
                    
@@ -139,14 +117,6 @@ namespace Trigger.XForms.Visuals
                     listGroup.Content = listGroupLayout;
 
                     listLayout.Add(listGroupLayout);
-
-                    /*
-                    if (CurrentGridView != null)
-                        CurrentGridView.GotFocus += (l, u) =>
-                        {
-                            UpdateListCommands(CurrentActiveType);
-                        };
-                     */
 
                     ListViewPanel.Content = listLayout;
                 };

@@ -94,13 +94,13 @@ namespace Trigger.App.EventTracker
         {
             return new []
             {
-                typeof(ActionActiveWindowsController),
+                //typeof(ActionActiveWindowsController),
                 typeof(ActionApplicationExitController),
                 typeof(ActionCloseController),
                 typeof(ActionDeleteController),
                 typeof(ActionFileDataDetailController),
                 typeof(ActionFileDataListController),
-                typeof(ActionLinkedListController),
+                //typeof(ActionLinkedListController),
                 typeof(ActionNewController),
                 typeof(ActionOpenObjectListController),
                 typeof(ActionRefreshDetailController),
