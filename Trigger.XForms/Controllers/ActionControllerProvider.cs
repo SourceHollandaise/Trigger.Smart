@@ -108,15 +108,6 @@ namespace Trigger.XForms.Controllers
                 }
             }
 
-            if (Template is MainViewTemplate)
-            {
-                foreach (var controller in controllers.Where(p => p.TargetView == ActionControllerTargetView.Main))
-                {
-                    if (controller.TargetModelType.IsAssignableFrom(Template.ModelType))
-                        yield return controller;
-                }
-            }
-
             if (Template is StartupView)
             {
                 foreach (var controller in controllers.Where(p => p.TargetView == ActionControllerTargetView.Main))

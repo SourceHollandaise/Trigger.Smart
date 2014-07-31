@@ -11,6 +11,7 @@ using Trigger.BCL.Common.Security;
 using Trigger.XForms.Visuals;
 using Trigger.BCL.EventTracker;
 using Trigger.XForms;
+using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.App.EventTracker
 {
@@ -37,7 +38,7 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
-            Map.RegisterType<IStore, FileStore>();
+            Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
 
             DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();

@@ -1,10 +1,10 @@
-using Eto.Forms;
+using System;
 using System.Collections.Generic;
-using Eto.Drawing;
 using System.Linq;
+using Eto.Drawing;
+using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms.Controllers;
-using System;
 
 namespace Trigger.XForms.Visuals
 {
@@ -106,12 +106,14 @@ namespace Trigger.XForms.Visuals
                     //listDetail.Orientation = SplitterOrientation.Horizontal;
                    
                     var descriptorTypeListView = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
-                    var dscr = Activator.CreateInstance(descriptorTypeListView) as IListViewDescriptor;
-                    CurrentGridView = new ListViewBuilder(dscr, CurrentActiveType).GetContent();
+                    if (descriptorTypeListView != null)
+                    {
+                        var dscr = Activator.CreateInstance(descriptorTypeListView) as IListViewDescriptor;
+                        CurrentGridView = new ListViewBuilder(dscr, CurrentActiveType).GetContent();
 
-                    CurrentGridView.Size = new Size(-1, -1);
+                        CurrentGridView.Size = new Size(-1, -1);
 
-                    /*
+                        /*
                     listDetail.Panel1 = CurrentGridView;
                     listDetail.Panel1.Size = new Size(300, -1);
 
@@ -130,7 +132,8 @@ namespace Trigger.XForms.Visuals
                         }
                     };
                     */
-                    listGroupLayout.Add(CurrentGridView);
+                        listGroupLayout.Add(CurrentGridView);
+                    }
                    
                     listGroupLayout.EndVertical();
                     listGroup.Content = listGroupLayout;
@@ -143,7 +146,7 @@ namespace Trigger.XForms.Visuals
                         {
                             UpdateListCommands(CurrentActiveType);
                         };
-                        */
+                     */
 
                     ListViewPanel.Content = listLayout;
                 };
