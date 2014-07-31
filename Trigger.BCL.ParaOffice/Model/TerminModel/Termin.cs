@@ -143,6 +143,14 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        public string SBAlias
+        {
+            get
+            {
+                return SB != null ? SB.ID : null;
+            }
+        }
+
         SB sb;
 
         public SB SB

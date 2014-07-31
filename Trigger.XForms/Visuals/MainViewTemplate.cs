@@ -36,11 +36,12 @@ namespace Trigger.XForms.Visuals
             base.OnClosing(e);
 
             var templatesToClose = WindowManager.ActiveViews.ToList();
-            while (templatesToClose.Count > 0)
-            {
-                templatesToClose[0].Close();
-                templatesToClose[0].Dispose();
-            }
+            if (templatesToClose != null)
+                while (templatesToClose.Count > 0)
+                {
+                    templatesToClose[0].Close();
+                    templatesToClose[0].Dispose();
+                }
         }
     }
 }

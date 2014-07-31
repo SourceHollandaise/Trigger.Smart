@@ -34,7 +34,13 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-       
+        public string RAAlias
+        {
+            get
+            {
+                return RA != null ? RA.ID : null;
+            }
+        }
 
         SB ra;
 
@@ -52,6 +58,14 @@ namespace Trigger.BCL.ParaOffice
                 ra = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string SKAlias
+        {
+            get
+            {
+                return SK != null ? SK.ID : null;
             }
         }
 

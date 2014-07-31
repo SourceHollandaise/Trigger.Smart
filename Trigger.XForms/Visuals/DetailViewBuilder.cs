@@ -125,7 +125,7 @@ namespace Trigger.XForms.Visuals
                     if (property == null)
                         continue;
 
-                    control = factory.GetControl(property);
+                    control = factory.GetControl(property, viewItem);
                 }
                 else
                 {

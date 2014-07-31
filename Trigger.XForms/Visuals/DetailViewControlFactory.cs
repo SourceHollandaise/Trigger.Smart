@@ -33,7 +33,7 @@ namespace Trigger.XForms.Visuals
             }
         }
 
-        public Control GetControl(PropertyInfo property)
+        public Control GetControl(PropertyInfo property, ViewItemDescription viewItem)
         {
             if (property.PropertyType == typeof(string))
             {
@@ -85,46 +85,48 @@ namespace Trigger.XForms.Visuals
                 var value = property.GetValue(Model, null);
                 if (value is IEnumerable<IStorable>)
                 {
-                    var descriptorType = ListViewDescriptorProvider.GetDescriptor(linkedListAttribute.LinkType);
-
-                    if (descriptorType != null)
+                    if (viewItem.ListMode == ListPropertyMode.List)
                     {
-                        var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                        var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, value as IEnumerable<IStorable>).GetContent();
+                        var descriptorType = ListViewDescriptorProvider.GetDescriptor(linkedListAttribute.LinkType);
 
-                        if (control != null)
+                        if (descriptorType != null)
                         {
-                            control.MouseDoubleClick += (sender, e) =>
+                            var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+
+                            var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, value as IEnumerable<IStorable>).GetContent();
+
+                            if (control != null)
                             {
-                                if (control.SelectedItem != null)
-                                    WindowManager.ShowDetailView(control.SelectedItem as IStorable);
-                            };
+                                control.MouseDoubleClick += (sender, e) =>
+                                {
+                                    if (control.SelectedItem != null)
+                                        WindowManager.ShowDetailView(control.SelectedItem as IStorable);
+                                };
+                            }
+                            return control;
                         }
-                        return control;
                     }
 
-                    return null;
-                    /*
-                    var control = new Button
+                    if (viewItem.ListMode == ListPropertyMode.Button)
                     {
-                        Tag = value
-                    };
+                        var control = new Button
+                        {
+                            Tag = value
+                        };
                             
-                    var displayNameAttribute = property.FindAttribute<DisplayNameAttribute>(); //property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                        var displayNameAttribute = property.FindAttribute<DisplayNameAttribute>();
 
-                    control.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
+                        control.Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : property.Name;
 
-                    control.Click += (sender, e) =>
-                    {
-                        var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
-                        listView.ReloadList((IEnumerable<IStorable>)control.Tag);
-                        listView.Show();
-                    };
+                        control.Click += (sender, e) =>
+                        {
+                            var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
+                            listView.ReloadList((IEnumerable<IStorable>)control.Tag);
+                            listView.Show();
+                        };
 
-                    return control;
-                    */
-
-
+                        return control;
+                    }
                 }
             }
 
@@ -400,7 +402,8 @@ namespace Trigger.XForms.Visuals
             var control = new DateTimePicker
             {
                 Value = (DateTime?)property.GetValue(Model, null),
-                Mode = DateTimePickerMode.DateTime
+                Mode = DateTimePickerMode.DateTime,
+                MinDate = new DateTime(1970, 1, 1),
             };
             control.ValueChanged += (sender, e) =>
             {
