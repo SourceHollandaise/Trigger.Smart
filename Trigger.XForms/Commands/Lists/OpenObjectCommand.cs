@@ -10,9 +10,13 @@ namespace Trigger.XForms.Commands
 
     public class OpenObjectCommand : IOpenObjectCommand
     {
-        public void Execute(Type type)
+        public void Execute(ListViewArguments args)
         {
-
+            if (args.Grid.SelectedItem != null)
+            {
+                if (args.Grid.SelectedItem != null)
+                    WindowManager.ShowDetailView(args.Grid.SelectedItem as IStorable);
+            }
         }
 
         public string ID

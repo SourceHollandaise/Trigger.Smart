@@ -8,9 +8,10 @@ namespace Trigger.XForms.Commands
 
     public class UpdateDocumentStoreCommand : IUpdateDocumentStoreCommand
     {
-        public void Execute(Type type)
+        public void Execute(ListViewArguments args)
         {
             DependencyMapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
+            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID

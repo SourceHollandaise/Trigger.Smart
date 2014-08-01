@@ -111,6 +111,7 @@
     <Compile Include="Commands\Details\CloseWindowCommand.cs" />
     <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
     <Compile Include="ModelTypesDeclarator.cs" />
+    <Compile Include="Commands\ListViewArguments.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

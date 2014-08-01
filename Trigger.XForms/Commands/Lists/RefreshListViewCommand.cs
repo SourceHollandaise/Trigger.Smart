@@ -1,19 +1,16 @@
 using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
+using Eto.Forms;
 
 namespace Trigger.XForms.Commands
 {
 
     public class RefreshListViewCommand : IRefreshListViewCommand
     {
-        public void Execute(Type type)
+        public void Execute(ListViewArguments args)
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-//            if (customDataSource == null)
-//                gridView.DataStore = new DataStoreCollection(store.LoadAll(type));
-//            else
-//                gridView.DataStore = new DataStoreCollection(customDataSource);
+            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID

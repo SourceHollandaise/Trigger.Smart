@@ -61,7 +61,7 @@ namespace Trigger.XForms.Visuals
                 button.Size = new Eto.Drawing.Size(100, 40);
                 button.ID = command.ID;
                 button.Text = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 16);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {

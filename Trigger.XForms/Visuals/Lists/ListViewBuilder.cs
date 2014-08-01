@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using Trigger.XStorable.Dependency;
 using Eto.Drawing;
+using Trigger.XForms.Commands;
 
 namespace Trigger.XForms.Visuals
 {
@@ -41,6 +42,8 @@ namespace Trigger.XForms.Visuals
 
         public Control GetContent()
         {
+            GridView gridView = null;
+
             var detailViewLayout = new DynamicLayout();
             detailViewLayout.BeginHorizontal();
 
@@ -52,11 +55,11 @@ namespace Trigger.XForms.Visuals
                 button.Size = new Eto.Drawing.Size(100, 40);
                 button.ID = command.ID;
                 button.Text = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 16);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(ModelType);
+                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = gridView, CustomDataSet = DataSet });
                 };
                 commandBar.Add(button, false, false);
 
@@ -69,7 +72,7 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
 
-            var gridView = new GridView();
+            gridView = new GridView();
            
             foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
@@ -89,7 +92,7 @@ namespace Trigger.XForms.Visuals
 
             gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
-                e.Font = new Eto.Drawing.Font(e.Font.Family, 14f);
+                e.Font = new Eto.Drawing.Font(e.Font.Family, 12f);
             };
             gridView.MouseDoubleClick += (sender, e) =>
             {

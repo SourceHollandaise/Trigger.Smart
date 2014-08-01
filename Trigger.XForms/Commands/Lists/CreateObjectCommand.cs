@@ -10,12 +10,12 @@ namespace Trigger.XForms.Commands
 
     public class CreateObjectCommand : ICreateObjectCommand
     {
-        public void Execute(Type type)
+        public void Execute(ListViewArguments args)
         {
-            var target = Activator.CreateInstance(type) as IStorable;
+            var target = Activator.CreateInstance(args.TargetType) as IStorable;
             target.Initialize();
 
-            var detailForm = new DetailViewTemplate(type, target);
+            var detailForm = new DetailViewTemplate(args.TargetType, target);
             detailForm.Show();
         }
 
