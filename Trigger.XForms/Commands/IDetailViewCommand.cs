@@ -5,6 +5,6 @@ namespace Trigger.XForms.Commands
 {
     public interface IDetailViewCommand : IViewCommand
     {
-        void Execute(IStorable current);
+        void Execute(DetailViewArguments args);
     }
 }

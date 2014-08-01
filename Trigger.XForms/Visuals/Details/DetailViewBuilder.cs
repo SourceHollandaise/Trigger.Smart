@@ -6,6 +6,7 @@ using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
 using Eto.Drawing;
+using Trigger.XForms.Commands;
 
 namespace Trigger.XForms.Visuals
 {
@@ -58,19 +59,19 @@ namespace Trigger.XForms.Visuals
             foreach (var command in Descriptor.Commands)
             {
                 var button = new Button();
-                button.Size = new Eto.Drawing.Size(100, 40);
+                button.Size = new Size(100, 40);
                 button.ID = command.ID;
                 button.Text = command.Name;
                 button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 16);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(CurrentObject);
+                    command.Execute(new DetailViewArguments{ CurrentObject = CurrentObject, Template = WindowManager.GetDetailView(CurrentObject) });
                 };
                 commandBar.Add(button, false, false);
 
             }
-            commandBar.Add(new DynamicLayout(){ Size = new Eto.Drawing.Size(-1, -1) });
+            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
             commandBar.EndHorizontal();
 
             detailViewLayout.Add(commandBar);
@@ -94,7 +95,7 @@ namespace Trigger.XForms.Visuals
                 var scrollable = new Scrollable()
                 {
                     Border = BorderType.None,
-                    Size = new Eto.Drawing.Size(-1, -1),
+                    Size = new Size(-1, -1),
                     Content = AddGroupLayouts(tabItem.GroupItemDescriptions),
                 };
    
@@ -167,7 +168,7 @@ namespace Trigger.XForms.Visuals
                     continue;
 
                 if (viewItem.Fill)
-                    control.Size = new Eto.Drawing.Size(-1, -1);
+                    control.Size = new Size(-1, -1);
 
                 var label = new Label{ Text = viewItem.LabelText };
 

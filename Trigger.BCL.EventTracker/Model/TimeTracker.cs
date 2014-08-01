@@ -7,6 +7,7 @@ using Trigger.BCL.Common.Datastore;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
+    [System.ComponentModel.DisplayName("Tracked Time")]
     public class TimeTracker : StorableBase
     {
         string subject;

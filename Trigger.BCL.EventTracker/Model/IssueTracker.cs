@@ -9,6 +9,8 @@ using Trigger.BCL.Common.Datastore;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
+    [System.ComponentModel.DisplayName("Issue")]
+    [ImageName("Alert16")]
     public class IssueTracker : StorableBase, IFileData
     {
         public override void Initialize()

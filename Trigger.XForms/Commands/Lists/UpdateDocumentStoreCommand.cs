@@ -1,5 +1,3 @@
-using Trigger.XForms.Controllers;
-using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 
@@ -11,7 +9,7 @@ namespace Trigger.XForms.Commands
         public void Execute(ListViewArguments args)
         {
             DependencyMapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
-            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
+            args.Grid.ReloadList(args.TargetType, null);
         }
 
         public string ID

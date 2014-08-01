@@ -1,14 +1,13 @@
-using Trigger.XForms.Controllers;
-using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Commands
 {
 
     public class CloseWindowCommand : ICloseWindowCommand
     {
-        public void Execute(IStorable current)
+        public void Execute(DetailViewArguments args)
         {
-
+            if (args.Template != null)
+                args.Template.Close();
         }
 
         public string ID

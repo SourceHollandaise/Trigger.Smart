@@ -1,14 +1,12 @@
-using Trigger.XForms.Controllers;
-using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Commands
 {
 
     public class SaveObjectCommand : ISaveObjectCommand
     {
-        public void Execute(IStorable current)
+        public void Execute(DetailViewArguments args)
         {
-            current.Save();
+            args.CurrentObject.Save();
         }
 
         public string ID

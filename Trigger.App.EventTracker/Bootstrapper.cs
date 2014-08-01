@@ -42,6 +42,13 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
 
+            RegisterCommands();
+
+            RegisterViewDescriptors();
+        }
+
+        void RegisterCommands()
+        {
             Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
             Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
             Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
@@ -51,14 +58,18 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IUpdateDocumentStoreCommand, UpdateDocumentStoreCommand>();
             Map.RegisterType<IAddFileCommand, AddFileCommand>();
             Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
+            Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
+            Map.RegisterType<ILogOffCommand, LogOffCommand>();
+        }
 
+        void RegisterViewDescriptors()
+        {
             DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Contact, ContactViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Document, DocumentViewDescriptor>();
             DetailViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
-
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
             ListViewDescriptorProvider.Declare<Contact, ContactListDescriptor>();
             ListViewDescriptorProvider.Declare<Document, DocumentListDescriptor>();

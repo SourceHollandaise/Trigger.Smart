@@ -1,10 +1,12 @@
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-
     [System.ComponentModel.DefaultProperty("Person")]
+    [System.ComponentModel.DisplayName("Contact")]
+    [ImageName("Telephone16")]
     public class Contact : StorableBase
     {
         Person person;

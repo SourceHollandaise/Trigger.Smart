@@ -4,9 +4,9 @@ namespace Trigger.XForms.Commands
 {
     public class DeleteObjectCommand : IDeleteObjectCommand
     {
-        public void Execute(IStorable current)
+        public void Execute(DetailViewArguments args)
         {
-            current.Delete();
+            args.CurrentObject.Delete();
         }
 
         public string ID

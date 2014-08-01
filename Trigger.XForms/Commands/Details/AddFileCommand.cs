@@ -6,16 +6,16 @@ namespace Trigger.XForms.Commands
 {
     public class AddFileCommand : IAddFileCommand
     {
-        public void Execute(IStorable current)
+        public void Execute(DetailViewArguments args)
         {
             var service = DependencyMapProvider.Instance.ResolveType<IFileDataService>();
-            if (current != null)
+            if (args.CurrentObject != null)
             {
                 var fileDialog = new OpenFileDialog();
                 fileDialog.MultiSelect = false;
                 if (fileDialog.ShowDialog(null) == DialogResult.Ok)
                 {
-                    service.AddFile(current as IFileData, fileDialog.FileName);
+                    service.AddFile(args.CurrentObject as IFileData, fileDialog.FileName);
                     fileDialog.Dispose();
                 }
             }

@@ -1,19 +1,23 @@
+using Eto.Forms;
+using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Commands
 {
 
-    public class RefreshListViewCommand : IRefreshListViewCommand
+    public class ApplicationExitCommand : IApplicationExitCommand
     {
-        public void Execute(ListViewArguments args)
+
+        public void Execute(MainViewTemplate template)
         {
-            args.Grid.ReloadList(args.TargetType, null);
+            template.Close();
+            Application.Instance.Quit();
         }
 
         public string ID
         {
             get
             {
-                return "cmd_refresh";
+                return "cmd_exit";
             }
         }
 
@@ -21,7 +25,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Refresh";
+                return "Exit";
             }
         }
 
@@ -29,7 +33,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Refresh16";
+                return "Login_out16";
             }
         }
     }

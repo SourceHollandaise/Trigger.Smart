@@ -9,9 +9,10 @@ namespace Trigger.XForms
     {
         protected DetailViewDescriptor()
         {
-            RegisterCommands<ISaveObjectCommand>();
-            RegisterCommands<IDeleteObjectCommand>();
             RegisterCommands<ICloseWindowCommand>();
+            RegisterCommands<IDeleteObjectCommand>();
+            RegisterCommands<ISaveObjectCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
         }
 
         public IList<TabItemDescription> TabItemDescriptions { get; set; }

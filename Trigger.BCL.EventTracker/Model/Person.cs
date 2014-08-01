@@ -2,10 +2,13 @@ using Trigger.XStorable.DataStore;
 using System.Collections.Generic;
 using System.Linq;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
+    [System.ComponentModel.DisplayName("Person")]
+    [ImageName("User16")]
     public class Person : StorableBase
     {
         string displayName;

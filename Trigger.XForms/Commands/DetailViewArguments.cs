@@ -7,21 +7,15 @@ using Trigger.XForms.Visuals;
 namespace Trigger.XForms.Commands
 {
 
-    public class ListViewArguments
+    public class DetailViewArguments
     {
-        public GridView Grid
+        public DetailViewTemplate Template
         {
             get;
             set;
         }
 
-        public Type TargetType
-        {
-            get;
-            set;
-        }
-
-        public IEnumerable<IStorable> CustomDataSet
+        public IStorable CurrentObject
         {
             get;
             set;

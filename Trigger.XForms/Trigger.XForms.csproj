@@ -112,6 +112,12 @@
     <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
     <Compile Include="ModelTypesDeclarator.cs" />
     <Compile Include="Commands\ListViewArguments.cs" />
+    <Compile Include="Commands\DetailViewArguments.cs" />
+    <Compile Include="Commands\ILogOffCommand.cs" />
+    <Compile Include="Commands\LogOffCommand.cs" />
+    <Compile Include="Commands\IApplicationExitCommand.cs" />
+    <Compile Include="Commands\ApplicationExitCommand.cs" />
+    <Compile Include="Attributes\ImageNameAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
