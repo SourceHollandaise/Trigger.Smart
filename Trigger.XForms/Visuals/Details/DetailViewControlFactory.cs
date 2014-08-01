@@ -120,9 +120,7 @@ namespace Trigger.XForms.Visuals
 
                         control.Click += (sender, e) =>
                         {
-                            var listView = new ListViewTemplate(linkedListAttribute.LinkType, null);
-                            listView.ReloadList((IEnumerable<IStorable>)control.Tag);
-                            listView.Show();
+                           
                         };
 
                         return control;

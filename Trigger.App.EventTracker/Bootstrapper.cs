@@ -1,18 +1,18 @@
 using System;
 using System.Linq;
+using Trigger.BCL.Common.Datastore;
+using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Security;
+using Trigger.BCL.Common.Services;
+using Trigger.BCL.EventTracker;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
-using Trigger.XForms.Controllers;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Services;
-using Trigger.BCL.Common.Security;
+using Trigger.XForms;
 using Trigger.XForms.Controllers;
 using Trigger.XForms.Visuals;
-using Trigger.BCL.EventTracker;
-using Trigger.XForms;
-using Trigger.BCL.Common.Datastore;
+using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
+using Trigger.XForms.Commands;
 
 namespace Trigger.App.EventTracker
 {
@@ -64,6 +64,7 @@ namespace Trigger.App.EventTracker
             ListViewDescriptorProvider.Declare<Document, DocumentListDescriptor>();
             ListViewDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
+            ListViewDescriptorProvider.Declare<TimeTracker, TimeTrackerListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()
@@ -85,7 +86,6 @@ namespace Trigger.App.EventTracker
         public virtual void RegisterDeclaredTypes()
         {
             ModelTypesDeclarator.DeclareModelTypes(DeclaredTypes());
-            ActionControllerDeclarator.DeclareControllerTypes(DeclaredControllers());
         }
 
         protected virtual Type[] DeclaredTypes()
@@ -99,26 +99,6 @@ namespace Trigger.App.EventTracker
                 typeof(Contact),
                 typeof(Person),
                 typeof(User)
-            };
-        }
-
-        protected virtual Type[] DeclaredControllers()
-        {
-            return new []
-            {
-                //typeof(ActionActiveWindowsController),
-                typeof(ActionApplicationExitController),
-                typeof(ActionCloseController),
-                typeof(ActionDeleteController),
-                typeof(ActionFileDataDetailController),
-                typeof(ActionFileDataListController),
-                //typeof(ActionLinkedListController),
-                typeof(ActionNewController),
-                typeof(ActionOpenObjectListController),
-                typeof(ActionRefreshDetailController),
-                typeof(ActionRefreshListController),
-                typeof(ActionSaveController),
-
             };
         }
     }

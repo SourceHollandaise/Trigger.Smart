@@ -1,11 +1,7 @@
-using Eto.Forms;
 using Trigger.XForms.Controllers;
-using System;
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class CloseWindowCommand : ICloseWindowCommand
@@ -30,6 +26,13 @@ namespace Trigger.XForms.Controllers
                 return "Close";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Close16";
+            }
+        }
     }
-    
 }

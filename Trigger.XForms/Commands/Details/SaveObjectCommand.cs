@@ -1,7 +1,7 @@
 using Trigger.XForms.Controllers;
 using Trigger.XStorable.DataStore;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class SaveObjectCommand : ISaveObjectCommand
@@ -24,6 +24,14 @@ namespace Trigger.XForms.Controllers
             get
             {
                 return "Save";
+            }
+        }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Save16";
             }
         }
     }

@@ -5,7 +5,7 @@ using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class OpenObjectCommand : IOpenObjectCommand
@@ -30,6 +30,13 @@ namespace Trigger.XForms.Controllers
                 return "Open";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Search16";
+            }
+        }
     }
-    
 }

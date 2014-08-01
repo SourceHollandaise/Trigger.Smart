@@ -58,31 +58,11 @@
     <Compile Include="Visuals\LogonViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
-    <Compile Include="Controllers\ActionActiveWindowsController.cs" />
-    <Compile Include="Controllers\ActionApplicationExitController.cs" />
-    <Compile Include="Controllers\ActionBaseController.cs" />
-    <Compile Include="Controllers\ActionCloseController.cs" />
-    <Compile Include="Controllers\ActionControllerProvider.cs" />
-    <Compile Include="Controllers\ActionDeleteController.cs" />
-    <Compile Include="Controllers\ActionFileDataDetailController.cs" />
-    <Compile Include="Controllers\ActionFileDataListController.cs" />
-    <Compile Include="Controllers\ActionLinkedListController.cs" />
-    <Compile Include="Controllers\ActionNewController.cs" />
-    <Compile Include="Controllers\ActionOpenObjectBaseController.cs" />
-    <Compile Include="Controllers\ActionOpenObjectListController.cs" />
-    <Compile Include="Controllers\ActionRefreshBaseController.cs" />
-    <Compile Include="Controllers\ActionRefreshDetailController.cs" />
-    <Compile Include="Controllers\ActionRefreshListController.cs" />
-    <Compile Include="Controllers\ActionSaveController.cs" />
-    <Compile Include="Controllers\ActionVisibility.cs" />
     <Compile Include="Extensions\DetailViewTemplateExtensions.cs" />
     <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Visuals\IViewTemplateConfiguration.cs" />
     <Compile Include="Visuals\ViewTemplateConfiguration.cs" />
-    <Compile Include="Controllers\Link.cs" />
-    <Compile Include="Controllers\ActionControllerDeclarator.cs" />
-    <Compile Include="Controllers\ModelTypesDeclarator.cs" />
     <Compile Include="Attributes\FieldFileDataAttribute.cs" />
     <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
     <Compile Include="ViewDescriptions\DetailViewDescriptor.cs" />
@@ -130,6 +110,7 @@
     <Compile Include="Commands\Lists\IOpenObjectCommand.cs" />
     <Compile Include="Commands\Details\CloseWindowCommand.cs" />
     <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
+    <Compile Include="ModelTypesDeclarator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

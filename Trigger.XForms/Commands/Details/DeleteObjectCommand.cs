@@ -1,13 +1,7 @@
-using Eto.Forms;
-using Trigger.XForms.Controllers;
-using System;
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
-
     public class DeleteObjectCommand : IDeleteObjectCommand
     {
         public void Execute(IStorable current)
@@ -30,6 +24,13 @@ namespace Trigger.XForms.Controllers
                 return "Delete";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Delete16";
+            }
+        }
     }
-    
 }

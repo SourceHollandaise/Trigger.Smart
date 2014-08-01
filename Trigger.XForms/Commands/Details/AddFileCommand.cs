@@ -1,16 +1,11 @@
 using Eto.Forms;
-using Trigger.XForms.Controllers;
-using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
-
     public class AddFileCommand : IAddFileCommand
     {
-
         public void Execute(IStorable current)
         {
             var service = DependencyMapProvider.Instance.ResolveType<IFileDataService>();
@@ -38,7 +33,15 @@ namespace Trigger.XForms.Controllers
         {
             get
             {
-                return "Datei aufnehmen";
+                return "Attachment";
+            }
+        }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Paperclip16";
             }
         }
     }

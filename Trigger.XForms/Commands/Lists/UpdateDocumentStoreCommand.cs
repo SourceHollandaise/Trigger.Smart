@@ -3,7 +3,7 @@ using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class UpdateDocumentStoreCommand : IUpdateDocumentStoreCommand
@@ -26,6 +26,14 @@ namespace Trigger.XForms.Controllers
             get
             {
                 return "Load data";
+            }
+        }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Paperclip16";
             }
         }
     }

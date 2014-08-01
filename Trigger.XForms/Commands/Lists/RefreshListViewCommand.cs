@@ -1,11 +1,8 @@
-using Eto.Forms;
-using Trigger.XForms.Controllers;
 using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class RefreshListViewCommand : IRefreshListViewCommand
@@ -34,6 +31,13 @@ namespace Trigger.XForms.Controllers
                 return "Refresh";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Refresh16";
+            }
+        }
     }
-    
 }

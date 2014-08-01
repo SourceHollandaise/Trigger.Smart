@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Eto.Forms;
-using Trigger.XForms.Controllers;
+using Trigger.XForms.Commands;
 
 namespace Trigger.XForms
 {

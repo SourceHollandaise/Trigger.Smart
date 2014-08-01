@@ -1,18 +1,10 @@
 using System;
-using System.Linq;
-using Eto.Forms;
 using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
 {
     public class ListViewTemplate : TemplateBase
     {
-        public GridView CurrentGrid
-        {
-            get;
-            protected set;
-        }
-
         public ListViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)
         {
             SetContent();
@@ -30,8 +22,6 @@ namespace Trigger.XForms.Visuals
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
                 Content = new ListViewBuilder(descriptor, ModelType).GetContent();
             }
-
-            CurrentGrid = Content as GridView;
         }
 
         void SetSize()
@@ -41,11 +31,8 @@ namespace Trigger.XForms.Visuals
 
         void SetTitle()
         {
-            var displayNameAttribute = ModelType.GetCustomAttributes(typeof(System.ComponentModel.DisplayNameAttribute), true).FirstOrDefault() as System.ComponentModel.DisplayNameAttribute;
-            if (displayNameAttribute != null)
-                Title = displayNameAttribute.DisplayName + " - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
-            else
-                Title = ModelType.Name + " - Items: " + CurrentGrid.DataStore.AsEnumerable().Count();
+            var displayNameAttribute = ModelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
+            Title = displayNameAttribute != null ? displayNameAttribute.DisplayName : ModelType.Name;
         }
     }
 }

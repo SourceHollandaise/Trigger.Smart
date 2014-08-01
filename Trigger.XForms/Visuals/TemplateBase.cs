@@ -42,16 +42,5 @@ namespace Trigger.XForms.Visuals
             if (e.Modifiers == Keys.Control & e.Key == Keys.W)
                 this.Close();
         }
-
-        public override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-
-            if (this is ListViewTemplate)
-                WindowManager.RemoveListView(ModelType);
-
-            if (this is DetailViewTemplate)
-                WindowManager.RemoveDetailView(CurrentObject);
-        }
     }
 }

@@ -1,13 +1,9 @@
-using Eto.Forms;
-using Trigger.XForms.Controllers;
-using System;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
+using Trigger.XForms.Controllers;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
-
     public class RefreshDetailViewCommand : IDetailViewCommand
     {
         public void Execute(IStorable current)
@@ -35,6 +31,13 @@ namespace Trigger.XForms.Controllers
                 return "Refresh";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Refresh16";
+            }
+        }
     }
-    
 }

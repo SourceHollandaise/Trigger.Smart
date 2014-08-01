@@ -5,6 +5,7 @@ using System.Reflection;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -60,6 +61,8 @@ namespace Trigger.XForms.Visuals
                 button.Size = new Eto.Drawing.Size(100, 40);
                 button.ID = command.ID;
                 button.Text = command.Name;
+                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
                     command.Execute(CurrentObject);

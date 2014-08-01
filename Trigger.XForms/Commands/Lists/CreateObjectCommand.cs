@@ -5,7 +5,7 @@ using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Controllers
+namespace Trigger.XForms.Commands
 {
 
     public class CreateObjectCommand : ICreateObjectCommand
@@ -34,6 +34,13 @@ namespace Trigger.XForms.Controllers
                 return "New";
             }
         }
+
+        public string ImageName
+        {
+            get
+            {
+                return "Add16";
+            }
+        }
     }
-    
 }
