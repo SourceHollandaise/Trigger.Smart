@@ -8,6 +8,7 @@ namespace Trigger.BCL.EventTracker
     {
         public ContactViewDescriptor()
         {
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Contact", 1)

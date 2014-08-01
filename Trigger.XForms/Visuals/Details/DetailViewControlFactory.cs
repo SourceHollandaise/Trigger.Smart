@@ -99,8 +99,8 @@ namespace Trigger.XForms.Visuals
                             {
                                 control.MouseDoubleClick += (sender, e) =>
                                 {
-                                    if (control.SelectedItem != null)
-                                        WindowManager.ShowDetailView(control.SelectedItem as IStorable);
+                                    if ((control as GridView).SelectedItem != null)
+                                        WindowManager.ShowDetailView((control as GridView).SelectedItem as IStorable);
                                 };
                             }
                             return control;

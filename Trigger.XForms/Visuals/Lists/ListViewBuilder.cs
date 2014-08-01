@@ -38,8 +38,34 @@ namespace Trigger.XForms.Visuals
             factory = new ListViewControlFactory(ModelType);   
         }
 
-        public GridView GetContent()
+        public Control GetContent()
         {
+            var detailViewLayout = new DynamicLayout();
+            detailViewLayout.BeginHorizontal();
+
+            var commandBar = new DynamicLayout();
+            commandBar.BeginHorizontal();
+            foreach (var command in Descriptor.Commands)
+            {
+                var button = new Button();
+                button.Size = new Eto.Drawing.Size(100, 40);
+                button.ID = command.ID;
+                button.Text = command.Name;
+                button.Click += (sender, e) =>
+                {
+                    command.Execute(ModelType);
+                };
+                commandBar.Add(button, false, false);
+
+            }
+            commandBar.Add(new DynamicLayout(){ Size = new Eto.Drawing.Size(-1, -1) });
+            commandBar.EndHorizontal();
+
+            detailViewLayout.Add(commandBar);
+
+            detailViewLayout.EndHorizontal();
+            detailViewLayout.BeginHorizontal();
+
             var gridView = new GridView();
            
             foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
@@ -68,7 +94,10 @@ namespace Trigger.XForms.Visuals
                     WindowManager.ShowDetailView(gridView.SelectedItem as IStorable);
             };
 
-            return gridView;
+            detailViewLayout.Add(gridView);
+
+            detailViewLayout.EndHorizontal();
+            return detailViewLayout;
         }
 
         GridColumn CreateColumn(ColumnDescription columnItem)

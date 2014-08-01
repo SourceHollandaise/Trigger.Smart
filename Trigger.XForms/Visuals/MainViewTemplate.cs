@@ -10,17 +10,9 @@ namespace Trigger.XForms.Visuals
 {
     public class MainViewTemplate : TemplateBase
     {
-        protected List<Button> CommandButtons = new List<Button>();
-
         protected Panel ListViewPanel;
 
         protected Panel NavigationPanel;
-
-        public GridView CurrentGridView
-        {
-            get;
-            set;
-        }
 
         public Type CurrentActiveType
         { 
@@ -73,7 +65,7 @@ namespace Trigger.XForms.Visuals
 
                 var button = new Button()
                 {
-                    Size = new Size(-1, 60),
+                    Size = new Size(-1, 40),
                     Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name,
                     Tag = modelType,
                     ImagePosition = ButtonImagePosition.Left
@@ -82,11 +74,7 @@ namespace Trigger.XForms.Visuals
                 button.Click += (sender, e) =>
                 {
                     CurrentActiveType = button.Tag as Type;
-
-                    UpdateListCommands(CurrentActiveType);
-
                     var listLayout = new DynamicLayout();
-                    listLayout.Add(CreateCommandButtonGrouplayout());
                     listLayout.Add(CreateListViewLayout());
                     ListViewPanel.Content = listLayout;
                 };
@@ -102,21 +90,6 @@ namespace Trigger.XForms.Visuals
             return layout;
         }
 
-        DynamicLayout CreateCommandButtonGrouplayout()
-        {
-            var groupBox = new GroupBox();
-            var layout = new DynamicLayout();
-            layout.BeginHorizontal();
-            foreach (var item in CommandButtons)
-            {
-                layout.Add(item, false, false);
-            }
-            layout.Add(new DynamicLayout(), false, false);
-            layout.EndHorizontal();
-            groupBox.Content = layout;
-            return layout;
-        }
-
         DynamicLayout CreateListViewLayout()
         {
             var groupBox = new GroupBox();
@@ -126,39 +99,12 @@ namespace Trigger.XForms.Visuals
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                CurrentGridView = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
-                CurrentGridView.Size = new Size(-1, -1);
-                layout.Add(CurrentGridView);
+                var content = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
+                layout.Add(content);
             }
             layout.EndVertical();
             groupBox.Content = layout;
             return layout;
-        }
-
-        void UpdateListCommands(Type type)
-        {
-            CommandButtons.Clear();
-            var contollers = new ActionControllerProvider(this).GetListContentController(type);
-
-            foreach (var controller in contollers)
-            {
-                var commands = controller.Commands();
-
-                foreach (var command in commands)
-                {
-                    var commandButton = new Button()
-                    {
-                        ToolTip = command.ToolBarText,
-                        Image = command.Image,
-                        ImagePosition = ButtonImagePosition.Overlay,
-                        Size = new Size(60, 60)
-                    };
-
-                    commandButton.Click += (sender, e) => command.Execute();
-
-                    CommandButtons.Add(commandButton);
-                }
-            }
         }
 
         public override void OnKeyDown(KeyEventArgs e)

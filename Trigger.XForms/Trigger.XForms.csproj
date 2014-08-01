@@ -109,6 +109,27 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Visuals\MainViewTemplate.cs" />
+    <Compile Include="Commands\IViewCommand.cs" />
+    <Compile Include="Commands\IDetailViewCommand.cs" />
+    <Compile Include="Commands\IListViewCommand.cs" />
+    <Compile Include="Commands\Details\IAddFileCommand.cs" />
+    <Compile Include="Commands\Details\ICloseWindowCommand.cs" />
+    <Compile Include="Commands\Details\IDeleteObjectCommand.cs" />
+    <Compile Include="Commands\Details\RefreshDetailViewCommand.cs" />
+    <Compile Include="Commands\Lists\RefreshListViewCommand.cs" />
+    <Compile Include="Commands\Lists\OpenObjectCommand.cs" />
+    <Compile Include="Commands\Lists\UpdateDocumentStoreCommand.cs" />
+    <Compile Include="Commands\Details\SaveObjectCommand.cs" />
+    <Compile Include="Commands\Details\DeleteObjectCommand.cs" />
+    <Compile Include="Commands\Lists\CreateObjectCommand.cs" />
+    <Compile Include="Commands\Lists\ICreateObjectCommand.cs" />
+    <Compile Include="Commands\Details\AddFileCommand.cs" />
+    <Compile Include="Commands\Details\IRefreshDetailViewCommand.cs" />
+    <Compile Include="Commands\Lists\IRefreshListViewCommand.cs" />
+    <Compile Include="Commands\Details\ISaveObjectCommand.cs" />
+    <Compile Include="Commands\Lists\IOpenObjectCommand.cs" />
+    <Compile Include="Commands\Details\CloseWindowCommand.cs" />
+    <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -859,5 +880,8 @@
     <Folder Include="ViewDescriptions\" />
     <Folder Include="Visuals\Details\" />
     <Folder Include="Visuals\Lists\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Commands\Lists\" />
+    <Folder Include="Commands\Details\" />
   </ItemGroup>
 </Project>

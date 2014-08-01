@@ -49,6 +49,32 @@ namespace Trigger.XForms.Visuals
 
         Control CreateTabbedViewLayout()
         {
+            var detailViewLayout = new DynamicLayout();
+            detailViewLayout.BeginHorizontal();
+
+            var commandBar = new DynamicLayout();
+            commandBar.BeginHorizontal();
+            foreach (var command in Descriptor.Commands)
+            {
+                var button = new Button();
+                button.Size = new Eto.Drawing.Size(100, 40);
+                button.ID = command.ID;
+                button.Text = command.Name;
+                button.Click += (sender, e) =>
+                {
+                    command.Execute(CurrentObject);
+                };
+                commandBar.Add(button, false, false);
+
+            }
+            commandBar.Add(new DynamicLayout(){ Size = new Eto.Drawing.Size(-1, -1) });
+            commandBar.EndHorizontal();
+
+            detailViewLayout.Add(commandBar);
+
+            detailViewLayout.EndHorizontal();
+            detailViewLayout.BeginHorizontal();
+
             var tabItems = Descriptor.TabItemDescriptions.OrderBy(p => p.Index).ToList();
 
             var tabControl = new TabControl();
@@ -68,11 +94,13 @@ namespace Trigger.XForms.Visuals
                     Size = new Eto.Drawing.Size(-1, -1),
                     Content = AddGroupLayouts(tabItem.GroupItemDescriptions),
                 };
-               
+   
                 tabPage.Content = scrollable;
             }
 
-            return tabControl;
+            detailViewLayout.Add(tabControl);
+            detailViewLayout.EndHorizontal();
+            return detailViewLayout;
         }
 
         Control CreateViewLayout()

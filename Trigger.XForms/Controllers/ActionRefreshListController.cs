@@ -16,9 +16,9 @@ namespace Trigger.XForms.Controllers
 
         public override void RefreshActionExecute()
         {
-            var startupView = Template as MainViewTemplate;
-            if (startupView != null)
-                startupView.CurrentGridView.ReloadList(startupView.CurrentActiveType);
+//            var startupView = Template as MainViewTemplate;
+//            if (startupView != null)
+//                startupView.CurrentGridView.ReloadList(startupView.CurrentActiveType);
 
             var listForm = Template as ListViewTemplate;
             if (listForm != null)

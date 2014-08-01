@@ -8,6 +8,8 @@ using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Controllers
 {
+
+
     public class ActionCloseController : ActionBaseController
     {
         public Command CloseAction

@@ -33,35 +33,6 @@ namespace Trigger.XForms.Visuals
         {
             this.ModelType = type;
             this.CurrentObject = currentObject;
-            this.ID = this.Title;
-		    
-            if (!(this is MainViewTemplate))
-            {
-                if (this.ToolBar == null)
-                    this.ToolBar = new ToolBar();
-
-                this.ToolBar.TextAlign = ToolBarTextAlign.Right;
-
-                if (this.Menu == null)
-                    this.Menu = new MenuBar();
-
-                Application.Instance.CreateStandardMenu(Menu.Items);
-
-                LoadControllers();
-            }
-        }
-
-        public override void OnLoadComplete(EventArgs e)
-        {
-            base.OnLoadComplete(e);
-
-           
-
-            if (this is DetailViewTemplate)
-                WindowManager.AddDetailView(CurrentObject, this as DetailViewTemplate);
-
-            if (this is ListViewTemplate)
-                WindowManager.AddListView(ModelType, this as ListViewTemplate);
         }
 
         public override void OnKeyDown(KeyEventArgs e)
@@ -81,40 +52,6 @@ namespace Trigger.XForms.Visuals
 
             if (this is DetailViewTemplate)
                 WindowManager.RemoveDetailView(CurrentObject);
-        }
-
-        public void LoadControllers()
-        {
-            foreach (var controller in new ActionControllerProvider(this).ValidControllers().ToList())
-            {
-                var currentMenu = Menu.Items.GetSubmenu(controller.Category);
-
-                switch (controller.Visiblity)
-                {
-                    case ActionVisibility.MenuAndToolbar:
-                        currentMenu.Items.AddRange(controller.Commands());
-                        this.ToolBar.Items.AddRange(controller.Commands());
-                        break;
-					
-                    case ActionVisibility.Menu:
-                        currentMenu.Items.AddRange(controller.Commands());
-                        break;
-					
-                    case ActionVisibility.Toolbar:
-                        this.ToolBar.Items.AddRange(controller.Commands());
-                        break;
-					
-                    case ActionVisibility.None:
-                        break;
-					
-                    default:
-                        currentMenu.Items.AddRange(controller.Commands());
-                        this.ToolBar.Items.AddRange(controller.Commands());
-                        break;
-                }
-
-                this.Menu.Items.Trim();
-            }
         }
     }
 }

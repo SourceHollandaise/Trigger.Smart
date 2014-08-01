@@ -48,9 +48,9 @@ namespace Trigger.XForms.Controllers
             if (listForm != null)
                 listForm.ReloadList();	
 
-            var startupView = Template as MainViewTemplate;
-            if (startupView != null)
-                startupView.CurrentGridView.ReloadList(startupView.CurrentActiveType);
+//            var startupView = Template as MainViewTemplate;
+//            if (startupView != null)
+//                startupView.CurrentGridView.ReloadList(startupView.CurrentActiveType);
         }
     }
 }

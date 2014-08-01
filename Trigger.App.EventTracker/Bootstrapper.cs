@@ -8,6 +8,7 @@ using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.Common.Security;
+using Trigger.XForms.Controllers;
 using Trigger.XForms.Visuals;
 using Trigger.BCL.EventTracker;
 using Trigger.XForms;
@@ -40,6 +41,16 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
+
+            Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
+            Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
+            Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
+            Map.RegisterType<IOpenObjectCommand, OpenObjectCommand>();
+            Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();
+            Map.RegisterType<IRefreshDetailViewCommand, RefreshDetailViewCommand>();
+            Map.RegisterType<IUpdateDocumentStoreCommand, UpdateDocumentStoreCommand>();
+            Map.RegisterType<IAddFileCommand, AddFileCommand>();
+            Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
 
             DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Contact, ContactViewDescriptor>();
