@@ -141,7 +141,10 @@ namespace Trigger.XForms.Visuals
 
             var groupBox = new GroupBox();
             if (!string.IsNullOrEmpty(group.GroupHeaderText))
+            {
                 groupBox.Text = group.GroupHeaderText;
+                groupBox.Font = new Font(groupBox.Font.Family, groupBox.Font.Size, FontStyle.Bold);
+            }
 
             if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
                 layout.BeginHorizontal();

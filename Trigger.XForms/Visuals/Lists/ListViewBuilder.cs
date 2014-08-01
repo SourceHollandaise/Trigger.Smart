@@ -32,8 +32,15 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
+        protected IEnumerable<IStorable> OriginalDataSet
+        {
+            get;
+            set;
+        }
+
         public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
         {
+            this.OriginalDataSet = dataSet;
             this.DataSet = dataSet;
             this.ModelType = modelType;
             this.Descriptor = descriptor;
@@ -59,7 +66,7 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = gridView, CustomDataSet = DataSet });
+                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = gridView, CustomDataSet = OriginalDataSet });
                 };
                 commandBar.Add(button, false, false);
 

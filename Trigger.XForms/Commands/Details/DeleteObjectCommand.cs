@@ -1,4 +1,4 @@
-using Trigger.XStorable.DataStore;
+using Eto.Forms;
 
 namespace Trigger.XForms.Commands
 {
@@ -6,7 +6,9 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            args.CurrentObject.Delete();
+            var result = MessageBox.Show("Delete current object?", "Delete", MessageBoxButtons.OKCancel, MessageBoxType.Warning);
+            if (result == DialogResult.Ok)
+                args.CurrentObject.Delete();
         }
 
         public string ID

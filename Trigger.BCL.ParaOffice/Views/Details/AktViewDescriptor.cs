@@ -7,6 +7,8 @@ namespace Trigger.BCL.ParaOffice
     {
         public AktViewDescriptor()
         {
+            RegisterCommands<IAktPersonCommand>();
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Akt", 1)

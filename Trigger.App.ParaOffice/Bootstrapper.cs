@@ -10,6 +10,7 @@ using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
 using Trigger.XForms;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms.Commands;
 
 namespace Trigger.App.ParaOffice
 {
@@ -39,6 +40,29 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
 
+            RegisterCommands();
+
+            RegisterViewDescriptors();
+        }
+
+        void RegisterCommands()
+        {
+            Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
+            Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
+            Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
+            Map.RegisterType<IOpenObjectCommand, OpenObjectCommand>();
+            Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();
+            Map.RegisterType<IRefreshDetailViewCommand, RefreshDetailViewCommand>();
+            Map.RegisterType<IUpdateDocumentStoreCommand, UpdateDocumentStoreCommand>();
+            Map.RegisterType<IAddFileCommand, AddFileCommand>();
+            Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
+            Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
+            Map.RegisterType<ILogOffCommand, LogOffCommand>();
+            Map.RegisterType<IAktPersonCommand, AktPersonCommand>();
+        }
+
+        static void RegisterViewDescriptors()
+        {
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktPerson, AktPersonViewDescriptor>();
@@ -48,7 +72,6 @@ namespace Trigger.App.ParaOffice
             DetailViewDescriptorProvider.Declare<SB, SBViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
-
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
             ListViewDescriptorProvider.Declare<AktPerson, AktPersonListDescriptor>();
@@ -92,7 +115,6 @@ namespace Trigger.App.ParaOffice
         public virtual void RegisterDeclaredTypes()
         {
             ModelTypesDeclarator.DeclareModelTypes(DeclaredTypes());
-            ActionControllerDeclarator.DeclareControllerTypes(DeclaredControllers());
         }
 
         protected virtual Type[] DeclaredTypes()
@@ -108,26 +130,6 @@ namespace Trigger.App.ParaOffice
                 typeof(AktArt),
                 typeof(SB),
                 typeof(User)
-            };
-        }
-
-        protected virtual Type[] DeclaredControllers()
-        {
-            return new []
-            {
-                //typeof(ActionActiveWindowsController),
-                typeof(ActionApplicationExitController),
-                typeof(ActionCloseController),
-                typeof(ActionDeleteController),
-                typeof(ActionFileDataDetailController),
-                typeof(ActionFileDataListController),
-                //typeof(ActionLinkedListController),
-                typeof(ActionNewController),
-                typeof(ActionOpenObjectListController),
-                typeof(ActionRefreshDetailController),
-                typeof(ActionRefreshListController),
-                typeof(ActionSaveController),
-                typeof(ActionAktPersonenController)
             };
         }
     }

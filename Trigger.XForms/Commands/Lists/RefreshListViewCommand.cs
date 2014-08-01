@@ -6,7 +6,7 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(ListViewArguments args)
         {
-            args.Grid.ReloadList(args.TargetType, null);
+            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID

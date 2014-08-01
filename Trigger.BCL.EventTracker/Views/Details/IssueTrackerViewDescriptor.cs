@@ -1,6 +1,7 @@
 using Trigger.XForms;
 using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
+using Trigger.XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -8,6 +9,8 @@ namespace Trigger.BCL.EventTracker
     {
         public IssueTrackerViewDescriptor()
         {
+            RegisterCommands<IAddFileCommand>();
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Issue", 1)

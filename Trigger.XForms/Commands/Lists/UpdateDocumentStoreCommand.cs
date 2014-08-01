@@ -9,7 +9,7 @@ namespace Trigger.XForms.Commands
         public void Execute(ListViewArguments args)
         {
             DependencyMapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
-            args.Grid.ReloadList(args.TargetType, null);
+            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID

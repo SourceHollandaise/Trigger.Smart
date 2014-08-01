@@ -31,9 +31,9 @@ namespace Trigger.XForms.Visuals
             layout.EndHorizontal();
 
             layout.BeginHorizontal();
-            var textBoxPassword = new TextBox
+            var textBoxPassword = new PasswordBox
             {
-                PlaceholderText = "Enter password",
+                PasswordChar = '*'
             };
             textBoxPassword.Size = new Eto.Drawing.Size(-1, -1);
 
@@ -44,7 +44,7 @@ namespace Trigger.XForms.Visuals
             var logonButton = new Button()
             {
                 Text = "Log on",
-                Size = new Eto.Drawing.Size(30, -1)
+                Size = new Eto.Drawing.Size(-1, 40)
             };
             LogonViewTemplate.DefaultButton = logonButton;
 

@@ -6,11 +6,14 @@ namespace Trigger.XForms.Commands
 
     public class ApplicationExitCommand : IApplicationExitCommand
     {
-
         public void Execute(MainViewTemplate template)
         {
-            template.Close();
-            Application.Instance.Quit();
+            var result = MessageBox.Show("Close application?", "Exit", MessageBoxButtons.OKCancel, MessageBoxType.Warning);
+            if (result == DialogResult.Ok)
+            {
+                template.Close();
+                Application.Instance.Quit();
+            }
         }
 
         public string ID
