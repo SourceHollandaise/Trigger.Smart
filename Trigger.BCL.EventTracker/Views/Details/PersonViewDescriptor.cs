@@ -31,16 +31,23 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.City), 2){ LabelText = "City" },
                                 new ViewItemDescription(Fields.GetName(m => m.Street), 3){ LabelText = "Address" }
                             }
-                        },
-                        new GroupItemDescription("Links", 3)
+                        }
+                    }
+                },
+                new TabItemDescription("Contacts", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {  
+                        new GroupItemDescription(null, 1)
                         {
+                            Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.LinkedContacts), 1){ LabelText = "Contacts", ShowLabel = false }
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedContacts), 1){ LabelText = "Contacts", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
                             }
                         }
                     }
-                }
+                },
             };
         }
     }

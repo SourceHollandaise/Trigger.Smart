@@ -154,10 +154,7 @@ namespace Trigger.XForms.Visuals
                         Size = new Size(60, 60)
                     };
 
-                    commandButton.Click += (sender, e) =>
-                    {
-                        command.Execute();
-                    };
+                    commandButton.Click += (sender, e) => command.Execute();
 
                     CommandButtons.Add(commandButton);
                 }
