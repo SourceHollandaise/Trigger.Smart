@@ -81,8 +81,13 @@ namespace Trigger.XForms.Visuals
 
         public static DetailViewTemplate GetDetailView(IStorable targetObject)
         {
-            if (targetObject == null || targetObject.MappingId == null)
+            if (targetObject == null)
                 return null;
+
+            if (targetObject.MappingId == null)
+            {
+                return new DetailViewTemplate(targetObject.GetType(), targetObject);
+            }
 
             if (detailTemplates.ContainsKey((string)targetObject.MappingId))
                 return detailTemplates[(string)targetObject.MappingId];

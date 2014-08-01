@@ -60,6 +60,8 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
+
+            Map.RegisterType<ITimeTrackerCommand, TimeTrackerCommand>();
         }
 
         void RegisterViewDescriptors()
@@ -69,7 +71,9 @@ namespace Trigger.App.EventTracker
             DetailViewDescriptorProvider.Declare<Document, DocumentViewDescriptor>();
             DetailViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<TimeTracker, TimeTrackerViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
             ListViewDescriptorProvider.Declare<Contact, ContactListDescriptor>();
             ListViewDescriptorProvider.Declare<Document, DocumentListDescriptor>();

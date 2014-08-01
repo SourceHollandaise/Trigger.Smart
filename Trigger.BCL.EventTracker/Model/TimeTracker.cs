@@ -3,6 +3,7 @@ using System;
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Datastore;
+using Trigger.BCL.Common.Security;
 
 namespace Trigger.BCL.EventTracker.Model
 {
@@ -10,6 +11,11 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("Tracked Time")]
     public class TimeTracker : StorableBase
     {
+        public override void Initialize()
+        {
+            User = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+        }
+
         string subject;
 
         public string Subject

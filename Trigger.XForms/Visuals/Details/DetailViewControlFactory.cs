@@ -133,6 +133,12 @@ namespace Trigger.XForms.Visuals
 
         void HandleBindings(PropertyInfo property)
         {
+            if (property == null)
+                return;
+
+            if (!controlCollection.ContainsKey(property.Name))
+                return;
+
             var control = controlCollection[property.Name];
            
             if (control is WebView)

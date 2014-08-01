@@ -76,6 +76,9 @@
     <Compile Include="Views\Lists\PersonListDescriptor.cs" />
     <Compile Include="Views\Lists\TimeTrackerListDescriptor.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
+    <Compile Include="Views\Details\TimeTrackerViewDescriptor.cs" />
+    <Compile Include="Commands\ITimeTrackerCommand.cs" />
+    <Compile Include="Commands\TimeTrackerCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -101,6 +104,7 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Lists\" />
     <Folder Include="Views\Details\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
