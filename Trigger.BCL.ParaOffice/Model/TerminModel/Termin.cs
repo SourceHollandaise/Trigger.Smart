@@ -8,6 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Betreff")]
     [System.ComponentModel.DisplayName("Termin")]
+    [ImageName("calendar_date")]
     public class Termin : ExportableBase
     {
         [System.ComponentModel.DisplayName("Termin")]

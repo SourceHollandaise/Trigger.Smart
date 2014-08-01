@@ -41,5 +41,3 @@ namespace Trigger.XForms.Visuals
         }
     }
 }
-	
-

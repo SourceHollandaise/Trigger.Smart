@@ -158,6 +158,14 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        public string UserAlias
+        {
+            get
+            {
+                return User != null ? User.UserName : null;
+            }
+        }
+
         User user;
 
         [LinkedObject]

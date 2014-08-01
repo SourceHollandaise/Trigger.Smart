@@ -45,7 +45,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return "Users16";
+                return "user_add";
             }
         }
 

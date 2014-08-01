@@ -1,11 +1,13 @@
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
+    [ImageName("community_users")]
     public class AktPerson : ExportableBase
     {
         public override void Initialize()

@@ -9,6 +9,15 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("user_comments")]
     public class Contact : StorableBase
     {
+
+        public string PersonAlias
+        {
+            get
+            {
+                return Person != null ? Person.DisplayName : null;
+            }
+        }
+
         Person person;
 
         [System.ComponentModel.DisplayName("Person")]

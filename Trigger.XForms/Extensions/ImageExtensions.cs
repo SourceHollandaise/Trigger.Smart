@@ -1,4 +1,5 @@
 using Eto.Drawing;
+using System.IO;
 
 namespace Eto.Drawing
 {

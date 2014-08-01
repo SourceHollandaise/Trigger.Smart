@@ -14,7 +14,8 @@ namespace Trigger.BCL.EventTracker
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Subject" },
-                new ColumnDescription(Fields.GetName(m => m.FileName), 2){ ColumnHeaderText = "File" },
+                new ColumnDescription(Fields.GetName(m => m.AreaAlias), 2){ ColumnHeaderText = "Area" },
+                new ColumnDescription(Fields.GetName(m => m.IssueAlias), 3){ ColumnHeaderText = "Issue" },
             };
         }
     }

@@ -3,11 +3,13 @@ using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
     [System.ComponentModel.DisplayName("Sachbearbeiter")]
+    [ImageName("user_accept")]
     public class SB : ExportableBase
     {
         string id;

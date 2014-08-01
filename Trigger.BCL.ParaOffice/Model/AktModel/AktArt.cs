@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
+    [ImageName("folder_process")]
     public class AktArt : ExportableBase
     {
         string art;

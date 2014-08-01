@@ -14,7 +14,7 @@ namespace Trigger.BCL.EventTracker
                 new ColumnDescription(Fields.GetName(m => m.IssuePriority), 2){ ColumnHeaderText = "Priority" },
                 new ColumnDescription(Fields.GetName(m => m.IssueType), 3){ ColumnHeaderText = "Type" },
                 new ColumnDescription(Fields.GetName(m => m.IssueState), 4){ ColumnHeaderText = "State" },
-                new ColumnDescription(Fields.GetName(m => m.Area), 5){ ColumnHeaderText = "Area" }
+                new ColumnDescription(Fields.GetName(m => m.AreaAlias), 5){ ColumnHeaderText = "Area" }
             };
         }
     }

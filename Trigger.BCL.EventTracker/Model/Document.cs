@@ -59,6 +59,14 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
+        public string UserAlias
+        {
+            get
+            {
+                return User != null ? User.UserName : null;
+            }
+        }
+
         User user;
 
         [System.ComponentModel.DisplayName("From user")]
@@ -79,6 +87,14 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        public string AreaAlias
+        {
+            get
+            {
+                return Area != null ? Area.Name : null;
+            }
+        }
+
         Area area;
 
         [LinkedObject]
@@ -95,6 +111,14 @@ namespace Trigger.BCL.EventTracker.Model
                 area = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string IssueAlias
+        {
+            get
+            {
+                return Issue != null ? Issue.Subject : null;
             }
         }
 

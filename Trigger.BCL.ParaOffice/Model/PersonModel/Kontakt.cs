@@ -1,10 +1,12 @@
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Datastore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Telefon")]
     [System.ComponentModel.DisplayName("Kontakt")]
+    [ImageName("user_comments")]
     public class Kontakt : ExportableBase
     {
 

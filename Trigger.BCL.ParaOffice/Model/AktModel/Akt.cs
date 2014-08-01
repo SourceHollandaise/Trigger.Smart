@@ -9,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Bezeichnung")]
     [System.ComponentModel.DisplayName("Akt")]
+    [ImageName("folder_full")]
     public class Akt : ExportableBase
     {
         public override void Initialize()
@@ -142,6 +143,14 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        public string SB1Alias
+        {
+            get
+            {
+                return SB1 != null ? SB1.ID : null;
+            }
+        }
+
         SB sb1;
 
         [LinkedObject]
@@ -160,6 +169,15 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
+
+        public string SB2Alias
+        {
+            get
+            {
+                return SB2 != null ? SB2.ID : null;
+            }
+        }
+
 
         SB sb2;
 

@@ -118,6 +118,14 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        public string AreaAlias
+        {
+            get
+            {
+                return Area != null ? Area.Name : null;
+            }
+        }
+
         Area area;
 
         [LinkedObject]

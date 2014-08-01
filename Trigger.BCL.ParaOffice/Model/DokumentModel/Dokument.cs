@@ -8,6 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Dokument")]
+    [ImageName("blog_post")]
     public class Dokument : ExportableBase, IFileData
     {
         public override void Initialize()
