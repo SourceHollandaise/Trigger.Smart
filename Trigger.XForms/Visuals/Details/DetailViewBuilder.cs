@@ -59,11 +59,11 @@ namespace Trigger.XForms.Visuals
             foreach (var command in Descriptor.Commands)
             {
                 var button = new Button();
-                button.Size = new Size(100, 40);
+                button.Size = new Size(40, 40);
                 button.ID = command.ID;
-                button.Text = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 16);
-                button.ImagePosition = ButtonImagePosition.Left;
+                button.ToolTip = command.Name;
+                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
                     command.Execute(new DetailViewArguments{ CurrentObject = CurrentObject, Template = WindowManager.GetDetailView(CurrentObject) });

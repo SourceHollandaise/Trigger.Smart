@@ -78,6 +78,7 @@
     <Compile Include="Model\ExportableBase.cs" />
     <Compile Include="Commands\IAktPersonCommand.cs" />
     <Compile Include="Commands\AktPersonCommand.cs" />
+    <Compile Include="Views\ApplicationMainViewDescritptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

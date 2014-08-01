@@ -40,6 +40,8 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
 
+            Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
+
             RegisterCommands();
 
             RegisterViewDescriptors();

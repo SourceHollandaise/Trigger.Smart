@@ -6,14 +6,15 @@ using Trigger.XForms.Controllers;
 using System.ComponentModel;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Commands;
+using System.Linq;
 
 namespace Trigger.XForms.Visuals
 {
-    public class MainViewTemplate : TemplateBase
+    public sealed class MainViewTemplate : TemplateBase
     {
-        protected Panel ListViewPanel;
+        Panel listViewPanel;
 
-        protected Panel NavigationPanel;
+        Panel navigationPanel;
 
         public Type CurrentActiveType
         { 
@@ -23,7 +24,7 @@ namespace Trigger.XForms.Visuals
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.Size = new Size(1000, 600);
+            this.Size = new Size(1200, 800);
             CreateMainContent();
         }
 
@@ -36,17 +37,17 @@ namespace Trigger.XForms.Visuals
 
         void CreateSplitPanels()
         {
-            NavigationPanel = new Panel();
-            NavigationPanel.Content = GetNavigationPanelContent();
-            ListViewPanel = new Panel();
+            navigationPanel = new Panel();
+            navigationPanel.Content = GetMainPanelContent();
+            listViewPanel = new Panel();
         }
 
         Splitter CreateSplitLayout()
         {
-            var splitter = new Splitter()
+            var splitter = new Splitter
             {
-                Panel1 = NavigationPanel,
-                Panel2 = ListViewPanel,
+                Panel1 = navigationPanel,
+                Panel2 = listViewPanel,
                 Orientation = SplitterOrientation.Horizontal,
                 FixedPanel = SplitterFixedPanel.Panel1
             };
@@ -55,94 +56,65 @@ namespace Trigger.XForms.Visuals
             return splitter;
         }
 
-        DynamicLayout GetNavigationPanelContent()
+        DynamicLayout GetMainPanelContent()
         {
-            var navGroupLayout = new DynamicLayout();
-            var navGroup = new GroupBox();
-            navGroup.Text = "Favorites";
-            navGroup.Font = new Font(navGroup.Font.Family, navGroup.Font.Size, FontStyle.Bold);
+            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
-            foreach (var modelType in ModelTypesDeclarator.DeclaredModelTypes)
+            var navigationlayout = new DynamicLayout();
+
+            foreach (var groupItem in descriptor.NavigationGroups.OrderBy(p => p.Index).ToList())
             {
-                var displayNameAttribute = modelType.FindAttribute<DisplayNameAttribute>();
-                var imageNameAttribute = modelType.FindAttribute<ImageNameAttribute>();
-
-                var button = new Button()
+                var navGroupLayout = new DynamicLayout();
+                var navGroupBox = new GroupBox();
+                navGroupBox.Text = groupItem.NavigationGroupText;
+                navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
+                foreach (var navItem in groupItem.NavigationItems.OrderBy(p => p.Index).ToList())
                 {
-                    Size = new Size(-1, 40),
-                    Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name,
-                    Tag = modelType,
-                    Image = imageNameAttribute != null ? ImageExtensions.GetImage(imageNameAttribute.ImageName + ".png", 16) : ImageExtensions.GetImage("info.png", 16),
-                    ImagePosition = ButtonImagePosition.Left
-                };
-
-                button.Click += (sender, e) =>
-                {
-                    CurrentActiveType = button.Tag as Type;
-                    var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
-                    var listLayout = new DynamicLayout();
-                    listLayout.Add(CreateListViewLayout());
-                    ListViewPanel.Content = listLayout;
-                    Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
-                };
-
-                navGroupLayout.BeginVertical();
-                navGroupLayout.Add(button, true);
-                navGroupLayout.EndVertical();
+                    var button = new Button()
+                    {
+                        Size = new Size(-1, 40),
+                        Text = navItem.NavigationItemText,
+                        Tag = navItem.ModelType,
+                        Image = ImageExtensions.GetImage(navItem.ImageName + ".png", 24),
+                        ImagePosition = ButtonImagePosition.Left
+                    };
+                    button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as Type);
+                    navGroupLayout.Add(button, true);
+                }
+                navGroupBox.Content = navGroupLayout;
+                navigationlayout.BeginVertical();
+                navigationlayout.Add(navGroupBox);
+                navigationlayout.EndHorizontal();
             }
-               
-            navGroup.Content = navGroupLayout;
+
+            var appGroupLayout = new DynamicLayout();
 
             var appGroup = new GroupBox();
             appGroup.Text = "Application";
             appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
-
-            var logOffCommand = DependencyMapProvider.Instance.ResolveType<ILogOffCommand>();
-            var logOffButton = new Button()
-            {
-                Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(logOffCommand.ImageName + ".png", 16),
-                ImagePosition = ButtonImagePosition.Left,
-                Text = logOffCommand.Name,
-                ID = logOffCommand.ID
-            };
-            logOffButton.Click += (sender, e) =>
-            {
-                logOffCommand.Execute(this);
-            };
-
-            var exitCommand = DependencyMapProvider.Instance.ResolveType<IApplicationExitCommand>();
-            var exitButton = new Button()
-            {
-                Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(exitCommand.ImageName + ".png", 16),
-                ImagePosition = ButtonImagePosition.Left,
-                Text = exitCommand.Name,
-                ID = exitCommand.ID
-            };
-            exitButton.Click += (sender, e) =>
-            {
-                exitCommand.Execute(this);
-            };
-
-
-            var appGroupLayout = new DynamicLayout();
             appGroupLayout.BeginVertical();
-
-            appGroupLayout.Add(logOffButton, true);
-            appGroupLayout.Add(exitButton, true);
+            appGroupLayout.Add(GetLogOffButton(), true);
+            appGroupLayout.Add(GetExitButton(), true);
             appGroupLayout.EndVertical();
 
             appGroup.Content = appGroupLayout;
 
-            var sidePaneLayout = new DynamicLayout();
+            navigationlayout.Add(appGroup);
+          
+            navigationlayout.BeginVertical();
+            navigationlayout.EndVertical();
 
-            sidePaneLayout.Add(navGroup);
-            sidePaneLayout.Add(appGroup);
-            sidePaneLayout.BeginVertical();
-            sidePaneLayout.EndVertical();
+            return navigationlayout;
+        }
 
-            return sidePaneLayout;
+        void ShowListViewFromNavigation(Type type)
+        {
+            CurrentActiveType = type;
+            var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
+            var listLayout = new DynamicLayout();
+            listLayout.Add(CreateListViewLayout());
+            listViewPanel.Content = listLayout;
+            Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 
         DynamicLayout CreateListViewLayout()
@@ -160,6 +132,36 @@ namespace Trigger.XForms.Visuals
             layout.EndVertical();
             groupBox.Content = layout;
             return layout;
+        }
+
+        Button GetLogOffButton()
+        {
+            var logOffCommand = DependencyMapProvider.Instance.ResolveType<ILogOffCommand>();
+            var logOffButton = new Button
+            {
+                Size = new Size(-1, 40),
+                Image = ImageExtensions.GetImage(logOffCommand.ImageName + ".png", 24),
+                ImagePosition = ButtonImagePosition.Left,
+                Text = logOffCommand.Name,
+                ID = logOffCommand.ID
+            };
+            logOffButton.Click += (sender, e) => logOffCommand.Execute(this);
+            return logOffButton;
+        }
+
+        Button GetExitButton()
+        {
+            var exitCommand = DependencyMapProvider.Instance.ResolveType<IApplicationExitCommand>();
+            var exitButton = new Button
+            {
+                Size = new Size(-1, 40),
+                Image = ImageExtensions.GetImage(exitCommand.ImageName + ".png", 2),
+                ImagePosition = ButtonImagePosition.Left,
+                Text = exitCommand.Name,
+                ID = exitCommand.ID
+            };
+            exitButton.Click += (sender, e) => exitCommand.Execute(this);
+            return exitButton;
         }
 
         public override void OnKeyDown(KeyEventArgs e)

@@ -59,11 +59,11 @@ namespace Trigger.XForms.Visuals
             foreach (var command in Descriptor.Commands)
             {
                 var button = new Button();
-                button.Size = new Eto.Drawing.Size(100, 40);
+                button.Size = new Size(40, 40);
                 button.ID = command.ID;
-                button.Text = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 16);
-                button.ImagePosition = ButtonImagePosition.Left;
+                button.ToolTip = command.Name;
+                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
                     command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = gridView, CustomDataSet = OriginalDataSet });
@@ -71,7 +71,7 @@ namespace Trigger.XForms.Visuals
                 commandBar.Add(button, false, false);
 
             }
-            commandBar.Add(new DynamicLayout(){ Size = new Eto.Drawing.Size(-1, -1) });
+            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
             commandBar.EndHorizontal();
 
             detailViewLayout.Add(commandBar);
@@ -99,7 +99,7 @@ namespace Trigger.XForms.Visuals
 
             gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
-                e.Font = new Eto.Drawing.Font(e.Font.Family, 12f);
+                e.Font = new Font(e.Font.Family, 12f);
             };
             gridView.MouseDoubleClick += (sender, e) =>
             {

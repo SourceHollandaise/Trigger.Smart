@@ -118,6 +118,10 @@
     <Compile Include="Commands\IApplicationExitCommand.cs" />
     <Compile Include="Commands\ApplicationExitCommand.cs" />
     <Compile Include="Attributes\ImageNameAttribute.cs" />
+    <Compile Include="ViewDescriptions\IMainViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\MainViewDescriptor.cs" />
+    <Compile Include="ViewDescriptions\NavigationItem.cs" />
+    <Compile Include="ViewDescriptions\NavigationGroupItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
