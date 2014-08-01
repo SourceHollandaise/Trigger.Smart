@@ -39,7 +39,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Add16";
+                return "add";
             }
         }
     }

@@ -36,7 +36,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Key16";
+                return "application_lock";
             }
         }
     }

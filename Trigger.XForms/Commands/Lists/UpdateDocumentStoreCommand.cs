@@ -32,7 +32,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Paperclip16";
+                return "folder_down";
             }
         }
     }

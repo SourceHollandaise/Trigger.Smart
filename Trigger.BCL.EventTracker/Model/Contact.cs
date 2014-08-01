@@ -6,7 +6,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Person")]
     [System.ComponentModel.DisplayName("Contact")]
-    [ImageName("Telephone16")]
+    [ImageName("user_comments")]
     public class Contact : StorableBase
     {
         Person person;

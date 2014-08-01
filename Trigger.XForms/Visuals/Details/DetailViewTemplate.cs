@@ -37,6 +37,7 @@ namespace Trigger.XForms.Visuals
                 Title = displayNameAttribute.DisplayName + " - " + CurrentObject.GetDefaultPropertyValue();
             else
                 Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
+                
         }
     }
 }

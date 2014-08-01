@@ -8,7 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Area")]
-    [ImageName("Billboard16")]
+    [ImageName("application")]
     public class Area : StorableBase
     {
         string name;

@@ -80,6 +80,7 @@ namespace Trigger.App.EventTracker
             ListViewDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<TimeTracker, TimeTrackerListDescriptor>();
+            ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()

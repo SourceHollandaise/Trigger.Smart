@@ -8,7 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("DisplayName")]
     [System.ComponentModel.DisplayName("Person")]
-    [ImageName("User16")]
+    [ImageName("user")]
     public class Person : StorableBase
     {
         string displayName;

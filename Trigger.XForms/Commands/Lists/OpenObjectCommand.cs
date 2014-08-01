@@ -35,7 +35,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Search16";
+                return "window_up";
             }
         }
     }

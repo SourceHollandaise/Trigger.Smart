@@ -22,16 +22,14 @@ namespace Trigger.BCL.EventTracker
                 {
                     service.StopTracking(DateTime.Now);
                     timeTracker.Save();
-                    Name = "Stop";
-                    ImageName = "Accept16";
+                  
                     args.Template.ReloadObject();
                 }
                 if (!timeTracker.Begin.HasValue)
                 {
                     service.StartTracking(DateTime.Now);
                     timeTracker.Save();
-                    Name = "Start";
-                    ImageName = "Add16";
+
                     args.Template.ReloadObject();
                 }
             }
@@ -49,13 +47,7 @@ namespace Trigger.BCL.EventTracker
         {
             get
             {
-                if (timeTracker == null)
-                    return "Start";
-
-                if (!timeTracker.Begin.HasValue && !timeTracker.End.HasValue)
-                    return "Start";
-
-                return timeTracker.Begin.HasValue && !timeTracker.End.HasValue ? "Stop" : "Start";
+                return "Record";
             }
         }
 
@@ -63,13 +55,7 @@ namespace Trigger.BCL.EventTracker
         {
             get
             {
-                if (timeTracker == null)
-                    return "Accept16";
-
-                if (!timeTracker.Begin.HasValue && !timeTracker.End.HasValue)
-                    return "Accept16";
-
-                return timeTracker.Begin.HasValue && !timeTracker.End.HasValue ? "Accept16" : "Add16";
+                return "record";
             }
         }
     }

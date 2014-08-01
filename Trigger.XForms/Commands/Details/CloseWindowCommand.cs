@@ -30,7 +30,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Close16";
+                return "window_remove";
             }
         }
     }

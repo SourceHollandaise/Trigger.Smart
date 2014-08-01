@@ -36,7 +36,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Login_out16";
+                return "application_remove";
             }
         }
     }

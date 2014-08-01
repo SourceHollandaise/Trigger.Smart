@@ -4,11 +4,13 @@ using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Datastore;
 using Trigger.BCL.Common.Security;
+using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Tracked Time")]
+    [ImageName("clock")]
     public class TimeTracker : StorableBase
     {
         public override void Initialize()

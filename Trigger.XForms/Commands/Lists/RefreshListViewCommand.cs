@@ -29,7 +29,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Refresh16";
+                return "down";
             }
         }
     }

@@ -23,8 +23,7 @@ namespace Trigger.XForms.Visuals
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.WindowState = WindowState.Maximized;
-
+            this.Size = new Size(1000, 600);
             CreateMainContent();
         }
 
@@ -73,7 +72,7 @@ namespace Trigger.XForms.Visuals
                     Size = new Size(-1, 40),
                     Text = displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name,
                     Tag = modelType,
-                    Image = imageNameAttribute != null ? ImageExtensions.GetImage(imageNameAttribute.ImageName + ".png", 16) : ImageExtensions.GetImage("Info16.png", 16),
+                    Image = imageNameAttribute != null ? ImageExtensions.GetImage(imageNameAttribute.ImageName + ".png", 16) : ImageExtensions.GetImage("info.png", 16),
                     ImagePosition = ButtonImagePosition.Left
                 };
 

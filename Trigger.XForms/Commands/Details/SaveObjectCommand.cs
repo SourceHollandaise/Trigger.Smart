@@ -29,7 +29,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Save16";
+                return "accept";
             }
         }
     }

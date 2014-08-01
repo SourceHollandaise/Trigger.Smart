@@ -7,7 +7,7 @@ using Trigger.BCL.Common.Datastore;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [ImageName("File16")]
+    [ImageName("blog_post")]
     public class Document : StorableBase, IFileData
     {
         public override void Delete()

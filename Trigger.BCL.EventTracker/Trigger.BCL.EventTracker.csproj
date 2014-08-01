@@ -79,6 +79,7 @@
     <Compile Include="Views\Details\TimeTrackerViewDescriptor.cs" />
     <Compile Include="Commands\ITimeTrackerCommand.cs" />
     <Compile Include="Commands\TimeTrackerCommand.cs" />
+    <Compile Include="Views\Lists\UserListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

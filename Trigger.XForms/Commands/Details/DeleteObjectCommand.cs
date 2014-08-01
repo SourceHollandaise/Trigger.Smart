@@ -31,7 +31,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Delete16";
+                return "remove";
             }
         }
     }
