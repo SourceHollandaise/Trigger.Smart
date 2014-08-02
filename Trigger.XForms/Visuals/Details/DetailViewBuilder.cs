@@ -76,15 +76,18 @@ namespace Trigger.XForms.Visuals
 
                 commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
 
-                var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-                var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
-                if (tag != null)
+                if (CurrentObject != null && CurrentObject.MappingId != null)
                 {
-                    var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
-                    if (tagbutton != null)
+                    var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
+                    var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
+                    if (tag != null)
                     {
-                        tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
-                        tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+                        var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
+                        if (tagbutton != null)
+                        {
+                            tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
+                            tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+                        }
                     }
                 }
             }
@@ -130,7 +133,8 @@ namespace Trigger.XForms.Visuals
             {
                 Size = new Size(40, 40),
                 ID = "tag_" + color,
-                BackgroundColor = color
+                BackgroundColor = color,
+                ToolTip = "Add Tag "
             };
 
             tagButtons.Add(tagbutton);
