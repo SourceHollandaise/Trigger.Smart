@@ -163,11 +163,6 @@ namespace Trigger.XForms.Visuals
             return exitButton;
         }
 
-        public override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-        }
-
         public override void OnKeyDown(KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control & e.Key == Keys.Q)

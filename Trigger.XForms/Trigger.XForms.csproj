@@ -121,6 +121,8 @@
     <Compile Include="ViewDescriptions\NavigationItem.cs" />
     <Compile Include="ViewDescriptions\NavigationGroupItem.cs" />
     <Compile Include="Extensions\DetailViewExtensions.cs" />
+    <Compile Include="Attributes\FieldImageDataAttribute.cs" />
+    <Compile Include="Attributes\FieldImageValueAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
