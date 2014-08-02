@@ -38,7 +38,11 @@ namespace Trigger.XForms.Visuals
             if (property.PropertyType == typeof(string))
             {
                 var fieldFileDataAttribute = property.FindAttribute<FieldFileDataAttribute>();
+                var fieldImageDataAttribute = property.FindAttribute<FieldImageDataAttribute>();
                 var fieldTextAreaAttribute = property.FindAttribute<FieldTextAreaAttribute>();
+
+                if (fieldImageDataAttribute != null)
+                    return ImageViewPropertyEditor(property);
 
                 if (fieldTextAreaAttribute != null)
                     return TextAreaPropertyEditor(property);
@@ -48,6 +52,9 @@ namespace Trigger.XForms.Visuals
                 return StringPropertyEditor(property);
 
             }
+
+            if (property.PropertyType == typeof(Image))
+                return ImageViewPropertyEditor(property);
 
             if (property.PropertyType == typeof(DateTime?) || property.PropertyType == typeof(DateTime))
             {
@@ -153,6 +160,9 @@ namespace Trigger.XForms.Visuals
                 }
             }
 
+            if (control is ImageView)
+                ((ImageView)control).Image = property.GetValue(Model, null) as Image;
+
             if (control is NumericUpDown)
                 ((NumericUpDown)control).Value = Convert.ToDouble(property.GetValue(Model, null));
     
@@ -187,11 +197,44 @@ namespace Trigger.XForms.Visuals
             }
         }
 
+
+        ImageView ImageViewPropertyEditor(PropertyInfo property)
+        {
+            var imageView = new ImageView();
+            imageView.Size = new Size(-1, -1);
+
+            var file = GetImageFile((string)property.GetValue(Model, null));
+
+            if (file != null)
+            {
+                var image = new Bitmap(file);
+              
+                imageView.Size = image.Size;
+                imageView.Image = image;
+            }
+
+            return imageView;
+        }
+
+        string GetImageFile(string fileName)
+        {
+            var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var imagePath = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
+                if (File.Exists(imagePath))
+                    return imagePath;
+            }
+
+            return null;
+        }
+
         WebView FilePreviewPropertyEditor(PropertyInfo property)
         {
             var webView = new WebView();
 
-            webView.Size = new Size(-1, 400);
+            webView.Size = new Size(-1, -1);
 
             var fileName = property.GetValue(Model, null) as string;
             if (!string.IsNullOrEmpty(fileName))

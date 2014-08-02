@@ -62,7 +62,7 @@ namespace Trigger.XForms.Visuals
                 button.Size = new Size(40, 40);
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName + ".png", 24);
+                button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {

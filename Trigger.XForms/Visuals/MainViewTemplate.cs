@@ -75,7 +75,7 @@ namespace Trigger.XForms.Visuals
                         Size = new Size(-1, 40),
                         Text = navItem.NavigationItemText,
                         Tag = navItem.ModelType,
-                        Image = ImageExtensions.GetImage(navItem.ImageName + ".png", 24),
+                        Image = ImageExtensions.GetImage(navItem.ImageName, 24),
                         ImagePosition = ButtonImagePosition.Left
                     };
                     button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as Type);
@@ -140,7 +140,7 @@ namespace Trigger.XForms.Visuals
             var logOffButton = new Button
             {
                 Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(logOffCommand.ImageName + ".png", 24),
+                Image = ImageExtensions.GetImage(logOffCommand.ImageName, 24),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = logOffCommand.Name,
                 ID = logOffCommand.ID
@@ -155,13 +155,18 @@ namespace Trigger.XForms.Visuals
             var exitButton = new Button
             {
                 Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(exitCommand.ImageName + ".png", 24),
+                Image = ImageExtensions.GetImage(exitCommand.ImageName, 24),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = exitCommand.Name,
                 ID = exitCommand.ID
             };
             exitButton.Click += (sender, e) => exitCommand.Execute(this);
             return exitButton;
+        }
+
+        public override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
         }
 
         public override void OnKeyDown(KeyEventArgs e)

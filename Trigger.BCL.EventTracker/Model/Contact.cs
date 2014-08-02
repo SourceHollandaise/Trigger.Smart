@@ -4,6 +4,7 @@ using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
+
     [System.ComponentModel.DefaultProperty("Person")]
     [System.ComponentModel.DisplayName("Contact")]
     [ImageName("user_comments")]

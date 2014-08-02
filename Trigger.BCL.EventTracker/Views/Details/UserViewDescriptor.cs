@@ -28,5 +28,4 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
-    
 }

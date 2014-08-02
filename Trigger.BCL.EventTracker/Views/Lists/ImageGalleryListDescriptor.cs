@@ -6,14 +6,15 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker
 {
 
-    public class UserListDescriptor : ListViewDescriptor<User>
+    public class ImageGalleryListDescriptor : ListViewDescriptor<ImageGallery>
     {
-        public UserListDescriptor()
+        public ImageGalleryListDescriptor()
         {
             ColumnDescriptions = new List<ColumnDescription>
             {
-                new ColumnDescription(Fields.GetName(m => m.UserName), 1){ ColumnHeaderText = "User" },
+                new ColumnDescription(Fields.GetName(m => m.Name), 1){ ColumnHeaderText = "Name" },
             };
         }
     }
+    
 }

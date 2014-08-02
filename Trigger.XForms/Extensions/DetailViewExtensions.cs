@@ -14,12 +14,14 @@ namespace Trigger.XForms
             {
                 if (detailTemplates.ContainsKey(targetObject))
                     detailTemplates[targetObject].Show();
+                else
+                {
+                    var template = new DetailViewTemplate(targetObject.GetType(), targetObject);
+                    if (!detailTemplates.ContainsKey(targetObject))
+                        detailTemplates.Add(targetObject, template);
 
-                var template = new DetailViewTemplate(targetObject.GetType(), targetObject);
-                if (!detailTemplates.ContainsKey(targetObject))
-                    detailTemplates.Add(targetObject, template);
-
-                template.Show();
+                    template.Show();
+                }
             }
         }
 

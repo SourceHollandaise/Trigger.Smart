@@ -8,7 +8,7 @@ namespace Trigger.XForms.Visuals
    
         public LogonViewTemplate()
         {
-            Size = new Size(240, 200);
+            Size = new Size(240, 180);
             Title = "Logon";
 		
             Content = new LogonViewGenerator(this).GetContent();

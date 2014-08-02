@@ -44,10 +44,13 @@ namespace Trigger.XForms.Visuals
             var logonButton = new Button()
             {
                 Text = "Log on",
-                Size = new Eto.Drawing.Size(-1, 40)
+                Size = new Eto.Drawing.Size(-1, 40),
+                Image = Eto.Drawing.ImageExtensions.GetImage("lock_off", 24),
+                ImagePosition = ButtonImagePosition.Left
             };
-            LogonViewTemplate.DefaultButton = logonButton;
 
+            LogonViewTemplate.DefaultButton = logonButton;
+        
             layout.Add(logonButton, true);
             logonButton.Click += (sender, e) =>
             {
@@ -66,6 +69,7 @@ namespace Trigger.XForms.Visuals
             layout.EndHorizontal();
 
             layout.BeginHorizontal();
+
             layout.EndHorizontal();
 
             return layout;

@@ -71,6 +71,8 @@ namespace Trigger.App.EventTracker
             DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Contact, ContactViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Document, DocumentViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ImageGallery, ImageGalleryViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ImageItem, ImageItemViewDescriptor>();
             DetailViewDescriptorProvider.Declare<IssueTracker, IssueTrackerViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<TimeTracker, TimeTrackerViewDescriptor>();
@@ -79,12 +81,12 @@ namespace Trigger.App.EventTracker
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
             ListViewDescriptorProvider.Declare<Contact, ContactListDescriptor>();
             ListViewDescriptorProvider.Declare<Document, DocumentListDescriptor>();
+            ListViewDescriptorProvider.Declare<ImageGallery, ImageGalleryListDescriptor>();
+            ListViewDescriptorProvider.Declare<ImageItem, ImageItemListDescriptor>();
             ListViewDescriptorProvider.Declare<IssueTracker, IssueTrackerListDescriptor>();
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<TimeTracker, TimeTrackerListDescriptor>();
             ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
-
-
         }
 
         public virtual void CreateInitialObjects()
