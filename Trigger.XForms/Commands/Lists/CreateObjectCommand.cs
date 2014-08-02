@@ -1,9 +1,5 @@
-using Eto.Forms;
-using Trigger.XForms.Controllers;
 using System;
 using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Commands
 {
@@ -13,10 +9,11 @@ namespace Trigger.XForms.Commands
         public void Execute(ListViewArguments args)
         {
             var target = Activator.CreateInstance(args.TargetType) as IStorable;
-            target.Initialize();
-
-            var detailForm = new DetailViewTemplate(args.TargetType, target);
-            detailForm.Show();
+            if (target != null)
+            {
+                target.Initialize();
+                target.ShowDetailView();
+            }
         }
 
         public string ID

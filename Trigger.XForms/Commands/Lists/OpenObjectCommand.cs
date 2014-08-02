@@ -1,5 +1,4 @@
 using Trigger.XStorable.DataStore;
-using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Commands
 {
@@ -11,7 +10,7 @@ namespace Trigger.XForms.Commands
             if (args.Grid.SelectedItem != null)
             {
                 if (args.Grid.SelectedItem != null)
-                    WindowManager.ShowDetailView(args.Grid.SelectedItem as IStorable);
+                    (args.Grid.SelectedItem as IStorable).ShowDetailView();
             }
         }
 

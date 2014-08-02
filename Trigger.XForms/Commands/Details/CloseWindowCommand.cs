@@ -6,8 +6,8 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            if (args.Template != null)
-                args.Template.Close();
+            if (args.CurrentObject != null)
+                args.CurrentObject.TryCloseDetailView();
         }
 
         public string ID

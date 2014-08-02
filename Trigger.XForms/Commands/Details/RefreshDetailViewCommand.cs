@@ -1,7 +1,3 @@
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using System;
-using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Commands
 {
@@ -9,17 +5,7 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var dataObject = store.Load(args.CurrentObject.GetType(), args.CurrentObject.MappingId);
-            if (dataObject != null)
-            {
-                var descriptorType = DetailViewDescriptorProvider.GetDescriptor(dataObject.GetType());
-                if (descriptorType != null)
-                {
-                    var descriptor = Activator.CreateInstance(descriptorType) as IDetailViewDescriptor;
-                    args.Template.Content = new DetailViewBuilder(descriptor, dataObject).GetContent();
-                }
-            }
+            args.CurrentObject.ReloadObject();
         }
 
         public string ID

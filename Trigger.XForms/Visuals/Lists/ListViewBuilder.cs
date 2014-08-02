@@ -104,7 +104,7 @@ namespace Trigger.XForms.Visuals
             gridView.MouseDoubleClick += (sender, e) =>
             {
                 if (gridView.SelectedItem != null)
-                    WindowManager.ShowDetailView(gridView.SelectedItem as IStorable);
+                    DetailViewExtensions.ShowDetailView(gridView.SelectedItem as IStorable);
             };
 
             detailViewLayout.Add(gridView);

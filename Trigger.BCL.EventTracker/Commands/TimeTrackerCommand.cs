@@ -23,14 +23,14 @@ namespace Trigger.BCL.EventTracker
                     service.StopTracking(DateTime.Now);
                     timeTracker.Save();
                   
-                    args.Template.ReloadObject();
+                    timeTracker.ReloadObject();
                 }
                 if (!timeTracker.Begin.HasValue)
                 {
                     service.StartTracking(DateTime.Now);
                     timeTracker.Save();
 
-                    args.Template.ReloadObject();
+                    timeTracker.ReloadObject();
                 }
             }
         }

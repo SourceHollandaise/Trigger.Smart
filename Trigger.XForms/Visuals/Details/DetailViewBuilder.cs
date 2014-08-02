@@ -66,7 +66,7 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new DetailViewArguments{ CurrentObject = CurrentObject, Template = WindowManager.GetDetailView(CurrentObject) });
+                    command.Execute(new DetailViewArguments{ CurrentObject = CurrentObject });
                 };
                 commandBar.Add(button, false, false);
 

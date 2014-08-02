@@ -12,5 +12,4 @@ namespace Trigger.XForms.Commands
     {
 
     }
-    
 }

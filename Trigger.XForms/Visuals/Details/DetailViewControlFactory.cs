@@ -100,7 +100,7 @@ namespace Trigger.XForms.Visuals
                                 control.MouseDoubleClick += (sender, e) =>
                                 {
                                     if ((control as GridView).SelectedItem != null)
-                                        WindowManager.ShowDetailView((control as GridView).SelectedItem as IStorable);
+                                        DetailViewExtensions.ShowDetailView((control as GridView).SelectedItem as IStorable);
                                 };
                             }
                             return control;
@@ -438,7 +438,7 @@ namespace Trigger.XForms.Visuals
         {
             var current = control.SelectedValue as ListItem;
             if (current != null)
-                WindowManager.ShowDetailView(current.Tag as IStorable);
+                DetailViewExtensions.ShowDetailView(current.Tag as IStorable);
         }
 
         void  ClearReference(ComboBox control)

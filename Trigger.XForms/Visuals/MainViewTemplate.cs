@@ -155,7 +155,7 @@ namespace Trigger.XForms.Visuals
             var exitButton = new Button
             {
                 Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(exitCommand.ImageName + ".png", 2),
+                Image = ImageExtensions.GetImage(exitCommand.ImageName + ".png", 24),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = exitCommand.Name,
                 ID = exitCommand.ID

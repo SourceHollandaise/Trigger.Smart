@@ -53,7 +53,6 @@
     <Compile Include="Visuals\TemplateBase.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
-    <Compile Include="Visuals\WindowManager.cs" />
     <Compile Include="Visuals\LogonViewGenerator.cs" />
     <Compile Include="Visuals\LogonViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
@@ -122,6 +121,7 @@
     <Compile Include="ViewDescriptions\MainViewDescriptor.cs" />
     <Compile Include="ViewDescriptions\NavigationItem.cs" />
     <Compile Include="ViewDescriptions\NavigationGroupItem.cs" />
+    <Compile Include="Extensions\DetailViewExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
