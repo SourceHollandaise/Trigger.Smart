@@ -15,6 +15,8 @@ namespace Trigger.XForms
             RegisterCommands<IRefreshDetailViewCommand>();
         }
 
+        public bool IsTaggable { get; set; }
+
         public IList<TabItemDescription> TabItemDescriptions { get; set; }
 
         public IList<GroupItemDescription> GroupItemDescriptions { get; set; }

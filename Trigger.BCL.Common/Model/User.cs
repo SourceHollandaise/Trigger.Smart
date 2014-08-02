@@ -4,6 +4,7 @@ using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.BCL.Common.Model
 {
+
     [System.ComponentModel.DefaultProperty("UserName")]
     public class User : StorableBase
     {

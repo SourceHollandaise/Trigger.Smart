@@ -53,6 +53,10 @@ namespace Trigger.XForms.Visuals
 
             }
 
+            if (property.PropertyType == typeof(Color))
+                return ImageViewPropertyEditor(property);
+
+
             if (property.PropertyType == typeof(Image))
                 return ImageViewPropertyEditor(property);
 
@@ -160,6 +164,8 @@ namespace Trigger.XForms.Visuals
                 }
             }
 
+
+
             if (control is ImageView)
                 ((ImageView)control).Image = property.GetValue(Model, null) as Image;
 
@@ -197,37 +203,25 @@ namespace Trigger.XForms.Visuals
             }
         }
 
-
         ImageView ImageViewPropertyEditor(PropertyInfo property)
         {
             var imageView = new ImageView();
             imageView.Size = new Size(-1, -1);
 
-            var file = GetImageFile((string)property.GetValue(Model, null));
-
-            if (file != null)
+            var value = (string)property.GetValue(Model, null);
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var image = new Bitmap(file);
-              
-                imageView.Size = image.Size;
-                imageView.Image = image;
+                var file = value.GetValidPath();
+                if (file != null)
+                {
+                    var image = new Bitmap(file);
+
+                    imageView.Size = image.Size;
+                    imageView.Image = image;
+                }
             }
 
             return imageView;
-        }
-
-        string GetImageFile(string fileName)
-        {
-            var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
-
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                var imagePath = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
-                if (File.Exists(imagePath))
-                    return imagePath;
-            }
-
-            return null;
         }
 
         WebView FilePreviewPropertyEditor(PropertyInfo property)
@@ -236,15 +230,15 @@ namespace Trigger.XForms.Visuals
 
             webView.Size = new Size(-1, -1);
 
-            var fileName = property.GetValue(Model, null) as string;
-            if (!string.IsNullOrEmpty(fileName))
+            var value = (string)property.GetValue(Model, null);
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                var file = value.GetValidPath();
+                if (file != null)
+                {
+                    webView.Url = new Uri(file, UriKind.RelativeOrAbsolute);
 
-                var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
-                if (File.Exists(path))
-                    webView.Url = new Uri(path, UriKind.RelativeOrAbsolute);
-
+                }
             }
             webView.BrowserContextMenuEnabled = true;
 

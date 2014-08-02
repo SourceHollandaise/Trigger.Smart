@@ -7,6 +7,7 @@ using Trigger.XStorable.DataStore;
 using Trigger.XForms;
 using Eto.Drawing;
 using Trigger.XForms.Commands;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.XForms.Visuals
 {
@@ -72,6 +73,20 @@ namespace Trigger.XForms.Visuals
 
             }
             commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+            if (Descriptor.IsTaggable)
+            {
+                commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
+
+                commandBar.Add(TagButton(Colors.OrangeRed), false, false);
+                commandBar.Add(TagButton(Colors.YellowGreen), false, false);
+                commandBar.Add(TagButton(Colors.CornflowerBlue), false, false);
+
+                commandBar.Add(TagButton(Colors.WhiteSmoke), false, false);
+             
+                commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+            }
+
             commandBar.EndHorizontal();
 
             detailViewLayout.Add(commandBar);
@@ -105,6 +120,40 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.Add(tabControl);
             detailViewLayout.EndHorizontal();
             return detailViewLayout;
+        }
+
+        Button TagButton(Color color)
+        {
+
+
+            var tagbutton = new Button
+            {
+                Size = new Size(40, 40),
+                ID = "tag_" + color,
+                BackgroundColor = color
+            };
+
+
+            tagbutton.Click += (sender, e) =>
+            {
+                var template = CurrentObject.TryGetDetailView();
+                if (template != null)
+                {
+                    template.BackgroundColor = tagbutton.BackgroundColor;
+
+                    var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
+                    var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
+                    if (tag == null)
+                        tag = new Tag();
+
+                    tag.TargetObjectMappingId = CurrentObject.MappingId.ToString();
+                    tag.TagColor = tagbutton.BackgroundColor.ToString();
+
+                    tag.Save();
+                }
+            };
+
+            return tagbutton;
         }
 
         Control CreateViewLayout()

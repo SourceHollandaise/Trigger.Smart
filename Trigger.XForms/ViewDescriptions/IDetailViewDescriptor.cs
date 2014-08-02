@@ -12,6 +12,8 @@ namespace Trigger.XForms
 
         IList<IDetailViewCommand> Commands { get; }
 
+        bool IsTaggable { get; set; }
+
         void RegisterCommands<T>()  where T: IDetailViewCommand;
     }
 }

@@ -95,12 +95,18 @@ namespace Trigger.XForms.Visuals
             gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
             gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
             gridView.ShowCellBorders = false;
-            gridView.RowHeight = 30;
+            gridView.RowHeight = 32;
+
+            gridView.CellEdited += (sender, e) =>
+            {
+
+            };
 
             gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
                 e.Font = new Font(e.Font.Family, 12f);
             };
+
             gridView.MouseDoubleClick += (sender, e) =>
             {
                 if (gridView.SelectedItem != null)
@@ -134,5 +140,4 @@ namespace Trigger.XForms.Visuals
             return gridColumn;
         }
     }
-    
 }

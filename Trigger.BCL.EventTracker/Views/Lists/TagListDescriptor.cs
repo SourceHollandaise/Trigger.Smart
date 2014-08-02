@@ -6,9 +6,9 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker
 {
 
-    public class ImageGalleryListDescriptor : ListViewDescriptor<ImageGallery>
+    public class TagListDescriptor : ListViewDescriptor<Tag>
     {
-        public ImageGalleryListDescriptor()
+        public TagListDescriptor()
         {
             ColumnDescriptions = new List<ColumnDescription>
             {

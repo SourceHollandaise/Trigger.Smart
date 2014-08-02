@@ -4,6 +4,7 @@ using Trigger.XForms.Controllers;
 using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -33,6 +34,7 @@ namespace Trigger.XForms.Visuals
         {
             this.ModelType = type;
             this.CurrentObject = currentObject;
+            this.BackgroundColor = Colors.WhiteSmoke;
         }
 
         public override void OnKeyDown(KeyEventArgs e)

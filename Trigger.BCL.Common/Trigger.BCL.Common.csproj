@@ -60,6 +60,7 @@
     <Compile Include="Datastore\StorableBase.cs" />
     <Compile Include="Security\IAuthenticate.cs" />
     <Compile Include="Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Model\Tag.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

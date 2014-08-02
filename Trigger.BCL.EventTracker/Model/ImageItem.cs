@@ -2,6 +2,7 @@ using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Datastore;
 using Trigger.XForms;
 using Eto.Drawing;
+using System.IO;
 
 namespace Trigger.BCL.EventTracker.Model
 {
@@ -10,7 +11,7 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("Gallery")]
     public class ImageItem : StorableBase, IFileData
     {
-
+       
         string subject;
 
         public string Subject
@@ -45,6 +46,14 @@ namespace Trigger.BCL.EventTracker.Model
                 fileName = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string GalleryAlias
+        {
+            get
+            {
+                return Gallery != null ? Gallery.Name : null;
             }
         }
 

@@ -11,6 +11,7 @@ namespace Trigger.BCL.EventTracker
         public ImageItemViewDescriptor()
         {
             RegisterCommands<IAddFileCommand>();
+            IsTaggable = true;
 
             TabItemDescriptions = new List<TabItemDescription>
             {
