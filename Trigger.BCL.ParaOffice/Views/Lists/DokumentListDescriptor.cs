@@ -1,6 +1,7 @@
 using System;
 using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -8,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public DokumentListDescriptor()
         {
+            RegisterCommands<IUpdateDocumentStoreCommand>();
             ListShowTags = true;
 
             ColumnDescriptions = new List<ColumnDescription>
