@@ -1,4 +1,4 @@
-//using GLib;
+
 using System;
 using Trigger.XForms.Visuals;
 using Eto.Forms;
@@ -15,7 +15,6 @@ namespace Trigger.App.ParaOffice
             init.InitalizeDataStore();
             init.RegisterDependencies();
             init.CreateInitialObjects();
-            init.RegisterDeclaredTypes();
         }
 
         public override void OnInitialized(EventArgs e)

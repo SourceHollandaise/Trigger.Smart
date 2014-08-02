@@ -1,10 +1,4 @@
-using System;
 using Trigger.XForms.Visuals;
-using System.Collections.Generic;
-using Trigger.XForms.Controllers;
-using Trigger.XStorable.DataStore;
-using Eto.Forms;
-using Eto.Drawing;
 using Trigger.BCL.ParaOffice;
 using Trigger.XForms.Commands;
 

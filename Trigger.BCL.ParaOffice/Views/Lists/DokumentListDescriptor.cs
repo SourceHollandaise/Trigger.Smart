@@ -10,7 +10,6 @@ namespace Trigger.BCL.ParaOffice
         public DokumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreCommand>();
-            ListShowTags = true;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

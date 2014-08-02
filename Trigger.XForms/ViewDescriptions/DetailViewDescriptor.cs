@@ -7,15 +7,6 @@ namespace Trigger.XForms
 {
     public abstract class DetailViewDescriptor<TModel> : IDetailViewDescriptor
     {
-        protected DetailViewDescriptor()
-        {
-            RegisterCommands<ICloseWindowCommand>();
-            RegisterCommands<IDeleteObjectCommand>();
-            RegisterCommands<ISaveObjectCommand>();
-            RegisterCommands<IRefreshDetailViewCommand>();
-            IsTaggable = true;
-        }
-
         public bool IsTaggable { get; set; }
 
         public IList<TabItemDescription> TabItemDescriptions { get; set; }
@@ -37,6 +28,15 @@ namespace Trigger.XForms
         protected FieldNames<TModel> Fields = new FieldNames<TModel>();
 
         protected const string EmptySpaceFieldName = "EmptySpace";
+
+        protected DetailViewDescriptor()
+        {
+            RegisterCommands<ICloseWindowCommand>();
+            RegisterCommands<IDeleteObjectCommand>();
+            RegisterCommands<ISaveObjectCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            IsTaggable = true;
+        }
     }
 }
 
