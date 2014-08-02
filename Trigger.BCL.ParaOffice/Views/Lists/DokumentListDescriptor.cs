@@ -8,6 +8,8 @@ namespace Trigger.BCL.ParaOffice
     {
         public DokumentListDescriptor()
         {
+            ListShowTags = true;
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Dokument" },
