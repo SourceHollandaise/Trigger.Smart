@@ -13,6 +13,7 @@ namespace Trigger.XForms
             RegisterCommands<IDeleteObjectCommand>();
             RegisterCommands<ISaveObjectCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
+            IsTaggable = true;
         }
 
         public bool IsTaggable { get; set; }

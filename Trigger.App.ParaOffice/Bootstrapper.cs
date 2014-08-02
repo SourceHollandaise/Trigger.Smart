@@ -1,10 +1,8 @@
-using System;
 using System.Linq;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Security;
 using Trigger.BCL.Common.Services;
 using Trigger.BCL.ParaOffice;
-using Trigger.XForms.Controllers;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Visuals;
@@ -112,27 +110,6 @@ namespace Trigger.App.ParaOffice
 
                 sb.Save();
             }
-        }
-
-        public virtual void RegisterDeclaredTypes()
-        {
-            ModelTypesDeclarator.DeclareModelTypes(DeclaredTypes());
-        }
-
-        protected virtual Type[] DeclaredTypes()
-        {
-            return new[]
-            {
-                typeof(Akt),
-                typeof(Termin),
-                typeof(Dokument),
-                typeof(Kontakt),
-                typeof(Person),
-                typeof(AktPerson),
-                typeof(AktArt),
-                typeof(SB),
-                typeof(User)
-            };
         }
     }
 }

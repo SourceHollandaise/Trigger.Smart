@@ -14,8 +14,7 @@ namespace Trigger.App.EventTracker
             var init = new Bootstrapper();
             init.InitalizeDataStore();
             init.RegisterDependencies();
-            init.CreateInitialObjects();
-            init.RegisterDeclaredTypes();
+            init.CreateInitialObjects(); 
         }
 
         public override void OnInitialized(EventArgs e)

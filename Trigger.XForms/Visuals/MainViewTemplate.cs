@@ -2,7 +2,6 @@ using System;
 using Eto.Drawing;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
-using Trigger.XForms.Controllers;
 using System.ComponentModel;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Commands;

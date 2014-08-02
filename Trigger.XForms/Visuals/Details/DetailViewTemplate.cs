@@ -17,7 +17,7 @@ namespace Trigger.XForms.Visuals
 
             SetTitle();
 
-            SetTagBackColor();
+            //SetTagBackColor();
         }
 
         public void SetContent(IStorable currentObject)

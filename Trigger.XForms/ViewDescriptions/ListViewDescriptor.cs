@@ -36,6 +36,7 @@ namespace Trigger.XForms
             RegisterCommands<IRefreshListViewCommand>();
             RegisterCommands<IOpenObjectCommand>();
             RegisterCommands<ICreateObjectCommand>();
+            ListShowTags = true;
         }
     }
 }

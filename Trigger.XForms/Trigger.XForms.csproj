@@ -109,7 +109,6 @@
     <Compile Include="Commands\Lists\IOpenObjectCommand.cs" />
     <Compile Include="Commands\Details\CloseWindowCommand.cs" />
     <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
-    <Compile Include="ModelTypesDeclarator.cs" />
     <Compile Include="Commands\ListViewArguments.cs" />
     <Compile Include="Commands\DetailViewArguments.cs" />
     <Compile Include="Commands\ILogOffCommand.cs" />
@@ -152,6 +151,7 @@
     <Folder Include="Commands\Details\" />
     <Folder Include="Images\" />
     <Folder Include="Images\Size64\" />
+    <Folder Include="Images\Specials\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Size64\accept.png">
@@ -696,6 +696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\Size64\word.png">
       <LogicalName>word.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Specials\Accept24.png">
+      <LogicalName>Accept24.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

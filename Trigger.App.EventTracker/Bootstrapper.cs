@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Trigger.BCL.Common.Datastore;
 using Trigger.BCL.Common.Model;
@@ -8,7 +7,6 @@ using Trigger.BCL.EventTracker;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
 using Trigger.XForms;
-using Trigger.XForms.Controllers;
 using Trigger.XForms.Visuals;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
@@ -105,25 +103,6 @@ namespace Trigger.App.EventTracker
 			
                 user.Save();
             }
-        }
-
-        public virtual void RegisterDeclaredTypes()
-        {
-            ModelTypesDeclarator.DeclareModelTypes(DeclaredTypes());
-        }
-
-        protected virtual Type[] DeclaredTypes()
-        {
-            return new[]
-            {
-                typeof(IssueTracker),
-                typeof(Area),
-                typeof(Document),
-                typeof(TimeTracker),
-                typeof(Contact),
-                typeof(Person),
-                typeof(User)
-            };
         }
     }
 }

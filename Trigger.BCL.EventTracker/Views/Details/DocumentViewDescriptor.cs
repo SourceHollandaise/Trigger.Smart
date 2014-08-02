@@ -10,7 +10,6 @@ namespace Trigger.BCL.EventTracker
         public DocumentViewDescriptor()
         {
             RegisterCommands<IAddFileCommand>();
-            IsTaggable = true;
 
             TabItemDescriptions = new List<TabItemDescription>
             {

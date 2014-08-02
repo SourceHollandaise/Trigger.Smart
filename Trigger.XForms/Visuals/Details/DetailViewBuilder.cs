@@ -2,36 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Eto.Drawing;
 using Eto.Forms;
+using Trigger.BCL.Common.Model;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
-using Eto.Drawing;
 using Trigger.XForms.Commands;
-using Trigger.BCL.Common.Model;
 
 namespace Trigger.XForms.Visuals
 {
     public class DetailViewBuilder
     {
+        IList<Button> tagButtons = new List<Button>();
+
         readonly DetailViewControlFactory factory;
 
-        protected IDetailViewDescriptor Descriptor
-        {
-            get;
-            set;
-        }
+        protected IDetailViewDescriptor Descriptor { get; set; }
 
-        protected IStorable CurrentObject
-        {
-            get;
-            set;
-        }
+        protected IStorable CurrentObject{ get; set; }
 
-        public Type CurrentType
-        {
-            get;
-            set;
-        }
+        public Type CurrentType{ get; set; }
 
         public DetailViewBuilder(IDetailViewDescriptor descriptor, IStorable currentObject)
         {
@@ -82,10 +72,21 @@ namespace Trigger.XForms.Visuals
                 commandBar.Add(TagButton(Colors.Orange), false, false);
                 commandBar.Add(TagButton(Colors.YellowGreen), false, false);
                 commandBar.Add(TagButton(Colors.LightSkyBlue), false, false);
-
                 commandBar.Add(TagButton(Colors.WhiteSmoke), false, false);
-             
+
                 commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+                var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
+                var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
+                if (tag != null)
+                {
+                    var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
+                    if (tagbutton != null)
+                    {
+                        tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
+                        tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+                    }
+                }
             }
 
             commandBar.EndHorizontal();
@@ -125,8 +126,6 @@ namespace Trigger.XForms.Visuals
 
         Button TagButton(Color color)
         {
-
-
             var tagbutton = new Button
             {
                 Size = new Size(40, 40),
@@ -134,13 +133,15 @@ namespace Trigger.XForms.Visuals
                 BackgroundColor = color
             };
 
+            tagButtons.Add(tagbutton);
 
             tagbutton.Click += (sender, e) =>
             {
                 var template = CurrentObject.TryGetDetailView();
                 if (template != null)
                 {
-                    template.BackgroundColor = tagbutton.BackgroundColor;
+                    foreach (var button in tagButtons)
+                        button.Image = null;
 
                     var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
                     var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
@@ -150,10 +151,13 @@ namespace Trigger.XForms.Visuals
                     tag.TargetObjectMappingId = CurrentObject.MappingId.ToString();
                     tag.TagColor = tagbutton.BackgroundColor.ToString();
 
+                    tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
+                    tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+
                     tag.Save();
                 }
             };
-
+                
             return tagbutton;
         }
 

@@ -1,7 +1,5 @@
 using Eto.Forms;
 using System;
-using Trigger.XForms.Controllers;
-using System.Linq;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Eto.Drawing;
