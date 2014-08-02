@@ -10,6 +10,7 @@ namespace Trigger.BCL.EventTracker
         public DocumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreCommand>();
+            ListShowTags = true;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

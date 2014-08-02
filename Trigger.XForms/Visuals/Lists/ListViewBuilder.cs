@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Trigger.XStorable.Dependency;
 using Eto.Drawing;
 using Trigger.XForms.Commands;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.XForms.Visuals
 {
@@ -81,6 +82,21 @@ namespace Trigger.XForms.Visuals
 
             gridView = new GridView();
            
+            if (Descriptor.ListShowTags)
+            {
+                var tagColumn = new GridColumn();
+                tagColumn.DataCell = new TextBoxCell();
+                tagColumn.HeaderText = "Tags";
+                tagColumn.Sortable = true;
+                tagColumn.Resizable = true;
+                tagColumn.AutoSize = false;
+                tagColumn.ID = "TagColumn";
+                tagColumn.Width = 40;
+                tagColumn.Editable = false;
+
+                gridView.Columns.Add(tagColumn);
+            }
+
             foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
@@ -95,16 +111,13 @@ namespace Trigger.XForms.Visuals
             gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
             gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
             gridView.ShowCellBorders = false;
-            gridView.RowHeight = 32;
-
-            gridView.CellEdited += (sender, e) =>
-            {
-
-            };
 
             gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
-                e.Font = new Font(e.Font.Family, 12f);
+                if (Descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
+
+                e.Font = new Font(e.Font.Family, 12.5f);
             };
 
             gridView.MouseDoubleClick += (sender, e) =>
@@ -117,6 +130,23 @@ namespace Trigger.XForms.Visuals
 
             detailViewLayout.EndHorizontal();
             return detailViewLayout;
+        }
+
+        Color SetTagBackColor(IStorable current)
+        {
+            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(current.MappingId.ToString()));
+            if (tag != null)
+            {
+                var rowColor = Color.Parse(tag.TagColor);
+                if (rowColor.Equals(Colors.WhiteSmoke))
+                    return Colors.White;
+                else
+                    return rowColor;
+                     
+            }
+
+            return Colors.White;
         }
 
         GridColumn CreateColumn(ColumnDescription columnItem)

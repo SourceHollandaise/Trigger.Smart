@@ -13,6 +13,8 @@ namespace Trigger.XForms
 
         public bool AllowMultiSelection { get; set; }
 
+        public bool ListShowTags { get; set; }
+
         public IList<IListViewCommand> Commands { get; set; }
 
         public void RegisterCommands<TCommand>() where  TCommand: IListViewCommand

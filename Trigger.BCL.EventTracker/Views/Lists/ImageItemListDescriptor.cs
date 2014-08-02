@@ -10,6 +10,8 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemListDescriptor()
         {
+            ListShowTags = true;
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Name" },

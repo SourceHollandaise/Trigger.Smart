@@ -9,6 +9,8 @@ namespace Trigger.XForms
 
         bool AllowMultiSelection { get; set; }
 
+        bool ListShowTags { get; set; }
+
         IList<ColumnDescription> ColumnDescriptions { get; set; }
 
         IList<IListViewCommand> Commands { get; }

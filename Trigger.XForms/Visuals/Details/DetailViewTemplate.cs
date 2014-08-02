@@ -47,6 +47,9 @@ namespace Trigger.XForms.Visuals
 
         void SetTagBackColor()
         {
+            if (CurrentObject.MappingId == null)
+                return;
+
             var store = DependencyMapProvider.Instance.ResolveType<IStore>();
             var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
             if (tag != null)

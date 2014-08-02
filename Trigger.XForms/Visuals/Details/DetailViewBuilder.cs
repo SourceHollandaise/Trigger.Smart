@@ -79,8 +79,9 @@ namespace Trigger.XForms.Visuals
                 commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
 
                 commandBar.Add(TagButton(Colors.OrangeRed), false, false);
+                commandBar.Add(TagButton(Colors.Orange), false, false);
                 commandBar.Add(TagButton(Colors.YellowGreen), false, false);
-                commandBar.Add(TagButton(Colors.CornflowerBlue), false, false);
+                commandBar.Add(TagButton(Colors.LightSkyBlue), false, false);
 
                 commandBar.Add(TagButton(Colors.WhiteSmoke), false, false);
              
