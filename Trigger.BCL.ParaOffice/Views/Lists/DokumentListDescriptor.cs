@@ -9,7 +9,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public DokumentListDescriptor()
         {
-            RegisterCommands<IUpdateDocumentStoreCommand>();
+            RegisterCommands<IUpdateDocumentStoreListViewCommand>();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

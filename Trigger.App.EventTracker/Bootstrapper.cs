@@ -32,6 +32,13 @@ namespace Trigger.App.EventTracker
             Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
+        public void InitialiteSecurityProvider()
+        {
+            var provider = new SecurityInfoProvider();
+
+            DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
+        }
+
         public virtual void RegisterDependencies()
         {
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
@@ -50,16 +57,18 @@ namespace Trigger.App.EventTracker
             Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
             Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
             Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
-            Map.RegisterType<IOpenObjectCommand, OpenObjectCommand>();
+            Map.RegisterType<IOpenObjectListViewCommand, OpenObjectListViewCommand>();
             Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();
             Map.RegisterType<IRefreshDetailViewCommand, RefreshDetailViewCommand>();
-            Map.RegisterType<IUpdateDocumentStoreCommand, UpdateDocumentStoreCommand>();
+            Map.RegisterType<IUpdateDocumentStoreListViewCommand, UpdateDocumentStoreListViewCommand>();
             Map.RegisterType<IAddFileCommand, AddFileCommand>();
-            Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
+            Map.RegisterType<ICreateObjectListViewCommand, CreateObjectListViewCommand>();
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
             Map.RegisterType<ITagCommand, TagCommand>();
             Map.RegisterType<ITimeTrackerCommand, TimeTrackerCommand>();
+            Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
+            Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
         }
 
         void RegisterViewDescriptors()

@@ -115,7 +115,7 @@ namespace Trigger.XForms.Visuals
 
         void AddTagButtonsToCommandBar(DynamicLayout commandBar)
         {
-            commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
+            commandBar.Add(new DynamicLayout(){ Size = new Size(40, -1) });
 
             commandBar.Add(TagButton(Colors.OrangeRed), false, false);
             commandBar.Add(TagButton(Colors.Orange), false, false);
@@ -134,6 +134,8 @@ namespace Trigger.XForms.Visuals
                     var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
                     if (tagbutton != null)
                     {
+                        if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
+                            return;
                         tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
                         tagbutton.ImagePosition = ButtonImagePosition.Overlay;
                     }

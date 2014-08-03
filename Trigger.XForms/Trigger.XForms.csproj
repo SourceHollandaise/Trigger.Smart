@@ -96,19 +96,13 @@
     <Compile Include="Commands\Details\IDeleteObjectCommand.cs" />
     <Compile Include="Commands\Details\RefreshDetailViewCommand.cs" />
     <Compile Include="Commands\Lists\RefreshListViewCommand.cs" />
-    <Compile Include="Commands\Lists\OpenObjectCommand.cs" />
-    <Compile Include="Commands\Lists\UpdateDocumentStoreCommand.cs" />
     <Compile Include="Commands\Details\SaveObjectCommand.cs" />
     <Compile Include="Commands\Details\DeleteObjectCommand.cs" />
-    <Compile Include="Commands\Lists\CreateObjectCommand.cs" />
-    <Compile Include="Commands\Lists\ICreateObjectCommand.cs" />
     <Compile Include="Commands\Details\AddFileCommand.cs" />
     <Compile Include="Commands\Details\IRefreshDetailViewCommand.cs" />
     <Compile Include="Commands\Lists\IRefreshListViewCommand.cs" />
     <Compile Include="Commands\Details\ISaveObjectCommand.cs" />
-    <Compile Include="Commands\Lists\IOpenObjectCommand.cs" />
     <Compile Include="Commands\Details\CloseWindowCommand.cs" />
-    <Compile Include="Commands\Lists\IUpdateDocumentStoreCommand.cs" />
     <Compile Include="Commands\ListViewArguments.cs" />
     <Compile Include="Commands\DetailViewArguments.cs" />
     <Compile Include="Commands\ILogOffCommand.cs" />
@@ -123,6 +117,16 @@
     <Compile Include="Extensions\DetailViewExtensions.cs" />
     <Compile Include="Attributes\FieldImageDataAttribute.cs" />
     <Compile Include="Attributes\FieldImageValueAttribute.cs" />
+    <Compile Include="Commands\Lists\SearchListViewCommand.cs" />
+    <Compile Include="Commands\Lists\ISearchListViewCommand.cs" />
+    <Compile Include="Commands\Lists\ICurrentUserListViewCommand.cs" />
+    <Compile Include="Commands\Lists\CurrentUserListViewCommand.cs" />
+    <Compile Include="Commands\Lists\IOpenObjectListViewCommand.cs" />
+    <Compile Include="Commands\Lists\OpenObjectListViewCommand.cs" />
+    <Compile Include="Commands\Lists\ICreateObjectListViewCommand.cs" />
+    <Compile Include="Commands\Lists\CreateObjectListViewCommand.cs" />
+    <Compile Include="Commands\Lists\IUpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Commands\Lists\UpdateDocumentStoreListViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

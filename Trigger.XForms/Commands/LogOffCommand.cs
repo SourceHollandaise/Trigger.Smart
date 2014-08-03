@@ -9,11 +9,8 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(MainViewTemplate template)
         {
-            var logonForm = new LogonViewTemplate();
-            if (logonForm.ShowDialog() == DialogResult.Ok)
-            {
-                template.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
-            }
+            new LogonViewTemplate().ShowDialog();
+
         }
 
         public string ID

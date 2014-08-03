@@ -9,5 +9,11 @@ namespace Trigger.XForms.Commands
             get;
             set;
         }
+
+        public object InputData
+        {
+            get;
+            set;
+        }
     }
 }

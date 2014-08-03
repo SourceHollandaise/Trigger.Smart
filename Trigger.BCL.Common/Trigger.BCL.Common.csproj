@@ -53,7 +53,6 @@
     <Compile Include="Security\LogonParameters.cs" />
     <Compile Include="Security\SecureText.cs" />
     <Compile Include="Security\SecurityInfoProvider.cs" />
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="Datastore\FileDataStore.cs" />
     <Compile Include="Datastore\GuidIdGenerator.cs" />
     <Compile Include="Model\NotifyPropertyChangedBase.cs" />

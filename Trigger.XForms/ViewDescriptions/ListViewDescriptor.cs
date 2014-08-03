@@ -34,8 +34,9 @@ namespace Trigger.XForms
             AllowColumnReorder = true;
             AllowMultiSelection = false;
             RegisterCommands<IRefreshListViewCommand>();
-            RegisterCommands<IOpenObjectCommand>();
-            RegisterCommands<ICreateObjectCommand>();
+            RegisterCommands<IOpenObjectListViewCommand>();
+            RegisterCommands<ICreateObjectListViewCommand>();
+            RegisterCommands<ICurrentUserListViewCommand>();
             ListShowTags = true;
         }
     }

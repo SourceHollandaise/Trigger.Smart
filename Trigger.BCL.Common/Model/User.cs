@@ -1,9 +1,13 @@
-using Trigger.BCL.Common.Security;
-using System;
 using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.BCL.Common.Model
 {
+    public enum Sex
+    {
+        Female,
+        Male
+    }
+
 
     [System.ComponentModel.DefaultProperty("UserName")]
     public class User : StorableBase
@@ -67,10 +71,22 @@ namespace Trigger.BCL.Common.Model
             }
         }
 
-        [Obsolete("Not in use!", false)]
-        public void SetPassword(string input)
-        {       
-            Password = SecureText.Secure(input);
+        Sex userSex;
+
+        public Sex UserSex
+        {
+            get
+            {
+                return userSex;
+            }
+            set
+            {
+                if (Equals(userSex, value))
+                    return;
+                userSex = value;
+
+                OnPropertyChanged();
+            }
         }
     }
 }

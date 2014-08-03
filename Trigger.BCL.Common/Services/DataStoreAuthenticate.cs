@@ -10,18 +10,17 @@ namespace Trigger.BCL.Common.Services
     {
         public bool LogOn(LogonParameters logonParameters)
         {
-            if (!string.IsNullOrWhiteSpace(logonParameters.UserName) && !string.IsNullOrWhiteSpace(logonParameters.Password))
+            if (!string.IsNullOrWhiteSpace(logonParameters.UserName))
             {
-                var securePassword = logonParameters.Password;
+                var password = logonParameters.Password;
 
-                var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName.ToLowerInvariant() == logonParameters.UserName.ToLowerInvariant() && p.Password == securePassword);
+                var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>()
+                    .FirstOrDefault(p => p.UserName.ToLowerInvariant() == logonParameters.UserName.ToLowerInvariant() && p.Password == password);
 
                 if (user != null)
                 {
-                    DependencyMapProvider.Instance.UnregisterInstance<ISecurityInfoProvider>();
-                    var provider = new SecurityInfoProvider();
-                    DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
-                    provider.SetUser(user);
+                    DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().UserName = user.UserName;
+
 
                     return true;
                 }

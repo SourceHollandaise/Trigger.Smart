@@ -13,6 +13,8 @@ namespace Trigger.XForms.Visuals
 {
     public class ListViewBuilder
     {
+        GridView currentGridView;
+
         readonly ListViewControlFactory factory;
 
         protected IListViewDescriptor Descriptor
@@ -50,7 +52,7 @@ namespace Trigger.XForms.Visuals
 
         public Control GetContent()
         {
-            GridView gridView = null;
+            currentGridView = null;
 
             var detailViewLayout = new DynamicLayout();
             detailViewLayout.BeginHorizontal();
@@ -59,6 +61,8 @@ namespace Trigger.XForms.Visuals
             commandBar.BeginHorizontal();
             foreach (var command in Descriptor.Commands)
             {
+                if (command is ICurrentUserListViewCommand)
+                    continue;
                 var button = new Button();
                 button.Size = new Size(40, 40);
                 button.ID = command.ID;
@@ -67,12 +71,20 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = gridView, CustomDataSet = OriginalDataSet });
+                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = currentGridView, CustomDataSet = OriginalDataSet });
                 };
                 commandBar.Add(button, false, false);
 
             }
+
+            //AddSearchBoxToCommandBar(commandBar);
+
+            var currentUserCommand = Descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
+            if (currentUserCommand != null)
+                AddCurrentUserToCommandBar(commandBar, currentUserCommand);
+
             commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
             commandBar.EndHorizontal();
 
             detailViewLayout.Add(commandBar);
@@ -80,7 +92,7 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
 
-            gridView = new GridView();
+            currentGridView = new GridView();
            
             if (Descriptor.ListShowTags)
             {
@@ -94,25 +106,25 @@ namespace Trigger.XForms.Visuals
                 tagColumn.Width = 40;
                 tagColumn.Editable = false;
 
-                gridView.Columns.Add(tagColumn);
+                currentGridView.Columns.Add(tagColumn);
             }
 
             foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
                 if (gridColumn != null)
-                    gridView.Columns.Add(gridColumn);
+                    currentGridView.Columns.Add(gridColumn);
             }
 
             if (DataSet == null)
                 DataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
 
-            gridView.DataStore = new DataStoreCollection(DataSet);
-            gridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
-            gridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
-            gridView.ShowCellBorders = false;
+            currentGridView.DataStore = new DataStoreCollection(DataSet);
+            currentGridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
+            currentGridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
+            currentGridView.ShowCellBorders = false;
 
-            gridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
+            currentGridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
                 if (Descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
@@ -120,16 +132,68 @@ namespace Trigger.XForms.Visuals
                 e.Font = new Font(e.Font.Family, 12.5f);
             };
 
-            gridView.MouseDoubleClick += (sender, e) =>
+            currentGridView.MouseDoubleClick += (sender, e) =>
             {
-                if (gridView.SelectedItem != null)
-                    (gridView.SelectedItem as IStorable).ShowDetailView();
+                if (currentGridView.SelectedItem != null)
+                    (currentGridView.SelectedItem as IStorable).ShowDetailView();
             };
 
-            detailViewLayout.Add(gridView);
+            detailViewLayout.Add(currentGridView);
 
             detailViewLayout.EndHorizontal();
             return detailViewLayout;
+        }
+
+        void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
+        {
+            commandBar.Add(new DynamicLayout(){ Size = new Size(40, -1) });
+
+            if (command != null)
+            {
+                var button = new Button();
+                button.Size = new Size(100, 40);
+                button.ID = command.ID;
+                button.Text = command.Name;
+                button.Font = new Font(button.Font.Family, button.Font.Size, FontStyle.Bold);
+                button.Image = ImageExtensions.GetImage(command.ImageName, 24);
+                button.ImagePosition = ButtonImagePosition.Left;
+                button.Click += (sender, e) =>
+                {
+                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = currentGridView, CustomDataSet = OriginalDataSet });
+                };
+                commandBar.Add(button, false, false);
+            }
+        }
+
+        void AddSearchBoxToCommandBar(DynamicLayout commandBar)
+        {
+            commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
+
+            var displayNameAttribute = ModelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
+
+            var searchBox = new SearchBox()
+            {
+                Size = new Size(160, 40),
+            };
+                
+            searchBox.PlaceholderText = "Search " + (displayNameAttribute != null ? displayNameAttribute.DisplayName : ModelType.Name);
+            searchBox.MaxLength = 100;
+            searchBox.KeyDown += (sender, e) =>
+            {
+                if (e.Key == Keys.Enter)
+                {
+                    var arguments = new ListViewArguments();
+                    arguments.Grid = currentGridView;
+                    arguments.TargetType = ModelType;
+                    arguments.CustomDataSet = DataSet;
+                    arguments.InputData = searchBox.Text;
+                
+                    DependencyMapProvider.Instance.ResolveType<ISearchListViewCommand>().Execute(arguments);
+                }
+            };
+
+            commandBar.Add(searchBox, false, false);
+            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
         }
 
         Color SetTagBackColor(IStorable current)

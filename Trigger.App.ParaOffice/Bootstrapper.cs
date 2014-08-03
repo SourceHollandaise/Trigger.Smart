@@ -50,12 +50,12 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
             Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
             Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
-            Map.RegisterType<IOpenObjectCommand, OpenObjectCommand>();
+            Map.RegisterType<IOpenObjectListViewCommand, OpenObjectListViewCommand>();
             Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();
             Map.RegisterType<IRefreshDetailViewCommand, RefreshDetailViewCommand>();
-            Map.RegisterType<IUpdateDocumentStoreCommand, UpdateDocumentStoreCommand>();
+            Map.RegisterType<IUpdateDocumentStoreListViewCommand, UpdateDocumentStoreListViewCommand>();
             Map.RegisterType<IAddFileCommand, AddFileCommand>();
-            Map.RegisterType<ICreateObjectCommand, CreateObjectCommand>();
+            Map.RegisterType<ICreateObjectListViewCommand, CreateObjectListViewCommand>();
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
             Map.RegisterType<IAktPersonCommand, AktPersonCommand>();

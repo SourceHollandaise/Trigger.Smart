@@ -1,24 +1,22 @@
 using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Commands
 {
 
-    public class OpenObjectCommand : IOpenObjectCommand
+    public class UpdateDocumentStoreListViewCommand : IUpdateDocumentStoreListViewCommand
     {
         public void Execute(ListViewArguments args)
         {
-            if (args.Grid.SelectedItem != null)
-            {
-                if (args.Grid.SelectedItem != null)
-                    (args.Grid.SelectedItem as IStorable).ShowDetailView();
-            }
+            DependencyMapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
+            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID
         {
             get
             {
-                return "cmd_open";
+                return "cmd_update_docstore";
             }
         }
 
@@ -26,7 +24,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Open";
+                return "Load data";
             }
         }
 
@@ -34,7 +32,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "window_up";
+                return "folder_down";
             }
         }
     }

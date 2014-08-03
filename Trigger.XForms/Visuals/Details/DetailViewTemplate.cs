@@ -16,8 +16,6 @@ namespace Trigger.XForms.Visuals
             SetSize();
 
             SetTitle();
-
-            //SetTagBackColor();
         }
 
         public void SetContent(IStorable currentObject)
@@ -43,17 +41,6 @@ namespace Trigger.XForms.Visuals
             else
                 Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
                 
-        }
-
-        void SetTagBackColor()
-        {
-            if (CurrentObject.MappingId == null)
-                return;
-
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
-            if (tag != null)
-                BackgroundColor = Eto.Drawing.Color.Parse(tag.TagColor);
         }
     }
 }

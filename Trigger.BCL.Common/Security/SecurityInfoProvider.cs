@@ -1,22 +1,24 @@
 using Trigger.BCL.Common.Model;
+using Trigger.XStorable.DataStore;
+using System.Linq;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.BCL.Common.Security
 {
     public class SecurityInfoProvider : ISecurityInfoProvider
     {
-        User currentUser;
-
-        public User CurrentUser
-        { 
-            get
-            {
-                return currentUser;
-            }
+        public string UserName
+        {
+            get;
+            set;
         }
 
-        public void SetUser(User user)
+        public User CurrentUser
         {
-            currentUser = user;
+            get
+            {
+                return DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == UserName);
+            }
         }
     }
 }

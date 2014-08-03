@@ -12,6 +12,7 @@ namespace Trigger.App.EventTracker
         public virtual void InitalizeApplication()
         {
             var init = new Bootstrapper();
+            init.InitialiteSecurityProvider();
             init.InitalizeDataStore();
             init.RegisterDependencies();
             init.CreateInitialObjects(); 
@@ -25,7 +26,7 @@ namespace Trigger.App.EventTracker
             if (logonForm.ShowDialog() == DialogResult.Ok)
             {
                 MainForm = new MainViewTemplate();
-                MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
+                //MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 MainForm.Show();
             }
         }

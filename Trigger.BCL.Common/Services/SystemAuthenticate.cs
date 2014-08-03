@@ -18,7 +18,7 @@ namespace Trigger.BCL.Common.Services
                     var provider = new SecurityInfoProvider();
                     var user = DependencyMapProvider.Instance.ResolveType<User>();
                     user.UserName = id.Name;
-                    provider.SetUser(user);
+                    provider.UserName = user.UserName;
 
                     DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
 

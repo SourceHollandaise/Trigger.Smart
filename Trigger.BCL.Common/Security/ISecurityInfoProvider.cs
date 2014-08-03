@@ -5,8 +5,8 @@ namespace Trigger.BCL.Common.Security
 {
     public interface ISecurityInfoProvider
     {
-        User CurrentUser { get; }
+        string UserName { get; set; }
 
-        void SetUser(User user);
+        User CurrentUser { get; }
     }
 }

@@ -1,18 +1,16 @@
-using System;
 using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Commands
 {
 
-    public class CreateObjectCommand : ICreateObjectCommand
+    public class OpenObjectListViewCommand : IOpenObjectListViewCommand
     {
         public void Execute(ListViewArguments args)
         {
-            var target = Activator.CreateInstance(args.TargetType) as IStorable;
-            if (target != null)
+            if (args.Grid.SelectedItem != null)
             {
-                target.Initialize();
-                target.ShowDetailView();
+                if (args.Grid.SelectedItem != null)
+                    (args.Grid.SelectedItem as IStorable).ShowDetailView();
             }
         }
 
@@ -20,7 +18,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "cmd_create";
+                return "cmd_open";
             }
         }
 
@@ -28,7 +26,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "New";
+                return "Open";
             }
         }
 
@@ -36,7 +34,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "add";
+                return "window_up";
             }
         }
     }
