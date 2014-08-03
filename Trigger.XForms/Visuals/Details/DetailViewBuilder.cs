@@ -8,6 +8,7 @@ using Trigger.BCL.Common.Model;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
 using Trigger.XForms.Commands;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
@@ -40,6 +41,16 @@ namespace Trigger.XForms.Visuals
             return CreateViewLayout();
         }
 
+        Control CreateViewLayout()
+        {
+            var groupItems = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
+
+            return new Scrollable()
+            {
+                Content = AddGroupLayouts(groupItems)
+            };
+        }
+
         Control CreateTabbedViewLayout()
         {
             var detailViewLayout = new DynamicLayout();
@@ -65,32 +76,7 @@ namespace Trigger.XForms.Visuals
             commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
 
             if (Descriptor.IsTaggable)
-            {
-                commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
-
-                commandBar.Add(TagButton(Colors.OrangeRed), false, false);
-                commandBar.Add(TagButton(Colors.Orange), false, false);
-                commandBar.Add(TagButton(Colors.YellowGreen), false, false);
-                commandBar.Add(TagButton(Colors.LightSkyBlue), false, false);
-                commandBar.Add(TagButton(Colors.WhiteSmoke), false, false);
-
-                commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
-
-                if (CurrentObject != null && CurrentObject.MappingId != null)
-                {
-                    var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-                    var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
-                    if (tag != null)
-                    {
-                        var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
-                        if (tagbutton != null)
-                        {
-                            tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
-                            tagbutton.ImagePosition = ButtonImagePosition.Overlay;
-                        }
-                    }
-                }
-            }
+                AddTagButtonsToCommandBar(commandBar);
 
             commandBar.EndHorizontal();
 
@@ -127,6 +113,34 @@ namespace Trigger.XForms.Visuals
             return detailViewLayout;
         }
 
+        void AddTagButtonsToCommandBar(DynamicLayout commandBar)
+        {
+            commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
+
+            commandBar.Add(TagButton(Colors.OrangeRed), false, false);
+            commandBar.Add(TagButton(Colors.Orange), false, false);
+            commandBar.Add(TagButton(Colors.YellowGreen), false, false);
+            commandBar.Add(TagButton(Colors.LightSkyBlue), false, false);
+            commandBar.Add(TagButton(Colors.WhiteSmoke), false, false);
+
+            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+            if (CurrentObject != null && CurrentObject.MappingId != null)
+            {
+                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+                var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
+                if (tag != null)
+                {
+                    var tagbutton = tagButtons.FirstOrDefault(p => p.BackgroundColor.Equals(Color.Parse(tag.TagColor)));
+                    if (tagbutton != null)
+                    {
+                        tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
+                        tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+                    }
+                }
+            }
+        }
+
         Button TagButton(Color color)
         {
             var tagbutton = new Button
@@ -141,13 +155,14 @@ namespace Trigger.XForms.Visuals
 
             tagbutton.Click += (sender, e) =>
             {
+                CurrentObject.Save();
                 var template = CurrentObject.TryGetDetailView();
                 if (template != null)
                 {
                     foreach (var button in tagButtons)
                         button.Image = null;
 
-                    var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
+                    var store = DependencyMapProvider.Instance.ResolveType<IStore>();
                     var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(CurrentObject.MappingId.ToString()));
                     if (tag == null)
                         tag = new Tag();
@@ -163,16 +178,6 @@ namespace Trigger.XForms.Visuals
             };
                 
             return tagbutton;
-        }
-
-        Control CreateViewLayout()
-        {
-            var groupItems = Descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
-
-            return new Scrollable()
-            {
-                Content = AddGroupLayouts(groupItems)
-            };
         }
 
         DynamicLayout AddGroupLayouts(IList<GroupItemDescription> groupItems)
