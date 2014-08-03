@@ -34,8 +34,8 @@ namespace Trigger.BCL.EventTracker
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Avatar", ShowLabel = false, Fill = true },
                                 new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
-                                new ViewItemDescription(EmptySpaceFieldName, 3){ ShowLabel = false, Fill = true },
-                                new ViewItemDescription(EmptySpaceFieldName, 4){ ShowLabel = false, Fill = true },
+                                //new ViewItemDescription(EmptySpaceFieldName, 3){ ShowLabel = false, Fill = true },
+                                //new ViewItemDescription(EmptySpaceFieldName, 4){ ShowLabel = false, Fill = true },
                             }
                         },
                     }

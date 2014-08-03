@@ -27,7 +27,7 @@ namespace Trigger.BCL.EventTracker
                         new NavigationItem(typeof(Person), "Person", 1){ ImageName = "user" },
                         new NavigationItem(typeof(Contact), "Contacts", 2){ ImageName = "user_comments" },
                         new NavigationItem(typeof(TimeTracker), "Tracked Times", 3){ ImageName = "clock" },
-                        new NavigationItem(typeof(ImageGallery), "Image Galleries", 4){ ImageName = "image_multi" }
+                        new NavigationItem(typeof(ImageGallery), "Image Galleries", 4){ ImageName = "image_multi" },
                     }
                 },
                 new NavigationGroupItem("Settings", 3)

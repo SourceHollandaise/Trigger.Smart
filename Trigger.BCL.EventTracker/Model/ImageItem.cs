@@ -49,6 +49,20 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        Image thumbnail;
+
+        [System.Runtime.Serialization.IgnoreDataMember]
+        public Image Thumbnail
+        {
+            get
+            {
+                if (thumbnail == null)
+                    thumbnail = new Bitmap(FileName.GetValidPath());
+                return thumbnail;
+            }
+        }
+
+
         public string GalleryAlias
         {
             get

@@ -1,6 +1,8 @@
 using Trigger.BCL.Common.Datastore;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
+using Eto.Drawing;
+using System.IO;
 
 namespace Trigger.BCL.Common.Model
 {
@@ -56,6 +58,18 @@ namespace Trigger.BCL.Common.Model
             }
         }
 
+        Image avatar;
+
+        [System.Runtime.Serialization.IgnoreDataMember]
+        public Image Avatar
+        {
+            get
+            {
+                if (avatar == null)
+                    avatar = new Bitmap(FileName.GetValidPath());
+                return avatar;
+            }
+        }
 
         string userName;
 

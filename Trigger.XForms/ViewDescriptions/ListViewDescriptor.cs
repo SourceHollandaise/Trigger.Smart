@@ -15,6 +15,10 @@ namespace Trigger.XForms
 
         public bool ListShowTags { get; set; }
 
+        public bool IsImageList { get; set; }
+
+        public int? RowHeight { get; set; }
+
         public IList<IListViewCommand> Commands { get; set; }
 
         public void RegisterCommands<TCommand>() where  TCommand: IListViewCommand
@@ -33,11 +37,13 @@ namespace Trigger.XForms
         {
             AllowColumnReorder = true;
             AllowMultiSelection = false;
+            ListShowTags = true;
+            IsImageList = false;
             RegisterCommands<IRefreshListViewCommand>();
             RegisterCommands<IOpenObjectListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<ICurrentUserListViewCommand>();
-            ListShowTags = true;
+
         }
     }
 }

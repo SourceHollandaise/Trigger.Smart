@@ -11,6 +11,10 @@ namespace Trigger.XForms
 
         bool ListShowTags { get; set; }
 
+        bool IsImageList { get; set; }
+
+        int? RowHeight { get; set; }
+
         IList<ColumnDescription> ColumnDescriptions { get; set; }
 
         IList<IListViewCommand> Commands { get; }

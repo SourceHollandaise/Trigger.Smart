@@ -29,6 +29,12 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
+        public bool ViewIsRoot
+        {
+            get;
+            set;
+        }
+
         protected IEnumerable<IStorable> DataSet
         {
             get;
@@ -41,12 +47,13 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
+        public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
         {
             this.OriginalDataSet = dataSet;
             this.DataSet = dataSet;
             this.ModelType = modelType;
             this.Descriptor = descriptor;
+            ViewIsRoot = viewIsRoot;
             factory = new ListViewControlFactory(ModelType);   
         }
 
@@ -80,7 +87,7 @@ namespace Trigger.XForms.Visuals
             //AddSearchBoxToCommandBar(commandBar);
 
             var currentUserCommand = Descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
-            if (currentUserCommand != null)
+            if (currentUserCommand != null && ViewIsRoot)
                 AddCurrentUserToCommandBar(commandBar, currentUserCommand);
 
             commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
@@ -108,7 +115,7 @@ namespace Trigger.XForms.Visuals
 
                 currentGridView.Columns.Add(tagColumn);
             }
-
+                
             foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
@@ -124,12 +131,18 @@ namespace Trigger.XForms.Visuals
             currentGridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
             currentGridView.ShowCellBorders = false;
 
+            if (Descriptor.RowHeight.HasValue)
+            {
+                currentGridView.RowHeight = Descriptor.RowHeight.Value;
+            }
+
             currentGridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
-                if (Descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                if (!Descriptor.IsImageList && Descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-
-                e.Font = new Font(e.Font.Family, 12.5f);
+                    
+                if (!(e.Column.DataCell is ImageViewCell))
+                    e.Font = new Font(e.Font.Family, 12.5f);
             };
 
             currentGridView.MouseDoubleClick += (sender, e) =>
@@ -205,8 +218,7 @@ namespace Trigger.XForms.Visuals
                 var rowColor = Color.Parse(tag.TagColor);
                 if (rowColor.Equals(Colors.WhiteSmoke))
                     return Colors.White;
-                else
-                    return rowColor;
+                return rowColor;
                      
             }
 

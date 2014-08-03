@@ -2,6 +2,7 @@ using System;
 using Eto.Forms;
 using Trigger.XStorable.DataStore;
 using System.Reflection;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -28,6 +29,11 @@ namespace Trigger.XForms.Visuals
             if (property.PropertyType == typeof(bool))
             {
                 return new CheckBoxCell(property.Name);
+            }
+
+            if (property.PropertyType == typeof(Image))
+            {
+                return new ImageViewCell(property.Name);
             }
 
             if (property.PropertyType == typeof(string))

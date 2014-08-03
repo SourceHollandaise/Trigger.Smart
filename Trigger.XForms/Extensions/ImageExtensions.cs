@@ -16,18 +16,18 @@ namespace Eto.Drawing
     {
         public static Image GetImage(string imageName, int size = 32)
         {
-            Image bitMap = null;
-
             if (!File.Exists(imageName))
-            {
-                if (!imageName.EndsWith(".png"))
-                    imageName += ".png";
+                return GetImageFromResource(imageName, size);
 
-                bitMap = Bitmap.FromResource(imageName);
-            }
-            else
-                bitMap = new Bitmap(imageName);
+            return GetImageFromFile(imageName, size);
+        }
 
+        public static Image GetImageFromResource(string imageName, int size = 32)
+        {
+            if (!imageName.EndsWith(".png"))
+                imageName += ".png";
+
+            Image bitMap = Bitmap.FromResource(imageName);
             if (size > bitMap.Height)
                 size = bitMap.Height;
 
@@ -38,7 +38,6 @@ namespace Eto.Drawing
 
         public static Image GetImageFromFile(string fileName, int size = 32)
         {
-
             Image bitMap = new Bitmap(fileName);
             if (size > bitMap.Height)
                 size = bitMap.Height;
