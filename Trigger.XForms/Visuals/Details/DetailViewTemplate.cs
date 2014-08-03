@@ -1,7 +1,6 @@
 using System;
 using Trigger.XStorable.DataStore;
 using System.ComponentModel;
-using Trigger.BCL.Common.Model;
 using System.Linq;
 using Trigger.XStorable.Dependency;
 

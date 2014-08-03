@@ -26,7 +26,7 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.Gallery), 1){ LabelText = "Gallery" }
                             }
                         },
-                        new GroupItemDescription(null, 1)
+                        new GroupItemDescription(null, 2)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>

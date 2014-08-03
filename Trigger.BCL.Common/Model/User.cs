@@ -1,4 +1,6 @@
 using Trigger.BCL.Common.Datastore;
+using Trigger.XStorable.DataStore;
+using Trigger.XForms;
 
 namespace Trigger.BCL.Common.Model
 {
@@ -10,12 +12,50 @@ namespace Trigger.BCL.Common.Model
 
 
     [System.ComponentModel.DefaultProperty("UserName")]
-    public class User : StorableBase
+    public class User : StorableBase , IFileData
     {
         public override void Initialize()
         {
             //INFO: Do not initialize!!! 
         }
+
+        string subject;
+
+        public string Subject
+        {
+            get
+            {
+                return subject;
+            }
+            set
+            {
+                if (Equals(subject, value))
+                    return;
+                subject = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        string fileName;
+
+        [FieldImageData(true)]
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                if (Equals(fileName, value))
+                    return;
+                fileName = value;
+
+                OnPropertyChanged();
+            }
+        }
+
 
         string userName;
 

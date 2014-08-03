@@ -1,6 +1,7 @@
-using Trigger.BCL.Common.Security;
+using System.IO;
 using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Model;
+using Trigger.BCL.Common.Security;
 
 namespace Trigger.XForms.Commands
 {
@@ -9,7 +10,7 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(ListViewArguments listParameter)
         {
-
+            CurrentUser.ShowDetailView();
         }
 
         public string ID
@@ -37,16 +38,20 @@ namespace Trigger.XForms.Commands
                 if (CurrentUser == null)
                     return "";
 
-                switch (CurrentUser.UserSex)
+                if (string.IsNullOrEmpty(CurrentUser.FileName))
                 {
-                    case Sex.Female:
-                        return "she_user_accept";
-                    case Sex.Male:
-                        return "user_accept";
-              
-                    default:
-                        return "user_accept";
+                    switch (CurrentUser.UserSex)
+                    {
+                        case Sex.Female:
+                            return "she_user_accept";
+                        case Sex.Male:
+                            return "user_accept";
+                        default:
+                            return "user_accept";
+                    }
                 }
+
+                return CurrentUser.FileName.GetValidPath();
             }
         }
 

@@ -8,6 +8,16 @@ namespace Trigger.XForms
     public sealed class FieldImageDataAttribute : Attribute
     {
 
+        public bool Thumbnail
+        {
+            get;
+            private set;
+        }
+
+        public FieldImageDataAttribute(bool thumbnail = false)
+        {
+            this.Thumbnail = thumbnail;
+            
+        }
     }
-    
 }

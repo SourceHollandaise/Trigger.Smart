@@ -42,7 +42,11 @@ namespace Trigger.XForms.Visuals
                 var fieldTextAreaAttribute = property.FindAttribute<FieldTextAreaAttribute>();
 
                 if (fieldImageDataAttribute != null)
+                {
+                    if (fieldImageDataAttribute.Thumbnail)
+                        return ImageViewThumbnailPropertyEditor(property);
                     return ImageViewPropertyEditor(property);
+                }
 
                 if (fieldTextAreaAttribute != null)
                     return TextAreaPropertyEditor(property);
@@ -164,8 +168,6 @@ namespace Trigger.XForms.Visuals
                 }
             }
 
-
-
             if (control is ImageView)
                 ((ImageView)control).Image = property.GetValue(Model, null) as Image;
 
@@ -218,6 +220,27 @@ namespace Trigger.XForms.Visuals
 
                     imageView.Size = image.Size;
                     imageView.Image = image;
+                }
+            }
+
+            return imageView;
+        }
+
+        ImageView ImageViewThumbnailPropertyEditor(PropertyInfo property)
+        {
+            var imageView = new ImageView();
+            imageView.Size = new Size(96, 96);
+
+            var value = (string)property.GetValue(Model, null);
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var file = value.GetValidPath();
+                if (file != null)
+                {
+                    var image = new Bitmap(file);
+                    var thumbNail = new Bitmap(image, 96, 96);
+
+                    imageView.Image = thumbNail;
                 }
             }
 

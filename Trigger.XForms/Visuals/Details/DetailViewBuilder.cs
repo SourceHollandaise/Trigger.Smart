@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.BCL.Common.Model;
 using Trigger.XStorable.DataStore;
 using Trigger.XForms;
 using Trigger.XForms.Commands;
 using Trigger.XStorable.Dependency;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.XForms.Visuals
 {

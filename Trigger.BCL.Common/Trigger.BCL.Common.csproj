@@ -60,6 +60,11 @@
     <Compile Include="Security\IAuthenticate.cs" />
     <Compile Include="Security\ISecurityInfoProvider.cs" />
     <Compile Include="Model\Tag.cs" />
+    <Compile Include="Attributes\FieldFileDataAttribute.cs" />
+    <Compile Include="Attributes\FieldImageDataAttribute.cs" />
+    <Compile Include="Attributes\FieldImageValueAttribute.cs" />
+    <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
+    <Compile Include="Attributes\ImageNameAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
