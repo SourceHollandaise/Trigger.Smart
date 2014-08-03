@@ -163,6 +163,34 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        public string StartedByAlias
+        {
+            get
+            {
+                return StartedBy != null ? StartedBy.UserName : null;
+            }
+        }
+
+        User startedBy;
+
+        [System.ComponentModel.DisplayName("Started by")]
+        [LinkedObject]
+        public User StartedBy
+        {
+            get
+            {
+                return startedBy;
+            }
+            set
+            {
+                if (Equals(startedBy, value))
+                    return;
+                startedBy = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         DateTime? resolved;
 
         public DateTime? Resolved
@@ -178,6 +206,14 @@ namespace Trigger.BCL.EventTracker.Model
                 resolved = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string ResolvedByAlias
+        {
+            get
+            {
+                return ResolvedBy != null ? ResolvedBy.UserName : null;
             }
         }
 
@@ -268,6 +304,7 @@ namespace Trigger.BCL.EventTracker.Model
                 case IssueState.Accepted:
                     ResolvedBy = null;
                     Resolved = null;
+                    StartedBy = null;
                     Start = null;
                     Duration = null;
                     IsDone = false;
@@ -275,6 +312,7 @@ namespace Trigger.BCL.EventTracker.Model
                 case IssueState.InProgress:
                     if (!Start.HasValue)
                         Start = DateTime.Now;
+                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
                     break;
                 case IssueState.Done:
                 case IssueState.Rejected:

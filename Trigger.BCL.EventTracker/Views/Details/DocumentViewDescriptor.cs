@@ -9,7 +9,7 @@ namespace Trigger.BCL.EventTracker
     {
         public DocumentViewDescriptor()
         {
-            RegisterCommands<IAddFileCommand>();
+            RegisterCommands<IAddFileDetailViewCommand>();
 
             TabItemDescriptions = new List<TabItemDescription>
             {

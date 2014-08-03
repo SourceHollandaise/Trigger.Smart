@@ -11,8 +11,7 @@ using System.Collections.Generic;
 
 namespace Trigger.XForms.Commands
 {
-
-    public class TagCommand : ITagCommand
+    public class TagDetailViewCommand : ITagDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {

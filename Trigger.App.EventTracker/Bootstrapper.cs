@@ -54,18 +54,18 @@ namespace Trigger.App.EventTracker
 
         void RegisterCommands()
         {
-            Map.RegisterType<ISaveObjectCommand, SaveObjectCommand>();
+            Map.RegisterType<ISaveObjectDetailViewCommand, SaveObjectDetailViewCommand>();
             Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
-            Map.RegisterType<ICloseWindowCommand, CloseWindowCommand>();
+            Map.RegisterType<ICloseDetailViewCommand, CloseDetailViewCommand>();
             Map.RegisterType<IOpenObjectListViewCommand, OpenObjectListViewCommand>();
             Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();
             Map.RegisterType<IRefreshDetailViewCommand, RefreshDetailViewCommand>();
             Map.RegisterType<IUpdateDocumentStoreListViewCommand, UpdateDocumentStoreListViewCommand>();
-            Map.RegisterType<IAddFileCommand, AddFileCommand>();
+            Map.RegisterType<IAddFileDetailViewCommand, AddFileDetailViewCommand>();
             Map.RegisterType<ICreateObjectListViewCommand, CreateObjectListViewCommand>();
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
-            Map.RegisterType<ITagCommand, TagCommand>();
+            Map.RegisterType<ITagDetailViewCommand, TagDetailViewCommand>();
             Map.RegisterType<ITimeTrackerCommand, TimeTrackerCommand>();
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
             Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();

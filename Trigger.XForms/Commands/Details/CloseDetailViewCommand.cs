@@ -2,7 +2,7 @@
 namespace Trigger.XForms.Commands
 {
 
-    public class CloseWindowCommand : ICloseWindowCommand
+    public class CloseDetailViewCommand : ICloseDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {

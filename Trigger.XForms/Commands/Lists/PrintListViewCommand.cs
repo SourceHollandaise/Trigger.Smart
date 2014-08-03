@@ -1,19 +1,20 @@
+using Eto.Forms;
 
 namespace Trigger.XForms.Commands
 {
 
-    public class SaveObjectCommand : ISaveObjectCommand
+    public class PrintListViewCommand : IPrintListViewCommand
     {
-        public void Execute(DetailViewArguments args)
+        public void Execute(ListViewArguments listParameter)
         {
-            args.CurrentObject.Save();
+
         }
 
         public string ID
         {
             get
             {
-                return "cmd_save";
+                return "cmd_print";
             }
         }
 
@@ -21,7 +22,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Save";
+                return "Print";
             }
         }
 
@@ -29,7 +30,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "accept";
+                return "printer";
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemViewDescriptor()
         {
-            RegisterCommands<IAddFileCommand>();
+            RegisterCommands<IAddFileDetailViewCommand>();
  
             TabItemDescriptions = new List<TabItemDescription>
             {

@@ -89,18 +89,12 @@
     <Compile Include="Commands\IViewCommand.cs" />
     <Compile Include="Commands\IDetailViewCommand.cs" />
     <Compile Include="Commands\IListViewCommand.cs" />
-    <Compile Include="Commands\Details\IAddFileCommand.cs" />
-    <Compile Include="Commands\Details\ICloseWindowCommand.cs" />
     <Compile Include="Commands\Details\IDeleteObjectCommand.cs" />
     <Compile Include="Commands\Details\RefreshDetailViewCommand.cs" />
     <Compile Include="Commands\Lists\RefreshListViewCommand.cs" />
-    <Compile Include="Commands\Details\SaveObjectCommand.cs" />
     <Compile Include="Commands\Details\DeleteObjectCommand.cs" />
-    <Compile Include="Commands\Details\AddFileCommand.cs" />
     <Compile Include="Commands\Details\IRefreshDetailViewCommand.cs" />
     <Compile Include="Commands\Lists\IRefreshListViewCommand.cs" />
-    <Compile Include="Commands\Details\ISaveObjectCommand.cs" />
-    <Compile Include="Commands\Details\CloseWindowCommand.cs" />
     <Compile Include="Commands\ListViewArguments.cs" />
     <Compile Include="Commands\DetailViewArguments.cs" />
     <Compile Include="Commands\ILogOffCommand.cs" />
@@ -122,9 +116,17 @@
     <Compile Include="Commands\Lists\CreateObjectListViewCommand.cs" />
     <Compile Include="Commands\Lists\IUpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\Lists\UpdateDocumentStoreListViewCommand.cs" />
-    <Compile Include="Commands\Details\TagCommand.cs" />
-    <Compile Include="Commands\Details\ITagCommand.cs" />
     <Compile Include="Visuals\Details\TagButtonBuilder.cs" />
+    <Compile Include="Commands\Details\ICloseDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\CloseDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\IAddFileDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\AddFileDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\ISaveObjectDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\SaveObjectDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\ITagDetailViewCommand.cs" />
+    <Compile Include="Commands\Details\TagDetailViewCommand.cs" />
+    <Compile Include="Commands\Lists\PrintListViewCommand.cs" />
+    <Compile Include="Commands\Lists\IPrintListViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

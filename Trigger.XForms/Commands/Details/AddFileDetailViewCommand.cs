@@ -4,7 +4,7 @@ using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Commands
 {
-    public class AddFileCommand : IAddFileCommand
+    public class AddFileDetailViewCommand : IAddFileDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {

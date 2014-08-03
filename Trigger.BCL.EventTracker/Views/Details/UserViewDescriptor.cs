@@ -9,7 +9,7 @@ namespace Trigger.BCL.EventTracker
     {
         public UserViewDescriptor()
         {
-            RegisterCommands<IAddFileCommand>();
+            RegisterCommands<IAddFileDetailViewCommand>();
             IsTaggable = false;
 
             TabItemDescriptions = new List<TabItemDescription>

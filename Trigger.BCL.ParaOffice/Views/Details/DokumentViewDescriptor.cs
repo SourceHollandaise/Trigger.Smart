@@ -9,7 +9,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public DokumentViewDescriptor()
         {
-            RegisterCommands<IAddFileCommand>();
+            RegisterCommands<IAddFileDetailViewCommand>();
 
             TabItemDescriptions = new List<TabItemDescription>
             {

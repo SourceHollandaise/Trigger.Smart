@@ -10,7 +10,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public UserViewDescriptor()
         {
-            RegisterCommands<IAddFileCommand>();
+            RegisterCommands<IAddFileDetailViewCommand>();
             IsTaggable = false;
 
             TabItemDescriptions = new List<TabItemDescription>

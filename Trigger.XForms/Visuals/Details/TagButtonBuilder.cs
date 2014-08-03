@@ -69,7 +69,7 @@ namespace Trigger.XForms.Visuals
             tagButton.Click += (sender, e) =>
             {
                 var data = Tuple.Create<Button, IList<Button>>(tagButton, tagButtons);
-                DependencyMapProvider.Instance.ResolveType<ITagCommand>().Execute(new DetailViewArguments { CurrentObject = currentObject, InputData = data });
+                DependencyMapProvider.Instance.ResolveType<ITagDetailViewCommand>().Execute(new DetailViewArguments { CurrentObject = currentObject, InputData = data });
             };
 
             return tagButton;
