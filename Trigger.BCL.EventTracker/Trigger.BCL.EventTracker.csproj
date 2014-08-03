@@ -87,8 +87,6 @@
     <Compile Include="Views\Lists\ImageGalleryListDescriptor.cs" />
     <Compile Include="Views\Lists\ImageItemListDescriptor.cs" />
     <Compile Include="Views\Details\ImageGalleryViewDescriptor.cs" />
-    <Compile Include="Commands\ITagCommand.cs" />
-    <Compile Include="Commands\TagCommand.cs" />
     <Compile Include="Views\Details\TagViewDescriptor.cs" />
     <Compile Include="Views\Lists\TagListDescriptor.cs" />
   </ItemGroup>

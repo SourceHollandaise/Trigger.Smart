@@ -2,27 +2,42 @@ using System;
 using Trigger.XForms;
 using System.Collections.Generic;
 using Trigger.BCL.Common.Model;
+using Trigger.XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class UserViewDescriptor : DetailViewDescriptor<User>
     {
         public UserViewDescriptor()
         {
+            RegisterCommands<IAddFileCommand>();
+            IsTaggable = false;
+
             TabItemDescriptions = new List<TabItemDescription>
             {
-                new TabItemDescription("Benutzer", 1)
+                new TabItemDescription("User", 1)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new GroupItemDescription(null, 1)
+                        new GroupItemDescription("Details", 1)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Benutzername" },
+                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Benutzer" },
                                 new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Passwort" },
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
+                                new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Geschlecht" },
+                            }
+                        },
+                        new GroupItemDescription("Avatar", 2)
+                        {
+                            ViewItemOrientation = ViewItemOrientation.Horizontal,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Avatar", ShowLabel = false, Fill = true },
+                                new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
+                                //new ViewItemDescription(EmptySpaceFieldName, 3){ ShowLabel = false, Fill = true },
+                                //new ViewItemDescription(EmptySpaceFieldName, 4){ ShowLabel = false, Fill = true },
                             }
                         },
                     }

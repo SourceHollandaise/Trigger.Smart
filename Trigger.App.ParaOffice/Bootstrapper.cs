@@ -58,6 +58,10 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<ICreateObjectListViewCommand, CreateObjectListViewCommand>();
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
+            Map.RegisterType<ITagCommand, TagCommand>();
+            Map.RegisterType<ITimeTrackerCommand, TimeTrackerCommand>();
+            Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
+            Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
             Map.RegisterType<IAktPersonCommand, AktPersonCommand>();
         }
 

@@ -122,6 +122,9 @@
     <Compile Include="Commands\Lists\CreateObjectListViewCommand.cs" />
     <Compile Include="Commands\Lists\IUpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\Lists\UpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Commands\Details\TagCommand.cs" />
+    <Compile Include="Commands\Details\ITagCommand.cs" />
+    <Compile Include="Visuals\Details\TagButtonBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

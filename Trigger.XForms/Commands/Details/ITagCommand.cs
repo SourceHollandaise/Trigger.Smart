@@ -1,7 +1,6 @@
 using Trigger.XForms.Commands;
-using Trigger.BCL.EventTracker.Model;
 
-namespace Trigger.BCL.EventTracker
+namespace Trigger.XForms.Commands
 {
     public interface ITagCommand : IDetailViewCommand
     {

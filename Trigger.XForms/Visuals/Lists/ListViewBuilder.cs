@@ -15,46 +15,26 @@ namespace Trigger.XForms.Visuals
     {
         GridView currentGridView;
 
+        IEnumerable<IStorable> dataSet;
+
+        readonly IEnumerable<IStorable> originalDataSet;
+
         readonly ListViewControlFactory factory;
 
-        protected IListViewDescriptor Descriptor
-        {
-            get;
-            set;
-        }
+        readonly IListViewDescriptor descriptor;
 
-        public Type ModelType
-        {
-            get;
-            set;
-        }
-
-        public bool ViewIsRoot
-        {
-            get;
-            set;
-        }
-
-        protected IEnumerable<IStorable> DataSet
-        {
-            get;
-            set;
-        }
-
-        protected IEnumerable<IStorable> OriginalDataSet
-        {
-            get;
-            set;
-        }
+        readonly Type modelType;
+       
+        readonly bool isRoot;
 
         public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
         {
-            this.OriginalDataSet = dataSet;
-            this.DataSet = dataSet;
-            this.ModelType = modelType;
-            this.Descriptor = descriptor;
-            ViewIsRoot = viewIsRoot;
-            factory = new ListViewControlFactory(ModelType);   
+            this.originalDataSet = dataSet;
+            this.dataSet = dataSet;
+            this.modelType = modelType;
+            this.descriptor = descriptor;
+            this.isRoot = viewIsRoot;
+            factory = new ListViewControlFactory(modelType);   
         }
 
         public Control GetContent()
@@ -66,7 +46,7 @@ namespace Trigger.XForms.Visuals
 
             var commandBar = new DynamicLayout();
             commandBar.BeginHorizontal();
-            foreach (var command in Descriptor.Commands)
+            foreach (var command in descriptor.Commands)
             {
                 if (command is ICurrentUserListViewCommand)
                     continue;
@@ -78,7 +58,7 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = currentGridView, CustomDataSet = OriginalDataSet });
+                    command.Execute(new ListViewArguments{ TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
                 };
                 commandBar.Add(button, false, false);
 
@@ -86,8 +66,8 @@ namespace Trigger.XForms.Visuals
 
             //AddSearchBoxToCommandBar(commandBar);
 
-            var currentUserCommand = Descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
-            if (currentUserCommand != null && ViewIsRoot)
+            var currentUserCommand = descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
+            if (currentUserCommand != null && isRoot)
                 AddCurrentUserToCommandBar(commandBar, currentUserCommand);
 
             commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
@@ -101,7 +81,7 @@ namespace Trigger.XForms.Visuals
 
             currentGridView = new GridView();
            
-            if (Descriptor.ListShowTags)
+            if (descriptor.ListShowTags)
             {
                 var tagColumn = new GridColumn();
                 tagColumn.DataCell = new TextBoxCell();
@@ -116,29 +96,29 @@ namespace Trigger.XForms.Visuals
                 currentGridView.Columns.Add(tagColumn);
             }
                 
-            foreach (var columnItem in Descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
+            foreach (var columnItem in descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
                 if (gridColumn != null)
                     currentGridView.Columns.Add(gridColumn);
             }
 
-            if (DataSet == null)
-                DataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(ModelType).ToList();
+            if (dataSet == null)
+                dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType).ToList();
 
-            currentGridView.DataStore = new DataStoreCollection(DataSet);
-            currentGridView.AllowColumnReordering = Descriptor.AllowColumnReorder;
-            currentGridView.AllowMultipleSelection = Descriptor.AllowMultiSelection;
+            currentGridView.DataStore = new DataStoreCollection(dataSet);
+            currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
+            currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
             currentGridView.ShowCellBorders = false;
 
-            if (Descriptor.RowHeight.HasValue)
+            if (descriptor.RowHeight.HasValue)
             {
-                currentGridView.RowHeight = Descriptor.RowHeight.Value;
+                currentGridView.RowHeight = descriptor.RowHeight.Value;
             }
 
             currentGridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
             {
-                if (!Descriptor.IsImageList && Descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
                     
                 if (!(e.Column.DataCell is ImageViewCell))
@@ -172,7 +152,7 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = ModelType, Grid = currentGridView, CustomDataSet = OriginalDataSet });
+                    command.Execute(new ListViewArguments{ TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
                 };
                 commandBar.Add(button, false, false);
             }
@@ -182,14 +162,14 @@ namespace Trigger.XForms.Visuals
         {
             commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
 
-            var displayNameAttribute = ModelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
+            var displayNameAttribute = modelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
 
             var searchBox = new SearchBox()
             {
                 Size = new Size(160, 40),
             };
                 
-            searchBox.PlaceholderText = "Search " + (displayNameAttribute != null ? displayNameAttribute.DisplayName : ModelType.Name);
+            searchBox.PlaceholderText = "Search " + (displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name);
             searchBox.MaxLength = 100;
             searchBox.KeyDown += (sender, e) =>
             {
@@ -197,8 +177,8 @@ namespace Trigger.XForms.Visuals
                 {
                     var arguments = new ListViewArguments();
                     arguments.Grid = currentGridView;
-                    arguments.TargetType = ModelType;
-                    arguments.CustomDataSet = DataSet;
+                    arguments.TargetType = modelType;
+                    arguments.CustomDataSet = dataSet;
                     arguments.InputData = searchBox.Text;
                 
                     DependencyMapProvider.Instance.ResolveType<ISearchListViewCommand>().Execute(arguments);
@@ -218,8 +198,7 @@ namespace Trigger.XForms.Visuals
                 var rowColor = Color.Parse(tag.TagColor);
                 if (rowColor.Equals(Colors.WhiteSmoke))
                     return Colors.White;
-                return rowColor;
-                     
+                return rowColor;                    
             }
 
             return Colors.White;
@@ -227,7 +206,7 @@ namespace Trigger.XForms.Visuals
 
         GridColumn CreateColumn(ColumnDescription columnItem)
         {
-            var property = ModelType.GetProperty(columnItem.FieldName);
+            var property = modelType.GetProperty(columnItem.FieldName);
             if (property == null)
                 return null;
                 

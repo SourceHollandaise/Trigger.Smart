@@ -1,8 +1,6 @@
 using System;
 using Trigger.XStorable.DataStore;
 using System.ComponentModel;
-using System.Linq;
-using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Visuals
 {
