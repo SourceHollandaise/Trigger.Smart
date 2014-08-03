@@ -1,13 +1,11 @@
-//using GLib;
+
 using System;
 using Trigger.XForms.Visuals;
 using Eto.Forms;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
 
 namespace Trigger.App.EventTracker
 {
-    public class AppEventTracker : Eto.Forms.Application
+    public class AppEventTracker : Application
     {
         public virtual void InitalizeApplication()
         {
@@ -26,7 +24,6 @@ namespace Trigger.App.EventTracker
             if (logonForm.ShowDialog() == DialogResult.Ok)
             {
                 MainForm = new MainViewTemplate();
-                //MainForm.Title = "User: " + DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.UserName;
                 MainForm.Show();
             }
         }

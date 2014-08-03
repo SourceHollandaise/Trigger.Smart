@@ -30,6 +30,13 @@ namespace Trigger.App.ParaOffice
             Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
+        public virtual void InitialiteSecurityProvider()
+        {
+            var provider = new SecurityInfoProvider();
+
+            DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
+        }
+
         public virtual void RegisterDependencies()
         {
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
@@ -59,7 +66,6 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IApplicationExitCommand, ApplicationExitCommand>();
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
             Map.RegisterType<ITagCommand, TagCommand>();
-            Map.RegisterType<ITimeTrackerCommand, TimeTrackerCommand>();
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
             Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
             Map.RegisterType<IAktPersonCommand, AktPersonCommand>();
@@ -76,6 +82,7 @@ namespace Trigger.App.ParaOffice
             DetailViewDescriptorProvider.Declare<SB, SBViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
             ListViewDescriptorProvider.Declare<AktPerson, AktPersonListDescriptor>();

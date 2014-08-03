@@ -12,7 +12,6 @@ namespace Trigger.BCL.Common.Model
         Male
     }
 
-
     [System.ComponentModel.DefaultProperty("UserName")]
     public class User : StorableBase , IFileData
     {
@@ -65,9 +64,14 @@ namespace Trigger.BCL.Common.Model
         {
             get
             {
-                if (avatar == null)
-                    avatar = new Bitmap(FileName.GetValidPath());
-                return avatar;
+                var file = FileName.GetValidPath();
+                if (File.Exists(file))
+                {
+                    if (avatar == null)
+                        avatar = new Bitmap(FileName.GetValidPath());
+                    return avatar;
+                }
+                return null;
             }
         }
 

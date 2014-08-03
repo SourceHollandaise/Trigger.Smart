@@ -9,7 +9,6 @@ namespace Trigger.XForms.Commands
         public void Execute(MainViewTemplate template)
         {
             new LogonViewTemplate().ShowDialog();
-
         }
 
         public string ID

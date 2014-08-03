@@ -32,7 +32,7 @@ namespace Trigger.App.EventTracker
             Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
-        public void InitialiteSecurityProvider()
+        public virtual void InitialiteSecurityProvider()
         {
             var provider = new SecurityInfoProvider();
 
