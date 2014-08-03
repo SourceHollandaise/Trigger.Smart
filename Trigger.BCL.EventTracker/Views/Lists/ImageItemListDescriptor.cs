@@ -1,7 +1,6 @@
 using Trigger.XForms;
 using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
-using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -12,10 +11,11 @@ namespace Trigger.BCL.EventTracker
         {
             IsImageList = true;
             ListShowTags = false;
+            RowHeight = 96;
 
             ColumnDescriptions = new List<ColumnDescription>
             {
-                new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image" },
+                new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },
             };
         }
     }

@@ -10,6 +10,7 @@ namespace Trigger.BCL.EventTracker
     {
         public UserListDescriptor()
         {
+            ListShowTags = false;
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.UserName), 1){ ColumnHeaderText = "User" },

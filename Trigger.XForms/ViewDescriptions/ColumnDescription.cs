@@ -11,11 +11,17 @@ namespace Trigger.XForms
 
         public ColumnSorting Sorting { get; set; }
 
+        public bool AutoSize { get; set; }
+
+        public bool AllowResize { get; set; }
+
         public ColumnDescription(string fieldName, int index)
         {
             FieldName = fieldName;
             Index = index;
             Sorting = ColumnSorting.None;
+            AutoSize = true;
+            AllowResize = true;
         }
     }
 }

@@ -105,12 +105,12 @@ namespace Trigger.XForms.Visuals
             {
                 var tagColumn = new GridColumn();
                 tagColumn.DataCell = new TextBoxCell();
-                tagColumn.HeaderText = "Tags";
+                tagColumn.HeaderText = "Tag";
                 tagColumn.Sortable = true;
-                tagColumn.Resizable = true;
+                tagColumn.Resizable = false;
                 tagColumn.AutoSize = false;
                 tagColumn.ID = "TagColumn";
-                tagColumn.Width = 40;
+                tagColumn.Width = 36;
                 tagColumn.Editable = false;
 
                 currentGridView.Columns.Add(tagColumn);
@@ -240,9 +240,9 @@ namespace Trigger.XForms.Visuals
             gridColumn.DataCell = cell;
             gridColumn.HeaderText = columnItem.ColumnHeaderText;
             gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
-            gridColumn.Resizable = true;
-            gridColumn.AutoSize = true;
-           
+            gridColumn.Resizable = columnItem.AllowResize;
+            gridColumn.AutoSize = columnItem.AutoSize;
+
             return gridColumn;
         }
     }
