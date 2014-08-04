@@ -16,6 +16,9 @@ namespace Eto.Drawing
     {
         public static Image GetImage(string imageName, int size = 32)
         {
+            if (string.IsNullOrWhiteSpace(imageName))
+                return null;
+
             if (!File.Exists(imageName))
                 return GetImageFromResource(imageName, size);
 

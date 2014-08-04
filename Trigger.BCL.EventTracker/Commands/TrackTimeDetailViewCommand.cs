@@ -7,7 +7,7 @@ using Trigger.BCL.EventTracker.Services;
 namespace Trigger.BCL.EventTracker
 {
 
-    public class TimeTrackerCommand : ITimeTrackerCommand
+    public class TrackTimeDetailViewCommand : ITrackTimeDetailViewCommand
     {
         TimeTracker timeTracker;
 

@@ -8,6 +8,8 @@ namespace Trigger.BCL.EventTracker
     {
         public AreaViewDescriptor()
         {
+            RegisterCommands<ILinkAreaWithUserDetailViewCommand>();
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Area", 1)
@@ -51,7 +53,21 @@ namespace Trigger.BCL.EventTracker
                             }
                         }
                     }
-                }
+                },
+                new TabItemDescription("Involded Users", 4)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {  
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedAreaUsers), 1){ LabelText = "Area users", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        }
+                    }
+                },
             };
         }
     }

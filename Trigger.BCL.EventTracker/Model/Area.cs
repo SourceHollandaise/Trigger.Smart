@@ -3,9 +3,11 @@ using System.Linq;
 using Trigger.BCL.Common.Datastore;
 using Trigger.XForms;
 using Trigger.XStorable.DataStore;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker.Model
 {
+
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Area")]
     [ImageName("application")]
@@ -67,6 +69,21 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 return Store.LoadAll<IssueTracker>().Where(p => p.Area != null && p.Area.MappingId.Equals(MappingId));
+            }
+        }
+
+        [System.ComponentModel.DisplayName("Linked area users")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(User))]
+        public IEnumerable<User> LinkedAreaUsers
+        {
+            get
+            {
+                var areaUsers = Store.LoadAll<AreaUser>().Where(p => p.Area != null && p.User != null && p.Area.MappingId.Equals(MappingId));
+                foreach (var item in  areaUsers)
+                {
+                    yield return item.User;
+                }
             }
         }
     }

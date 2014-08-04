@@ -77,8 +77,6 @@
     <Compile Include="Views\Lists\TimeTrackerListDescriptor.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
     <Compile Include="Views\Details\TimeTrackerViewDescriptor.cs" />
-    <Compile Include="Commands\ITimeTrackerCommand.cs" />
-    <Compile Include="Commands\TimeTrackerCommand.cs" />
     <Compile Include="Views\Lists\UserListDescriptor.cs" />
     <Compile Include="Views\ApplicationMainViewDescriptor.cs" />
     <Compile Include="Model\ImageGallery.cs" />
@@ -89,6 +87,13 @@
     <Compile Include="Views\Details\ImageGalleryViewDescriptor.cs" />
     <Compile Include="Views\Details\TagViewDescriptor.cs" />
     <Compile Include="Views\Lists\TagListDescriptor.cs" />
+    <Compile Include="Model\AreaUser.cs" />
+    <Compile Include="Views\Details\AreaUserViewDescriptor.cs" />
+    <Compile Include="Commands\ITrackTimeDetailViewCommand.cs" />
+    <Compile Include="Commands\ILinkAreaWithUserDetailViewCommand.cs" />
+    <Compile Include="Commands\LinkAreaWithUserDetailViewCommand.cs" />
+    <Compile Include="Commands\TrackTimeDetailViewCommand.cs" />
+    <Compile Include="Views\Lists\AreaUserListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

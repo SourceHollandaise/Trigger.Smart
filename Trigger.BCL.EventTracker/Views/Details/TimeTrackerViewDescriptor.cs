@@ -9,7 +9,7 @@ namespace Trigger.BCL.EventTracker
     {
         public TimeTrackerViewDescriptor()
         {
-            RegisterCommands<ITimeTrackerCommand>();
+            RegisterCommands<ITrackTimeDetailViewCommand>();
 
             TabItemDescriptions = new List<TabItemDescription>
             {

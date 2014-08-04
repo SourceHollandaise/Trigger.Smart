@@ -3,7 +3,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public interface ITimeTrackerCommand : IDetailViewCommand
+    public interface ITrackTimeDetailViewCommand : IDetailViewCommand
     {
 
     }
