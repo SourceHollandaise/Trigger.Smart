@@ -76,9 +76,14 @@
     <Compile Include="Views\Details\UserViewDescriptor.cs" />
     <Compile Include="Views\Lists\UserListDescriptor.cs" />
     <Compile Include="Model\ExportableBase.cs" />
-    <Compile Include="Commands\IAktPersonCommand.cs" />
-    <Compile Include="Commands\AktPersonCommand.cs" />
     <Compile Include="Views\ApplicationMainViewDescritptor.cs" />
+    <Compile Include="Model\AktModel\Telefonat.cs" />
+    <Compile Include="Views\KanzleiMainViewDescriptor.cs" />
+    <Compile Include="Views\Lists\TelefonatListDescriptor.cs" />
+    <Compile Include="Views\Details\TelefonatViewDescriptor.cs" />
+    <Compile Include="Commands\IAktPersonDetailViewCommand.cs" />
+    <Compile Include="Commands\AktPersonDetailViewCommand.cs" />
+    <Compile Include="Commands\CurrentSBListViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

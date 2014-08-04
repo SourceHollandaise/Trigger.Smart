@@ -118,6 +118,7 @@ namespace Trigger.XForms.Visuals
 
         DynamicLayout CreateListViewLayout()
         {
+            Control content = null;
             var groupBox = new GroupBox();
             var layout = new DynamicLayout();
             layout.BeginVertical();
@@ -125,7 +126,9 @@ namespace Trigger.XForms.Visuals
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                var content = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
+
+                content = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
+                    
                 layout.Add(content);
             }
             layout.EndVertical();

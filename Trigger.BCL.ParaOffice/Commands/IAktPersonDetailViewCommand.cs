@@ -3,7 +3,7 @@
 namespace Trigger.BCL.ParaOffice
 {
 
-    public interface IAktPersonCommand : IDetailViewCommand
+    public interface IAktPersonDetailViewCommand : IDetailViewCommand
     {
 
     }

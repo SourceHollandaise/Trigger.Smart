@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class SBViewDescriptor : DetailViewDescriptor<SB>
     {
         public SBViewDescriptor()
@@ -21,6 +20,14 @@ namespace Trigger.BCL.ParaOffice
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel" },
                                 new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer" },
+                            }
+                        },
+                        new GroupItemDescription("Einstellungen", 1)
+                        {
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.TermineAnzeigen), 1){ LabelText = "Termine anzeigen" },
+                                new ViewItemDescription(Fields.GetName(m => m.TelefonatAnzeigen), 2){ LabelText = "Telefonate anzeigen" },
                             }
                         }
                     }
@@ -39,7 +46,21 @@ namespace Trigger.BCL.ParaOffice
                         },
                     }
                 },
-                new TabItemDescription("Akten", 3)
+                new TabItemDescription("Telefonate", 3)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedTelefonate), 1){ LabelText = "Telefonate", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        },
+                    }
+                },
+                new TabItemDescription("Akten", 4)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {

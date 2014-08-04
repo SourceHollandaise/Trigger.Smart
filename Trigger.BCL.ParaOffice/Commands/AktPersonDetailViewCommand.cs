@@ -4,8 +4,7 @@ using Trigger.XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
-
-    public class AktPersonCommand : IAktPersonCommand
+    public class AktPersonDetailViewCommand : IAktPersonDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {

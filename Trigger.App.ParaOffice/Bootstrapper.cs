@@ -45,7 +45,7 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
 
-            Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
+            Map.RegisterType<IMainViewDescriptor, KanzleiMainViewDescriptor>();
 
             RegisterCommands();
 
@@ -67,8 +67,8 @@ namespace Trigger.App.ParaOffice
             Map.RegisterType<ILogOffCommand, LogOffCommand>();
             Map.RegisterType<ITagDetailViewCommand, TagDetailViewCommand>();
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
-            Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
-            Map.RegisterType<IAktPersonCommand, AktPersonCommand>();
+            Map.RegisterType<ICurrentUserListViewCommand, CurrentSBListViewCommand>();
+            Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
         }
 
         static void RegisterViewDescriptors()
@@ -80,6 +80,7 @@ namespace Trigger.App.ParaOffice
             DetailViewDescriptorProvider.Declare<Kontakt, KontaktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<SB, SBViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Telefonat, TelefonatViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
 
@@ -90,6 +91,7 @@ namespace Trigger.App.ParaOffice
             ListViewDescriptorProvider.Declare<Kontakt, KontaktListDescriptor>();
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<SB, SBListDescriptor>();
+            ListViewDescriptorProvider.Declare<Telefonat, TelefonatListDescriptor>();
             ListViewDescriptorProvider.Declare<Termin, TerminListDescriptor>();
             ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
         }

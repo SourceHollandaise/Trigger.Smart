@@ -103,10 +103,8 @@ namespace Trigger.XForms.Visuals
                     currentGridView.Columns.Add(gridColumn);
             }
 
-            if (dataSet == null)
-                dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType).ToList();
+            CreateDataStore();
 
-            currentGridView.DataStore = new DataStoreCollection(dataSet);
             currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
             currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
             currentGridView.ShowCellBorders = false;
@@ -116,7 +114,7 @@ namespace Trigger.XForms.Visuals
                 currentGridView.RowHeight = descriptor.RowHeight.Value;
             }
 
-            currentGridView.CellFormatting += (object sender, GridCellFormatEventArgs e) =>
+            currentGridView.CellFormatting += (sender, e) =>
             {
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
@@ -137,6 +135,17 @@ namespace Trigger.XForms.Visuals
             return detailViewLayout;
         }
 
+        void CreateDataStore()
+        {
+            //if (isRoot && descriptor.CustomDataSet != null)
+            //dataSet = descriptor.CustomDataSet;
+
+            if (dataSet == null)
+                dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType).ToList();
+
+            currentGridView.DataStore = new DataStoreCollection(dataSet);
+        }
+
         void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
         {
             commandBar.Add(new DynamicLayout(){ Size = new Size(40, -1) });
@@ -152,7 +161,12 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
+                    command.Execute(new ListViewArguments
+                    {
+                        TargetType = modelType,
+                        Grid = currentGridView,
+                        CustomDataSet = descriptor.CustomDataSet ?? originalDataSet
+                    });
                 };
                 commandBar.Add(button, false, false);
             }

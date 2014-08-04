@@ -1,3 +1,4 @@
+using System;
 
 namespace Trigger.XForms.Commands
 {
@@ -6,6 +7,14 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(ListViewArguments args)
         {
+            /*
+            IListViewDescriptor descriptor = null;
+            var descriptorType = ListViewDescriptorProvider.GetDescriptor(args.TargetType);
+            if (descriptorType != null)
+            {
+                descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+            }
+            */
             args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 

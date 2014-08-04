@@ -50,6 +50,34 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        bool termineAnzeigen;
+
+        public bool TermineAnzeigen
+        {
+            get
+            {
+                return termineAnzeigen;
+            }
+            set
+            {
+                termineAnzeigen = value;
+            }
+        }
+
+        bool telefonatAnzeigen;
+
+        public bool TelefonatAnzeigen
+        {
+            get
+            {
+                return telefonatAnzeigen;
+            }
+            set
+            {
+                telefonatAnzeigen = value;
+            }
+        }
+
         [System.ComponentModel.DisplayName("Termine zu SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
@@ -58,6 +86,18 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 return Store.LoadAll<Termin>().Where(p => p.SB != null && p.SB.MappingId.Equals(MappingId));
+            }
+        }
+
+
+        [System.ComponentModel.DisplayName("Telefonate für SB")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Telefonat))]
+        public IEnumerable<Telefonat> LinkedTelefonate
+        {
+            get
+            {
+                return Store.LoadAll<Telefonat>().Where(p => p.SB2 != null && p.SB2.MappingId.Equals(MappingId));
             }
         }
 

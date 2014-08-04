@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Trigger.XForms.Commands;
+using Trigger.XStorable.DataStore;
+using System;
 
 namespace Trigger.XForms
 {
@@ -15,10 +17,12 @@ namespace Trigger.XForms
 
         int? RowHeight { get; set; }
 
-        IList<ColumnDescription> ColumnDescriptions { get; set; }
+        IEnumerable<IStorable> CustomDataSet{ get; }
+
+        IList<ColumnDescription> ColumnDescriptions { get; }
 
         IList<IListViewCommand> Commands { get; }
 
-        void RegisterCommands<T>()  where T: IListViewCommand;
+        void RegisterCommands<TCommand>()  where TCommand: IListViewCommand;
     }
 }

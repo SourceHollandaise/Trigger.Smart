@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
@@ -20,6 +21,7 @@ namespace Trigger.XForms.Visuals
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+
                 Content = new ListViewBuilder(descriptor, ModelType).GetContent();
             }
         }

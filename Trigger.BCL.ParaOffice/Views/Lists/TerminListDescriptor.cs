@@ -1,6 +1,9 @@
 using System;
+using System.Linq;
 using Trigger.XForms;
 using System.Collections.Generic;
+using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -19,6 +22,16 @@ namespace Trigger.BCL.ParaOffice
                 new ColumnDescription(Fields.GetName(m => m.SBAlias), 5){ ColumnHeaderText = "SB" },
                 new ColumnDescription(Fields.GetName(m => m.OK), 5){ ColumnHeaderText = "Erledigt" },
             };
+        }
+
+        public override IEnumerable<IStorable> CustomDataSet
+        {
+            get
+            {
+                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+
+                return store.LoadAll<SB>().Where(p => p.TermineAnzeigen).SelectMany(p => p.LinkedTermine);
+            }
         }
     }
 }
