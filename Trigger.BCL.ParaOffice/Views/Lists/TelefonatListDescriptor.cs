@@ -30,9 +30,7 @@ namespace Trigger.BCL.ParaOffice
             {
                 var store = DependencyMapProvider.Instance.ResolveType<IStore>();
 
-                var result = store.LoadAll<SB>().Where(p => p.TelefonatAnzeigen);
-
-                return result.SelectMany(p => p.LinkedTelefonate) as IEnumerable<IStorable>;
+                return store.LoadAll<SB>().Where(p => p.TelefonatAnzeigen).SelectMany(p => p.LinkedTelefonate) as IEnumerable<IStorable>;
             }
         }
     }

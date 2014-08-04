@@ -18,7 +18,8 @@ namespace Trigger.BCL.ParaOffice
                 new ColumnDescription(Fields.GetName(m => m.SKAlias), 3){ ColumnHeaderText = "SK" },
                 new ColumnDescription(Fields.GetName(m => m.Status), 4){ ColumnHeaderText = "Status" },
                 new ColumnDescription(Fields.GetName(m => m.Medium), 5){ ColumnHeaderText = "Medium" },
-                new ColumnDescription(Fields.GetName(m => m.Art), 6){ ColumnHeaderText = "Art" }
+                new ColumnDescription(Fields.GetName(m => m.Art), 6){ ColumnHeaderText = "Art" },
+                new ColumnDescription(Fields.GetName(m => m.AktAlias), 7){ ColumnHeaderText = "Akt" },
             };
         }
     }

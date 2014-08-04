@@ -56,19 +56,17 @@ namespace Trigger.XForms.Visuals
                 return new TextBoxCell(property.Name);
             }
 
+            /*)
             if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
             {
-                return new TextBoxCell(property.Name);
-
-                /*
-                var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>();
-                if (attribute != null)
+                var defaultAttribute = property.PropertyType.FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+                if (defaultAttribute != null)
                 {
-                    var nestedProperty = property.PropertyType.GetProperty(attribute.Name);
-                    return new TextBoxCell(property.Name + "." + nestedProperty.Name);
+                    return new TextBoxCell(defaultAttribute.Name);
                 }
-                */
+                return new TextBoxCell(property.Name);
             }
+            */
 
             return null;
         }
