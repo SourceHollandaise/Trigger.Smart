@@ -67,7 +67,7 @@ namespace Trigger.XForms.Visuals
                 var navGroupBox = new GroupBox();
                 navGroupBox.Text = groupItem.NavigationGroupText;
                
-                //navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
+                navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
                 foreach (var navItem in groupItem.NavigationItems.OrderBy(p => p.Index).ToList())
                 {
                     var button = new Button()
@@ -91,7 +91,7 @@ namespace Trigger.XForms.Visuals
 
             var appGroup = new GroupBox();
             appGroup.Text = "Application";
-            //appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
+            appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
             appGroupLayout.BeginVertical();
             appGroupLayout.Add(GetLogOffButton(), true);
             appGroupLayout.Add(GetExitButton(), true);

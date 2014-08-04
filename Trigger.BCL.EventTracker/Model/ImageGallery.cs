@@ -47,6 +47,24 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        bool privateGallery;
+
+        public bool PrivateGallery
+        {
+            get
+            {
+                return privateGallery;
+            }
+            set
+            {
+                if (Equals(privateGallery, value))
+                    return;
+                privateGallery = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         [System.ComponentModel.DisplayName("Linked images")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(ImageItem))]

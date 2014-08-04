@@ -94,5 +94,23 @@ namespace Trigger.BCL.EventTracker.Model
                 OnPropertyChanged();
             }
         }
+
+        bool privateImage;
+
+        public bool PrivateImage
+        {
+            get
+            {
+                return privateImage;
+            }
+            set
+            {
+                if (Equals(privateImage, value))
+                    return;
+                privateImage = value;
+
+                OnPropertyChanged();
+            }
+        }
     }
 }

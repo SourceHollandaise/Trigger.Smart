@@ -19,15 +19,20 @@ namespace Trigger.XForms
                 {
                     if (customDataSource == null)
                     {
-                        var dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(type);
+                        var dataSet = descriptor.Repository ?? DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(type);
+
                         if (descriptor.Filter != null)
                             gridView.DataStore = new DataStoreCollection(dataSet.Where(descriptor.Filter));
+                        else
+                            gridView.DataStore = new DataStoreCollection(dataSet);
                     }
                     else
                     {
+                        var dataSet = descriptor.Repository ?? customDataSource;
+
                         if (descriptor.Filter != null)
-                            customDataSource = customDataSource.Where(descriptor.Filter);
-                          gridView.DataStore = new DataStoreCollection(customDataSource);
+                            dataSet = customDataSource.Where(descriptor.Filter);
+                        gridView.DataStore = new DataStoreCollection(dataSet);
                     }
                 }
             }
