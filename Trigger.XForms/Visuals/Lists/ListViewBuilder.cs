@@ -137,9 +137,6 @@ namespace Trigger.XForms.Visuals
 
         void CreateDataStore()
         {
-            //if (isRoot && descriptor.CustomDataSet != null)
-            //dataSet = descriptor.CustomDataSet;
-
             if (dataSet == null)
                 dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType).ToList();
 
@@ -165,7 +162,7 @@ namespace Trigger.XForms.Visuals
                     {
                         TargetType = modelType,
                         Grid = currentGridView,
-                        CustomDataSet = descriptor.CustomDataSet ?? originalDataSet
+                        CustomDataSet = originalDataSet
                     });
                 };
                 commandBar.Add(button, false, false);

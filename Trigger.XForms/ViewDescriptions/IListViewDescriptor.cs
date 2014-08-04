@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Trigger.XForms.Commands;
-using Trigger.XStorable.DataStore;
-using System;
 
 namespace Trigger.XForms
 {
@@ -16,8 +14,6 @@ namespace Trigger.XForms
         bool IsImageList { get; set; }
 
         int? RowHeight { get; set; }
-
-        IEnumerable<IStorable> CustomDataSet{ get; }
 
         IList<ColumnDescription> ColumnDescriptions { get; }
 
