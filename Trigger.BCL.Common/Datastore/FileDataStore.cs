@@ -17,7 +17,9 @@ namespace Trigger.BCL.Common.Datastore
                     
             item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(item, type, new Newtonsoft.Json.JsonSerializerSettings());
+            var settings = new Newtonsoft.Json.JsonSerializerSettings();
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(item, type, settings);
            
             var path = Path.Combine(typeDir, item.MappingId + StoredFileExtension);
 
