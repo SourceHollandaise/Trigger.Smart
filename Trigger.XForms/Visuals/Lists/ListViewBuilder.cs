@@ -13,6 +13,8 @@ namespace Trigger.XForms.Visuals
 {
     public class ListViewBuilder
     {
+        protected int? CurrentRowIndex = null;
+
         GridView currentGridView;
 
         IEnumerable<IStorable> dataSet;
@@ -114,13 +116,32 @@ namespace Trigger.XForms.Visuals
                 currentGridView.RowHeight = descriptor.RowHeight.Value;
             }
 
+            currentGridView.SelectionChanged += (sender, e) =>
+            {
+                CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
+            };
+
             currentGridView.CellFormatting += (sender, e) =>
             {
-                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
-                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-
                 if (!(e.Column.DataCell is ImageViewCell))
                     e.Font = new Font(e.Font.Family, 12.5f);
+                    
+                if (CurrentRowIndex.HasValue && e.Row == CurrentRowIndex)
+                {
+                    if (!(e.Column.DataCell is ImageViewCell))
+                    {
+                        e.Font = new Font(e.Font.Family, 14.5f, FontStyle.Bold);
+                    }
+                }
+                else
+                {
+                    if (!(e.Column.DataCell is ImageViewCell))
+                    {
+                        e.Font = new Font(e.Font.Family, 12.5f);
+                    }
+                }
+                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
             };
 
             currentGridView.MouseDoubleClick += (sender, e) =>
