@@ -24,7 +24,7 @@ namespace Trigger.XForms.Visuals
         readonly IListViewDescriptor descriptor;
 
         readonly Type modelType;
-       
+
         readonly bool isRoot;
 
         public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
@@ -34,7 +34,7 @@ namespace Trigger.XForms.Visuals
             this.modelType = modelType;
             this.descriptor = descriptor;
             this.isRoot = viewIsRoot;
-            factory = new ListViewControlFactory(modelType);   
+            factory = new ListViewControlFactory(modelType);
         }
 
         public Control GetContent()
@@ -58,7 +58,7 @@ namespace Trigger.XForms.Visuals
                 button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) =>
                 {
-                    command.Execute(new ListViewArguments{ TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
+                    command.Execute(new ListViewArguments { TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
                 };
                 commandBar.Add(button, false, false);
 
@@ -70,7 +70,7 @@ namespace Trigger.XForms.Visuals
             if (currentUserCommand != null && isRoot)
                 AddCurrentUserToCommandBar(commandBar, currentUserCommand);
 
-            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+            commandBar.Add(new DynamicLayout() { Size = new Size(-1, -1) });
 
             commandBar.EndHorizontal();
 
@@ -80,7 +80,7 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.BeginHorizontal();
 
             currentGridView = new GridView();
-           
+
             if (descriptor.ListShowTags)
             {
                 var tagColumn = new GridColumn();
@@ -95,7 +95,7 @@ namespace Trigger.XForms.Visuals
 
                 currentGridView.Columns.Add(tagColumn);
             }
-                
+
             foreach (var columnItem in descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
@@ -118,7 +118,7 @@ namespace Trigger.XForms.Visuals
             {
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-                    
+
                 if (!(e.Column.DataCell is ImageViewCell))
                     e.Font = new Font(e.Font.Family, 12.5f);
             };
@@ -138,14 +138,21 @@ namespace Trigger.XForms.Visuals
         void CreateDataStore()
         {
             if (dataSet == null)
-                dataSet = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType).ToList();
+            {
+                var set = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
+
+                if (descriptor.Filter != null)
+                    set = set.Where(descriptor.Filter);
+
+                dataSet = set;
+            }
 
             currentGridView.DataStore = new DataStoreCollection(dataSet);
         }
 
         void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
         {
-            commandBar.Add(new DynamicLayout(){ Size = new Size(40, -1) });
+            commandBar.Add(new DynamicLayout() { Size = new Size(40, -1) });
 
             if (command != null)
             {
@@ -171,7 +178,7 @@ namespace Trigger.XForms.Visuals
 
         void AddSearchBoxToCommandBar(DynamicLayout commandBar)
         {
-            commandBar.Add(new DynamicLayout(){ Size = new Size(60, -1) });
+            commandBar.Add(new DynamicLayout() { Size = new Size(60, -1) });
 
             var displayNameAttribute = modelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
 
@@ -179,7 +186,7 @@ namespace Trigger.XForms.Visuals
             {
                 Size = new Size(160, 40),
             };
-                
+
             searchBox.PlaceholderText = "Search " + (displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name);
             searchBox.MaxLength = 100;
             searchBox.KeyDown += (sender, e) =>
@@ -191,13 +198,13 @@ namespace Trigger.XForms.Visuals
                     arguments.TargetType = modelType;
                     arguments.CustomDataSet = dataSet;
                     arguments.InputData = searchBox.Text;
-                
+
                     DependencyMapProvider.Instance.ResolveType<ISearchListViewCommand>().Execute(arguments);
                 }
             };
 
             commandBar.Add(searchBox, false, false);
-            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+            commandBar.Add(new DynamicLayout() { Size = new Size(-1, -1) });
         }
 
         Color SetTagBackColor(IStorable current)
@@ -209,7 +216,7 @@ namespace Trigger.XForms.Visuals
                 var rowColor = Color.Parse(tag.TagColor);
                 if (rowColor.Equals(Colors.WhiteSmoke))
                     return Colors.White;
-                return rowColor;                    
+                return rowColor;
             }
 
             return Colors.White;
@@ -220,7 +227,7 @@ namespace Trigger.XForms.Visuals
             var property = modelType.GetProperty(columnItem.FieldName);
             if (property == null)
                 return null;
-                
+
             var cell = factory.CreateDataCell(property);
 
             if (cell == null)

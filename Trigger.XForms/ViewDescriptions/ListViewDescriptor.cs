@@ -3,7 +3,6 @@ using System;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Commands;
 using Trigger.XStorable.DataStore;
-using System.Linq.Expressions;
 
 namespace Trigger.XForms
 {
@@ -32,6 +31,8 @@ namespace Trigger.XForms
 
             Commands.Add(command);
         }
+
+        public virtual Func<IStorable, bool> Filter { get; set; }
 
         protected FieldNames<T> Fields = new FieldNames<T>();
 

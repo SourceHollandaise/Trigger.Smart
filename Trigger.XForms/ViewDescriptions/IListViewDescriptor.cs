@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Trigger.XForms.Commands;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms
 {
@@ -19,6 +21,8 @@ namespace Trigger.XForms
 
         IList<IListViewCommand> Commands { get; }
 
-        void RegisterCommands<TCommand>()  where TCommand: IListViewCommand;
+        void RegisterCommands<TCommand>() where TCommand : IListViewCommand;
+
+        Func<IStorable, bool> Filter { get; set; }
     }
 }

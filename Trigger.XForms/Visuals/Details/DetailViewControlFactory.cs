@@ -108,7 +108,11 @@ namespace Trigger.XForms.Visuals
                         {
                             var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
 
-                            var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, false, value as IEnumerable<IStorable>).GetContent();
+                            var dataSet = value as IEnumerable<IStorable>;
+                            if (descriptor.Filter != null)
+                                dataSet = dataSet.Where(descriptor.Filter);
+
+                            var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, false, dataSet).GetContent();
 
                             if (control != null)
                             {

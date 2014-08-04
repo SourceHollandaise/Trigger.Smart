@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using Trigger.XStorable.Dependency;
 
 namespace Trigger.XForms.Commands
 {
@@ -7,15 +9,9 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(ListViewArguments args)
         {
-            /*
-            IListViewDescriptor descriptor = null;
-            var descriptorType = ListViewDescriptorProvider.GetDescriptor(args.TargetType);
-            if (descriptorType != null)
             {
-                descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+                args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
             }
-            */
-            args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
         public string ID

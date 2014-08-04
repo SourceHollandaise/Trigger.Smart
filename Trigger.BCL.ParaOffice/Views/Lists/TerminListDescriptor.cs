@@ -23,5 +23,21 @@ namespace Trigger.BCL.ParaOffice
                 new ColumnDescription(Fields.GetName(m => m.OK), 5){ ColumnHeaderText = "Erledigt" },
             };
         }
+
+        public override Func<IStorable, bool> Filter
+        {
+            get
+            {
+                return m =>
+                    {
+                        var termin = m as Termin;
+                        return termin != null && !termin.OK;
+                    };
+            }
+            set
+            {
+                base.Filter = value;
+            }
+        }
     }
 }
