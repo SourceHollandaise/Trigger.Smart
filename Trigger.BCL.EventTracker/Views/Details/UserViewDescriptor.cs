@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using Trigger.BCL.Common.Model;
 using Trigger.XForms;
 using Trigger.XForms.Commands;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class UserViewDescriptor : DetailViewDescriptor<User>
+    public class UserViewDescriptor : DetailViewDescriptor<ApplicationUser>
     {
         public UserViewDescriptor()
         {
@@ -37,6 +38,14 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
                             }
                         },
+                        new GroupItemDescription("Areas", 3)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedAreas), 1){ LabelText = "Area users", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        }
                     }
                 }
             };

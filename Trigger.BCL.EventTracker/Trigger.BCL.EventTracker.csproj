@@ -94,6 +94,9 @@
     <Compile Include="Commands\LinkAreaWithUserDetailViewCommand.cs" />
     <Compile Include="Commands\TrackTimeDetailViewCommand.cs" />
     <Compile Include="Views\Lists\AreaUserListDescriptor.cs" />
+    <Compile Include="Model\ApplicationUser.cs" />
+    <Compile Include="Services\ApplicationDataStoreAuthenticate.cs" />
+    <Compile Include="Services\ApplicationSecurityInfoProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

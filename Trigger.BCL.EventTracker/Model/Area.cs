@@ -72,10 +72,10 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        [System.ComponentModel.DisplayName("Linked area users")]
+        [System.ComponentModel.DisplayName("Linked users")]
         [System.Runtime.Serialization.IgnoreDataMember]
-        [LinkedList(typeof(User))]
-        public IEnumerable<User> LinkedAreaUsers
+        [LinkedList(typeof(ApplicationUser))]
+        public IEnumerable<ApplicationUser> LinkedAreaUsers
         {
             get
             {

@@ -171,11 +171,11 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        User startedBy;
+        ApplicationUser startedBy;
 
         [System.ComponentModel.DisplayName("Started by")]
         [LinkedObject]
-        public User StartedBy
+        public ApplicationUser StartedBy
         {
             get
             {
@@ -217,11 +217,11 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        User resolvedBy;
+        ApplicationUser resolvedBy;
 
         [System.ComponentModel.DisplayName("Resolved by")]
         [LinkedObject]
-        public User ResolvedBy
+        public ApplicationUser ResolvedBy
         {
             get
             {
@@ -312,11 +312,11 @@ namespace Trigger.BCL.EventTracker.Model
                 case IssueState.InProgress:
                     if (!Start.HasValue)
                         Start = DateTime.Now;
-                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser  as ApplicationUser;
                     break;
                 case IssueState.Done:
                 case IssueState.Rejected:
-                    ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                    ResolvedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
                     Resolved = DateTime.Now;
                     IsDone = true;
                     Duration = (Resolved - Start).ToString();

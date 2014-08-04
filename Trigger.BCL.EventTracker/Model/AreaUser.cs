@@ -45,11 +45,11 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        User user;
+        ApplicationUser user;
 
         [System.ComponentModel.DisplayName("User")]
         [LinkedObject]
-        public User User
+        public ApplicationUser User
         {
             get
             {

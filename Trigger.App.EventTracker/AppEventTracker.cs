@@ -10,10 +10,11 @@ namespace Trigger.App.EventTracker
         public virtual void InitalizeApplication()
         {
             var init = new Bootstrapper();
-            init.InitialiteSecurityProvider();
+
             init.InitalizeDataStore();
             init.RegisterDependencies();
-            init.CreateInitialObjects(); 
+            init.CreateInitialObjects();
+            init.InitialiteSecurityProvider();
         }
 
         public override void OnInitialized(EventArgs e)

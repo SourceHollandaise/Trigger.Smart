@@ -7,6 +7,7 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker.Services
 {
+
     public class DocumentFileDataService : IFileDataService
     {
         IStoreConfiguration StoreConfig

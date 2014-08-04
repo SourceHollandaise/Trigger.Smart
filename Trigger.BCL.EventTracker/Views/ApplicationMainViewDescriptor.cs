@@ -34,7 +34,7 @@ namespace Trigger.BCL.EventTracker
                 {
                     NavigationItems = new List<NavigationItem>
                     {
-                        new NavigationItem(typeof(User), "Users", 1){ ImageName = "community_users" }
+                        new NavigationItem(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users" }
                     }
                 }
             };

@@ -34,7 +34,7 @@ namespace Trigger.App.EventTracker
 
         public virtual void InitialiteSecurityProvider()
         {
-            var provider = new SecurityInfoProvider();
+            var provider = new ApplicationSecurityInfoProvider();
 
             DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
         }
@@ -42,7 +42,7 @@ namespace Trigger.App.EventTracker
         public virtual void RegisterDependencies()
         {
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
-            Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
+            Map.RegisterType<IAuthenticate, ApplicationDataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
@@ -86,7 +86,7 @@ namespace Trigger.App.EventTracker
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Tag, TagViewDescriptor>();
             DetailViewDescriptorProvider.Declare<TimeTracker, TimeTrackerViewDescriptor>();
-            DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ApplicationUser, UserViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<AreaUser, AreaUserListDescriptor>();
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
@@ -98,16 +98,16 @@ namespace Trigger.App.EventTracker
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<Tag, TagListDescriptor>();
             ListViewDescriptorProvider.Declare<TimeTracker, TimeTrackerListDescriptor>();
-            ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
+            ListViewDescriptorProvider.Declare<ApplicationUser, UserListDescriptor>();
         }
 
         public virtual void CreateInitialObjects()
         {
-            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "Admin");
+            var user = Map.ResolveType<IStore>().LoadAll<ApplicationUser>().FirstOrDefault(p => p.UserName == "Admin");
 
             if (user == null)
             {
-                user = new User
+                user = new ApplicationUser
                 {
                     UserName = "Admin",
                     Password = "admin"

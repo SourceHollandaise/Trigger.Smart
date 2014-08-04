@@ -15,7 +15,7 @@ namespace Trigger.BCL.EventTracker.Model
     {
         public override void Initialize()
         {
-            User = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+            User = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
         }
 
         string subject;
@@ -166,10 +166,10 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        User user;
+        ApplicationUser user;
 
         [LinkedObject]
-        public User User
+        public ApplicationUser User
         {
             get
             {

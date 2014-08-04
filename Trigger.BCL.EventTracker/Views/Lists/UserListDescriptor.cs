@@ -6,7 +6,7 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker
 {
 
-    public class UserListDescriptor : ListViewDescriptor<User>
+    public class UserListDescriptor : ListViewDescriptor<ApplicationUser>
     {
         public UserListDescriptor()
         {
