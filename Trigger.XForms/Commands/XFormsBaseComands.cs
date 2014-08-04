@@ -7,7 +7,7 @@ namespace Trigger.XForms.Commands
 
     public class XFormsBaseComands
     {
-        IDependencyMap Map
+        static IDependencyMap Map
         {
             get
             {
@@ -15,7 +15,7 @@ namespace Trigger.XForms.Commands
             }
         }
 
-        public void Register()
+        public virtual void Register()
         {
             Map.RegisterType<ISaveObjectDetailViewCommand, SaveObjectDetailViewCommand>();
             Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();

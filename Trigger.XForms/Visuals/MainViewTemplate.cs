@@ -23,6 +23,7 @@ namespace Trigger.XForms.Visuals
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
+            new XFormsBaseComands().Register();
             this.Size = new Size(1200, 800);
             CreateMainContent();
         }

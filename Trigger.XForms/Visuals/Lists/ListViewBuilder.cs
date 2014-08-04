@@ -119,31 +119,34 @@ namespace Trigger.XForms.Visuals
             currentGridView.SelectionChanged += (sender, e) =>
             {
                 CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
+               
             };
-
+          
             currentGridView.CellFormatting += (sender, e) =>
             {
                 if (!(e.Column.DataCell is ImageViewCell))
-                    e.Font = new Font(e.Font.Family, 12.5f);
-                    
+                {
+                    e.Font = new Font(e.Font.Family, e.Font.Size);
+                }
                 if (CurrentRowIndex.HasValue && e.Row == CurrentRowIndex)
                 {
                     if (!(e.Column.DataCell is ImageViewCell))
                     {
-                        e.Font = new Font(e.Font.Family, 14.5f, FontStyle.Bold);
+                        //e.Font = new Font(e.Font.Family, e.Font.Size, FontStyle.Bold);
                     }
                 }
                 else
                 {
                     if (!(e.Column.DataCell is ImageViewCell))
                     {
-                        e.Font = new Font(e.Font.Family, 12.5f);
+                        //e.Font = new Font(e.Font.Family, e.Font.Size);
                     }
                 }
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-            };
 
+            };
+                
             currentGridView.MouseDoubleClick += (sender, e) =>
             {
                 if (currentGridView.SelectedItem != null)
@@ -154,6 +157,11 @@ namespace Trigger.XForms.Visuals
 
             detailViewLayout.EndHorizontal();
             return detailViewLayout;
+        }
+
+        void CustomizeCell(GridCellFormatEventArgs e)
+        {
+
         }
 
         void CreateDataSet()

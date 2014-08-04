@@ -127,6 +127,7 @@
     <Compile Include="Commands\Details\TagDetailViewCommand.cs" />
     <Compile Include="Commands\Lists\PrintListViewCommand.cs" />
     <Compile Include="Commands\Lists\IPrintListViewCommand.cs" />
+    <Compile Include="Commands\XFormsBaseComands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
