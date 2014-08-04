@@ -32,6 +32,14 @@ namespace Trigger.XForms
             Commands.Add(command);
         }
 
+        public virtual IEnumerable<IStorable> Repository
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public virtual Func<IStorable, bool> Filter { get; set; }
 
         protected FieldNames<T> Fields = new FieldNames<T>();

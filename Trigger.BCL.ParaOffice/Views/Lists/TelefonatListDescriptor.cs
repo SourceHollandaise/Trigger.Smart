@@ -23,5 +23,17 @@ namespace Trigger.BCL.ParaOffice
                 new ColumnDescription(Fields.GetName(m => m.Status), 7){ ColumnHeaderText = "Status" },
             };
         }
+
+        public override IEnumerable<IStorable> Repository
+        {
+            get
+            {
+                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+
+                var result = store.LoadAll<SB>().Where(p => p.TelefonatAnzeigen);
+
+                return result.SelectMany(p => p.LinkedTelefonate) as IEnumerable<IStorable>;
+            }
+        }
     }
 }

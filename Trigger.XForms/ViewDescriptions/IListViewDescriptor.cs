@@ -23,6 +23,8 @@ namespace Trigger.XForms
 
         void RegisterCommands<TCommand>() where TCommand : IListViewCommand;
 
+        IEnumerable<IStorable> Repository { get; }
+
         Func<IStorable, bool> Filter { get; set; }
     }
 }

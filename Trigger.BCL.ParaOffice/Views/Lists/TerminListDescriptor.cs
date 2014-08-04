@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
 using Trigger.XForms;
+using System.Linq;
 using System.Collections.Generic;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
+using Trigger.BCL.ParaOffice;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -24,20 +24,35 @@ namespace Trigger.BCL.ParaOffice
             };
         }
 
+        public override IEnumerable<IStorable> Repository
+        {
+            get
+            {
+                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+
+                var result = store.LoadAll<SB>().Where(p => p.TermineAnzeigen);
+
+                return result.SelectMany(p => p.LinkedTermine) as IEnumerable<IStorable>;
+            }
+        }
+
+        /*
         public override Func<IStorable, bool> Filter
         {
             get
             {
                 return m =>
-                    {
-                        var termin = m as Termin;
-                        return termin != null && !termin.OK;
-                    };
+                {
+                    var termin = m as Termin;
+                    return termin != null && termin.SB != null;
+
+                };
             }
             set
             {
                 base.Filter = value;
             }
         }
+        */
     }
 }

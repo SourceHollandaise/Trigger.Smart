@@ -103,7 +103,7 @@ namespace Trigger.XForms.Visuals
                     currentGridView.Columns.Add(gridColumn);
             }
 
-            CreateDataStore();
+            CreateDataSet();
 
             currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
             currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
@@ -135,11 +135,11 @@ namespace Trigger.XForms.Visuals
             return detailViewLayout;
         }
 
-        void CreateDataStore()
+        void CreateDataSet()
         {
             if (dataSet == null)
             {
-                var set = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
+                var set = descriptor.Repository ?? DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
 
                 if (descriptor.Filter != null)
                     set = set.Where(descriptor.Filter);
