@@ -84,7 +84,7 @@ namespace Trigger.XForms.Visuals
             var tabItems = descriptor.TabItemDescriptions.OrderBy(p => p.Index).ToList();
 
             var tabControl = new TabControl();
-
+           
             foreach (var tabItem in tabItems)
             { 
                 var tabPage = new TabPage()
@@ -93,15 +93,15 @@ namespace Trigger.XForms.Visuals
                 };
 
                 tabControl.TabPages.Add(tabPage);
-           
+                /*
                 var scrollable = new Scrollable()
                 {
                     Border = BorderType.None,
                     Size = new Size(-1, -1),
                     Content = AddGroupLayouts(tabItem.GroupItemDescriptions),
                 };
-   
-                tabPage.Content = scrollable;
+                */
+                tabPage.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);//scrollable;
             }
 
             detailViewLayout.Add(tabControl);

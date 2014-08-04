@@ -20,8 +20,17 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", Fill = true },
+                                new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name", ShowLabel = false },
+                               
+                            }
+                        },
+                        new GroupItemDescription("Area informations", 2)
+                        {
+                            Fill = true,
+
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = true },
                             }
                         }
                     }
@@ -54,7 +63,7 @@ namespace Trigger.BCL.EventTracker
                         }
                     }
                 },
-                new TabItemDescription("Involded Users", 4)
+                new TabItemDescription("Users", 4)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {  
