@@ -16,7 +16,9 @@ namespace Trigger.XForms.Commands
                 if (fileDialog.ShowDialog(null) == DialogResult.Ok)
                 {
                     service.AddFile(args.CurrentObject as IFileData, fileDialog.FileName);
-                    fileDialog.Dispose();
+
+                    args.CurrentObject.Save();
+                    args.CurrentObject.ReloadObject();
                 }
             }
         }

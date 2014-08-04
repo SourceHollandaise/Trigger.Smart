@@ -57,7 +57,12 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 if (thumbnail == null)
-                    thumbnail = new Bitmap(FileName.GetValidPath());
+                {
+                    var fileName = FileName.GetValidPath();
+                    if (File.Exists(fileName))
+                        thumbnail = new Bitmap(FileName.GetValidPath());
+                }
+                    
                 return thumbnail;
             }
         }

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Trigger.XForms;
 using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.BCL.EventTracker.Model;
@@ -73,7 +74,9 @@ namespace Trigger.BCL.EventTracker.Services
             {
                 var file = new FileInfo(sourcePath);
 
-                var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, file.Name);
+                var fileName = Guid.NewGuid() + file.Extension;
+
+                var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, fileName);
 
                 try
                 {
@@ -86,6 +89,7 @@ namespace Trigger.BCL.EventTracker.Services
                     }
 
                     fileData.FileName = new FileInfo(targetPath).Name;
+                    fileData.Subject = fileData.FileName;
                 }
                 catch
                 {
