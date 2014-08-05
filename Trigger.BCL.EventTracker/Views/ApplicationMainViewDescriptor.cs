@@ -37,7 +37,8 @@ namespace Trigger.BCL.EventTracker
                     Visible = UserQuery.CurrentUserIsAdministrator,
                     NavigationItems = new List<NavigationItem>
                     {
-                        new NavigationItem(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users", Visible = UserQuery.CurrentUserIsAdministrator }
+                        new NavigationItem(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users", Visible = UserQuery.CurrentUserIsAdministrator },
+                        new NavigationItem(typeof(AreaUser), "Area <> User", 1){ ImageName = "community_users", Visible = UserQuery.CurrentUserIsAdministrator }
                     }
                 }
             };

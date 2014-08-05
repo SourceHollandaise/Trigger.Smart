@@ -85,19 +85,27 @@ namespace Trigger.BCL.Common.Datastore
             if (storable == null)
                 return 1;
 
-            var attrThis = GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
-            var attrOther = storable.GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+            var attributeThis = GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+            var attributeOther = storable.GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
 
-            if (attrThis != null && attrOther != null)
-                return string.Compare(attrThis.Name, attrOther.Name, StringComparison.Ordinal);
+            if (attributeThis != null && attributeOther != null)
+                return string.Compare(attributeThis.Name, attributeOther.Name, StringComparison.Ordinal);
 
             return -1;
         }
 
         public bool Equals(IStorable other)
         {
+            if (MappingId == null)
+                return false;
+
+            if (other == null)
+                return false;
+
+            if (other.MappingId == null)
+                return false;
+
             return MappingId.Equals(other.MappingId);
         }
-
     }
 }

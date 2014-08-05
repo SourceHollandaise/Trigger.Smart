@@ -7,7 +7,6 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Area")]
     [System.ComponentModel.DisplayName("Area")]
-    [ImageName("application")]
     public class AreaUser : StorableBase
     {
         public string AreaAlias
