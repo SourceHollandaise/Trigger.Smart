@@ -4,12 +4,11 @@ using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
 {
-
-    class GridViewCompareUtils
+    public class GridViewCompareUtils
     {
-        IListViewDescriptor descriptor;
+        readonly IListViewDescriptor descriptor;
 
-        GridColumn column;
+        readonly GridColumn column;
 
         public GridViewCompareUtils(IListViewDescriptor descriptor)
         {
@@ -19,11 +18,13 @@ namespace Trigger.XForms.Visuals
         public GridViewCompareUtils(GridColumn column)
         {
             this.column = column;
-
         }
 
         public int Compare(object x, object y)
         {
+            if (descriptor == null)
+                return 0;
+
             var xValue = x.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(x, null);
             var yValue = y.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(y, null);
 
@@ -62,6 +63,9 @@ namespace Trigger.XForms.Visuals
 
         public int ColumnCompare(object x, object y)
         {
+            if (column == null)
+                return 0;
+
             var xValue = x.GetType().GetProperty(column.ID).GetValue(x, null);
             var yValue = y.GetType().GetProperty(column.ID).GetValue(y, null);
 

@@ -81,7 +81,6 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Visuals\Lists\ListViewBuilder.cs" />
-    <Compile Include="Visuals\Lists\ListViewControlFactory.cs" />
     <Compile Include="Visuals\Lists\ListViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
@@ -131,6 +130,8 @@
     <Compile Include="Commands\IMainViewCommand.cs" />
     <Compile Include="Commands\SecurityConfirmationMessages.cs" />
     <Compile Include="Visuals\Lists\GridViewCompareUtils.cs" />
+    <Compile Include="Visuals\Lists\DataStoreProvider.cs" />
+    <Compile Include="Visuals\Lists\ListViewCellFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

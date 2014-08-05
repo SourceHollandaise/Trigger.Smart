@@ -21,7 +21,7 @@ namespace Trigger.XForms.Visuals
 
         readonly IEnumerable<IStorable> originalDataSet;
 
-        readonly ListViewControlFactory factory;
+        readonly ListViewCellFactory factory;
 
         readonly IListViewDescriptor descriptor;
 
@@ -36,7 +36,7 @@ namespace Trigger.XForms.Visuals
             this.modelType = modelType;
             this.descriptor = descriptor;
             this.isRoot = viewIsRoot;
-            factory = new ListViewControlFactory(modelType);
+            factory = new ListViewCellFactory(modelType);
         }
 
         public Control GetContent()
@@ -45,7 +45,44 @@ namespace Trigger.XForms.Visuals
 
             var detailViewLayout = new DynamicLayout();
             detailViewLayout.BeginHorizontal();
+            detailViewLayout.Add(AddCommandBarLayout());
+            detailViewLayout.EndHorizontal();
+            detailViewLayout.BeginHorizontal();
 
+            currentGridView = new GridView();
+            currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
+            currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
+            currentGridView.ShowCellBorders = false;
+
+            if (descriptor.ListShowTags)
+                currentGridView.Columns.Add(CreateTagColumn());
+
+            foreach (var columnItem in descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
+            {
+                var gridColumn = CreateColumn(columnItem);
+                if (gridColumn != null)
+                    currentGridView.Columns.Add(gridColumn);
+            }
+
+            if (descriptor.RowHeight.HasValue)
+                currentGridView.RowHeight = descriptor.RowHeight.Value;
+
+
+            currentGridView.DataStore = new DataStoreProvider(descriptor, modelType).CreateDataSet(dataSet);
+
+            currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
+
+            detailViewLayout.Add(currentGridView);
+
+            detailViewLayout.EndHorizontal();
+
+            RegisterToEvents();
+ 
+            return detailViewLayout;
+        }
+
+        DynamicLayout AddCommandBarLayout()
+        {
             var commandBar = new DynamicLayout();
             commandBar.BeginHorizontal();
             foreach (var command in descriptor.Commands)
@@ -58,119 +95,25 @@ namespace Trigger.XForms.Visuals
                 button.ToolTip = command.Name;
                 button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Overlay;
-                button.Click += (sender, e) =>
+                button.Click += (sender, e) => 
+                command.Execute(new ListViewArguments
                 {
-                    command.Execute(new ListViewArguments { TargetType = modelType, Grid = currentGridView, CustomDataSet = originalDataSet });
-                };
+                    TargetType = modelType,
+                    Grid = currentGridView,
+                    CustomDataSet = originalDataSet
+                });
                 commandBar.Add(button, false, false);
-
             }
-
             var currentUserCommand = descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
             if (currentUserCommand != null && isRoot)
                 AddCurrentUserToCommandBar(commandBar, currentUserCommand);
-
-            commandBar.Add(new DynamicLayout() { Size = new Size(-1, -1) });
-
+            commandBar.Add(new DynamicLayout()
+            {
+                Size = new Size(-1, -1)
+            });
             commandBar.EndHorizontal();
-
-            detailViewLayout.Add(commandBar);
-
-            detailViewLayout.EndHorizontal();
-            detailViewLayout.BeginHorizontal();
-
-            currentGridView = new GridView();
-
-            if (descriptor.ListShowTags)
-            {
-                var tagColumn = new GridColumn();
-                tagColumn.DataCell = new TextBoxCell();
-                tagColumn.HeaderText = "Tag";
-                tagColumn.Sortable = true;
-                tagColumn.Resizable = false;
-                tagColumn.AutoSize = false;
-                tagColumn.ID = "TagColumn";
-                tagColumn.Width = 36;
-                tagColumn.Editable = false;
-
-                currentGridView.Columns.Add(tagColumn);
-            }
-
-            foreach (var columnItem in descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
-            {
-                var gridColumn = CreateColumn(columnItem);
-                if (gridColumn != null)
-                    currentGridView.Columns.Add(gridColumn);
-            }
-
-            CreateDataSet();
-
-            currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
-            currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
-            currentGridView.ShowCellBorders = false;
-
-            if (descriptor.RowHeight.HasValue)
-            {
-                currentGridView.RowHeight = descriptor.RowHeight.Value;
-            }
-
-            currentGridView.SelectionChanged += (sender, e) =>
-            {
-                CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
-            };
-          
-            currentGridView.CellFormatting += (sender, e) =>
-            {
-                if (!(e.Column.DataCell is ImageViewCell))
-                    e.Font = new Font(e.Font.Family, e.Font.Size);
-  
-                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
-                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-            };
-             
-            currentGridView.ColumnHeaderClick += (sender, e) =>
-            {
-                try
-                {
-                    if (e.Column != null)
-                        currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(e.Column).ColumnCompare);
-                }
-                catch
-                {
-                    currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
-                }
-            };
-
-            currentGridView.MouseDoubleClick += (sender, e) =>
-            {
-                if (currentGridView.SelectedItem != null)
-                {
-                    DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments { Grid = currentGridView, TargetType = modelType });
-                }
-            };
-
-            detailViewLayout.Add(currentGridView);
-
-            detailViewLayout.EndHorizontal();
-            return detailViewLayout;
+            return commandBar;
         }
-
-        void CreateDataSet()
-        {
-            if (dataSet == null)
-            {
-                var set = descriptor.Repository ?? DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
-
-                if (descriptor.Filter != null)
-                    set = set.Where(descriptor.Filter);
-
-                dataSet = set;
-            }
-                
-            currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
-            currentGridView.DataStore = new DataStoreCollection(dataSet);
-        }
-
 
         void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
         {
@@ -186,62 +129,52 @@ namespace Trigger.XForms.Visuals
                 button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
-                {
                     command.Execute(new ListViewArguments
-                    {
-                        TargetType = modelType,
-                        Grid = currentGridView,
-                        CustomDataSet = originalDataSet
-                    });
-                };
+                {
+                    TargetType = modelType,
+                    Grid = currentGridView,
+                    CustomDataSet = originalDataSet
+                });
                 commandBar.Add(button, false, false);
             }
         }
 
-        void AddSearchBoxToCommandBar(DynamicLayout commandBar)
+        void RegisterToEvents()
         {
-            commandBar.Add(new DynamicLayout() { Size = new Size(60, -1) });
-
-            var displayNameAttribute = modelType.FindAttribute<System.ComponentModel.DisplayNameAttribute>();
-
-            var searchBox = new SearchBox()
+            currentGridView.SelectionChanged += (sender, e) =>
             {
-                Size = new Size(160, 40),
+                CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
             };
-
-            searchBox.PlaceholderText = "Search " + (displayNameAttribute != null ? displayNameAttribute.DisplayName : modelType.Name);
-            searchBox.MaxLength = 100;
-            searchBox.KeyDown += (sender, e) =>
+            currentGridView.CellFormatting += (sender, e) =>
             {
-                if (e.Key == Keys.Enter)
+                if (!(e.Column.DataCell is ImageViewCell))
+                    e.Font = new Font(e.Font.Family, e.Font.Size);
+                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
+            };
+            currentGridView.ColumnHeaderClick += (sender, e) =>
+            {
+                try
                 {
-                    var arguments = new ListViewArguments();
-                    arguments.Grid = currentGridView;
-                    arguments.TargetType = modelType;
-                    arguments.CustomDataSet = dataSet;
-                    arguments.InputData = searchBox.Text;
-
-                    DependencyMapProvider.Instance.ResolveType<ISearchListViewCommand>().Execute(arguments);
+                    if (e.Column != null)
+                        currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(e.Column).ColumnCompare);
+                }
+                catch
+                {
+                    currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
                 }
             };
-
-            commandBar.Add(searchBox, false, false);
-            commandBar.Add(new DynamicLayout() { Size = new Size(-1, -1) });
-        }
-
-        Color SetTagBackColor(IStorable current)
-        {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(current.MappingId.ToString()));
-            if (tag != null)
+            currentGridView.MouseDoubleClick += (sender, e) =>
             {
-                var rowColor = Color.Parse(tag.TagColor);
-                if (rowColor.Equals(Colors.WhiteSmoke))
-                    return Colors.White;
-                return rowColor;
-            }
-
-            return Colors.White;
+                if (currentGridView.SelectedItem != null)
+                {
+                    DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
+                    {
+                        Grid = currentGridView,
+                        TargetType = modelType
+                    });
+                }
+            };
         }
 
         GridColumn CreateColumn(ColumnDescription columnItem)
@@ -264,6 +197,36 @@ namespace Trigger.XForms.Visuals
             gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
             gridColumn.ID = property.Name;
             return gridColumn;
+        }
+
+        GridColumn CreateTagColumn()
+        {
+            return new GridColumn()
+            {
+                DataCell = new TextBoxCell(),
+                HeaderText = "Tag",
+                Sortable = true,
+                Resizable = false,
+                AutoSize = false,
+                ID = "TagColumn",
+                Width = 36,
+                Editable = false
+            };          
+        }
+
+        Color SetTagBackColor(IStorable current)
+        {
+            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(current.MappingId.ToString()));
+            if (tag != null)
+            {
+                var rowColor = Color.Parse(tag.TagColor);
+                if (rowColor.Equals(Colors.WhiteSmoke))
+                    return Colors.White;
+                return rowColor;
+            }
+
+            return Colors.White;
         }
     }
 }

@@ -1,12 +1,11 @@
 using System;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
 using System.Reflection;
 using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
-    public class ListViewControlFactory
+    public class ListViewCellFactory
     {
         protected Type ModelType
         {
@@ -14,7 +13,7 @@ namespace Trigger.XForms.Visuals
             set;
         }
 
-        public ListViewControlFactory(Type modelType)
+        public ListViewCellFactory(Type modelType)
         {
             this.ModelType = modelType;
         }
@@ -51,18 +50,6 @@ namespace Trigger.XForms.Visuals
             {
                 return new TextBoxCell(property.Name);
             }
-
-            /*)
-            if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
-            {
-                var defaultAttribute = property.PropertyType.FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
-                if (defaultAttribute != null)
-                {
-                    return new TextBoxCell(defaultAttribute.Name);
-                }
-                return new TextBoxCell(property.Name);
-            }
-            */
 
             return null;
         }
