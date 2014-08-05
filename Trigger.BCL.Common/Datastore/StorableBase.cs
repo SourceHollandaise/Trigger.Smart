@@ -62,5 +62,42 @@ namespace Trigger.BCL.Common.Datastore
                 return Map.ResolveType<IStore>();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            var storable = obj as StorableBase;
+
+            return storable != null && Equals(storable);
+        }
+
+        public override int GetHashCode()
+        {
+            if (MappingId == null)
+                return base.GetHashCode();
+            return MappingId.GetHashCode();
+        }
+
+        public int CompareTo(IStorable storable)
+        {
+            if (storable == null)
+                return 1;
+
+            var attrThis = GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+            var attrOther = storable.GetType().FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+
+            if (attrThis != null && attrOther != null)
+                return string.Compare(attrThis.Name, attrOther.Name, StringComparison.Ordinal);
+
+            return -1;
+        }
+
+        public bool Equals(IStorable other)
+        {
+            return MappingId.Equals(other.MappingId);
+        }
+
     }
 }

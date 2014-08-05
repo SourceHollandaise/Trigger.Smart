@@ -9,6 +9,9 @@ namespace Trigger.BCL.EventTracker
     {
         public AreaUserListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.AreaAlias);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.AreaAlias), 1){ ColumnHeaderText = "Area" },

@@ -10,6 +10,9 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageGalleryListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.Name);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Name), 1){ ColumnHeaderText = "Name" },

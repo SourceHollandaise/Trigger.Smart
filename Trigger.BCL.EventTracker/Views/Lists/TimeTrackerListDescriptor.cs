@@ -9,6 +9,9 @@ namespace Trigger.BCL.EventTracker
     {
         public TimeTrackerListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Descendig;
+            DefaultSortProperty = Fields.GetName(m => m.Begin);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Subject" },

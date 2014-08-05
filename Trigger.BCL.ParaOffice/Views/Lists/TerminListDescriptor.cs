@@ -12,6 +12,9 @@ namespace Trigger.BCL.ParaOffice
     {
         public TerminListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Descendig;
+            DefaultSortProperty = Fields.GetName(m => m.Beginn);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Art), 1){ ColumnHeaderText = "Art" },

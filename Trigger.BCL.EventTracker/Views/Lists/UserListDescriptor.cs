@@ -12,6 +12,10 @@ namespace Trigger.BCL.EventTracker
         {
             ListShowTags = false;
             RowHeight = 36;
+
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.UserName);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Avatar), 1){ ColumnHeaderText = "Avatar", AllowResize = false, AutoSize = false },
@@ -19,7 +23,6 @@ namespace Trigger.BCL.EventTracker
                 new ColumnDescription(Fields.GetName(m => m.Email), 3){ ColumnHeaderText = "E-Mail" },
                 new ColumnDescription(Fields.GetName(m => m.UserSex), 4){ ColumnHeaderText = "Sex" },
                 new ColumnDescription(Fields.GetName(m => m.Role), 4){ ColumnHeaderText = "Role" },
-
             };
         }
     }

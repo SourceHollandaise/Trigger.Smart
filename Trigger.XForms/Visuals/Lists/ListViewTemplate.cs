@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Trigger.XStorable.DataStore;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -13,6 +14,8 @@ namespace Trigger.XForms.Visuals
             SetSize();
 			
             SetTitle();
+
+            //this.BackgroundColor = Colors.WhiteSmoke;
         }
 
         public void SetContent()

@@ -13,6 +13,9 @@ namespace Trigger.BCL.EventTracker
             ListShowTags = false;
             RowHeight = 96;
 
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.Subject);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },

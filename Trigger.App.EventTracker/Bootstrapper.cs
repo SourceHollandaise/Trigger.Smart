@@ -92,15 +92,14 @@ namespace Trigger.App.EventTracker
             var user = Map.ResolveType<IStore>().LoadAll<ApplicationUser>().FirstOrDefault(p => p.UserName == "Admin");
 
             if (user == null)
-            {
-                user = new ApplicationUser
-                {
-                    UserName = "Admin",
-                    Password = "admin"
-                };
-			
-                user.Save();
-            }
+                user = new ApplicationUser();
+
+            user.AllowAdministration = true;
+            user.Password = "admin";
+            user.Role = ApplicationUserRole.Administrator;
+            user.UserName = "Admin";
+            user.UserSex = Sex.Female;
+            user.Save();
         }
     }
 }

@@ -7,7 +7,11 @@ namespace Trigger.XForms
 {
     public interface IListViewDescriptor
     {
+        string DefaultSortProperty { get; set; }
+
         bool AllowColumnReorder { get; set; }
+
+        ColumnSorting DefaultSorting { get; set; }
 
         bool AllowMultiSelection { get; set; }
 

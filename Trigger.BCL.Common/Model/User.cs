@@ -3,12 +3,17 @@ using Trigger.XStorable.DataStore;
 using Trigger.XForms;
 using Eto.Drawing;
 using System.IO;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
 
 namespace Trigger.BCL.Common.Model
 {
-
+    public enum ApplicationUserRole
+    {
+        Administrator,
+        Projectleader,
+        Teamleader,
+        User,
+        Visitor
+    }
 
     [System.ComponentModel.DefaultProperty("UserName")]
     public class User : StorableBase , IFileData
@@ -16,6 +21,24 @@ namespace Trigger.BCL.Common.Model
         public override void Initialize()
         {
             //INFO: Do not initialize!!! 
+        }
+
+        ApplicationUserRole role;
+
+        public ApplicationUserRole Role
+        {
+            get
+            {
+                return role;
+            }
+            set
+            {
+                if (Equals(role, value))
+                    return;
+                role = value;
+
+                OnPropertyChanged();
+            }
         }
 
         bool allowAdministration;

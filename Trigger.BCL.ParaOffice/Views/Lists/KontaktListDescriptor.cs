@@ -9,6 +9,9 @@ namespace Trigger.BCL.ParaOffice
     {
         public KontaktListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.PersonAlias);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.PersonAlias), 1){ ColumnHeaderText = "Person" },

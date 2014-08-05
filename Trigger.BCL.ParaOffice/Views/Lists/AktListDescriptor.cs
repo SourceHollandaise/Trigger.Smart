@@ -9,6 +9,9 @@ namespace Trigger.BCL.ParaOffice
     {
         public AktListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.Bezeichnung);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Bezeichnung), 1){ ColumnHeaderText = "Bezeichnung" },

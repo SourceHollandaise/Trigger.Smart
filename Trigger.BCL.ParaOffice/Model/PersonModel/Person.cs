@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Datastore;
 using Trigger.XForms;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -12,23 +11,12 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("user")]
     public class Person : ExportableBase
     {
-        string personenName;
-
         [System.ComponentModel.DisplayName("Personenname")]
         public string PersonenName
         {
             get
             {
-                personenName = Vorname + " " + Nachname;
-                return personenName;
-            }
-            set
-            {
-                if (Equals(personenName, value))
-                    return;
-                personenName = value;
-
-                OnPropertyChanged();
+                return Vorname + " " + Nachname + " " + Titel;
             }
         }
 

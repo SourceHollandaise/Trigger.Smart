@@ -1,13 +1,13 @@
 using System;
-using System.Linq;
-using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using System.Reflection;
 using System.Collections.Generic;
-using Trigger.XStorable.Dependency;
+using System.Linq;
+using System.Reflection;
 using Eto.Drawing;
-using Trigger.XForms.Commands;
+using Eto.Forms;
 using Trigger.BCL.Common.Model;
+using Trigger.XStorable.DataStore;
+using Trigger.XStorable.Dependency;
+using Trigger.XForms.Commands;
 
 namespace Trigger.XForms.Visuals
 {
@@ -66,8 +66,6 @@ namespace Trigger.XForms.Visuals
 
             }
 
-            //AddSearchBoxToCommandBar(commandBar);
-
             var currentUserCommand = descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
             if (currentUserCommand != null && isRoot)
                 AddCurrentUserToCommandBar(commandBar, currentUserCommand);
@@ -125,26 +123,10 @@ namespace Trigger.XForms.Visuals
             currentGridView.CellFormatting += (sender, e) =>
             {
                 if (!(e.Column.DataCell is ImageViewCell))
-                {
                     e.Font = new Font(e.Font.Family, e.Font.Size);
-                }
-                if (CurrentRowIndex.HasValue && e.Row == CurrentRowIndex)
-                {
-                    if (!(e.Column.DataCell is ImageViewCell))
-                    {
-                        //e.Font = new Font(e.Font.Family, e.Font.Size, FontStyle.Bold);
-                    }
-                }
-                else
-                {
-                    if (!(e.Column.DataCell is ImageViewCell))
-                    {
-                        //e.Font = new Font(e.Font.Family, e.Font.Size);
-                    }
-                }
+  
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
-
             };
                 
             currentGridView.MouseDoubleClick += (sender, e) =>
@@ -177,8 +159,47 @@ namespace Trigger.XForms.Visuals
 
                 dataSet = set;
             }
-
+                
+            currentGridView.SortComparer = new Comparison<object>(Compare);
             currentGridView.DataStore = new DataStoreCollection(dataSet);
+        }
+
+        int Compare(object x, object y)
+        {
+            var xValue = x.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(x, null);
+            var yValue = y.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(y, null);
+
+            if (xValue == null && yValue == null)
+                return 0;
+            else if (xValue == null)
+                return descriptor.DefaultSorting == ColumnSorting.Ascending ? -1 : 1;
+            else if (yValue == null)
+                return descriptor.DefaultSorting == ColumnSorting.Ascending ? 1 : -1;
+            else
+            {
+                if (xValue is DateTime && yValue is DateTime)
+                {
+                    var result = DateTime.Compare((DateTime)xValue, (DateTime)yValue);
+
+                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
+                }
+
+                if (xValue is string && yValue is string)
+                {
+                    var result = string.Compare((string)xValue, (string)yValue, StringComparison.CurrentCulture);
+
+                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
+                }
+
+                if (xValue is IStorable && yValue is IStorable)
+                {
+                    var result = ((IStorable)xValue).CompareTo((IStorable)yValue);
+
+                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
+                }
+
+                return 0;
+            }
         }
 
         void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
@@ -265,11 +286,12 @@ namespace Trigger.XForms.Visuals
                 return null;
 
             var gridColumn = new GridColumn();
+
+            gridColumn.AutoSize = columnItem.AutoSize;
             gridColumn.DataCell = cell;
             gridColumn.HeaderText = columnItem.ColumnHeaderText;
-            gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
             gridColumn.Resizable = columnItem.AllowResize;
-            gridColumn.AutoSize = columnItem.AutoSize;
+            gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
 
             return gridColumn;
         }

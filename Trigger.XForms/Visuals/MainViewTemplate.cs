@@ -24,7 +24,11 @@ namespace Trigger.XForms.Visuals
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
             new XFormsBaseComands().Register();
+
             this.Size = new Size(1200, 800);
+            this.Minimizable = true;
+            this.Maximizable = true;
+     
             CreateMainContent();
         }
 
@@ -77,7 +81,7 @@ namespace Trigger.XForms.Visuals
                         Text = navItem.NavigationItemText,
                         Tag = navItem.ModelType,
                         Image = ImageExtensions.GetImage(navItem.ImageName, 24),
-                        ImagePosition = ButtonImagePosition.Left
+                        ImagePosition = ButtonImagePosition.Left,                      
                     };
                     button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as Type);
                     navGroupLayout.Add(button, true);

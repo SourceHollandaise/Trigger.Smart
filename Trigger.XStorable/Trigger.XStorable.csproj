@@ -72,6 +72,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\FieldNames.cs" />
     <Compile Include="Extensions\FileExtensions.cs" />
+    <Compile Include="Extensions\LinqExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

@@ -85,18 +85,17 @@ namespace Trigger.App.ParaOffice
 
         public virtual void CreateInitialObjects()
         {
-            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "A");
+            var user = Map.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == "Admin");
 
             if (user == null)
-            {
-                user = new User
-                {
-                    UserName = "A",
-                    Password = "a"
-                };
-			
-                user.Save();
-            }
+                user = new User();
+
+            user.AllowAdministration = true;
+            user.Password = "admin";
+            user.Role = ApplicationUserRole.Administrator;
+            user.UserName = "Admin";
+            user.UserSex = Sex.Female;
+            user.Save();
 
             var sb = Map.ResolveType<IStore>().LoadAll<SB>().FirstOrDefault(p => p.ID == "A");
 

@@ -1,6 +1,7 @@
 using Eto.Forms;
 using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Security;
+using Eto.Drawing;
 
 namespace Trigger.XForms.Visuals
 {
@@ -46,7 +47,8 @@ namespace Trigger.XForms.Visuals
                 Text = "Log on",
                 Size = new Eto.Drawing.Size(-1, 40),
                 Image = Eto.Drawing.ImageExtensions.GetImage("lock_off", 24),
-                ImagePosition = ButtonImagePosition.Left
+                ImagePosition = ButtonImagePosition.Left,
+                BackgroundColor = Colors.WhiteSmoke
             };
 
             LogonViewTemplate.DefaultButton = logonButton;

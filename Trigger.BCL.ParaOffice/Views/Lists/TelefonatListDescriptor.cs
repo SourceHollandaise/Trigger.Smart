@@ -12,6 +12,9 @@ namespace Trigger.BCL.ParaOffice
     {
         public TelefonatListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Descendig;
+            DefaultSortProperty = Fields.GetName(m => m.Beginn);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Beginn), 1){ ColumnHeaderText = "Datum/Uhrzeit" },

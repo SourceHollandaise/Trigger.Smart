@@ -10,7 +10,10 @@ namespace Trigger.BCL.EventTracker
         public DocumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
- 
+
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.Subject);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Subject" },

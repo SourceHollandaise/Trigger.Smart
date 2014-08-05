@@ -10,6 +10,10 @@ namespace Trigger.XForms
     {
         public IList<ColumnDescription> ColumnDescriptions { get; set; }
 
+        public  string DefaultSortProperty { get; set; }
+
+        public ColumnSorting DefaultSorting { get; set; }
+
         public bool AllowColumnReorder { get; set; }
 
         public bool AllowMultiSelection { get; set; }
@@ -55,6 +59,12 @@ namespace Trigger.XForms
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<ICurrentUserListViewCommand>();
 
+            var defaultPropertyAttribute = typeof(T).FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
+            if (defaultPropertyAttribute != null)
+            {
+                DefaultSortProperty = defaultPropertyAttribute.Name;
+                DefaultSorting = ColumnSorting.Ascending;
+            }
         }
     }
 }

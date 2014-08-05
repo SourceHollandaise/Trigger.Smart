@@ -1,6 +1,6 @@
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Datastore;
+using System.Linq;
 using Trigger.XForms;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -16,6 +16,18 @@ namespace Trigger.BCL.ParaOffice
 
             Streitgenosse = true;
             Partei = Partei.Partei1;
+        }
+
+        public override void Save()
+        {
+            if (Akt != null && Person != null)
+            {
+                var aktPerson = Store.LoadAll<AktPerson>().FirstOrDefault(p => p.Akt != null && p.Akt.MappingId.Equals(Akt.MappingId) && p.Person != null && p.Person.MappingId.Equals(Person.MappingId));
+                if (aktPerson != null)
+                    return;
+
+                base.Save();
+            }
         }
 
         [System.ComponentModel.DisplayName("Akt")]

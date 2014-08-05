@@ -29,8 +29,8 @@ namespace Trigger.BCL.ParaOffice
                     {
                         new NavigationItem(typeof(AktPerson), "Aktpersonen", 1){ ImageName = "user_add" },
                         new NavigationItem(typeof(AktArt), "Aktarten", 2){ ImageName = "folder_process" },
-                        new NavigationItem(typeof(SB), "Sachbearbeiter", 4){ ImageName = "user_accept" },
-                        new NavigationItem(typeof(User), "Benutzer", 5) { ImageName = "community_users" }
+                        new NavigationItem(typeof(SB), "Sachbearbeiter", 4){ ImageName = "user_accept", Visible = UserQuery.CurrentUserIsAdministrator },
+                        new NavigationItem(typeof(User), "Benutzer", 5) { ImageName = "community_users", Visible = UserQuery.CurrentUserIsAdministrator }
                     }
                 }
             };

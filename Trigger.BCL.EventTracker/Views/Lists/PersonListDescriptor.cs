@@ -9,6 +9,9 @@ namespace Trigger.BCL.EventTracker
     {
         public PersonListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.PersonDisplayName);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.PersonDisplayName), 1){ ColumnHeaderText = "Person" },

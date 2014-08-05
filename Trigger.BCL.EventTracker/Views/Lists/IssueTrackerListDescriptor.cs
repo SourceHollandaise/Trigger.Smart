@@ -8,13 +8,18 @@ namespace Trigger.BCL.EventTracker
     {
         public IssueTrackerListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Descendig;
+            DefaultSortProperty = Fields.GetName(m => m.Start);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Issue" },
                 new ColumnDescription(Fields.GetName(m => m.IssuePriority), 2){ ColumnHeaderText = "Priority" },
                 new ColumnDescription(Fields.GetName(m => m.IssueType), 3){ ColumnHeaderText = "Type" },
                 new ColumnDescription(Fields.GetName(m => m.IssueState), 4){ ColumnHeaderText = "State" },
-                new ColumnDescription(Fields.GetName(m => m.AreaAlias), 5){ ColumnHeaderText = "Area" },
+                new ColumnDescription(Fields.GetName(m => m.Start), 5){ ColumnHeaderText = "Started" },
+                new ColumnDescription(Fields.GetName(m => m.Resolved), 6){ ColumnHeaderText = "Resolved" },
+                new ColumnDescription(Fields.GetName(m => m.AreaAlias), 7){ ColumnHeaderText = "Area" },
             };
         }
     }

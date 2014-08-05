@@ -369,16 +369,22 @@ namespace Trigger.XForms.Visuals
 
         ComboBox ReferencePropertyEditor(PropertyInfo property)
         {
-            var attribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>();
+            var defaultPropertyAttribute = property.PropertyType.FindAttribute<DefaultPropertyAttribute>();
 
             var control = new ComboBox();
-            var items = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType).ToList();
-            foreach (IStorable pi in items)
+
+            var lookupItems = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
+
+            if (defaultPropertyAttribute != null)
+                lookupItems = lookupItems.OrderByProperty(defaultPropertyAttribute.Name);
+
+            foreach (IStorable pi in lookupItems.ToList())
             {
                 object defaultItemValue = null;
-                if (attribute != null && !string.IsNullOrWhiteSpace(attribute.Name))
+
+                if (defaultPropertyAttribute != null && !string.IsNullOrWhiteSpace(defaultPropertyAttribute.Name))
                 {
-                    defaultItemValue = pi.GetType().GetProperty(attribute.Name).GetValue(pi, null);
+                    defaultItemValue = pi.GetType().GetProperty(defaultPropertyAttribute.Name).GetValue(pi, null);
                 }
 
                 control.Items.Add(new ListItem
@@ -388,7 +394,9 @@ namespace Trigger.XForms.Visuals
                     Tag = pi
                 });
             }
+
             var value = property.GetValue(Model, null);
+
             if (value != null)
             {
                 var selection = (property.GetValue(Model, null) as IStorable);

@@ -8,6 +8,9 @@ namespace Trigger.BCL.ParaOffice
     {
         public SBListDescriptor()
         {
+            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSortProperty = Fields.GetName(m => m.ID);
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.ID), 1){ ColumnHeaderText = "SB-Kürzel" },

@@ -21,11 +21,7 @@ namespace Trigger.XForms.Visuals
 
         public Cell CreateDataCell(PropertyInfo property)
         {
-            if (property.PropertyType.IsGenericType)
-            {
-                return null;
-            }
-
+       
             if (property.PropertyType == typeof(bool))
             {
                 return new CheckBoxCell(property.Name);

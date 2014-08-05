@@ -27,6 +27,8 @@ namespace Trigger.BCL.ParaOffice
                                 new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Passwort" },
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                                 new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Geschlecht" },
+                                new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Rolle" },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = UserQuery.CurrentUserIsAdministrator },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)
