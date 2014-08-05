@@ -117,7 +117,6 @@ namespace Trigger.XForms.Visuals
             currentGridView.SelectionChanged += (sender, e) =>
             {
                 CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
-               
             };
           
             currentGridView.CellFormatting += (sender, e) =>
@@ -128,7 +127,20 @@ namespace Trigger.XForms.Visuals
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                     e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
             };
-                
+             
+            currentGridView.ColumnHeaderClick += (sender, e) =>
+            {
+                try
+                {
+                    if (e.Column != null)
+                        currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(e.Column).ColumnCompare);
+                }
+                catch
+                {
+                    currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
+                }
+            };
+
             currentGridView.MouseDoubleClick += (sender, e) =>
             {
                 if (currentGridView.SelectedItem != null)
@@ -143,11 +155,6 @@ namespace Trigger.XForms.Visuals
             return detailViewLayout;
         }
 
-        void CustomizeCell(GridCellFormatEventArgs e)
-        {
-
-        }
-
         void CreateDataSet()
         {
             if (dataSet == null)
@@ -160,47 +167,10 @@ namespace Trigger.XForms.Visuals
                 dataSet = set;
             }
                 
-            currentGridView.SortComparer = new Comparison<object>(Compare);
+            currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
             currentGridView.DataStore = new DataStoreCollection(dataSet);
         }
 
-        int Compare(object x, object y)
-        {
-            var xValue = x.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(x, null);
-            var yValue = y.GetType().GetProperty(descriptor.DefaultSortProperty).GetValue(y, null);
-
-            if (xValue == null && yValue == null)
-                return 0;
-            else if (xValue == null)
-                return descriptor.DefaultSorting == ColumnSorting.Ascending ? -1 : 1;
-            else if (yValue == null)
-                return descriptor.DefaultSorting == ColumnSorting.Ascending ? 1 : -1;
-            else
-            {
-                if (xValue is DateTime && yValue is DateTime)
-                {
-                    var result = DateTime.Compare((DateTime)xValue, (DateTime)yValue);
-
-                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
-                }
-
-                if (xValue is string && yValue is string)
-                {
-                    var result = string.Compare((string)xValue, (string)yValue, StringComparison.CurrentCulture);
-
-                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
-                }
-
-                if (xValue is IStorable && yValue is IStorable)
-                {
-                    var result = ((IStorable)xValue).CompareTo((IStorable)yValue);
-
-                    return descriptor.DefaultSorting == ColumnSorting.Ascending ? (result * 1) : (result * -1);
-                }
-
-                return 0;
-            }
-        }
 
         void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
         {
@@ -292,7 +262,7 @@ namespace Trigger.XForms.Visuals
             gridColumn.HeaderText = columnItem.ColumnHeaderText;
             gridColumn.Resizable = columnItem.AllowResize;
             gridColumn.Sortable = columnItem.Sorting != ColumnSorting.None;
-
+            gridColumn.ID = property.Name;
             return gridColumn;
         }
     }

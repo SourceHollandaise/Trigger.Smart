@@ -19,7 +19,7 @@ namespace Trigger.XForms
         {
             FieldName = fieldName;
             Index = index;
-            Sorting = ColumnSorting.None;
+            Sorting = ColumnSorting.Ascending;
             AutoSize = true;
             AllowResize = true;
         }
