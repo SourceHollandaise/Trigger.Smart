@@ -1,16 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.BCL.Common.Datastore;
-using Trigger.XForms;
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker.Model
 {
+
     [System.ComponentModel.DefaultProperty("UserName")]
     [System.ComponentModel.DisplayName("User")]
     public class ApplicationUser : User
     {
+
+        ApplicationUserRole role;
+
+        public ApplicationUserRole Role
+        {
+            get
+            {
+                return role;
+            }
+            set
+            {
+                if (Equals(role, value))
+                    return;
+                role = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         [System.ComponentModel.DisplayName("Linked areas")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Area))]

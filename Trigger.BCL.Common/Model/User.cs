@@ -20,6 +20,24 @@ namespace Trigger.BCL.Common.Model
             //INFO: Do not initialize!!! 
         }
 
+        bool allowAdministration;
+
+        public bool AllowAdministration
+        {
+            get
+            {
+                return allowAdministration;
+            }
+            set
+            {
+                if (Equals(allowAdministration, value))
+                    return;
+                allowAdministration = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         string subject;
 
         public string Subject

@@ -6,27 +6,29 @@ using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-    [System.ComponentModel.DefaultProperty("DisplayName")]
+    [System.ComponentModel.DefaultProperty("PersonDisplayName")]
     [System.ComponentModel.DisplayName("Person")]
     [ImageName("user")]
     public class Person : StorableBase
     {
-        string displayName;
-
-        public string DisplayName
+        public string PersonDisplayName
         {
             get
             {
-                displayName = FirstName + " " + LastName;
+                var displayName = FirstName + " " + LastName;
+
+                if (!string.IsNullOrWhiteSpace(Company))
+                    displayName += " (" + Company + ")";
+
                 return displayName;
             }
-            set
-            {
-                if (Equals(displayName, value))
-                    return;
-                displayName = value;
+        }
 
-                OnPropertyChanged();
+        public string AddressDisplayName
+        {
+            get
+            {
+                return PostalCode + " " + City + " " + Street;
             }
         }
 
@@ -79,6 +81,24 @@ namespace Trigger.BCL.EventTracker.Model
                 if (Equals(lastName, value))
                     return;
                 lastName = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        string company;
+
+        public string Company
+        {
+            get
+            {
+                return company;
+            }
+            set
+            {
+                if (Equals(company, value))
+                    return;
+                company = value;
 
                 OnPropertyChanged();
             }

@@ -27,6 +27,8 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Password" },
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                                 new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Sex" },
+                                new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Role" },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration" },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)
@@ -38,7 +40,14 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
                             }
                         },
-                        new GroupItemDescription("Areas", 3)
+
+                    }
+                },
+                new TabItemDescription("Areas", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {  
+                        new GroupItemDescription(null, 1)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
@@ -47,7 +56,7 @@ namespace Trigger.BCL.EventTracker
                             }
                         }
                     }
-                }
+                },
             };
         }
     }

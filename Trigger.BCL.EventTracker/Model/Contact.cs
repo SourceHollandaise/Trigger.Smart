@@ -14,7 +14,7 @@ namespace Trigger.BCL.EventTracker.Model
         {
             get
             {
-                return Person != null ? Person.DisplayName : null;
+                return Person != null ? Person.PersonDisplayName : null;
             }
         }
 

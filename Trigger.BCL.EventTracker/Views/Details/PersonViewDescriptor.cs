@@ -21,6 +21,7 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.FirstName), 1){ LabelText = "Name" },
                                 new ViewItemDescription(Fields.GetName(m => m.MiddleName), 2){ LabelText = "Middle name" },
                                 new ViewItemDescription(Fields.GetName(m => m.LastName), 3){ LabelText = "Last name" },
+                                new ViewItemDescription(Fields.GetName(m => m.Company), 4){ LabelText = "Company" },
                             }
                         },
                         new GroupItemDescription("Address", 2)

@@ -97,6 +97,7 @@
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Services\ApplicationDataStoreAuthenticate.cs" />
     <Compile Include="Services\ApplicationSecurityInfoProvider.cs" />
+    <Compile Include="Model\ApplicationUserRole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
