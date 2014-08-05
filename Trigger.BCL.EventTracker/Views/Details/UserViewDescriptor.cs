@@ -28,7 +28,7 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                                 new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Sex" },
                                 new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Role" },
-                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration" },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = UserQuery.CurrentUserIsAdministrator },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Trigger.XForms;
 using Trigger.BCL.EventTracker.Model;
+using Trigger.XStorable.Dependency;
+using Trigger.BCL.Common.Security;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -31,9 +34,10 @@ namespace Trigger.BCL.EventTracker
                 },
                 new NavigationGroupItem("Settings", 3)
                 {
+                    Visible = UserQuery.CurrentUserIsAdministrator,
                     NavigationItems = new List<NavigationItem>
                     {
-                        new NavigationItem(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users" }
+                        new NavigationItem(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users", Visible = UserQuery.CurrentUserIsAdministrator }
                     }
                 }
             };

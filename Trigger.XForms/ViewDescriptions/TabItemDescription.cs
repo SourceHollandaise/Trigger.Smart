@@ -12,10 +12,13 @@ namespace Trigger.XForms
 
         public int Index { get; set; }
 
+        public bool Visible { get; set; }
+
         public TabItemDescription(string tabHeadertext, int index)
         {
             TabHeaderText = tabHeadertext;
             Index = index;
+            Visible = true;
         }
     }
 }

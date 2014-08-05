@@ -150,7 +150,9 @@ namespace Trigger.XForms.Visuals
             currentGridView.MouseDoubleClick += (sender, e) =>
             {
                 if (currentGridView.SelectedItem != null)
-                    (currentGridView.SelectedItem as IStorable).ShowDetailView();
+                {
+                    DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments { Grid = currentGridView, TargetType = modelType });
+                }
             };
 
             detailViewLayout.Add(currentGridView);

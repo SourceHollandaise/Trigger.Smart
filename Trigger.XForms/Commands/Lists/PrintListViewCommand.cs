@@ -33,5 +33,21 @@ namespace Trigger.XForms.Commands
                 return "printer";
             }
         }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

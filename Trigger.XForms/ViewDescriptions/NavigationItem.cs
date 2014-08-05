@@ -13,11 +13,14 @@ namespace Trigger.XForms
 
         public string ImageName { get; set; }
 
+        public bool Visible { get; set; }
+
         public NavigationItem(Type modelType, string navigationItemText, int index)
         {
             ModelType = modelType;
             NavigationItemText = navigationItemText;
             Index = index;
+            Visible = true;
         }
     }
 }

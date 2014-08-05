@@ -33,5 +33,21 @@ namespace Trigger.XForms.Commands
                 return "window_remove";
             }
         }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

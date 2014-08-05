@@ -58,6 +58,22 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         protected User CurrentUser
         {
             get

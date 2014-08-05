@@ -11,8 +11,6 @@ namespace Trigger.BCL.EventTracker
         {
             if (args.CurrentObject is Area)
             {
-                //var store = Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
-
                 var areaUser = new AreaUser();
                 areaUser.Area = args.CurrentObject as Area;
 
@@ -41,6 +39,22 @@ namespace Trigger.BCL.EventTracker
             get
             {
                 return "user_add";
+            }
+        }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
             }
         }
     }

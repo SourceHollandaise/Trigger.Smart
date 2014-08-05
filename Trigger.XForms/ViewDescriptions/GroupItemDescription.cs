@@ -14,11 +14,14 @@ namespace Trigger.XForms
 
         public ViewItemOrientation ViewItemOrientation { get; set; }
 
+        public bool Visible { get; set; }
+
         public GroupItemDescription(string groupHeadertext, int index)
         {
             GroupHeaderText = groupHeadertext;
             Index = index;
             ViewItemOrientation = ViewItemOrientation.Vertical;
+            Visible = true;
         }
     }
 }

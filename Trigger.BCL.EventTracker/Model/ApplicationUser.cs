@@ -6,6 +6,7 @@ using Trigger.BCL.Common.Model;
 namespace Trigger.BCL.EventTracker.Model
 {
 
+
     [System.ComponentModel.DefaultProperty("UserName")]
     [System.ComponentModel.DisplayName("User")]
     public class ApplicationUser : User

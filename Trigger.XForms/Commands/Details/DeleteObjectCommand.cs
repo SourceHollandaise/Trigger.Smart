@@ -1,11 +1,23 @@
 using Eto.Forms;
+using Trigger.BCL.Common.Model;
 
 namespace Trigger.XForms.Commands
 {
     public class DeleteObjectCommand : IDeleteObjectCommand
     {
+        DetailViewArguments detailViewArgs;
+
         public void Execute(DetailViewArguments args)
         {
+            detailViewArgs = args;
+
+            if (!AllowExecute)
+            {
+                SecurityConfirmationMessages.DeleteObjectShow();
+
+                return;
+            }
+
             var result = MessageBox.Show("Delete current object?", "Delete", MessageBoxButtons.OKCancel, MessageBoxType.Warning);
             if (result == DialogResult.Ok)
                 args.CurrentObject.Delete();
@@ -32,6 +44,30 @@ namespace Trigger.XForms.Commands
             get
             {
                 return "remove";
+            }
+        }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                if (detailViewArgs.CurrentObject == null)
+                    return false;
+
+                if (detailViewArgs.CurrentObject is User)
+                {
+                    return UserQuery.CurrentUserIsAdministrator;
+                }
+
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
             }
         }
     }

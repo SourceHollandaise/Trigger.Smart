@@ -58,5 +58,21 @@ namespace Trigger.BCL.EventTracker
                 return "record";
             }
         }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

@@ -62,5 +62,21 @@ namespace Trigger.XForms.Commands
                 return "favorite";
             }
         }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

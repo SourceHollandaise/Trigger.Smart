@@ -39,7 +39,7 @@ namespace Trigger.XForms.Visuals
 
         Control CreateViewLayout()
         {
-            var groupItems = descriptor.GroupItemDescriptions.OrderBy(p => p.Index).ToList();
+            var groupItems = descriptor.GroupItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList();
 
             return new Scrollable()
             {
@@ -54,7 +54,7 @@ namespace Trigger.XForms.Visuals
 
             var commandBar = new DynamicLayout();
             commandBar.BeginHorizontal();
-            foreach (var command in descriptor.Commands)
+            foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
             {
                 var button = new Button();
                 button.Size = new Size(40, 40);
@@ -81,7 +81,7 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
 
-            var tabItems = descriptor.TabItemDescriptions.OrderBy(p => p.Index).ToList();
+            var tabItems = descriptor.TabItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList();
 
             var tabControl = new TabControl();
            
@@ -101,7 +101,7 @@ namespace Trigger.XForms.Visuals
                     Content = AddGroupLayouts(tabItem.GroupItemDescriptions),
                 };
                 */
-                tabPage.Content = AddGroupLayouts(tabItem.GroupItemDescriptions);//scrollable;
+                tabPage.Content = AddGroupLayouts(tabItem.GroupItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList());//scrollable;
             }
 
             detailViewLayout.Add(tabControl);
@@ -109,7 +109,7 @@ namespace Trigger.XForms.Visuals
             return detailViewLayout;
         }
 
-        DynamicLayout AddGroupLayouts(IList<GroupItemDescription> groupItems)
+        DynamicLayout AddGroupLayouts(IEnumerable<GroupItemDescription> groupItems)
         {
             var layout = new DynamicLayout();
 
@@ -141,7 +141,7 @@ namespace Trigger.XForms.Visuals
             if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
                 layout.BeginHorizontal();
 
-            foreach (var viewItem in group.ViewItemDescriptions.OrderBy(p => p.Index).ToList())
+            foreach (var viewItem in group.ViewItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
             {
                 Control control = null;
 

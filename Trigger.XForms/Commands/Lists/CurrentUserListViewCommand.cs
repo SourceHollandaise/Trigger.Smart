@@ -55,6 +55,22 @@ namespace Trigger.XForms.Commands
             }
         }
 
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         protected User CurrentUser
         {
             get

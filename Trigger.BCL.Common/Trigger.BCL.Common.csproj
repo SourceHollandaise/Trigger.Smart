@@ -68,6 +68,8 @@
     <Compile Include="Attributes\FieldImageValueAttribute.cs" />
     <Compile Include="Attributes\FieldTextAreaAttribute.cs" />
     <Compile Include="Attributes\ImageNameAttribute.cs" />
+    <Compile Include="Model\UserQuery.cs" />
+    <Compile Include="Model\Sex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

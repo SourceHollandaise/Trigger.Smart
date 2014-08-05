@@ -46,5 +46,21 @@ namespace Trigger.XForms.Commands
                 return "attachment";
             }
         }
+
+        public bool AllowExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool Visible
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

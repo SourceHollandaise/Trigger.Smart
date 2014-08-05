@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
 
 namespace Trigger.XForms
 {

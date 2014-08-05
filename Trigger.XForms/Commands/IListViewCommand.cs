@@ -7,8 +7,4 @@ namespace Trigger.XForms.Commands
         void Execute(ListViewArguments listParameter);
     }
 
-    public interface IMainViewCommand : IViewCommand
-    {
-        void Execute(MainViewTemplate template);
-    }
 }

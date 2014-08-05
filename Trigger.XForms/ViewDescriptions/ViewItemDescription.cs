@@ -16,6 +16,8 @@ namespace Trigger.XForms
 
         public bool Fill { get; set; }
 
+        public bool Visible { get; set; }
+
         public ListPropertyMode ListMode { get; set; }
 
         public ViewItemDescription(string fieldName, int index)
@@ -24,6 +26,7 @@ namespace Trigger.XForms
             Index = index;
             LabelOrientation = LabelOrientation.Left;
             ShowLabel = true;
+            Visible = true;
         }
     }
 }

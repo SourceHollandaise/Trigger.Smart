@@ -62,14 +62,14 @@ namespace Trigger.XForms.Visuals
 
             var navigationlayout = new DynamicLayout();
 
-            foreach (var groupItem in descriptor.NavigationGroups.OrderBy(p => p.Index).ToList())
+            foreach (var groupItem in descriptor.NavigationGroups.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
             {
                 var navGroupLayout = new DynamicLayout();
                 var navGroupBox = new GroupBox();
                 navGroupBox.Text = groupItem.NavigationGroupText;
                
                 navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
-                foreach (var navItem in groupItem.NavigationItems.OrderBy(p => p.Index).ToList())
+                foreach (var navItem in groupItem.NavigationItems.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
                 {
                     var button = new Button()
                     {

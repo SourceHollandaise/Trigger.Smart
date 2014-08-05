@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
 
 namespace Trigger.XForms
 {
@@ -14,10 +11,13 @@ namespace Trigger.XForms
 
         public IList<NavigationItem> NavigationItems { get; set; }
 
+        public bool Visible { get; set; }
+
         public NavigationGroupItem(string navigationGrouptext, int index)
         {
             NavigationGroupText = navigationGrouptext;
             Index = index;
+            Visible = true;
         }
     }
 }
