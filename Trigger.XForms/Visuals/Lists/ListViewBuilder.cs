@@ -125,7 +125,16 @@ namespace Trigger.XForms.Visuals
                 button.Size = new Size(100, 40);
                 button.ID = command.ID;
                 button.Text = command.Name;
-                button.Font = new Font(button.Font.Family, button.Font.Size, FontStyle.Bold);
+
+                try
+                {
+                    button.Font = new Font(button.Font.Family, button.Font.Size, FontStyle.Bold);
+                }
+                catch
+                {
+
+                }
+
                 button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
@@ -147,10 +156,11 @@ namespace Trigger.XForms.Visuals
             };
             currentGridView.CellFormatting += (sender, e) =>
             {
-                if (!(e.Column.DataCell is ImageViewCell))
-                    e.Font = new Font(e.Font.Family, e.Font.Size);
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
-                    e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
+                {
+                    if (e.Item != null)
+                        e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
+                }
             };
             currentGridView.ColumnHeaderClick += (sender, e) =>
             {
@@ -216,8 +226,16 @@ namespace Trigger.XForms.Visuals
 
         Color SetTagBackColor(IStorable current)
         {
+            if (current == null)
+                return Colors.White;
+
             var store = DependencyMapProvider.Instance.ResolveType<IStore>();
-            var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(current.MappingId.ToString()));
+
+            var mappingString = current.MappingId != null ? current.MappingId as string : null;
+            if (mappingString == null)
+                return Colors.White;
+
+            var tag = store.LoadAll<Tag>().FirstOrDefault(p => !string.IsNullOrEmpty(p.TargetObjectMappingId) && p.TargetObjectMappingId == mappingString);
             if (tag != null)
             {
                 var rowColor = Color.Parse(tag.TagColor);
