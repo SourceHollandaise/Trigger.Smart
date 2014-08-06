@@ -36,7 +36,7 @@ namespace Trigger.XForms.Visuals
             {
                 PasswordChar = '*'
             };
-            textBoxPassword.Size = new Eto.Drawing.Size(-1, -1);
+            textBoxPassword.Size = new Size(-1, -1);
 
             layout.Add(textBoxPassword, true);
             layout.EndHorizontal();
