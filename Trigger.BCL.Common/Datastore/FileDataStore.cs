@@ -104,6 +104,7 @@ namespace Trigger.BCL.Common.Datastore
                 {
                     var result = Newtonsoft.Json.JsonConvert.DeserializeObject(content, type) as IStorable;
                     LinkedObjectHelper.UpdateStoredReferences(result);
+                    result.OnLoaded();
                     return result;
                 }
                 catch

@@ -9,7 +9,11 @@ namespace Trigger.XStorable.DataStore
 
         bool HasChanged { get; }
 
+        bool IsNewObject { get; }
+
         string GetRepresentation { get; }
+
+        void OnLoaded();
 
         void Save();
 

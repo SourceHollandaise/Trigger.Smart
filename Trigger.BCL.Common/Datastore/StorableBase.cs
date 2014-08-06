@@ -6,8 +6,6 @@ namespace Trigger.BCL.Common.Datastore
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
-        public bool HasChanged { get; protected set; }
-
         public virtual string GetRepresentation
         {
             get
@@ -17,6 +15,23 @@ namespace Trigger.BCL.Common.Datastore
                     return displayAttribute.DisplayName;
 
                 return MappingId != null ? MappingId.ToString() : string.Empty;
+            }
+        }
+
+        public bool HasChanged { get; protected set; }
+
+        bool isNewObject;
+
+        public bool IsNewObject
+        { 
+            get
+            { 
+                isNewObject = MappingId == null;
+                return isNewObject; 
+            }
+            protected set
+            {
+                isNewObject = value;
             }
         }
 
@@ -33,15 +48,33 @@ namespace Trigger.BCL.Common.Datastore
           
         }
 
+      
+        public virtual void OnLoaded()
+        {
+            HasChanged = false;
+
+            PropertyChanged += ObjectHasChanged;
+        }
+
         public virtual void Save()
         {
             UpdatePersistentReferences();
             Store.Save(GetType(), this);
+
+            PropertyChanged -= ObjectHasChanged;
+            HasChanged = false;
+            IsNewObject = false;
+            PropertyChanged += ObjectHasChanged;
         }
 
         public virtual void Delete()
         {
             Store.Delete(GetType(), this);
+        }
+
+        protected virtual void ObjectHasChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            HasChanged = true;
         }
 
         protected virtual void UpdatePersistentReferences()
