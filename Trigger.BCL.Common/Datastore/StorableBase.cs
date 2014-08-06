@@ -6,6 +6,8 @@ namespace Trigger.BCL.Common.Datastore
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
+        public bool HasChanged { get; protected set; }
+
         public virtual string GetRepresentation
         {
             get

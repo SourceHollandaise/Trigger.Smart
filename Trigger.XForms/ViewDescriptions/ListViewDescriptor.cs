@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using Trigger.XStorable.DataStore;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Commands;
-using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms
 {

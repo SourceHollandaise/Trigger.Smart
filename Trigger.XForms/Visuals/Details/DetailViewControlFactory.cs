@@ -28,13 +28,20 @@ namespace Trigger.XForms.Visuals
             {
                 Model.PropertyChanged += (sender, e) =>
                 {
-                    HandleBindings(Model.GetType().GetProperty(e.PropertyName));
+                    if (!string.IsNullOrWhiteSpace(e.PropertyName))
+                        HandleBindings(Model.GetType().GetProperty(e.PropertyName));
                 };
             }
         }
 
         public Control GetControl(PropertyInfo property, ViewItemDescription viewItem)
         {
+            if (property == null)
+                return null;
+
+            if (viewItem == null)
+                return null;
+
             if (property.PropertyType == typeof(string))
             {
                 var fieldFileDataAttribute = property.FindAttribute<FieldFileDataAttribute>();
@@ -59,7 +66,6 @@ namespace Trigger.XForms.Visuals
 
             if (property.PropertyType == typeof(Color))
                 return ImageViewPropertyEditor(property);
-
 
             if (property.PropertyType == typeof(Image))
                 return ImageViewPropertyEditor(property);
@@ -139,7 +145,7 @@ namespace Trigger.XForms.Visuals
 
                         control.Click += (sender, e) =>
                         {
-                           
+                            //TODO: Open in current Template? Open in new Template?
                         };
 
                         return control;
@@ -292,7 +298,7 @@ namespace Trigger.XForms.Visuals
                     property.SetValue(Model, control.Text, null);
             };
             control.Size = new Size(-1, -1);
-            control.Enabled = IsEnabled(property);
+            control.ReadOnly = !IsEnabled(property);
             controlCollection.Add(property.Name, control);
 
             return control;
@@ -310,7 +316,7 @@ namespace Trigger.XForms.Visuals
                 property.SetValue(Model, control.Text, null);
             };
             control.Size = new Size(-1, -1);
-            control.Enabled = IsEnabled(property);
+            control.ReadOnly = !IsEnabled(property);
             controlCollection.Add(property.Name, control);
 
             return control;
@@ -467,7 +473,7 @@ namespace Trigger.XForms.Visuals
                     property.SetValue(Model, Convert.ToDecimal(control.Value), null);
             };
             control.Size = new Size(-1, -1);
-            control.Enabled = IsEnabled(property);
+            control.ReadOnly = !IsEnabled(property);
             controlCollection.Add(property.Name, control);
 
             return control;
@@ -501,7 +507,7 @@ namespace Trigger.XForms.Visuals
             {
                 //property.SetValue(Model, textBox.Text, null);
             };
-            control.Enabled = IsEnabled(property);
+            control.ReadOnly = !IsEnabled(property);
             controlCollection.Add(property.Name, control);
             return control;
         }

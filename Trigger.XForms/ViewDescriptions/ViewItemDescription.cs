@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 
 namespace Trigger.XForms
 {
@@ -12,13 +11,15 @@ namespace Trigger.XForms
 
         public bool ShowLabel { get; set; }
 
-        public LabelOrientation LabelOrientation { get; set; }
-
         public bool Fill { get; set; }
 
         public bool Visible { get; set; }
 
+        public bool Required { get; set; }
+
         public ListPropertyMode ListMode { get; set; }
+
+        public LabelOrientation LabelOrientation { get; set; }
 
         public ViewItemDescription(string fieldName, int index)
         {

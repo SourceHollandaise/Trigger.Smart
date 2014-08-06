@@ -4,18 +4,18 @@ using Trigger.XStorable.DataStore;
 
 namespace Trigger.XForms.Visuals
 {
-    public class GridViewCompareUtils
+    public class GridViewComparer
     {
         readonly IListViewDescriptor descriptor;
 
         readonly GridColumn column;
 
-        public GridViewCompareUtils(IListViewDescriptor descriptor)
+        public GridViewComparer(IListViewDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }
 
-        public GridViewCompareUtils(GridColumn column)
+        public GridViewComparer(GridColumn column)
         {
             this.column = column;
         }

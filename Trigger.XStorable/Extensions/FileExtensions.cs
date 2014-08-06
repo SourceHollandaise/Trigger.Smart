@@ -4,7 +4,6 @@ using System.IO;
 
 namespace System.IO
 {
-
     public static class FileExtensions
     {
         public static string GetValidPath(this string fileName)
@@ -21,6 +20,5 @@ namespace System.IO
             return null;
         }
     }
-
 }
 	

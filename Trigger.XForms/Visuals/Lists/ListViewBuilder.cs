@@ -70,7 +70,7 @@ namespace Trigger.XForms.Visuals
 
             currentGridView.DataStore = new DataStoreProvider(descriptor, modelType).CreateDataSet(dataSet);
 
-            currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
+            currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
 
             detailViewLayout.Add(currentGridView);
 
@@ -157,11 +157,11 @@ namespace Trigger.XForms.Visuals
                 try
                 {
                     if (e.Column != null)
-                        currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(e.Column).ColumnCompare);
+                        currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).ColumnCompare);
                 }
                 catch
                 {
-                    currentGridView.SortComparer = new Comparison<object>(new GridViewCompareUtils(descriptor).Compare);
+                    currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
                 }
             };
             currentGridView.MouseDoubleClick += (sender, e) =>

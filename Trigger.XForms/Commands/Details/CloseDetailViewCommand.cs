@@ -7,7 +7,15 @@ namespace Trigger.XForms.Commands
         public void Execute(DetailViewArguments args)
         {
             if (args.CurrentObject != null)
+            {
+                if (args.CurrentObject.HasChanged)
+                {
+                    if (SecurityConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
+                        args.CurrentObject.Save();
+                }
                 args.CurrentObject.TryCloseDetailView();
+
+            }
         }
 
         public string ID

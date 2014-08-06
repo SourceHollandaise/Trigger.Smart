@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Datastore;
 using Trigger.XForms;
+using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -78,7 +77,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [System.ComponentModel.DisplayName("Termine zu SB")]
+        [System.ComponentModel.DisplayName("Termine von SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]
         public IEnumerable<Termin> LinkedTermine
@@ -101,7 +100,7 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        [System.ComponentModel.DisplayName("Akten zu SB")]
+        [System.ComponentModel.DisplayName("Akten von SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Akt))]
         public IEnumerable<Akt> LinkedAkten

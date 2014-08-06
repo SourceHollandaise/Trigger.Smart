@@ -129,9 +129,9 @@
     <Compile Include="Commands\XFormsBaseComands.cs" />
     <Compile Include="Commands\IMainViewCommand.cs" />
     <Compile Include="Commands\SecurityConfirmationMessages.cs" />
-    <Compile Include="Visuals\Lists\GridViewCompareUtils.cs" />
     <Compile Include="Visuals\Lists\DataStoreProvider.cs" />
     <Compile Include="Visuals\Lists\ListViewCellFactory.cs" />
+    <Compile Include="Visuals\Lists\GridViewComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

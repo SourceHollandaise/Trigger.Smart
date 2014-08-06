@@ -7,6 +7,8 @@ namespace Trigger.XStorable.DataStore
     {
         object MappingId { get; set; }
 
+        bool HasChanged { get; }
+
         string GetRepresentation { get; }
 
         void Save();

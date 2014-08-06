@@ -77,13 +77,13 @@
     <Compile Include="Views\Lists\UserListDescriptor.cs" />
     <Compile Include="Model\ExportableBase.cs" />
     <Compile Include="Views\ApplicationMainViewDescritptor.cs" />
-    <Compile Include="Model\AktModel\Telefonat.cs" />
     <Compile Include="Views\KanzleiMainViewDescriptor.cs" />
     <Compile Include="Views\Lists\TelefonatListDescriptor.cs" />
     <Compile Include="Views\Details\TelefonatViewDescriptor.cs" />
     <Compile Include="Commands\IAktPersonDetailViewCommand.cs" />
     <Compile Include="Commands\AktPersonDetailViewCommand.cs" />
     <Compile Include="Commands\CurrentSBListViewCommand.cs" />
+    <Compile Include="Model\Com\Telefonat.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -97,6 +97,7 @@
     <Folder Include="Views\Lists\" />
     <Folder Include="Views\Details\" />
     <Folder Include="Commands\" />
+    <Folder Include="Model\Com\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">

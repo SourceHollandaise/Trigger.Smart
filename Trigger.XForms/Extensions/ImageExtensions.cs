@@ -44,8 +44,9 @@ namespace Eto.Drawing
             Image bitMap = new Bitmap(fileName);
             if (size > bitMap.Height)
                 size = bitMap.Height;
-
+                
             var image = new Bitmap(bitMap, size, size);
+
             bitMap.Dispose();
             return image;
         }

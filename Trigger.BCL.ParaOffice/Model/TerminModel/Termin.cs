@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Trigger.XForms;
-using Trigger.BCL.Common.Datastore;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -48,8 +47,6 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
-
-     
 
         DateTime beginn;
 

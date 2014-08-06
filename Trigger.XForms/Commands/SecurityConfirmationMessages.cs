@@ -21,5 +21,10 @@ namespace Trigger.XForms.Commands
         {
             return MessageBox.Show(message ?? "Delete an user is not allowed! Please contact your administrator!", securityWarningCaption, MessageBoxButtons.OK, MessageBoxType.Warning);
         }
+
+        public static DialogResult SaveObjectShow(string message = null)
+        {
+            return MessageBox.Show(message ?? "Save current Object?", "Save", MessageBoxButtons.OKCancel, MessageBoxType.Question);
+        }
     }
 }
