@@ -15,7 +15,7 @@ namespace Trigger.XForms.Commands
 
             if (!AllowExecute)
             {
-                SecurityConfirmationMessages.OpenObjectShow();
+                ConfirmationMessages.NotAllowedShow();
 
                 return;
             }

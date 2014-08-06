@@ -10,7 +10,7 @@ namespace Trigger.XForms.Commands
             {
                 if (args.CurrentObject.HasChanged)// || args.CurrentObject.IsNewObject)
                 {
-                    if (SecurityConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
+                    if (ConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
                         args.CurrentObject.Save();
                 }
                 args.CurrentObject.TryCloseDetailView();

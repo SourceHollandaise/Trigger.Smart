@@ -13,11 +13,12 @@ namespace Trigger.XForms.Commands
 
             if (!AllowExecute)
             {
-                SecurityConfirmationMessages.DeleteObjectShow();
+                ConfirmationMessages.NotAllowedShow();
+
                 return;
             }
                 
-            if (SecurityConfirmationMessages.DeleteObjectShow() == DialogResult.Ok)
+            if (ConfirmationMessages.DeleteObjectShow() == DialogResult.Ok)
             {
                 args.CurrentObject.Delete();
                 args.CurrentObject.TryCloseDetailView();
