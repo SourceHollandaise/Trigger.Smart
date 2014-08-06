@@ -21,8 +21,8 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Datei" },
-                                new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 2){ LabelText = "Anlage" },
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Datei", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 2){ LabelText = "Anlage", Required = true  },
                                 new ViewItemDescription(Fields.GetName(m => m.ErledigungDatum), 3){ LabelText = "Erledigung" },
                                 new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 4){ LabelText = "Bemerkung", Fill = true },
 
@@ -32,7 +32,7 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.RA), 1){ LabelText = "RA" },
+                                new ViewItemDescription(Fields.GetName(m => m.RA), 1){ LabelText = "RA", Required = true },
                                 new ViewItemDescription(Fields.GetName(m => m.SK), 2){ LabelText = "SK" },
                                 new ViewItemDescription(Fields.GetName(m => m.Akt), 3){ LabelText = "Akt" },
                             }

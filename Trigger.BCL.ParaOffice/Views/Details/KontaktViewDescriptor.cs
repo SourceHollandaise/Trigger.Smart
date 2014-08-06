@@ -17,8 +17,8 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person" },
-                                new ViewItemDescription(Fields.GetName(m => m.Art), 2){ LabelText = "Art" },
+                                new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Art), 2){ LabelText = "Art", Required = true },
                             }
                         },
                         new GroupItemDescription("Details", 2)

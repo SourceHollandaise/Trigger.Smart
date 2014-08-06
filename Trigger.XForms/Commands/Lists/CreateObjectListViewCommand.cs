@@ -25,6 +25,7 @@ namespace Trigger.XForms.Commands
             if (target != null)
             {
                 target.Initialize();
+
                 target.ShowDetailView();
             }
         }

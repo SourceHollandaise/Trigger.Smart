@@ -235,7 +235,6 @@ namespace Trigger.BCL.ParaOffice
 
         string klientGegner;
 
-        [System.ComponentModel.ReadOnly(true)]
         public string KlientGegner
         {
             get

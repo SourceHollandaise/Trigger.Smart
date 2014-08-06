@@ -54,6 +54,8 @@ namespace Trigger.App.EventTracker
 
         void RegisterCommands()
         {
+            new XFormsBaseComands().Register();
+
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
         }

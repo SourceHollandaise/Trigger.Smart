@@ -35,7 +35,6 @@ namespace Trigger.BCL.Common.Datastore
             }
         }
 
-        [System.ComponentModel.ReadOnly(true)]
         [System.ComponentModel.DisplayName("ID")]
         public object MappingId
         {

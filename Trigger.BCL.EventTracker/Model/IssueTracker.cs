@@ -240,7 +240,6 @@ namespace Trigger.BCL.EventTracker.Model
         bool isDone;
 
         [System.ComponentModel.DisplayName("Done")]
-        [System.ComponentModel.ReadOnly(true)]
         public bool IsDone
         {
             get
@@ -259,7 +258,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string duration;
 
-        [System.ComponentModel.ReadOnly(true)]
         public string Duration
         {
             get
@@ -278,7 +276,6 @@ namespace Trigger.BCL.EventTracker.Model
 
         string fileName;
 
-        [System.ComponentModel.ReadOnly(true)]
         [FieldFileData]
         public string FileName
         {

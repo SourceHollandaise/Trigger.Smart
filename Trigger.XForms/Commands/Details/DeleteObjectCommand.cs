@@ -14,13 +14,14 @@ namespace Trigger.XForms.Commands
             if (!AllowExecute)
             {
                 SecurityConfirmationMessages.DeleteObjectShow();
-
                 return;
             }
-
-            var result = MessageBox.Show("Delete current object?", "Delete", MessageBoxButtons.OKCancel, MessageBoxType.Warning);
-            if (result == DialogResult.Ok)
+                
+            if (SecurityConfirmationMessages.DeleteObjectShow() == DialogResult.Ok)
+            {
                 args.CurrentObject.Delete();
+                args.CurrentObject.TryCloseDetailView();
+            }
         }
 
         public string ID

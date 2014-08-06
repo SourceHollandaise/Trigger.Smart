@@ -18,10 +18,10 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Betreff), 1){ LabelText = "Betreff" },
-                                new ViewItemDescription(Fields.GetName(m => m.Ort), 2){ LabelText = "Ort" },
-                                new ViewItemDescription(Fields.GetName(m => m.Beginn), 3){ LabelText = "Beginn" },
-                                new ViewItemDescription(Fields.GetName(m => m.Ende), 4){ LabelText = "Ende" },
+                                new ViewItemDescription(Fields.GetName(m => m.Betreff), 1){ LabelText = "Betreff", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Ort), 2){ LabelText = "Ort", Required = true },
+                                new ViewItemDescription(Fields.GetName(m => m.Beginn), 3){ LabelText = "Beginn", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Ende), 4){ LabelText = "Ende", Required = true },
                                 new ViewItemDescription(Fields.GetName(m => m.Beschreibung), 5){ LabelText = "Beschreibung", Fill = true },
                             }
                         },
@@ -30,9 +30,9 @@ namespace Trigger.BCL.ParaOffice
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Akt), 1){ LabelText = "Akt" },
-                                new ViewItemDescription(Fields.GetName(m => m.KlientGegner), 2){ LabelText = "Klient/Gegner" },
-                                new ViewItemDescription(Fields.GetName(m => m.SB), 3){ LabelText = "SB" },
-                                new ViewItemDescription(Fields.GetName(m => m.Erzeuger), 4){ LabelText = "Erzeuger" },
+                                new ViewItemDescription(Fields.GetName(m => m.KlientGegner), 2){ LabelText = "Klient/Gegner", ReadOnly = true },
+                                new ViewItemDescription(Fields.GetName(m => m.SB), 3){ LabelText = "SB", Required = true },
+                                new ViewItemDescription(Fields.GetName(m => m.Erzeuger), 4){ LabelText = "Erzeuger", Required = true  },
                             }
                         },
                     }

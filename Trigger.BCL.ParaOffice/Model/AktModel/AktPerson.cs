@@ -4,7 +4,6 @@ using Trigger.XStorable.DataStore;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
     [ImageName("user_add")]
@@ -22,10 +21,6 @@ namespace Trigger.BCL.ParaOffice
         {
             if (Akt != null && Person != null)
             {
-                var aktPerson = Store.LoadAll<AktPerson>().FirstOrDefault(p => p.Akt != null && p.Akt.MappingId.Equals(Akt.MappingId) && p.Person != null && p.Person.MappingId.Equals(Person.MappingId));
-                if (aktPerson != null)
-                    return;
-
                 base.Save();
             }
         }

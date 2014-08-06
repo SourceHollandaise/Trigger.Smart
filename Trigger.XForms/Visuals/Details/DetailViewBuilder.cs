@@ -156,6 +156,8 @@ namespace Trigger.XForms.Visuals
                         continue;
 
                     control = factory.GetControl(property, viewItem);
+
+                    DecorateControlsWithDescriptionValues(viewItem, control);
                 }
                 else
                 {
@@ -217,6 +219,17 @@ namespace Trigger.XForms.Visuals
             groupBox.Content = layout;
 
             return groupBox;
+        }
+
+        void DecorateControlsWithDescriptionValues(ViewItemDescription viewItem, Control control)
+        {
+            if (viewItem.ReadOnly)
+            {
+                if (control.GetType().GetProperty("ReadOnly") != null)
+                    control.GetType().GetProperty("ReadOnly").SetValue(control, viewItem.ReadOnly, null);
+                else
+                    control.Enabled = !viewItem.ReadOnly;
+            }
         }
     }
 }

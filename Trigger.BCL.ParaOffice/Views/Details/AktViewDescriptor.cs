@@ -19,8 +19,8 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Bezeichnung), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.AktArt), 2){ LabelText = "Art" },
+                                new ViewItemDescription(Fields.GetName(m => m.Bezeichnung), 1){ LabelText = "Name", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.AktArt), 2){ LabelText = "Art", Required = true  },
                                 new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 3){ LabelText = "Bemerkung", Fill = true },
 
                             }
@@ -29,7 +29,7 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.SB1), 1){ LabelText = "SB 1" },
+                                new ViewItemDescription(Fields.GetName(m => m.SB1), 1){ LabelText = "SB 1", Required = true  },
                                 new ViewItemDescription(Fields.GetName(m => m.SB2), 2){ LabelText = "SB 2" },
                                 new ViewItemDescription(Fields.GetName(m => m.SB3), 3){ LabelText = "SB 3" },
                                 new ViewItemDescription(EmptySpaceFieldName, 4)
@@ -39,7 +39,7 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 1){ LabelText = "Anlage" },
+                                new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 1){ LabelText = "Anlage", Required = true  },
                                 new ViewItemDescription(Fields.GetName(m => m.ErledigungDatum), 2){ LabelText = "Abschluss" },
                                 new ViewItemDescription(Fields.GetName(m => m.ArchivZahl), 3){ LabelText = "Archiv" }
                             }

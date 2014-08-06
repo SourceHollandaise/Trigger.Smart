@@ -17,6 +17,8 @@ namespace Trigger.XForms
 
         public bool Required { get; set; }
 
+        public bool ReadOnly { get; set; }
+
         public ListPropertyMode ListMode { get; set; }
 
         public LabelOrientation LabelOrientation { get; set; }

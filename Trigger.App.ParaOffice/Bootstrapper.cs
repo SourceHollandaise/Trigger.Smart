@@ -54,6 +54,9 @@ namespace Trigger.App.ParaOffice
 
         void RegisterCommands()
         {
+            new XFormsBaseComands().Register();
+
+
             Map.RegisterType<ICurrentUserListViewCommand, CurrentSBListViewCommand>();
             Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
         }

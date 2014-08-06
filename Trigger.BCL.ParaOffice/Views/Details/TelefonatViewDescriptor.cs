@@ -19,8 +19,8 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Beginn), 1){ LabelText = "Datum" },
-                                new ViewItemDescription(Fields.GetName(m => m.Nummer), 2){ LabelText = "Nummer" },
+                                new ViewItemDescription(Fields.GetName(m => m.Beginn), 1){ LabelText = "Datum", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Nummer), 2){ LabelText = "Nummer", Required = true },
                                 new ViewItemDescription(Fields.GetName(m => m.Teilnehmer), 3){ LabelText = "Teilnehmer" },
                                 new ViewItemDescription(Fields.GetName(m => m.Akt), 4){ LabelText = "Akt" },
                             }
@@ -29,10 +29,10 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.SB1), 1){ LabelText = "Telefonist" },
-                                new ViewItemDescription(Fields.GetName(m => m.SB2), 2){ LabelText = "Für SB" },
-                                new ViewItemDescription(Fields.GetName(m => m.Art), 3){ LabelText = "Art" },
-                                new ViewItemDescription(Fields.GetName(m => m.Status), 4){ LabelText = "Status" },
+                                new ViewItemDescription(Fields.GetName(m => m.SB1), 1){ LabelText = "Telefonist", Required = true },
+                                new ViewItemDescription(Fields.GetName(m => m.SB2), 2){ LabelText = "Für SB", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Art), 3){ LabelText = "Art", Required = true  },
+                                new ViewItemDescription(Fields.GetName(m => m.Status), 4){ LabelText = "Status", Required = true },
                             }
                         },
                         new GroupItemDescription("Beschreibung", 3)

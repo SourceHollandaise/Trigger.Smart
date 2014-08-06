@@ -77,7 +77,6 @@
     <Folder Include="Services\" />
     <Folder Include="Security\" />
     <Folder Include="Datastore\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
