@@ -54,9 +54,10 @@ namespace Trigger.XForms
             AllowMultiSelection = false;
             ListShowTags = true;
             IsImageList = false;
+
+            RegisterCommands<INavigateBackListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
-            //RegisterCommands<IOpenObjectListViewCommand>();
             RegisterCommands<ICurrentUserListViewCommand>();
 
             var defaultPropertyAttribute = typeof(T).FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();

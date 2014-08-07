@@ -13,7 +13,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public void Execute(ListViewArguments listParameter)
         {
-            CurrentSBService.CurrentSB.ShowDetailView();
+            CurrentSBService.CurrentSB.ShowDetailContentEmbedded();
         }
 
         public string ID

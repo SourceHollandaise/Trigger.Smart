@@ -31,6 +31,8 @@ namespace Trigger.XForms.Commands
             Map.RegisterType<ITagDetailViewCommand, TagDetailViewCommand>();
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
             Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
+            Map.RegisterType<INavigateBackDetailViewCommand, NavigateBackDetailViewCommand>();
+            Map.RegisterType<INavigateBackListViewCommand, NavigateBackListViewCommand>();
         }
     }
 }

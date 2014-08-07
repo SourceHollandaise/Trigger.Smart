@@ -6,7 +6,6 @@ using System.ComponentModel;
 using Trigger.XStorable.Dependency;
 using Trigger.XForms.Commands;
 using System.Linq;
-using Trigger.BCL.EventTracker;
 
 namespace Trigger.XForms.Visuals
 {
@@ -36,7 +35,7 @@ namespace Trigger.XForms.Visuals
             this.Size = new Size(1200, 800);
             this.Minimizable = true;
             this.Maximizable = true;
-     
+
             CreateMainContent();
         }
 
@@ -45,12 +44,14 @@ namespace Trigger.XForms.Visuals
             CreateSplitPanels();
 
             Content = CreateSplitLayout();
+
+           
         }
 
         void CreateSplitPanels()
         {
             NavigationPanel = new Panel();
-            NavigationPanel.Content = GetMainPanelContent();
+            NavigationPanel.Content = GetMainPanelContentListBoxStyle();
             ContentPanel = new Panel();
         }
 
@@ -68,9 +69,9 @@ namespace Trigger.XForms.Visuals
             return splitter;
         }
 
-        Control GetMainPanelContent()
+        Control GetMainPanelContentButtonStyle()
         {
-            var descriptor = new ApplicationMainViewDescriptor();
+            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
             var navigationlayout = new DynamicLayout();
 
@@ -93,10 +94,10 @@ namespace Trigger.XForms.Visuals
                 {
                     var button = new Button()
                     {
-                        Size = new Size(-1, 40),
+                        Size = new Size(-1, 36),
                         Text = navItem.NavigationItemText,
                         Tag = navItem.ModelType,
-                        Image = ImageExtensions.GetImage(navItem.ImageName, 24),
+                        Image = ImageExtensions.GetImage(navItem.ImageName, 16),
                         ImagePosition = ButtonImagePosition.Left,                      
                     };
                     button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as Type);
@@ -130,12 +131,89 @@ namespace Trigger.XForms.Visuals
             appGroup.Content = appGroupLayout;
 
             navigationlayout.Add(appGroup);
-          
+
             navigationlayout.BeginVertical();
             navigationlayout.EndVertical();
 
             return navigationlayout;
         }
+
+        Control GetMainPanelContentListBoxStyle()
+        {
+            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
+
+            var navigationlayout = new DynamicLayout();
+
+            foreach (var groupItem in descriptor.NavigationGroups.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
+            {
+                var navGroupLayout = new DynamicLayout();
+                var navGroupBox = new GroupBox();
+                navGroupBox.Text = groupItem.NavigationGroupText;
+
+                var listBox = new ListBox();
+                listBox.Size = new Size(-1, -1);
+
+                listBox.MouseDoubleClick += (sender, e) =>
+                {
+                    ShowListViewFromNavigation((listBox.SelectedValue as ListItem).Tag as Type);
+                };
+
+                try
+                {
+                    navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
+                }
+                catch
+                {
+
+                }
+
+                foreach (var navItem in groupItem.NavigationItems.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
+                {
+                    var listItem = new ListItem();
+                    listItem.Text = navItem.NavigationItemText;
+                    listItem.Key = navItem.NavigationItemText;
+                    listItem.Tag = navItem.ModelType;
+                    listBox.Items.Add(listItem);
+
+                }
+
+                navGroupLayout.Add(listBox, true);
+
+                navGroupBox.Content = navGroupLayout;
+                navigationlayout.BeginVertical();
+                navigationlayout.Add(navGroupBox);
+                navigationlayout.EndHorizontal();
+            }
+
+            var appGroupLayout = new DynamicLayout();
+
+            var appGroup = new GroupBox();
+            appGroup.Text = "Application";
+
+            try
+            {
+                appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
+            }
+            catch
+            {
+
+            }
+
+            appGroupLayout.BeginVertical();
+            appGroupLayout.Add(GetLogOffButton(), true);
+            appGroupLayout.Add(GetExitButton(), true);
+            appGroupLayout.EndVertical();
+
+            appGroup.Content = appGroupLayout;
+
+            navigationlayout.Add(appGroup);
+
+            navigationlayout.BeginVertical();
+            navigationlayout.EndVertical();
+
+            return navigationlayout;
+        }
+
 
         void ShowListViewFromNavigation(Type type)
         {
@@ -160,7 +238,14 @@ namespace Trigger.XForms.Visuals
                 var builder = new ListViewBuilder(descriptor, CurrentActiveType);
                 content = builder.GetContent();
 
-                builder.CurrentGridView.KeyDown += (sender, e) =>
+                builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
+                {
+                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                    if (detailContent != null)
+                        ContentPanel.Content = detailContent;
+                };
+
+                builder.CurrentGridView.KeyUp += (sender, e) =>
                 {
                     if (e.Key == Keys.Enter)
                     {
@@ -168,13 +253,6 @@ namespace Trigger.XForms.Visuals
                         if (detailContent != null)
                             ContentPanel.Content = detailContent;
                     }
-                };
-
-                builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
-                {
-                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
-                    if (detailContent != null)
-                        ContentPanel.Content = detailContent;
                 };
 
                 layout.Add(content);
@@ -189,16 +267,7 @@ namespace Trigger.XForms.Visuals
             var currentObject = currentGridView.SelectedItem as IStorable;
             if (currentObject != null)
             {
-                var detailDescriptorType = DetailViewDescriptorProvider.GetDescriptor(modelType);
-                if (detailDescriptorType != null)
-                {
-                    var detailDescriptor = Activator.CreateInstance(detailDescriptorType) as IDetailViewDescriptor;
-                    var detailBuilder = new DetailViewBuilder(detailDescriptor, currentObject);
-
-                    Title = currentObject.GetDefaultPropertyValue();
-
-                    return detailBuilder.GetContent();
-                }
+                currentObject.ShowDetailContentEmbedded();
             }
 
             return null;
@@ -209,8 +278,8 @@ namespace Trigger.XForms.Visuals
             var logOffCommand = DependencyMapProvider.Instance.ResolveType<ILogOffCommand>();
             var logOffButton = new Button
             {
-                Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(logOffCommand.ImageName, 24),
+                Size = new Size(-1, 36),
+                Image = ImageExtensions.GetImage(logOffCommand.ImageName, 16),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = logOffCommand.Name,
                 ID = logOffCommand.ID
@@ -224,8 +293,8 @@ namespace Trigger.XForms.Visuals
             var exitCommand = DependencyMapProvider.Instance.ResolveType<IApplicationExitCommand>();
             var exitButton = new Button
             {
-                Size = new Size(-1, 40),
-                Image = ImageExtensions.GetImage(exitCommand.ImageName, 24),
+                Size = new Size(-1, 36),
+                Image = ImageExtensions.GetImage(exitCommand.ImageName, 16),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = exitCommand.Name,
                 ID = exitCommand.ID

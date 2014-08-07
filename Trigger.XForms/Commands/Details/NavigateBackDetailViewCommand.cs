@@ -1,26 +1,20 @@
-using Trigger.XForms;
-using Trigger.BCL.ParaOffice;
-using Trigger.XForms.Commands;
+using Trigger.XForms.Visuals;
 
-namespace Trigger.BCL.ParaOffice
+namespace Trigger.XForms.Commands
 {
-    public class AktPersonDetailViewCommand : IAktPersonDetailViewCommand
+
+    public class NavigateBackDetailViewCommand : INavigateBackDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {
-            var akt = args.CurrentObject as Akt;
-
-            var aktPerson = new AktPerson();
-            aktPerson.Initialize();
-            aktPerson.Akt = akt;
-            aktPerson.ShowDetailContentEmbedded();
+            TemplateNavigator.Back();
         }
 
         public string ID
         {
             get
             {
-                return "cmd_akt_person";
+                return "cmd_navigate_back";
             }
         }
 
@@ -28,7 +22,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return "Aktperson +";
+                return "<";
             }
         }
 
@@ -36,7 +30,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return "user_add";
+                return "";
             }
         }
 
@@ -44,7 +38,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return 120;
+                return 34;
             }
         }
 
@@ -64,4 +58,5 @@ namespace Trigger.BCL.ParaOffice
             }
         }
     }
+
 }

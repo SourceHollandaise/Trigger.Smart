@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace Trigger.XForms.Visuals
 {
+
     public sealed class MainViewTemplate : TemplateBase
     {
 
@@ -49,7 +50,7 @@ namespace Trigger.XForms.Visuals
         void CreateSplitPanels()
         {
             NavigationPanel = new Panel();
-            NavigationPanel.Content = GetMainPanelContent();
+            NavigationPanel.Content = GetMainPanelContentButtonStyle();
             ContentPanel = new Panel();
         }
 
@@ -67,7 +68,7 @@ namespace Trigger.XForms.Visuals
             return splitter;
         }
 
-        Control GetMainPanelContent()
+        Control GetMainPanelContentButtonStyle()
         {
             var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
@@ -136,6 +137,83 @@ namespace Trigger.XForms.Visuals
             return navigationlayout;
         }
 
+        Control GetMainPanelContentListBoxStyle()
+        {
+            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
+
+            var navigationlayout = new DynamicLayout();
+
+            foreach (var groupItem in descriptor.NavigationGroups.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
+            {
+                var navGroupLayout = new DynamicLayout();
+                var navGroupBox = new GroupBox();
+                navGroupBox.Text = groupItem.NavigationGroupText;
+
+                var listBox = new ListBox();
+                listBox.Size = new Size(-1, -1);
+
+                listBox.MouseDoubleClick += (sender, e) =>
+                {
+                    ShowListViewFromNavigation((listBox.SelectedValue as ListItem).Tag as Type);
+                };
+
+                try
+                {
+                    navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
+                }
+                catch
+                {
+
+                }
+
+                foreach (var navItem in groupItem.NavigationItems.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
+                {
+                    var listItem = new ListItem();
+                    listItem.Text = navItem.NavigationItemText;
+                    listItem.Key = navItem.NavigationItemText;
+                    listItem.Tag = navItem.ModelType;
+                    listBox.Items.Add(listItem);
+
+                }
+
+                navGroupLayout.Add(listBox, true);
+
+                navGroupBox.Content = navGroupLayout;
+                navigationlayout.BeginVertical();
+                navigationlayout.Add(navGroupBox);
+                navigationlayout.EndHorizontal();
+            }
+
+            var appGroupLayout = new DynamicLayout();
+
+            var appGroup = new GroupBox();
+            appGroup.Text = "Application";
+
+            try
+            {
+                appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
+            }
+            catch
+            {
+
+            }
+
+            appGroupLayout.BeginVertical();
+            appGroupLayout.Add(GetLogOffButton(), true);
+            appGroupLayout.Add(GetExitButton(), true);
+            appGroupLayout.EndVertical();
+
+            appGroup.Content = appGroupLayout;
+
+            navigationlayout.Add(appGroup);
+
+            navigationlayout.BeginVertical();
+            navigationlayout.EndVertical();
+
+            return navigationlayout;
+        }
+
+
         void ShowListViewFromNavigation(Type type)
         {
             CurrentActiveType = type;
@@ -143,6 +221,8 @@ namespace Trigger.XForms.Visuals
             var listLayout = new DynamicLayout();
             listLayout.Add(CreateListViewLayout());
             ContentPanel.Content = listLayout;
+            TemplateNavigator.Add(ContentPanel.Content);
+
             Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 

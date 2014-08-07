@@ -132,6 +132,11 @@
     <Compile Include="Visuals\Lists\ListViewCellFactory.cs" />
     <Compile Include="Visuals\Lists\GridViewComparer.cs" />
     <Compile Include="Commands\ConfirmationMessages.cs" />
+    <Compile Include="Visuals\TemplateNavigator.cs" />
+    <Compile Include="Commands\Lists\NavigateBackListViewCommand.cs" />
+    <Compile Include="Commands\Lists\INavigateBackDetailViewCommand.cs" />
+    <Compile Include="Commands\Lists\INavigateBackListViewCommand.cs" />
+    <Compile Include="Commands\Details\NavigateBackDetailViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
