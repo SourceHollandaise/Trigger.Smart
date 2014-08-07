@@ -7,7 +7,7 @@ using XForms.Platform;
 using XForms.Security;
 using XForms.Store;
 
-namespace Trigger.App.ParaOffice
+namespace Trigger.App.OSX.ParaOffice
 {
     public class Bootstrapper : BootstrapperBase
     {

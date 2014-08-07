@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.XForms;
-using Trigger.XStorable.DataStore;
+using XForms.Model;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {

@@ -1,7 +1,6 @@
-using System;
-using Trigger.XForms;
 using System.Collections.Generic;
-using Trigger.BCL.Common.Model;
+using XForms.Design;
+using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {

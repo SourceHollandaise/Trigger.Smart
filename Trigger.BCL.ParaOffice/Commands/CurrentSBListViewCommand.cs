@@ -1,10 +1,10 @@
 using System.IO;
-using Trigger.XForms;
 using Trigger.BCL.ParaOffice;
-using Trigger.XForms.Commands;
-using Trigger.BCL.Common.Model;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
+using XForms.Commands;
+using XForms.Model;
+using XForms.Dependency;
+using XForms.Security;
+using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -86,7 +86,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
             }
         }
     }

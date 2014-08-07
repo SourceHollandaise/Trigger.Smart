@@ -3,6 +3,8 @@ using XForms.Dependency;
 using XForms.Commands;
 using XForms.Store;
 using XForms.Model;
+using XForms.Design;
+using XForms.Security;
 
 namespace XForms.Platform
 {
@@ -20,9 +22,16 @@ namespace XForms.Platform
 
         public abstract void InitialiteSecurityProvider();
 
-        public abstract void RegisterDependencies();
-
         public abstract void RegisterViewDescriptors();
+
+        public virtual void RegisterDependencies()
+        {
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
+            Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
+            Map.RegisterType<IdGenerator, GuidIdGenerator>();
+            Map.RegisterType<IStore, FileDataStore>();
+        }
+
 
         public virtual void RegisterCommands()
         {

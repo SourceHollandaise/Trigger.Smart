@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.XForms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Design;
+using XForms.Dependency;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -31,7 +30,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+                var store = MapProvider.Instance.ResolveType<IStore>();
 
                 return store.LoadAll<SB>().Where(p => p.TelefonatAnzeigen).SelectMany(p => p.LinkedTelefonate) as IEnumerable<IStorable>;
             }

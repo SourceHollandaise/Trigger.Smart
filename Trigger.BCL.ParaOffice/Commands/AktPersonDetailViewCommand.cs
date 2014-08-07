@@ -1,6 +1,6 @@
-using Trigger.XForms;
 using Trigger.BCL.ParaOffice;
-using Trigger.XForms.Commands;
+using XForms.Commands;
+using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {

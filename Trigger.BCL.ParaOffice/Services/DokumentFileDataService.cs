@@ -1,8 +1,8 @@
 ﻿using System;
-using Trigger.XStorable.DataStore;
 using System.IO;
-using Trigger.XStorable.Dependency;
 using System.Linq;
+using XForms.Store;
+using XForms.Dependency;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -13,7 +13,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return  DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                return  MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
             }
         }
 
@@ -29,7 +29,7 @@ namespace Trigger.BCL.ParaOffice
 
         public int LoadFromStore()
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
          
             var files = Directory.GetFiles(StoreConfig.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
             var dokumentList = store.LoadAll<Dokument>().ToList();            

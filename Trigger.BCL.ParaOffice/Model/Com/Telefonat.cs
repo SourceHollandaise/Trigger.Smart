@@ -1,24 +1,9 @@
-using Trigger.XStorable.DataStore;
-using Trigger.XForms;
 using System;
+using XForms.Model;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {
-
-    public enum TelefonatArt
-    {
-        Ein,
-        Aus,
-        Intern
-    }
-
-    public enum TelefonatStatus
-    {
-        OK,
-        KN,
-        RR,
-        RWA
-    }
 
     [System.ComponentModel.DefaultProperty("Teilnehmer")]
     [System.ComponentModel.DisplayName("Telefonat")]

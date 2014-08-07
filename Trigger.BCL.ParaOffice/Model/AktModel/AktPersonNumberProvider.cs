@@ -1,6 +1,6 @@
 using System.Linq;
-using Trigger.XForms;
-using Trigger.XStorable.DataStore;
+using XForms.Store;
+using XForms.Dependency;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -11,7 +11,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Trigger.XStorable.Dependency.DependencyMapProvider.Instance.ResolveType<IStore>();
+                return MapProvider.Instance.ResolveType<IStore>();
             }
         }
 

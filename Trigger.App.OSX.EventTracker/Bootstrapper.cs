@@ -8,7 +8,7 @@ using XForms.Security;
 using XForms.Design;
 using XForms.Model;
 
-namespace Trigger.App.EventTracker
+namespace Trigger.App.OSX.EventTracker
 {
     public class Bootstrapper : BootstrapperBase
     {
@@ -29,10 +29,8 @@ namespace Trigger.App.EventTracker
 
         public override void RegisterDependencies()
         {
-            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
-            Map.RegisterType<IAuthenticate, ApplicationDataStoreAuthenticate>();
-            Map.RegisterType<IdGenerator, GuidIdGenerator>();
-            Map.RegisterType<IStore, FileDataStore>();
+            base.RegisterDependencies();
+
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
         }
 

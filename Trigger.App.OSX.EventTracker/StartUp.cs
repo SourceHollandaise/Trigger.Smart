@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.App.EventTracker
+namespace Trigger.App.OSX.EventTracker
 {
     public class StartUp
     {

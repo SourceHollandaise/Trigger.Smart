@@ -1,4 +1,4 @@
-﻿using Trigger.BCL.Common.Datastore;
+﻿using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {

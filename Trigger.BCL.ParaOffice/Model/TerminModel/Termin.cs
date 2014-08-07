@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Trigger.XForms;
+using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {

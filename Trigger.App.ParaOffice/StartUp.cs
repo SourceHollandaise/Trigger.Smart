@@ -7,9 +7,9 @@ namespace Trigger.App.ParaOffice
         [STAThread]
         static void Main()
         {
-            var application = new AppParaOffice();
+            var application = new XForms.Platform.XFormsApplication();
 
-            application.InitalizeApplication();
+            application.InitalizeApplication(new Bootstrapper());
             application.Run();
         }
     }

@@ -1,7 +1,7 @@
 using System.Linq;
-using Trigger.BCL.Common.Security;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Dependency;
+using XForms.Security;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -11,9 +11,9 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                var currentUser = DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                var currentUser = MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 
-                return DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<SB>()
+                return MapProvider.Instance.ResolveType<IStore>().LoadAll<SB>()
                     .FirstOrDefault(p => p.User != null && p.User.MappingId.Equals(currentUser.MappingId));
             }
         }

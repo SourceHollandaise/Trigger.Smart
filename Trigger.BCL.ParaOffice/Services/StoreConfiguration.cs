@@ -1,7 +1,7 @@
 using System;
-using Trigger.XStorable.DataStore;
 using System.IO;
 using System.Configuration;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {

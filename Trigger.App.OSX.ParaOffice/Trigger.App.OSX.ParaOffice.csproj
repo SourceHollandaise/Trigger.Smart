@@ -85,15 +85,20 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="StartUp.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\paragraph_128x128.icns" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.App.ParaOffice\Trigger.App.ParaOffice.csproj">
-      <Project>{A1C293B3-EC0A-449A-8994-C0245992EB00}</Project>
-      <Name>Trigger.App.ParaOffice</Name>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="StartUp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">
+      <Project>{82257C12-D253-46CC-821B-44CFBE26B115}</Project>
+      <Name>XForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trigger.BCL.ParaOffice\Trigger.BCL.ParaOffice.csproj">
+      <Project>{387D39A4-3EB2-43EF-84BA-1ED12727D148}</Project>
+      <Name>Trigger.BCL.ParaOffice</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

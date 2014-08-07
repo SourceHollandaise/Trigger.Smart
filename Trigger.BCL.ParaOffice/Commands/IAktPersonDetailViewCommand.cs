@@ -1,4 +1,4 @@
-﻿using Trigger.XForms.Commands;
+﻿using XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {

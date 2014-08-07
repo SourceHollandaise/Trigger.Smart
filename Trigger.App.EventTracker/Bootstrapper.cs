@@ -29,10 +29,8 @@ namespace Trigger.App.EventTracker
 
         public override void RegisterDependencies()
         {
-            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
-            Map.RegisterType<IAuthenticate, ApplicationDataStoreAuthenticate>();
-            Map.RegisterType<IdGenerator, GuidIdGenerator>();
-            Map.RegisterType<IStore, FileDataStore>();
+            base.RegisterDependencies();
+
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
         }
 

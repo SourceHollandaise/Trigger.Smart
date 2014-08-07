@@ -85,6 +85,8 @@
     <Compile Include="Commands\CurrentSBListViewCommand.cs" />
     <Compile Include="Model\Com\Telefonat.cs" />
     <Compile Include="Model\AktModel\AktPersonNumberProvider.cs" />
+    <Compile Include="Model\Com\TelefonatArt.cs" />
+    <Compile Include="Model\Com\TelefonatStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -101,24 +103,12 @@
     <Folder Include="Model\Com\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.XStorable\Trigger.XStorable.csproj">
-      <Project>{17097A62-E252-4F77-8E0D-646C8FD335D9}</Project>
-      <Name>Trigger.XStorable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.BCL.Common\Trigger.BCL.Common.csproj">
-      <Project>{26480786-A624-404A-BDD8-D5577BE3AE43}</Project>
-      <Name>Trigger.BCL.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.XForms\Trigger.XForms.csproj">
-      <Project>{EA2761A1-68B9-4873-B439-2FA978D40E33}</Project>
-      <Name>Trigger.XForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trigger.Dependency\Trigger.Dependency.csproj">
-      <Project>{2CA29A29-7553-4801-8D29-8892E7BCB209}</Project>
-      <Name>Trigger.Dependency</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">
+      <Project>{82257C12-D253-46CC-821B-44CFBE26B115}</Project>
+      <Name>XForms</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

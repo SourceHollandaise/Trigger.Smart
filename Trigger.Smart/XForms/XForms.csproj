@@ -8,6 +8,7 @@
     <RootNamespace>XForms</RootNamespace>
     <AssemblyName>XForms</AssemblyName>
     <ReleaseVersion>0.8</ReleaseVersion>
+    <Description>Cross-Platform Application Library</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
