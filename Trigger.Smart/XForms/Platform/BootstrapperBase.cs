@@ -28,7 +28,7 @@ namespace XForms.Platform
         {
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
-            Map.RegisterType<IdGenerator, GuidIdGenerator>();
+            Map.RegisterType<IMappingIdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();
         }
 

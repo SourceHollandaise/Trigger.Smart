@@ -2,7 +2,7 @@ using System;
 
 namespace XForms.Store
 {
-    public class GuidIdGenerator : IdGenerator
+    public class GuidIdGenerator : IMappingIdGenerator
     {
         public object GetId()
         {

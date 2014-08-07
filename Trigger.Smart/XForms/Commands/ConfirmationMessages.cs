@@ -7,7 +7,6 @@ namespace XForms.Commands
     {
         static readonly string securityWarningCaption = "Security Warning";
 
-
         public static void NotAllowedShow(string message = null)
         {
             MessageBox.Show(message ?? "Your are not allowed! Please contact your administrator!", securityWarningCaption, MessageBoxButtons.OK, MessageBoxType.Warning);

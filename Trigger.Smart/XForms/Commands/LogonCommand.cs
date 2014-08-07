@@ -2,7 +2,7 @@ using XForms.Design;
 
 namespace XForms.Commands
 {
-    public class LogOffCommand : ILogOffCommand
+    public class LogonCommand : ILogonCommand
     {
         public void Execute(MainViewTemplate template)
         {
@@ -21,7 +21,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "Log off";
+                return "Login";
             }
         }
 

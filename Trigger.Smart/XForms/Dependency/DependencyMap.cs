@@ -130,12 +130,10 @@ namespace XForms.Dependency
             registeredTypes.Clear();
         }
 
-
         public void Dispose()
         {
             registeredTypes = null;
             registeredInstances = null;
-
         }
     }
 }

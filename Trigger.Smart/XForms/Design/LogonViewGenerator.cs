@@ -45,8 +45,8 @@ namespace XForms.Design
             var logonButton = new Button()
             {
                 Text = "Log on",
-                Size = new Eto.Drawing.Size(-1, 40),
-                Image = Eto.Drawing.ImageExtensions.GetImage("lock_off", 24),
+                Size = new Size(-1, 34),
+                Image = ImageExtensions.GetImage("lock_off", 16),
                 ImagePosition = ButtonImagePosition.Left,
                 BackgroundColor = Colors.WhiteSmoke
             };

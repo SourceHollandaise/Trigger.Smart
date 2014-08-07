@@ -1,5 +1,4 @@
 
-
 namespace XForms.Dependency
 {
     public static class MapProvider
@@ -23,6 +22,7 @@ namespace XForms.Dependency
 
         public static void Destroy()
         {
+            map.Dispose();
             map = null;
         }
     }

@@ -53,7 +53,6 @@
     <Compile Include="Dependency\IDependencyMap.cs" />
     <Compile Include="Store\LinkedListAttribute.cs" />
     <Compile Include="Store\LinkedObjectAttribute.cs" />
-    <Compile Include="Store\IdGenerator.cs" />
     <Compile Include="Store\IFileData.cs" />
     <Compile Include="Store\IFileDataService.cs" />
     <Compile Include="Store\IStorable.cs" />
@@ -134,12 +133,10 @@
     <Compile Include="Commands\ConfirmationMessages.cs" />
     <Compile Include="Commands\DetailViewArguments.cs" />
     <Compile Include="Commands\ListViewArguments.cs" />
-    <Compile Include="Commands\LogOffCommand.cs" />
     <Compile Include="Commands\XFormsBaseComands.cs" />
     <Compile Include="Commands\Interfaces\IApplicationExitCommand.cs" />
     <Compile Include="Commands\Interfaces\IDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IListViewCommand.cs" />
-    <Compile Include="Commands\Interfaces\ILogOffCommand.cs" />
     <Compile Include="Commands\Interfaces\IMainViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ICreateObjectListViewCommand.cs" />
@@ -174,6 +171,9 @@
     <Compile Include="Commands\DeleteObjectDetailViewCommand.cs" />
     <Compile Include="Platform\BootstrapperBase.cs" />
     <Compile Include="Platform\XFormsApplication.cs" />
+    <Compile Include="Commands\Interfaces\ILogonCommand.cs" />
+    <Compile Include="Commands\LogonCommand.cs" />
+    <Compile Include="Store\IMappingIdGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

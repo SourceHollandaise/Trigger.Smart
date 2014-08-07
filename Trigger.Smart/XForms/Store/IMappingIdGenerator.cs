@@ -1,7 +1,7 @@
 
 namespace XForms.Store
 {
-    public interface IdGenerator
+    public interface IMappingIdGenerator
     {
         object GetId();
     }

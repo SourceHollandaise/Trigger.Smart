@@ -14,7 +14,7 @@ namespace XForms.Store
         {
             string typeDir = CreateTypeDirectory(type);
                     
-            item.MappingId = item.MappingId ?? MapProvider.Instance.ResolveType<IdGenerator>().GetId();
+            item.MappingId = item.MappingId ?? MapProvider.Instance.ResolveType<IMappingIdGenerator>().GetId();
 
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
            

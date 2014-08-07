@@ -276,7 +276,7 @@ namespace XForms.Design
 
         Button GetLogOffButton()
         {
-            var logOffCommand = MapProvider.Instance.ResolveType<ILogOffCommand>();
+            var logOffCommand = MapProvider.Instance.ResolveType<ILogonCommand>();
             var logOffButton = new Button
             {
                 Size = new Size(-1, 36),
