@@ -1,5 +1,5 @@
-using Eto.Forms;
 using System;
+using Eto.Forms;
 using XForms.Design;
 
 namespace XForms.Platform

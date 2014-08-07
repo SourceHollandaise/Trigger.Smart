@@ -1,10 +1,10 @@
 using System.Linq;
-using XForms.Dependency;
 using XForms.Commands;
-using XForms.Store;
-using XForms.Model;
+using XForms.Dependency;
 using XForms.Design;
+using XForms.Model;
 using XForms.Security;
+using XForms.Store;
 
 namespace XForms.Platform
 {
@@ -31,7 +31,6 @@ namespace XForms.Platform
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();
         }
-
 
         public virtual void RegisterCommands()
         {
