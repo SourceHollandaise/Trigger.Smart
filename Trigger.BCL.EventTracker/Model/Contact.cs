@@ -4,7 +4,7 @@ using Trigger.XForms;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-    [System.ComponentModel.DefaultProperty("Person")]
+    [System.ComponentModel.DefaultProperty("PersonAlias")]
     [System.ComponentModel.DisplayName("Contact")]
     [ImageName("user_comments")]
     public class Contact : StorableBase

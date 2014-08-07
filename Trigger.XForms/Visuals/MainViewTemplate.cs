@@ -11,9 +11,18 @@ namespace Trigger.XForms.Visuals
 {
     public sealed class MainViewTemplate : TemplateBase
     {
-        Panel contentPanel;
 
-        Panel navigationPanel;
+        public Panel ContentPanel
+        {
+            get;
+            set;
+        }
+
+        public Panel NavigationPanel
+        {
+            get;
+            set;
+        }
 
         public Type CurrentActiveType
         { 
@@ -39,17 +48,17 @@ namespace Trigger.XForms.Visuals
 
         void CreateSplitPanels()
         {
-            navigationPanel = new Panel();
-            navigationPanel.Content = GetMainPanelContent();
-            contentPanel = new Panel();
+            NavigationPanel = new Panel();
+            NavigationPanel.Content = GetMainPanelContent();
+            ContentPanel = new Panel();
         }
 
         Splitter CreateSplitLayout()
         {
             var splitter = new Splitter
             {
-                Panel1 = navigationPanel,
-                Panel2 = contentPanel,
+                Panel1 = NavigationPanel,
+                Panel2 = ContentPanel,
                 Orientation = SplitterOrientation.Horizontal,
                 FixedPanel = SplitterFixedPanel.Panel1
             };
@@ -133,7 +142,7 @@ namespace Trigger.XForms.Visuals
             var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
             var listLayout = new DynamicLayout();
             listLayout.Add(CreateListViewLayout());
-            contentPanel.Content = listLayout;
+            ContentPanel.Content = listLayout;
             Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 
@@ -154,7 +163,7 @@ namespace Trigger.XForms.Visuals
                 {
                     var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
                     if (detailContent != null)
-                        contentPanel.Content = detailContent;
+                        ContentPanel.Content = detailContent;
                 };
 
                 layout.Add(content);
@@ -166,13 +175,17 @@ namespace Trigger.XForms.Visuals
 
         Control CreateDetailViewLayout(GridView currentGridView, Type modelType)
         {
-            if (currentGridView.SelectedItem != null)
+            var currentObject = currentGridView.SelectedItem as IStorable;
+            if (currentObject != null)
             {
                 var detailDescriptorType = DetailViewDescriptorProvider.GetDescriptor(modelType);
                 if (detailDescriptorType != null)
                 {
                     var detailDescriptor = Activator.CreateInstance(detailDescriptorType) as IDetailViewDescriptor;
-                    var detailBuilder = new DetailViewBuilder(detailDescriptor, currentGridView.SelectedItem as IStorable);
+                    var detailBuilder = new DetailViewBuilder(detailDescriptor, currentObject);
+
+                    Title = currentObject.GetDefaultPropertyValue();
+
                     return detailBuilder.GetContent();
                 }
             }

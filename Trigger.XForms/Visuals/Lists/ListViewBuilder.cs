@@ -75,7 +75,6 @@ namespace Trigger.XForms.Visuals
             if (descriptor.RowHeight.HasValue)
                 CurrentGridView.RowHeight = descriptor.RowHeight.Value;
 
-
             CurrentGridView.DataStore = new DataStoreProvider(descriptor, ModelType).CreateDataSet(dataSet);
 
             CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
@@ -103,8 +102,7 @@ namespace Trigger.XForms.Visuals
                 button.ToolTip = command.Name;
                 button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Overlay;
-                button.Click += (sender, e) => 
-                command.Execute(new ListViewArguments
+                button.Click += (sender, e) => command.Execute(new ListViewArguments
                 {
                     TargetType = ModelType,
                     Grid = CurrentGridView,
@@ -182,19 +180,21 @@ namespace Trigger.XForms.Visuals
                     CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
                 }
             };
-            /*
-            CurrentGridView.MouseDoubleClick += (sender, e) =>
+
+            if (!isRoot)
             {
-                if (CurrentGridView.SelectedItem != null)
+                CurrentGridView.MouseDoubleClick += (sender, e) =>
                 {
-                    DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
+                    if (CurrentGridView.SelectedItem != null)
                     {
-                        Grid = CurrentGridView,
-                        TargetType = ModelType
-                    });
-                }
-            };
-            */
+                        DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
+                        {
+                            Grid = CurrentGridView,
+                            TargetType = ModelType
+                        });
+                    }
+                };
+            }
         }
 
         GridColumn CreateColumn(ColumnDescription columnItem)
