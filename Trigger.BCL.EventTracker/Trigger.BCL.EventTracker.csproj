@@ -107,12 +107,12 @@
     <Folder Include="Commands\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">
       <Project>{82257C12-D253-46CC-821B-44CFBE26B115}</Project>
       <Name>XForms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

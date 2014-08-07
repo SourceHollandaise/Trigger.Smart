@@ -1,7 +1,8 @@
-using Eto.Drawing;
+
 using System.IO;
 using XForms.Model;
 using XForms.Store;
+using Eto.Drawing;
 
 namespace Trigger.BCL.EventTracker.Model
 {
