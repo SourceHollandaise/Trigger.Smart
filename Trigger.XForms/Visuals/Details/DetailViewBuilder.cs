@@ -62,7 +62,7 @@ namespace Trigger.XForms.Visuals
                 button.ToolTip = command.Name;
                 button.Image = ImageExtensions.GetImage(command.ImageName, 24);
                 button.ImagePosition = ButtonImagePosition.Overlay;
-                //button.BackgroundColor = Colors.WhiteSmoke;
+
                 button.Click += (sender, e) =>
                 {
                     command.Execute(new DetailViewArguments{ CurrentObject = currentObject });
@@ -91,7 +91,6 @@ namespace Trigger.XForms.Visuals
                 var tabPage = new TabPage()
                 {
                     Text = tabItem.TabHeaderText,
-                    //BackgroundColor = Colors.WhiteSmoke
                 };
 
                 tabControl.TabPages.Add(tabPage);

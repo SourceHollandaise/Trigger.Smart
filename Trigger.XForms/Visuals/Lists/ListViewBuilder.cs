@@ -15,8 +15,6 @@ namespace Trigger.XForms.Visuals
     {
         protected int? CurrentRowIndex = null;
 
-        GridView currentGridView;
-
         IEnumerable<IStorable> dataSet;
 
         readonly IEnumerable<IStorable> originalDataSet;
@@ -25,15 +23,25 @@ namespace Trigger.XForms.Visuals
 
         readonly IListViewDescriptor descriptor;
 
-        readonly Type modelType;
-
         readonly bool isRoot;
+
+        public Type ModelType
+        {
+            get;
+            private set;
+        }
+
+        public GridView CurrentGridView
+        {
+            get;
+            private set;
+        }
 
         public ListViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
         {
             this.originalDataSet = dataSet;
             this.dataSet = dataSet;
-            this.modelType = modelType;
+            this.ModelType = modelType;
             this.descriptor = descriptor;
             this.isRoot = viewIsRoot;
             factory = new ListViewCellFactory(modelType);
@@ -41,7 +49,7 @@ namespace Trigger.XForms.Visuals
 
         public Control GetContent()
         {
-            currentGridView = null;
+            CurrentGridView = null;
 
             var detailViewLayout = new DynamicLayout();
             detailViewLayout.BeginHorizontal();
@@ -49,30 +57,30 @@ namespace Trigger.XForms.Visuals
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
 
-            currentGridView = new GridView();
-            currentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
-            currentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
-            currentGridView.ShowCellBorders = false;
+            CurrentGridView = new GridView();
+            CurrentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
+            CurrentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
+            CurrentGridView.ShowCellBorders = false;
 
             if (descriptor.ListShowTags)
-                currentGridView.Columns.Add(CreateTagColumn());
+                CurrentGridView.Columns.Add(CreateTagColumn());
 
             foreach (var columnItem in descriptor.ColumnDescriptions.OrderBy(p => p.Index).ToList())
             {
                 var gridColumn = CreateColumn(columnItem);
                 if (gridColumn != null)
-                    currentGridView.Columns.Add(gridColumn);
+                    CurrentGridView.Columns.Add(gridColumn);
             }
 
             if (descriptor.RowHeight.HasValue)
-                currentGridView.RowHeight = descriptor.RowHeight.Value;
+                CurrentGridView.RowHeight = descriptor.RowHeight.Value;
 
 
-            currentGridView.DataStore = new DataStoreProvider(descriptor, modelType).CreateDataSet(dataSet);
+            CurrentGridView.DataStore = new DataStoreProvider(descriptor, ModelType).CreateDataSet(dataSet);
 
-            currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
+            CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
 
-            detailViewLayout.Add(currentGridView);
+            detailViewLayout.Add(CurrentGridView);
 
             detailViewLayout.EndHorizontal();
 
@@ -98,8 +106,8 @@ namespace Trigger.XForms.Visuals
                 button.Click += (sender, e) => 
                 command.Execute(new ListViewArguments
                 {
-                    TargetType = modelType,
-                    Grid = currentGridView,
+                    TargetType = ModelType,
+                    Grid = CurrentGridView,
                     CustomDataSet = originalDataSet
                 });
                 commandBar.Add(button, false, false);
@@ -140,8 +148,8 @@ namespace Trigger.XForms.Visuals
                 button.Click += (sender, e) =>
                     command.Execute(new ListViewArguments
                 {
-                    TargetType = modelType,
-                    Grid = currentGridView,
+                    TargetType = ModelType,
+                    Grid = CurrentGridView,
                     CustomDataSet = originalDataSet
                 });
                 commandBar.Add(button, false, false);
@@ -150,11 +158,11 @@ namespace Trigger.XForms.Visuals
 
         void RegisterToEvents()
         {
-            currentGridView.SelectionChanged += (sender, e) =>
+            CurrentGridView.SelectionChanged += (sender, e) =>
             {
-                CurrentRowIndex = currentGridView.SelectedRows.FirstOrDefault();
+                CurrentRowIndex = CurrentGridView.SelectedRows.FirstOrDefault();
             };
-            currentGridView.CellFormatting += (sender, e) =>
+            CurrentGridView.CellFormatting += (sender, e) =>
             {
                 if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
                 {
@@ -162,34 +170,36 @@ namespace Trigger.XForms.Visuals
                         e.BackgroundColor = SetTagBackColor(e.Item as IStorable);
                 }
             };
-            currentGridView.ColumnHeaderClick += (sender, e) =>
+            CurrentGridView.ColumnHeaderClick += (sender, e) =>
             {
                 try
                 {
                     if (e.Column != null)
-                        currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).ColumnCompare);
+                        CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).ColumnCompare);
                 }
                 catch
                 {
-                    currentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
+                    CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
                 }
             };
-            currentGridView.MouseDoubleClick += (sender, e) =>
+            /*
+            CurrentGridView.MouseDoubleClick += (sender, e) =>
             {
-                if (currentGridView.SelectedItem != null)
+                if (CurrentGridView.SelectedItem != null)
                 {
                     DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
                     {
-                        Grid = currentGridView,
-                        TargetType = modelType
+                        Grid = CurrentGridView,
+                        TargetType = ModelType
                     });
                 }
             };
+            */
         }
 
         GridColumn CreateColumn(ColumnDescription columnItem)
         {
-            var property = modelType.GetProperty(columnItem.FieldName);
+            var property = ModelType.GetProperty(columnItem.FieldName);
             if (property == null)
                 return null;
 

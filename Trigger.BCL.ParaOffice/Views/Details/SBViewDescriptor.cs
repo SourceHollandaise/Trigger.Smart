@@ -19,8 +19,8 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel", Required = true, ReadOnly = !UserQuery.CurrentUserIsAdministrator },
-                                new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer", Required = true, ReadOnly = !UserQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
                             }
                         },
                         new GroupItemDescription("Einstellungen", 1)

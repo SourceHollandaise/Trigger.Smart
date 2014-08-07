@@ -23,12 +23,12 @@ namespace Trigger.BCL.ParaOffice
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Benutzer", Required = true, ReadOnly = !UserQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Benutzer", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
                                 new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Passwort", Required = true },
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                                 new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Geschlecht", Required = true },
                                 new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Rolle", Required = true },
-                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = UserQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)

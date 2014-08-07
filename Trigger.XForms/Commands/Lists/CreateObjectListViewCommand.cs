@@ -60,7 +60,7 @@ namespace Trigger.XForms.Commands
             {
                 if (typeof(User).IsAssignableFrom(listViewArgs.TargetType))
                 {
-                    return UserQuery.CurrentUserIsAdministrator;
+                    return ApplicationQuery.CurrentUserIsAdministrator;
                 }
 
                 return true;

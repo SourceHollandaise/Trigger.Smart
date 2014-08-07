@@ -23,12 +23,12 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Username", ReadOnly = !UserQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Username", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
                                 new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Password" },
                                 new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
                                 new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Sex" },
                                 new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Role" },
-                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = UserQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)

@@ -58,7 +58,7 @@ namespace Trigger.XForms.Commands
 
                 if (detailViewArgs.CurrentObject is User)
                 {
-                    return UserQuery.CurrentUserIsAdministrator;
+                    return ApplicationQuery.CurrentUserIsAdministrator;
                 }
 
                 return true;

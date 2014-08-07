@@ -11,7 +11,7 @@ namespace Trigger.XForms.Visuals
 {
     public sealed class MainViewTemplate : TemplateBase
     {
-        Panel listViewPanel;
+        Panel contentPanel;
 
         Panel navigationPanel;
 
@@ -41,7 +41,7 @@ namespace Trigger.XForms.Visuals
         {
             navigationPanel = new Panel();
             navigationPanel.Content = GetMainPanelContent();
-            listViewPanel = new Panel();
+            contentPanel = new Panel();
         }
 
         Splitter CreateSplitLayout()
@@ -49,7 +49,7 @@ namespace Trigger.XForms.Visuals
             var splitter = new Splitter
             {
                 Panel1 = navigationPanel,
-                Panel2 = listViewPanel,
+                Panel2 = contentPanel,
                 Orientation = SplitterOrientation.Horizontal,
                 FixedPanel = SplitterFixedPanel.Panel1
             };
@@ -58,7 +58,7 @@ namespace Trigger.XForms.Visuals
             return splitter;
         }
 
-        DynamicLayout GetMainPanelContent()
+        Control GetMainPanelContent()
         {
             var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
@@ -133,11 +133,11 @@ namespace Trigger.XForms.Visuals
             var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
             var listLayout = new DynamicLayout();
             listLayout.Add(CreateListViewLayout());
-            listViewPanel.Content = listLayout;
+            contentPanel.Content = listLayout;
             Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 
-        DynamicLayout CreateListViewLayout()
+        Control CreateListViewLayout()
         {
             Control content = null;
             var groupBox = new GroupBox();
@@ -147,14 +147,37 @@ namespace Trigger.XForms.Visuals
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
+                var builder = new ListViewBuilder(descriptor, CurrentActiveType);
+                content = builder.GetContent();
 
-                content = new ListViewBuilder(descriptor, CurrentActiveType).GetContent();
-                    
+                builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
+                {
+                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                    if (detailContent != null)
+                        contentPanel.Content = detailContent;
+                };
+
                 layout.Add(content);
             }
             layout.EndVertical();
             groupBox.Content = layout;
             return layout;
+        }
+
+        Control CreateDetailViewLayout(GridView currentGridView, Type modelType)
+        {
+            if (currentGridView.SelectedItem != null)
+            {
+                var detailDescriptorType = DetailViewDescriptorProvider.GetDescriptor(modelType);
+                if (detailDescriptorType != null)
+                {
+                    var detailDescriptor = Activator.CreateInstance(detailDescriptorType) as IDetailViewDescriptor;
+                    var detailBuilder = new DetailViewBuilder(detailDescriptor, currentGridView.SelectedItem as IStorable);
+                    return detailBuilder.GetContent();
+                }
+            }
+
+            return null;
         }
 
         Button GetLogOffButton()
