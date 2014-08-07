@@ -14,8 +14,6 @@ namespace Trigger.XForms.Visuals
             SetSize();
 			
             SetTitle();
-
-            //this.BackgroundColor = Colors.WhiteSmoke;
         }
 
         public void SetContent()

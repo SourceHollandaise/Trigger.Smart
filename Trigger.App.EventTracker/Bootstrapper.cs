@@ -1,30 +1,18 @@
 using System.Linq;
-using Trigger.BCL.Common.Datastore;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Security;
-using Trigger.BCL.Common.Services;
 using Trigger.BCL.EventTracker;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
-using Trigger.XForms;
-using Trigger.XForms.Visuals;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
+using XForms.Platform;
+using XForms.Store;
+using XForms.Security;
+using XForms.Design;
+using XForms.Model;
 
 namespace Trigger.App.EventTracker
 {
-    public class Bootstrapper
+    public class Bootstrapper : BootstrapperBase
     {
-        IDependencyMap Map
-        {
-            get
-            {
-                return DependencyMapProvider.Instance;
-            }
-        }
-
-        public virtual void InitalizeDataStore()
+        public override void InitalizeDataStore()
         {
             var config = new StoreConfiguration();
             config.InitStore();
@@ -32,35 +20,23 @@ namespace Trigger.App.EventTracker
             Map.RegisterInstance<IStoreConfiguration>(config);
         }
 
-        public virtual void InitialiteSecurityProvider()
+        public override void InitialiteSecurityProvider()
         {
             var provider = new ApplicationSecurityInfoProvider();
 
-            DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
+            Map.RegisterInstance<ISecurityInfoProvider>(provider);
         }
 
-        public virtual void RegisterDependencies()
+        public override void RegisterDependencies()
         {
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, ApplicationDataStoreAuthenticate>();
             Map.RegisterType<IdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();
             Map.RegisterType<IFileDataService, DocumentFileDataService>();
-
-            RegisterCommands();
-
-            RegisterViewDescriptors();
         }
 
-        void RegisterCommands()
-        {
-            new XFormsBaseComands().Register();
-
-            Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
-            Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
-        }
-
-        void RegisterViewDescriptors()
+        public override void RegisterViewDescriptors()
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
 
@@ -89,7 +65,15 @@ namespace Trigger.App.EventTracker
             ListViewDescriptorProvider.Declare<ApplicationUser, UserListDescriptor>();
         }
 
-        public virtual void CreateInitialObjects()
+        public override void RegisterCommands()
+        {
+            base.RegisterCommands();
+
+            Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
+            Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
+        }
+
+        public override void CreateDefaultUser()
         {
             var user = Map.ResolveType<IStore>().LoadAll<ApplicationUser>().FirstOrDefault(p => p.UserName == "Admin");
 

@@ -1,15 +1,15 @@
-using Trigger.XStorable.DataStore;
-using Trigger.XForms.Visuals;
-using Trigger.XStorable.Dependency;
 using System;
+using XForms.Dependency;
+using XForms.Store;
+using XForms.Design;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public static class DetailViewTemplateExtensions
     {
         public static void ReloadObject(this IStorable target)
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
             var dataObject = store.Load(target.GetType(), target.MappingId);
             if (dataObject != null)
             {

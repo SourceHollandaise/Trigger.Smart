@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Trigger.XForms.Commands;
-using Trigger.XStorable.DataStore;
+using XForms.Commands;
+using XForms.Store;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public interface IListViewDescriptor
     {

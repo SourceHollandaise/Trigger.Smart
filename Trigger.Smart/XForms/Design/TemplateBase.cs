@@ -1,10 +1,10 @@
 using Eto.Forms;
 using System;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 using Eto.Drawing;
+using XForms.Store;
+using XForms.Dependency;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public abstract class TemplateBase : Form
     {
@@ -24,7 +24,7 @@ namespace Trigger.XForms.Visuals
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
+                return MapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
             }
         }
 

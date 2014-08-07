@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
+using XForms.Store;
+using XForms.Commands;
+using XForms.Dependency;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public abstract class ListViewDescriptor<T> : IListViewDescriptor
     {
@@ -31,7 +31,7 @@ namespace Trigger.XForms
             if (Commands == null)
                 Commands = new List<IListViewCommand>();
 
-            var command = DependencyMapProvider.Instance.ResolveType<TCommand>();
+            var command = MapProvider.Instance.ResolveType<TCommand>();
 
             Commands.Add(command);
         }

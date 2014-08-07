@@ -1,7 +1,7 @@
 using Eto.Forms;
-using Trigger.XForms.Visuals;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class ApplicationExitCommand : IApplicationExitCommand

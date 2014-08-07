@@ -1,5 +1,6 @@
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public class RefreshDetailViewCommand : IRefreshDetailViewCommand
     {

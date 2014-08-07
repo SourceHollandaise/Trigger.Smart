@@ -1,14 +1,15 @@
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Dependency;
+using XForms.Store;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public class AddFileDetailViewCommand : IAddFileDetailViewCommand
     {
         public void Execute(DetailViewArguments args)
         {
-            var service = DependencyMapProvider.Instance.ResolveType<IFileDataService>();
+            var service = MapProvider.Instance.ResolveType<IFileDataService>();
             if (args.CurrentObject != null)
             {
                 var fileDialog = new OpenFileDialog();

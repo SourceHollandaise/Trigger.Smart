@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
     [System.ComponentModel.Category("Store")]
     [AttributeUsage(AttributeTargets.Property)]

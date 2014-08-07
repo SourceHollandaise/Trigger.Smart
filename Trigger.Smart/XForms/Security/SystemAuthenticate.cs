@@ -1,9 +1,8 @@
 using System.Security.Principal;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Security;
+using XForms.Dependency;
+using XForms.Model;
 
-namespace Trigger.BCL.Common.Services
+namespace XForms.Security
 {
     public sealed class SystemAuthenticate : IAuthenticate
     {
@@ -16,11 +15,11 @@ namespace Trigger.BCL.Common.Services
                 if (logonParameters.UserName.ToLowerInvariant() == id.Name.ToLowerInvariant())
                 {
                     var provider = new SecurityInfoProvider();
-                    var user = DependencyMapProvider.Instance.ResolveType<User>();
+                    var user = MapProvider.Instance.ResolveType<User>();
                     user.UserName = id.Name;
                     provider.UserName = user.UserName;
 
-                    DependencyMapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
+                    MapProvider.Instance.RegisterInstance<ISecurityInfoProvider>(provider);
 
                     return true;
                 }

@@ -1,4 +1,4 @@
-using Trigger.XForms;
+using XForms.Design;
 using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
 

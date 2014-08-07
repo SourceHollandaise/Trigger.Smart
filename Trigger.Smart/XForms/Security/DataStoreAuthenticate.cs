@@ -1,10 +1,9 @@
 using System.Linq;
-using Trigger.XStorable.Dependency;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Security;
+using XForms.Dependency;
+using XForms.Model;
+using XForms.Store;
 
-namespace Trigger.BCL.Common.Services
+namespace XForms.Security
 {
     public sealed class DataStoreAuthenticate : IAuthenticate
     {
@@ -14,12 +13,12 @@ namespace Trigger.BCL.Common.Services
             {
                 var password = logonParameters.Password;
 
-                var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>()
+                var user = MapProvider.Instance.ResolveType<IStore>().LoadAll<User>()
                     .FirstOrDefault(p => p.UserName.ToLowerInvariant() == logonParameters.UserName.ToLowerInvariant() && p.Password == password);
 
                 if (user != null)
                 {
-                    DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().UserName = user.UserName;
+                    MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().UserName = user.UserName;
 
 
                     return true;

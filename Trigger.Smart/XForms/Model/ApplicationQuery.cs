@@ -1,7 +1,7 @@
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
+using XForms.Dependency;
+using XForms.Security;
 
-namespace Trigger.BCL.Common.Model
+namespace XForms.Model
 {
     public static class ApplicationQuery
     {
@@ -9,7 +9,7 @@ namespace Trigger.BCL.Common.Model
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.AllowAdministration;
+                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.AllowAdministration;
             }
         }
 
@@ -17,7 +17,7 @@ namespace Trigger.BCL.Common.Model
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
             }
         }
     }

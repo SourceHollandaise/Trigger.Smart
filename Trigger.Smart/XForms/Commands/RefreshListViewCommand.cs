@@ -1,8 +1,7 @@
-using System;
-using System.Linq;
-using Trigger.XStorable.Dependency;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+
+namespace XForms.Commands
 {
 
     public class RefreshListViewCommand : IRefreshListViewCommand

@@ -1,8 +1,8 @@
 using System;
-using Trigger.XForms;
-using Trigger.XForms.Commands;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
+using XForms.Commands;
+using XForms.Design;
 
 namespace Trigger.BCL.EventTracker
 {

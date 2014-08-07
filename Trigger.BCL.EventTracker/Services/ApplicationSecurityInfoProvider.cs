@@ -1,11 +1,9 @@
-using System;
-using System.IO;
 using System.Linq;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 using Trigger.BCL.EventTracker.Model;
-using Trigger.BCL.Common.Security;
-using Trigger.BCL.Common.Model;
+using XForms.Security;
+using XForms.Model;
+using XForms.Store;
+using XForms.Dependency;
 
 namespace Trigger.BCL.EventTracker.Services
 {
@@ -21,7 +19,7 @@ namespace Trigger.BCL.EventTracker.Services
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<ApplicationUser>().FirstOrDefault(p => p.UserName == UserName);
+                return MapProvider.Instance.ResolveType<IStore>().LoadAll<ApplicationUser>().FirstOrDefault(p => p.UserName == UserName);
             }
         }
     }

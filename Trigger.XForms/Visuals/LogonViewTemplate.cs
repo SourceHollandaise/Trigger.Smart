@@ -10,8 +10,6 @@ namespace Trigger.XForms.Visuals
         {
             Size = new Size(240, 180);
             Title = "Logon";
-		
-            //this.BackgroundColor = Colors.WhiteSmoke;
             Content = new LogonViewGenerator(this).GetContent();
         }
 

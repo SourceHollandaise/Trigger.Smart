@@ -1,8 +1,8 @@
-using Trigger.XStorable.Dependency;
-using Trigger.XStorable.DataStore;
 using System;
+using XForms.Store;
+using XForms.Dependency;
 
-namespace Trigger.BCL.Common.Datastore
+namespace XForms.Model
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
@@ -85,7 +85,7 @@ namespace Trigger.BCL.Common.Datastore
         {
             get
             {
-                return DependencyMapProvider.Instance;
+                return MapProvider.Instance;
             }
         }
 

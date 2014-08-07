@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Store;
+using XForms.Dependency;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class DataStoreProvider
     {
@@ -26,7 +26,7 @@ namespace Trigger.XForms.Visuals
 
             if (dataSet == null)
             {
-                var tempDataSet = descriptor.Repository ?? DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
+                var tempDataSet = descriptor.Repository ?? MapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
 
                 if (descriptor.Filter != null)
                     tempDataSet = tempDataSet.Where(descriptor.Filter);

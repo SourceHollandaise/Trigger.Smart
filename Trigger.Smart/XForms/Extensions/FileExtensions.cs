@@ -1,6 +1,6 @@
-using Trigger.XStorable.Dependency;
-using Trigger.XStorable.DataStore;
 using System.IO;
+using XForms.Dependency;
+using XForms.Store;
 
 namespace System.IO
 {
@@ -8,7 +8,7 @@ namespace System.IO
     {
         public static string GetValidPath(this string fileName)
         {
-            var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+            var storeConfig = MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
 
             if (!string.IsNullOrEmpty(fileName))
             {

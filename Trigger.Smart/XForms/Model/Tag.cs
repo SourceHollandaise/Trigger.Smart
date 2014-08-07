@@ -1,8 +1,5 @@
-using Trigger.BCL.Common.Security;
-using System;
-using Trigger.BCL.Common.Datastore;
 
-namespace Trigger.BCL.Common.Model
+namespace XForms.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Tag")]

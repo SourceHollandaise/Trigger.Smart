@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Trigger.XStorable.DataStore;
+using XForms.Store;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public static class DetailViewDescriptorProvider
     {

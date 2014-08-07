@@ -1,10 +1,8 @@
-using Trigger.BCL.Common.Datastore;
-using Trigger.XStorable.DataStore;
-using Trigger.XForms;
 using Eto.Drawing;
 using System.IO;
+using XForms.Store;
 
-namespace Trigger.BCL.Common.Model
+namespace XForms.Model
 {
     public enum ApplicationUserRole
     {

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Trigger.XForms.Commands;
+using XForms.Commands;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
-
     public interface IDetailViewDescriptor
     {
         IList<GroupItemDescription> GroupItemDescriptions { get; set; }

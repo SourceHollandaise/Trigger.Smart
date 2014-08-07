@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.BCL.Common.Model;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
+using XForms.Store;
+using XForms.Dependency;
+using XForms.Commands;
+using XForms.Model;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class ListViewBuilder
     {
@@ -189,7 +189,7 @@ namespace Trigger.XForms.Visuals
                 {
                     if (CurrentGridView.SelectedItem != null)
                     {
-                        DependencyMapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
+                        MapProvider.Instance.ResolveType<IOpenObjectListViewCommand>().Execute(new ListViewArguments
                         {
                             Grid = CurrentGridView,
                             TargetType = ModelType
@@ -242,7 +242,7 @@ namespace Trigger.XForms.Visuals
             if (current == null)
                 return Colors.White;
 
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
 
             var mappingString = current.MappingId != null ? current.MappingId as string : null;
             if (mappingString == null)

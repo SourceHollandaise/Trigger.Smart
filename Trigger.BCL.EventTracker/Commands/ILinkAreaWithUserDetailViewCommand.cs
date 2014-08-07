@@ -1,5 +1,4 @@
-using Trigger.XForms.Commands;
-using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {

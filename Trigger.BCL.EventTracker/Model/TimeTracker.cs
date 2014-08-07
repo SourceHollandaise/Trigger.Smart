@@ -1,10 +1,8 @@
 ﻿
 using System;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Datastore;
-using Trigger.BCL.Common.Security;
-using Trigger.XForms;
+using XForms.Model;
+using XForms.Security;
+using XForms.Store;
 
 namespace Trigger.BCL.EventTracker.Model
 {

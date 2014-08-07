@@ -1,8 +1,6 @@
-using Eto.Forms;
-using Trigger.XForms.Visuals;
-using Trigger.XStorable.Dependency;
+using XForms.Dependency;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class XFormsBaseComands
@@ -11,14 +9,14 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return DependencyMapProvider.Instance;
+                return MapProvider.Instance;
             }
         }
 
         public virtual void Register()
         {
             Map.RegisterType<ISaveObjectDetailViewCommand, SaveObjectDetailViewCommand>();
-            Map.RegisterType<IDeleteObjectCommand, DeleteObjectCommand>();
+            Map.RegisterType<IDeleteObjectDetailViewCommand, DeleteObjectDetailViewCommand>();
             Map.RegisterType<ICloseDetailViewCommand, CloseDetailViewCommand>();
             Map.RegisterType<IOpenObjectListViewCommand, OpenObjectListViewCommand>();
             Map.RegisterType<IRefreshListViewCommand, RefreshListViewCommand>();

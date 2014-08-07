@@ -1,8 +1,8 @@
-using Trigger.XStorable.DataStore;
-using Eto.Forms;
-using Trigger.BCL.Common.Model;
+using XForms.Store;
+using XForms.Design;
+using XForms.Model;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class OpenObjectListViewCommand : IOpenObjectListViewCommand

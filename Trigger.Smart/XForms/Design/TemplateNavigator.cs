@@ -1,7 +1,7 @@
 using Eto.Forms;
 using System.Collections.Generic;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public static class TemplateNavigator
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Trigger.XForms
+namespace XForms.Model
 {
 
     [System.ComponentModel.Category("XForms")]

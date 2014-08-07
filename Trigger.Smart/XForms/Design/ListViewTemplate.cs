@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
-using Trigger.XStorable.DataStore;
-using Eto.Drawing;
+using XForms.Store;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class ListViewTemplate : TemplateBase
     {

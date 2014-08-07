@@ -4,11 +4,10 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XForms;
-using Trigger.XForms.Commands;
+using XForms.Store;
+using XForms.Commands;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class DetailViewBuilder
     {
@@ -61,8 +60,7 @@ namespace Trigger.XForms.Visuals
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
                 button.Text = command.Name;
-                //button.Image = ImageExtensions.GetImage(command.ImageName, 16);
-                //button.ImagePosition = ButtonImagePosition.Overlay;
+ 
 
                 button.Click += (sender, e) =>
                 {

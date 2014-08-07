@@ -2,7 +2,7 @@
 
 namespace XForms.Dependency
 {
-    public static class DependencyMapProvider
+    public static class MapProvider
     {
         readonly static object _lock = new object();
 		

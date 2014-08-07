@@ -1,9 +1,9 @@
 using Eto.Forms;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Security;
 using Eto.Drawing;
+using XForms.Dependency;
+using XForms.Security;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class LogonViewGenerator
     {
@@ -58,7 +58,7 @@ namespace Trigger.XForms.Visuals
             {
                 LogonViewTemplate.DialogResult = DialogResult.No;
                
-                var auth = DependencyMapProvider.Instance.ResolveType<IAuthenticate>();
+                var auth = MapProvider.Instance.ResolveType<IAuthenticate>();
 
                 if (auth.LogOn(new LogonParameters { UserName = textBoxUserName.Text, Password = textBoxPassword.Text }))
                 {

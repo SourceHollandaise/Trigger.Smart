@@ -1,10 +1,8 @@
 
 using System;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Security;
-using Trigger.XForms;
-using Trigger.BCL.Common.Datastore;
+using XForms.Model;
+using XForms.Store;
+using XForms.Security;
 
 namespace Trigger.BCL.EventTracker.Model
 {
@@ -309,7 +307,7 @@ namespace Trigger.BCL.EventTracker.Model
                 case IssueState.InProgress:
                     if (!Start.HasValue)
                         Start = DateTime.Now;
-                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser  as ApplicationUser;
+                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
                     break;
                 case IssueState.Done:
                 case IssueState.Rejected:

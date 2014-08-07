@@ -1,13 +1,13 @@
 using System;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
 using System.ComponentModel;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
 using System.Linq;
+using XForms.Store;
+using XForms.Dependency;
+using XForms.Commands;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
 
     public sealed class MainViewTemplate : TemplateBase
@@ -70,7 +70,7 @@ namespace Trigger.XForms.Visuals
 
         Control GetMainPanelContentButtonStyle()
         {
-            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
+            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
             var navigationlayout = new DynamicLayout();
 
@@ -139,7 +139,7 @@ namespace Trigger.XForms.Visuals
 
         Control GetMainPanelContentListBoxStyle()
         {
-            var descriptor = DependencyMapProvider.Instance.ResolveType<IMainViewDescriptor>();
+            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
             var navigationlayout = new DynamicLayout();
 
@@ -276,7 +276,7 @@ namespace Trigger.XForms.Visuals
 
         Button GetLogOffButton()
         {
-            var logOffCommand = DependencyMapProvider.Instance.ResolveType<ILogOffCommand>();
+            var logOffCommand = MapProvider.Instance.ResolveType<ILogOffCommand>();
             var logOffButton = new Button
             {
                 Size = new Size(-1, 36),
@@ -291,7 +291,7 @@ namespace Trigger.XForms.Visuals
 
         Button GetExitButton()
         {
-            var exitCommand = DependencyMapProvider.Instance.ResolveType<IApplicationExitCommand>();
+            var exitCommand = MapProvider.Instance.ResolveType<IApplicationExitCommand>();
             var exitButton = new Button
             {
                 Size = new Size(-1, 36),

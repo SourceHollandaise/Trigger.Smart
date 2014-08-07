@@ -1,6 +1,6 @@
-using Trigger.XForms.Visuals;
 
-namespace Trigger.XForms.Commands
+
+namespace XForms.Commands
 {
 
     public interface INavigateBackListViewCommand : IListViewCommand

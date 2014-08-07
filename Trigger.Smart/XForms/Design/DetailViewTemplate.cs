@@ -1,12 +1,12 @@
 using System;
-using Trigger.XStorable.DataStore;
 using System.ComponentModel;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
+using XForms.Store;
+using XForms.Dependency;
+using XForms.Commands;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
 
     public class DetailViewTemplate : TemplateBase
@@ -51,7 +51,7 @@ namespace Trigger.XForms.Visuals
         {
             if (e.Modifiers == Keys.Application & e.Key == Keys.W)
             {
-                DependencyMapProvider.Instance.ResolveType<ICloseDetailViewCommand>().Execute(new DetailViewArguments{ CurrentObject = CurrentObject });
+                MapProvider.Instance.ResolveType<ICloseDetailViewCommand>().Execute(new DetailViewArguments{ CurrentObject = CurrentObject });
             }
             else
             {

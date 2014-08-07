@@ -1,7 +1,6 @@
-using Trigger.XForms.Visuals;
 using Eto.Drawing;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
 
     public class ViewTemplateConfiguration : IViewTemplateConfiguration

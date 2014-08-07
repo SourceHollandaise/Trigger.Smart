@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System;
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
     public interface IStorable : INotifyPropertyChanged, IEquatable<IStorable> , IComparable<IStorable>
     {

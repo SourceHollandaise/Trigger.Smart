@@ -1,7 +1,7 @@
 using Eto.Forms;
 using Eto.Drawing;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class LogonViewTemplate : Dialog
     {

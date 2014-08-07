@@ -1,5 +1,5 @@
 
-namespace Trigger.BCL.Common.Security
+namespace XForms.Security
 {
     public interface IAuthenticate
     {

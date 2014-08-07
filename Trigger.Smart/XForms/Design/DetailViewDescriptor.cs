@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System;
-using Trigger.XStorable.Dependency;
-using Trigger.XForms.Commands;
+using XForms.Dependency;
+using XForms.Commands;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public abstract class DetailViewDescriptor<TModel> : IDetailViewDescriptor
     {
@@ -20,7 +20,7 @@ namespace Trigger.XForms
             if (Commands == null)
                 Commands = new List<IDetailViewCommand>();
 
-            var command = DependencyMapProvider.Instance.ResolveType<TCommand>();
+            var command = MapProvider.Instance.ResolveType<TCommand>();
 
             Commands.Add(command);
         }
@@ -34,7 +34,7 @@ namespace Trigger.XForms
             RegisterCommands<INavigateBackDetailViewCommand>();
             RegisterCommands<ISaveObjectDetailViewCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
-            RegisterCommands<IDeleteObjectCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
            
             IsTaggable = true;
         }

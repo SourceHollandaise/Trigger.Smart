@@ -83,15 +83,20 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <BundleResource Include="Resources\fucking.icns" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trigger.App.EventTracker\Trigger.App.EventTracker.csproj">
-      <Project>{E522C014-2E66-498B-892A-487C68762ABE}</Project>
-      <Name>Trigger.App.EventTracker</Name>
+    <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">
+      <Project>{82257C12-D253-46CC-821B-44CFBE26B115}</Project>
+      <Name>XForms</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fucking.icns" />
+    <ProjectReference Include="..\Trigger.BCL.EventTracker\Trigger.BCL.EventTracker.csproj">
+      <Project>{7525B10F-A5C1-4438-ABE2-376B8FBAF991}</Project>
+      <Name>Trigger.BCL.EventTracker</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -1,8 +1,5 @@
-using System;
-using System.Configuration;
-using System.IO;
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
     public interface IStoreConfiguration
     {

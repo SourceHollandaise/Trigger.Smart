@@ -1,6 +1,6 @@
 using Eto.Forms;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public static class ConfirmationMessages

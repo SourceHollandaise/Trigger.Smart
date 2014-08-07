@@ -1,10 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
-using Trigger.XForms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Store;
+using XForms.Dependency;
 
 namespace Trigger.BCL.EventTracker.Services
 {
@@ -15,7 +14,7 @@ namespace Trigger.BCL.EventTracker.Services
         {
             get
             {
-                return  DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                return  MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
             }
         }
 
@@ -33,7 +32,7 @@ namespace Trigger.BCL.EventTracker.Services
 
         public int LoadFromStore()
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
             var files = Directory.GetFiles(StoreConfig.DocumentStoreLocation, "*.*", SearchOption.AllDirectories);
             var documents = store.LoadAll<Document>().ToList();            
 

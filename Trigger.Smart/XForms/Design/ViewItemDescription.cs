@@ -1,5 +1,5 @@
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public class ViewItemDescription
     {

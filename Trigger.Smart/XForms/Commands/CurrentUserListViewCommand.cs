@@ -1,12 +1,10 @@
 using System.IO;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Model;
-using Trigger.BCL.Common.Security;
-using System;
-using Trigger.XForms.Visuals;
-using Eto.Forms;
+using XForms.Dependency;
+using XForms.Security;
+using XForms.Model;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class CurrentUserListViewCommand : ICurrentUserListViewCommand
@@ -86,7 +84,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
             }
         }
     }

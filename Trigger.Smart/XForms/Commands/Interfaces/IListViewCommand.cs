@@ -1,4 +1,3 @@
-using Trigger.XForms.Visuals;
 
 namespace XForms.Commands
 {

@@ -1,15 +1,13 @@
-
-using Trigger.XForms.Commands;
-using Trigger.XStorable.Dependency;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
 using System.Linq;
 using Eto.Forms;
-using Eto.Drawing;
 using System;
 using System.Collections.Generic;
+using XForms.Design;
+using XForms.Dependency;
+using XForms.Store;
+using XForms.Model;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public class TagDetailViewCommand : ITagDetailViewCommand
     {
@@ -22,9 +20,9 @@ namespace Trigger.XForms.Commands
             if (template != null)
             {
                 foreach (var button in data.Item2)
-                    button.Text = ""; //button.Image = null;
+                    button.Text = "";
 
-                var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+                var store = MapProvider.Instance.ResolveType<IStore>();
                 var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(args.CurrentObject.MappingId.ToString()));
                 if (tag == null)
                     tag = new Tag();
@@ -32,8 +30,6 @@ namespace Trigger.XForms.Commands
                 tag.TargetObjectMappingId = args.CurrentObject.MappingId.ToString();
                 tag.TagColor = data.Item1.BackgroundColor.ToString();
                 data.Item1.Text = "√";
-                //data.Item1.Image = ImageExtensions.GetImage("Accept24", 24);
-                //data.Item1.ImagePosition = ButtonImagePosition.Overlay;
 
                 tag.Save();
             }

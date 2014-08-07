@@ -1,9 +1,8 @@
 
 using System;
-using Trigger.BCL.EventTracker.Model;
 using System.Configuration;
-using Trigger.XStorable.DataStore;
 using System.IO;
+using XForms.Store;
 
 namespace Trigger.BCL.EventTracker.Services
 {

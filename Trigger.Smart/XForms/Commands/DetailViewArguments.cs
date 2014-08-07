@@ -1,6 +1,6 @@
-using Trigger.XStorable.DataStore;
+using XForms.Store;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public class DetailViewArguments
     {

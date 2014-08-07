@@ -1,7 +1,6 @@
 using System;
-using Trigger.XStorable.DataStore;
 
-namespace Trigger.BCL.Common.Datastore
+namespace XForms.Store
 {
     public class GuidIdGenerator : IdGenerator
     {

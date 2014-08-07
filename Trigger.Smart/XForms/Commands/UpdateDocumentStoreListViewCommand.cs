@@ -1,14 +1,15 @@
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Dependency;
+using XForms.Store;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class UpdateDocumentStoreListViewCommand : IUpdateDocumentStoreListViewCommand
     {
         public void Execute(ListViewArguments args)
         {
-            DependencyMapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
+            MapProvider.Instance.ResolveType<IFileDataService>().LoadFromStore();
             args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 

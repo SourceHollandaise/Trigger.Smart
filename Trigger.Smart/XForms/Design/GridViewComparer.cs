@@ -1,8 +1,8 @@
 using System;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
+using XForms.Store;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class GridViewComparer
     {

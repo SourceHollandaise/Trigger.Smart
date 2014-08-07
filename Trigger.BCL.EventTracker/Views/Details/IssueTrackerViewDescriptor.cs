@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Trigger.XForms;
-using Trigger.XForms.Commands;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Design;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {

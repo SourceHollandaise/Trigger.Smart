@@ -1,5 +1,5 @@
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
     public interface IFileDataService
     {

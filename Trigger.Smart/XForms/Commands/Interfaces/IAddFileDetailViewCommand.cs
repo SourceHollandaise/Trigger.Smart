@@ -1,5 +1,5 @@
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public interface IAddFileDetailViewCommand : IDetailViewCommand
     {

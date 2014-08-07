@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.BCL.Common.Datastore;
-using Trigger.XForms;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
+using XForms.Model;
+using XForms.Store;
 
 namespace Trigger.BCL.EventTracker.Model
 {

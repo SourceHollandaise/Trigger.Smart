@@ -1,12 +1,11 @@
 using System.Linq;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 using System.Collections.Generic;
 using System;
-using Trigger.XForms.Visuals;
+using XForms.Store;
+using XForms.Dependency;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public static class ListViewTemplateExtensions
     {
@@ -39,7 +38,7 @@ namespace Trigger.XForms
                 {
                     if (customDataSource == null)
                     {
-                        var dataSet = descriptor.Repository ?? DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(type);
+                        var dataSet = descriptor.Repository ?? MapProvider.Instance.ResolveType<IStore>().LoadAll(type);
 
                         if (descriptor.Filter != null)
                             gridView.DataStore = new DataStoreCollection(dataSet.Where(descriptor.Filter));

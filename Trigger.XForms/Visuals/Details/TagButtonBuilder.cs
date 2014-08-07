@@ -49,7 +49,7 @@ namespace Trigger.XForms.Visuals
                     if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
                         return;
 
-                    tagbutton.Text = "√";
+                    tagbutton.Text = "X";
                     //tagbutton.Image = ImageExtensions.GetImage("Accept24", 16);
                     //tagbutton.ImagePosition = ButtonImagePosition.Overlay;
                 }

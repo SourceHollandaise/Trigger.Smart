@@ -1,6 +1,5 @@
-using Eto.Forms;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class PrintListViewCommand : IPrintListViewCommand

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Trigger.XStorable.Dependency;
+using XForms.Dependency;
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
 
     public static class LinkedObjectHelper
@@ -11,7 +11,7 @@ namespace Trigger.XStorable.DataStore
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveType<IStore>();
+                return MapProvider.Instance.ResolveType<IStore>();
             }
         }
 

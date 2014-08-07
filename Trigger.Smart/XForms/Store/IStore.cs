@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Trigger.XStorable.DataStore
+namespace XForms.Store
 {
     public interface IStore
     {

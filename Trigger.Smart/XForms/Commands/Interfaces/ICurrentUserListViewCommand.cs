@@ -1,7 +1,6 @@
 
-using Trigger.XStorable.Dependency;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public interface ICurrentUserListViewCommand : IListViewCommand

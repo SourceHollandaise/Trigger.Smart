@@ -1,10 +1,9 @@
 using System;
 using Eto.Forms;
 using System.Collections.Generic;
-using Trigger.XStorable.DataStore;
-using Trigger.XForms.Visuals;
+using XForms.Store;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class ListViewArguments

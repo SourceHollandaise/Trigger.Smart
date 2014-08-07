@@ -4,11 +4,11 @@ using XForms.Commands;
 using XForms.Store;
 using XForms.Model;
 
-namespace XForms.App
+namespace XForms.Platform
 {
     public abstract class BootstrapperBase
     {
-        IDependencyMap Map
+        protected IDependencyMap Map
         {
             get
             {

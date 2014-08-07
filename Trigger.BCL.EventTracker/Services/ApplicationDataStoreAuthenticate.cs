@@ -1,11 +1,9 @@
 using System;
-using System.IO;
 using System.Linq;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
 using Trigger.BCL.EventTracker.Model;
-using Trigger.BCL.Common.Security;
-using Trigger.BCL.Common.Model;
+using XForms.Security;
+using XForms.Store;
+using XForms.Dependency;
 
 namespace Trigger.BCL.EventTracker.Services
 {
@@ -18,12 +16,12 @@ namespace Trigger.BCL.EventTracker.Services
             {
                 var password = logonParameters.Password;
 
-                var user = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<ApplicationUser>()
+                var user = MapProvider.Instance.ResolveType<IStore>().LoadAll<ApplicationUser>()
                     .FirstOrDefault(p => p.UserName.ToLowerInvariant() == logonParameters.UserName.ToLowerInvariant() && p.Password == password);
 
                 if (user != null)
                 {
-                    DependencyMapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().UserName = user.UserName;
+                    MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().UserName = user.UserName;
 
                     return true;
                 }

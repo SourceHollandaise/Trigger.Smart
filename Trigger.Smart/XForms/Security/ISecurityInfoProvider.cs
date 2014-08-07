@@ -1,7 +1,6 @@
-using Trigger.BCL.Common.Model;
+using XForms.Model;
 
-
-namespace Trigger.BCL.Common.Security
+namespace XForms.Security
 {
     public interface ISecurityInfoProvider
     {

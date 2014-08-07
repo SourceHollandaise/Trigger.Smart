@@ -1,8 +1,6 @@
-using Eto.Forms;
-using Trigger.XForms.Visuals;
-using Trigger.XStorable.Dependency;
+using XForms.Design;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
     public class LogOffCommand : ILogOffCommand
     {

@@ -6,10 +6,11 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XStorable.Dependency;
+using XForms.Store;
+using XForms.Model;
+using XForms.Dependency;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class DetailViewControlFactory
     {
@@ -153,7 +154,7 @@ namespace Trigger.XForms.Visuals
            
             if (control is WebView)
             {
-                var storeConfig = DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                var storeConfig = MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
                 var fileName = (string)property.GetValue(Model, null);
                 if (!string.IsNullOrEmpty(fileName))
                 {
@@ -359,7 +360,7 @@ namespace Trigger.XForms.Visuals
 
             var control = new ComboBox();
 
-            var lookupItems = DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
+            var lookupItems = MapProvider.Instance.ResolveType<IStore>().LoadAll(property.PropertyType);
 
             if (defaultPropertyAttribute != null)
                 lookupItems = lookupItems.OrderByProperty(defaultPropertyAttribute.Name);

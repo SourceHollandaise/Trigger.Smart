@@ -1,10 +1,9 @@
 using System;
-using Trigger.XStorable.DataStore;
-using Trigger.BCL.Common.Model;
-using Eto.Forms;
-using Trigger.XForms.Visuals;
+using XForms.Store;
+using XForms.Design;
+using XForms.Model;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
 
     public class CreateObjectListViewCommand : ICreateObjectListViewCommand

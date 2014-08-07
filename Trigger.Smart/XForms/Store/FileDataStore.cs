@@ -2,10 +2,9 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using Trigger.XStorable.Dependency;
-using Trigger.XStorable.DataStore;
+using XForms.Dependency;
 
-namespace Trigger.BCL.Common.Datastore
+namespace XForms.Store
 {
     public class FileDataStore : IStore
     {
@@ -15,7 +14,7 @@ namespace Trigger.BCL.Common.Datastore
         {
             string typeDir = CreateTypeDirectory(type);
                     
-            item.MappingId = item.MappingId ?? DependencyMapProvider.Instance.ResolveType<IdGenerator>().GetId();
+            item.MappingId = item.MappingId ?? MapProvider.Instance.ResolveType<IdGenerator>().GetId();
 
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
            
@@ -132,7 +131,7 @@ namespace Trigger.BCL.Common.Datastore
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveInstance<IStoreConfiguration>();
+                return MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
             }
         }
     }

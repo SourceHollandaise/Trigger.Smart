@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
-using Trigger.XStorable.DataStore;
-using Trigger.XForms.Commands;
-using Trigger.XStorable.Dependency;
-using Trigger.BCL.Common.Model;
+using XForms.Store;
+using XForms.Dependency;
+using XForms.Model;
+using XForms.Commands;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class TagButtonBuilder
     {
@@ -39,7 +39,7 @@ namespace Trigger.XForms.Visuals
 
         void UpdateTagButtonAfterCreation()
         {
-            var store = DependencyMapProvider.Instance.ResolveType<IStore>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
             var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(currentObject.MappingId.ToString()));
             if (tag != null)
             {
@@ -49,9 +49,7 @@ namespace Trigger.XForms.Visuals
                     if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
                         return;
 
-                    tagbutton.Text = "X";
-                    //tagbutton.Image = ImageExtensions.GetImage("Accept24", 16);
-                    //tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+                    tagbutton.Text = "√";
                 }
             }
         }
@@ -71,7 +69,7 @@ namespace Trigger.XForms.Visuals
             tagButton.Click += (sender, e) =>
             {
                 var data = Tuple.Create<Button, IList<Button>>(tagButton, tagButtons);
-                DependencyMapProvider.Instance.ResolveType<ITagDetailViewCommand>().Execute(new DetailViewArguments { CurrentObject = currentObject, InputData = data });
+                MapProvider.Instance.ResolveType<ITagDetailViewCommand>().Execute(new DetailViewArguments { CurrentObject = currentObject, InputData = data });
             };
 
             return tagButton;

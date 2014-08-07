@@ -2,7 +2,7 @@ using Eto.Forms;
 using System;
 using XForms.Design;
 
-namespace XForms.App
+namespace XForms.Platform
 {
     public class XFormsApplication : Application
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Trigger.BCL.Common
+namespace XForms.Model
 {
     public abstract class NotifyPropertyChangedBase : INotifyPropertyChanged
     {

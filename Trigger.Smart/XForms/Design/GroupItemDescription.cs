@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Trigger.XForms
+namespace XForms.Design
 {
     public class GroupItemDescription
     {

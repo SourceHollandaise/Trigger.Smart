@@ -1,9 +1,9 @@
-using Trigger.BCL.Common.Model;
-using Trigger.XStorable.DataStore;
 using System.Linq;
-using Trigger.XStorable.Dependency;
+using XForms.Model;
+using XForms.Dependency;
+using XForms.Store;
 
-namespace Trigger.BCL.Common.Security
+namespace XForms.Security
 {
     public class SecurityInfoProvider : ISecurityInfoProvider
     {
@@ -17,7 +17,7 @@ namespace Trigger.BCL.Common.Security
         {
             get
             {
-                return DependencyMapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == UserName);
+                return MapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == UserName);
             }
         }
     }

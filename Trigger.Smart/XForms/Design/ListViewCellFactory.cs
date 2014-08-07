@@ -3,7 +3,7 @@ using Eto.Forms;
 using System.Reflection;
 using Eto.Drawing;
 
-namespace Trigger.XForms.Visuals
+namespace XForms.Design
 {
     public class ListViewCellFactory
     {

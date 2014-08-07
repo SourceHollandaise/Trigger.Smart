@@ -1,9 +1,10 @@
 using Eto.Forms;
-using Trigger.BCL.Common.Model;
+using XForms.Design;
+using XForms.Model;
 
-namespace Trigger.XForms.Commands
+namespace XForms.Commands
 {
-    public class DeleteObjectCommand : IDeleteObjectCommand
+    public class DeleteObjectDetailViewCommand : IDeleteObjectDetailViewCommand
     {
         DetailViewArguments detailViewArgs;
 
