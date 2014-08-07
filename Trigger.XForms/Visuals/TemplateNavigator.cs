@@ -7,6 +7,14 @@ namespace Trigger.XForms.Visuals
     {
         static Stack<Control> stack = new Stack<Control>();
 
+        public static bool BackPossible
+        {
+            get
+            {
+                return stack.Count > 0;
+            }
+        }
+
         public static void Add(Control content)
         {
             stack.Push(content);
@@ -23,17 +31,17 @@ namespace Trigger.XForms.Visuals
                 return;
 
             var content = stack.Pop();
-            if (content != null)
+    
+            if (content.Equals(MainTemplate.ContentPanel.Content))
             {
-                if (content.Equals(MainTemplate.ContentPanel.Content))
-                {
+                if (stack.Count > 0)
                     content = stack.Pop();
-                }
-                if (content != null)
-                {
-                    MainTemplate.ContentPanel.Content = content;
-                }
+                else
+                    return;
             }
+          
+            MainTemplate.ContentPanel.Content = content;
+
         }
 
         public static void Forward()

@@ -47,7 +47,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return true;
+                return TemplateNavigator.BackPossible;
             }
         }
 
