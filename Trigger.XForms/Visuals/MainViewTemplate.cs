@@ -189,7 +189,7 @@ namespace Trigger.XForms.Visuals
 
         public override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Control & e.Key == Keys.Q)
+            if (e.Modifiers == Keys.Application & e.Key == Keys.Q)
             {
                 var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
                 if (result == DialogResult.Yes)

@@ -2,6 +2,9 @@ using System;
 using Trigger.XStorable.DataStore;
 using System.ComponentModel;
 using Eto.Drawing;
+using Eto.Forms;
+using Trigger.XStorable.Dependency;
+using Trigger.XForms.Commands;
 
 namespace Trigger.XForms.Visuals
 {
@@ -41,6 +44,18 @@ namespace Trigger.XForms.Visuals
             else
                 Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
                 
+        }
+
+        public override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Application & e.Key == Keys.W)
+            {
+                DependencyMapProvider.Instance.ResolveType<ICloseDetailViewCommand>().Execute(new DetailViewArguments{ CurrentObject = CurrentObject });
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }
