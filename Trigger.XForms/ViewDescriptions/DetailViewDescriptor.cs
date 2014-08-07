@@ -31,10 +31,11 @@ namespace Trigger.XForms
 
         protected DetailViewDescriptor()
         {
-            RegisterCommands<ICloseDetailViewCommand>();
-            RegisterCommands<IDeleteObjectCommand>();
+            //RegisterCommands<ICloseDetailViewCommand>();
             RegisterCommands<ISaveObjectDetailViewCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectCommand>();
+           
             IsTaggable = true;
         }
     }

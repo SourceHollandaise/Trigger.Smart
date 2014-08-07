@@ -57,11 +57,12 @@ namespace Trigger.XForms.Visuals
             foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
             {
                 var button = new Button();
-                button.Size = new Size(40, 40);
+                button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName, 24);
-                button.ImagePosition = ButtonImagePosition.Overlay;
+                button.Text = command.Name;
+                //button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                //button.ImagePosition = ButtonImagePosition.Overlay;
 
                 button.Click += (sender, e) =>
                 {

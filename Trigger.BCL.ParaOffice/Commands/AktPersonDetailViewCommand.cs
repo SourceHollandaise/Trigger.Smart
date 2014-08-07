@@ -30,7 +30,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return "Aktperson";
+                return "Aktperson +";
             }
         }
 
@@ -39,6 +39,14 @@ namespace Trigger.BCL.ParaOffice
             get
             {
                 return "user_add";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 120;
             }
         }
 

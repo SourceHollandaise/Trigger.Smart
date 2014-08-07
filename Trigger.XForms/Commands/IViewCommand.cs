@@ -9,6 +9,8 @@ namespace Trigger.XForms.Commands
 
         string ImageName { get; }
 
+        int Width { get; }
+
         bool AllowExecute { get; }
 
         bool Visible { get; }

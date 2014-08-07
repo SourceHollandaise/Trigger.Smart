@@ -2,6 +2,9 @@ using System.IO;
 using Trigger.XStorable.Dependency;
 using Trigger.BCL.Common.Model;
 using Trigger.BCL.Common.Security;
+using System;
+using Trigger.XForms.Visuals;
+using Eto.Forms;
 
 namespace Trigger.XForms.Commands
 {
@@ -10,7 +13,7 @@ namespace Trigger.XForms.Commands
     {
         public void Execute(ListViewArguments listParameter)
         {
-            CurrentUser.ShowDetailView();
+            CurrentUser.ShowDetailContentEmbedded();
         }
 
         public string ID
@@ -52,6 +55,14 @@ namespace Trigger.XForms.Commands
                 }
 
                 return CurrentUser.FileName.GetValidPath();
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 110;
             }
         }
 

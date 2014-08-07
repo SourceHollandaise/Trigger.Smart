@@ -24,7 +24,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Load data";
+                return "Update Documents";
             }
         }
 
@@ -33,6 +33,14 @@ namespace Trigger.XForms.Commands
             get
             {
                 return "folder_down";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 140;
             }
         }
 

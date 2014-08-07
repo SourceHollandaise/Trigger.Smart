@@ -97,11 +97,12 @@ namespace Trigger.XForms.Visuals
                 if (command is ICurrentUserListViewCommand)
                     continue;
                 var button = new Button();
-                button.Size = new Size(40, 40);
+                button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
-                button.Image = ImageExtensions.GetImage(command.ImageName, 24);
-                button.ImagePosition = ButtonImagePosition.Overlay;
+                button.Text = command.Name;
+                //button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                //button.ImagePosition = ButtonImagePosition.Overlay;
                 button.Click += (sender, e) => command.Execute(new ListViewArguments
                 {
                     TargetType = ModelType,
@@ -128,10 +129,11 @@ namespace Trigger.XForms.Visuals
             if (command != null)
             {
                 var button = new Button();
-                button.Size = new Size(100, 40);
+                button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
                 button.Text = command.Name;
 
+                /*
                 try
                 {
                     button.Font = new Font(button.Font.Family, button.Font.Size, FontStyle.Bold);
@@ -140,8 +142,8 @@ namespace Trigger.XForms.Visuals
                 {
 
                 }
-
-                button.Image = ImageExtensions.GetImage(command.ImageName, 24);
+                */
+                button.Image = ImageExtensions.GetImage(command.ImageName, 16);
                 button.ImagePosition = ButtonImagePosition.Left;
                 button.Click += (sender, e) =>
                     command.Execute(new ListViewArguments
@@ -192,6 +194,7 @@ namespace Trigger.XForms.Visuals
                             Grid = CurrentGridView,
                             TargetType = ModelType
                         });
+      
                     }
                 };
             }
@@ -229,7 +232,7 @@ namespace Trigger.XForms.Visuals
                 Resizable = false,
                 AutoSize = false,
                 ID = "TagColumn",
-                Width = 36,
+                Width = 34,
                 Editable = false
             };          
         }

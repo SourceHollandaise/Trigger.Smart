@@ -32,6 +32,14 @@ namespace Trigger.XForms.Commands
             }
         }
 
+        public int Width
+        {
+            get
+            {
+                return 80;
+            }
+        }
+
         public bool AllowExecute
         {
             get

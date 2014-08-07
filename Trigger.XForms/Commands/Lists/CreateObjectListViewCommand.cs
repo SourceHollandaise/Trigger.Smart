@@ -2,6 +2,7 @@ using System;
 using Trigger.XStorable.DataStore;
 using Trigger.BCL.Common.Model;
 using Eto.Forms;
+using Trigger.XForms.Visuals;
 
 namespace Trigger.XForms.Commands
 {
@@ -26,7 +27,7 @@ namespace Trigger.XForms.Commands
             {
                 target.Initialize();
 
-                target.ShowDetailView();
+                target.ShowDetailContentEmbedded();
             }
         }
 
@@ -42,7 +43,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "New";
+                return "+";
             }
         }
 
@@ -51,6 +52,14 @@ namespace Trigger.XForms.Commands
             get
             {
                 return "add";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 34;
             }
         }
 

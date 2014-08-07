@@ -48,8 +48,10 @@ namespace Trigger.XForms.Visuals
                 {
                     if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
                         return;
-                    tagbutton.Image = ImageExtensions.GetImage("Accept24", 24);
-                    tagbutton.ImagePosition = ButtonImagePosition.Overlay;
+
+                    tagbutton.Text = "√";
+                    //tagbutton.Image = ImageExtensions.GetImage("Accept24", 16);
+                    //tagbutton.ImagePosition = ButtonImagePosition.Overlay;
                 }
             }
         }
@@ -58,7 +60,7 @@ namespace Trigger.XForms.Visuals
         {
             var tagButton = new Button
             {
-                Size = new Size(40, 40),
+                Size = new Size(34, 34),
                 ID = "tag_" + color,
                 BackgroundColor = color,
                 ToolTip = "Add Tag "

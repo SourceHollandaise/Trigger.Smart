@@ -90,10 +90,10 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Eto">
-      <HintPath>..\..\Eto\BuildOutput\Pcl\Debug\Eto.dll</HintPath>
+      <HintPath>..\..\Dropbox\Vendors\Eto\Eto.dll</HintPath>
     </Reference>
     <Reference Include="Eto.iOS">
-      <HintPath>..\..\Eto\BuildOutput\Pcl\Debug\Eto.iOS.dll</HintPath>
+      <HintPath>..\..\Dropbox\Vendors\Eto\Eto.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Newtonsoft.Json">
@@ -107,10 +107,736 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="Application\app.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="AppEventTracker.cs" />
+    <Compile Include="Code\XStorable\Attributes\LinkedListAttribute.cs" />
+    <Compile Include="Code\XStorable\Attributes\LinkedObjectAttribute.cs" />
+    <Compile Include="Code\XStorable\Datastore\IdGenerator.cs" />
+    <Compile Include="Code\XStorable\Datastore\IFileData.cs" />
+    <Compile Include="Code\XStorable\Datastore\IFileDataService.cs" />
+    <Compile Include="Code\XStorable\Datastore\IStorable.cs" />
+    <Compile Include="Code\XStorable\Datastore\IStore.cs" />
+    <Compile Include="Code\XStorable\Datastore\IStoreConfiguration.cs" />
+    <Compile Include="Code\XStorable\Datastore\LinkedObjectHelper.cs" />
+    <Compile Include="Code\XStorable\Extensions\FieldNames.cs" />
+    <Compile Include="Code\XStorable\Extensions\FileExtensions.cs" />
+    <Compile Include="Code\XStorable\Extensions\LinqExtensions.cs" />
+    <Compile Include="Code\XStorable\Extensions\TypeExtensions.cs" />
+    <Compile Include="Code\XForms\Commands\ApplicationExitCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ConfirmationMessages.cs" />
+    <Compile Include="Code\XForms\Commands\Details\AddFileDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\CloseDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\DeleteObjectCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\IAddFileDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\ICloseDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\IDeleteObjectCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\IRefreshDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\ISaveObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\ITagDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\RefreshDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\SaveObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Details\TagDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailViewArguments.cs" />
+    <Compile Include="Code\XForms\Commands\IApplicationExitCommand.cs" />
+    <Compile Include="Code\XForms\Commands\IDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\IListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ILogOffCommand.cs" />
+    <Compile Include="Code\XForms\Commands\IMainViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\IViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\CreateObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\CurrentUserListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\ICreateObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\ICurrentUserListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\IOpenObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\IPrintListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\IRefreshListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\ISearchListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\IUpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\OpenObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\PrintListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\RefreshListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\SearchListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Lists\UpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListViewArguments.cs" />
+    <Compile Include="Code\XForms\Commands\LogOffCommand.cs" />
+    <Compile Include="Code\XForms\Commands\XFormsBaseComands.cs" />
+    <Compile Include="Code\XForms\Extensions\DetailViewExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\DetailViewTemplateExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\ImageExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\ListViewTemplateExtensions.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ColumnDescription.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ColumnSorting.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\DetailViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\DetailViewDescriptorProvider.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\GroupItemDescription.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\IDetailViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\IListViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\IMainViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\LabelOrientation.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ListPropertyMode.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ListViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\MainViewDescriptor.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\NavigationGroupItem.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\NavigationItem.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\TabItemDescription.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ViewItemDescription.cs" />
+    <Compile Include="Code\XForms\ViewDescriptions\ViewItemOrientation.cs" />
+    <Compile Include="Code\XForms\Visuals\Details\DetailViewBuilder.cs" />
+    <Compile Include="Code\XForms\Visuals\Details\DetailViewControlFactory.cs" />
+    <Compile Include="Code\XForms\Visuals\Details\DetailViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Visuals\Details\TagButtonBuilder.cs" />
+    <Compile Include="Code\XForms\Visuals\IViewTemplateConfiguration.cs" />
+    <Compile Include="Code\XForms\Visuals\Lists\DataStoreProvider.cs" />
+    <Compile Include="Code\XForms\Visuals\Lists\GridViewComparer.cs" />
+    <Compile Include="Code\XForms\Visuals\Lists\ListViewBuilder.cs" />
+    <Compile Include="Code\XForms\Visuals\Lists\ListViewCellFactory.cs" />
+    <Compile Include="Code\XForms\Visuals\Lists\ListViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Visuals\LogonViewGenerator.cs" />
+    <Compile Include="Code\XForms\Visuals\LogonViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Visuals\MainViewTemplate.cs" />
+    <Compile Include="Code\XForms\Visuals\TemplateBase.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Visuals\ViewTemplateConfiguration.cs" />
+    <Compile Include="Code\XDependency\DefaultDependencyAttribute.cs" />
+    <Compile Include="Code\XDependency\DependencyMap.cs" />
+    <Compile Include="Code\XDependency\DependencyMapProvider.cs" />
+    <Compile Include="Code\XDependency\IDependencyMap.cs" />
+    <Compile Include="Code\BCLCommon\Attributes\FieldFileDataAttribute.cs" />
+    <Compile Include="Code\BCLCommon\Attributes\FieldImageDataAttribute.cs" />
+    <Compile Include="Code\BCLCommon\Attributes\FieldImageValueAttribute.cs" />
+    <Compile Include="Code\BCLCommon\Attributes\FieldTextAreaAttribute.cs" />
+    <Compile Include="Code\BCLCommon\Attributes\ImageNameAttribute.cs" />
+    <Compile Include="Code\BCLCommon\Datastore\FileDataStore.cs" />
+    <Compile Include="Code\BCLCommon\Datastore\GuidIdGenerator.cs" />
+    <Compile Include="Code\BCLCommon\Datastore\StorableBase.cs" />
+    <Compile Include="Code\BCLCommon\Model\ApplicationQuery.cs" />
+    <Compile Include="Code\BCLCommon\Model\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Code\BCLCommon\Model\Sex.cs" />
+    <Compile Include="Code\BCLCommon\Model\Tag.cs" />
+    <Compile Include="Code\BCLCommon\Model\User.cs" />
+    <Compile Include="Code\BCLCommon\Security\IAuthenticate.cs" />
+    <Compile Include="Code\BCLCommon\Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Code\BCLCommon\Security\LogonParameters.cs" />
+    <Compile Include="Code\BCLCommon\Security\SecureText.cs" />
+    <Compile Include="Code\BCLCommon\Security\SecurityInfoProvider.cs" />
+    <Compile Include="Code\BCLCommon\Services\DataStoreAuthenticate.cs" />
+    <Compile Include="Code\BCLCommon\Services\SystemAuthenticate.cs" />
+    <Compile Include="Code\BCLEventTracker\Commands\ILinkAreaWithUserDetailViewCommand.cs" />
+    <Compile Include="Code\BCLEventTracker\Commands\ITrackTimeDetailViewCommand.cs" />
+    <Compile Include="Code\BCLEventTracker\Commands\LinkAreaWithUserDetailViewCommand.cs" />
+    <Compile Include="Code\BCLEventTracker\Commands\TrackTimeDetailViewCommand.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\ApplicationUser.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\Area.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\AreaUser.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\Contact.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\ContactType.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\Document.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\ImageGallery.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\ImageItem.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\IssueState.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\IssueTracker.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\IssueType.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\Person.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\Priority.cs" />
+    <Compile Include="Code\BCLEventTracker\Model\TimeTracker.cs" />
+    <Compile Include="Code\BCLEventTracker\Services\ApplicationDataStoreAuthenticate.cs" />
+    <Compile Include="Code\BCLEventTracker\Services\ApplicationSecurityInfoProvider.cs" />
+    <Compile Include="Code\BCLEventTracker\Services\DocumentFileDataService.cs" />
+    <Compile Include="Code\BCLEventTracker\Services\StoreConfiguration.cs" />
+    <Compile Include="Code\BCLEventTracker\Services\TimeTrackerService.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\ApplicationMainViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\AreaUserViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\AreaViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\ContactViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\DocumentViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\ImageGalleryViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\ImageItemViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\IssueTrackerViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\PersonViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\TagViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\TimeTrackerViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Details\UserViewDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\AreaListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\AreaUserListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\ContactListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\DocumentListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\ImageGalleryListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\ImageItemListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\IssueTrackerListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\PersonListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\TagListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\TimeTrackerListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\Lists\UserListDescriptor.cs" />
+    <Compile Include="Code\BCLEventTracker\Views\PersonViewLayoutDemoDescriptor.cs" />
+    <Compile Include="Application\AppEventTracker.cs" />
+    <Compile Include="Application\Bootstrapper.cs" />
+    <Compile Include="Application\StartUp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Code\" />
+    <Folder Include="Code\XStorable\" />
+    <Folder Include="Code\XForms\" />
+    <Folder Include="Code\XDependency\" />
+    <Folder Include="Code\BCLCommon\" />
+    <Folder Include="Code\BCLEventTracker\" />
+    <Folder Include="Application\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\accept.png">
+      <LogicalName>accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\add.png">
+      <LogicalName>add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application.png">
+      <LogicalName>application.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_add.png">
+      <LogicalName>application_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_edit.png">
+      <LogicalName>application_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_lock.png">
+      <LogicalName>application_lock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_next.png">
+      <LogicalName>application_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_remove.png">
+      <LogicalName>application_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\application_up.png">
+      <LogicalName>application_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\applications.png">
+      <LogicalName>applications.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\archive.png">
+      <LogicalName>archive.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\attachment.png">
+      <LogicalName>attachment.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\back.png">
+      <LogicalName>back.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\blog_post.png">
+      <LogicalName>blog_post.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\blog_post_accept.png">
+      <LogicalName>blog_post_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\blog_post_delete.png">
+      <LogicalName>blog_post_delete.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\blog_post_edit.png">
+      <LogicalName>blog_post_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calculator.png">
+      <LogicalName>calculator.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calculator_accept.png">
+      <LogicalName>calculator_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calculator_add.png">
+      <LogicalName>calculator_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calculator_remove.png">
+      <LogicalName>calculator_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calendar_date.png">
+      <LogicalName>calendar_date.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\calendar_empty.png">
+      <LogicalName>calendar_empty.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\cd.png">
+      <LogicalName>cd.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\cd_accept.png">
+      <LogicalName>cd_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\cd_add.png">
+      <LogicalName>cd_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\cd_down.png">
+      <LogicalName>cd_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\cd_remove.png">
+      <LogicalName>cd_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\chart.png">
+      <LogicalName>chart.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\chart_accept.png">
+      <LogicalName>chart_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\chart_add.png">
+      <LogicalName>chart_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\chart_remove.png">
+      <LogicalName>chart_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\clock.png">
+      <LogicalName>clock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comment.png">
+      <LogicalName>comment.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comment_add.png">
+      <LogicalName>comment_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comment_edit.png">
+      <LogicalName>comment_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comment_remove.png">
+      <LogicalName>comment_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comments.png">
+      <LogicalName>comments.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comments_add.png">
+      <LogicalName>comments_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\comments_remove.png">
+      <LogicalName>comments_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\community_users.png">
+      <LogicalName>community_users.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\computer.png">
+      <LogicalName>computer.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\computer_accept.png">
+      <LogicalName>computer_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\computer_remove.png">
+      <LogicalName>computer_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\computers.png">
+      <LogicalName>computers.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database.png">
+      <LogicalName>database.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_accept.png">
+      <LogicalName>database_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_add.png">
+      <LogicalName>database_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_down.png">
+      <LogicalName>database_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_lock.png">
+      <LogicalName>database_lock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_next.png">
+      <LogicalName>database_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_previous.png">
+      <LogicalName>database_previous.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_process.png">
+      <LogicalName>database_process.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_remove.png">
+      <LogicalName>database_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_search.png">
+      <LogicalName>database_search.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\database_up.png">
+      <LogicalName>database_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\down.png">
+      <LogicalName>down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\eject.png">
+      <LogicalName>eject.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\fast_forward.png">
+      <LogicalName>fast_forward.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\favorite.png">
+      <LogicalName>favorite.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\favorite_add.png">
+      <LogicalName>favorite_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\favorite_remove.png">
+      <LogicalName>favorite_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder.png">
+      <LogicalName>folder.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_accept.png">
+      <LogicalName>folder_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_add.png">
+      <LogicalName>folder_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_down.png">
+      <LogicalName>folder_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_edit.png">
+      <LogicalName>folder_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_full.png">
+      <LogicalName>folder_full.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_full_accept.png">
+      <LogicalName>folder_full_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_full_add.png">
+      <LogicalName>folder_full_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_full_delete.png">
+      <LogicalName>folder_full_delete.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_next.png">
+      <LogicalName>folder_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_previous.png">
+      <LogicalName>folder_previous.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_process.png">
+      <LogicalName>folder_process.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_remove.png">
+      <LogicalName>folder_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\folder_up.png">
+      <LogicalName>folder_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\forward_new_mail.png">
+      <LogicalName>forward_new_mail.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\help.png">
+      <LogicalName>help.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\home.png">
+      <LogicalName>home.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\home_next.png">
+      <LogicalName>home_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\html_page_accept.png">
+      <LogicalName>html_page_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\html_page_warning.png">
+      <LogicalName>html_page_warning.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image.png">
+      <LogicalName>image.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_add.png">
+      <LogicalName>image_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_edit.png">
+      <LogicalName>image_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_lock.png">
+      <LogicalName>image_lock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_multi.png">
+      <LogicalName>image_multi.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_next.png">
+      <LogicalName>image_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_remove.png">
+      <LogicalName>image_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\image_up.png">
+      <LogicalName>image_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\info.png">
+      <LogicalName>info.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\lock.png">
+      <LogicalName>lock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\lock_disabled.png">
+      <LogicalName>lock_disabled.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\lock_off.png">
+      <LogicalName>lock_off.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\lock_off_disabled.png">
+      <LogicalName>lock_off_disabled.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail.png">
+      <LogicalName>mail.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail_accept.png">
+      <LogicalName>mail_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail_add.png">
+      <LogicalName>mail_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail_edit.png">
+      <LogicalName>mail_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail_next.png">
+      <LogicalName>mail_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\mail_remove.png">
+      <LogicalName>mail_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\movie_track.png">
+      <LogicalName>movie_track.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\movie_track_add.png">
+      <LogicalName>movie_track_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\movie_track_next.png">
+      <LogicalName>movie_track_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\movie_track_remove.png">
+      <LogicalName>movie_track_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\next.png">
+      <LogicalName>next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\note_accept.png">
+      <LogicalName>note_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\note_add.png">
+      <LogicalName>note_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\note_edit.png">
+      <LogicalName>note_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\note_remove.png">
+      <LogicalName>note_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\notes_edit.png">
+      <LogicalName>notes_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page.png">
+      <LogicalName>page.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_accept.png">
+      <LogicalName>page_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_add.png">
+      <LogicalName>page_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_down.png">
+      <LogicalName>page_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_edit.png">
+      <LogicalName>page_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_next.png">
+      <LogicalName>page_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_previous.png">
+      <LogicalName>page_previous.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_process.png">
+      <LogicalName>page_process.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_remove.png">
+      <LogicalName>page_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_search.png">
+      <LogicalName>page_search.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_swap.png">
+      <LogicalName>page_swap.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\page_up.png">
+      <LogicalName>page_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\pause.png">
+      <LogicalName>pause.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\pdf.png">
+      <LogicalName>pdf.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\play.png">
+      <LogicalName>play.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\printer.png">
+      <LogicalName>printer.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\printer_search.png">
+      <LogicalName>printer_search.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\process.png">
+      <LogicalName>process.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\process_accept.png">
+      <LogicalName>process_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\process_add.png">
+      <LogicalName>process_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\process_remove.png">
+      <LogicalName>process_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\record.png">
+      <LogicalName>record.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\remove.png">
+      <LogicalName>remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\repeat.png">
+      <LogicalName>repeat.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rewind.png">
+      <LogicalName>rewind.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rss.png">
+      <LogicalName>rss.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rss_add.png">
+      <LogicalName>rss_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rss_edit.png">
+      <LogicalName>rss_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rss_next.png">
+      <LogicalName>rss_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\rss_remove.png">
+      <LogicalName>rss_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\search.png">
+      <LogicalName>search.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\search_add.png">
+      <LogicalName>search_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\search_remove.png">
+      <LogicalName>search_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_user.png">
+      <LogicalName>she_user.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_user_accept.png">
+      <LogicalName>she_user_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_user_add.png">
+      <LogicalName>she_user_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_user_comment.png">
+      <LogicalName>she_user_comment.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_user_remove.png">
+      <LogicalName>she_user_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\she_users.png">
+      <LogicalName>she_users.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\shopping_cart.png">
+      <LogicalName>shopping_cart.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\shopping_cart_accept.png">
+      <LogicalName>shopping_cart_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\shopping_cart_down.png">
+      <LogicalName>shopping_cart_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\shopping_cart_remove.png">
+      <LogicalName>shopping_cart_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\shopping_cart_up.png">
+      <LogicalName>shopping_cart_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\skip_backward.png">
+      <LogicalName>skip_backward.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\skip_forward.png">
+      <LogicalName>skip_forward.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\sound.png">
+      <LogicalName>sound.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\sound_off.png">
+      <LogicalName>sound_off.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\sound_on.png">
+      <LogicalName>sound_on.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\stop.png">
+      <LogicalName>stop.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\up.png">
+      <LogicalName>up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user.png">
+      <LogicalName>user.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_accept.png">
+      <LogicalName>user_accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_add.png">
+      <LogicalName>user_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_comment.png">
+      <LogicalName>user_comment.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_comments.png">
+      <LogicalName>user_comments.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_has_new_email.png">
+      <LogicalName>user_has_new_email.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\user_remove.png">
+      <LogicalName>user_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\users.png">
+      <LogicalName>users.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\video_favorite.png">
+      <LogicalName>video_favorite.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\warning.png">
+      <LogicalName>warning.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window.png">
+      <LogicalName>window.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_add.png">
+      <LogicalName>window_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_edit.png">
+      <LogicalName>window_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_lock.png">
+      <LogicalName>window_lock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_next.png">
+      <LogicalName>window_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_remove.png">
+      <LogicalName>window_remove.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\window_up.png">
+      <LogicalName>window_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\windows.png">
+      <LogicalName>windows.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Size64\word.png">
+      <LogicalName>word.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\Specials\Accept24.png">
+      <LogicalName>Accept24.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

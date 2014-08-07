@@ -35,7 +35,7 @@ namespace Trigger.XForms.Commands
         {
             get
             {
-                return "Attachment";
+                return "File +";
             }
         }
 
@@ -44,6 +44,14 @@ namespace Trigger.XForms.Commands
             get
             {
                 return "attachment";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 80;
             }
         }
 

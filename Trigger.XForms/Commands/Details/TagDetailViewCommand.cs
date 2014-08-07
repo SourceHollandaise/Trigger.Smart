@@ -22,7 +22,7 @@ namespace Trigger.XForms.Commands
             if (template != null)
             {
                 foreach (var button in data.Item2)
-                    button.Image = null;
+                    button.Text = ""; //button.Image = null;
 
                 var store = DependencyMapProvider.Instance.ResolveType<IStore>();
                 var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(args.CurrentObject.MappingId.ToString()));
@@ -31,9 +31,9 @@ namespace Trigger.XForms.Commands
 
                 tag.TargetObjectMappingId = args.CurrentObject.MappingId.ToString();
                 tag.TagColor = data.Item1.BackgroundColor.ToString();
-
-                data.Item1.Image = ImageExtensions.GetImage("Accept24", 24);
-                data.Item1.ImagePosition = ButtonImagePosition.Overlay;
+                data.Item1.Text = "√";
+                //data.Item1.Image = ImageExtensions.GetImage("Accept24", 24);
+                //data.Item1.ImagePosition = ButtonImagePosition.Overlay;
 
                 tag.Save();
             }
@@ -60,6 +60,14 @@ namespace Trigger.XForms.Commands
             get
             {
                 return "favorite";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 36;
             }
         }
 

@@ -30,7 +30,7 @@ namespace Trigger.BCL.EventTracker
         {
             get
             {
-                return "Area - User";
+                return "Link Area User";
             }
         }
 
@@ -39,6 +39,14 @@ namespace Trigger.BCL.EventTracker
             get
             {
                 return "user_add";
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return 120;
             }
         }
 
