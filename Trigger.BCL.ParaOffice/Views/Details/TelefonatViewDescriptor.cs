@@ -8,8 +8,10 @@ namespace Trigger.BCL.ParaOffice
     {
         public TelefonatViewDescriptor()
         {
+            AutoSave = true;
             TabItemDescriptions = new List<TabItemDescription>
             {
+               
                 new TabItemDescription("Telefonat", 1)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>

@@ -14,6 +14,10 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Descendig;
             DefaultSortProperty = Fields.GetName(m => m.Beginn);
 
+            ListDetailView = true;
+            ListDetailViewWithToolbar = false;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Beginn), 1){ ColumnHeaderText = "Datum/Uhrzeit" },
