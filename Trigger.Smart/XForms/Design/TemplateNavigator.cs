@@ -29,24 +29,19 @@ namespace XForms.Design
         {
             if (stack.Count == 0)
                 return;
-
-            var content = stack.Pop();
-    
-            if (content.Equals(MainTemplate.ContentPanel.Content))
+                
+            stack.Pop();
+            if (stack.Count > 0)
             {
-                if (stack.Count > 0)
-                    content = stack.Pop();
-                else
-                    return;
-            }
-          
-            MainTemplate.ContentPanel.Content = content;
+                var content = stack.Peek();
 
+                MainTemplate.ContentPanel.Content = content;
+            }
         }
 
         public static void Forward()
         {
-
+            throw new System.NotSupportedException("Forward ist currently not supported!");
         }
 
         static MainViewTemplate MainTemplate

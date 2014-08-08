@@ -3,6 +3,7 @@ using XForms.Store;
 
 namespace XForms.Design
 {
+    [Obsolete("Use ListViewBuilder and ListViewDescriptor!", true)]
     public class ListViewTemplate : TemplateBase
     {
         public ListViewTemplate(Type modelType, IStorable currentObject) : base(modelType, currentObject)

@@ -93,7 +93,7 @@ namespace XForms.Design
                 {
                     var button = new Button()
                     {
-                        Size = new Size(-1, 36),
+                        Size = new Size(-1, 34),
                         Text = navItem.NavigationItemText,
                         Tag = navItem.ModelType,
                         Image = ImageExtensions.GetImage(navItem.ImageName, 16),
@@ -172,6 +172,7 @@ namespace XForms.Design
                     listItem.Text = navItem.NavigationItemText;
                     listItem.Key = navItem.NavigationItemText;
                     listItem.Tag = navItem.ModelType;
+                   
                     listBox.Items.Add(listItem);
 
                 }
@@ -222,7 +223,6 @@ namespace XForms.Design
             listLayout.Add(CreateListViewLayout());
             ContentPanel.Content = listLayout;
             TemplateNavigator.Add(ContentPanel.Content);
-
             Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 
@@ -243,7 +243,10 @@ namespace XForms.Design
                 {
                     var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
                     if (detailContent != null)
+                    {
                         ContentPanel.Content = detailContent;
+                        TemplateNavigator.Add(ContentPanel.Content);
+                    }
                 };
 
                 builder.CurrentGridView.KeyUp += (sender, e) =>
@@ -252,7 +255,10 @@ namespace XForms.Design
                     {
                         var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
                         if (detailContent != null)
+                        {
                             ContentPanel.Content = detailContent;
+                            TemplateNavigator.Add(ContentPanel.Content);
+                        }
                     }
                 };
 
@@ -279,7 +285,7 @@ namespace XForms.Design
             var logOffCommand = MapProvider.Instance.ResolveType<ILogonCommand>();
             var logOffButton = new Button
             {
-                Size = new Size(-1, 36),
+                Size = new Size(-1, 34),
                 Image = ImageExtensions.GetImage(logOffCommand.ImageName, 16),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = logOffCommand.Name,
@@ -294,7 +300,7 @@ namespace XForms.Design
             var exitCommand = MapProvider.Instance.ResolveType<IApplicationExitCommand>();
             var exitButton = new Button
             {
-                Size = new Size(-1, 36),
+                Size = new Size(-1, 34),
                 Image = ImageExtensions.GetImage(exitCommand.ImageName, 16),
                 ImagePosition = ButtonImagePosition.Left,
                 Text = exitCommand.Name,

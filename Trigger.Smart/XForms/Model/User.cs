@@ -9,6 +9,7 @@ namespace XForms.Model
         Administrator,
         Projectleader,
         Teamleader,
+        Teammember,
         User,
         Visitor
     }

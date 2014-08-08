@@ -126,7 +126,6 @@
     </Compile>
     <Compile Include="Design\TagButtonBuilder.cs" />
     <Compile Include="Extensions\DetailViewExtensions.cs" />
-    <Compile Include="Extensions\DetailViewTemplateExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
     <Compile Include="Commands\ApplicationExitCommand.cs" />

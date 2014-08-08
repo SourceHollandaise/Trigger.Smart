@@ -7,6 +7,12 @@ namespace XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
+            if (args.CurrentObject.HasChanged)
+            {
+                if (ConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
+                    args.CurrentObject.Save();
+            }
+
             TemplateNavigator.Back();
         }
 

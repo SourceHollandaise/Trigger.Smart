@@ -30,10 +30,13 @@ namespace XForms.Design
 
         public Control GetContent()
         {
+            Control content = null;
             if (descriptor.TabItemDescriptions != null && descriptor.TabItemDescriptions.Any())
-                return CreateTabbedViewLayout();
+                content = CreateTabbedViewLayout();
+            else
+                content = CreateViewLayout();
 
-            return CreateViewLayout();
+            return content;
         }
 
         Control CreateViewLayout()
@@ -106,6 +109,7 @@ namespace XForms.Design
 
             detailViewLayout.Add(tabControl);
             detailViewLayout.EndHorizontal();
+
             return detailViewLayout;
         }
 

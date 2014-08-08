@@ -51,11 +51,11 @@ namespace XForms.Design
         {
             CurrentGridView = null;
 
-            var detailViewLayout = new DynamicLayout();
-            detailViewLayout.BeginHorizontal();
-            detailViewLayout.Add(AddCommandBarLayout());
-            detailViewLayout.EndHorizontal();
-            detailViewLayout.BeginHorizontal();
+            var listViewLayout = new DynamicLayout();
+            listViewLayout.BeginHorizontal();
+            listViewLayout.Add(AddCommandBarLayout());
+            listViewLayout.EndHorizontal();
+            listViewLayout.BeginHorizontal();
 
             CurrentGridView = new GridView();
             CurrentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
@@ -79,13 +79,13 @@ namespace XForms.Design
 
             CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
 
-            detailViewLayout.Add(CurrentGridView);
+            listViewLayout.Add(CurrentGridView);
 
-            detailViewLayout.EndHorizontal();
+            listViewLayout.EndHorizontal();
 
             RegisterToEvents();
- 
-            return detailViewLayout;
+
+            return listViewLayout;
         }
 
         DynamicLayout AddCommandBarLayout()
