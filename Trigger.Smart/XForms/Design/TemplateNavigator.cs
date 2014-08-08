@@ -34,8 +34,8 @@ namespace XForms.Design
             if (stack.Count > 0)
             {
                 var content = stack.Peek();
-
-                MainTemplate.ContentPanel.Content = content;
+                if (content != null)
+                    MainTemplate.ContentPanel.Content = content;
             }
         }
 

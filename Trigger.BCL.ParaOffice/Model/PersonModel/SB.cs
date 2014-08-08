@@ -29,6 +29,15 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+
+        public string UserAlias
+        {
+            get
+            {
+                return User != null ? User.UserName : null;
+            }
+        }
+
         User user;
 
         [LinkedObject]
@@ -58,7 +67,11 @@ namespace Trigger.BCL.ParaOffice
             }
             set
             {
+                if (Equals(termineAnzeigen, value))
+                    return;
                 termineAnzeigen = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +85,11 @@ namespace Trigger.BCL.ParaOffice
             }
             set
             {
+                if (Equals(telefonatAnzeigen, value))
+                    return;
                 telefonatAnzeigen = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -83,7 +100,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Termin>().Where(p => p.SB != null && p.SB.MappingId.Equals(MappingId));
+                return Store.LoadAll<Termin>().Where(p => p.SB != null && p.SB.ID.Equals(ID));
             }
         }
 
@@ -95,7 +112,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Telefonat>().Where(p => p.SB2 != null && p.SB2.MappingId.Equals(MappingId));
+                return Store.LoadAll<Telefonat>().Where(p => p.SB2 != null && p.SB2.ID.Equals(ID));
             }
         }
 
@@ -106,7 +123,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return Store.LoadAll<Akt>().Where(p => p.SB1 != null && p.SB1.MappingId.Equals(MappingId));
+                return Store.LoadAll<Akt>().Where(p => p.SB1 != null && p.SB1.ID.Equals(ID));
             }
         }
     }

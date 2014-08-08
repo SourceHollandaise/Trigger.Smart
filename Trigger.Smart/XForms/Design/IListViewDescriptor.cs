@@ -19,7 +19,11 @@ namespace XForms.Design
 
         bool IsImageList { get; set; }
 
-        bool IsListDetailView { get; set; }
+        bool ListDetailView { get; set; }
+
+        bool ListDetailViewWithToolbar { get; set; }
+
+        int ListDetailViewColumns { get; set; }
 
         int? RowHeight { get; set; }
 

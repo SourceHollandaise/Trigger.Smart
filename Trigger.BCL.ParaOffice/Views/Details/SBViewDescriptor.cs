@@ -14,22 +14,16 @@ namespace Trigger.BCL.ParaOffice
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new GroupItemDescription("Art", 1)
+                        new GroupItemDescription("Zuordnung", 1)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
                                 new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.TermineAnzeigen), 3){ LabelText = "Termine anzeigen" },
+                                new ViewItemDescription(Fields.GetName(m => m.TelefonatAnzeigen), 4){ LabelText = "Telefonate anzeigen" },
                             }
                         },
-                        new GroupItemDescription("Einstellungen", 1)
-                        {
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription(Fields.GetName(m => m.TermineAnzeigen), 1){ LabelText = "Termine anzeigen" },
-                                new ViewItemDescription(Fields.GetName(m => m.TelefonatAnzeigen), 2){ LabelText = "Telefonate anzeigen" },
-                            }
-                        }
                     }
                 },
                 new TabItemDescription("Termine", 2)

@@ -13,8 +13,12 @@ namespace Trigger.BCL.ParaOffice
             {
                 var currentUser = MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
 
-                return MapProvider.Instance.ResolveType<IStore>().LoadAll<SB>()
-                    .FirstOrDefault(p => p.User != null && p.User.MappingId.Equals(currentUser.MappingId));
+                if (currentUser == null)
+                    return null;
+
+                var sb = MapProvider.Instance.ResolveType<IStore>().LoadAll<SB>().FirstOrDefault(p => p.User != null && p.User.UserName == currentUser.UserName);
+
+                return sb;
             }
         }
     }

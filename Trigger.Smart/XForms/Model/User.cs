@@ -106,7 +106,7 @@ namespace XForms.Model
                 if (File.Exists(file))
                 {
                     if (avatar == null)
-                        avatar = new Bitmap(FileName.GetValidPath());
+                        avatar = new Bitmap(file);
                     return avatar;
                 }
                 return null;

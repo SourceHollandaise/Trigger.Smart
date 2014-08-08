@@ -19,8 +19,6 @@ namespace XForms.Design
 
         readonly bool isRoot;
 
-        bool addCommandBar;
-
         IListViewDescriptor descriptor;
 
         public Type ModelType
@@ -31,7 +29,6 @@ namespace XForms.Design
 
         public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null, bool addCommandBar = false)
         {
-            this.addCommandBar = addCommandBar;
             this.descriptor = descriptor;
             this.originalDataSet = dataSet;
             this.dataSet = dataSet;
@@ -56,15 +53,28 @@ namespace XForms.Design
             if (descriptor.DefaultSorting == ColumnSorting.Descendig)
                 rawDataSet = rawDataSet.OrderByPropertyDescending(descriptor.DefaultSortProperty);
 
+            var currentColumnCount = 0;
+            var columns = descriptor.ListDetailViewColumns == 0 ? 1 : descriptor.ListDetailViewColumns - 1;
             foreach (var current in rawDataSet.ToList())
             {
-                listDetailLayout.BeginVertical();
-
-                var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), addCommandBar);
+                if (currentColumnCount == 0)
+                {
+                    listDetailLayout.BeginHorizontal();
+                }
+ 
+                var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
 
                 listDetailLayout.Add(builder.GetContent());
+               
+                if (currentColumnCount == columns)
+                {
+                    listDetailLayout.Add(new DynamicLayout());
+                    //listDetailLayout.EndHorizontal();
+                    currentColumnCount = 0;
+                    continue;
+                }
 
-                listDetailLayout.EndVertical();
+                currentColumnCount++;
             }
 
             var scrollable = new Scrollable()

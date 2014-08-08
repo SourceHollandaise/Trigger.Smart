@@ -94,6 +94,28 @@ namespace Trigger.App.OSX.ParaOffice
 
                 sb.Save();
             }
+
+            CreateSBFromUser();
+        }
+
+        public void CreateSBFromUser()
+        {
+            var users = Map.ResolveType<IStore>().LoadAll<User>();
+            foreach (var user in users)
+            {
+                var sb = Map.ResolveType<IStore>().LoadAll<SB>().FirstOrDefault(p => p.ID == user.UserName);
+
+                if (sb == null)
+                {
+                    sb = new SB();
+
+                    sb.ID = user.UserName;
+                    sb.User = user;
+                    sb.TermineAnzeigen = true;
+                    sb.TelefonatAnzeigen = true;
+                    sb.Save();
+                }
+            }
         }
     }
 }

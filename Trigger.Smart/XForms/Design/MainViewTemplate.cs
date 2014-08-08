@@ -236,7 +236,7 @@ namespace XForms.Design
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                if (descriptor.IsListDetailView)
+                if (descriptor.ListDetailView)
                 {
                     var builder = new ListDetailViewBuilder(descriptor, CurrentActiveType);
                     content = builder.GetContent();

@@ -14,7 +14,7 @@ namespace Trigger.BCL.ParaOffice
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.ID), 1){ ColumnHeaderText = "SB-Kürzel" },
-                new ColumnDescription(Fields.GetName(m => m.User), 2){ ColumnHeaderText = "Benutzer" },
+                new ColumnDescription(Fields.GetName(m => m.UserAlias), 2){ ColumnHeaderText = "Benutzer" },
             };
         }
     }

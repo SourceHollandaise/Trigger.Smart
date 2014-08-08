@@ -21,7 +21,7 @@ namespace XForms.Design
                 var detailBuilder = new DetailViewBuilder(detailDescriptor, currentObject);
                 if (template == null)
                 {
-                    (Application.Instance.MainForm as MainViewTemplate).Title = currentObject.GetDefaultPropertyValue();
+                    Application.Instance.MainForm.Title = currentObject.GetDefaultPropertyValue();
 
                     (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = detailBuilder.GetContent();
 

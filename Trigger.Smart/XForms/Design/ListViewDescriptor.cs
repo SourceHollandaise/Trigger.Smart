@@ -22,7 +22,11 @@ namespace XForms.Design
 
         public bool IsImageList { get; set; }
 
-        public bool IsListDetailView { get; set; }
+        public bool ListDetailView { get; set; }
+
+        public bool ListDetailViewWithToolbar { get; set; }
+
+        public int ListDetailViewColumns { get; set; }
 
         public int? RowHeight { get; set; }
 
