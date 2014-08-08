@@ -36,5 +36,23 @@ namespace XForms.Design
            
             return new DataStoreCollection(dataSet);
         }
+
+        public IEnumerable<IStorable> CreateRawDataSet(IEnumerable<IStorable> dataSet)
+        {
+            if (descriptor == null)
+                return null;
+
+            if (dataSet == null)
+            {
+                var tempDataSet = descriptor.Repository ?? MapProvider.Instance.ResolveType<IStore>().LoadAll(modelType);
+
+                if (descriptor.Filter != null)
+                    tempDataSet = tempDataSet.Where(descriptor.Filter);
+                dataSet = tempDataSet;
+
+            }
+
+            return dataSet;
+        }
     }
 }

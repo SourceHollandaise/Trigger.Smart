@@ -22,6 +22,8 @@ namespace XForms.Design
 
         public bool IsImageList { get; set; }
 
+        public bool IsListDetailView { get; set; }
+
         public int? RowHeight { get; set; }
 
         public IList<IListViewCommand> Commands { get; set; }

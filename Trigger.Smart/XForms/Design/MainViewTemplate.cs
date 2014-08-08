@@ -236,22 +236,17 @@ namespace XForms.Design
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                var builder = new ListViewBuilder(descriptor, CurrentActiveType);
-                content = builder.GetContent();
-
-                builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
+                if (descriptor.IsListDetailView)
                 {
-                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
-                    if (detailContent != null)
-                    {
-                        ContentPanel.Content = detailContent;
-                        TemplateNavigator.Add(ContentPanel.Content);
-                    }
-                };
-
-                builder.CurrentGridView.KeyUp += (sender, e) =>
+                    var builder = new ListDetailViewBuilder(descriptor, CurrentActiveType);
+                    content = builder.GetContent();
+                }
+                else
                 {
-                    if (e.Key == Keys.Enter)
+                    var builder = new ListViewBuilder(descriptor, CurrentActiveType);
+                    content = builder.GetContent();
+ 
+                    builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
                     {
                         var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
                         if (detailContent != null)
@@ -259,8 +254,21 @@ namespace XForms.Design
                             ContentPanel.Content = detailContent;
                             TemplateNavigator.Add(ContentPanel.Content);
                         }
-                    }
-                };
+                    };
+
+                    builder.CurrentGridView.KeyUp += (sender, e) =>
+                    {
+                        if (e.Key == Keys.Enter)
+                        {
+                            var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                            if (detailContent != null)
+                            {
+                                ContentPanel.Content = detailContent;
+                                TemplateNavigator.Add(ContentPanel.Content);
+                            }
+                        }
+                    };
+                }
 
                 layout.Add(content);
             }

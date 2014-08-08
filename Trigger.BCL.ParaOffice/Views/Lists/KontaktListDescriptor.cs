@@ -10,6 +10,7 @@ namespace Trigger.BCL.ParaOffice
         {
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.PersonAlias);
+            IsListDetailView = true;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

@@ -11,6 +11,9 @@ namespace XForms.Design
     {
         public static void ReloadList(this GridView gridView, Type type, IEnumerable<IStorable> customDataSource = null)
         {
+            if (gridView == null)
+                return;
+
             var descriptorType = ListViewDescriptorProvider.GetDescriptor(type);
             if (descriptorType != null)
             {

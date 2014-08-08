@@ -3,7 +3,7 @@ using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
-    [System.ComponentModel.DefaultProperty("Telefon")]
+    [System.ComponentModel.DefaultProperty("PersonAlias")]
     [System.ComponentModel.DisplayName("Kontakt")]
     [ImageName("user_comments")]
     public class Kontakt : ExportableBase

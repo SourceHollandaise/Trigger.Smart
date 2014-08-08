@@ -11,6 +11,7 @@ using XForms.Model;
 
 namespace XForms.Design
 {
+   
     public class ListViewBuilder
     {
         protected int? CurrentRowIndex = null;
@@ -49,18 +50,17 @@ namespace XForms.Design
 
         public Control GetContent()
         {
-            CurrentGridView = null;
-
-            var listViewLayout = new DynamicLayout();
-            listViewLayout.BeginHorizontal();
-            listViewLayout.Add(AddCommandBarLayout());
-            listViewLayout.EndHorizontal();
-            listViewLayout.BeginHorizontal();
-
             CurrentGridView = new GridView();
             CurrentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
             CurrentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
             CurrentGridView.ShowCellBorders = false;
+
+            var listViewLayout = new DynamicLayout();
+            listViewLayout.BeginHorizontal();
+            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, isRoot, originalDataSet, CurrentGridView);
+            listViewLayout.Add(commandBarBuilder.GetContent());
+            listViewLayout.EndHorizontal();
+            listViewLayout.BeginHorizontal();
 
             if (descriptor.ListShowTags)
                 CurrentGridView.Columns.Add(CreateTagColumn());
@@ -86,74 +86,6 @@ namespace XForms.Design
             RegisterToEvents();
 
             return listViewLayout;
-        }
-
-        DynamicLayout AddCommandBarLayout()
-        {
-            var commandBar = new DynamicLayout();
-            commandBar.BeginHorizontal();
-            foreach (var command in descriptor.Commands)
-            {
-                if (command is ICurrentUserListViewCommand)
-                    continue;
-                var button = new Button();
-                button.Size = new Size(command.Width, 34);
-                button.ID = command.ID;
-                button.ToolTip = command.Name;
-                button.Text = command.Name;
-                //button.Image = ImageExtensions.GetImage(command.ImageName, 16);
-                //button.ImagePosition = ButtonImagePosition.Overlay;
-                button.Click += (sender, e) => command.Execute(new ListViewArguments
-                {
-                    TargetType = ModelType,
-                    Grid = CurrentGridView,
-                    CustomDataSet = originalDataSet
-                });
-                commandBar.Add(button, false, false);
-            }
-            var currentUserCommand = descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
-            if (currentUserCommand != null && isRoot)
-                AddCurrentUserToCommandBar(commandBar, currentUserCommand);
-            commandBar.Add(new DynamicLayout()
-            {
-                Size = new Size(-1, -1)
-            });
-            commandBar.EndHorizontal();
-            return commandBar;
-        }
-
-        void AddCurrentUserToCommandBar(DynamicLayout commandBar, IListViewCommand command)
-        {
-            commandBar.Add(new DynamicLayout() { Size = new Size(40, -1) });
-
-            if (command != null)
-            {
-                var button = new Button();
-                button.Size = new Size(command.Width, 34);
-                button.ID = command.ID;
-                button.Text = command.Name;
-
-                /*
-                try
-                {
-                    button.Font = new Font(button.Font.Family, button.Font.Size, FontStyle.Bold);
-                }
-                catch
-                {
-
-                }
-                */
-                button.Image = ImageExtensions.GetImage(command.ImageName, 16);
-                button.ImagePosition = ButtonImagePosition.Left;
-                button.Click += (sender, e) =>
-                    command.Execute(new ListViewArguments
-                {
-                    TargetType = ModelType,
-                    Grid = CurrentGridView,
-                    CustomDataSet = originalDataSet
-                });
-                commandBar.Add(button, false, false);
-            }
         }
 
         void RegisterToEvents()

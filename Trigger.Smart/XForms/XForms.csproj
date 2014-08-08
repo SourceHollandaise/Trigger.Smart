@@ -173,6 +173,9 @@
     <Compile Include="Commands\Interfaces\ILogonCommand.cs" />
     <Compile Include="Commands\LogonCommand.cs" />
     <Compile Include="Store\IMappingIdGenerator.cs" />
+    <Compile Include="Design\ListDetailItemBuilder.cs" />
+    <Compile Include="Design\ListDetailViewBuilder.cs" />
+    <Compile Include="Design\ListViewCommandBarBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

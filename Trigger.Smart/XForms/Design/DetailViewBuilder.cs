@@ -19,12 +19,14 @@ namespace XForms.Design
 
         readonly Type currentType;
 
-        public DetailViewBuilder(IDetailViewDescriptor descriptor, IStorable currentObject)
+        bool showCommandBar;
+
+        public DetailViewBuilder(IDetailViewDescriptor descriptor, IStorable currentObject, bool showCommandBar = true)
         {
             this.descriptor = descriptor;
             this.currentObject = currentObject;
             this.currentType = this.currentObject.GetType();
-
+            this.showCommandBar = showCommandBar;
             factory = new DetailViewControlFactory(this.currentObject);
         }
 
@@ -41,12 +43,49 @@ namespace XForms.Design
 
         Control CreateViewLayout()
         {
+            var detailViewLayout = new DynamicLayout();
+            detailViewLayout.BeginHorizontal();
             var groupItems = descriptor.GroupItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList();
 
-            return new Scrollable()
+            if (showCommandBar)
             {
-                Content = AddGroupLayouts(groupItems)
-            };
+                var commandBar = new DynamicLayout();
+                commandBar.BeginHorizontal();
+                foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
+                {
+                    var button = new Button();
+                    button.Size = new Size(command.Width, 34);
+                    button.ID = command.ID;
+                    button.ToolTip = command.Name;
+                    button.Text = command.Name;
+
+
+                    button.Click += (sender, e) =>
+                    {
+                        command.Execute(new DetailViewArguments{ CurrentObject = currentObject });
+                    };
+                    commandBar.Add(button, false, false);
+
+                }
+                commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+                if (descriptor.IsTaggable)
+                    new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBar);
+
+                commandBar.EndHorizontal();
+
+
+                detailViewLayout.Add(commandBar);
+            }
+
+            detailViewLayout.EndHorizontal();
+            detailViewLayout.BeginHorizontal();
+
+            detailViewLayout.Add(AddGroupLayouts(groupItems));
+            detailViewLayout.EndHorizontal();
+
+            return detailViewLayout;
+ 
         }
 
         Control CreateTabbedViewLayout()
@@ -54,32 +93,36 @@ namespace XForms.Design
             var detailViewLayout = new DynamicLayout();
             detailViewLayout.BeginHorizontal();
 
-            var commandBar = new DynamicLayout();
-            commandBar.BeginHorizontal();
-            foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
+            if (showCommandBar)
             {
-                var button = new Button();
-                button.Size = new Size(command.Width, 34);
-                button.ID = command.ID;
-                button.ToolTip = command.Name;
-                button.Text = command.Name;
+                var commandBar = new DynamicLayout();
+                commandBar.BeginHorizontal();
+                foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
+                {
+                    var button = new Button();
+                    button.Size = new Size(command.Width, 34);
+                    button.ID = command.ID;
+                    button.ToolTip = command.Name;
+                    button.Text = command.Name;
  
 
-                button.Click += (sender, e) =>
-                {
-                    command.Execute(new DetailViewArguments{ CurrentObject = currentObject });
-                };
-                commandBar.Add(button, false, false);
+                    button.Click += (sender, e) =>
+                    {
+                        command.Execute(new DetailViewArguments{ CurrentObject = currentObject });
+                    };
+                    commandBar.Add(button, false, false);
 
+                }
+                commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+                if (descriptor.IsTaggable)
+                    new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBar);
+
+                commandBar.EndHorizontal();
+            
+
+                detailViewLayout.Add(commandBar);
             }
-            commandBar.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
-
-            if (descriptor.IsTaggable)
-                new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBar);
-
-            commandBar.EndHorizontal();
-
-            detailViewLayout.Add(commandBar);
 
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
