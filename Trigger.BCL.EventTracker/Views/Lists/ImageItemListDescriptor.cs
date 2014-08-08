@@ -16,6 +16,11 @@ namespace Trigger.BCL.EventTracker
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
+            ListDetailView = true;
+            ListDetailViewColumns = 3;
+            ListDetailViewWithToolbar = false;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },

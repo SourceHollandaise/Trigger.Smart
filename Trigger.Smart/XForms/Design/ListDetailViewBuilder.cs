@@ -86,9 +86,14 @@ namespace XForms.Design
                 {
                     var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
-                    content.Size = new Size(480, -1);
-                    listDetailLayout.Add(content, false);
 
+                    var width = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width / 2;
+
+                    var height = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120;
+
+                    content.Size = new Size(width, height);
+
+                    listDetailLayout.Add(content, false, false);
                 }
 
                 listDetailLayout.Add(null);
