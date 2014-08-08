@@ -12,7 +12,7 @@ namespace XForms.Design
 
         readonly string headerText;
 
-        bool addCommandBar;
+        readonly bool addCommandBar;
 
         public ListDetailItemBuilder(IStorable currentObject, string headerText = null, bool addCommandBar = false)
         {
@@ -50,10 +50,10 @@ namespace XForms.Design
 
                 var detailViewBuilder = new DetailViewBuilder(detailViewDescriptor, currentObject, addCommandBar);
 
-                detailLayout.AddAutoSized(detailViewBuilder.GetContent());
+                detailLayout.Add(detailViewBuilder.GetContent(), true);
                 cardViewGroupBox.Content = detailLayout;
             }
-
+                
             return cardViewGroupBox;
         }
     }

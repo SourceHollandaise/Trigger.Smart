@@ -9,6 +9,8 @@ namespace XForms.Design
     {
         public bool IsTaggable { get; set; }
 
+        public bool AutoSave { get; set; }
+
         public IList<TabItemDescription> TabItemDescriptions { get; set; }
 
         public IList<GroupItemDescription> GroupItemDescriptions { get; set; }

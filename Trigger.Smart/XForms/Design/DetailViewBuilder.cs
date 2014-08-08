@@ -38,7 +38,20 @@ namespace XForms.Design
             else
                 content = CreateViewLayout();
 
+            RegisterForAutoSave();
+
             return content;
+        }
+
+        void RegisterForAutoSave()
+        {
+            if (descriptor.AutoSave)
+            {
+                currentObject.PropertyChanged += (sender, e) =>
+                {
+                    currentObject.Save();
+                };
+            }
         }
 
         Control CreateViewLayout()
@@ -57,7 +70,7 @@ namespace XForms.Design
             detailViewLayout.BeginHorizontal();
 
             detailViewLayout.Add(AddGroupLayouts(groupItems));
-            detailViewLayout.EndHorizontal();
+            //detailViewLayout.EndHorizontal();
 
             return detailViewLayout;
  
@@ -124,15 +137,15 @@ namespace XForms.Design
             return layout;
         }
 
-        GroupBox CreateGroupLayout(GroupItemDescription group)
+        GroupBox CreateGroupLayout(GroupItemDescription groupItem)
         {
             var layout = new DynamicLayout();
 
             var groupBox = new GroupBox();
             groupBox.BackgroundColor = Colors.WhiteSmoke;
-            if (!string.IsNullOrEmpty(group.GroupHeaderText))
+            if (!string.IsNullOrEmpty(groupItem.GroupHeaderText))
             {
-                groupBox.Text = group.GroupHeaderText;
+                groupBox.Text = groupItem.GroupHeaderText;
 
                 try
                 {
@@ -144,10 +157,10 @@ namespace XForms.Design
                 }
             }
 
-            if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
+            if (groupItem.ViewItemOrientation == ViewItemOrientation.Horizontal)
                 layout.BeginHorizontal();
 
-            foreach (var viewItem in group.ViewItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
+            foreach (var viewItem in groupItem.ViewItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
             {
                 Control control = null;
 
@@ -172,18 +185,18 @@ namespace XForms.Design
 
                 if (viewItem.Fill)
                     control.Size = new Size(-1, -1);
-
+ 
                 var label = new Label{ Text = viewItem.LabelText };
 
                 switch (viewItem.LabelOrientation)
                 {
                     case LabelOrientation.Left:
-                        if (group.ViewItemOrientation != ViewItemOrientation.Horizontal)
+                        if (groupItem.ViewItemOrientation != ViewItemOrientation.Horizontal)
                             layout.BeginHorizontal();
                         if (viewItem.ShowLabel)
                             layout.Add(label);
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
-                        if (group.ViewItemOrientation != ViewItemOrientation.Horizontal)
+                        if (groupItem.ViewItemOrientation != ViewItemOrientation.Horizontal)
                             layout.EndHorizontal();
                         break;
                     
@@ -211,14 +224,15 @@ namespace XForms.Design
                 }
             }
 
-            if (group.ViewItemOrientation == ViewItemOrientation.Horizontal)
+            if (groupItem.ViewItemOrientation == ViewItemOrientation.Horizontal)
                 layout.EndHorizontal();
 
-            if (!group.Fill)
+            if (!groupItem.Fill)
             {
                 layout.BeginVertical();
                 layout.EndVertical();
             }
+
             groupBox.Content = layout;
 
             return groupBox;
@@ -264,6 +278,5 @@ namespace XForms.Design
             commandBarLayout.EndHorizontal();
             return commandBarLayout;
         }
-
     }
 }

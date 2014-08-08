@@ -6,6 +6,7 @@ namespace XForms.Model
 {
     public enum ApplicationUserRole
     {
+        AdministrationAndSupport,
         Administrator,
         Projectleader,
         Teamleader,

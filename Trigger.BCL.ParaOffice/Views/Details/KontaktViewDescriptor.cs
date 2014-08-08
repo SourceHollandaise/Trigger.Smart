@@ -7,6 +7,8 @@ namespace Trigger.BCL.ParaOffice
     {
         public KontaktViewDescriptor()
         {
+            AutoSave = true;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription("Kontaktdaten", 1)

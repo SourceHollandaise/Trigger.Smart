@@ -55,6 +55,7 @@ namespace XForms.Design
 
             var currentColumnCount = 0;
             var columns = descriptor.ListDetailViewColumns == 0 ? 1 : descriptor.ListDetailViewColumns - 1;
+           
             foreach (var current in rawDataSet.ToList())
             {
                 if (currentColumnCount == 0)
@@ -63,13 +64,13 @@ namespace XForms.Design
                 }
  
                 var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
+                var content = builder.GetContent();
+   
+                listDetailLayout.Add(content);
 
-                listDetailLayout.Add(builder.GetContent());
-               
                 if (currentColumnCount == columns)
                 {
                     listDetailLayout.Add(new DynamicLayout());
-                    //listDetailLayout.EndHorizontal();
                     currentColumnCount = 0;
                     continue;
                 }

@@ -13,6 +13,8 @@ namespace XForms.Design
 
         bool IsTaggable { get; set; }
 
+        bool AutoSave { get; set; }
+
         void RegisterCommands<T>()  where T: IDetailViewCommand;
     }
 }

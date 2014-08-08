@@ -322,6 +322,7 @@ namespace XForms.Design
                 property.SetValue(Model, current.Tag, null);
             };
            
+            control.Size = new Size(-1, -1);
             controlCollection.Add(property.Name, control);
             return control;
         }
@@ -416,6 +417,7 @@ namespace XForms.Design
                     ClearReference(control);
             };
 
+            control.Size = new Size(-1, -1);
             controlCollection.Add(property.Name, control);
             return control;
         }
