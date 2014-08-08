@@ -28,6 +28,8 @@ namespace XForms.Design
 
         public int ListDetailViewColumns { get; set; }
 
+        public ViewItemOrientation ListDetailViewOrientation { get; set; }
+
         public int? RowHeight { get; set; }
 
         public IList<IListViewCommand> Commands { get; set; }

@@ -16,6 +16,7 @@ namespace Trigger.BCL.ParaOffice
             ListDetailView = true;
             ListDetailViewWithToolbar = false;
             ListDetailViewColumns = 2;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

@@ -137,83 +137,6 @@ namespace XForms.Design
             return navigationlayout;
         }
 
-        Control GetMainPanelContentListBoxStyle()
-        {
-            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
-
-            var navigationlayout = new DynamicLayout();
-
-            foreach (var groupItem in descriptor.NavigationGroups.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
-            {
-                var navGroupLayout = new DynamicLayout();
-                var navGroupBox = new GroupBox();
-                navGroupBox.Text = groupItem.NavigationGroupText;
-
-                var listBox = new ListBox();
-                listBox.Size = new Size(-1, -1);
-
-                listBox.MouseDoubleClick += (sender, e) =>
-                {
-                    ShowListViewFromNavigation((listBox.SelectedValue as ListItem).Tag as Type);
-                };
-
-                try
-                {
-                    navGroupBox.Font = new Font(navGroupBox.Font.Family, navGroupBox.Font.Size, FontStyle.Bold);
-                }
-                catch
-                {
-
-                }
-
-                foreach (var navItem in groupItem.NavigationItems.Where(p => p.Visible).OrderBy(p => p.Index).ToList())
-                {
-                    var listItem = new ListItem();
-                    listItem.Text = navItem.NavigationItemText;
-                    listItem.Key = navItem.NavigationItemText;
-                    listItem.Tag = navItem.ModelType;
-                   
-                    listBox.Items.Add(listItem);
-
-                }
-
-                navGroupLayout.Add(listBox, true);
-
-                navGroupBox.Content = navGroupLayout;
-                navigationlayout.BeginVertical();
-                navigationlayout.Add(navGroupBox);
-                navigationlayout.EndHorizontal();
-            }
-
-            var appGroupLayout = new DynamicLayout();
-
-            var appGroup = new GroupBox();
-            appGroup.Text = "Application";
-
-            try
-            {
-                appGroup.Font = new Font(appGroup.Font.Family, appGroup.Font.Size, FontStyle.Bold);
-            }
-            catch
-            {
-
-            }
-
-            appGroupLayout.BeginVertical();
-            appGroupLayout.Add(GetLogOffButton(), true);
-            appGroupLayout.Add(GetExitButton(), true);
-            appGroupLayout.EndVertical();
-
-            appGroup.Content = appGroupLayout;
-
-            navigationlayout.Add(appGroup);
-
-            navigationlayout.BeginVertical();
-            navigationlayout.EndVertical();
-
-            return navigationlayout;
-        }
-
 
         void ShowListViewFromNavigation(Type type)
         {
@@ -229,20 +152,26 @@ namespace XForms.Design
         Control CreateListViewLayout()
         {
             Control content = null;
-            var groupBox = new GroupBox();
+
             var layout = new DynamicLayout();
-            layout.BeginVertical();
+
             var descriptorType = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
             if (descriptorType != null)
             {
                 var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
                 if (descriptor.ListDetailView)
                 {
+                    if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
+                        layout.BeginHorizontal();
+                    else
+                        layout.BeginVertical();
+
                     var builder = new ListDetailViewBuilder(descriptor, CurrentActiveType);
                     content = builder.GetContent();
                 }
                 else
                 {
+                    layout.BeginVertical();
                     var builder = new ListViewBuilder(descriptor, CurrentActiveType);
                     content = builder.GetContent();
  
@@ -268,13 +197,21 @@ namespace XForms.Design
                             }
                         }
                     };
+
+                    layout.EndVertical();
                 }
 
                 layout.Add(content);
             }
-            layout.EndVertical();
-            groupBox.Content = layout;
-            return layout;
+
+            var scrollable = new Scrollable()
+            {
+                Border = BorderType.None,
+                Size = new Size(-1, -1),
+                Content = layout
+            };
+
+            return scrollable;
         }
 
         Control CreateDetailViewLayout(GridView currentGridView, Type modelType)

@@ -59,6 +59,9 @@ namespace Trigger.BCL.ParaOffice
 
             foreach (var dokument in dokumentList)
             {
+                if (string.IsNullOrWhiteSpace(dokument.FileName))
+                    continue;
+
                 var path = Path.Combine(StoreConfig.DocumentStoreLocation, dokument.FileName);
 
                 if (!File.Exists(path))

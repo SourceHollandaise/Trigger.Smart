@@ -56,36 +56,45 @@ namespace XForms.Design
             var currentColumnCount = 0;
             var columns = descriptor.ListDetailViewColumns == 0 ? 1 : descriptor.ListDetailViewColumns - 1;
            
-            foreach (var current in rawDataSet.ToList())
+            if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Vertical)
             {
-                if (currentColumnCount == 0)
+                foreach (var current in rawDataSet.ToList())
                 {
-                    listDetailLayout.BeginHorizontal();
-                }
+                    if (currentColumnCount == 0)
+                        listDetailLayout.BeginHorizontal();
  
-                var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
-                var content = builder.GetContent();
+                    var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
+                    var content = builder.GetContent();
    
-                listDetailLayout.Add(content);
+                    listDetailLayout.Add(content);
 
-                if (currentColumnCount == columns)
-                {
-                    listDetailLayout.Add(new DynamicLayout());
-                    currentColumnCount = 0;
-                    continue;
+                    if (currentColumnCount == columns)
+                    {
+                        listDetailLayout.Add(new DynamicLayout());
+                        currentColumnCount = 0;
+                        continue;
+                    }
+
+                    currentColumnCount++;
                 }
-
-                currentColumnCount++;
             }
 
-            var scrollable = new Scrollable()
+            if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
             {
-                Border = BorderType.None,
-                Size = new Size(-1, -1),
-                Content = listDetailLayout
-            };
+                listDetailLayout.BeginHorizontal();
+                foreach (var current in rawDataSet.ToList())
+                {
+                    var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
+                    var content = builder.GetContent();
+                    content.Size = new Size(480, -1);
+                    listDetailLayout.Add(content, false);
 
-            return scrollable;
+                }
+
+                listDetailLayout.Add(null);
+            }
+
+            return listDetailLayout;
         }
     }
 }

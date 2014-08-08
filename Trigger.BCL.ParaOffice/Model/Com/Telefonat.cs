@@ -5,7 +5,7 @@ using XForms.Store;
 namespace Trigger.BCL.ParaOffice
 {
 
-    [System.ComponentModel.DefaultProperty("Teilnehmer")]
+    [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Telefonat")]
     [ImageName("user_comment")]
     public class Telefonat : ExportableBase
@@ -17,6 +17,14 @@ namespace Trigger.BCL.ParaOffice
             SB1 = CurrentSBService.CurrentSB;
             Art = TelefonatArt.Ein;
             Status = TelefonatStatus.OK;
+        }
+
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Teilnehmer + " (" + Nummer + ") " + Beginn.ToShortDateString() + " " + Beginn.ToShortTimeString();
+            }
         }
 
         DateTime beginn;

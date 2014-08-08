@@ -13,6 +13,12 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
+            ListDetailView = true;
+            ListDetailViewColumns = 2;
+            ListDetailViewWithToolbar = false;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Dokument" },

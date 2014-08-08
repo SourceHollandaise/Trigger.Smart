@@ -10,6 +10,20 @@ namespace Trigger.BCL.ParaOffice
         {
             RegisterCommands<IAddFileDetailViewCommand>();
 
+            GroupItemDescriptions = new List<GroupItemDescription>
+            {
+                new GroupItemDescription(null, 1)
+                {
+                    Fill = true,
+                    ViewItemDescriptions = new List<ViewItemDescription>
+                    {
+
+                        new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Vorschau", ShowLabel = false, Fill = true },
+                    }
+                }
+              
+            };
+            /*
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Dokument", 1)
@@ -62,7 +76,7 @@ namespace Trigger.BCL.ParaOffice
                     }
                 }
             };
+            */
         }
     }
-    
 }
