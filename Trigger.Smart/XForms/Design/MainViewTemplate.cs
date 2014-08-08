@@ -1,11 +1,11 @@
 using System;
-using Eto.Drawing;
-using Eto.Forms;
 using System.ComponentModel;
 using System.Linq;
-using XForms.Store;
-using XForms.Dependency;
+using Eto.Drawing;
+using Eto.Forms;
 using XForms.Commands;
+using XForms.Dependency;
+using XForms.Store;
 
 namespace XForms.Design
 {
@@ -308,20 +308,6 @@ namespace XForms.Design
             };
             exitButton.Click += (sender, e) => exitCommand.Execute(this);
             return exitButton;
-        }
-
-        public override void OnKeyDown(KeyEventArgs e)
-        {
-            if (e.Modifiers == Keys.Application & e.Key == Keys.Q)
-            {
-                var result = MessageBox.Show("Close application?", MessageBoxButtons.YesNo, MessageBoxType.Question, MessageBoxDefaultButton.No);
-                if (result == DialogResult.Yes)
-                    Application.Instance.Quit();
-            }
-            else
-            {
-                e.Handled = true;
-            }
         }
     }
 }

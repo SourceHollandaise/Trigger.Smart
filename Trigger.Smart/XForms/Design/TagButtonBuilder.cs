@@ -49,7 +49,7 @@ namespace XForms.Design
                     if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
                         return;
 
-                    tagbutton.Text = "√";
+                    tagbutton.Text = "X";
                 }
             }
         }

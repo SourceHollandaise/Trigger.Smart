@@ -29,7 +29,7 @@ namespace XForms.Commands
 
                 tag.TargetObjectMappingId = args.CurrentObject.MappingId.ToString();
                 tag.TagColor = data.Item1.BackgroundColor.ToString();
-                data.Item1.Text = "√";
+                data.Item1.Text = "X";
 
                 tag.Save();
             }

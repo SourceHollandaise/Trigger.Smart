@@ -1,10 +1,7 @@
 using System;
 using System.ComponentModel;
 using Eto.Drawing;
-using Eto.Forms;
 using XForms.Store;
-using XForms.Dependency;
-using XForms.Commands;
 
 namespace XForms.Design
 {
@@ -45,18 +42,6 @@ namespace XForms.Design
             else
                 Title = ModelType.Name + " - " + CurrentObject.GetDefaultPropertyValue();
                 
-        }
-
-        public override void OnKeyDown(KeyEventArgs e)
-        {
-            if (e.Modifiers == Keys.Application & e.Key == Keys.W)
-            {
-                MapProvider.Instance.ResolveType<ICloseDetailViewCommand>().Execute(new DetailViewArguments{ CurrentObject = CurrentObject });
-            }
-            else
-            {
-                e.Handled = true;
-            }
         }
     }
 }

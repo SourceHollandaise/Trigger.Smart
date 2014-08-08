@@ -14,7 +14,7 @@ namespace Trigger.BCL.EventTracker
                 var areaUser = new AreaUser();
                 areaUser.Area = args.CurrentObject as Area;
 
-                areaUser.ShowDetailView();
+                areaUser.ShowDetailContentEmbedded();
             }
         }
 

@@ -41,7 +41,7 @@ namespace XForms.Design
 
         public static void Forward()
         {
-            throw new System.NotSupportedException("Forward ist currently not supported!");
+            throw new System.NotSupportedException("Forward is currently not supported!");
         }
 
         static MainViewTemplate MainTemplate
