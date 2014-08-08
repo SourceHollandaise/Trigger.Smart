@@ -5,9 +5,9 @@ using Trigger.BCL.EventTracker.Model;
 namespace Trigger.BCL.EventTracker
 {
 
-    public class UserListDescriptor : ListViewDescriptor<ApplicationUser>
+    public class ApplicationUserListDescriptor : ListViewDescriptor<ApplicationUser>
     {
-        public UserListDescriptor()
+        public ApplicationUserListDescriptor()
         {
             ListShowTags = false;
             RowHeight = 36;

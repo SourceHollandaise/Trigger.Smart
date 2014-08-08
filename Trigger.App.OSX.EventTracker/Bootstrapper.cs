@@ -48,7 +48,7 @@ namespace Trigger.App.OSX.EventTracker
             DetailViewDescriptorProvider.Declare<Person, PersonViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Tag, TagViewDescriptor>();
             DetailViewDescriptorProvider.Declare<TimeTracker, TimeTrackerViewDescriptor>();
-            DetailViewDescriptorProvider.Declare<ApplicationUser, UserViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ApplicationUser, ApplicationUserViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<AreaUser, AreaUserListDescriptor>();
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
@@ -60,7 +60,7 @@ namespace Trigger.App.OSX.EventTracker
             ListViewDescriptorProvider.Declare<Person, PersonListDescriptor>();
             ListViewDescriptorProvider.Declare<Tag, TagListDescriptor>();
             ListViewDescriptorProvider.Declare<TimeTracker, TimeTrackerListDescriptor>();
-            ListViewDescriptorProvider.Declare<ApplicationUser, UserListDescriptor>();
+            ListViewDescriptorProvider.Declare<ApplicationUser, ApplicationUserListDescriptor>();
         }
 
         public override void RegisterCommands()

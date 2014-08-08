@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using XForms.Design;
-using Trigger.BCL.EventTracker.Model;
 using XForms.Commands;
+using XForms.Design;
 using XForms.Model;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class UserViewDescriptor : DetailViewDescriptor<ApplicationUser>
+    public class ApplicationUserViewDescriptor : DetailViewDescriptor<ApplicationUser>
     {
-        public UserViewDescriptor()
+        public ApplicationUserViewDescriptor()
         {
             RegisterCommands<IAddFileDetailViewCommand>();
             IsTaggable = false;
@@ -43,7 +43,35 @@ namespace Trigger.BCL.EventTracker
 
                     }
                 },
-                new TabItemDescription("Areas", 2)
+                new TabItemDescription("Current Issues", 2)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {  
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedIssuesInProgress), 1){ LabelText = "Current Issues", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        }
+                    }
+                },
+                new TabItemDescription("Resolved Issues", 3)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedIssuesResolved), 1){ LabelText = "Resolved Issues", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        },
+                    }
+                },
+                new TabItemDescription("Areas", 10)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {  

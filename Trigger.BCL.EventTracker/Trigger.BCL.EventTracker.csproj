@@ -72,12 +72,10 @@
     <Compile Include="Views\Details\DocumentViewDescriptor.cs" />
     <Compile Include="Views\Details\IssueTrackerViewDescriptor.cs" />
     <Compile Include="Views\Details\PersonViewDescriptor.cs" />
-    <Compile Include="Views\Details\UserViewDescriptor.cs" />
     <Compile Include="Views\Lists\PersonListDescriptor.cs" />
     <Compile Include="Views\Lists\TimeTrackerListDescriptor.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
     <Compile Include="Views\Details\TimeTrackerViewDescriptor.cs" />
-    <Compile Include="Views\Lists\UserListDescriptor.cs" />
     <Compile Include="Views\ApplicationMainViewDescriptor.cs" />
     <Compile Include="Model\ImageGallery.cs" />
     <Compile Include="Model\ImageItem.cs" />
@@ -97,6 +95,8 @@
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Services\ApplicationDataStoreAuthenticate.cs" />
     <Compile Include="Services\ApplicationSecurityInfoProvider.cs" />
+    <Compile Include="Views\Details\ApplicationUserViewDescriptor.cs" />
+    <Compile Include="Views\Lists\ApplicationUserListDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

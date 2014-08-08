@@ -111,7 +111,7 @@ namespace XForms.Design
                                 control.MouseDoubleClick += (sender, e) =>
                                 {
                                     if ((control as GridView).SelectedItem != null)
-                                        DetailViewExtensions.ShowDetailView((control as GridView).SelectedItem as IStorable);
+                                        ((control as GridView).SelectedItem as IStorable).ShowDetailContentEmbedded();
                                 };
                             }
                             return control;
@@ -497,7 +497,7 @@ namespace XForms.Design
         {
             var current = control.SelectedValue as ListItem;
             if (current != null)
-                DetailViewExtensions.ShowDetailView(current.Tag as IStorable);
+                (current.Tag as IStorable).ShowDetailContentEmbedded();
         }
 
         void  ClearReference(ComboBox control)

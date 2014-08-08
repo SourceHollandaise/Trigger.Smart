@@ -24,5 +24,27 @@ namespace Trigger.BCL.EventTracker.Model
                 }
             }
         }
+
+        [System.ComponentModel.DisplayName("Issues in progress")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(IssueTracker))]
+        public IEnumerable<IssueTracker> LinkedIssuesInProgress
+        {
+            get
+            {
+                return Store.LoadAll<IssueTracker>().Where(p => p.StartedBy != null && p.StartedBy.MappingId.Equals(MappingId) && p.IssueState == IssueState.InProgress);
+            }
+        }
+
+        [System.ComponentModel.DisplayName("Closed issues")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(IssueTracker))]
+        public IEnumerable<IssueTracker> LinkedIssuesResolved
+        {
+            get
+            {
+                return Store.LoadAll<IssueTracker>().Where(p => p.ResolvedBy != null && p.ResolvedBy.MappingId.Equals(MappingId) && p.IssueState == IssueState.Done);
+            }
+        }
     }
 }
