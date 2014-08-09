@@ -176,6 +176,7 @@
     <Compile Include="Design\ListDetailItemBuilder.cs" />
     <Compile Include="Design\ListDetailViewBuilder.cs" />
     <Compile Include="Design\ListViewCommandBarBuilder.cs" />
+    <Compile Include="Design\DetailViewCommandBarBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

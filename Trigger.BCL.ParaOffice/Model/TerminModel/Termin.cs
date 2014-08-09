@@ -5,7 +5,7 @@ using XForms.Model;
 namespace Trigger.BCL.ParaOffice
 {
 
-    [System.ComponentModel.DefaultProperty("Betreff")]
+    [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Termin")]
     [ImageName("calendar_date")]
     public class Termin : ExportableBase
@@ -15,10 +15,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine(string.Format("{0} - {1} ({2})", SB.ID, Betreff, Beginn));
-                sb.AppendLine(string.Format("{0} - {1}", AktAlias, KlientGegner));
-                return sb.ToString();
+                return SBAlias + " - " + Betreff + " " + Beginn.ToShortDateString() + " " + Beginn.ToShortTimeString();
             }
         }
 

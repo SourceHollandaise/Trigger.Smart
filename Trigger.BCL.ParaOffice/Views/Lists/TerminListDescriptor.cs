@@ -15,6 +15,12 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Descendig;
             DefaultSortProperty = Fields.GetName(m => m.Beginn);
 
+            ListDetailView = true;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
+            DetailView = new TerminListDetailViewDescriptor();
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Art), 1){ ColumnHeaderText = "Art" },

@@ -25,6 +25,8 @@ namespace XForms.Design
 
         int ListDetailViewColumns { get; set; }
 
+        IDetailViewDescriptor DetailView { get; set; }
+
         ViewItemOrientation ListDetailViewOrientation { get; set; }
 
         int? RowHeight { get; set; }

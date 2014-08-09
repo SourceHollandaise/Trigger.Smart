@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Eto.Forms;
-using XForms.Store;
 using System.Linq;
 using Eto.Drawing;
-using XForms.Commands;
-using XForms.Dependency;
+using Eto.Forms;
+using XForms.Store;
 
 namespace XForms.Design
 {
@@ -19,7 +17,7 @@ namespace XForms.Design
 
         readonly bool isRoot;
 
-        IListViewDescriptor descriptor;
+        readonly IListViewDescriptor descriptor;
 
         public Type ModelType
         {
@@ -27,7 +25,7 @@ namespace XForms.Design
             private set;
         }
 
-        public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null, bool addCommandBar = false)
+        public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
         {
             this.descriptor = descriptor;
             this.originalDataSet = dataSet;
@@ -63,9 +61,13 @@ namespace XForms.Design
                     if (currentColumnCount == 0)
                         listDetailLayout.BeginHorizontal();
  
-                    var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
+                    var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
    
+                    var width = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width / descriptor.ListDetailViewColumns;
+         
+                    content.Size = new Size(width, -1);
+
                     listDetailLayout.Add(content);
 
                     if (currentColumnCount == columns)
@@ -84,12 +86,12 @@ namespace XForms.Design
                 listDetailLayout.BeginHorizontal();
                 foreach (var current in rawDataSet.ToList())
                 {
-                    var builder = new ListDetailItemBuilder(current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
+                    var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
 
-                    var width = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width / 2;
-
                     var height = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120;
+
+                    var width = Convert.ToInt32(height * 0.75);
 
                     content.Size = new Size(width, height);
 

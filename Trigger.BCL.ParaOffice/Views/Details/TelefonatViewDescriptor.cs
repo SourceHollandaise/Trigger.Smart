@@ -3,7 +3,6 @@ using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class TelefonatViewDescriptor : DetailViewDescriptor<Telefonat>
     {
         public TelefonatViewDescriptor()

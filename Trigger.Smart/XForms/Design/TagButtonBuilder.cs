@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
-using XForms.Store;
+using XForms.Commands;
 using XForms.Dependency;
 using XForms.Model;
-using XForms.Commands;
+using XForms.Store;
 
 namespace XForms.Design
 {
@@ -21,9 +21,29 @@ namespace XForms.Design
             this.currentObject = currentObject;
         }
 
-        public void AddTagButtonsContent(DynamicLayout commandBar)
+        public DynamicLayout GetContent()
         {
-            commandBar.Add(new DynamicLayout(){ Size = new Size(40, -1) });
+            var layout = new DynamicLayout();
+            layout.BeginHorizontal();
+ 
+            layout.Add(TagButton(Colors.OrangeRed), false, false);
+            layout.Add(TagButton(Colors.Orange), false, false);
+            layout.Add(TagButton(Colors.YellowGreen), false, false);
+            layout.Add(TagButton(Colors.LightSkyBlue), false, false);
+            layout.Add(TagButton(Colors.WhiteSmoke), false, false);
+
+            layout.Add(new DynamicLayout(){ Size = new Size(-1, -1) });
+
+            if (currentObject != null && currentObject.MappingId != null)
+                UpdateTagButtonAfterCreation();
+
+            return layout;
+        }
+
+
+        public void AddTagButtonsContent(DynamicLayout commandBar, int? spacing = null)
+        {
+            commandBar.Add(new DynamicLayout(){ Size = new Size(spacing.HasValue ? spacing.Value : 40, -1) });
 
             commandBar.Add(TagButton(Colors.OrangeRed), false, false);
             commandBar.Add(TagButton(Colors.Orange), false, false);

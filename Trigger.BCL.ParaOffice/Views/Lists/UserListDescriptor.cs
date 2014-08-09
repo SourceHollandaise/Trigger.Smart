@@ -13,10 +13,13 @@ namespace Trigger.BCL.ParaOffice
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.UserName);
+
             ListDetailView = true;
-            ListDetailViewWithToolbar = false;
+            ListDetailViewWithToolbar = true;
             ListDetailViewColumns = 2;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
+
+            DetailView = new UserListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

@@ -87,6 +87,11 @@
     <Compile Include="Model\AktModel\AktPersonNumberProvider.cs" />
     <Compile Include="Model\Com\TelefonatArt.cs" />
     <Compile Include="Model\Com\TelefonatStatus.cs" />
+    <Compile Include="Views\Details\DokumentListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\UserListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\TelefonatListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\KontaktListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\TerminListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

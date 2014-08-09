@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using XForms.Store;
 using XForms.Commands;
+using XForms.Store;
 
 namespace XForms.Design
 {
@@ -62,8 +62,9 @@ namespace XForms.Design
 
             if (showCommandBar)
             {
-                var commandBarLayout = CreateCommandBar();
-                detailViewLayout.Add(commandBarLayout);
+                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible));
+
+                detailViewLayout.Add(commandBarBuilder.GetContent());
             }
 
             detailViewLayout.EndHorizontal();
@@ -73,7 +74,6 @@ namespace XForms.Design
             //detailViewLayout.EndHorizontal();
 
             return detailViewLayout;
- 
         }
 
         Control CreateTabbedViewLayout()
@@ -83,8 +83,9 @@ namespace XForms.Design
 
             if (showCommandBar)
             {
-                var commandBarLayout = CreateCommandBar();
-                detailViewLayout.Add(commandBarLayout);
+                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible));
+
+                detailViewLayout.Add(commandBarBuilder.GetContent());
             }
 
             detailViewLayout.EndHorizontal();
@@ -248,35 +249,35 @@ namespace XForms.Design
                     control.Enabled = !viewItem.ReadOnly;
             }
         }
-
-        DynamicLayout CreateCommandBar()
-        {
-            var commandBarLayout = new DynamicLayout();
-            commandBarLayout.BeginHorizontal();
-            foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
-            {
-                var button = new Button();
-                button.Size = new Size(command.Width, 34);
-                button.ID = command.ID;
-                button.ToolTip = command.Name;
-                button.Text = command.Name;
-                button.Click += (sender, e) =>
-                {
-                    command.Execute(new DetailViewArguments
-                    {
-                        CurrentObject = currentObject
-                    });
-                };
-                commandBarLayout.Add(button, false, false);
-            }
-            commandBarLayout.Add(new DynamicLayout()
-            {
-                Size = new Size(-1, -1)
-            });
-            if (descriptor.IsTaggable)
-                new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBarLayout);
-            commandBarLayout.EndHorizontal();
-            return commandBarLayout;
-        }
+        //
+        //        DynamicLayout CreateCommandBar()
+        //        {
+        //            var commandBarLayout = new DynamicLayout();
+        //            commandBarLayout.BeginHorizontal();
+        //            foreach (var command in descriptor.Commands.Where(p => p.Visible).ToList())
+        //            {
+        //                var button = new Button();
+        //                button.Size = new Size(command.Width, 34);
+        //                button.ID = command.ID;
+        //                button.ToolTip = command.Name;
+        //                button.Text = command.Name;
+        //                button.Click += (sender, e) =>
+        //                {
+        //                    command.Execute(new DetailViewArguments
+        //                    {
+        //                        CurrentObject = currentObject
+        //                    });
+        //                };
+        //                commandBarLayout.Add(button, false, false);
+        //            }
+        //            commandBarLayout.Add(new DynamicLayout()
+        //            {
+        //                Size = new Size(-1, -1)
+        //            });
+        //            if (descriptor.IsTaggable)
+        //                new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBarLayout);
+        //            commandBarLayout.EndHorizontal();
+        //            return commandBarLayout;
+        //        }
     }
 }

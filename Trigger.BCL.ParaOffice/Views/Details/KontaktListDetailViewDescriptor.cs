@@ -1,12 +1,21 @@
 using System.Collections.Generic;
 using XForms.Design;
+using XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class KontaktViewDescriptor : DetailViewDescriptor<Kontakt>
+
+    public class KontaktListDetailViewDescriptor : DetailViewDescriptor<Kontakt>
     {
-        public KontaktViewDescriptor()
+        public KontaktListDetailViewDescriptor()
         {
+            Commands.Clear();
+
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+
+            AutoSave = true;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription("Kontaktdaten", 1)

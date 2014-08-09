@@ -5,13 +5,17 @@ using XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
-
-    public class UserViewDescriptor : DetailViewDescriptor<User>
+    public class UserListDetailViewDescriptor : DetailViewDescriptor<User>
     {
-        public UserViewDescriptor()
+        public UserListDetailViewDescriptor()
         {
-            RegisterCommands<IAddFileDetailViewCommand>();
+            Commands.Clear();
+
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+
             IsTaggable = false;
+
             AutoSave = true;
 
             GroupItemDescriptions = new List<GroupItemDescription>
@@ -28,16 +32,8 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator },
                     }
                 },
-                /*
-                new GroupItemDescription("Avatar", 2)
-                {
-                    ViewItemDescriptions = new List<ViewItemDescription>
-                    {
-                        new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Avatar", ShowLabel = false, Fill = true },
-                    }
-                }
-                */
             };
         }
     }
+    
 }

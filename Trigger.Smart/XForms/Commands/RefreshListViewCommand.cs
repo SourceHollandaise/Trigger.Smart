@@ -1,3 +1,5 @@
+using Eto.Drawing;
+using Eto.Forms;
 using XForms.Design;
 
 
@@ -8,8 +10,29 @@ namespace XForms.Commands
     {
         public void Execute(ListViewArguments args)
         {
+            if (args.Grid != null)
             {
                 args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
+                return;
+            }
+
+            if (args.InputData is IListViewDescriptor)
+            {
+                var descriptor = args.InputData as IListViewDescriptor;
+                if (descriptor.ListDetailView)
+                {
+                    var builder = new ListDetailViewBuilder(descriptor, args.TargetType);
+                    var content = builder.GetContent();
+
+                    var scrollable = new Scrollable()
+                    {
+                        Border = BorderType.None,
+                        Size = new Size(-1, -1),
+                        Content = content
+                    };
+                            
+                    (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = scrollable;
+                }
             }
         }
 

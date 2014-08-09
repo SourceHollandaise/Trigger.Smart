@@ -8,36 +8,19 @@ namespace Trigger.BCL.EventTracker
     {
         public ContactViewDescriptor()
         {
+            AutoSave = true;
 
-            TabItemDescriptions = new List<TabItemDescription>
+            GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new TabItemDescription("Contact", 1)
+                new GroupItemDescription("Details", 1)
                 {
-                    GroupItemDescriptions = new List<GroupItemDescription>
+                    ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new GroupItemDescription("Person", 1)
-                        {
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false }
-                            }
-                        },
-                        new GroupItemDescription("Type", 2)
-                        {
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription(Fields.GetName(m => m.ContactType), 1){ LabelText = "Type", ShowLabel = false },
-                            }
-                        },
-                        new GroupItemDescription("Contact items", 3)
-                        {
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription(Fields.GetName(m => m.PhoneNumber), 1){ LabelText = "Phone" },
-                                new ViewItemDescription(Fields.GetName(m => m.MobileNumber), 2){ LabelText = "Mobile" },
-                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
-                            }
-                        }
+                        new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false },
+                        new ViewItemDescription(Fields.GetName(m => m.ContactType), 2){ LabelText = "Type", ShowLabel = false },
+                        new ViewItemDescription(Fields.GetName(m => m.PhoneNumber), 3){ LabelText = "Phone" },
+                        new ViewItemDescription(Fields.GetName(m => m.MobileNumber), 4){ LabelText = "Mobile" },
+                        new ViewItemDescription(Fields.GetName(m => m.Email), 5){ LabelText = "E-Mail" },
                     }
                 }
             };

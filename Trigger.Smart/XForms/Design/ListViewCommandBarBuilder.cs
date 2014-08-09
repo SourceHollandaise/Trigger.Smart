@@ -57,7 +57,8 @@ namespace XForms.Design
                 {
                     TargetType = ModelType,
                     Grid = CurrentGridView,
-                    CustomDataSet = dataSet
+                    CustomDataSet = dataSet,
+                    InputData = descriptor
                 });
                 commandBar.Add(button, false, false);
             }

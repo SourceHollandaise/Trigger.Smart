@@ -4,32 +4,13 @@ using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {
+
     public class DokumentViewDescriptor : DetailViewDescriptor<Dokument>
     {
         public DokumentViewDescriptor()
         {
             RegisterCommands<IAddFileDetailViewCommand>();
 
-            GroupItemDescriptions = new List<GroupItemDescription>
-            {
-                new GroupItemDescription("Bemerkung", 1)
-                {
-                    ViewItemDescriptions = new List<ViewItemDescription>
-                    {
-                        new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 1){ LabelText = "Bemerkung", ShowLabel = false }
-                    }
-                },
-                new GroupItemDescription(null, 2)
-                {
-                    Fill = true,
-                    ViewItemDescriptions = new List<ViewItemDescription>
-                    {
-                        new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Vorschau", ShowLabel = false, Fill = true }
-                    }
-                },
-
-            };
-            /*
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Dokument", 1)
@@ -82,7 +63,7 @@ namespace Trigger.BCL.ParaOffice
                     }
                 }
             };
-            */
         }
     }
+
 }

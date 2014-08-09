@@ -15,8 +15,10 @@ namespace Trigger.BCL.ParaOffice
             DefaultSortProperty = Fields.GetName(m => m.Beginn);
 
             ListDetailView = true;
-            ListDetailViewWithToolbar = false;
+            ListDetailViewWithToolbar = true;
             ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
+            DetailView = new TelefonatListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {
