@@ -57,9 +57,10 @@ namespace XForms.Design
         Control CreateViewLayout()
         {
             var detailViewLayout = new DynamicLayout();
-            detailViewLayout.BeginHorizontal();
+
             var groupItems = descriptor.GroupItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList();
 
+            detailViewLayout.BeginHorizontal();
             if (showCommandBar)
             {
                 var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible));
@@ -68,6 +69,9 @@ namespace XForms.Design
             }
 
             detailViewLayout.EndHorizontal();
+   
+            //Snew DetailViewToolBarBuilder().Create(descriptor.Commands, currentObject);
+
             detailViewLayout.BeginHorizontal();
 
             detailViewLayout.Add(AddGroupLayouts(groupItems));
@@ -188,6 +192,7 @@ namespace XForms.Design
                     control.Size = new Size(-1, -1);
  
                 var label = new Label{ Text = viewItem.LabelText };
+                //label.Font = new Font(label.Font.Family, label.Font.Size - 2f);
 
                 switch (viewItem.LabelOrientation)
                 {
@@ -196,6 +201,8 @@ namespace XForms.Design
                             layout.BeginHorizontal();
                         if (viewItem.ShowLabel)
                             layout.Add(label);
+                        else
+                            layout.Add(new Label());
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (groupItem.ViewItemOrientation != ViewItemOrientation.Horizontal)
                             layout.EndHorizontal();
@@ -206,6 +213,8 @@ namespace XForms.Design
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (viewItem.ShowLabel)
                             layout.Add(label);
+                        else
+                            layout.Add(new Label());
                         layout.EndHorizontal();
                         break;
                     
@@ -213,6 +222,8 @@ namespace XForms.Design
                         layout.BeginVertical();
                         if (viewItem.ShowLabel)
                             layout.Add(label);
+                        else
+                            layout.Add(new Label());
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         layout.EndVertical();
                         break;
@@ -221,6 +232,8 @@ namespace XForms.Design
                         layout.Add(control, !viewItem.Fill, !viewItem.Fill);
                         if (viewItem.ShowLabel)
                             layout.Add(label);
+                        else
+                            layout.Add(new Label());
                         break;
                 }
             }

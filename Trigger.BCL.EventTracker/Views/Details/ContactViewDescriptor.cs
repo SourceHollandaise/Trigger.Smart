@@ -8,19 +8,24 @@ namespace Trigger.BCL.EventTracker
     {
         public ContactViewDescriptor()
         {
+            Commands.Clear();
+
+            RegisterCommands<XForms.Commands.IDeleteObjectDetailViewCommand>();
+            RegisterCommands<XForms.Commands.IRefreshDetailViewCommand>();
+
             AutoSave = true;
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Details", 1)
+                new GroupItemDescription("Contactdetails", 1)
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false },
-                        new ViewItemDescription(Fields.GetName(m => m.ContactType), 2){ LabelText = "Type", ShowLabel = false },
-                        new ViewItemDescription(Fields.GetName(m => m.PhoneNumber), 3){ LabelText = "Phone" },
-                        new ViewItemDescription(Fields.GetName(m => m.MobileNumber), 4){ LabelText = "Mobile" },
-                        new ViewItemDescription(Fields.GetName(m => m.Email), 5){ LabelText = "E-Mail" },
+                        new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false, LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.ContactType), 2){ LabelText = "Type", ShowLabel = false, LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.PhoneNumber), 3){ LabelText = "Phone", LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.MobileNumber), 4){ LabelText = "Mobile", LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.Email), 5){ LabelText = "E-Mail", LabelOrientation = LabelOrientation.Top },
                     }
                 }
             };

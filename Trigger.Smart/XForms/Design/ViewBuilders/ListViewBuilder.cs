@@ -56,10 +56,15 @@ namespace XForms.Design
             CurrentGridView.ShowCellBorders = false;
 
             var listViewLayout = new DynamicLayout();
+
+            //new ListViewToolBarBuilder().Create(descriptor.Commands, ModelType, dataSet);
+
+
             listViewLayout.BeginHorizontal();
             var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, isRoot, originalDataSet, CurrentGridView);
             listViewLayout.Add(commandBarBuilder.GetContent());
             listViewLayout.EndHorizontal();
+
             listViewLayout.BeginHorizontal();
 
             if (descriptor.ListShowTags)

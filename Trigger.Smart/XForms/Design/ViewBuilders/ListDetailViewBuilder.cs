@@ -4,6 +4,7 @@ using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
+using XForms.Commands;
 
 namespace XForms.Design
 {
@@ -36,9 +37,12 @@ namespace XForms.Design
 
         public Control GetContent()
         {
+            //new ListDetailViewToolBarBuilder().Create(descriptor.Commands, ModelType, originalDataSet);
+
             var listDetailLayout = new DynamicLayout();
 
             listDetailLayout.BeginHorizontal();
+
             var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, isRoot, originalDataSet);
             listDetailLayout.Add(commandBarBuilder.GetContent());
             listDetailLayout.EndHorizontal();
@@ -64,7 +68,7 @@ namespace XForms.Design
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
    
-                    var width = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width / descriptor.ListDetailViewColumns;
+                    var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / descriptor.ListDetailViewColumns;
          
                     content.Size = new Size(width, -1);
 
@@ -102,6 +106,13 @@ namespace XForms.Design
             }
 
             return listDetailLayout;
+
+            var scrollable = new Scrollable();
+            scrollable.Border = BorderType.None;
+            scrollable.Padding = new Padding(-1, -1);
+            scrollable.Content = listDetailLayout;
+
+            return scrollable;
         }
     }
 }

@@ -13,9 +13,11 @@ namespace Trigger.BCL.EventTracker
             DefaultSortProperty = Fields.GetName(m => m.PersonAlias);
 
             ListDetailView = true;
-            ListDetailViewWithToolbar = false;
+            ListDetailViewWithToolbar = true;
             ListDetailViewColumns = 2;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
+
+            DetailView = new ContactViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

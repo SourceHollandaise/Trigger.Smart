@@ -84,47 +84,14 @@
     <Compile Include="Model\ImageNameAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Dependency\MapProvider.cs" />
-    <Compile Include="Design\ColumnDescription.cs" />
-    <Compile Include="Design\ColumnSorting.cs" />
-    <Compile Include="Design\DetailViewDescriptor.cs" />
-    <Compile Include="Design\DetailViewDescriptorProvider.cs" />
-    <Compile Include="Design\GroupItemDescription.cs" />
-    <Compile Include="Design\IDetailViewDescriptor.cs" />
-    <Compile Include="Design\IListViewDescriptor.cs" />
-    <Compile Include="Design\IMainViewDescriptor.cs" />
-    <Compile Include="Design\LabelOrientation.cs" />
     <Compile Include="Design\ListPropertyMode.cs" />
-    <Compile Include="Design\ListViewDescriptor.cs" />
-    <Compile Include="Design\MainViewDescriptor.cs" />
-    <Compile Include="Design\NavigationGroupItem.cs" />
-    <Compile Include="Design\NavigationItem.cs" />
-    <Compile Include="Design\TabItemDescription.cs" />
-    <Compile Include="Design\ViewItemDescription.cs" />
-    <Compile Include="Design\ViewItemOrientation.cs" />
     <Compile Include="Design\IViewTemplateConfiguration.cs" />
-    <Compile Include="Design\LogonViewGenerator.cs" />
-    <Compile Include="Design\LogonViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
-    <Compile Include="Design\MainViewTemplate.cs" />
-    <Compile Include="Design\TemplateBase.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
     <Compile Include="Design\TemplateNavigator.cs" />
     <Compile Include="Design\ViewTemplateConfiguration.cs" />
     <Compile Include="Design\DataStoreProvider.cs" />
     <Compile Include="Design\GridViewComparer.cs" />
-    <Compile Include="Design\ListViewBuilder.cs" />
     <Compile Include="Design\ListViewCellFactory.cs" />
-    <Compile Include="Design\ListViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
-    <Compile Include="Design\DetailViewBuilder.cs" />
     <Compile Include="Design\DetailViewControlFactory.cs" />
-    <Compile Include="Design\DetailViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
-    <Compile Include="Design\TagButtonBuilder.cs" />
     <Compile Include="Extensions\DetailViewExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
@@ -173,10 +140,47 @@
     <Compile Include="Commands\Interfaces\ILogonCommand.cs" />
     <Compile Include="Commands\LogonCommand.cs" />
     <Compile Include="Store\IMappingIdGenerator.cs" />
-    <Compile Include="Design\ListDetailItemBuilder.cs" />
-    <Compile Include="Design\ListDetailViewBuilder.cs" />
-    <Compile Include="Design\ListViewCommandBarBuilder.cs" />
-    <Compile Include="Design\DetailViewCommandBarBuilder.cs" />
+    <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Design\Descriptors\ColumnDescription.cs" />
+    <Compile Include="Design\Descriptors\ColumnSorting.cs" />
+    <Compile Include="Design\Descriptors\DetailViewDescriptor.cs" />
+    <Compile Include="Design\Descriptors\DetailViewDescriptorProvider.cs" />
+    <Compile Include="Design\Descriptors\GroupItemDescription.cs" />
+    <Compile Include="Design\Descriptors\IDetailViewDescriptor.cs" />
+    <Compile Include="Design\Descriptors\IListViewDescriptor.cs" />
+    <Compile Include="Design\Descriptors\IMainViewDescriptor.cs" />
+    <Compile Include="Design\Descriptors\MainViewDescriptor.cs" />
+    <Compile Include="Design\Descriptors\TabItemDescription.cs" />
+    <Compile Include="Design\Descriptors\ViewItemDescription.cs" />
+    <Compile Include="Design\Descriptors\ViewItemOrientation.cs" />
+    <Compile Include="Design\ViewBuilders\DetailViewBuilder.cs" />
+    <Compile Include="Design\ViewBuilders\ListDetailItemBuilder.cs" />
+    <Compile Include="Design\ViewBuilders\ListDetailViewBuilder.cs" />
+    <Compile Include="Design\Actions\DetailViewCommandBarBuilder.cs" />
+    <Compile Include="Design\Actions\DetailViewToolBarBuilder.cs" />
+    <Compile Include="Design\Actions\ListDetailViewToolBarBuilder.cs" />
+    <Compile Include="Design\Actions\ListViewCommandBarBuilder.cs" />
+    <Compile Include="Design\Actions\ListViewToolBarBuilder.cs" />
+    <Compile Include="Design\Actions\TagButtonBuilder.cs" />
+    <Compile Include="Design\ViewBuilders\LogonViewGenerator.cs" />
+    <Compile Include="Design\Descriptors\NavigationGroupItem.cs" />
+    <Compile Include="Design\Descriptors\ListViewDescriptor.cs" />
+    <Compile Include="Design\Templates\DetailViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\Templates\ListViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\Templates\LogonViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\Templates\MainViewTemplate.cs" />
+    <Compile Include="Design\Descriptors\LabelOrientation.cs" />
+    <Compile Include="Design\Descriptors\NavigationItem.cs" />
+    <Compile Include="Design\Templates\TemplateBase.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\ViewBuilders\ListViewBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -190,6 +194,11 @@
     <Folder Include="Commands\Interfaces\" />
     <Folder Include="Platform\" />
     <Folder Include="Images\" />
+    <Folder Include="Services\" />
+    <Folder Include="Design\Descriptors\" />
+    <Folder Include="Design\ViewBuilders\" />
+    <Folder Include="Design\Actions\" />
+    <Folder Include="Design\Templates\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

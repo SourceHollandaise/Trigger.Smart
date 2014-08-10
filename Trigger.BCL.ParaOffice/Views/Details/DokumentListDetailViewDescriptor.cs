@@ -16,6 +16,8 @@ namespace Trigger.BCL.ParaOffice
 
             AutoSave = true;
 
+            IsTaggable = false;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription("Dokument", 1)

@@ -48,19 +48,16 @@ namespace XForms.Design
             detailLayout.Size = new Size(-1, -1);
 
             if (addCommandBar)
-            {
-  
+            {  
                 var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands);
                 detailLayout.Add(commandBarBuilder.GetContent());
-            }
-
-            /*
-                if (detailViewDescriptor.IsTaggable)
+  
+                if (descriptor.IsTaggable)
                 {
                     var tabButtonBuilder = new TagButtonBuilder(currentObject);
                     detailLayout.Add(tabButtonBuilder.GetContent());
                 }
-                */
+            }
 
             var detailViewBuilder = new DetailViewBuilder(descriptor, currentObject, false);
             detailLayout.Add(detailViewBuilder.GetContent(), true);

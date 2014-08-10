@@ -113,5 +113,43 @@ namespace Trigger.BCL.ParaOffice
                 OnPropertyChanged();
             }
         }
+
+        string webSite;
+
+        [System.ComponentModel.DisplayName("Web")]
+        public string WebSite
+        {
+            get
+            {
+                return webSite;
+            }
+            set
+            {
+                if (Equals(webSite, value))
+                    return;
+                webSite = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        string organisation;
+
+        [System.ComponentModel.DisplayName("Unternehmen")]
+        public string Organisation
+        {
+            get
+            {
+                return organisation;
+            }
+            set
+            {
+                if (Equals(organisation, value))
+                    return;
+                organisation = value;
+
+                OnPropertyChanged();
+            }
+        }
     }
 }
