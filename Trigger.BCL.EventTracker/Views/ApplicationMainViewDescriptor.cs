@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
 using XForms.Design;
 using XForms.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -9,6 +10,10 @@ namespace Trigger.BCL.EventTracker
     {
         public ApplicationMainViewDescriptor()
         {
+            RegisterCommands<ICurrentUserDetailsCommand>();
+            //RegisterCommands<ILogonCommand>();
+            RegisterCommands<IApplicationExitCommand>();
+
             NavigationGroups = new List<NavigationGroupItem>
             {
                 new NavigationGroupItem("Favorites", 1)

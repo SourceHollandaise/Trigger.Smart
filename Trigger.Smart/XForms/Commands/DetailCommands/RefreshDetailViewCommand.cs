@@ -6,7 +6,8 @@ namespace XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            args.CurrentObject.ReloadObject();
+            if (args.CurrentObject != null)
+                args.CurrentObject.ReloadObject();
         }
 
         public string ID

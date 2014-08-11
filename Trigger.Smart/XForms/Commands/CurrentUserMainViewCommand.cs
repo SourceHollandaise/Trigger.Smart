@@ -1,15 +1,17 @@
-using System.IO;
+using XForms.Model;
 using XForms.Dependency;
 using XForms.Security;
-using XForms.Model;
 using XForms.Design;
+using System.IO;
+
 
 namespace XForms.Commands
 {
 
-    public class CurrentUserListViewCommand : ICurrentUserListViewCommand
+    public class CurrentUserMainViewCommand : ICurrentUserDetailsCommand
     {
-        public void Execute(ListViewArguments listParameter)
+
+        public void Execute(MainViewTemplate template)
         {
             CurrentUser.ShowDetailContentEmbedded();
         }

@@ -9,17 +9,17 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemListDescriptor()
         {
-            IsImageList = true;
             ListShowTags = false;
-            RowHeight = 96;
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
             ListDetailView = true;
             ListDetailViewColumns = 3;
-            ListDetailViewWithToolbar = false;
-            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+
+            DetailView = new ImageItemListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

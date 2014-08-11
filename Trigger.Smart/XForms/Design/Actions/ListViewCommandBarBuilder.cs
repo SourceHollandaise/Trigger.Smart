@@ -22,22 +22,18 @@ namespace XForms.Design
             set;
         }
 
-        bool isRoot;
-
         public Type ModelType
         {
             get;
             set;
         }
 
-        public ListViewCommandBarBuilder(IListViewDescriptor descriptor, Type modelType, bool isRoot, IEnumerable<IStorable> dataSet, GridView currentGridView = null)
+        public ListViewCommandBarBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet, GridView currentGridView = null)
         {
             this.CurrentGridView = currentGridView;
             this.dataSet = dataSet;
-            this.isRoot = isRoot;
             this.ModelType = modelType;
             this.descriptor = descriptor;
-            
         }
 
         public DynamicLayout GetContent()
@@ -46,8 +42,6 @@ namespace XForms.Design
             commandBar.BeginHorizontal();
             foreach (var command in descriptor.Commands)
             {
-                if (command is ICurrentUserListViewCommand)
-                    continue;
                 var button = new Button();
                 button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
@@ -62,9 +56,6 @@ namespace XForms.Design
                 });
                 commandBar.Add(button, false, false);
             }
-            var currentUserCommand = descriptor.Commands.FirstOrDefault(p => p is ICurrentUserListViewCommand);
-            if (currentUserCommand != null && isRoot)
-                AddCurrentUserToCommandBar(commandBar, currentUserCommand);
             commandBar.Add(new DynamicLayout()
             {
                 Size = new Size(-1, -1)

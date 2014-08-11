@@ -28,7 +28,6 @@ namespace XForms.Commands
             Map.RegisterType<ILogonCommand, LogonCommand>();
             Map.RegisterType<ITagDetailViewCommand, TagDetailViewCommand>();
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
-            Map.RegisterType<ICurrentUserListViewCommand, CurrentUserListViewCommand>();
             Map.RegisterType<INavigateBackDetailViewCommand, NavigateBackDetailViewCommand>();
             Map.RegisterType<INavigateBackListViewCommand, NavigateBackListViewCommand>();
         }

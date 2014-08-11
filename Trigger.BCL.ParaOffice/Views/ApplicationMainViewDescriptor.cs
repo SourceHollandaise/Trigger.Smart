@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using XForms.Design;
 using XForms.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class KanzleiMainViewDescriptor : MainViewDescriptor
+    public class ApplicationMainViewDescriptor : MainViewDescriptor
     {
-        public KanzleiMainViewDescriptor()
+        public ApplicationMainViewDescriptor()
         {
+            RegisterCommands<ICurrentUserDetailsCommand>();
+            RegisterCommands<ILogonCommand>();
+            RegisterCommands<IApplicationExitCommand>();
+
             NavigationGroups = new List<NavigationGroupItem>
             {
                 new NavigationGroupItem("Kanzlei", 1)

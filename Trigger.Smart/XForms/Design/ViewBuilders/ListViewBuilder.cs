@@ -57,11 +57,8 @@ namespace XForms.Design
 
             var listViewLayout = new DynamicLayout();
 
-            //new ListViewToolBarBuilder().Create(descriptor.Commands, ModelType, dataSet);
-
-
             listViewLayout.BeginHorizontal();
-            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, isRoot, originalDataSet, CurrentGridView);
+            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, originalDataSet, CurrentGridView);
             listViewLayout.Add(commandBarBuilder.GetContent());
             listViewLayout.EndHorizontal();
 

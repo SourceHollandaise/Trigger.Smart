@@ -17,7 +17,7 @@ namespace Trigger.BCL.EventTracker
             ListDetailViewColumns = 2;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
 
-            DetailView = new ContactViewDescriptor();
+            DetailView = new ContactListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

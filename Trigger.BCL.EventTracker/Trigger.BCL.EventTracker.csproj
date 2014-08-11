@@ -97,6 +97,9 @@
     <Compile Include="Services\ApplicationSecurityInfoProvider.cs" />
     <Compile Include="Views\Details\ApplicationUserViewDescriptor.cs" />
     <Compile Include="Views\Lists\ApplicationUserListDescriptor.cs" />
+    <Compile Include="Views\ListDetails\ContactListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\ImageItemListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\IssueTrackerListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -105,6 +108,7 @@
     <Folder Include="Views\Lists\" />
     <Folder Include="Views\Details\" />
     <Folder Include="Commands\" />
+    <Folder Include="Views\ListDetails\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">

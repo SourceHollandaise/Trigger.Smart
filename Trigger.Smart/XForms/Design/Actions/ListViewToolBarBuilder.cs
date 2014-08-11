@@ -17,7 +17,7 @@ namespace XForms.Design
 
             foreach (var command in commands)
             {
-                var item = new ToolBarButton();
+                var item = new ButtonToolItem();
                 item.Text = command.Name;
                 item.ID = command.ID;
                 item.Tag = command;

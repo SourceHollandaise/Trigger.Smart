@@ -24,7 +24,7 @@ namespace Trigger.BCL.ParaOffice
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.Bemerkung), 1){ LabelText = "Bemerkung", ShowLabel = false }
+                        new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Bezeichnung", ShowLabel = false }
                     }
                 },
 

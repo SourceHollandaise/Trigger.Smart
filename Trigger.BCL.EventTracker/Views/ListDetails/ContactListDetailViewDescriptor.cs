@@ -4,9 +4,10 @@ using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class ContactViewDescriptor : DetailViewDescriptor<Contact>
+
+    public class ContactListDetailViewDescriptor : DetailViewDescriptor<Contact>
     {
-        public ContactViewDescriptor()
+        public ContactListDetailViewDescriptor()
         {
             Commands.Clear();
 
@@ -19,7 +20,7 @@ namespace Trigger.BCL.EventTracker
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Contactdetails", 1)
+                new GroupItemDescription(null, 1)
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
@@ -33,5 +34,4 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
-
 }

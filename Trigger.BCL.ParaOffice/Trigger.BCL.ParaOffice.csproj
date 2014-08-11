@@ -76,22 +76,21 @@
     <Compile Include="Views\Details\UserViewDescriptor.cs" />
     <Compile Include="Views\Lists\UserListDescriptor.cs" />
     <Compile Include="Model\ExportableBase.cs" />
-    <Compile Include="Views\ApplicationMainViewDescritptor.cs" />
-    <Compile Include="Views\KanzleiMainViewDescriptor.cs" />
     <Compile Include="Views\Lists\TelefonatListDescriptor.cs" />
     <Compile Include="Views\Details\TelefonatViewDescriptor.cs" />
     <Compile Include="Commands\IAktPersonDetailViewCommand.cs" />
     <Compile Include="Commands\AktPersonDetailViewCommand.cs" />
-    <Compile Include="Commands\CurrentSBListViewCommand.cs" />
     <Compile Include="Model\Com\Telefonat.cs" />
     <Compile Include="Model\AktModel\AktPersonNumberProvider.cs" />
     <Compile Include="Model\Com\TelefonatArt.cs" />
     <Compile Include="Model\Com\TelefonatStatus.cs" />
-    <Compile Include="Views\Details\DokumentListDetailViewDescriptor.cs" />
-    <Compile Include="Views\Details\UserListDetailViewDescriptor.cs" />
-    <Compile Include="Views\Details\TelefonatListDetailViewDescriptor.cs" />
-    <Compile Include="Views\Details\KontaktListDetailViewDescriptor.cs" />
-    <Compile Include="Views\Details\TerminListDetailViewDescriptor.cs" />
+    <Compile Include="Commands\CurrentSBDetailsCommand.cs" />
+    <Compile Include="Views\ApplicationMainViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\DokumentListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\KontaktListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\TelefonatListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\TerminListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\UserListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -106,6 +105,7 @@
     <Folder Include="Views\Details\" />
     <Folder Include="Commands\" />
     <Folder Include="Model\Com\" />
+    <Folder Include="Views\ListDetails\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

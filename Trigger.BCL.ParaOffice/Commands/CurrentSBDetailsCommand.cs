@@ -9,9 +9,9 @@ using XForms.Design;
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class CurrentSBListViewCommand : ICurrentUserListViewCommand
+    public class CurrentSBDetailsCommand : ICurrentUserDetailsCommand
     {
-        public void Execute(ListViewArguments listParameter)
+        public void Execute(MainViewTemplate template)
         {
             CurrentSBService.CurrentSB.ShowDetailContentEmbedded();
         }

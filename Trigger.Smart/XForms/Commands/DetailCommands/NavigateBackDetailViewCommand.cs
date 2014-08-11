@@ -7,13 +7,16 @@ namespace XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            if (args.CurrentObject.HasChanged || args.CurrentObject.IsNewObject)
+            if (args.CurrentObject != null)
             {
-                if (ConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
-                    args.CurrentObject.Save();
-            }
+                if (args.CurrentObject.HasChanged || args.CurrentObject.IsNewObject)
+                {
+                    if (ConfirmationMessages.SaveObjectShow() == Eto.Forms.DialogResult.Ok)
+                        args.CurrentObject.Save();
+                }
 
-            TemplateNavigator.Back();
+                TemplateNavigator.Back();
+            }
         }
 
         public string ID

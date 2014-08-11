@@ -123,8 +123,24 @@ namespace XForms.Design
             }
 
             appGroupLayout.BeginVertical();
-            appGroupLayout.Add(GetLogOffButton(), true);
-            appGroupLayout.Add(GetExitButton(), true);
+
+            foreach (var command in descriptor.Commands)
+            {
+                var button = new Button()
+                {
+                    Size = new Size(-1, 34),
+                    Text = command.Name,
+                    Tag = command,
+                    Image = ImageExtensions.GetImage(command.ImageName, 16),
+                    ImagePosition = ButtonImagePosition.Left,                      
+                };
+
+                button.Click += (sender, e) => (button.Tag as IMainViewCommand).Execute(this);
+
+                appGroupLayout.Add(button, true);
+
+            }
+                
             appGroupLayout.EndVertical();
 
             appGroup.Content = appGroupLayout;
@@ -223,36 +239,6 @@ namespace XForms.Design
             }
 
             return null;
-        }
-
-        Button GetLogOffButton()
-        {
-            var logOffCommand = MapProvider.Instance.ResolveType<ILogonCommand>();
-            var logOffButton = new Button
-            {
-                Size = new Size(-1, 34),
-                Image = ImageExtensions.GetImage(logOffCommand.ImageName, 16),
-                ImagePosition = ButtonImagePosition.Left,
-                Text = logOffCommand.Name,
-                ID = logOffCommand.ID
-            };
-            logOffButton.Click += (sender, e) => logOffCommand.Execute(this);
-            return logOffButton;
-        }
-
-        Button GetExitButton()
-        {
-            var exitCommand = MapProvider.Instance.ResolveType<IApplicationExitCommand>();
-            var exitButton = new Button
-            {
-                Size = new Size(-1, 34),
-                Image = ImageExtensions.GetImage(exitCommand.ImageName, 16),
-                ImagePosition = ButtonImagePosition.Left,
-                Text = exitCommand.Name,
-                ID = exitCommand.ID
-            };
-            exitButton.Click += (sender, e) => exitCommand.Execute(this);
-            return exitButton;
         }
     }
 }

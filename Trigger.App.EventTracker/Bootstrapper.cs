@@ -7,6 +7,7 @@ using XForms.Store;
 using XForms.Security;
 using XForms.Design;
 using XForms.Model;
+using XForms.Commands;
 
 namespace Trigger.App.EventTracker
 {
@@ -69,6 +70,7 @@ namespace Trigger.App.EventTracker
 
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
+            Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserMainViewCommand>();
         }
 
         public override void CreateDefaultUser()

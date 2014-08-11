@@ -6,7 +6,8 @@ namespace XForms.Commands
     {
         public void Execute(DetailViewArguments args)
         {
-            args.CurrentObject.Save();
+            if (args.CurrentObject != null)
+                args.CurrentObject.Save();
         }
 
         public string ID

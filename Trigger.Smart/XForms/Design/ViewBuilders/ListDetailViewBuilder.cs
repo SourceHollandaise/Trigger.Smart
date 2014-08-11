@@ -12,7 +12,7 @@ namespace XForms.Design
     {
         protected int? CurrentRowIndex = null;
 
-        IEnumerable<IStorable> dataSet;
+        readonly IEnumerable<IStorable> dataSet;
 
         readonly IEnumerable<IStorable> originalDataSet;
 
@@ -20,34 +20,28 @@ namespace XForms.Design
 
         readonly IListViewDescriptor descriptor;
 
-        public Type ModelType
-        {
-            get;
-            private set;
-        }
+        readonly Type modelType;
 
         public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
         {
             this.descriptor = descriptor;
             this.originalDataSet = dataSet;
             this.dataSet = dataSet;
-            this.ModelType = modelType;
+            this.modelType = modelType;
             this.isRoot = viewIsRoot;
         }
 
         public Control GetContent()
         {
-            //new ListDetailViewToolBarBuilder().Create(descriptor.Commands, ModelType, originalDataSet);
-
             var listDetailLayout = new DynamicLayout();
 
             listDetailLayout.BeginHorizontal();
 
-            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, isRoot, originalDataSet);
+            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, modelType, originalDataSet);
             listDetailLayout.Add(commandBarBuilder.GetContent());
             listDetailLayout.EndHorizontal();
   
-            var rawDataSet = new DataStoreProvider(descriptor, ModelType).CreateRawDataSet(dataSet);
+            var rawDataSet = new DataStoreProvider(descriptor, modelType).CreateRawDataSet(dataSet);
 
             if (descriptor.DefaultSorting == ColumnSorting.Ascending)
                 rawDataSet = rawDataSet.OrderByProperty(descriptor.DefaultSortProperty);
@@ -69,7 +63,8 @@ namespace XForms.Design
                     var content = builder.GetContent();
    
                     var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / descriptor.ListDetailViewColumns;
-         
+                    //var height = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120 / 2;
+
                     content.Size = new Size(width, -1);
 
                     listDetailLayout.Add(content);

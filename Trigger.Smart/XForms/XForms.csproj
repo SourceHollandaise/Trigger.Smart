@@ -96,8 +96,6 @@
     <Compile Include="Extensions\ListViewTemplateExtensions.cs" />
     <Compile Include="Commands\ApplicationExitCommand.cs" />
     <Compile Include="Commands\ConfirmationMessages.cs" />
-    <Compile Include="Commands\DetailViewArguments.cs" />
-    <Compile Include="Commands\ListViewArguments.cs" />
     <Compile Include="Commands\XFormsBaseComands.cs" />
     <Compile Include="Commands\Interfaces\IApplicationExitCommand.cs" />
     <Compile Include="Commands\Interfaces\IDetailViewCommand.cs" />
@@ -105,7 +103,6 @@
     <Compile Include="Commands\Interfaces\IMainViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ICreateObjectListViewCommand.cs" />
-    <Compile Include="Commands\Interfaces\ICurrentUserListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\INavigateBackDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\INavigateBackListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IOpenObjectListViewCommand.cs" />
@@ -113,27 +110,12 @@
     <Compile Include="Commands\Interfaces\IRefreshListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ISearchListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IUpdateDocumentStoreListViewCommand.cs" />
-    <Compile Include="Commands\CreateObjectListViewCommand.cs" />
-    <Compile Include="Commands\CurrentUserListViewCommand.cs" />
-    <Compile Include="Commands\NavigateBackListViewCommand.cs" />
-    <Compile Include="Commands\OpenObjectListViewCommand.cs" />
-    <Compile Include="Commands\PrintListViewCommand.cs" />
-    <Compile Include="Commands\RefreshListViewCommand.cs" />
-    <Compile Include="Commands\SearchListViewCommand.cs" />
-    <Compile Include="Commands\UpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IAddFileDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ICloseDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IRefreshDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ISaveObjectDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ITagDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IDeleteObjectDetailViewCommand.cs" />
-    <Compile Include="Commands\AddFileDetailViewCommand.cs" />
-    <Compile Include="Commands\CloseDetailViewCommand.cs" />
-    <Compile Include="Commands\NavigateBackDetailViewCommand.cs" />
-    <Compile Include="Commands\RefreshDetailViewCommand.cs" />
-    <Compile Include="Commands\SaveObjectDetailViewCommand.cs" />
-    <Compile Include="Commands\TagDetailViewCommand.cs" />
-    <Compile Include="Commands\DeleteObjectDetailViewCommand.cs" />
     <Compile Include="Platform\BootstrapperBase.cs" />
     <Compile Include="Platform\XFormsApplication.cs" />
     <Compile Include="Commands\Interfaces\ILogonCommand.cs" />
@@ -181,6 +163,24 @@
     </Compile>
     <Compile Include="Design\ViewBuilders\ListViewBuilder.cs" />
     <Compile Include="Design\Descriptors\ListPropertyMode.cs" />
+    <Compile Include="Commands\DetailCommands\AddFileDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\CloseDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\DeleteObjectDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\NavigateBackDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\RefreshDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\SaveObjectDetailViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\TagDetailViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\CreateObjectListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\ListViewArguments.cs" />
+    <Compile Include="Commands\ListCommands\NavigateBackListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\OpenObjectListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\PrintListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\RefreshListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\SearchListViewCommand.cs" />
+    <Compile Include="Commands\ListCommands\UpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Commands\DetailCommands\DetailViewArguments.cs" />
+    <Compile Include="Commands\Interfaces\ICurrentUserDetailsCommand.cs" />
+    <Compile Include="Commands\CurrentUserMainViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -199,6 +199,8 @@
     <Folder Include="Design\ViewBuilders\" />
     <Folder Include="Design\Actions\" />
     <Folder Include="Design\Templates\" />
+    <Folder Include="Commands\DetailCommands\" />
+    <Folder Include="Commands\ListCommands\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

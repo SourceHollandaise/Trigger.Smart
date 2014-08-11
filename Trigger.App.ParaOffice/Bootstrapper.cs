@@ -35,7 +35,7 @@ namespace Trigger.App.ParaOffice
 
         public override void RegisterViewDescriptors()
         {
-            Map.RegisterType<IMainViewDescriptor, KanzleiMainViewDescriptor>();
+            Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
 
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();
@@ -64,8 +64,8 @@ namespace Trigger.App.ParaOffice
         {
             base.RegisterCommands();
 
-            Map.RegisterType<ICurrentUserListViewCommand, CurrentSBListViewCommand>();
             Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
+            Map.RegisterType<ICurrentUserDetailsCommand, CurrentSBDetailsCommand>();
         }
 
         public override void CreateDefaultUser()

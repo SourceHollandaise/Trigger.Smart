@@ -11,6 +11,13 @@ namespace Trigger.BCL.EventTracker
             DefaultSorting = ColumnSorting.Descendig;
             DefaultSortProperty = Fields.GetName(m => m.Start);
 
+            ListDetailView = true;
+            ListDetailViewColumns = 2;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+            ListDetailViewWithToolbar = true;
+
+            DetailView = new IssueTrackerListDetailViewDescriptor();
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Issue" },
