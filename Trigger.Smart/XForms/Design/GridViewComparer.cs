@@ -22,6 +22,17 @@ namespace XForms.Design
 
         public int Compare(object x, object y)
         {
+            if (descriptor == null && column != null)
+                return CompareColumn(x, y);
+
+            if (descriptor != null && column == null)
+                return CompareDefault(x, y);
+
+            return 0;
+        }
+
+        int CompareDefault(object x, object y)
+        {
             if (descriptor == null)
                 return 0;
 
@@ -61,7 +72,7 @@ namespace XForms.Design
             }
         }
 
-        public int ColumnCompare(object x, object y)
+        int CompareColumn(object x, object y)
         {
             if (column == null)
                 return 0;

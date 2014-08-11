@@ -18,7 +18,7 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.MobilTelefon), 3){ LabelText = "Mobil" },
                         new ViewItemDescription(Fields.GetName(m => m.Telefon), 4){ LabelText = "Telefon" },
                         new ViewItemDescription(Fields.GetName(m => m.Email), 5){ LabelText = "E-Mail" },
-                        new ViewItemDescription(Fields.GetName(m => m.Email), 6){ LabelText = "Web" },
+                        new ViewItemDescription(Fields.GetName(m => m.WebSite), 6){ LabelText = "Web" },
                     }
                 },
             };

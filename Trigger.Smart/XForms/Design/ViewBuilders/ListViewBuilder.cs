@@ -112,7 +112,7 @@ namespace XForms.Design
                 try
                 {
                     if (e.Column != null)
-                        CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).ColumnCompare);
+                        CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).Compare);
                 }
                 catch
                 {

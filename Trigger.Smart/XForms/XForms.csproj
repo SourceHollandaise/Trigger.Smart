@@ -84,7 +84,6 @@
     <Compile Include="Model\ImageNameAttribute.cs" />
     <Compile Include="Model\StorableBase.cs" />
     <Compile Include="Dependency\MapProvider.cs" />
-    <Compile Include="Design\ListPropertyMode.cs" />
     <Compile Include="Design\IViewTemplateConfiguration.cs" />
     <Compile Include="Design\TemplateNavigator.cs" />
     <Compile Include="Design\ViewTemplateConfiguration.cs" />
@@ -181,6 +180,7 @@
       <SubType>Eto.Forms</SubType>
     </Compile>
     <Compile Include="Design\ViewBuilders\ListViewBuilder.cs" />
+    <Compile Include="Design\Descriptors\ListPropertyMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -107,12 +107,14 @@ namespace XForms.Design
 
             return listDetailLayout;
 
+            /*
             var scrollable = new Scrollable();
             scrollable.Border = BorderType.None;
             scrollable.Padding = new Padding(-1, -1);
             scrollable.Content = listDetailLayout;
 
             return scrollable;
+            */
         }
     }
 }
