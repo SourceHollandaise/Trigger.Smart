@@ -105,6 +105,7 @@ namespace XForms.Design
                 };
 
                 tabControl.TabPages.Add(tabPage);
+
                 /*
                 var scrollable = new Scrollable()
                 {
@@ -149,7 +150,7 @@ namespace XForms.Design
             if (!string.IsNullOrEmpty(groupItem.GroupHeaderText))
             {
                 groupBox.Text = groupItem.GroupHeaderText;
-
+                groupBox.BackgroundColor = layout.BackgroundColor;
                 try
                 {
                     groupBox.Font = new Font(groupBox.Font.Family, groupBox.Font.Size, FontStyle.Bold);

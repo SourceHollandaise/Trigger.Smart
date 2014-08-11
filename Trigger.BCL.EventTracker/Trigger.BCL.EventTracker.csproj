@@ -99,7 +99,7 @@
     <Compile Include="Views\Lists\ApplicationUserListDescriptor.cs" />
     <Compile Include="Views\ListDetails\ContactListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\ImageItemListDetailViewDescriptor.cs" />
-    <Compile Include="Views\Details\IssueTrackerListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\IssueTrackerListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

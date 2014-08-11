@@ -6,7 +6,7 @@ using XForms.Security;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-    [System.ComponentModel.DefaultProperty("Subject")]
+    [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Issue")]
     [ImageName("note_edit")]
     public class IssueTracker : StorableBase, IFileData
@@ -18,6 +18,14 @@ namespace Trigger.BCL.EventTracker.Model
             IssuePriority = Priority.High;
             IssueType = IssueType.Request;
             IssueState = IssueState.Open;
+        }
+
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Subject;
+            }
         }
 
         string subject;

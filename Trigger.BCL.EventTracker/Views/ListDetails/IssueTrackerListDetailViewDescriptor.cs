@@ -18,7 +18,7 @@ namespace Trigger.BCL.EventTracker
 
             AutoSave = true;
 
-            IsTaggable = false;
+            IsTaggable = true;
 
             TabItemDescriptions = new List<TabItemDescription>
             {
@@ -34,14 +34,21 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority" },
                                 new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type" },
                                 new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State" },
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 6){ LabelText = "Description", ShowLabel = false, Fill = true },
-                                new ViewItemDescription(EmptySpaceFieldName, 7){ ShowLabel = false }
+                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State" }
+                               
                             }
                         },
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = false },
+                            }
+                        }
                     }
                 },
-                new TabItemDescription("Progress", 2)
+                new TabItemDescription("Progress", 3)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -49,16 +56,15 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Start), 2){ LabelText = "Start" },
-                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 2){ LabelText = "Started by" },
-                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 3){ LabelText = "Resolved" },
-                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 4){ LabelText = "Resolved by" },
+                                new ViewItemDescription(Fields.GetName(m => m.Start), 6){ LabelText = "Start" },
+                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 7){ LabelText = "Started by" },
+                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 8){ LabelText = "Resolved" },
+                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 9){ LabelText = "Resolved by" },
                             }
                         }
                     }
                 },
-
-                new TabItemDescription("Attachment Preview", 3)
+                new TabItemDescription("Attachment Preview", 4)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -72,6 +78,7 @@ namespace Trigger.BCL.EventTracker
                         }
                     }
                 }
+    
             };
         }
     }

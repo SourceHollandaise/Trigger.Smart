@@ -13,7 +13,7 @@ namespace Trigger.BCL.EventTracker
 
             ListDetailView = true;
             ListDetailViewColumns = 2;
-            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
             ListDetailViewWithToolbar = true;
 
             DetailView = new IssueTrackerListDetailViewDescriptor();
