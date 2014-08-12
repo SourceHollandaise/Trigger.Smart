@@ -315,7 +315,8 @@ namespace Trigger.BCL.EventTracker.Model
                 case IssueState.InProgress:
                     if (!Start.HasValue)
                         Start = DateTime.Now;
-                    StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
+                    if (StartedBy != null)
+                        StartedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
                     break;
                 case IssueState.Done:
                 case IssueState.Rejected:

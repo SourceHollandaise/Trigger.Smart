@@ -91,6 +91,7 @@
     <Compile Include="Views\ListDetails\TelefonatListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\TerminListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\UserListDetailViewDescriptor.cs" />
+    <Compile Include="Bootstrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

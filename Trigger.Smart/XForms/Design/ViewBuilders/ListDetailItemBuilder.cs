@@ -27,15 +27,15 @@ namespace XForms.Design
 
         public Control GetContent()
         {
-            var cardViewGroupBox = new GroupBox();
-            cardViewGroupBox.Size = new Size(-1, -1);
+            var detailViewGroupBox = new GroupBox();
+            detailViewGroupBox.Size = new Size(-1, -1);
             if (headerText != null)
             {
-                cardViewGroupBox.Text = headerText;
+                detailViewGroupBox.Text = headerText;
 
                 try
                 {
-                    cardViewGroupBox.Font = new Font(cardViewGroupBox.Font.Family, 14f, FontStyle.Bold);
+                    detailViewGroupBox.Font = new Font(detailViewGroupBox.Font.Family, 14f, FontStyle.Bold);
 
                 }
                 catch
@@ -61,9 +61,9 @@ namespace XForms.Design
 
             var detailViewBuilder = new DetailViewBuilder(descriptor, currentObject, false);
             detailLayout.Add(detailViewBuilder.GetContent(), true);
-            cardViewGroupBox.Content = detailLayout;
+            detailViewGroupBox.Content = detailLayout;
                 
-            return cardViewGroupBox;
+            return detailViewGroupBox;
         }
     }
 }

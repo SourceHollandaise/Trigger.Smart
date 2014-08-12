@@ -38,7 +38,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 80;
+                return 70;
             }
         }
 

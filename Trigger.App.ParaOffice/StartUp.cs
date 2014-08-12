@@ -1,4 +1,5 @@
 using System;
+using Trigger.BCL.ParaOffice;
 
 namespace Trigger.App.ParaOffice
 {

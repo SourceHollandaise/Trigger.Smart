@@ -4,7 +4,6 @@ using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
-using XForms.Commands;
 
 namespace XForms.Design
 {
@@ -16,31 +15,30 @@ namespace XForms.Design
 
         readonly IEnumerable<IStorable> originalDataSet;
 
-        readonly bool isRoot;
-
         readonly IListViewDescriptor descriptor;
 
         readonly Type modelType;
 
-        public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, bool viewIsRoot = true, IEnumerable<IStorable> dataSet = null)
+        public ListDetailViewBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet = null)
         {
             this.descriptor = descriptor;
             this.originalDataSet = dataSet;
             this.dataSet = dataSet;
             this.modelType = modelType;
-            this.isRoot = viewIsRoot;
         }
 
         public Control GetContent()
         {
-            var listDetailLayout = new DynamicLayout();
-
-            listDetailLayout.BeginHorizontal();
-
+            var commandBarLayout = new DynamicLayout();
+            commandBarLayout.BeginHorizontal();
             var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, modelType, originalDataSet);
-            listDetailLayout.Add(commandBarBuilder.GetContent());
-            listDetailLayout.EndHorizontal();
-  
+            commandBarLayout.Add(commandBarBuilder.GetContent());
+            commandBarLayout.EndHorizontal();
+
+            var contentLayout = new DynamicLayout();
+
+            contentLayout.BeginHorizontal();
+
             var rawDataSet = new DataStoreProvider(descriptor, modelType).CreateRawDataSet(dataSet);
 
             if (descriptor.DefaultSorting == ColumnSorting.Ascending)
@@ -57,7 +55,7 @@ namespace XForms.Design
                 foreach (var current in rawDataSet.ToList())
                 {
                     if (currentColumnCount == 0)
-                        listDetailLayout.BeginHorizontal();
+                        contentLayout.BeginHorizontal();
  
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
@@ -67,11 +65,11 @@ namespace XForms.Design
 
                     content.Size = new Size(width, -1);
 
-                    listDetailLayout.Add(content);
+                    contentLayout.Add(content);
 
                     if (currentColumnCount == columns)
                     {
-                        listDetailLayout.Add(new DynamicLayout());
+                        contentLayout.Add(new DynamicLayout());
                         currentColumnCount = 0;
                         continue;
                     }
@@ -82,7 +80,7 @@ namespace XForms.Design
 
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
             {
-                listDetailLayout.BeginHorizontal();
+                contentLayout.BeginHorizontal();
                 foreach (var current in rawDataSet.ToList())
                 {
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
@@ -94,22 +92,25 @@ namespace XForms.Design
 
                     content.Size = new Size(width, height);
 
-                    listDetailLayout.Add(content, false, false);
+                    contentLayout.Add(content, false, false);
                 }
 
-                listDetailLayout.Add(null);
+                contentLayout.Add(null);
             }
 
-            return listDetailLayout;
+            var listDetaillayout = new DynamicLayout();
+            listDetaillayout.Add(commandBarLayout);
 
-            /*
-            var scrollable = new Scrollable();
-            scrollable.Border = BorderType.None;
-            scrollable.Padding = new Padding(-1, -1);
-            scrollable.Content = listDetailLayout;
+            var scrollable = new Scrollable()
+            {
+                Border = BorderType.None,
+                Padding = new Padding(-1, -1),
+                Content = contentLayout
+            };
 
-            return scrollable;
-            */
+            listDetaillayout.Add(scrollable);
+
+            return listDetaillayout;
         }
     }
 }

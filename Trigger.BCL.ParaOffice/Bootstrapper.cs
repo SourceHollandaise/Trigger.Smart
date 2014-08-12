@@ -1,13 +1,13 @@
 using System.Linq;
-using Trigger.BCL.ParaOffice;
 using XForms.Commands;
 using XForms.Design;
 using XForms.Model;
 using XForms.Platform;
 using XForms.Security;
 using XForms.Store;
+using Trigger.BCL.ParaOffice;
 
-namespace Trigger.App.OSX.ParaOffice
+namespace Trigger.BCL.ParaOffice
 {
     public class Bootstrapper : BootstrapperBase
     {
@@ -64,7 +64,6 @@ namespace Trigger.App.OSX.ParaOffice
         {
             base.RegisterCommands();
 
-            //Map.RegisterType<ICurrentUserListViewCommand, CurrentSBListViewCommand>();
             Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentSBDetailsCommand>();
         }
@@ -94,28 +93,6 @@ namespace Trigger.App.OSX.ParaOffice
                 };
 
                 sb.Save();
-            }
-
-            CreateSBFromUser();
-        }
-
-        public void CreateSBFromUser()
-        {
-            var users = Map.ResolveType<IStore>().LoadAll<User>();
-            foreach (var user in users)
-            {
-                var sb = Map.ResolveType<IStore>().LoadAll<SB>().FirstOrDefault(p => p.ID == user.UserName);
-
-                if (sb == null)
-                {
-                    sb = new SB();
-
-                    sb.ID = user.UserName;
-                    sb.User = user;
-                    sb.TermineAnzeigen = true;
-                    sb.TelefonatAnzeigen = true;
-                    sb.Save();
-                }
             }
         }
     }

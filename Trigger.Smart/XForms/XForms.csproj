@@ -180,7 +180,7 @@
     <Compile Include="Commands\ListCommands\UpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\DetailCommands\DetailViewArguments.cs" />
     <Compile Include="Commands\Interfaces\ICurrentUserDetailsCommand.cs" />
-    <Compile Include="Commands\CurrentUserMainViewCommand.cs" />
+    <Compile Include="Commands\CurrentUserDetailsViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

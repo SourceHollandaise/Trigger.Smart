@@ -88,7 +88,6 @@
     <BundleResource Include="Resources\paragraph_128x128.icns" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>

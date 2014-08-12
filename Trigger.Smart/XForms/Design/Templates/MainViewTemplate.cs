@@ -220,14 +220,7 @@ namespace XForms.Design
                 
             layout.Add(content);
 
-            var scrollable = new Scrollable()
-            {
-                Border = BorderType.None,
-                Size = new Size(-1, -1),
-                Content = layout
-            };
-
-            return scrollable;
+            return layout;
         }
 
         Control CreateDetailViewLayout(GridView currentGridView, Type modelType)

@@ -8,7 +8,7 @@ using System.IO;
 namespace XForms.Commands
 {
 
-    public class CurrentUserMainViewCommand : ICurrentUserDetailsCommand
+    public class CurrentUserDetailsViewCommand : ICurrentUserDetailsCommand
     {
 
         public void Execute(MainViewTemplate template)

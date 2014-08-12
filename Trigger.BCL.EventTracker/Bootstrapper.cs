@@ -9,7 +9,7 @@ using XForms.Design;
 using XForms.Model;
 using XForms.Commands;
 
-namespace Trigger.App.EventTracker
+namespace Trigger.BCL.EventTracker
 {
     public class Bootstrapper : BootstrapperBase
     {
@@ -70,7 +70,7 @@ namespace Trigger.App.EventTracker
 
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
-            Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserMainViewCommand>();
+            Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserDetailsViewCommand>();
         }
 
         public override void CreateDefaultUser()

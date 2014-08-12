@@ -86,7 +86,6 @@
     <BundleResource Include="Resources\fucking.icns" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
