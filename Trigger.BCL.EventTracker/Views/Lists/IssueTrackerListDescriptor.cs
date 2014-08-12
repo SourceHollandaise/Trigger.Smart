@@ -1,5 +1,5 @@
-using XForms.Design;
 using System.Collections.Generic;
+using XForms.Design;
 using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker

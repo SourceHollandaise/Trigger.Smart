@@ -100,6 +100,8 @@
     <Compile Include="Views\ListDetails\ContactListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\ImageItemListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\IssueTrackerListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Lists\IssueTrackerListDoneDescriptor.cs" />
+    <Compile Include="Views\Lists\IssueTrackerListProgressDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

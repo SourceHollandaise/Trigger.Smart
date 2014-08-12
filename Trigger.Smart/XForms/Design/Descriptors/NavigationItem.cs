@@ -15,6 +15,8 @@ namespace XForms.Design
 
         public bool Visible { get; set; }
 
+        public IListViewDescriptor ListView { get; set; }
+
         public NavigationItem(Type modelType, string navigationItemText, int index)
         {
             ModelType = modelType;

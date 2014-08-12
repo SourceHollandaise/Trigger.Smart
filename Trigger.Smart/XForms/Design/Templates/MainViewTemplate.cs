@@ -95,11 +95,11 @@ namespace XForms.Design
                     {
                         Size = new Size(-1, 34),
                         Text = navItem.NavigationItemText,
-                        Tag = navItem.ModelType,
+                        Tag = navItem,
                         Image = ImageExtensions.GetImage(navItem.ImageName, 16),
                         ImagePosition = ButtonImagePosition.Left,                      
                     };
-                    button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as Type);
+                    button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as NavigationItem);
                     navGroupLayout.Add(button, true);
                 }
                 navGroupBox.Content = navGroupLayout;
@@ -153,45 +153,58 @@ namespace XForms.Design
             return navigationlayout;
         }
 
-
-        void ShowListViewFromNavigation(Type type)
+        void ShowListViewFromNavigation(NavigationItem item)
         {
-            CurrentActiveType = type;
+            CurrentActiveType = item.ModelType;
+
             var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
+
             var listLayout = new DynamicLayout();
-            listLayout.Add(CreateListViewLayout());
+
+            listLayout.Add(CreateListViewLayout(item.ListView));
+
             ContentPanel.Content = listLayout;
+
             TemplateNavigator.Add(ContentPanel.Content);
+
             Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
         }
 
-        Control CreateListViewLayout()
+        Control CreateListViewLayout(IListViewDescriptor descriptor)
         {
             Control content = null;
 
             var layout = new DynamicLayout();
-
-            var descriptorType = ListViewDescriptorProvider.GetDescriptor(CurrentActiveType);
-            if (descriptorType != null)
+               
+            if (descriptor.ListDetailView)
             {
-                var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
-                if (descriptor.ListDetailView)
-                {
-                    if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
-                        layout.BeginHorizontal();
-                    else
-                        layout.BeginVertical();
-
-                    var builder = new ListDetailViewBuilder(descriptor, CurrentActiveType);
-                    content = builder.GetContent();
-                }
+                if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
+                    layout.BeginHorizontal();
                 else
-                {
                     layout.BeginVertical();
-                    var builder = new ListViewBuilder(descriptor, CurrentActiveType);
-                    content = builder.GetContent();
- 
-                    builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
+
+                var builder = new ListDetailViewBuilder(descriptor, CurrentActiveType);
+                content = builder.GetContent();
+            }
+            else
+            {
+                layout.BeginVertical();
+                var builder = new ListViewBuilder(descriptor, CurrentActiveType);
+                content = builder.GetContent();
+
+                builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
+                {
+                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                    if (detailContent != null)
+                    {
+                        ContentPanel.Content = detailContent;
+                        TemplateNavigator.Add(ContentPanel.Content);
+                    }
+                };
+
+                builder.CurrentGridView.KeyUp += (sender, e) =>
+                {
+                    if (e.Key == Keys.Enter)
                     {
                         var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
                         if (detailContent != null)
@@ -199,26 +212,13 @@ namespace XForms.Design
                             ContentPanel.Content = detailContent;
                             TemplateNavigator.Add(ContentPanel.Content);
                         }
-                    };
+                    }
+                };
 
-                    builder.CurrentGridView.KeyUp += (sender, e) =>
-                    {
-                        if (e.Key == Keys.Enter)
-                        {
-                            var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
-                            if (detailContent != null)
-                            {
-                                ContentPanel.Content = detailContent;
-                                TemplateNavigator.Add(ContentPanel.Content);
-                            }
-                        }
-                    };
-
-                    layout.EndVertical();
-                }
-
-                layout.Add(content);
+                layout.EndVertical();
             }
+                
+            layout.Add(content);
 
             var scrollable = new Scrollable()
             {
