@@ -20,11 +20,13 @@ namespace Trigger.BCL.ParaOffice
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Dokument", 1)
+                new GroupItemDescription(null, 1)
                 {
+                    ViewItemOrientation = ViewItemOrientation.Horizontal,
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Bezeichnung", ShowLabel = false }
+                        new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Betreff", ShowLabel = false },
+                        new ViewItemDescription(Fields.GetName(m => m.AnlageDatum), 2){ LabelText = "Anlage", ShowLabel = false }
                     }
                 },
 

@@ -15,7 +15,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return SBAlias + " - " + Betreff + " " + Beginn.ToShortDateString() + " " + Beginn.ToShortTimeString();
+                return SBAlias + " - " + Betreff + " " + BeginnAlias + " " + DauerAlias;
             }
         }
 
@@ -42,6 +42,22 @@ namespace Trigger.BCL.ParaOffice
                 art = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string BeginnAlias
+        {
+            get
+            {
+                return Beginn.ToShortDateString();
+            }
+        }
+
+        public string DauerAlias
+        {
+            get
+            {
+                return Beginn.ToShortTimeString() + " - " + Ende.ToShortTimeString();
             }
         }
 

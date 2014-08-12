@@ -20,7 +20,7 @@ namespace Trigger.BCL.ParaOffice
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Details", 1)
+                new GroupItemDescription(null, 1)
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {

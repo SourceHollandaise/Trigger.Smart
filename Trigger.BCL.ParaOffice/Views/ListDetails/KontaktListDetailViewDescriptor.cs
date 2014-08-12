@@ -20,12 +20,12 @@ namespace Trigger.BCL.ParaOffice
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Kontaktdaten", 1)
+                new GroupItemDescription(null, 1)
                 {
 
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false, LabelOrientation = LabelOrientation.Left  },
+                        //new ViewItemDescription(Fields.GetName(m => m.Person), 1){ LabelText = "Person", ShowLabel = false, LabelOrientation = LabelOrientation.Left  },
                         new ViewItemDescription(Fields.GetName(m => m.Organisation), 2){ LabelText = "Unternehmen", ShowLabel = true, LabelOrientation = LabelOrientation.Left },
                         new ViewItemDescription(Fields.GetName(m => m.MobilTelefon), 3){ LabelText = "Mobil", LabelOrientation = LabelOrientation.Left },
                         new ViewItemDescription(Fields.GetName(m => m.Telefon), 4){ LabelText = "Telefon", LabelOrientation = LabelOrientation.Left },
