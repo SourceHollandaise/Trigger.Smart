@@ -29,6 +29,10 @@ namespace XForms.Design
         {
             var detailViewGroupBox = new GroupBox();
             detailViewGroupBox.Size = new Size(-1, -1);
+            detailViewGroupBox.ClientSize = new Size(-1, -1);
+
+            detailViewGroupBox.MinimumSize = new Size(-1, descriptor.MinHeight.HasValue ? descriptor.MinHeight.Value : 360);
+
             if (headerText != null)
             {
                 detailViewGroupBox.Text = headerText;
@@ -60,9 +64,10 @@ namespace XForms.Design
             }
 
             var detailViewBuilder = new DetailViewBuilder(descriptor, currentObject, false);
-            detailLayout.Add(detailViewBuilder.GetContent(), true);
+            var content = detailViewBuilder.GetContent();
+            detailLayout.Add(content, true, true);
             detailViewGroupBox.Content = detailLayout;
-                
+
             return detailViewGroupBox;
         }
     }

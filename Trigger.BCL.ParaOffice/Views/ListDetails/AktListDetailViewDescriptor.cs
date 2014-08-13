@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using XForms.Design;
 using XForms.Commands;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class AktViewDescriptor : DetailViewDescriptor<Akt>
+
+    public class AktListDetailViewDescriptor : DetailViewDescriptor<Akt>
     {
-        public AktViewDescriptor()
+        public AktListDetailViewDescriptor()
         {
+            Commands.Clear();
+
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
             RegisterCommands<IAktPersonDetailViewCommand>();
+
+            AutoSave = true;
+
+            MinHeight = 680;
 
             TabItemDescriptions = new List<TabItemDescription>
             {
@@ -92,6 +101,4 @@ namespace Trigger.BCL.ParaOffice
             };
         }
     }
-
 }
-

@@ -28,7 +28,6 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator },
                     }
                 },
-                /*
                 new GroupItemDescription("Avatar", 2)
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
@@ -36,7 +35,6 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Avatar", ShowLabel = false, Fill = true },
                     }
                 }
-                */
             };
         }
     }

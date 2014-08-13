@@ -19,6 +19,7 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.Beginn), 3){ LabelText = "Beginn", Required = true  },
                         new ViewItemDescription(Fields.GetName(m => m.Ende), 4){ LabelText = "Ende", Required = true },
                         new ViewItemDescription(Fields.GetName(m => m.Beschreibung), 5){ LabelText = "Beschreibung", Fill = true },
+                        new ViewItemDescription(Fields.GetName(m => m.OK), 6){ LabelText = "Erledigt", Required = true  },
                     }
                 },
                 new GroupItemDescription("Details", 2)

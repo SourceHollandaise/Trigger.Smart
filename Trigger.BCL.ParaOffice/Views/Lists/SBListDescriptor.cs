@@ -8,8 +8,17 @@ namespace Trigger.BCL.ParaOffice
     {
         public SBListDescriptor()
         {
+            ListShowTags = false;
+
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.ID);
+
+            ListDetailView = true;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewColumns = 4;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+
+            DetailView = new SBListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

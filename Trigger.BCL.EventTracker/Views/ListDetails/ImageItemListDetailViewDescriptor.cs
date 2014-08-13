@@ -18,6 +18,8 @@ namespace Trigger.BCL.EventTracker
 
             AutoSave = true;
 
+            MinHeight = 480;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription("Details", 1)

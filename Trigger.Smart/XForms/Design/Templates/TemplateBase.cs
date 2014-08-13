@@ -19,14 +19,6 @@ namespace XForms.Design
             internal set;
         }
 
-        protected IViewTemplateConfiguration ViewTemplateConfig
-        {
-            get
-            {
-                return MapProvider.Instance.ResolveType<IViewTemplateConfiguration>();
-            }
-        }
-
         protected TemplateBase(Type type, IStorable currentObject)
         {
             this.ModelType = type;

@@ -18,6 +18,8 @@ namespace Trigger.BCL.ParaOffice
 
             AutoSave = true;
 
+            MinHeight = 240;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription(null, 1)

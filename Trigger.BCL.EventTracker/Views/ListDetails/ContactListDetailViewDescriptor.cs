@@ -18,6 +18,8 @@ namespace Trigger.BCL.EventTracker
 
             IsTaggable = false;
 
+            MinHeight = 300;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription(null, 1)

@@ -11,6 +11,8 @@ namespace XForms.Design
 
         IList<IDetailViewCommand> Commands { get; }
 
+        int? MinHeight { get; set; }
+
         bool IsTaggable { get; set; }
 
         bool AutoSave { get; set; }

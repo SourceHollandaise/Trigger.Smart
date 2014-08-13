@@ -11,6 +11,8 @@ namespace XForms.Design
 
         public bool AutoSave { get; set; }
 
+        public int? MinHeight { get; set; }
+
         public IList<TabItemDescription> TabItemDescriptions { get; set; }
 
         public IList<GroupItemDescription> GroupItemDescriptions { get; set; }

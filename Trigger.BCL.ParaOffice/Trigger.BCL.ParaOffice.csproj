@@ -67,7 +67,6 @@
     <Compile Include="Views\Lists\TerminListDescriptor.cs" />
     <Compile Include="Views\Details\AktArtViewDescriptor.cs" />
     <Compile Include="Views\Details\AktPersonViewDescriptor.cs" />
-    <Compile Include="Views\Details\AktViewDescriptor.cs" />
     <Compile Include="Views\Details\DokumentViewDescriptor.cs" />
     <Compile Include="Views\Details\KontaktViewDescriptor.cs" />
     <Compile Include="Views\Details\PersonViewDescriptor.cs" />
@@ -92,6 +91,9 @@
     <Compile Include="Views\ListDetails\TerminListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\UserListDetailViewDescriptor.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Views\ListDetails\AktListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Details\AktViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\SBListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

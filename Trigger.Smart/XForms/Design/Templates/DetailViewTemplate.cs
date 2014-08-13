@@ -12,8 +12,6 @@ namespace XForms.Design
         {
             SetContent(currentObject);
 
-            SetSize();
-
             SetTitle();
 
             this.BackgroundColor = Colors.WhiteSmoke;
@@ -27,11 +25,6 @@ namespace XForms.Design
                 var descriptor = Activator.CreateInstance(descriptorType) as IDetailViewDescriptor;
                 Content = new DetailViewBuilder(descriptor, currentObject).GetContent();
             }
-        }
-
-        void SetSize()
-        {
-            Size = ViewTemplateConfig.IsCompactViewMode ? ViewTemplateConfig.DetailViewCompactSize : ViewTemplateConfig.DetailViewDefaultSize;
         }
 
         void SetTitle()

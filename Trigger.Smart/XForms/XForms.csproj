@@ -86,7 +86,6 @@
     <Compile Include="Dependency\MapProvider.cs" />
     <Compile Include="Design\IViewTemplateConfiguration.cs" />
     <Compile Include="Design\TemplateNavigator.cs" />
-    <Compile Include="Design\ViewTemplateConfiguration.cs" />
     <Compile Include="Design\DataStoreProvider.cs" />
     <Compile Include="Design\GridViewComparer.cs" />
     <Compile Include="Design\ListViewCellFactory.cs" />

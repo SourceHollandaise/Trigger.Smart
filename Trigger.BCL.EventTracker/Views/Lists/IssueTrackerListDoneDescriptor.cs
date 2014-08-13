@@ -14,7 +14,8 @@ namespace Trigger.BCL.EventTracker
             {
                 var store = XForms.Dependency.MapProvider.Instance.ResolveType<IStore>();
 
-                return store.LoadAll<IssueTracker>().Where(p => p.IssueState == IssueState.Done || p.IssueState == IssueState.Rejected);
+                return store.LoadAll<IssueTracker>().Where(p => p.IssueState == IssueState.Done || p.IssueState == IssueState.Rejected)
+                    .OrderByDescending(p => p.Resolved);
             }
         }
     }

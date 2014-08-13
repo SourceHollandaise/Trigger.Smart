@@ -20,6 +20,8 @@ namespace Trigger.BCL.EventTracker
 
             IsTaggable = true;
 
+            MinHeight = 540;
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Issue", 1)
@@ -31,21 +33,25 @@ namespace Trigger.BCL.EventTracker
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
+                                //new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", ShowLabel = false, Fill = true },
                                 new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority" },
                                 new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type" },
                                 new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State" }
+                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State" },
                                
                             }
                         },
-                        new GroupItemDescription(null, 1)
+                        new GroupItemDescription(null, 2)
                         {
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = false },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = true },
                             }
-                        }
+                        },
+                        /*
+
+                        */
                     }
                 },
                 new TabItemDescription("Progress", 3)

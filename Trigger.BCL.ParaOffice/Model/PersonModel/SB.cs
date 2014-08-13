@@ -93,6 +93,24 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        bool aktiv;
+
+        public bool Aktiv
+        {
+            get
+            {
+                return aktiv;
+            }
+            set
+            {
+                if (Equals(aktiv, value))
+                    return;
+                aktiv = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         [System.ComponentModel.DisplayName("Termine von SB")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Termin))]

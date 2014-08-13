@@ -14,7 +14,7 @@ namespace Trigger.BCL.EventTracker
 
             ListDetailView = true;
             ListDetailViewWithToolbar = true;
-            ListDetailViewColumns = 2;
+            ListDetailViewColumns = 4;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
 
             DetailView = new ContactListDetailViewDescriptor();

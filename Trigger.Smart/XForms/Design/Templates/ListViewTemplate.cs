@@ -10,8 +10,6 @@ namespace XForms.Design
         {
             SetContent();
 
-            SetSize();
-			
             SetTitle();
         }
 
@@ -24,11 +22,6 @@ namespace XForms.Design
 
                 Content = new ListViewBuilder(descriptor, ModelType).GetContent();
             }
-        }
-
-        void SetSize()
-        {
-            Size = ViewTemplateConfig.IsCompactViewMode ? ViewTemplateConfig.DetailViewCompactSize : ViewTemplateConfig.DetailViewDefaultSize;
         }
 
         void SetTitle()

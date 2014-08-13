@@ -26,7 +26,6 @@ namespace XForms.Platform
 
         public virtual void RegisterDependencies()
         {
-            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateConfiguration>();
             Map.RegisterType<IAuthenticate, DataStoreAuthenticate>();
             Map.RegisterType<IMappingIdGenerator, GuidIdGenerator>();
             Map.RegisterType<IStore, FileDataStore>();

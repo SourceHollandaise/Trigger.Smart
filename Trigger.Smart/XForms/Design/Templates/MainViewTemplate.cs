@@ -33,7 +33,8 @@ namespace XForms.Design
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.Size = new Size(1200, 800);
+            this.Size = new Size(1280, 800);
+            this.WindowState = WindowState.Maximized;
             this.Minimizable = true;
             this.Maximizable = true;
      

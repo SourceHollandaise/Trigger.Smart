@@ -15,6 +15,8 @@ namespace Trigger.BCL.ParaOffice
 
             AutoSave = true;
 
+            MinHeight = 480;
+
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription(null, 1)
@@ -26,6 +28,7 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.BeginnAlias), 3){ LabelText = "Beginn", ReadOnly = true  },
                         new ViewItemDescription(Fields.GetName(m => m.DauerAlias), 4){ LabelText = "Dauer", ReadOnly = true },
                         new ViewItemDescription(Fields.GetName(m => m.Beschreibung), 5){ LabelText = "Beschreibung", Fill = true },
+                        new ViewItemDescription(Fields.GetName(m => m.OK), 6){ LabelText = "Erledigt", Required = true  },
                     }
                 },
                 new GroupItemDescription(null, 2)
