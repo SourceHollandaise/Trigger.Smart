@@ -1,8 +1,6 @@
-using System;
+using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
-using Eto.Drawing;
-using XForms.Commands;
 
 namespace XForms.Design
 {

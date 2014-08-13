@@ -3,7 +3,7 @@ using System;
 namespace XForms.Design
 {
 
-    public class NavigationItem
+    public class NavigationItemDescription
     {
         public Type ModelType { get; set; }
 
@@ -17,7 +17,7 @@ namespace XForms.Design
 
         public IListViewDescriptor ListView { get; set; }
 
-        public NavigationItem(Type modelType, string navigationItemText, int index)
+        public NavigationItemDescription(Type modelType, string navigationItemText, int index)
         {
             ModelType = modelType;
             NavigationItemText = navigationItemText;

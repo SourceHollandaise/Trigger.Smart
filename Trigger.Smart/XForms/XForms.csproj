@@ -156,7 +156,6 @@
     </Compile>
     <Compile Include="Design\Templates\MainViewTemplate.cs" />
     <Compile Include="Design\Descriptors\LabelOrientation.cs" />
-    <Compile Include="Design\Descriptors\NavigationItem.cs" />
     <Compile Include="Design\Templates\TemplateBase.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
@@ -180,6 +179,8 @@
     <Compile Include="Commands\DetailCommands\DetailViewArguments.cs" />
     <Compile Include="Commands\Interfaces\ICurrentUserDetailsCommand.cs" />
     <Compile Include="Commands\CurrentUserDetailsViewCommand.cs" />
+    <Compile Include="Design\Descriptors\ListViewDescriptorProvider.cs" />
+    <Compile Include="Design\Descriptors\NavigationItemDescription.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

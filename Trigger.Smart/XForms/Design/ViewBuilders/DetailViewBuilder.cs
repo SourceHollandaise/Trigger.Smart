@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Eto.Drawing;
 using Eto.Forms;
-using XForms.Commands;
 using XForms.Store;
 
 namespace XForms.Design

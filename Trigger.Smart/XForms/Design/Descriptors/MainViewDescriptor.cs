@@ -16,9 +16,7 @@ namespace XForms.Design
             if (Commands == null)
                 Commands = new List<IMainViewCommand>();
 
-            var command = MapProvider.Instance.ResolveType<TCommand>();
-
-            Commands.Add(command);
+            Commands.Add(MapProvider.Instance.ResolveType<TCommand>());
         }
     }
 }

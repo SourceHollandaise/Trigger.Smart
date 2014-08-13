@@ -9,7 +9,7 @@ namespace XForms.Design
 
         public int Index { get; set; }
 
-        public IList<NavigationItem> NavigationItems { get; set; }
+        public IList<NavigationItemDescription> NavigationItems { get; set; }
 
         public bool Visible { get; set; }
 

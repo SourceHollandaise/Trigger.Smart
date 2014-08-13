@@ -100,7 +100,7 @@ namespace XForms.Design
                         Image = ImageExtensions.GetImage(navItem.ImageName, 16),
                         ImagePosition = ButtonImagePosition.Left,                      
                     };
-                    button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as NavigationItem);
+                    button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as NavigationItemDescription);
                     navGroupLayout.Add(button, true);
                 }
                 navGroupBox.Content = navGroupLayout;
@@ -154,7 +154,7 @@ namespace XForms.Design
             return navigationlayout;
         }
 
-        void ShowListViewFromNavigation(NavigationItem item)
+        void ShowListViewFromNavigation(NavigationItemDescription item)
         {
             CurrentActiveType = item.ModelType;
 

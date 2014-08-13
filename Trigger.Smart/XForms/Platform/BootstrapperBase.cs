@@ -1,7 +1,6 @@
 using System.Linq;
 using XForms.Commands;
 using XForms.Dependency;
-using XForms.Design;
 using XForms.Model;
 using XForms.Security;
 using XForms.Store;
