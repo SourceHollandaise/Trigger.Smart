@@ -12,7 +12,7 @@ namespace Trigger.BCL.EventTracker
         {
             Commands.Clear();
 
-            RegisterCommands<IAddFileDetailViewCommand>();
+            //RegisterCommands<IAddFileDetailViewCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
             RegisterCommands<IDeleteObjectDetailViewCommand>();
 

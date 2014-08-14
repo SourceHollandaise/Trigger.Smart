@@ -21,7 +21,7 @@ namespace XForms.Commands
                 var descriptor = args.InputData as IListViewDescriptor;
                 if (descriptor.ListDetailView)
                 {
-                    var builder = new ListDetailViewBuilder(descriptor, args.TargetType);
+                    var builder = new ListDetailViewBuilder(descriptor, args.TargetType, args.CustomDataSet);
                     var content = builder.GetContent();
 
                     var scrollable = new Scrollable()

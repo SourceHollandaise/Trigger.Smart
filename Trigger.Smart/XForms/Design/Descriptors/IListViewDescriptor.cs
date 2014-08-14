@@ -19,11 +19,15 @@ namespace XForms.Design
 
         bool IsImageList { get; set; }
 
+        bool ShowListDetailViewForLinkedLists { get; set; }
+
         bool ListDetailView { get; set; }
 
         bool ListDetailViewWithToolbar { get; set; }
 
         int ListDetailViewColumns { get; set; }
+
+
 
         IDetailViewDescriptor DetailView { get; set; }
 

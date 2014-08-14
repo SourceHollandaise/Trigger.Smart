@@ -8,6 +8,9 @@ namespace XForms.Design
         {
             var mainWidth = Eto.Forms.Application.Instance.MainForm.Size.Width;
 
+            if (mainWidth <= 1024)
+                return ScreenResolutionType.XtraSmall;
+
             if (mainWidth <= 1280)
                 return ScreenResolutionType.Small;
 
@@ -20,14 +23,16 @@ namespace XForms.Design
             return ScreenResolutionType.XtraLarge;
         }
 
-        public static int OptimumColumnsCount(IListViewDescriptor descriptor)
+        public static int CalculatOptimumListDetailColumns(IListViewDescriptor descriptor)
         {
             var screenType = GetScreenType();
 
             switch (screenType)
             {
+                case ScreenResolutionType.XtraSmall:
+                    return 1;
                 case ScreenResolutionType.Small:
-                    if (descriptor > 2)
+                    if (descriptor.ListDetailViewColumns > 2)
                         return 2;
                     return descriptor.ListDetailViewColumns;
                 case ScreenResolutionType.Medium:

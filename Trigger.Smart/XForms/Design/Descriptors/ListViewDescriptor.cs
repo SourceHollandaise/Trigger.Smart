@@ -26,6 +26,8 @@ namespace XForms.Design
 
         public bool ListDetailViewWithToolbar { get; set; }
 
+        public bool ShowListDetailViewForLinkedLists { get; set; }
+
         public int ListDetailViewColumns { get; set; }
 
         public IDetailViewDescriptor DetailView { get; set; }

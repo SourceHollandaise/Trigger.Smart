@@ -181,6 +181,8 @@
     <Compile Include="Commands\CurrentUserDetailsViewCommand.cs" />
     <Compile Include="Design\Descriptors\ListViewDescriptorProvider.cs" />
     <Compile Include="Design\Descriptors\NavigationItemDescription.cs" />
+    <Compile Include="Design\Descriptors\ScreenResolutionTypeCalculator.cs" />
+    <Compile Include="Design\Descriptors\ScreenResolutionType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -354,6 +356,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\MCollection\stopwatch.png">
       <LogicalName>stopwatch.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\signboard_closed.png">
+      <LogicalName>signboard_closed.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\signboard_for_sale.png">
+      <LogicalName>signboard_for_sale.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\signboard_open.png">
+      <LogicalName>signboard_open.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

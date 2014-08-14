@@ -16,21 +16,17 @@ namespace XForms.Design
     {
         Dictionary<string, Control> controlCollection = new Dictionary<string, Control>();
 
-        protected IStorable Model
-        {
-            get;
-            set;
-        }
+        readonly IStorable currentObject;
 
-        public DetailViewControlFactory(IStorable model)
+        public DetailViewControlFactory(IStorable currentObject)
         {
-            this.Model = model;
-            if (Model != null)
+            this.currentObject = currentObject;
+            if (currentObject != null)
             {
-                Model.PropertyChanged += (sender, e) =>
+                currentObject.PropertyChanged += (sender, e) =>
                 {
                     if (!string.IsNullOrWhiteSpace(e.PropertyName))
-                        HandleBindings(Model.GetType().GetProperty(e.PropertyName));
+                        HandleBindings(currentObject.GetType().GetProperty(e.PropertyName));
                 };
             }
         }
@@ -89,7 +85,7 @@ namespace XForms.Design
             var linkedListAttribute = property.FindAttribute<LinkedListAttribute>();
             if (linkedListAttribute != null)
             {
-                var value = property.GetValue(Model, null);
+                var value = property.GetValue(currentObject, null);
                 if (value is IEnumerable<IStorable>)
                 {
                     if (viewItem.ListMode == ListPropertyMode.List)
@@ -100,11 +96,18 @@ namespace XForms.Design
                         {
                             var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
 
+
+
                             var dataSet = value as IEnumerable<IStorable>;
                             if (descriptor.Filter != null)
                                 dataSet = dataSet.Where(descriptor.Filter);
 
-                            var control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, false, dataSet).GetContent();
+                            Control control = null;
+
+                            if (descriptor.ShowListDetailViewForLinkedLists)
+                                control = new ListDetailViewBuilder(descriptor, linkedListAttribute.LinkType, dataSet).GetContent();
+                            else
+                                control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, false, dataSet).GetContent();
 
                             if (control != null)
                             {
@@ -155,7 +158,7 @@ namespace XForms.Design
             if (control is WebView)
             {
                 var storeConfig = MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
-                var fileName = (string)property.GetValue(Model, null);
+                var fileName = (string)property.GetValue(currentObject, null);
                 if (!string.IsNullOrEmpty(fileName))
                 {
                     var path = Path.Combine(storeConfig.DocumentStoreLocation, fileName);
@@ -165,23 +168,23 @@ namespace XForms.Design
             }
 
             if (control is ImageView)
-                ((ImageView)control).Image = property.GetValue(Model, null) as Image;
+                ((ImageView)control).Image = property.GetValue(currentObject, null) as Image;
 
             if (control is NumericUpDown)
-                ((NumericUpDown)control).Value = Convert.ToDouble(property.GetValue(Model, null));
+                ((NumericUpDown)control).Value = Convert.ToDouble(property.GetValue(currentObject, null));
     
             if (control is TextBox)
-                ((TextBox)control).Text = (string)property.GetValue(Model, null);
+                ((TextBox)control).Text = (string)property.GetValue(currentObject, null);
 
             if (control is DateTimePicker)
-                ((DateTimePicker)control).Value = (DateTime?)property.GetValue(Model, null);
+                ((DateTimePicker)control).Value = (DateTime?)property.GetValue(currentObject, null);
 
             if (control is CheckBox)
-                ((CheckBox)control).Checked = (bool?)property.GetValue(Model, null);
+                ((CheckBox)control).Checked = (bool?)property.GetValue(currentObject, null);
 
             if (control is ComboBox)
             {
-                var value = (property.GetValue(Model, null));
+                var value = (property.GetValue(currentObject, null));
 
                 if (typeof(IStorable).IsAssignableFrom(property.PropertyType))
                 {
@@ -206,15 +209,13 @@ namespace XForms.Design
             var imageView = new ImageView();
             imageView.Size = new Size(-1, -1);
 
-            var value = (string)property.GetValue(Model, null);
+            var value = (string)property.GetValue(currentObject, null);
             if (!string.IsNullOrWhiteSpace(value))
             {
                 var file = value.GetValidPath();
                 if (file != null)
                 {
                     var image = new Bitmap(file);
-
-                    //imageView.Size = image.Size;
                     imageView.Image = image;
                 }
             }
@@ -227,7 +228,7 @@ namespace XForms.Design
             var imageView = new ImageView();
             imageView.Size = new Size(defaultWidth, defaultHeight);
 
-            var value = (string)property.GetValue(Model, null);
+            var value = (string)property.GetValue(currentObject, null);
             if (!string.IsNullOrWhiteSpace(value))
             {
                 var file = value.GetValidPath();
@@ -240,10 +241,10 @@ namespace XForms.Design
 
                     imageView.Image = thumbnail;
 
-
                     imageView.MouseDoubleClick += (sender, e) =>
                     {
-                        Model.ShowDetailContentEmbedded();
+                        if (currentObject != null)
+                            currentObject.ShowDetailContentEmbedded();
                     };
                 }
             }
@@ -280,7 +281,7 @@ namespace XForms.Design
 
             webView.Size = new Size(-1, -1);
 
-            var value = (string)property.GetValue(Model, null);
+            var value = (string)property.GetValue(currentObject, null);
             if (!string.IsNullOrWhiteSpace(value))
             {
                 var file = value.GetValidPath();
@@ -300,13 +301,13 @@ namespace XForms.Design
 
             var control = new TextBox
             {
-                Text = (string)property.GetValue(Model, null),
+                Text = (string)property.GetValue(currentObject, null),
             };
 
             control.TextChanged += (sender, e) =>
             {
                 if (!control.Text.Equals(control.PlaceholderText))
-                    property.SetValue(Model, control.Text, null);
+                    property.SetValue(currentObject, control.Text, null);
             };
             control.Size = new Size(-1, -1);
            
@@ -319,12 +320,12 @@ namespace XForms.Design
         {
             var control = new TextArea
             {
-                Text = (string)property.GetValue(Model, null),
+                Text = (string)property.GetValue(currentObject, null),
             };
                 
             control.TextChanged += (sender, e) =>
             {
-                property.SetValue(Model, control.Text, null);
+                property.SetValue(currentObject, control.Text, null);
             };
             control.Size = new Size(-1, -1);
 
@@ -345,11 +346,11 @@ namespace XForms.Design
                     Text = value.ToString(),
                     Tag = value
                 });
-            control.SelectedKey = (property.GetValue(Model, null) as Enum).ToString();
+            control.SelectedKey = (property.GetValue(currentObject, null) as Enum).ToString();
             control.SelectedValueChanged += (sender, e) =>
             {
                 var current = control.SelectedValue as ListItem;
-                property.SetValue(Model, current.Tag, null);
+                property.SetValue(currentObject, current.Tag, null);
             };
            
             control.Size = new Size(-1, -1);
@@ -413,11 +414,11 @@ namespace XForms.Design
                 });
             }
 
-            var value = property.GetValue(Model, null);
+            var value = property.GetValue(currentObject, null);
 
             if (value != null)
             {
-                var selection = (property.GetValue(Model, null) as IStorable);
+                var selection = (property.GetValue(currentObject, null) as IStorable);
                 if (selection != null && selection.MappingId != null)
                 {
                     control.SelectedKey = selection.MappingId.ToString();
@@ -431,11 +432,11 @@ namespace XForms.Design
                     var current = control.SelectedValue as ListItem;
                     if (current != null && current.Tag != null)
                     {
-                        property.SetValue(Model, current.Tag, null);
+                        property.SetValue(currentObject, current.Tag, null);
                     }
                 }
                 else
-                    property.SetValue(Model, null, null);
+                    property.SetValue(currentObject, null, null);
             };
 				
             control.KeyDown += (sender, e) =>
@@ -456,11 +457,11 @@ namespace XForms.Design
         {
             var control = new CheckBox
             {
-                Checked = (bool)property.GetValue(Model, null)
+                Checked = (bool)property.GetValue(currentObject, null)
             };
             control.CheckedChanged += (sender, e) =>
             {
-                property.SetValue(Model, control.Checked.Value, null);
+                property.SetValue(currentObject, control.Checked.Value, null);
             };
 
             controlCollection.Add(property.Name, control);
@@ -471,19 +472,19 @@ namespace XForms.Design
         {
             var control = new NumericUpDown
             {
-                Value = Convert.ToDouble(property.GetValue(Model, null))
+                Value = Convert.ToDouble(property.GetValue(currentObject, null))
             };
 
             control.ValueChanged += (sender, e) =>
             {
                 if (property.PropertyType == typeof(int))
-                    property.SetValue(Model, Convert.ToInt32(control.Value), null);
+                    property.SetValue(currentObject, Convert.ToInt32(control.Value), null);
 
                 if (property.PropertyType == typeof(double))
-                    property.SetValue(Model, Convert.ToDouble(control.Value), null);
+                    property.SetValue(currentObject, Convert.ToDouble(control.Value), null);
 
                 if (property.PropertyType == typeof(decimal))
-                    property.SetValue(Model, Convert.ToDecimal(control.Value), null);
+                    property.SetValue(currentObject, Convert.ToDecimal(control.Value), null);
             };
             control.Size = new Size(-1, -1);
            
@@ -496,13 +497,13 @@ namespace XForms.Design
         {
             var control = new DateTimePicker
             {
-                Value = (DateTime?)property.GetValue(Model, null),
+                Value = (DateTime?)property.GetValue(currentObject, null),
                 Mode = DateTimePickerMode.DateTime,
                 MinDate = new DateTime(1970, 1, 1),
             };
             control.ValueChanged += (sender, e) =>
             {
-                property.SetValue(Model, control.Value, null);
+                property.SetValue(currentObject, control.Value, null);
             };
            
             controlCollection.Add(property.Name, control);
@@ -511,7 +512,7 @@ namespace XForms.Design
 
         TextBox TimeSpanPropertyEditor(PropertyInfo property)
         {
-            var value = property.GetValue(Model, null) as string;
+            var value = property.GetValue(currentObject, null) as string;
             var control = new TextBox
             {
                 Text = value

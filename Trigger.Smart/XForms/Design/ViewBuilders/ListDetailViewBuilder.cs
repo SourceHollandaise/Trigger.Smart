@@ -48,7 +48,9 @@ namespace XForms.Design
                 rawDataSet = rawDataSet.OrderByPropertyDescending(descriptor.DefaultSortProperty);
 
             var currentColumnCount = 0;
-            var columns = descriptor.ListDetailViewColumns == 0 ? 1 : descriptor.ListDetailViewColumns - 1;
+            var calculated = ScreenResolutionTypeCalculator.CalculatOptimumListDetailColumns(descriptor);
+
+            var columns = descriptor.ListDetailViewColumns == 0 ? 1 : calculated - 1;
            
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Vertical)
             {
@@ -60,7 +62,7 @@ namespace XForms.Design
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
    
-                    var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / descriptor.ListDetailViewColumns;
+                    var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / calculated;
             
                     content.Size = new Size(width, -1);
 

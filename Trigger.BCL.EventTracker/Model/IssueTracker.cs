@@ -18,6 +18,8 @@ namespace Trigger.BCL.EventTracker.Model
             IssuePriority = Priority.High;
             IssueType = IssueType.Request;
             IssueState = IssueState.Open;
+            Created = DateTime.Now;
+            CreatedBy = Map.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
         }
 
         public override string GetRepresentation
@@ -27,6 +29,54 @@ namespace Trigger.BCL.EventTracker.Model
                 return Subject;
             }
         }
+
+        DateTime? created;
+
+        public DateTime? Created
+        {
+            get
+            {
+                return created;
+            }
+            set
+            {
+                if (Equals(created, value))
+                    return;
+                created = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string CreatedByAlias
+        {
+            get
+            {
+                return CreatedBy != null ? CreatedBy.UserName : null;
+            }
+        }
+
+        ApplicationUser createdBy;
+
+        [System.ComponentModel.DisplayName("Created by")]
+        [LinkedObject]
+        public ApplicationUser CreatedBy
+        {
+            get
+            {
+                return createdBy;
+            }
+            set
+            {
+                if (Equals(createdBy, value))
+                    return;
+                createdBy = value;
+
+                OnPropertyChanged();
+            }
+        }
+
 
         string subject;
 

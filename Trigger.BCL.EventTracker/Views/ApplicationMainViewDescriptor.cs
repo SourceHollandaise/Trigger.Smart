@@ -19,10 +19,11 @@ namespace Trigger.BCL.EventTracker
                 {
                     NavigationItems = new List<NavigationItemDescription>
                     {
-                        new NavigationItemDescription(typeof(IssueTracker), "Open Issues", 1) { ImageName = "hand_thumb_down", ListView = new IssueTrackerListProgressDescriptor() },
-                        new NavigationItemDescription(typeof(IssueTracker), "Done Issues", 2) { ImageName = "hand_thumb_up", ListView = new IssueTrackerListDoneDescriptor() },
-                        new NavigationItemDescription(typeof(Area), "Areas", 3){ ImageName = "blueprint", ListView = new AreaListDescriptor() },
-                        new NavigationItemDescription(typeof(Contact), "Contacts", 4){ ImageName = "address_book2", ListView = new ContactListDescriptor() },
+                        new NavigationItemDescription(typeof(IssueTracker), "New Issues", 1) { ImageName = "signboard_for_sale", ListView = new IssueTrackerListOpenDescriptor() },
+                        new NavigationItemDescription(typeof(IssueTracker), "Accepted Issues", 2) { ImageName = "signboard_open", ListView = new IssueTrackerListAcceptedDescriptor() },
+                        new NavigationItemDescription(typeof(IssueTracker), "Done Issues", 3) { ImageName = "signboard_closed", ListView = new IssueTrackerListDoneDescriptor() },
+                        new NavigationItemDescription(typeof(Area), "Areas", 10){ ImageName = "blueprint", ListView = new AreaListDescriptor() },
+                        new NavigationItemDescription(typeof(Contact), "Contacts", 20){ ImageName = "address_book2", ListView = new ContactListDescriptor() },
                        
                     }
                 },

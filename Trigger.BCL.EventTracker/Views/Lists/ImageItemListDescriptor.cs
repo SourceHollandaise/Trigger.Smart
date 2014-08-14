@@ -18,6 +18,7 @@ namespace Trigger.BCL.EventTracker
             ListDetailViewColumns = 4;
             ListDetailViewWithToolbar = true;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
+            ShowListDetailViewForLinkedLists = true;
 
             DetailView = new ImageItemListDetailViewDescriptor();
 

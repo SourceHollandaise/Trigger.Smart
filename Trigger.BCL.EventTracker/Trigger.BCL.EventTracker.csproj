@@ -101,12 +101,13 @@
     <Compile Include="Views\ListDetails\ImageItemListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\IssueTrackerListDetailViewDescriptor.cs" />
     <Compile Include="Views\Lists\IssueTrackerListDoneDescriptor.cs" />
-    <Compile Include="Views\Lists\IssueTrackerListProgressDescriptor.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Views\ListDetails\AreaListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\DocumentListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\ApplicationUserListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\PersonListDetailViewDescriptor.cs" />
+    <Compile Include="Views\Lists\IssueTrackerListOpenDescriptor.cs" />
+    <Compile Include="Views\Lists\IssueTrackerListAcceptedDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

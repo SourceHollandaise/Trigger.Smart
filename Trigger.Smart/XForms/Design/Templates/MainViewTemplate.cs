@@ -37,12 +37,12 @@ namespace XForms.Design
             this.WindowState = WindowState.Maximized;
             this.Minimizable = true;
             this.Maximizable = true;
+
      
             CreateMainContent();
 
             CreateMenu();
         }
-
 
         void CreateMainContent()
         {
@@ -201,7 +201,7 @@ namespace XForms.Design
 
             TemplateNavigator.Add(ContentPanel.Content);
 
-            Title = currentDisplayNameAttribute != null ? CurrentActiveType.FindAttribute<DisplayNameAttribute>().DisplayName : CurrentActiveType.Name;
+            Title = item.NavigationItemText;
         }
 
         Control CreateListViewLayout(IListViewDescriptor descriptor)
