@@ -1,21 +1,32 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using XForms.Design;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
-
-    public class PersonViewDescriptor : DetailViewDescriptor<Person>
+    public class PersonListDetailViewDescriptor : DetailViewDescriptor<Person>
     {
-        public PersonViewDescriptor()
+        public PersonListDetailViewDescriptor()
         {
+            Commands.Clear();
+
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+
+            AutoSave = true;
+
+            IsTaggable = true;
+
+            MinHeight = 440;
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Person", 1)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
-                        new GroupItemDescription("Name", 1)
+                        new GroupItemDescription(null, 1)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
@@ -25,7 +36,7 @@ namespace Trigger.BCL.EventTracker
                                 new ViewItemDescription(Fields.GetName(m => m.Company), 4){ LabelText = "Company" },
                             }
                         },
-                        new GroupItemDescription("Address", 2)
+                        new GroupItemDescription(null, 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
@@ -53,5 +64,5 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
+    
 }
-

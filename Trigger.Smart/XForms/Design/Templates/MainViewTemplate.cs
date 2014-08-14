@@ -271,8 +271,9 @@ namespace XForms.Design
         void CreateMenu()
         {
             var menu = new MenuBar();
+
             Application.Instance.CreateStandardMenu(menu.Items);
-            var file = menu.Items.GetSubmenu("&File");
+            var fileMenu = menu.Items.GetSubmenu("&File");
 
             var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
@@ -285,10 +286,16 @@ namespace XForms.Design
 
                 menuItem.Click += (sender, e) =>
                 {
-
+                    var commandType = Type.GetType(menuItem.ID);
+                    if (commandType != null)
+                    {
+                        var mainCommand = Activator.CreateInstance(commandType) as IMainViewCommand;
+                        if (mainCommand != null)
+                            mainCommand.Execute(this);
+                    }
                 };
 
-                file.Items.Add(menuItem);
+                fileMenu.Items.Add(menuItem);
             }
 
             /*

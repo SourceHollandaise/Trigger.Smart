@@ -106,6 +106,7 @@
     <Compile Include="Views\ListDetails\AreaListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\DocumentListDetailViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\ApplicationUserListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\PersonListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

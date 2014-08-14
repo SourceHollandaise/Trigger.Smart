@@ -11,7 +11,7 @@ namespace Trigger.BCL.ParaOffice
         public ApplicationMainViewDescriptor()
         {
             RegisterCommands<ICurrentUserDetailsCommand>();
-            RegisterCommands<ILogonCommand>();
+            //RegisterCommands<ILogonCommand>();
             RegisterCommands<IApplicationExitCommand>();
 
             NavigationGroups = new List<NavigationGroupItem>
