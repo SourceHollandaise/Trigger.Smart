@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 using XForms.Design;
 using XForms.Model;
-using XForms.Commands;
+using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -19,20 +19,21 @@ namespace Trigger.BCL.EventTracker
                 {
                     NavigationItems = new List<NavigationItemDescription>
                     {
-                        new NavigationItemDescription(typeof(IssueTracker), "Open Issues", 1) { ImageName = "note_edit", ListView = new IssueTrackerListProgressDescriptor() },
-                        new NavigationItemDescription(typeof(IssueTracker), "Done Issues", 1) { ImageName = "note_edit", ListView = new IssueTrackerListDoneDescriptor() },
-                        new NavigationItemDescription(typeof(Area), "Areas", 2){ ImageName = "application", ListView = new AreaListDescriptor() },
-                        new NavigationItemDescription(typeof(Document), "Documents", 3){ ImageName = "blog_post", ListView = new DocumentListDescriptor() }
+                        new NavigationItemDescription(typeof(IssueTracker), "Open Issues", 1) { ImageName = "hand_thumb_down", ListView = new IssueTrackerListProgressDescriptor() },
+                        new NavigationItemDescription(typeof(IssueTracker), "Done Issues", 2) { ImageName = "hand_thumb_up", ListView = new IssueTrackerListDoneDescriptor() },
+                        new NavigationItemDescription(typeof(Area), "Areas", 3){ ImageName = "blueprint", ListView = new AreaListDescriptor() },
+                        new NavigationItemDescription(typeof(Contact), "Contacts", 4){ ImageName = "address_book2", ListView = new ContactListDescriptor() },
+                       
                     }
                 },
-                new NavigationGroupItem("Personal Data", 2)
+                new NavigationGroupItem("Additional Data", 2)
                 {
                     NavigationItems = new List<NavigationItemDescription>
                     {
-                        new NavigationItemDescription(typeof(Person), "Person", 1){ ImageName = "user", ListView = new PersonListDescriptor() },
-                        new NavigationItemDescription(typeof(Contact), "Contacts", 2){ ImageName = "user_comments", ListView = new ContactListDescriptor() },
-                        new NavigationItemDescription(typeof(ImageGallery), "Image Galleries", 4){ ImageName = "image_multi", ListView = new ImageGalleryListDescriptor() },
-                        new NavigationItemDescription(typeof(ImageItem), "Images", 5){ ImageName = "image", ListView = new ImageItemListDescriptor() },
+                        new NavigationItemDescription(typeof(Person), "Person", 1){ ImageName = "businesspeople", ListView = new PersonListDescriptor() },
+                        new NavigationItemDescription(typeof(Document), "Documents", 2){ ImageName = "folder3_document", ListView = new DocumentListDescriptor() },
+                        new NavigationItemDescription(typeof(ImageGallery), "Image Galleries", 4){ ImageName = "photos", ListView = new ImageGalleryListDescriptor() },
+                        new NavigationItemDescription(typeof(ImageItem), "Images", 5){ ImageName = "photo_landscape", ListView = new ImageItemListDescriptor() },
                     }
                 },
                 new NavigationGroupItem("Settings", 3)
@@ -40,8 +41,8 @@ namespace Trigger.BCL.EventTracker
                     Visible = ApplicationQuery.CurrentUserIsAdministrator,
                     NavigationItems = new List<NavigationItemDescription>
                     {
-                        new NavigationItemDescription(typeof(ApplicationUser), "Users", 1){ ImageName = "community_users", Visible = ApplicationQuery.CurrentUserIsAdministrator, ListView = new ApplicationUserListDescriptor() },
-                        new NavigationItemDescription(typeof(AreaUser), "Area and User", 1){ ImageName = "community_users", Visible = ApplicationQuery.CurrentUserIsAdministrator, ListView = new AreaUserListDescriptor() }
+                        new NavigationItemDescription(typeof(ApplicationUser), "Users", 1){ ImageName = "users2", Visible = ApplicationQuery.CurrentUserIsAdministrator, ListView = new ApplicationUserListDescriptor() },
+                        new NavigationItemDescription(typeof(AreaUser), "Area and User", 1){ ImageName = "user_monitor", Visible = ApplicationQuery.CurrentUserIsAdministrator, ListView = new AreaUserListDescriptor() }
                     }
                 }
             };

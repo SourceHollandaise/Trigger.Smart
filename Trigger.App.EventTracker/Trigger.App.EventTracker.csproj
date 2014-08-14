@@ -6,9 +6,8 @@
     <ProjectGuid>{E522C014-2E66-498B-892A-487C68762ABE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Trigger.App.EventTracker</RootNamespace>
-    <AssemblyName>Trigger.App.EventTracker</AssemblyName>
     <UseMSBuildEngine>False</UseMSBuildEngine>
-    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\Downloads\e_ishu.ico</ApplicationIcon>
     <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -21,6 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Trigger.App.EventTracker</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -29,6 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
+    <AssemblyName>Trigger.App.EventTracker</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -36,12 +37,14 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DebugSymbols>true</DebugSymbols>
+    <AssemblyName>E-Ishu</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <AssemblyName>Trigger.App.EventTracker</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

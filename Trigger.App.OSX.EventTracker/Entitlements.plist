@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
-	<string>$(TeamIdentifierPrefix)com.your-company.Trigger.App.OSX.EventTracker</string>
+	<string>$(TeamIdentifierPrefix)com.trigger-solutions.E-Ishu</string>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
 		<string>$(TeamIdentifierPrefix)com.your-company.Trigger.App.OSX.EventTracker</string>

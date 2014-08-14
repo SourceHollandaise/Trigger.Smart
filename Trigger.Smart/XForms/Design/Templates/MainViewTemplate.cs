@@ -39,7 +39,10 @@ namespace XForms.Design
             this.Maximizable = true;
      
             CreateMainContent();
+
+            CreateMenu();
         }
+
 
         void CreateMainContent()
         {
@@ -263,6 +266,48 @@ namespace XForms.Design
             }
 
             return null;
+        }
+
+        void CreateMenu()
+        {
+            var menu = new MenuBar();
+            Application.Instance.CreateStandardMenu(menu.Items);
+            var file = menu.Items.GetSubmenu("&File");
+
+            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
+
+            foreach (var command in descriptor.Commands)
+            {
+                var menuItem = new ButtonMenuItem();
+                menuItem.Image = ImageExtensions.GetImage(command.ImageName, 12);
+                menuItem.Text = command.Name;
+                menuItem.ID = command.GetType().FullName;
+
+                menuItem.Click += (sender, e) =>
+                {
+
+                };
+
+                file.Items.Add(menuItem);
+            }
+
+            /*
+            var help = menu.Items.GetSubmenu("&Help");
+
+            var aboutItem = new ButtonMenuItem();
+
+            aboutItem.Text = "About";
+            aboutItem.ID = "cmd_about";
+
+            aboutItem.Click += (sender, e) =>
+            {
+
+            };
+
+            help.Items.Add(aboutItem);
+            */
+
+            this.Menu = menu;
         }
     }
 }

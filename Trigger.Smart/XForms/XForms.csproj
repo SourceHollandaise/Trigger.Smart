@@ -322,5 +322,38 @@
     <EmbeddedResource Include="Images\MCollection\user_mobilephone.png">
       <LogicalName>user_mobilephone.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\blueprint.png">
+      <LogicalName>blueprint.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\blueprint_compasses.png">
+      <LogicalName>blueprint_compasses.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\document_check.png">
+      <LogicalName>document_check.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\hand_thumb_down.png">
+      <LogicalName>hand_thumb_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\hand_thumb_up.png">
+      <LogicalName>hand_thumb_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\note.png">
+      <LogicalName>note.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\note_pinned.png">
+      <LogicalName>note_pinned.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\note_plain.png">
+      <LogicalName>note_plain.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\photo_landscape.png">
+      <LogicalName>photo_landscape.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\photos.png">
+      <LogicalName>photos.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\stopwatch.png">
+      <LogicalName>stopwatch.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.trigger-solutions.EventTracker</string>
+	<string>com.trigger-solutions.E-Ishu</string>
 	<key>CFBundleName</key>
-	<string>eventTrax for Mac</string>
+	<string>E-Ishu</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
@@ -13,10 +13,12 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
-	<string>fucking</string>
-	<key>CFBundleDisplayName</key>
-	<string>eventTracker for Mac</string>
+	<string>samurai</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>CFBundleDisplayName</key>
+	<string>E-Ishu</string>
+	<key>CFBundleShortVersionString</key>
+	<string>Alpha</string>
 </dict>
 </plist>

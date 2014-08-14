@@ -103,6 +103,9 @@
     <Compile Include="Views\Lists\IssueTrackerListDoneDescriptor.cs" />
     <Compile Include="Views\Lists\IssueTrackerListProgressDescriptor.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Views\ListDetails\AreaListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\DocumentListDetailViewDescriptor.cs" />
+    <Compile Include="Views\ListDetails\ApplicationUserListDetailViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

@@ -10,10 +10,16 @@ namespace Trigger.BCL.EventTracker
         public ApplicationUserListDescriptor()
         {
             ListShowTags = false;
-            RowHeight = 36;
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.UserName);
+
+            ListDetailView = true;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewColumns = 3;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+
+            DetailView = new ApplicationUserListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

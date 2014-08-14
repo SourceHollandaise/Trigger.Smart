@@ -1,14 +1,25 @@
 using System.Collections.Generic;
 using XForms.Design;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
-    public class AreaViewDescriptor : DetailViewDescriptor<Area>
+    public class AreaListDetailViewDescriptor : DetailViewDescriptor<Area>
     {
-        public AreaViewDescriptor()
+        public AreaListDetailViewDescriptor()
         {
+            Commands.Clear();
+
             RegisterCommands<ILinkAreaWithUserDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+
+            AutoSave = true;
+
+            IsTaggable = true;
+
+            MinHeight = 540;
 
             TabItemDescriptions = new List<TabItemDescription>
             {
@@ -21,7 +32,7 @@ namespace Trigger.BCL.EventTracker
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name", ShowLabel = false },
-                               
+
                             }
                         },
                         new GroupItemDescription(null, 2)
@@ -80,4 +91,5 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
+    
 }

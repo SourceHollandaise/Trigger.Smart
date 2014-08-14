@@ -18,5 +18,7 @@
 	<string>paraOffice for Mac</string>
 	<key>CFBundleIconFile</key>
 	<string>paragraph_128x128</string>
+	<key>CFBundleShortVersionString</key>
+	<string>Alpha</string>
 </dict>
 </plist>

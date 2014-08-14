@@ -7,13 +7,21 @@ using Trigger.BCL.EventTracker.Model;
 namespace Trigger.BCL.EventTracker
 {
 
-
-    public class ApplicationUserViewDescriptor : DetailViewDescriptor<ApplicationUser>
+    public class ApplicationUserListDetailViewDescriptor : DetailViewDescriptor<ApplicationUser>
     {
-        public ApplicationUserViewDescriptor()
+        public ApplicationUserListDetailViewDescriptor()
         {
+            Commands.Clear();
+
             RegisterCommands<IAddFileDetailViewCommand>();
-            IsTaggable = false;
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+
+            AutoSave = true;
+
+            IsTaggable = true;
+
+            MinHeight = 540;
 
             TabItemDescriptions = new List<TabItemDescription>
             {
@@ -90,4 +98,5 @@ namespace Trigger.BCL.EventTracker
             };
         }
     }
+    
 }

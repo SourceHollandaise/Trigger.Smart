@@ -8,8 +8,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Trigger.App.OSX.EventTracker</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
-    <AssemblyName>Trigger.App.OSX.EventTracker</AssemblyName>
-    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
+    <AssemblyName>E-Ishu</AssemblyName>
+    <ApplicationIcon>..\..\Downloads\e_ishu.ico</ApplicationIcon>
     <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -26,6 +26,7 @@
     <EnablePackageSigning>false</EnablePackageSigning>
     <EnableCodeSigning>false</EnableCodeSigning>
     <CreatePackage>false</CreatePackage>
+    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -42,6 +43,7 @@
     <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -59,6 +61,7 @@
     <EnableCodeSigning>true</EnableCodeSigning>
     <EnablePackageSigning>true</EnablePackageSigning>
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+    <ApplicationIcon>..\..\..\..\Downloads\eventTrax.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -83,9 +86,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <BundleResource Include="Resources\fucking.icns" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,5 +97,8 @@
       <Project>{7525B10F-A5C1-4438-ABE2-376B8FBAF991}</Project>
       <Name>Trigger.BCL.EventTracker</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\samurai.icns" />
   </ItemGroup>
 </Project>
