@@ -49,6 +49,15 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
+        [FieldImageData(true, 296, 296)]
+        public string PreviewFileName
+        {
+            get
+            {
+                return FileName;
+            }
+        }
+
         Image thumbnail;
 
         [System.Runtime.Serialization.IgnoreDataMember]

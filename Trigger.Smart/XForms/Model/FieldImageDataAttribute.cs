@@ -14,8 +14,24 @@ namespace XForms.Model
             private set;
         }
 
-        public FieldImageDataAttribute(bool thumbnail = false)
+
+        public int DefaultWidth
         {
+            get;
+            private set;
+        }
+
+
+        public int DefaultHeight
+        {
+            get;
+            private set;
+        }
+
+        public FieldImageDataAttribute(bool thumbnail = false, int defaultWidth = 128, int defaultHeight = 128)
+        {
+            this.DefaultHeight = defaultHeight;
+            this.DefaultWidth = defaultWidth;
             this.Thumbnail = thumbnail;
             
         }

@@ -15,7 +15,7 @@ namespace Trigger.BCL.EventTracker
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
             ListDetailView = true;
-            ListDetailViewColumns = 3;
+            ListDetailViewColumns = 4;
             ListDetailViewWithToolbar = true;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
 

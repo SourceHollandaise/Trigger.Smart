@@ -18,16 +18,16 @@ namespace Trigger.BCL.EventTracker
 
             AutoSave = true;
 
-            MinHeight = 480;
+            MinHeight = 360;
 
             GroupItemDescriptions = new List<GroupItemDescription>
             {
-                new GroupItemDescription("Details", 1)
+                new GroupItemDescription(null, 1)
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
                         new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
-                        new ViewItemDescription(Fields.GetName(m => m.Gallery), 1){ LabelText = "Gallery" }
+                        new ViewItemDescription(Fields.GetName(m => m.Gallery), 1){ LabelText = "Gallery" },
                     }
                 },
                 new GroupItemDescription(null, 2)
@@ -35,10 +35,9 @@ namespace Trigger.BCL.EventTracker
                     Fill = true,
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Image", ShowLabel = false, Fill = true }
+                        new ViewItemDescription(Fields.GetName(m => m.PreviewFileName), 1){ LabelText = "Preview", ShowLabel = false },
                     }
                 },
-
             };
         }
     }

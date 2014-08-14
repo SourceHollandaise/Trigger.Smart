@@ -30,7 +30,7 @@ namespace XForms.Design
             detailViewGroupBox.ClientSize = new Size(-1, -1);
 
             detailViewGroupBox.MinimumSize = new Size(-1, descriptor.MinHeight.HasValue ? descriptor.MinHeight.Value : 360);
-
+  
             if (headerText != null)
             {
                 detailViewGroupBox.Text = headerText;

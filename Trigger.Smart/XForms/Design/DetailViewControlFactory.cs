@@ -49,7 +49,7 @@ namespace XForms.Design
                 if (fieldImageDataAttribute != null)
                 {
                     if (fieldImageDataAttribute.Thumbnail)
-                        return ImageViewThumbnailPropertyEditor(property);
+                        return ImageViewThumbnailPropertyEditor(property, fieldImageDataAttribute.DefaultWidth, fieldImageDataAttribute.DefaultHeight);
                     return ImageViewPropertyEditor(property);
                 }
 
@@ -214,7 +214,7 @@ namespace XForms.Design
                 {
                     var image = new Bitmap(file);
 
-                    imageView.Size = image.Size;
+                    //imageView.Size = image.Size;
                     imageView.Image = image;
                 }
             }
@@ -222,10 +222,10 @@ namespace XForms.Design
             return imageView;
         }
 
-        ImageView ImageViewThumbnailPropertyEditor(PropertyInfo property)
+        ImageView ImageViewThumbnailPropertyEditor(PropertyInfo property, int defaultWidth = 128, int defaultHeight = 128)
         {
             var imageView = new ImageView();
-            imageView.Size = new Size(96, 96);
+            imageView.Size = new Size(defaultWidth, defaultHeight);
 
             var value = (string)property.GetValue(Model, null);
             if (!string.IsNullOrWhiteSpace(value))
@@ -234,14 +234,44 @@ namespace XForms.Design
                 if (file != null)
                 {
                     var image = new Bitmap(file);
-                    var thumbNail = new Bitmap(image, 96, 96);
+                    var size = GetScaledSize(image.Size, defaultWidth, defaultHeight);
+                   
+                    var thumbnail = new Bitmap(image, size.Width, size.Height, ImageInterpolation.High);
 
-                    imageView.Image = thumbNail;
+                    imageView.Image = thumbnail;
+
+
+                    imageView.MouseDoubleClick += (sender, e) =>
+                    {
+                        Model.ShowDetailContentEmbedded();
+                    };
                 }
             }
 
            
             return imageView;
+        }
+
+        Size GetScaledSize(Size originaleSize, int maxHeight, int maxWidth)
+        {
+            double resizeWidth = originaleSize.Width;
+            double resizeHeight = originaleSize.Height;
+
+            double aspect = resizeWidth / resizeHeight;
+
+            if (resizeWidth > maxHeight)
+            {
+                resizeWidth = maxWidth;
+                resizeHeight = resizeWidth / aspect;
+            }
+            if (resizeHeight > maxHeight)
+            {
+                aspect = resizeWidth / resizeHeight;
+                resizeHeight = maxHeight;
+                resizeWidth = resizeHeight * aspect;
+            }
+
+            return new Size((int)resizeWidth, (int)resizeHeight);
         }
 
         WebView FilePreviewPropertyEditor(PropertyInfo property)
