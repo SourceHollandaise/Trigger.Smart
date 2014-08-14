@@ -18,6 +18,14 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
@@ -30,7 +38,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "accept";
+                return "floppy_disk";
             }
         }
 
@@ -38,7 +46,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 70;
+                return 34;
             }
         }
 

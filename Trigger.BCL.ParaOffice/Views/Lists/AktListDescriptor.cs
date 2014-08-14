@@ -15,7 +15,7 @@ namespace Trigger.BCL.ParaOffice
             DefaultSortProperty = Fields.GetName(m => m.Bezeichnung);
 
             ListDetailView = true;
-            ListDetailViewColumns = 3;
+            ListDetailViewColumns = 2;
             ListDetailViewWithToolbar = true;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
 

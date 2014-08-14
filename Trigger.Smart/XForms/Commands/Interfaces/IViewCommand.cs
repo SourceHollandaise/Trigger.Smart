@@ -14,5 +14,14 @@ namespace XForms.Commands
         bool AllowExecute { get; }
 
         bool Visible { get; }
+
+        ButtonDisplayStyle DisplayStyle { get; }
+    }
+
+    public enum ButtonDisplayStyle
+    {
+        Image,
+        Text,
+        ImageAndText
     }
 }

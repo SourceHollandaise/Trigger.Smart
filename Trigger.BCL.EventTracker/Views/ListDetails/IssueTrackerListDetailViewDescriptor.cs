@@ -12,9 +12,9 @@ namespace Trigger.BCL.EventTracker
         {
             Commands.Clear();
 
-            RegisterCommands<IDeleteObjectDetailViewCommand>();
-            RegisterCommands<IRefreshDetailViewCommand>();
             RegisterCommands<IAddFileDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
 
             AutoSave = true;
 

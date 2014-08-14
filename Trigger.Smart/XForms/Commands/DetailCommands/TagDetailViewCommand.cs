@@ -6,6 +6,7 @@ using XForms.Design;
 using XForms.Dependency;
 using XForms.Store;
 using XForms.Model;
+using Eto.Drawing;
 
 namespace XForms.Commands
 {
@@ -20,7 +21,7 @@ namespace XForms.Commands
             if (template != null)
             {
                 foreach (var button in data.Item2)
-                    button.Text = "";
+                    button.Image = null;
 
                 var store = MapProvider.Instance.ResolveType<IStore>();
                 var tag = store.LoadAll<Tag>().FirstOrDefault(p => p.TargetObjectMappingId.Equals(args.CurrentObject.MappingId.ToString()));
@@ -29,7 +30,10 @@ namespace XForms.Commands
 
                 tag.TargetObjectMappingId = args.CurrentObject.MappingId.ToString();
                 tag.TagColor = data.Item1.BackgroundColor.ToString();
-                data.Item1.Text = "X";
+                //data.Item1.Text = "X";
+
+                data.Item1.Image = ImageExtensions.GetImage("tag", 16);
+                data.Item1.ImagePosition = ButtonImagePosition.Above;
 
                 tag.Save();
             }
@@ -40,6 +44,14 @@ namespace XForms.Commands
             get
             {
                 return "cmd_tags";
+            }
+        }
+
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
             }
         }
 
@@ -55,7 +67,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "favorite";
+                return "tag";
             }
         }
 
@@ -63,7 +75,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 36;
+                return 34;
             }
         }
 

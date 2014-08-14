@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using XForms.Design;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -11,8 +12,8 @@ namespace Trigger.BCL.EventTracker
         {
             Commands.Clear();
 
-            RegisterCommands<XForms.Commands.IDeleteObjectDetailViewCommand>();
-            RegisterCommands<XForms.Commands.IRefreshDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
 
             AutoSave = true;
 

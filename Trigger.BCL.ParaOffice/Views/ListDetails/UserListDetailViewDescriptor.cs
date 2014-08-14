@@ -11,8 +11,8 @@ namespace Trigger.BCL.ParaOffice
         {
             Commands.Clear();
 
-            RegisterCommands<IDeleteObjectDetailViewCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
 
             IsTaggable = false;
 

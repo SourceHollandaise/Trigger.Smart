@@ -24,6 +24,14 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.ImageAndText;
+            }
+        }
+
         public string Name
         {
             get
@@ -36,7 +44,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "application_remove";
+                return "exit";
             }
         }
 

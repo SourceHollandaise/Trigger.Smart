@@ -51,12 +51,12 @@ namespace XForms.Design
 
             if (addCommandBar)
             {  
-                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands);
+                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands, false, true);
                 detailLayout.Add(commandBarBuilder.GetContent());
   
                 if (descriptor.IsTaggable)
                 {
-                    var tabButtonBuilder = new TagButtonBuilder(currentObject);
+                    var tabButtonBuilder = new TagButtonBuilder(currentObject, true);
                     detailLayout.Add(tabButtonBuilder.GetContent());
                 }
             }

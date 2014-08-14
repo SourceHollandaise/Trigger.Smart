@@ -38,11 +38,19 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
             {
-                return "+";
+                return "Add";
             }
         }
 

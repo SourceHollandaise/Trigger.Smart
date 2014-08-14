@@ -17,8 +17,11 @@ namespace XForms.Design
 
         readonly bool addTagCommands;
 
-        public DetailViewCommandBarBuilder(IStorable currentObject, IEnumerable<IDetailViewCommand> commands, bool addTagCommands = false)
+        readonly bool rightToLeft;
+
+        public DetailViewCommandBarBuilder(IStorable currentObject, IEnumerable<IDetailViewCommand> commands, bool addTagCommands = false, bool rightToLeft = false)
         {
+            this.rightToLeft = rightToLeft;
             this.commands = commands;
             this.currentObject = currentObject;
             this.addTagCommands = addTagCommands;
@@ -28,13 +31,33 @@ namespace XForms.Design
         {
             var commandBarLayout = new DynamicLayout();
             commandBarLayout.BeginHorizontal();
+            if (rightToLeft)
+                commandBarLayout.Add(null);
             foreach (var command in commands.ToList())
             {
                 var button = new Button();
                 button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
-                button.Text = command.Name;
+                button.BackgroundColor = Colors.Gray;
+
+                switch (command.DisplayStyle)
+                {
+                    case ButtonDisplayStyle.Image:
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Above;
+                        break;
+                    case ButtonDisplayStyle.Text:
+                        button.Text = command.Name;
+            
+                        break;
+                    case ButtonDisplayStyle.ImageAndText:
+                        button.Text = command.Name;
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Left;
+                        break;
+                }
+
                 button.Click += (sender, e) =>
                 {
                     command.Execute(new DetailViewArguments
@@ -51,7 +74,7 @@ namespace XForms.Design
             });
            
             if (addTagCommands)
-                new TagButtonBuilder(currentObject).AddTagButtonsContent(commandBarLayout);
+                new TagButtonBuilder(currentObject, rightToLeft).AddTagButtonsContent(commandBarLayout);
              
             commandBarLayout.EndHorizontal();
             return commandBarLayout;

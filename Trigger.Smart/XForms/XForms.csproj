@@ -201,6 +201,7 @@
     <Folder Include="Design\Templates\" />
     <Folder Include="Commands\DetailCommands\" />
     <Folder Include="Commands\ListCommands\" />
+    <Folder Include="Images\MCollection\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -219,548 +220,107 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Size64\accept.png">
-      <LogicalName>accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\add.png">
+    <EmbeddedResource Include="Images\MCollection\add.png">
       <LogicalName>add.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application.png">
-      <LogicalName>application.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\add2.png">
+      <LogicalName>add2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_add.png">
-      <LogicalName>application_add.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\address_book2.png">
+      <LogicalName>address_book2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_edit.png">
-      <LogicalName>application_edit.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\businesspeople.png">
+      <LogicalName>businesspeople.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_lock.png">
-      <LogicalName>application_lock.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\cloud_computing_refresh.png">
+      <LogicalName>cloud_computing_refresh.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_next.png">
-      <LogicalName>application_next.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\delete.png">
+      <LogicalName>delete.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_remove.png">
-      <LogicalName>application_remove.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\document_attachment.png">
+      <LogicalName>document_attachment.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\application_up.png">
-      <LogicalName>application_up.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\error.png">
+      <LogicalName>error.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\applications.png">
-      <LogicalName>applications.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\floppy_disk.png">
+      <LogicalName>floppy_disk.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\archive.png">
-      <LogicalName>archive.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\folder2.png">
+      <LogicalName>folder2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\attachment.png">
-      <LogicalName>attachment.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\id_card.png">
+      <LogicalName>id_card.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\back.png">
-      <LogicalName>back.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\key2.png">
+      <LogicalName>key2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\blog_post.png">
-      <LogicalName>blog_post.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\nav_refresh.png">
+      <LogicalName>nav_refresh.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\blog_post_accept.png">
-      <LogicalName>blog_post_accept.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\navigate_close.png">
+      <LogicalName>navigate_close.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\blog_post_delete.png">
-      <LogicalName>blog_post_delete.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\paperclip.png">
+      <LogicalName>paperclip.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\blog_post_edit.png">
-      <LogicalName>blog_post_edit.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\refresh.png">
+      <LogicalName>refresh.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calculator.png">
-      <LogicalName>calculator.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\server_to_client.png">
+      <LogicalName>server_to_client.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calculator_accept.png">
-      <LogicalName>calculator_accept.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\tag.png">
+      <LogicalName>tag.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calculator_add.png">
-      <LogicalName>calculator_add.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\user_message.png">
+      <LogicalName>user_message.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calculator_remove.png">
-      <LogicalName>calculator_remove.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\user_monitor.png">
+      <LogicalName>user_monitor.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calendar_date.png">
-      <LogicalName>calendar_date.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\user_telephone.png">
+      <LogicalName>user_telephone.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\calendar_empty.png">
-      <LogicalName>calendar_empty.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\users2.png">
+      <LogicalName>users2.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\cd.png">
-      <LogicalName>cd.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\nav_left.png">
+      <LogicalName>nav_left.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\cd_accept.png">
-      <LogicalName>cd_accept.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\navigate_left.png">
+      <LogicalName>navigate_left.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\cd_add.png">
-      <LogicalName>cd_add.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\clock_history.png">
+      <LogicalName>clock_history.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\cd_down.png">
-      <LogicalName>cd_down.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\calendar_31.png">
+      <LogicalName>calendar_31.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\cd_remove.png">
-      <LogicalName>cd_remove.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\date_time.png">
+      <LogicalName>date_time.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\chart.png">
-      <LogicalName>chart.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\exit.png">
+      <LogicalName>exit.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\chart_accept.png">
-      <LogicalName>chart_accept.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\folder3_document.png">
+      <LogicalName>folder3_document.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\chart_add.png">
-      <LogicalName>chart_add.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\magazine_folder.png">
+      <LogicalName>magazine_folder.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\chart_remove.png">
-      <LogicalName>chart_remove.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\mail_cloud.png">
+      <LogicalName>mail_cloud.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\clock.png">
-      <LogicalName>clock.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\server_document.png">
+      <LogicalName>server_document.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comment.png">
-      <LogicalName>comment.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\smartphone_cloud.png">
+      <LogicalName>smartphone_cloud.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comment_add.png">
-      <LogicalName>comment_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comment_edit.png">
-      <LogicalName>comment_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comment_remove.png">
-      <LogicalName>comment_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comments.png">
-      <LogicalName>comments.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comments_add.png">
-      <LogicalName>comments_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\comments_remove.png">
-      <LogicalName>comments_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\community_users.png">
-      <LogicalName>community_users.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\computer.png">
-      <LogicalName>computer.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\computer_accept.png">
-      <LogicalName>computer_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\computer_remove.png">
-      <LogicalName>computer_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\computers.png">
-      <LogicalName>computers.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database.png">
-      <LogicalName>database.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_accept.png">
-      <LogicalName>database_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_add.png">
-      <LogicalName>database_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_down.png">
-      <LogicalName>database_down.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_lock.png">
-      <LogicalName>database_lock.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_next.png">
-      <LogicalName>database_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_previous.png">
-      <LogicalName>database_previous.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_process.png">
-      <LogicalName>database_process.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_remove.png">
-      <LogicalName>database_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_search.png">
-      <LogicalName>database_search.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\database_up.png">
-      <LogicalName>database_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\down.png">
-      <LogicalName>down.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\eject.png">
-      <LogicalName>eject.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\fast_forward.png">
-      <LogicalName>fast_forward.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\favorite.png">
-      <LogicalName>favorite.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\favorite_add.png">
-      <LogicalName>favorite_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\favorite_remove.png">
-      <LogicalName>favorite_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder.png">
-      <LogicalName>folder.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_accept.png">
-      <LogicalName>folder_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_add.png">
-      <LogicalName>folder_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_down.png">
-      <LogicalName>folder_down.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_edit.png">
-      <LogicalName>folder_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_full.png">
-      <LogicalName>folder_full.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_full_accept.png">
-      <LogicalName>folder_full_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_full_add.png">
-      <LogicalName>folder_full_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_full_delete.png">
-      <LogicalName>folder_full_delete.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_next.png">
-      <LogicalName>folder_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_previous.png">
-      <LogicalName>folder_previous.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_process.png">
-      <LogicalName>folder_process.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_remove.png">
-      <LogicalName>folder_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\folder_up.png">
-      <LogicalName>folder_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\forward_new_mail.png">
-      <LogicalName>forward_new_mail.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\help.png">
-      <LogicalName>help.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\home.png">
-      <LogicalName>home.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\home_next.png">
-      <LogicalName>home_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\html_page_accept.png">
-      <LogicalName>html_page_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\html_page_warning.png">
-      <LogicalName>html_page_warning.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image.png">
-      <LogicalName>image.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_add.png">
-      <LogicalName>image_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_edit.png">
-      <LogicalName>image_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_lock.png">
-      <LogicalName>image_lock.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_multi.png">
-      <LogicalName>image_multi.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_next.png">
-      <LogicalName>image_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_remove.png">
-      <LogicalName>image_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\image_up.png">
-      <LogicalName>image_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\info.png">
-      <LogicalName>info.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\lock.png">
-      <LogicalName>lock.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\lock_disabled.png">
-      <LogicalName>lock_disabled.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\lock_off.png">
-      <LogicalName>lock_off.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\lock_off_disabled.png">
-      <LogicalName>lock_off_disabled.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail.png">
-      <LogicalName>mail.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail_accept.png">
-      <LogicalName>mail_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail_add.png">
-      <LogicalName>mail_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail_edit.png">
-      <LogicalName>mail_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail_next.png">
-      <LogicalName>mail_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\mail_remove.png">
-      <LogicalName>mail_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\movie_track.png">
-      <LogicalName>movie_track.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\movie_track_add.png">
-      <LogicalName>movie_track_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\movie_track_next.png">
-      <LogicalName>movie_track_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\movie_track_remove.png">
-      <LogicalName>movie_track_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\next.png">
-      <LogicalName>next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\note_accept.png">
-      <LogicalName>note_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\note_add.png">
-      <LogicalName>note_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\note_edit.png">
-      <LogicalName>note_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\note_remove.png">
-      <LogicalName>note_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\notes_edit.png">
-      <LogicalName>notes_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page.png">
-      <LogicalName>page.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_accept.png">
-      <LogicalName>page_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_add.png">
-      <LogicalName>page_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_down.png">
-      <LogicalName>page_down.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_edit.png">
-      <LogicalName>page_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_next.png">
-      <LogicalName>page_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_previous.png">
-      <LogicalName>page_previous.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_process.png">
-      <LogicalName>page_process.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_remove.png">
-      <LogicalName>page_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_search.png">
-      <LogicalName>page_search.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_swap.png">
-      <LogicalName>page_swap.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\page_up.png">
-      <LogicalName>page_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\pause.png">
-      <LogicalName>pause.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\pdf.png">
-      <LogicalName>pdf.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\play.png">
-      <LogicalName>play.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\printer.png">
-      <LogicalName>printer.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\printer_search.png">
-      <LogicalName>printer_search.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\process.png">
-      <LogicalName>process.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\process_accept.png">
-      <LogicalName>process_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\process_add.png">
-      <LogicalName>process_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\process_remove.png">
-      <LogicalName>process_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\record.png">
-      <LogicalName>record.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\remove.png">
-      <LogicalName>remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\repeat.png">
-      <LogicalName>repeat.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rewind.png">
-      <LogicalName>rewind.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rss.png">
-      <LogicalName>rss.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rss_add.png">
-      <LogicalName>rss_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rss_edit.png">
-      <LogicalName>rss_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rss_next.png">
-      <LogicalName>rss_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\rss_remove.png">
-      <LogicalName>rss_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\search.png">
-      <LogicalName>search.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\search_add.png">
-      <LogicalName>search_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\search_remove.png">
-      <LogicalName>search_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_user.png">
-      <LogicalName>she_user.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_user_accept.png">
-      <LogicalName>she_user_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_user_add.png">
-      <LogicalName>she_user_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_user_comment.png">
-      <LogicalName>she_user_comment.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_user_remove.png">
-      <LogicalName>she_user_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\she_users.png">
-      <LogicalName>she_users.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\shopping_cart.png">
-      <LogicalName>shopping_cart.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\shopping_cart_accept.png">
-      <LogicalName>shopping_cart_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\shopping_cart_down.png">
-      <LogicalName>shopping_cart_down.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\shopping_cart_remove.png">
-      <LogicalName>shopping_cart_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\shopping_cart_up.png">
-      <LogicalName>shopping_cart_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\skip_backward.png">
-      <LogicalName>skip_backward.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\skip_forward.png">
-      <LogicalName>skip_forward.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\sound.png">
-      <LogicalName>sound.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\sound_off.png">
-      <LogicalName>sound_off.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\sound_on.png">
-      <LogicalName>sound_on.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\stop.png">
-      <LogicalName>stop.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\up.png">
-      <LogicalName>up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user.png">
-      <LogicalName>user.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_accept.png">
-      <LogicalName>user_accept.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_add.png">
-      <LogicalName>user_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_comment.png">
-      <LogicalName>user_comment.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_comments.png">
-      <LogicalName>user_comments.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_has_new_email.png">
-      <LogicalName>user_has_new_email.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\user_remove.png">
-      <LogicalName>user_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\users.png">
-      <LogicalName>users.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\video_favorite.png">
-      <LogicalName>video_favorite.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\warning.png">
-      <LogicalName>warning.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window.png">
-      <LogicalName>window.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_add.png">
-      <LogicalName>window_add.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_edit.png">
-      <LogicalName>window_edit.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_lock.png">
-      <LogicalName>window_lock.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_next.png">
-      <LogicalName>window_next.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_remove.png">
-      <LogicalName>window_remove.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\window_up.png">
-      <LogicalName>window_up.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\windows.png">
-      <LogicalName>windows.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Size64\word.png">
-      <LogicalName>word.png</LogicalName>
+    <EmbeddedResource Include="Images\MCollection\user_mobilephone.png">
+      <LogicalName>user_mobilephone.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

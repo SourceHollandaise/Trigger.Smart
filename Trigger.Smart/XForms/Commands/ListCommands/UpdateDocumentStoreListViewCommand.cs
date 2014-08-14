@@ -21,6 +21,14 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
@@ -33,7 +41,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "folder_down";
+                return "server_to_client";
             }
         }
 
@@ -41,7 +49,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 140;
+                return 34;
             }
         }
 

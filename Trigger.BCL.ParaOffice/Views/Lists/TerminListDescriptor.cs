@@ -17,7 +17,7 @@ namespace Trigger.BCL.ParaOffice
 
             ListDetailView = true;
             ListDetailViewWithToolbar = true;
-            ListDetailViewColumns = 4;
+            ListDetailViewColumns = 3;
             ListDetailViewOrientation = ViewItemOrientation.Vertical;
 
             DetailView = new TerminListDetailViewDescriptor();

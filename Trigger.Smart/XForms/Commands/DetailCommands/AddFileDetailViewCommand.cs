@@ -32,11 +32,19 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
             {
-                return "File +";
+                return "Attachment";
             }
         }
 
@@ -44,7 +52,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "attachment";
+                return "document_attachment";
             }
         }
 
@@ -52,7 +60,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 70;
+                return 34;
             }
         }
 

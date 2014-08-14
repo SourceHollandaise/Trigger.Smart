@@ -26,6 +26,14 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
@@ -38,7 +46,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "window_remove";
+                return "navigate_close";
             }
         }
 
@@ -46,7 +54,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 80;
+                return 34;
             }
         }
 

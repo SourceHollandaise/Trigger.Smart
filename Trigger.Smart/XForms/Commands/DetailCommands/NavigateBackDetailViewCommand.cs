@@ -27,11 +27,19 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
             {
-                return "<";
+                return "Back";
             }
         }
 
@@ -39,7 +47,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "";
+                return "clock_history";
             }
         }
 

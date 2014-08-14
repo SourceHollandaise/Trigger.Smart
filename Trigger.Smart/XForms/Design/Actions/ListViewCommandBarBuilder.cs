@@ -46,7 +46,24 @@ namespace XForms.Design
                 button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
                 button.ToolTip = command.Name;
-                button.Text = command.Name;
+                button.BackgroundColor = Colors.Gray;
+
+                switch (command.DisplayStyle)
+                {
+                    case ButtonDisplayStyle.Image:
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Above;
+                        break;
+                    case ButtonDisplayStyle.Text:
+                        button.Text = command.Name;
+                        break;
+                    case ButtonDisplayStyle.ImageAndText:
+                        button.Text = command.Name;
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Left;
+                        break;
+                }
+
                 button.Click += (sender, e) => command.Execute(new ListViewArguments
                 {
                     TargetType = ModelType,

@@ -10,9 +10,9 @@ namespace Trigger.BCL.ParaOffice
         {
             Commands.Clear();
 
-            RegisterCommands<IDeleteObjectDetailViewCommand>();
-            RegisterCommands<IRefreshDetailViewCommand>();
             RegisterCommands<IAddFileDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
 
             AutoSave = true;
 

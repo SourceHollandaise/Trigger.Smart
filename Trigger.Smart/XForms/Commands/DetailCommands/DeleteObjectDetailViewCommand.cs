@@ -34,6 +34,14 @@ namespace XForms.Commands
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.Image;
+            }
+        }
+
         public string Name
         {
             get
@@ -46,7 +54,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "remove";
+                return "delete";
             }
         }
 
@@ -54,7 +62,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 70;
+                return 34;
             }
         }
 

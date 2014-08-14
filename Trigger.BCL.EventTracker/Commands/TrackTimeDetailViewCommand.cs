@@ -43,6 +43,14 @@ namespace Trigger.BCL.EventTracker
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.ImageAndText;
+            }
+        }
+
         public string Name
         {
             get

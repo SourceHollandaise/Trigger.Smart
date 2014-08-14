@@ -16,8 +16,11 @@ namespace XForms.Design
 
         readonly IStorable currentObject;
 
-        public TagButtonBuilder(IStorable currentObject)
+        readonly bool rightToLeft;
+
+        public TagButtonBuilder(IStorable currentObject, bool rightToLeft = false)
         {
+            this.rightToLeft = rightToLeft;
             this.currentObject = currentObject;
         }
 
@@ -25,7 +28,8 @@ namespace XForms.Design
         {
             var layout = new DynamicLayout();
             layout.BeginHorizontal();
- 
+            if (rightToLeft)
+                layout.Add(null);
             layout.Add(TagButton(Colors.OrangeRed), false, false);
             layout.Add(TagButton(Colors.Orange), false, false);
             layout.Add(TagButton(Colors.YellowGreen), false, false);
@@ -69,7 +73,8 @@ namespace XForms.Design
                     if (Color.Parse(tag.TagColor) == Colors.WhiteSmoke)
                         return;
 
-                    tagbutton.Text = "X";
+                    tagbutton.Image = ImageExtensions.GetImage("tag", 16);
+                    tagbutton.ImagePosition = ButtonImagePosition.Above;
                 }
             }
         }

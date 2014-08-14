@@ -61,8 +61,7 @@ namespace XForms.Design
                     var content = builder.GetContent();
    
                     var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / descriptor.ListDetailViewColumns;
-                    //var height = (((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120) / 2) * 1.5;
-
+            
                     content.Size = new Size(width, -1);
 
                     contentLayout.Add(content);
@@ -76,8 +75,6 @@ namespace XForms.Design
 
                     currentColumnCount++;
                 }
-
-                //contentLayout.Add(null);
             }
 
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
@@ -96,8 +93,6 @@ namespace XForms.Design
 
                     contentLayout.Add(content, false, false);
                 }
-
-                //contentLayout.Add(null);
             }
 
             var listDetaillayout = new DynamicLayout();
@@ -111,7 +106,6 @@ namespace XForms.Design
             };
 
             listDetaillayout.Add(scrollable);
-            //listDetaillayout.EndHorizontal();
             listDetaillayout.Add(null);
             return listDetaillayout;
         }

@@ -24,11 +24,19 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        public ButtonDisplayStyle DisplayStyle
+        {
+            get
+            {
+                return ButtonDisplayStyle.ImageAndText;
+            }
+        }
+
         public string Name
         {
             get
             {
-                return "Aktperson +";
+                return "Aktperson";
             }
         }
 
@@ -44,7 +52,7 @@ namespace Trigger.BCL.ParaOffice
         {
             get
             {
-                return 120;
+                return 100;
             }
         }
 

@@ -95,11 +95,27 @@ namespace XForms.Design
                     var button = new Button()
                     {
                         Size = new Size(-1, 34),
-                        Text = navItem.NavigationItemText,
                         Tag = navItem,
-                        Image = ImageExtensions.GetImage(navItem.ImageName, 16),
-                        ImagePosition = ButtonImagePosition.Left,                      
+                        BackgroundColor = Colors.Gray
                     };
+
+                    switch (navItem.DisplayStyle)
+                    {
+                        case ButtonDisplayStyle.Image:
+                            button.Image = ImageExtensions.GetImage(navItem.ImageName, 16);
+                            button.ImagePosition = ButtonImagePosition.Above;
+                            break;
+                        case ButtonDisplayStyle.Text:
+                            button.Text = navItem.NavigationItemText;
+
+                            break;
+                        case ButtonDisplayStyle.ImageAndText:
+                            button.Text = navItem.NavigationItemText;
+                            button.Image = ImageExtensions.GetImage(navItem.ImageName, 16);
+                            button.ImagePosition = ButtonImagePosition.Left;
+                            break;
+                    }            
+
                     button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as NavigationItemDescription);
                     navGroupLayout.Add(button, true);
                 }
@@ -130,16 +146,30 @@ namespace XForms.Design
                 var button = new Button()
                 {
                     Size = new Size(-1, 34),
-                    Text = command.Name,
                     Tag = command,
-                    Image = ImageExtensions.GetImage(command.ImageName, 16),
-                    ImagePosition = ButtonImagePosition.Left,                      
+                    BackgroundColor = Colors.Gray
                 };
+
+                switch (command.DisplayStyle)
+                {
+                    case ButtonDisplayStyle.Image:
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Above;
+                        break;
+                    case ButtonDisplayStyle.Text:
+                        button.Text = command.Name;
+
+                        break;
+                    case ButtonDisplayStyle.ImageAndText:
+                        button.Text = command.Name;
+                        button.Image = ImageExtensions.GetImage(command.ImageName, 16);
+                        button.ImagePosition = ButtonImagePosition.Left;
+                        break;
+                }            
 
                 button.Click += (sender, e) => (button.Tag as IMainViewCommand).Execute(this);
 
                 appGroupLayout.Add(button, true);
-
             }
                 
             appGroupLayout.EndVertical();

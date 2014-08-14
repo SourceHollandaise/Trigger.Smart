@@ -1,4 +1,5 @@
 using System;
+using XForms.Commands;
 
 namespace XForms.Design
 {
@@ -17,12 +18,15 @@ namespace XForms.Design
 
         public IListViewDescriptor ListView { get; set; }
 
+        public ButtonDisplayStyle DisplayStyle { get; set; }
+
         public NavigationItemDescription(Type modelType, string navigationItemText, int index)
         {
             ModelType = modelType;
             NavigationItemText = navigationItemText;
             Index = index;
             Visible = true;
+            DisplayStyle = ButtonDisplayStyle.ImageAndText;
         }
     }
 }
