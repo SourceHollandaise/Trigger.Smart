@@ -71,7 +71,6 @@ namespace Trigger.BCL.EventTracker
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserDetailsViewCommand>();
-            Map.RegisterType<ISlideShowListViewCommand, SlideShowListViewCommand>();
         }
 
         public override void CreateDefaultUser()

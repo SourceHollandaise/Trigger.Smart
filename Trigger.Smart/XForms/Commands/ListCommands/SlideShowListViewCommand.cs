@@ -15,10 +15,10 @@ namespace XForms.Commands
             if (listParameter.InputData is IListViewDescriptor)
             {
                 var descriptor = listParameter.InputData as IListViewDescriptor;
-                var dummy = new DataStoreProvider(descriptor, listParameter.TargetType).CreateRawDataSet(listParameter.CustomDataSet) as IEnumerable<IStorable>;
-                if (dummy.Any())
+                var storables = new DataStoreProvider(descriptor, listParameter.TargetType).CreateRawDataSet(listParameter.CustomDataSet) as IEnumerable<IStorable>;
+                if (storables.Any())
                 {
-                    var fileDataItems = dummy.Cast<IFileData>();
+                    var fileDataItems = storables.Cast<IFileData>();
 
                     var slider = new SlideShowTemplate(fileDataItems);
                     slider.Show();

@@ -10,6 +10,7 @@ namespace Trigger.BCL.EventTracker
         public DocumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
+            RegisterCommands<ISlideShowListViewCommand>();
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);

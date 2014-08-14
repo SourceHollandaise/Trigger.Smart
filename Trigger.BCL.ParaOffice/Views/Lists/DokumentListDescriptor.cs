@@ -9,6 +9,7 @@ namespace Trigger.BCL.ParaOffice
         public DokumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
+            RegisterCommands<ISlideShowListViewCommand>();
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);

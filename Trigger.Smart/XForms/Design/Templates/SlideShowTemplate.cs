@@ -9,16 +9,20 @@ namespace XForms.Design
 
     public class SlideShowTemplate : Form
     {
+        bool loop;
+
         readonly IEnumerable<IFileData> fileDataItems;
+
+        readonly ImageView imageView;
 
         Stack<IFileData> stack = new Stack<IFileData>();
 
-        ImageView imageView;
-
         UITimer slideTimer = new UITimer();
 
-        public SlideShowTemplate(IEnumerable<IFileData> fileDataItems, double interval = 3F)
+
+        public SlideShowTemplate(IEnumerable<IFileData> fileDataItems, double interval = 3F, bool loop = true)
         {
+            this.loop = loop;
             this.fileDataItems = fileDataItems;
             this.BackgroundColor = Colors.Black;
             this.WindowState = Eto.Forms.WindowState.Maximized;
@@ -59,8 +63,15 @@ namespace XForms.Design
         {
             if (stack.Count == 0)
             {
-                slideTimer.Stop();
-                this.Close();
+                if (loop)
+                {
+                    AddImagesToStack();
+                }
+                else
+                {
+                    slideTimer.Stop();
+                    this.Close();
+                }
             }
 
             if (stack.Count > 0)
@@ -75,9 +86,16 @@ namespace XForms.Design
                 var file = value.GetValidPath();
                 if (file != null)
                 {
-                    var image = new Bitmap(file);
+                    try
+                    {
+                        var image = new Bitmap(file);
 
-                    imageView.Image = image;
+                        imageView.Image = image;
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }
