@@ -52,9 +52,11 @@ namespace XForms.Design
 
             var columns = descriptor.ListDetailViewColumns == 0 ? 1 : calculated - 1;
            
+            var detailViewDatatSet = rawDataSet.ToList();
+
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Vertical)
             {
-                foreach (var current in rawDataSet.ToList())
+                foreach (var current in detailViewDatatSet)
                 {
                     if (currentColumnCount == 0)
                         contentLayout.BeginHorizontal();
@@ -77,12 +79,15 @@ namespace XForms.Design
 
                     currentColumnCount++;
                 }
+
+                if (detailViewDatatSet.Count <= columns)
+                    contentLayout.Add(null);
             }
 
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
             {
                 contentLayout.BeginHorizontal();
-                foreach (var current in rawDataSet.ToList())
+                foreach (var current in detailViewDatatSet)
                 {
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();

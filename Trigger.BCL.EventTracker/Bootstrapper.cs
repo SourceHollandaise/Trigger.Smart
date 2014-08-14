@@ -1,13 +1,13 @@
 using System.Linq;
+using XForms.Commands;
+using XForms.Design;
+using XForms.Model;
+using XForms.Platform;
+using XForms.Security;
+using XForms.Store;
 using Trigger.BCL.EventTracker;
 using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
-using XForms.Platform;
-using XForms.Store;
-using XForms.Security;
-using XForms.Design;
-using XForms.Model;
-using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -71,6 +71,7 @@ namespace Trigger.BCL.EventTracker
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserDetailsViewCommand>();
+            Map.RegisterType<ISlideShowListViewCommand, SlideShowListViewCommand>();
         }
 
         public override void CreateDefaultUser()

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
 using XForms.Design;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -9,6 +10,8 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemListDescriptor()
         {
+            RegisterCommands<ISlideShowListViewCommand>();
+
             ListShowTags = false;
 
             DefaultSorting = ColumnSorting.Ascending;

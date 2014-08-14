@@ -7,5 +7,4 @@ namespace Trigger.BCL.EventTracker
     {
 
     }
-    
 }

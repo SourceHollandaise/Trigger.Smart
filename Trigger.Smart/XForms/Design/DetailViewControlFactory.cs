@@ -105,18 +105,28 @@ namespace XForms.Design
                             Control control = null;
 
                             if (descriptor.ShowListDetailViewForLinkedLists)
+                            {
+                                if (dataSet == null || !dataSet.Any())
+                                    return new DynamicLayout();
+
                                 control = new ListDetailViewBuilder(descriptor, linkedListAttribute.LinkType, dataSet).GetContent();
+
+                            }
                             else
+                            {
                                 control = new ListViewBuilder(descriptor, linkedListAttribute.LinkType, false, dataSet).GetContent();
 
-                            if (control != null)
-                            {
-                                control.MouseDoubleClick += (sender, e) =>
+                                if (control != null)
                                 {
-                                    if ((control as GridView).SelectedItem != null)
-                                        ((control as GridView).SelectedItem as IStorable).ShowDetailContentEmbedded();
-                                };
+                                    control.MouseDoubleClick += (sender, e) =>
+                                    {
+                                        if ((control as GridView).SelectedItem != null)
+                                            ((control as GridView).SelectedItem as IStorable).ShowDetailContentEmbedded();
+                                    };
+                                }
                             }
+
+                          
                             return control;
                         }
                     }

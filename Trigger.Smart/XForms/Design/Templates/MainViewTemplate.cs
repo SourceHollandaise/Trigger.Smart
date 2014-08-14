@@ -191,8 +191,6 @@ namespace XForms.Design
         {
             CurrentActiveType = item.ModelType;
 
-            var currentDisplayNameAttribute = CurrentActiveType.FindAttribute<DisplayNameAttribute>();
-
             var listLayout = new DynamicLayout();
 
             listLayout.Add(CreateListViewLayout(item.ListView));

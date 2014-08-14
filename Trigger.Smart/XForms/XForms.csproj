@@ -183,6 +183,9 @@
     <Compile Include="Design\Descriptors\NavigationItemDescription.cs" />
     <Compile Include="Design\Descriptors\ScreenResolutionTypeCalculator.cs" />
     <Compile Include="Design\Descriptors\ScreenResolutionType.cs" />
+    <Compile Include="Design\Templates\SlideShowTemplate.cs" />
+    <Compile Include="Commands\ListCommands\SlideShowListViewCommand.cs" />
+    <Compile Include="Commands\Interfaces\ISlideShowListViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -365,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\MCollection\signboard_open.png">
       <LogicalName>signboard_open.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\presentation.png">
+      <LogicalName>presentation.png</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
