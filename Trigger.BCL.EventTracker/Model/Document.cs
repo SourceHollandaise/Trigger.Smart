@@ -10,10 +10,13 @@ namespace Trigger.BCL.EventTracker.Model
     {
         public override void Delete()
         {
-            var path = Path.Combine(Map.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, FileName);
+            if (!string.IsNullOrWhiteSpace(FileName))
+            {
+                var path = Path.Combine(Map.ResolveInstance<IStoreConfiguration>().DocumentStoreLocation, FileName);
 
-            if (File.Exists(path))
-                File.Delete(path);
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
 
             base.Delete();
         }

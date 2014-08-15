@@ -20,5 +20,40 @@ namespace System.IO
             return null;
         }
     }
+
+    public static class FileInfoExtensions
+    {
+        public static bool IsSupportedDocument(this FileInfo fileInfo)
+        {
+            var ext = fileInfo.Extension.ToLower();
+
+            if (ext.EndsWith("pdf")
+                || ext.EndsWith("doc")
+                || ext.EndsWith("docx")
+                || ext.EndsWith("txt")
+                || ext.EndsWith("rtf"))
+                return true;
+
+            return false;
+        }
+
+        public static bool IsSupportedImage(this FileInfo fileInfo)
+        {
+            var ext = fileInfo.Extension.ToLower();
+
+            if (ext.EndsWith("jpg")
+                || ext.EndsWith("jpeg")
+                || ext.EndsWith("png")
+                || ext.EndsWith("gif")
+                || ext.EndsWith("bmp")
+                || ext.EndsWith("tif")
+                || ext.EndsWith("ico")
+                || ext.EndsWith("icns"))
+                return true;
+
+            return false;
+
+        }
+    }
 }
 	

@@ -33,7 +33,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "Update Documents";
+                return "Load files";
             }
         }
 

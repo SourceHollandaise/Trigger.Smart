@@ -61,7 +61,6 @@
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\ContactType.cs" />
     <Compile Include="Model\Person.cs" />
-    <Compile Include="Services\DocumentFileDataService.cs" />
     <Compile Include="Views\PersonViewLayoutDemoDescriptor.cs" />
     <Compile Include="Views\Lists\AreaListDescriptor.cs" />
     <Compile Include="Views\Lists\ContactListDescriptor.cs" />
@@ -108,6 +107,7 @@
     <Compile Include="Views\ListDetails\PersonListDetailViewDescriptor.cs" />
     <Compile Include="Views\Lists\IssueTrackerListOpenDescriptor.cs" />
     <Compile Include="Views\Lists\IssueTrackerListAcceptedDescriptor.cs" />
+    <Compile Include="Services\FileDataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

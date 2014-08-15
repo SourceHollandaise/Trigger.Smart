@@ -13,7 +13,21 @@ namespace Trigger.BCL.EventTracker
 
             TabItemDescriptions = new List<TabItemDescription>
             {
-                new TabItemDescription("Document", 1)
+                new TabItemDescription("Preview", 1)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Preview file", ShowLabel = false, Fill = true },
+                            }
+                        }
+                    }
+                },
+                new TabItemDescription("Document", 2)
                 {
                     GroupItemDescriptions = new List<GroupItemDescription>
                     {
@@ -32,20 +46,6 @@ namespace Trigger.BCL.EventTracker
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area" },
                                 new ViewItemDescription(Fields.GetName(m => m.Issue), 2){ LabelText = "Issue" },
-                            }
-                        }
-                    }
-                },
-                new TabItemDescription("Preview", 2)
-                {
-                    GroupItemDescriptions = new List<GroupItemDescription>
-                    {
-                        new GroupItemDescription(null, 1)
-                        {
-                            Fill = true,
-                            ViewItemDescriptions = new List<ViewItemDescription>
-                            {
-                                new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Preview file", ShowLabel = false, Fill = true },
                             }
                         }
                     }

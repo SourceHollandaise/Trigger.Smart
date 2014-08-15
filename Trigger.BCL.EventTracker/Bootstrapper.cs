@@ -32,7 +32,7 @@ namespace Trigger.BCL.EventTracker
         {
             base.RegisterDependencies();
 
-            Map.RegisterType<IFileDataService, DocumentFileDataService>();
+            Map.RegisterType<IFileDataService, FileDataService>();
         }
 
         public override void RegisterViewDescriptors()

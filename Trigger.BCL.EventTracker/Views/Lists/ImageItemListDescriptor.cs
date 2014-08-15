@@ -10,6 +10,7 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemListDescriptor()
         {
+            RegisterCommands<IUpdateDocumentStoreListViewCommand>();
             RegisterCommands<ISlideShowListViewCommand>();
 
             ListShowTags = false;
