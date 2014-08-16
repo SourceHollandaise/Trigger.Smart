@@ -10,6 +10,12 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("User")]
     public class ApplicationUser : User
     {
+
+        public override string GetSearchString()
+        {
+            return UserName + Email;
+        }
+
         [System.ComponentModel.DisplayName("Linked areas")]
         [System.Runtime.Serialization.IgnoreDataMember]
         [LinkedList(typeof(Area))]

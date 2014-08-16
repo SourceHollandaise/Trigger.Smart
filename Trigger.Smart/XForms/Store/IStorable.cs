@@ -13,6 +13,8 @@ namespace XForms.Store
 
         string GetRepresentation { get; }
 
+        string GetSearchString();
+
         void OnLoaded();
 
         void Save();

@@ -8,6 +8,10 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("user_comments")]
     public class Contact : StorableBase
     {
+        public override string GetSearchString()
+        {
+            return PersonAlias + PhoneNumber + MobileNumber + Email;
+        }
 
         public string PersonAlias
         {

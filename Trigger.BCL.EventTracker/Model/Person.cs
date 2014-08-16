@@ -10,6 +10,11 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("user")]
     public class Person : StorableBase
     {
+        public override string GetSearchString()
+        {
+            return PersonDisplayName + AddressDisplayName;
+        }
+
         public string PersonDisplayName
         {
             get

@@ -11,7 +11,19 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DisplayName("Gallery")]
     public class ImageItem : StorableBase, IFileData
     {
-       
+        public override string GetSearchString()
+        {
+            return Subject + FileName + Gallery != null ? Gallery.Name : "";
+        }
+
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Subject;
+            }
+        }
+
         string subject;
 
         public string Subject
@@ -101,24 +113,7 @@ namespace Trigger.BCL.EventTracker.Model
                 gallery = value;
 
                 OnPropertyChanged();
-            }
-        }
-
-        bool privateImage;
-
-        public bool PrivateImage
-        {
-            get
-            {
-                return privateImage;
-            }
-            set
-            {
-                if (Equals(privateImage, value))
-                    return;
-                privateImage = value;
-
-                OnPropertyChanged();
+               
             }
         }
     }

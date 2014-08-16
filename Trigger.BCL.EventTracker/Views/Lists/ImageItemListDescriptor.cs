@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
 using XForms.Design;
 using XForms.Commands;
+using XForms.Store;
+using System.Linq;
+using XForms.Model;
+using XForms.Dependency;
 
 namespace Trigger.BCL.EventTracker
 {

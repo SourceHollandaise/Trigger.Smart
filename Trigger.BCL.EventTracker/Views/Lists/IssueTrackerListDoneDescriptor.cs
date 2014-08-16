@@ -2,12 +2,21 @@ using System.Collections.Generic;
 using System.Linq;
 using XForms.Store;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
 
     public class IssueTrackerListDoneDescriptor : IssueTrackerListDescriptor
     {
+        public IssueTrackerListDoneDescriptor()
+        {
+            Commands.Clear();
+
+            RegisterCommands<INavigateBackListViewCommand>();
+            RegisterCommands<IRefreshListViewCommand>();
+        }
+
         public override IEnumerable<IStorable> Repository
         {
             get

@@ -1,5 +1,8 @@
-using XForms.Design;
 using System.Collections.Generic;
+using System.Linq;
+using XForms.Design;
+using XForms.Model;
+using XForms.Store;
 using Trigger.BCL.EventTracker.Model;
 
 namespace Trigger.BCL.EventTracker

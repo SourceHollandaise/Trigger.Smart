@@ -27,8 +27,6 @@ namespace XForms.Design
 
         int ListDetailViewColumns { get; set; }
 
-
-
         IDetailViewDescriptor DetailView { get; set; }
 
         ViewItemOrientation ListDetailViewOrientation { get; set; }
@@ -41,7 +39,7 @@ namespace XForms.Design
 
         void RegisterCommands<TCommand>() where TCommand : IListViewCommand;
 
-        IEnumerable<IStorable> Repository { get; }
+        IEnumerable<IStorable> Repository { get; set; }
 
         Func<IStorable, bool> Filter { get; set; }
     }

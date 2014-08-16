@@ -73,10 +73,10 @@ namespace XForms.Design
                 });
                 commandBar.Add(button, false, false);
             }
-            commandBar.Add(new DynamicLayout()
-            {
-                Size = new Size(-1, -1)
-            });
+
+            commandBar.Add(null);
+            commandBar.Add(GetSearchBox(), false, false);
+
             commandBar.EndHorizontal();
             return commandBar;
         }
@@ -104,6 +104,43 @@ namespace XForms.Design
                 });
                 commandBar.Add(button, false, false);
             }
+        }
+
+        Control GetSearchBox()
+        {
+            var layout = new DynamicLayout();
+            var searchBox = new SearchBox();
+            searchBox.Size = new Size(200, -1);
+            searchBox.PlaceholderText = "Search";
+            searchBox.Font = new Font(searchBox.Font.Family, 14F);
+
+            searchBox.KeyDown += (sender, e) =>
+            {
+                if (e.Key == Keys.Enter && !string.IsNullOrWhiteSpace(searchBox.Text))
+                {
+                    descriptor.Filter = new Func<IStorable, bool>((args) => args.GetSearchString().ToLower().Contains(searchBox.Text.ToLower()));
+
+                    if (descriptor.ListDetailView)
+                    {
+                        var builder = new ListDetailViewBuilder(descriptor, this.ModelType);
+                        var content = builder.GetContent();
+                        descriptor.Filter = null;
+                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+                    }
+                    else
+                    {
+
+                        var builder = new ListViewBuilder(descriptor, this.ModelType);
+                        var content = builder.GetContent();
+                        descriptor.Filter = null;
+                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+                    }
+                }
+            };
+
+            layout.Add(searchBox);
+
+            return layout;
         }
     }
 }

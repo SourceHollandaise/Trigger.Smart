@@ -46,19 +46,20 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-        bool privateGallery;
+        ApplicationUser owner;
 
-        public bool PrivateGallery
+        [LinkedObject]
+        public ApplicationUser Owner
         {
             get
             {
-                return privateGallery;
+                return owner;
             }
             set
             {
-                if (Equals(privateGallery, value))
+                if (Equals(owner, value))
                     return;
-                privateGallery = value;
+                owner = value;
 
                 OnPropertyChanged();
             }

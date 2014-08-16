@@ -48,13 +48,7 @@ namespace XForms.Design
             Commands.Add(command);
         }
 
-        public virtual IEnumerable<IStorable> Repository
-        {
-            get
-            {
-                return null;
-            }
-        }
+        public virtual IEnumerable<IStorable> Repository { get; set; }
 
         public virtual Func<IStorable, bool> Filter { get; set; }
 
@@ -70,6 +64,7 @@ namespace XForms.Design
             RegisterCommands<INavigateBackListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
+            //RegisterCommands<ISearchListViewCommand>();
 
             var defaultPropertyAttribute = typeof(T).FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
             if (defaultPropertyAttribute != null)

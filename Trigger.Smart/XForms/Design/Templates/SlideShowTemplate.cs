@@ -7,6 +7,7 @@ using XForms.Store;
 namespace XForms.Design
 {
 
+
     public class SlideShowTemplate : Form
     {
         bool loop;

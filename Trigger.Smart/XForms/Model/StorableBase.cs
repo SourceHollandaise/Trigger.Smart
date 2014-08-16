@@ -6,6 +6,12 @@ namespace XForms.Model
 {
     public abstract class StorableBase : NotifyPropertyChangedBase, IStorable
     {
+
+        public virtual string GetSearchString()
+        {
+            return GetRepresentation;
+        }
+
         public virtual string GetRepresentation
         {
             get

@@ -8,6 +8,11 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("blog_post")]
     public class Document : StorableBase, IFileData
     {
+        public override string GetSearchString()
+        {
+            return Subject + Description;
+        }
+
         public override void Delete()
         {
             if (!string.IsNullOrWhiteSpace(FileName))

@@ -27,6 +27,7 @@ namespace XForms.Design
             this.modelType = modelType;
         }
 
+
         public Control GetContent()
         {
             var commandBarLayout = new DynamicLayout();

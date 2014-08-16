@@ -11,6 +11,12 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("note_edit")]
     public class IssueTracker : StorableBase, IFileData
     {
+
+        public override string GetSearchString()
+        {
+            return Subject + Description;
+        }
+
         public override void Initialize()
         {
             base.Initialize();

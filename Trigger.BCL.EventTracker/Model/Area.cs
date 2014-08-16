@@ -11,6 +11,11 @@ namespace Trigger.BCL.EventTracker.Model
     [ImageName("application")]
     public class Area : StorableBase
     {
+        public override string GetSearchString()
+        {
+            return Name + Description;
+        }
+
         string name;
 
         public string Name

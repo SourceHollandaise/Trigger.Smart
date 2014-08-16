@@ -7,7 +7,7 @@ namespace XForms.Commands
 
         public void Execute(ListViewArguments listParameter)
         {
-
+            new XForms.Design.SearchFormTemplate().Show();
         }
 
         public string ID
@@ -38,7 +38,7 @@ namespace XForms.Commands
         {
             get
             {
-                return "";
+                return "view";
             }
         }
 
@@ -46,7 +46,7 @@ namespace XForms.Commands
         {
             get
             {
-                return 160;
+                return 34;
             }
         }
 

@@ -1,6 +1,8 @@
 using XForms.Design;
 using System.Collections.Generic;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
+using XForms.Model;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -9,6 +11,15 @@ namespace Trigger.BCL.EventTracker
     {
         public ApplicationUserListDescriptor()
         {
+            Commands.Clear();
+
+            RegisterCommands<INavigateBackListViewCommand>();
+
+            if (ApplicationQuery.CurrentUserIsAdministrator)
+                RegisterCommands<ICreateObjectListViewCommand>();
+
+            RegisterCommands<IRefreshListViewCommand>();
+
             ListShowTags = false;
 
             DefaultSorting = ColumnSorting.Ascending;
