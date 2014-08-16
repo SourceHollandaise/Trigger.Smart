@@ -1,5 +1,6 @@
 using System;
 using Trigger.BCL.EventTracker;
+using XForms.Security;
 
 namespace Trigger.App.OSX.EventTracker
 {
@@ -10,7 +11,19 @@ namespace Trigger.App.OSX.EventTracker
         {
             var application = new XForms.Platform.XFormsApplication();
 
-            application.InitalizeApplication(new Bootstrapper());
+            LogonParameters logon = null;
+
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                logon = new LogonParameters
+                {
+                    UserName = "Admin",
+                    Password = "admin"
+                };
+            }
+        
+            application.InitalizeApplication(new Bootstrapper(), logon);
+
             application.Run();
         }
     }

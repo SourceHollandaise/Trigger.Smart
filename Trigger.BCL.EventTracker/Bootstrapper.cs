@@ -33,6 +33,7 @@ namespace Trigger.BCL.EventTracker
             base.RegisterDependencies();
 
             Map.RegisterType<IFileDataService, FileDataService>();
+            Map.RegisterType<IAuthenticate, ApplicationDataStoreAuthenticate>();
         }
 
         public override void RegisterViewDescriptors()
