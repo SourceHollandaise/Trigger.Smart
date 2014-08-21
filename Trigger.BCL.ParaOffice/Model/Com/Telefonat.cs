@@ -10,6 +10,10 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("user_comment")]
     public class Telefonat : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return GetRepresentation + Beschreibung;
+        }
 
         public override void Initialize()
         {

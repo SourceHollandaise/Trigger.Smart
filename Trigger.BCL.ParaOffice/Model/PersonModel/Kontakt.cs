@@ -8,6 +8,10 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("user_comments")]
     public class Kontakt : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return PersonAlias + Telefon + MobilTelefon + Email + WebSite;
+        }
 
         [System.ComponentModel.DisplayName("Person")]
         public string PersonAlias

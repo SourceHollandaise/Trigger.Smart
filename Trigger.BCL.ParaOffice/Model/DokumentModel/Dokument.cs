@@ -10,6 +10,11 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("blog_post")]
     public class Dokument : ExportableBase, IFileData
     {
+        public override string GetSearchString()
+        {
+            return Subject + Bemerkung + RAAlias + SKAlias + AktAlias;
+        }
+
         public override void Initialize()
         {
             SK = CurrentSBService.CurrentSB;

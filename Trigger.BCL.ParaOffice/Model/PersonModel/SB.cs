@@ -10,6 +10,11 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("user_accept")]
     public class SB : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return ID + UserAlias;
+        }
+
         string id;
 
         [System.ComponentModel.DisplayName("SB-Kürzel")]

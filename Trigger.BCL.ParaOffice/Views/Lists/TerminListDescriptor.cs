@@ -43,24 +43,5 @@ namespace Trigger.BCL.ParaOffice
                 return store.LoadAll<SB>().Where(p => p.TermineAnzeigen).SelectMany(p => p.LinkedTermine) as IEnumerable<IStorable>;
             }
         }
-
-        /*
-        public override Func<IStorable, bool> Filter
-        {
-            get
-            {
-                return m =>
-                {
-                    var termin = m as Termin;
-                    return termin != null && termin.SB != null;
-
-                };
-            }
-            set
-            {
-                base.Filter = value;
-            }
-        }
-        */
     }
 }

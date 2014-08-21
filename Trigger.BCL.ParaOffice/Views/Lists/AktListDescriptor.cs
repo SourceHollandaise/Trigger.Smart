@@ -11,9 +11,6 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Bezeichnung);
 
-            DefaultSorting = ColumnSorting.Ascending;
-            DefaultSortProperty = Fields.GetName(m => m.Bezeichnung);
-
             ListDetailView = true;
             ListDetailViewColumns = 2;
             ListDetailViewWithToolbar = true;

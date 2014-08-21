@@ -11,6 +11,11 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("user")]
     public class Person : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return PersonenName + PLZ + Ort + Strasse;
+        }
+
         [System.ComponentModel.DisplayName("Personenname")]
         public string PersonenName
         {

@@ -12,6 +12,11 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("folder_full")]
     public class Akt : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return Bezeichnung + Bemerkung + AktArtAlias;
+        }
+
         public override void Initialize()
         {
             AnlageDatum = DateTime.Now;

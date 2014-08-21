@@ -10,6 +10,11 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("calendar_date")]
     public class Termin : ExportableBase
     {
+        public override string GetSearchString()
+        {
+            return GetRepresentation + Beschreibung;
+        }
+
         [System.ComponentModel.DisplayName("Termin")]
         public override string GetRepresentation
         {

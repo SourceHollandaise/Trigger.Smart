@@ -64,7 +64,7 @@ namespace XForms.Design
             RegisterCommands<INavigateBackListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
-            //RegisterCommands<ISearchListViewCommand>();
+            RegisterCommands<ISearchListViewCommand>();
 
             var defaultPropertyAttribute = typeof(T).FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
             if (defaultPropertyAttribute != null)

@@ -106,6 +106,8 @@ namespace XForms.Design
             }
         }
 
+        string lastSearchString;
+
         Control GetSearchBox()
         {
             var layout = new DynamicLayout();
@@ -116,31 +118,45 @@ namespace XForms.Design
 
             searchBox.KeyDown += (sender, e) =>
             {
-                if (e.Key == Keys.Enter && !string.IsNullOrWhiteSpace(searchBox.Text))
+                if (e.Key == Keys.Enter)
                 {
-                    descriptor.Filter = new Func<IStorable, bool>((args) => args.GetSearchString().ToLower().Contains(searchBox.Text.ToLower()));
-
-                    if (descriptor.ListDetailView)
+                    if (!string.IsNullOrWhiteSpace(searchBox.Text))
                     {
-                        var builder = new ListDetailViewBuilder(descriptor, this.ModelType);
-                        var content = builder.GetContent();
-                        descriptor.Filter = null;
-                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
-                    }
-                    else
-                    {
+                        lastSearchString = searchBox.Text;
 
-                        var builder = new ListViewBuilder(descriptor, this.ModelType);
-                        var content = builder.GetContent();
-                        descriptor.Filter = null;
-                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+                        descriptor.Filter = new Func<IStorable, bool>((args) => args.GetSearchString().ToLower().Contains(searchBox.Text.ToLower()));
                     }
+
+                    if (string.IsNullOrWhiteSpace(searchBox.Text))
+                    {
+                        descriptor.Filter = null;
+                    }
+
+                    CreateContentBasedOnFilter();
                 }
             };
 
             layout.Add(searchBox);
 
             return layout;
+        }
+
+        void CreateContentBasedOnFilter()
+        {
+            if (descriptor.ListDetailView)
+            {
+                var builder = new ListDetailViewBuilder(descriptor, this.ModelType);
+                var content = builder.GetContent();
+                descriptor.Filter = null;
+                (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+            }
+            else
+            {
+                var builder = new ListViewBuilder(descriptor, this.ModelType);
+                var content = builder.GetContent();
+                descriptor.Filter = null;
+                (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+            }
         }
     }
 }
