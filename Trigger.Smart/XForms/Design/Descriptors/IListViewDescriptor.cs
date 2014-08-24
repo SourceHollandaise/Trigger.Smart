@@ -17,8 +17,6 @@ namespace XForms.Design
 
         bool ListShowTags { get; set; }
 
-        bool IsImageList { get; set; }
-
         bool ShowListDetailViewForLinkedLists { get; set; }
 
         bool ListDetailView { get; set; }

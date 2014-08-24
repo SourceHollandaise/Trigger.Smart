@@ -29,16 +29,21 @@ namespace XForms.Design
             Commands.Add(command);
         }
 
+        protected virtual void RegisterDefaultDetailCommands()
+        {
+            RegisterCommands<INavigateBackDetailViewCommand>();
+            RegisterCommands<ISaveObjectDetailViewCommand>();
+            RegisterCommands<IRefreshDetailViewCommand>();
+            RegisterCommands<IDeleteObjectDetailViewCommand>();
+        }
+
         protected FieldNames<TModel> Fields = new FieldNames<TModel>();
 
         protected const string EmptySpaceFieldName = "EmptySpace";
 
         protected DetailViewDescriptor()
         {
-            RegisterCommands<INavigateBackDetailViewCommand>();
-            RegisterCommands<ISaveObjectDetailViewCommand>();
-            RegisterCommands<IRefreshDetailViewCommand>();
-            RegisterCommands<IDeleteObjectDetailViewCommand>();
+            RegisterDefaultDetailCommands();
            
             IsTaggable = true;
         }

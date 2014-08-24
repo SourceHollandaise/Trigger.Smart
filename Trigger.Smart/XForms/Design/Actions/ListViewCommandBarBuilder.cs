@@ -12,7 +12,7 @@ namespace XForms.Design
 
     public class ListViewCommandBarBuilder
     {
-        IListViewDescriptor descriptor;
+        readonly IListViewDescriptor descriptor;
 
         IEnumerable<IStorable> dataSet;
 
@@ -23,6 +23,14 @@ namespace XForms.Design
         }
 
         public Type ModelType
+        {
+            get;
+            set;
+        }
+
+        static string lastSearchString;
+
+        protected SearchBox FullTextSearchBox
         {
             get;
             set;
@@ -106,29 +114,29 @@ namespace XForms.Design
             }
         }
 
-        string lastSearchString;
-
         Control GetSearchBox()
         {
             var layout = new DynamicLayout();
-            var searchBox = new SearchBox();
-            searchBox.Size = new Size(200, -1);
-            searchBox.PlaceholderText = "Search";
-            searchBox.Font = new Font(searchBox.Font.Family, 14F);
 
-            searchBox.KeyDown += (sender, e) =>
+            FullTextSearchBox = new SearchBox();
+            FullTextSearchBox.Size = new Size(200, -1);
+            FullTextSearchBox.PlaceholderText = "Search";
+            FullTextSearchBox.Font = new Font(FullTextSearchBox.Font.Family, 14F);
+           
+            FullTextSearchBox.KeyDown += (sender, e) =>
             {
                 if (e.Key == Keys.Enter)
                 {
-                    if (!string.IsNullOrWhiteSpace(searchBox.Text))
+                    if (!string.IsNullOrWhiteSpace(FullTextSearchBox.Text))
                     {
-                        lastSearchString = searchBox.Text;
+                        lastSearchString = FullTextSearchBox.Text;
 
-                        descriptor.Filter = new Func<IStorable, bool>((args) => args.GetSearchString().ToLower().Contains(searchBox.Text.ToLower()));
+                        descriptor.Filter = new Func<IStorable, bool>((args) => args.GetSearchString().ToLower().Contains(FullTextSearchBox.Text.ToLower()));
                     }
 
-                    if (string.IsNullOrWhiteSpace(searchBox.Text))
+                    if (string.IsNullOrWhiteSpace(FullTextSearchBox.Text))
                     {
+                        lastSearchString = null;
                         descriptor.Filter = null;
                     }
 
@@ -136,7 +144,9 @@ namespace XForms.Design
                 }
             };
 
-            layout.Add(searchBox);
+            if (!string.IsNullOrWhiteSpace(lastSearchString))
+                FullTextSearchBox.Text = lastSearchString;
+            layout.Add(FullTextSearchBox);
 
             return layout;
         }

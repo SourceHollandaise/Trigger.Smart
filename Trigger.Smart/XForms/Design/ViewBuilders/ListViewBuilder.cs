@@ -98,7 +98,7 @@ namespace XForms.Design
             };
             CurrentGridView.CellFormatting += (sender, e) =>
             {
-                if (!descriptor.IsImageList && descriptor.ListShowTags && e.Column.ID == "TagColumn")
+                if (descriptor.ListShowTags && e.Column.ID == "TagColumn")
                 {
                     if (e.Item != null)
                         e.BackgroundColor = SetTagBackColor(e.Item as IStorable);

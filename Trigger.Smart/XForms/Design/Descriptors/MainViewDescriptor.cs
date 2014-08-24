@@ -18,5 +18,11 @@ namespace XForms.Design
 
             Commands.Add(MapProvider.Instance.ResolveType<TCommand>());
         }
+
+        public MainViewDescriptor()
+        {
+            RegisterCommands<ICurrentUserDetailsCommand>();
+            RegisterCommands<IApplicationExitCommand>();
+        }
     }
 }

@@ -20,8 +20,6 @@ namespace XForms.Design
 
         public bool ListShowTags { get; set; }
 
-        public bool IsImageList { get; set; }
-
         public bool ListDetailView { get; set; }
 
         public bool ListDetailViewWithToolbar { get; set; }
@@ -48,6 +46,14 @@ namespace XForms.Design
             Commands.Add(command);
         }
 
+        protected virtual void RegisterDefaultListCommands()
+        {
+            RegisterCommands<INavigateBackListViewCommand>();
+            RegisterCommands<ICreateObjectListViewCommand>();
+            RegisterCommands<IRefreshListViewCommand>();
+            RegisterCommands<ISearchListViewCommand>();
+        }
+
         public virtual IEnumerable<IStorable> Repository { get; set; }
 
         public virtual Func<IStorable, bool> Filter { get; set; }
@@ -59,12 +65,8 @@ namespace XForms.Design
             AllowColumnReorder = true;
             AllowMultiSelection = false;
             ListShowTags = true;
-            IsImageList = false;
 
-            RegisterCommands<INavigateBackListViewCommand>();
-            RegisterCommands<ICreateObjectListViewCommand>();
-            RegisterCommands<IRefreshListViewCommand>();
-            RegisterCommands<ISearchListViewCommand>();
+            RegisterDefaultListCommands();
 
             var defaultPropertyAttribute = typeof(T).FindAttribute<System.ComponentModel.DefaultPropertyAttribute>();
             if (defaultPropertyAttribute != null)

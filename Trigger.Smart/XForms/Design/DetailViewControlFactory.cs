@@ -96,8 +96,6 @@ namespace XForms.Design
                         {
                             var descriptor = Activator.CreateInstance(descriptorType) as IListViewDescriptor;
 
-
-
                             var dataSet = value as IEnumerable<IStorable>;
                             if (descriptor.Filter != null)
                                 dataSet = dataSet.Where(descriptor.Filter);
