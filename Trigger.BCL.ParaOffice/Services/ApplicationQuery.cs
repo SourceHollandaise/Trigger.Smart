@@ -5,7 +5,7 @@ using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public static class CurrentSBService
+    public static class ApplicationModelQuery
     {
         public static SB CurrentSB
         {

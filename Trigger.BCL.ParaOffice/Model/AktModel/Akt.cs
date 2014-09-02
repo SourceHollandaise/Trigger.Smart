@@ -20,7 +20,7 @@ namespace Trigger.BCL.ParaOffice
         public override void Initialize()
         {
             AnlageDatum = DateTime.Now;
-            SB2 = CurrentSBService.CurrentSB;
+            SB2 = ApplicationModelQuery.CurrentSB;
             AktArt = Store.LoadAll<AktArt>().FirstOrDefault(p => p.Art.Equals("Zivil"));
         }
 
@@ -266,6 +266,18 @@ namespace Trigger.BCL.ParaOffice
             {
                 return Store.LoadAll<AktPerson>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId))
                     .OrderBy(p => p.Partei).ThenBy(p => p.Reihung);
+            }
+        }
+
+        [System.ComponentModel.DisplayName("Leistungen zu Akt")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Leistung))]
+        public IEnumerable<Leistung> LinkedLeistungen
+        {
+            get
+            {
+                return Store.LoadAll<Leistung>().Where(p => p.Akt != null && p.Akt.MappingId.Equals(MappingId))
+                    .OrderBy(p => p.Datum);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Trigger.BCL.ParaOffice
 
         public override void Initialize()
         {
-            SK = CurrentSBService.CurrentSB;
+            SK = ApplicationModelQuery.CurrentSB;
         }
 
         string subject;

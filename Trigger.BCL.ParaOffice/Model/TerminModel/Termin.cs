@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using XForms.Model;
+using XForms.Store;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -27,7 +28,7 @@ namespace Trigger.BCL.ParaOffice
         public override void Initialize()
         {
             Art = TerminArt.Termin;
-            Erzeuger = CurrentSBService.CurrentSB;
+            Erzeuger = ApplicationModelQuery.CurrentSB;
             Ort = "Kanzlei";
             Beginn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 1, 0, 0);
         }

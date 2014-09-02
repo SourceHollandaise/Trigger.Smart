@@ -18,7 +18,7 @@ namespace Trigger.BCL.ParaOffice
         public override void Initialize()
         {
             Beginn = DateTime.Now;
-            SB1 = CurrentSBService.CurrentSB;
+            SB1 = ApplicationModelQuery.CurrentSB;
             Art = TelefonatArt.Ein;
             Status = TelefonatStatus.OK;
         }

@@ -54,7 +54,6 @@
     <Compile Include="Model\AktModel\Partei.cs" />
     <Compile Include="Model\PersonModel\SB.cs" />
     <Compile Include="Model\PersonModel\PersonenArt.cs" />
-    <Compile Include="Services\CurrentSBService.cs" />
     <Compile Include="Services\StoreConfiguration.cs" />
     <Compile Include="Services\DokumentFileDataService.cs" />
     <Compile Include="Views\Lists\AktArtListDescriptor.cs" />
@@ -94,6 +93,9 @@
     <Compile Include="Views\ListDetails\AktListDetailViewDescriptor.cs" />
     <Compile Include="Views\Details\AktViewDescriptor.cs" />
     <Compile Include="Views\ListDetails\SBListDetailViewDescriptor.cs" />
+    <Compile Include="Model\LeistungModel\Leistung.cs" />
+    <Compile Include="Services\ApplicationQuery.cs" />
+    <Compile Include="Model\LeistungModel\LeistungKatalog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -109,6 +111,7 @@
     <Folder Include="Commands\" />
     <Folder Include="Model\Com\" />
     <Folder Include="Views\ListDetails\" />
+    <Folder Include="Model\LeistungModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
