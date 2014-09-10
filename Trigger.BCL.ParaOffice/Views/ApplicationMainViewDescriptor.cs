@@ -21,7 +21,15 @@ namespace Trigger.BCL.ParaOffice
                         new NavigationItemDescription(typeof(Dokument), "Postbuch", 4){ ImageName = "folder3_document", ListView = new DokumentListDescriptor() },
                     }
                 },
-                new NavigationGroupItem("Stammdaten", 2)
+                new NavigationGroupItem("ERV", 2)
+                {
+                    NavigationItems = new List<NavigationItemDescription>
+                    {
+                        new NavigationItemDescription(typeof(Rueckverkehr), "Rückverkehr", 1) { ImageName = "folder2", ListView = new RueckverkehrListDescriptor() }
+                    }
+                },
+
+                new NavigationGroupItem("Stammdaten", 3)
                 {
                     NavigationItems = new List<NavigationItemDescription>
                     {

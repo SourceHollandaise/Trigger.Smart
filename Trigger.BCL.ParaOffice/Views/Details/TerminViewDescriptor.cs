@@ -3,7 +3,6 @@ using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class TerminViewDescriptor : DetailViewDescriptor<Termin>
     {
         public TerminViewDescriptor()

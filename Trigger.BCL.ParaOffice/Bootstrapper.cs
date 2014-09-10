@@ -47,6 +47,8 @@ namespace Trigger.BCL.ParaOffice
             DetailViewDescriptorProvider.Declare<Telefonat, TelefonatViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Rueckverkehr, RueckverkehrViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<RueckverkehrDokument, RueckverkehrDokumentViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
@@ -58,6 +60,8 @@ namespace Trigger.BCL.ParaOffice
             ListViewDescriptorProvider.Declare<Telefonat, TelefonatListDescriptor>();
             ListViewDescriptorProvider.Declare<Termin, TerminListDescriptor>();
             ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
+            ListViewDescriptorProvider.Declare<Rueckverkehr, RueckverkehrListDescriptor>();
+            ListViewDescriptorProvider.Declare<RueckverkehrDokument, RueckverkehrDokumentListDescriptor>();
         }
 
         public override void RegisterCommands()
@@ -66,6 +70,7 @@ namespace Trigger.BCL.ParaOffice
 
             Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentSBDetailsCommand>();
+            Map.RegisterType<IRueckverkehrAbholenListViewCommand, RueckverkehrAbholenListViewCommand>();
         }
 
         public override void CreateDefaultUser()

@@ -3,7 +3,6 @@ using XForms.Design;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class AktListDescriptor : ListViewDescriptor<Akt>
     {
         public AktListDescriptor()

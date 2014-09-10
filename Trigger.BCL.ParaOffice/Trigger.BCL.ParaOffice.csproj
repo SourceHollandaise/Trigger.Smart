@@ -96,6 +96,13 @@
     <Compile Include="Model\LeistungModel\Leistung.cs" />
     <Compile Include="Services\ApplicationQuery.cs" />
     <Compile Include="Model\LeistungModel\LeistungKatalog.cs" />
+    <Compile Include="Model\ErvModel\Rueckverkehr.cs" />
+    <Compile Include="Views\Lists\RueckverkehrListDescriptor.cs" />
+    <Compile Include="Views\Lists\RueckverkehrDokumentListDescriptor.cs" />
+    <Compile Include="Views\Details\RueckverkehrViewDescriptor.cs" />
+    <Compile Include="Commands\IRueckverkehrAbholenListViewCommand.cs" />
+    <Compile Include="Commands\RueckverkehrAbholenListViewCommand.cs" />
+    <Compile Include="Views\Details\RueckverkehrDokumentViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -112,6 +119,7 @@
     <Folder Include="Model\Com\" />
     <Folder Include="Views\ListDetails\" />
     <Folder Include="Model\LeistungModel\" />
+    <Folder Include="Model\ErvModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
