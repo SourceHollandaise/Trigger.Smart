@@ -103,6 +103,7 @@
     <Compile Include="Commands\IRueckverkehrAbholenListViewCommand.cs" />
     <Compile Include="Commands\RueckverkehrAbholenListViewCommand.cs" />
     <Compile Include="Views\Details\RueckverkehrDokumentViewDescriptor.cs" />
+    <Compile Include="Model\ErvModel\RueckverkehrDokument.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

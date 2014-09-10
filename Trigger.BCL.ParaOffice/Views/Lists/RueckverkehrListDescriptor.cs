@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using XForms.Design;
+using XForms.Store;
+using XForms.Dependency;
+using System.Linq;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -20,6 +23,18 @@ namespace Trigger.BCL.ParaOffice
                 new ColumnDescription(Fields.GetName(m => m.EmpfangDatum), 4){ ColumnHeaderText = "Empfangen" },
                 new ColumnDescription(Fields.GetName(m => m.HinterlegungDatum), 4){ ColumnHeaderText = "Hinterlegt" },
             };
+        }
+
+        public override IEnumerable<IStorable> Repository
+        {
+            get
+            {
+                var store = MapProvider.Instance.ResolveType<IStore>();
+
+                var currentSBErvCode = ApplicationModelQuery.CurrentSB.ErvCode;
+
+                return store.LoadAll<Rueckverkehr>().Where(p => p.ErvCode.Equals(currentSBErvCode)) as IEnumerable<IStorable>;
+            }
         }
     }
 }

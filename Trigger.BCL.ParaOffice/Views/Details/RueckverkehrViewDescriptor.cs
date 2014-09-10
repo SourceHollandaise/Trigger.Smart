@@ -15,8 +15,8 @@ namespace Trigger.BCL.ParaOffice
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.ErvCode), 1){ LabelText = "ERV-Code", Required = true  },
-                        new ViewItemDescription(Fields.GetName(m => m.Art), 2){ LabelText = "Art", Required = true },
+                        new ViewItemDescription(Fields.GetName(m => m.ErvCode), 1){ LabelText = "ERV-Code", Required = true },
+                        new ViewItemDescription(Fields.GetName(m => m.Art), 2){ LabelText = "Art", Required = true  },
                         new ViewItemDescription(Fields.GetName(m => m.EmpfangDatum), 3){ LabelText = "Empfangen", Required = true  },
                         new ViewItemDescription(Fields.GetName(m => m.HinterlegungDatum), 4){ LabelText = "Hinterlegt", Required = true },
                     }
@@ -32,5 +32,4 @@ namespace Trigger.BCL.ParaOffice
             };
         }
     }
-    
 }

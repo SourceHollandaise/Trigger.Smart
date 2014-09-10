@@ -34,6 +34,24 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
+        string ervCode;
+
+        [System.ComponentModel.DisplayName("ERV-Code")]
+        public string ErvCode
+        {
+            get
+            {
+                return ervCode;
+            }
+            set
+            {
+                if (Equals(ervCode, value))
+                    return;
+                ervCode = value;
+
+                OnPropertyChanged();
+            }
+        }
 
         public string UserAlias
         {

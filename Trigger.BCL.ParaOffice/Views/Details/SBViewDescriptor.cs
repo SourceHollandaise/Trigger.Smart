@@ -20,8 +20,9 @@ namespace Trigger.BCL.ParaOffice
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.ID), 1){ LabelText = "SB-Kürzel", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
                                 new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "Benutzer", Required = true, ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
-                                new ViewItemDescription(Fields.GetName(m => m.TermineAnzeigen), 3){ LabelText = "Termine anzeigen" },
-                                new ViewItemDescription(Fields.GetName(m => m.TelefonatAnzeigen), 4){ LabelText = "Telefonate anzeigen" },
+                                new ViewItemDescription(Fields.GetName(m => m.ErvCode), 3) { LabelText = "ERV-Code" },
+                                new ViewItemDescription(Fields.GetName(m => m.TermineAnzeigen), 4){ LabelText = "Termine anzeigen" },
+                                new ViewItemDescription(Fields.GetName(m => m.TelefonatAnzeigen), 5){ LabelText = "Telefonate anzeigen" },
                             }
                         },
                     }

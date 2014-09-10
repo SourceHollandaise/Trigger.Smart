@@ -11,7 +11,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public override string GetSearchString()
         {
-            return base.GetSearchString();
+            return ErvCode + Art;
         }
 
         public override void Initialize()
@@ -19,34 +19,94 @@ namespace Trigger.BCL.ParaOffice
             base.Initialize();
         }
 
+        string ervCode;
+
         public string ErvCode
         {
-            get;
-            set;
+            get
+            {
+                return ervCode;
+            }
+            set
+            {
+                if (Equals(ervCode, value))
+                    return;
+                ervCode = value;
+
+                OnPropertyChanged();
+            }
         }
+
+        string art;
 
         public string Art
         {
-            get;
-            set;
+            get
+            {
+                return art;
+            }
+            set
+            {
+                if (Equals(art, value))
+                    return;
+                art = value;
+
+                OnPropertyChanged();
+            }
         }
+
+        int anzahlDokumentAnhang;
 
         public int AnzahlDokumentAnhang
         {
-            get;
-            set;
+            get
+            {
+                return anzahlDokumentAnhang;
+            }
+            set
+            {
+                if (Equals(anzahlDokumentAnhang, value))
+                    return;
+                anzahlDokumentAnhang = value;
+
+                OnPropertyChanged();
+            }
         }
+
+        DateTime empfangDatum;
 
         public DateTime EmpfangDatum
         {
-            get;
-            set;
+            get
+            {
+                return empfangDatum;
+            }
+            set
+            {
+                if (Equals(empfangDatum, value))
+                    return;
+                empfangDatum = value;
+
+                OnPropertyChanged();
+            }
         }
+
+        DateTime hinterlegungDatum;
 
         public DateTime HinterlegungDatum
         {
-            get;
-            set;
+            get
+            {
+                return hinterlegungDatum;
+            }
+            set
+            {
+                if (Equals(hinterlegungDatum, value))
+                    return;
+                hinterlegungDatum = value;
+
+                OnPropertyChanged();
+            }
         }
 
         [System.ComponentModel.DisplayName("Dokumente zu Rückverkehr")]
@@ -60,38 +120,5 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-    }
-
-    [System.ComponentModel.DefaultProperty("Subject")]
-    [System.ComponentModel.DisplayName("Rückverkehr-Anhang")]
-    public class RueckverkehrDokument : ExportableBase, IFileData
-    {
-        public override string GetSearchString()
-        {
-            return base.GetSearchString();
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
-        public string Subject
-        {
-            get;
-            set;
-        }
-
-        public string FileName
-        {
-            get;
-            set;
-        }
-
-        public Rueckverkehr Rueckverkehr
-        {
-            get;
-            set;
-        }
     }
 }
