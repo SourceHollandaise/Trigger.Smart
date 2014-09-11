@@ -1,7 +1,5 @@
-using System;
 using XForms.Store;
-using System.Collections.Generic;
-using System.Linq;
+using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
@@ -12,7 +10,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public override string GetSearchString()
         {
-            return base.GetSearchString();
+            return Subject + FileName;
         }
 
         public override void Initialize()
@@ -40,6 +38,8 @@ namespace Trigger.BCL.ParaOffice
 
         string fileName;
 
+        [System.ComponentModel.DisplayName("Datei")]
+        [FieldFileData]
         public string FileName
         {
             get

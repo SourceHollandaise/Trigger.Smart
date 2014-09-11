@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
         public void Execute(ListViewArguments listParameter)
         {
-
+            //TODO: Einlesen aus WebService und RV erstellen
         }
 
         public string ID

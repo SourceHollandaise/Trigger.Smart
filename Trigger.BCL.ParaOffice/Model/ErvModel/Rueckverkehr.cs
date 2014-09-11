@@ -11,7 +11,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public override string GetSearchString()
         {
-            return ErvCode + Art;
+            return ErvCode + Art + EmpfangDatum.ToLongDateString() + HinterlegungDatum.ToLongDateString();
         }
 
         public override void Initialize()
@@ -39,6 +39,7 @@ namespace Trigger.BCL.ParaOffice
 
         string art;
 
+        //TODO: Enum?
         public string Art
         {
             get
@@ -119,6 +120,5 @@ namespace Trigger.BCL.ParaOffice
                 return Store.LoadAll<RueckverkehrDokument>().Where(p => p.Rueckverkehr != null && p.Rueckverkehr.MappingId.Equals(MappingId));
             }
         }
-
     }
 }
