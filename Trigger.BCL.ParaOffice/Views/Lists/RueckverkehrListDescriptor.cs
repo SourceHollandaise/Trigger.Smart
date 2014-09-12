@@ -6,22 +6,26 @@ using System.Linq;
 
 namespace Trigger.BCL.ParaOffice
 {
-    public class RueckverkehrListDescriptor : ListViewDescriptor<Rueckverkehr>
+    public class RueckverkehrListDescriptor : ListViewDescriptor<ErvRueckverkehr>
     {
         public RueckverkehrListDescriptor()
         {
-            RegisterCommands<IRueckverkehrAbholenListViewCommand>();
+            RegisterCommands<IErvRueckverkehrAbrufenListViewCommand>();
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.HinterlegungDatum);
+            RowHeight = 48;
 
             ColumnDescriptions = new List<ColumnDescription>
             {
+                /*
                 new ColumnDescription(Fields.GetName(m => m.ErvCode), 1){ ColumnHeaderText = "ERV-Code" },
                 new ColumnDescription(Fields.GetName(m => m.Art), 2){ ColumnHeaderText = "Art" },
                 new ColumnDescription(Fields.GetName(m => m.AnzahlDokumentAnhang), 3){ ColumnHeaderText = "Anhänge" },
                 new ColumnDescription(Fields.GetName(m => m.EmpfangDatum), 4){ ColumnHeaderText = "Empfangen" },
                 new ColumnDescription(Fields.GetName(m => m.HinterlegungDatum), 4){ ColumnHeaderText = "Hinterlegt" },
+                */
+                new ColumnDescription(Fields.GetName(m => m.GetRepresentation), 1){ ColumnHeaderText = "Rückverkehrselement" },
             };
         }
 
@@ -33,7 +37,7 @@ namespace Trigger.BCL.ParaOffice
 
                 var currentSBErvCode = ApplicationModelQuery.CurrentSB.ErvCode;
 
-                return store.LoadAll<Rueckverkehr>().Where(p => p.ErvCode.Equals(currentSBErvCode)) as IEnumerable<IStorable>;
+                return store.LoadAll<ErvRueckverkehr>().Where(p => p.ErvCode.Equals(currentSBErvCode)) as IEnumerable<IStorable>;
             }
         }
     }

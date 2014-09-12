@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
@@ -9,74 +8,29 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public interface IMainViewTemplate
+    public sealed class ReducedMainViewTemplate : TemplateBase, IMainViewTemplate
     {
-
-    }
-
-    public sealed class MainViewTemplate : TemplateBase, IMainViewTemplate
-    {
-
-        public Panel ContentPanel
-        {
-            get;
-            set;
-        }
-
-        public Panel NavigationPanel
-        {
-            get;
-            set;
-        }
-
         public Type CurrentActiveType
         { 
             get;
             set;
         }
 
-        public MainViewTemplate() : base(typeof(IStorable), null)
+        public void UpdateNavigation()
         {
-            this.Size = new Size(1280, 800);
-            this.WindowState = WindowState.Maximized;
+            this.Content = GetMainPanelNavigationButtonStyle();
+        }
+
+        public ReducedMainViewTemplate() : base(typeof(IStorable), null)
+        {
+            this.Size = new Size(480, 800);
             this.Minimizable = true;
             this.Maximizable = true;
 
-     
-            CreateMainContent();
-
-            CreateMenu();
+            this.Content = GetMainPanelNavigationButtonStyle();
         }
 
-        void CreateMainContent()
-        {
-            CreateSplitPanels();
-
-            Content = CreateSplitLayout();
-        }
-
-        void CreateSplitPanels()
-        {
-            NavigationPanel = new Panel();
-            NavigationPanel.Content = GetMainPanelContentButtonStyle();
-            ContentPanel = new Panel();
-        }
-
-        Splitter CreateSplitLayout()
-        {
-            var splitter = new Splitter
-            {
-                Panel1 = NavigationPanel,
-                Panel2 = ContentPanel,
-                Orientation = SplitterOrientation.Horizontal,
-                FixedPanel = SplitterFixedPanel.Panel1
-            };
-            splitter.Panel1.Size = new Size(200, -1);
-            splitter.Panel2.Size = new Size(-1, -1);
-            return splitter;
-        }
-
-        Control GetMainPanelContentButtonStyle()
+        Control GetMainPanelNavigationButtonStyle()
         {
             var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
 
@@ -178,13 +132,13 @@ namespace XForms.Design
 
                 appGroupLayout.Add(button, true);
             }
-                
+
             appGroupLayout.EndVertical();
 
             appGroup.Content = appGroupLayout;
 
             navigationlayout.Add(appGroup);
-          
+
             navigationlayout.BeginVertical();
             navigationlayout.EndVertical();
 
@@ -199,9 +153,9 @@ namespace XForms.Design
 
             listLayout.Add(CreateListViewLayout(item.ListView));
 
-            ContentPanel.Content = listLayout;
+            this.Content = listLayout;
 
-            TemplateNavigator.Add(ContentPanel.Content);
+            TemplateNavigator.Add(this.Content);
 
             Title = item.NavigationItemText;
         }
@@ -211,7 +165,7 @@ namespace XForms.Design
             Control content = null;
 
             var layout = new DynamicLayout();
-               
+
             if (descriptor.ListDetailView)
             {
                 if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)
@@ -230,11 +184,11 @@ namespace XForms.Design
 
                 builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
                 {
-                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
                     if (detailContent != null)
                     {
-                        ContentPanel.Content = detailContent;
-                        TemplateNavigator.Add(ContentPanel.Content);
+                        this.Content = detailContent;
+                        TemplateNavigator.Add(this.Content);
                     }
                 };
 
@@ -242,24 +196,24 @@ namespace XForms.Design
                 {
                     if (e.Key == Keys.Enter)
                     {
-                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView, builder.ModelType);
+                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
                         if (detailContent != null)
                         {
-                            ContentPanel.Content = detailContent;
-                            TemplateNavigator.Add(ContentPanel.Content);
+                            this.Content = detailContent;
+                            TemplateNavigator.Add(this.Content);
                         }
                     }
                 };
 
                 layout.EndVertical();
             }
-                
+
             layout.Add(content);
 
             return layout;
         }
 
-        Control CreateDetailViewLayout(GridView currentGridView, Type modelType)
+        Control CreateDetailViewLayout(GridView currentGridView)
         {
             var currentObject = currentGridView.SelectedItem as IStorable;
             if (currentObject != null)
@@ -268,55 +222,6 @@ namespace XForms.Design
             }
 
             return null;
-        }
-
-        void CreateMenu()
-        {
-            var menu = new MenuBar();
-
-            Application.Instance.CreateStandardMenu(menu.Items);
-            var fileMenu = menu.Items.GetSubmenu("&File");
-
-            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
-
-            foreach (var command in descriptor.Commands)
-            {
-                var menuItem = new ButtonMenuItem();
-                menuItem.Image = ImageExtensions.GetImage(command.ImageName, 12);
-                menuItem.Text = command.Name;
-                menuItem.ID = command.GetType().FullName;
-
-                menuItem.Click += (sender, e) =>
-                {
-                    var commandType = Type.GetType(menuItem.ID);
-                    if (commandType != null)
-                    {
-                        var mainCommand = Activator.CreateInstance(commandType) as IMainViewCommand;
-                        if (mainCommand != null)
-                            mainCommand.Execute(this);
-                    }
-                };
-
-                fileMenu.Items.Add(menuItem);
-            }
-
-            /*
-            var help = menu.Items.GetSubmenu("&Help");
-
-            var aboutItem = new ButtonMenuItem();
-
-            aboutItem.Text = "About";
-            aboutItem.ID = "cmd_about";
-
-            aboutItem.Click += (sender, e) =>
-            {
-
-            };
-
-            help.Items.Add(aboutItem);
-            */
-
-            this.Menu = menu;
         }
     }
 }

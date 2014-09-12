@@ -4,7 +4,7 @@ namespace XForms.Commands
 {
     public class LogonCommand : ILogonCommand
     {
-        public void Execute(MainViewTemplate template)
+        public void Execute(TemplateBase template)
         {
             new LogonViewTemplate().ShowDialog();
         }

@@ -8,20 +8,20 @@ namespace XForms.Commands
 
     public class RefreshListViewCommand : IRefreshListViewCommand
     {
-        public void Execute(ListViewArguments args)
+        public void Execute(ListViewArguments listParameter)
         {
-            if (args.Grid != null)
+            if (listParameter.Grid != null)
             {
-                args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
+                listParameter.Grid.ReloadList(listParameter.TargetType, listParameter.CustomDataSet);
                 return;
             }
 
-            if (args.InputData is IListViewDescriptor)
+            if (listParameter.InputData is IListViewDescriptor)
             {
-                var descriptor = args.InputData as IListViewDescriptor;
+                var descriptor = listParameter.InputData as IListViewDescriptor;
                 if (descriptor.ListDetailView)
                 {
-                    var builder = new ListDetailViewBuilder(descriptor, args.TargetType, args.CustomDataSet);
+                    var builder = new ListDetailViewBuilder(descriptor, listParameter.TargetType, listParameter.CustomDataSet);
                     var content = builder.GetContent();
 
                     /*

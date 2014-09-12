@@ -49,7 +49,11 @@ namespace XForms.Platform
                 var logonForm = new LogonViewTemplate();
                 if (logonForm.ShowDialog() == DialogResult.Ok)
                 {
-                    MainForm = new MainViewTemplate();
+                    var mainTemplate = Map.ResolveType<IMainViewTemplate>();
+                    if (mainTemplate != null)
+                        MainForm = mainTemplate as TemplateBase;
+                    else
+                        MainForm = new MainViewTemplate();
                     MainForm.Show();
                 }
             }

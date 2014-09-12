@@ -4,7 +4,7 @@ using XForms.Design;
 namespace Trigger.BCL.ParaOffice
 {
 
-    public class RueckverkehrDokumentViewDescriptor : DetailViewDescriptor<RueckverkehrDokument>
+    public class RueckverkehrDokumentViewDescriptor : DetailViewDescriptor<ErvRueckverkehrDokument>
     {
         public RueckverkehrDokumentViewDescriptor()
         {

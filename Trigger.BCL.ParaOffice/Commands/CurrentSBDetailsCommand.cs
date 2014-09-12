@@ -11,7 +11,7 @@ namespace Trigger.BCL.ParaOffice
 
     public class CurrentSBDetailsCommand : ICurrentUserDetailsCommand
     {
-        public void Execute(MainViewTemplate template)
+        public void Execute(TemplateBase template)
         {
             ApplicationModelQuery.CurrentSB.ShowDetailContentEmbedded();
         }

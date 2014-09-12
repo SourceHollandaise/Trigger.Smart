@@ -36,6 +36,7 @@ namespace Trigger.BCL.ParaOffice
         public override void RegisterViewDescriptors()
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
+            Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
 
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();
@@ -47,8 +48,8 @@ namespace Trigger.BCL.ParaOffice
             DetailViewDescriptorProvider.Declare<Telefonat, TelefonatViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Termin, TerminViewDescriptor>();
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
-            DetailViewDescriptorProvider.Declare<Rueckverkehr, RueckverkehrViewDescriptor>();
-            DetailViewDescriptorProvider.Declare<RueckverkehrDokument, RueckverkehrDokumentViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ErvRueckverkehr, RueckverkehrViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<ErvRueckverkehrDokument, RueckverkehrDokumentViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
@@ -60,8 +61,8 @@ namespace Trigger.BCL.ParaOffice
             ListViewDescriptorProvider.Declare<Telefonat, TelefonatListDescriptor>();
             ListViewDescriptorProvider.Declare<Termin, TerminListDescriptor>();
             ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
-            ListViewDescriptorProvider.Declare<Rueckverkehr, RueckverkehrListDescriptor>();
-            ListViewDescriptorProvider.Declare<RueckverkehrDokument, RueckverkehrDokumentListDescriptor>();
+            ListViewDescriptorProvider.Declare<ErvRueckverkehr, RueckverkehrListDescriptor>();
+            ListViewDescriptorProvider.Declare<ErvRueckverkehrDokument, RueckverkehrDokumentListDescriptor>();
         }
 
         public override void RegisterCommands()
@@ -70,7 +71,7 @@ namespace Trigger.BCL.ParaOffice
 
             Map.RegisterType<IAktPersonDetailViewCommand, AktPersonDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentSBDetailsCommand>();
-            Map.RegisterType<IRueckverkehrAbholenListViewCommand, RueckverkehrAbholenListViewCommand>();
+            Map.RegisterType<IErvRueckverkehrAbrufenListViewCommand, ErvRueckverkehrAbrufenListViewCommand>();
         }
 
         public override void CreateDefaultUser()

@@ -11,7 +11,7 @@ namespace XForms.Commands
     public class CurrentUserDetailsViewCommand : ICurrentUserDetailsCommand
     {
 
-        public void Execute(MainViewTemplate template)
+        public void Execute(TemplateBase template)
         {
             CurrentUser.ShowDetailContentEmbedded();
         }

@@ -5,8 +5,8 @@ namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("Subject")]
-    [System.ComponentModel.DisplayName("Rückverkehr-Anhang")]
-    public class RueckverkehrDokument : ExportableBase, IFileData
+    [System.ComponentModel.DisplayName("ERV-Rückverkehr-Anhang")]
+    public class ErvRueckverkehrDokument : ExportableBase, IFileData
     {
         public override string GetSearchString()
         {
@@ -56,10 +56,10 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        Rueckverkehr rueckverkehr;
+        ErvRueckverkehr rueckverkehr;
 
         [LinkedObject]
-        public Rueckverkehr Rueckverkehr
+        public ErvRueckverkehr Rueckverkehr
         {
             get
             {

@@ -6,7 +6,7 @@ namespace XForms.Commands
 
     public class ApplicationExitCommand : IApplicationExitCommand
     {
-        public void Execute(MainViewTemplate template)
+        public void Execute(TemplateBase template)
         {
             var result = MessageBox.Show("Close application?", "Exit", MessageBoxButtons.OKCancel, MessageBoxType.Warning);
             if (result == DialogResult.Ok)

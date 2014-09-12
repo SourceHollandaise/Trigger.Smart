@@ -27,29 +27,30 @@ namespace XForms.Design
 
         public static void Back()
         {
-            if (stack.Count == 0)
-                return;
-                
-            stack.Pop();
-            if (stack.Count > 0)
+            if (Application.Instance.MainForm is ReducedMainViewTemplate)
             {
-                var content = stack.Peek();
-                if (content != null)
-                    MainTemplate.ContentPanel.Content = content;
+                (Application.Instance.MainForm as ReducedMainViewTemplate).UpdateNavigation();
+            }
+
+            if (Application.Instance.MainForm is MainViewTemplate)
+            {
+
+                if (stack.Count == 0)
+                    return;
+                
+                stack.Pop();
+                if (stack.Count > 0)
+                {
+                    var content = stack.Peek();
+                    if (content != null)
+                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+                }
             }
         }
 
         public static void Forward()
         {
             throw new System.NotSupportedException("Forward is currently not supported!");
-        }
-
-        static MainViewTemplate MainTemplate
-        {
-            get
-            {
-                return Application.Instance.MainForm as MainViewTemplate;
-            }
         }
     }
 }

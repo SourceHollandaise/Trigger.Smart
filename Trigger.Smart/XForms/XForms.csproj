@@ -187,6 +187,7 @@
     <Compile Include="Commands\ListCommands\SlideShowListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ISlideShowListViewCommand.cs" />
     <Compile Include="Design\Templates\SearchFormTemplate.cs" />
+    <Compile Include="Design\Templates\ReducedMainViewTemplate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -25,7 +25,7 @@ namespace Trigger.BCL.ParaOffice
                 {
                     NavigationItems = new List<NavigationItemDescription>
                     {
-                        new NavigationItemDescription(typeof(Rueckverkehr), "Rückverkehr", 1) { ImageName = "folder2", ListView = new RueckverkehrListDescriptor() }
+                        new NavigationItemDescription(typeof(ErvRueckverkehr), "Rückverkehr", 1) { ImageName = "folder2", ListView = new RueckverkehrListDescriptor() }
                     }
                 },
 

@@ -65,9 +65,20 @@ namespace XForms.Design
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
    
-                    var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / calculated;
+                    if (Application.Instance.MainForm is MainViewTemplate)
+                    {
+                        var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / calculated;
             
-                    content.Size = new Size(width, -1);
+                        content.Size = new Size(width, -1);
+                    }
+
+
+                    if (Application.Instance.MainForm is ReducedMainViewTemplate)
+                    {
+                        var width = ((Application.Instance.MainForm as ReducedMainViewTemplate).Size.Width - 80) / calculated;
+
+                        content.Size = new Size(width, -1);
+                    }
 
                     contentLayout.Add(content);
 
@@ -93,11 +104,24 @@ namespace XForms.Design
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
 
-                    var height = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120;
+                    if (Application.Instance.MainForm is MainViewTemplate)
+                    {
+                        var height = (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Height - 120;
 
-                    var width = Convert.ToInt32(height * 0.75);
+                        var width = Convert.ToInt32(height * 0.75);
 
-                    content.Size = new Size(width, height);
+                        content.Size = new Size(width, height);
+                    }
+
+                    if (Application.Instance.MainForm is ReducedMainViewTemplate)
+                    {
+                        var height = (Application.Instance.MainForm as ReducedMainViewTemplate).Size.Height - 80;
+
+                        var width = Convert.ToInt32(height * 0.75);
+
+                        content.Size = new Size(width, height);
+                    }
+                     
 
                     contentLayout.Add(content, false, false);
                 }

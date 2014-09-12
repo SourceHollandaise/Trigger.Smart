@@ -5,6 +5,6 @@ namespace XForms.Commands
 
     public interface IMainViewCommand : IViewCommand
     {
-        void Execute(MainViewTemplate template);
+        void Execute(TemplateBase template);
     }
 }
