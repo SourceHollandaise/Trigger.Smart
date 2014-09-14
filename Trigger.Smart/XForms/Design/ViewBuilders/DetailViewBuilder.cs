@@ -56,17 +56,18 @@ namespace XForms.Design
         Control CreateViewLayout()
         {
             var detailViewLayout = new DynamicLayout();
+            //detailViewLayout.Size = new Size(-1, -1);
 
             var groupItems = descriptor.GroupItemDescriptions.Where(p => p.Visible).OrderBy(p => p.Index).ToList();
 
             detailViewLayout.BeginHorizontal();
             if (showCommandBar)
             {
-                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible));
+                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible), descriptor.IsTaggable, false);
 
                 detailViewLayout.Add(commandBarBuilder.GetContent());
             }
-
+                
             detailViewLayout.EndHorizontal();
   
             detailViewLayout.BeginHorizontal();
@@ -79,16 +80,17 @@ namespace XForms.Design
         Control CreateTabbedViewLayout()
         {
             var detailViewLayout = new DynamicLayout();
+            //detailViewLayout.Size = new Size(-1, -1);
 
             detailViewLayout.BeginHorizontal();
 
             if (showCommandBar)
             {
-                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible));
+                var commandBarBuilder = new DetailViewCommandBarBuilder(currentObject, descriptor.Commands.Where(p => p.Visible), descriptor.IsTaggable, false);
 
                 detailViewLayout.Add(commandBarBuilder.GetContent());
             }
-
+                
             detailViewLayout.EndHorizontal();
             detailViewLayout.BeginHorizontal();
 

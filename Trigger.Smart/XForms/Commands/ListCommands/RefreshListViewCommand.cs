@@ -24,15 +24,6 @@ namespace XForms.Commands
                     var builder = new ListDetailViewBuilder(descriptor, listParameter.TargetType, listParameter.CustomDataSet);
                     var content = builder.GetContent();
 
-                    /*
-                    var scrollable = new Scrollable()
-                    {
-                        Border = BorderType.None,
-                        Size = new Size(-1, -1),
-                        Content = content
-                    };
-                    */
-
                     (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
                 }
             }

@@ -10,7 +10,7 @@ namespace Trigger.BCL.ParaOffice
             rv.AktenZeichen = "1 C 332/13 Z";
             rv.Art = "LA";
             rv.EmpfangDatum = System.DateTime.Now;
-            rv.ErvCode = "Z793299";
+            rv.ErvCode = "R123456";
             rv.Gericht = "BG Korneuburg (110)";
             rv.HinterlegungDatum = rv.EmpfangDatum.AddHours(-8);
             rv.Partei1 = "Max Muster";

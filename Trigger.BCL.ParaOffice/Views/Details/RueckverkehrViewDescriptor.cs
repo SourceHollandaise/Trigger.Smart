@@ -7,8 +7,6 @@ namespace Trigger.BCL.ParaOffice
     {
         public RueckverkehrViewDescriptor()
         {
-            IsTaggable = false;
-
             GroupItemDescriptions = new List<GroupItemDescription>
             {
                 new GroupItemDescription("Rückverkehr", 1)
@@ -24,7 +22,7 @@ namespace Trigger.BCL.ParaOffice
                         new ViewItemDescription(Fields.GetName(m => m.HinterlegungDatum), 7){ LabelText = "Hinterlegt" },
                     }
                 },
-                new GroupItemDescription("Dokumente", 1)
+                new GroupItemDescription("Dokumente", 2)
                 {
                     Fill = true,
                     ViewItemDescriptions = new List<ViewItemDescription>

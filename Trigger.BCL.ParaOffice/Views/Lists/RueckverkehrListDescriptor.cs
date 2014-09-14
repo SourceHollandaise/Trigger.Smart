@@ -12,9 +12,9 @@ namespace Trigger.BCL.ParaOffice
         {
             RegisterCommands<IErvRueckverkehrAbrufenListViewCommand>();
 
-            DefaultSorting = ColumnSorting.Ascending;
+            DefaultSorting = ColumnSorting.Descendig;
             DefaultSortProperty = Fields.GetName(m => m.HinterlegungDatum);
-            RowHeight = 48;
+            //RowHeight = 48;
 
             ColumnDescriptions = new List<ColumnDescription>
             {
