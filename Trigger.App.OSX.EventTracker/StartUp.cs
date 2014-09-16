@@ -21,7 +21,7 @@ namespace Trigger.App.OSX.EventTracker
                     Password = "admin"
                 };
             }
-        
+
             application.InitalizeApplication(new Bootstrapper(), logon);
 
             application.Run();

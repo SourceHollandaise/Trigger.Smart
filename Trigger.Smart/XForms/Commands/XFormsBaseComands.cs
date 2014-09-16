@@ -30,6 +30,8 @@ namespace XForms.Commands
             Map.RegisterType<ISearchListViewCommand, SearchListViewCommand>();
             Map.RegisterType<INavigateBackDetailViewCommand, NavigateBackDetailViewCommand>();
             Map.RegisterType<INavigateBackListViewCommand, NavigateBackListViewCommand>();
+            Map.RegisterType<INavigateHomeDetailViewCommand, NavigateHomeDetailViewCommand>();
+            Map.RegisterType<INavigateHomeListViewCommand, NavigateHomeListViewCommand>();
             Map.RegisterType<ISlideShowListViewCommand, SlideShowListViewCommand>();
         }
     }

@@ -10,5 +10,4 @@ namespace XForms.Design
         Large,
         XtraLarge
     }
-
 }

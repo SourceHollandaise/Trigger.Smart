@@ -1,7 +1,6 @@
 using Eto.Forms;
 using System;
 using XForms.Store;
-using XForms.Dependency;
 
 namespace XForms.Design
 {

@@ -8,6 +8,8 @@ namespace Trigger.BCL.ParaOffice
     {
         public SBViewDescriptor()
         {
+            IsTaggable = false;
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Sachbearbeiter", 1)

@@ -7,7 +7,8 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public class ListDetailViewBuilder
+
+    public class ListDetailViewBuilder : IViewBuilder
     {
         protected int? CurrentRowIndex = null;
 
@@ -32,7 +33,7 @@ namespace XForms.Design
         {
             var commandBarLayout = new DynamicLayout();
             commandBarLayout.BeginHorizontal();
-            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, modelType, originalDataSet);
+            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, modelType, originalDataSet, null, descriptor.ShowSearchBox);
             commandBarLayout.Add(commandBarBuilder.GetContent());
             commandBarLayout.EndHorizontal();
 

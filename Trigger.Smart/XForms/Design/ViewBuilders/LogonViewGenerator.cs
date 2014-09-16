@@ -27,7 +27,7 @@ namespace XForms.Design
             {
                 PlaceholderText = "Username"
             };
-            textBoxUserName.Size = new Eto.Drawing.Size(-1, -1);
+            textBoxUserName.Size = new Size(-1, -1);
             layout.Add(textBoxUserName, true);
             layout.EndHorizontal();
 

@@ -27,23 +27,22 @@ namespace XForms.Design
 
         public static void Back()
         {
-            if (Application.Instance.MainForm is ReducedMainViewTemplate)
-            {
-                (Application.Instance.MainForm as ReducedMainViewTemplate).UpdateNavigation();
-            }
-
-            if (Application.Instance.MainForm is MainViewTemplate)
-            {
-
-                if (stack.Count == 0)
-                    return;
+            if (stack.Count == 0)
+                return;
                 
-                stack.Pop();
-                if (stack.Count > 0)
+            stack.Pop();
+            if (stack.Count > 0)
+            {
+                var content = stack.Peek();
+
+                if (content != null)
                 {
-                    var content = stack.Peek();
-                    if (content != null)
+                    if (Application.Instance.MainForm is MainViewTemplate)
                         (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+
+                    if (Application.Instance.MainForm is ReducedMainViewTemplate)
+                        (Application.Instance.MainForm as ReducedMainViewTemplate).Content = content;
+
                 }
             }
         }

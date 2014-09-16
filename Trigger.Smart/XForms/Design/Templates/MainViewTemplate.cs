@@ -9,10 +9,6 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public interface IMainViewTemplate
-    {
-
-    }
 
     public sealed class MainViewTemplate : TemplateBase, IMainViewTemplate
     {

@@ -32,6 +32,7 @@ namespace XForms.Design
         protected virtual void RegisterDefaultDetailCommands()
         {
             RegisterCommands<INavigateBackDetailViewCommand>();
+            RegisterCommands<INavigateHomeDetailViewCommand>();
             RegisterCommands<ISaveObjectDetailViewCommand>();
             RegisterCommands<IRefreshDetailViewCommand>();
             RegisterCommands<IDeleteObjectDetailViewCommand>();

@@ -5,7 +5,7 @@ using XForms.Store;
 namespace XForms.Design
 {
 
-    public class ListDetailItemBuilder
+    public class ListDetailItemBuilder : IViewBuilder
     {
         readonly IStorable currentObject;
 

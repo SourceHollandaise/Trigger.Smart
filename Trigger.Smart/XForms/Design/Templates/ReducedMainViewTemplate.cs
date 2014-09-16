@@ -188,7 +188,6 @@ namespace XForms.Design
                     if (detailContent != null)
                     {
                         this.Content = detailContent;
-                        TemplateNavigator.Add(this.Content);
                     }
                 };
 
@@ -200,13 +199,14 @@ namespace XForms.Design
                         if (detailContent != null)
                         {
                             this.Content = detailContent;
-                            TemplateNavigator.Add(this.Content);
                         }
                     }
                 };
 
                 layout.EndVertical();
             }
+
+            TemplateNavigator.Add(content);
 
             layout.Add(content);
 

@@ -10,7 +10,7 @@ namespace XForms.Design
     {
         public IList<ColumnDescription> ColumnDescriptions { get; set; }
 
-        public  string DefaultSortProperty { get; set; }
+        public string DefaultSortProperty { get; set; }
 
         public ColumnSorting DefaultSorting { get; set; }
 
@@ -25,6 +25,8 @@ namespace XForms.Design
         public bool ListDetailViewWithToolbar { get; set; }
 
         public bool ShowListDetailViewForLinkedLists { get; set; }
+
+        public bool ShowSearchBox { get; set; }
 
         public int ListDetailViewColumns { get; set; }
 
@@ -49,9 +51,10 @@ namespace XForms.Design
         protected virtual void RegisterDefaultListCommands()
         {
             RegisterCommands<INavigateBackListViewCommand>();
+            RegisterCommands<INavigateHomeListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
-            RegisterCommands<ISearchListViewCommand>();
+            //RegisterCommands<ISearchListViewCommand>();
         }
 
         public virtual IEnumerable<IStorable> Repository { get; set; }
@@ -65,6 +68,7 @@ namespace XForms.Design
             AllowColumnReorder = true;
             AllowMultiSelection = false;
             ListShowTags = true;
+            ShowSearchBox = false;
 
             RegisterDefaultListCommands();
 

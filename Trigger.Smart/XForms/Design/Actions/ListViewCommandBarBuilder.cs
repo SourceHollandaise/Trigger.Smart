@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Eto.Forms;
-using XForms.Store;
-using System.Linq;
 using Eto.Drawing;
+using Eto.Forms;
 using XForms.Commands;
-using XForms.Dependency;
+using XForms.Store;
 
 namespace XForms.Design
 {
-
     public class ListViewCommandBarBuilder
     {
         readonly IListViewDescriptor descriptor;
+
+        static string lastSearchString;
+
+        bool withSearchBox;
+
+        bool viewIsRoot;
 
         IEnumerable<IStorable> dataSet;
 
@@ -28,16 +31,16 @@ namespace XForms.Design
             set;
         }
 
-        static string lastSearchString;
-
         protected SearchBox FullTextSearchBox
         {
             get;
             set;
         }
 
-        public ListViewCommandBarBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet, GridView currentGridView = null)
+        public ListViewCommandBarBuilder(IListViewDescriptor descriptor, Type modelType, IEnumerable<IStorable> dataSet, GridView currentGridView = null, bool withSearchBox = true, bool viewIsRoot = true)
         {
+            this.viewIsRoot = viewIsRoot;
+            this.withSearchBox = withSearchBox;
             this.CurrentGridView = currentGridView;
             this.dataSet = dataSet;
             this.ModelType = modelType;
@@ -50,6 +53,12 @@ namespace XForms.Design
             commandBar.BeginHorizontal();
             foreach (var command in descriptor.Commands)
             {
+                if (!viewIsRoot && command is INavigateHomeListViewCommand)
+                    continue;
+
+                if (!viewIsRoot && command is INavigateBackListViewCommand)
+                    continue;
+
                 var button = new Button();
                 button.Size = new Size(command.Width, 34);
                 button.ID = command.ID;
@@ -83,7 +92,11 @@ namespace XForms.Design
             }
 
             commandBar.Add(null);
-            commandBar.Add(GetSearchBox(), false, false);
+
+            if (withSearchBox)
+            {
+                commandBar.Add(GetSearchBox(), false, false);
+            }
 
             commandBar.EndHorizontal();
             return commandBar;
@@ -153,20 +166,26 @@ namespace XForms.Design
 
         void CreateContentBasedOnFilter()
         {
+            Control content = null;
+
             if (descriptor.ListDetailView)
             {
                 var builder = new ListDetailViewBuilder(descriptor, this.ModelType);
-                var content = builder.GetContent();
+                content = builder.GetContent();
                 descriptor.Filter = null;
-                (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
             }
             else
             {
                 var builder = new ListViewBuilder(descriptor, this.ModelType);
-                var content = builder.GetContent();
+                content = builder.GetContent();
                 descriptor.Filter = null;
-                (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
             }
+
+            if (Application.Instance.MainForm is MainViewTemplate)
+                (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+
+            if (Application.Instance.MainForm is ReducedMainViewTemplate)
+                (Application.Instance.MainForm as ReducedMainViewTemplate).Content = content;
         }
     }
 }

@@ -8,7 +8,7 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public class DetailViewBuilder
+    public class DetailViewBuilder : IViewBuilder
     {
         readonly DetailViewControlFactory factory;
 

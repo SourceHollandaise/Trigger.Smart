@@ -19,6 +19,8 @@ namespace XForms.Design
 
         bool ShowListDetailViewForLinkedLists { get; set; }
 
+        bool ShowSearchBox { get; set; }
+
         bool ListDetailView { get; set; }
 
         bool ListDetailViewWithToolbar { get; set; }

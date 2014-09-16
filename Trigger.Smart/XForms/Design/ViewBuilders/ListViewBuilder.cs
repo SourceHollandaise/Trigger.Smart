@@ -12,7 +12,7 @@ using XForms.Model;
 namespace XForms.Design
 {
    
-    public class ListViewBuilder
+    public class ListViewBuilder : IViewBuilder
     {
         protected int? CurrentRowIndex = null;
 
@@ -53,12 +53,12 @@ namespace XForms.Design
             CurrentGridView = new GridView();
             CurrentGridView.AllowColumnReordering = descriptor.AllowColumnReorder;
             CurrentGridView.AllowMultipleSelection = descriptor.AllowMultiSelection;
-            CurrentGridView.ShowCellBorders = false;
+            CurrentGridView.ShowCellBorders = true;
 
             var listViewLayout = new DynamicLayout();
 
             listViewLayout.BeginHorizontal();
-            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, originalDataSet, CurrentGridView);
+            var commandBarBuilder = new ListViewCommandBarBuilder(descriptor, ModelType, originalDataSet, CurrentGridView, descriptor.ShowSearchBox, isRoot);
             listViewLayout.Add(commandBarBuilder.GetContent());
             listViewLayout.EndHorizontal();
 
