@@ -104,6 +104,8 @@
     <Compile Include="Commands\ErvRueckverkehrAbrufenListViewCommand.cs" />
     <Compile Include="Model\ErvModel\ErvRueckverkehr.cs" />
     <Compile Include="Model\ErvModel\ErvRueckverkehrDokument.cs" />
+    <Compile Include="Views\Lists\LeistungListDescriptor.cs" />
+    <Compile Include="Views\Details\LeistungViewDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Trigger.BCL.ParaOffice
 {
+
     public class RueckverkehrListDescriptor : ListViewDescriptor<ErvRueckverkehr>
     {
         public RueckverkehrListDescriptor()

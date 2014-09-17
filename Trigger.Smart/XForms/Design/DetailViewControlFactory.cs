@@ -185,7 +185,15 @@ namespace XForms.Design
                 ((TextBox)control).Text = (string)property.GetValue(currentObject, null);
 
             if (control is DateTimePicker)
-                ((DateTimePicker)control).Value = (DateTime?)property.GetValue(currentObject, null);
+            {
+                if (((DateTimePicker)control).Mode == DateTimePickerMode.DateTime)
+                    ((DateTimePicker)control).Value = (DateTime?)property.GetValue(currentObject, null);
+
+                if (((DateTimePicker)control).Mode == DateTimePickerMode.Time)
+                {
+                    //((DateTimePicker)control).Value = (TimeSpan?)property.GetValue(currentObject, null);
+                }
+            }
 
             if (control is CheckBox)
                 ((CheckBox)control).Checked = (bool?)property.GetValue(currentObject, null);
@@ -507,7 +515,7 @@ namespace XForms.Design
             {
                 Value = (DateTime?)property.GetValue(currentObject, null),
                 Mode = DateTimePickerMode.DateTime,
-                MinDate = new DateTime(1970, 1, 1),
+                MinDate = DateTime.Today
             };
             control.ValueChanged += (sender, e) =>
             {
@@ -518,16 +526,18 @@ namespace XForms.Design
             return control;
         }
 
-        TextBox TimeSpanPropertyEditor(PropertyInfo property)
+        DateTimePicker TimeSpanPropertyEditor(PropertyInfo property)
         {
             var value = property.GetValue(currentObject, null) as string;
-            var control = new TextBox
+            var control = new DateTimePicker
             {
-                Text = value
+                Value = (DateTime?)property.GetValue(currentObject, null),
+                Mode = DateTimePickerMode.Time,
+                MinDate = DateTime.Now
             };
-            control.TextChanged += (sender, e) =>
+            control.ValueChanged += (sender, e) =>
             {
-                //property.SetValue(Model, textBox.Text, null);
+                property.SetValue(currentObject, control.Value, null);
             };
           
             controlCollection.Add(property.Name, control);

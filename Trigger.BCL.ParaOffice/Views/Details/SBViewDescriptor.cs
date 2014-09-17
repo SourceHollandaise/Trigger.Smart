@@ -70,6 +70,20 @@ namespace Trigger.BCL.ParaOffice
                             }
                         },
                     }
+                },
+                new TabItemDescription("Leistung", 5)
+                {
+                    GroupItemDescriptions = new List<GroupItemDescription>
+                    {
+                        new GroupItemDescription(null, 1)
+                        {
+                            Fill = true,
+                            ViewItemDescriptions = new List<ViewItemDescription>
+                            {
+                                new ViewItemDescription(Fields.GetName(m => m.LinkedLeistungen), 1){ LabelText = "Leistungen", ShowLabel = false, Fill = true, ListMode = ListPropertyMode.List }
+                            }
+                        },
+                    }
                 }
             };
         }

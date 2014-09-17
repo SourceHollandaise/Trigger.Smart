@@ -137,37 +137,73 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        TimeSpan rAZeit;
+        TimeSpan raZeit;
 
         public TimeSpan RAZeit
         {
             get
             {
-                return rAZeit;
+                return raZeit;
             }
             set
             {
-                if (Equals(rAZeit, value))
+                if (Equals(raZeit, value))
                     return;
-                rAZeit = value;
+                raZeit = value;
 
                 OnPropertyChanged();
             }
         }
 
-        TimeSpan sKZeit;
+        decimal raVerdienst;
+
+        public decimal RAVerdienst
+        {
+            get
+            {
+                return raVerdienst;
+            }
+            set
+            {
+                if (Equals(raVerdienst, value))
+                    return;
+                raVerdienst = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        TimeSpan skZeit;
 
         public TimeSpan SKZeit
         {
             get
             {
-                return sKZeit;
+                return skZeit;
             }
             set
             {
-                if (Equals(sKZeit, value))
+                if (Equals(skZeit, value))
                     return;
-                sKZeit = value;
+                skZeit = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        decimal skVerdienst;
+
+        public decimal SKVerdienst
+        {
+            get
+            {
+                return skVerdienst;
+            }
+            set
+            {
+                if (Equals(skVerdienst, value))
+                    return;
+                skVerdienst = value;
 
                 OnPropertyChanged();
             }

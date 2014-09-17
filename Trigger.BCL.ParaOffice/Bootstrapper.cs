@@ -36,7 +36,7 @@ namespace Trigger.BCL.ParaOffice
         public override void RegisterViewDescriptors()
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
-            Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
+            Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
 
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();
@@ -50,6 +50,7 @@ namespace Trigger.BCL.ParaOffice
             DetailViewDescriptorProvider.Declare<User, UserViewDescriptor>();
             DetailViewDescriptorProvider.Declare<ErvRueckverkehr, RueckverkehrViewDescriptor>();
             DetailViewDescriptorProvider.Declare<ErvRueckverkehrDokument, RueckverkehrDokumentViewDescriptor>();
+            DetailViewDescriptorProvider.Declare<Leistung, LeistungViewDescriptor>();
 
             ListViewDescriptorProvider.Declare<Akt, AktListDescriptor>();
             ListViewDescriptorProvider.Declare<AktArt, AktArtListDescriptor>();
@@ -63,6 +64,7 @@ namespace Trigger.BCL.ParaOffice
             ListViewDescriptorProvider.Declare<User, UserListDescriptor>();
             ListViewDescriptorProvider.Declare<ErvRueckverkehr, RueckverkehrListDescriptor>();
             ListViewDescriptorProvider.Declare<ErvRueckverkehrDokument, RueckverkehrDokumentListDescriptor>();
+            ListViewDescriptorProvider.Declare<Leistung, LeistungListDescriptor>();
         }
 
         public override void RegisterCommands()

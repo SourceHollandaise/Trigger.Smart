@@ -184,7 +184,12 @@ namespace XForms.Design
             navigationlayout.BeginVertical();
             navigationlayout.EndVertical();
 
-            return navigationlayout;
+            var scrollable = new Scrollable()
+            {
+                Content = navigationlayout
+            };
+
+            return scrollable;
         }
 
         void ShowListViewFromNavigation(NavigationItemDescription item)

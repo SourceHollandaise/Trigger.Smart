@@ -45,5 +45,4 @@ namespace Trigger.BCL.ParaOffice
             }
         }
     }
-    
 }

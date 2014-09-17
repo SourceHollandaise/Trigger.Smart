@@ -167,5 +167,16 @@ namespace Trigger.BCL.ParaOffice
                 return Store.LoadAll<Akt>().Where(p => p.SB1 != null && p.SB1.ID.Equals(ID));
             }
         }
+
+        [System.ComponentModel.DisplayName("Leistungen von SB")]
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [LinkedList(typeof(Leistung))]
+        public IEnumerable<Leistung> LinkedLeistungen
+        {
+            get
+            {
+                return Store.LoadAll<Leistung>().Where(p => p.RA != null && p.RA.ID.Equals(ID) || p.SK != null && p.SK.ID.Equals(ID));
+            }
+        }
     }
 }
