@@ -4,9 +4,18 @@ using XForms.Store;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Area")]
-    [System.ComponentModel.DisplayName("Area")]
+    [System.ComponentModel.DisplayName("Area-User Link")]
+    [ImageName("user_monitor")]
     public class AreaUser : StorableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return AreaAlias + " - " + UserAlias;
+            }
+        }
+
         public string AreaAlias
         {
             get

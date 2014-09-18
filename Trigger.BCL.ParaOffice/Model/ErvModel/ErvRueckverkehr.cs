@@ -2,11 +2,13 @@ using System;
 using XForms.Store;
 using System.Collections.Generic;
 using System.Linq;
+using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ErvCode")]
     [System.ComponentModel.DisplayName("ERV-Rückverkehr")]
+    [ImageName("folder2")]
     public class ErvRueckverkehr : ExportableBase
     {
         const string RepresentationSeparator = " - ";

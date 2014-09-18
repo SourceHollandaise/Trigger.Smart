@@ -8,13 +8,12 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Issue")]
-    [ImageName("note_edit")]
+    [ImageName("signboard_open")]
     public class IssueTracker : StorableBase, IFileData
     {
-
         public override string GetSearchString()
         {
-            return Subject + Description;
+            return Subject + Description + IssueType;
         }
 
         public override void Initialize()
@@ -32,7 +31,7 @@ namespace Trigger.BCL.EventTracker.Model
         {
             get
             {
-                return Subject;
+                return Subject + " - " + IssueType;
             }
         }
 

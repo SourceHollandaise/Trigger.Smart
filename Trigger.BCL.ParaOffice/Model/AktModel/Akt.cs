@@ -9,7 +9,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Bezeichnung")]
     [System.ComponentModel.DisplayName("Akt")]
-    [ImageName("folder_full")]
+    [ImageName("folder2")]
     public class Akt : ExportableBase
     {
         public override string GetRepresentation

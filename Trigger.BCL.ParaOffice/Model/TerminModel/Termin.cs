@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Termin")]
-    [ImageName("calendar_date")]
+    [ImageName("date_time")]
     public class Termin : ExportableBase
     {
         public override string GetSearchString()

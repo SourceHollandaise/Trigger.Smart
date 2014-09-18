@@ -7,7 +7,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("ID")]
     [System.ComponentModel.DisplayName("Sachbearbeiter")]
-    [ImageName("user_accept")]
+    [ImageName("user_monitor")]
     public class SB : ExportableBase
     {
         public override string GetSearchString()

@@ -8,9 +8,17 @@ namespace Trigger.BCL.EventTracker.Model
 
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Area")]
-    [ImageName("application")]
+    [ImageName("blueprint")]
     public class Area : StorableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Name;
+            }
+        }
+
         public override string GetSearchString()
         {
             return Name + Description;

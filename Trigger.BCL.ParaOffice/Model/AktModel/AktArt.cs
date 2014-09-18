@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Art")]
     [System.ComponentModel.DisplayName("Aktart")]
-    [ImageName("folder_process")]
+    [ImageName("magazine_folder")]
     public class AktArt : ExportableBase
     {
         string art;

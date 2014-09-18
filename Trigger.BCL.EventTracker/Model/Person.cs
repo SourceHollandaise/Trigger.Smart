@@ -7,9 +7,17 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("PersonDisplayName")]
     [System.ComponentModel.DisplayName("Person")]
-    [ImageName("user")]
+    [ImageName("businesspeople")]
     public class Person : StorableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return PersonDisplayName + " - " + AddressDisplayName;
+            }
+        }
+
         public override string GetSearchString()
         {
             return PersonDisplayName + AddressDisplayName;

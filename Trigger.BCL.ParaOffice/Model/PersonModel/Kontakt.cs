@@ -5,7 +5,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("PersonAlias")]
     [System.ComponentModel.DisplayName("Kontakt")]
-    [ImageName("user_comments")]
+    [ImageName("address_book2")]
     public class Kontakt : ExportableBase
     {
         public override string GetSearchString()

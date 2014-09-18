@@ -7,8 +7,22 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Gallery")]
+    [ImageName("photos")]
     public class ImageGallery : StorableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Name;
+            }
+        }
+
+        public override string GetSearchString()
+        {
+            return Name + Description;
+        }
+
         string name;
 
         public string Name

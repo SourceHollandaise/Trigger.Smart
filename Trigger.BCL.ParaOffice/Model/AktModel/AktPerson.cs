@@ -6,7 +6,7 @@ namespace Trigger.BCL.ParaOffice
 {
     [System.ComponentModel.DefaultProperty("Akt")]
     [System.ComponentModel.DisplayName("Person zu Akt")]
-    [ImageName("user_add")]
+    [ImageName("id_card")]
     public class AktPerson : ExportableBase
     {
         public override void Initialize()

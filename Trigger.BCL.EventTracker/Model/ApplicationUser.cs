@@ -8,8 +8,16 @@ namespace Trigger.BCL.EventTracker.Model
 
     [System.ComponentModel.DefaultProperty("UserName")]
     [System.ComponentModel.DisplayName("User")]
+    [ImageName("users2")]
     public class ApplicationUser : User
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return UserName;
+            }
+        }
 
         public override string GetSearchString()
         {

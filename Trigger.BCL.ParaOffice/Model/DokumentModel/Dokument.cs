@@ -7,7 +7,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Dokument")]
-    [ImageName("blog_post")]
+    [ImageName("folder3_document")]
     public class Dokument : ExportableBase, IFileData
     {
         public override string GetSearchString()

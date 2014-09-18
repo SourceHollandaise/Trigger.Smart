@@ -7,7 +7,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("GetRepresentation")]
     [System.ComponentModel.DisplayName("Telefonat")]
-    [ImageName("user_comment")]
+    [ImageName("user_mobilephone")]
     public class Telefonat : ExportableBase
     {
         public override string GetSearchString()

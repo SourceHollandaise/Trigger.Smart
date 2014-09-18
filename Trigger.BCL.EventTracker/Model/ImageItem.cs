@@ -8,7 +8,8 @@ namespace Trigger.BCL.EventTracker.Model
 {
 
     [System.ComponentModel.DefaultProperty("Name")]
-    [System.ComponentModel.DisplayName("Gallery")]
+    [System.ComponentModel.DisplayName("Image")]
+    [ImageName("photo_landscape")]
     public class ImageItem : StorableBase, IFileData
     {
         public override string GetSearchString()

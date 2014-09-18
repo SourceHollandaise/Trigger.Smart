@@ -5,9 +5,18 @@ using XForms.Store;
 namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
-    [ImageName("blog_post")]
+    [System.ComponentModel.DisplayName("Document")]
+    [ImageName("folder3_document")]
     public class Document : StorableBase, IFileData
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Subject;
+            }
+        }
+
         public override string GetSearchString()
         {
             return Subject + Description;

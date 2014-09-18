@@ -8,7 +8,7 @@ namespace Trigger.BCL.ParaOffice
   
     [System.ComponentModel.DefaultProperty("PersonenName")]
     [System.ComponentModel.DisplayName("Person")]
-    [ImageName("user")]
+    [ImageName("businesspeople")]
     public class Person : ExportableBase
     {
         public override string GetSearchString()

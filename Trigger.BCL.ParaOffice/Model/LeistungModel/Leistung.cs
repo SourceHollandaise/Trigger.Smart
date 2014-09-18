@@ -1,11 +1,13 @@
 using System;
 using XForms.Store;
+using XForms.Model;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     [System.ComponentModel.DefaultProperty("SparteAlias")]
     [System.ComponentModel.DisplayName("Leistung")]
+    [ImageName("note_pinned")]
     public class Leistung : ExportableBase
     {
         public override string GetSearchString()

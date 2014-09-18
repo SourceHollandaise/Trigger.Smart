@@ -8,7 +8,7 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("Tracked Time")]
-    [ImageName("clock")]
+    [ImageName("date_time")]
     public class TimeTracker : StorableBase
     {
         public override void Initialize()

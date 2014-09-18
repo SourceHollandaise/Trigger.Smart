@@ -4,6 +4,7 @@ using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
+using XForms.Model;
 
 namespace XForms.Design
 {
@@ -22,15 +23,29 @@ namespace XForms.Design
         {
             var layout = new DynamicLayout();
 
-            var resultListBox = new ListBox();
-            resultListBox.Visible = false;
-            var searchBox = new SearchBox();
-            searchBox.Size = new Size(-1, -1);
-            searchBox.PlaceholderText = "Application Search";
+            ListBox resultListBox = new ListBox()
+            {
+                Visible = false,
+            };
 
             try
             {
-                searchBox.Font = new Font(searchBox.Font.Family, 18F);
+                resultListBox.Font = new Font(resultListBox.Font.Family, 14F);
+            }
+            catch
+            {
+
+            }
+               
+            var searchBox = new SearchBox()
+            {
+                Size = new Size(-1, -1),
+                PlaceholderText = "Application Search"
+            };
+
+            try
+            {
+                searchBox.Font = new Font(searchBox.Font.Family, 15F);
             }
             catch
             {
@@ -39,26 +54,31 @@ namespace XForms.Design
 
             searchBox.TextChanged += (sender, e) =>
             {
+                System.Threading.Thread.Sleep(200);
                 resultListBox.Visible = searchBox.Text.Length >= 2;
+
                 Size = resultListBox.Visible ? new Size(600, 480) : new Size(600, 80);
 
-                if (searchBox.Visible)
+                if (resultListBox.Visible)
                 {
                     resultListBox.Items.Clear();
-
+ 
                     var resultSet = GetResult(searchBox.Text);
 
                     foreach (var item in resultSet)
                     {
                         var displayNameAttribute = item.GetType().FindAttribute<System.ComponentModel.DisplayNameAttribute>();
 
+                        var imageAttribute = item.GetType().FindAttribute<ImageNameAttribute>();
+
                         string itemName = item.GetType().Name;
 
                         if (displayNameAttribute != null)
                             itemName = displayNameAttribute.DisplayName;
 
-                        resultListBox.Items.Add(new ListItem
+                        resultListBox.Items.Add(new ImageListItem
                         { 
+                            Image = imageAttribute != null ? ImageExtensions.GetImage(imageAttribute.ImageName, 24) : null,
                             Text = itemName + " - " + item.GetRepresentation,
                             Key = item.MappingId.ToString(),
                             Tag = item
@@ -69,6 +89,9 @@ namespace XForms.Design
 
             resultListBox.KeyDown += (sender, e) =>
             {
+                if (e.Key == Keys.Escape)
+                    this.Close();
+
                 if (e.Key == Keys.Enter && resultListBox.SelectedValue != null)
                 {
                     this.Close();
@@ -80,10 +103,24 @@ namespace XForms.Design
                 }
             };
 
+            resultListBox.SelectedValueChanged += (sender, e) =>
+            {
+                if (resultListBox.SelectedValue != null)
+                {
+
+                }
+            };
+
             searchBox.KeyDown += (sender, e) =>
             {
                 if (e.Key == Keys.Escape)
                     this.Close();
+
+                if (e.Key == Keys.Down)
+                {
+                    if (resultListBox.Visible)
+                        resultListBox.Focus();
+                }
             };
 
             layout.Add(searchBox);
@@ -97,9 +134,9 @@ namespace XForms.Design
             var descriptor = XForms.Dependency.MapProvider.Instance.ResolveType<IMainViewDescriptor>();
             var store = XForms.Dependency.MapProvider.Instance.ResolveType<IStore>();
 
-            foreach (var type in descriptor.RegisteredTypes())
+            foreach (var type in descriptor.RegisteredTypes().Distinct())
             {
-                var resultSet = store.LoadAll(type).Where(p => p.GetSearchString().ToLowerInvariant().Contains(input.ToLowerInvariant()));
+                var resultSet = store.LoadAll(type).Where(p => p.GetSearchString().ToLowerInvariant().Contains(input.ToLowerInvariant())).Distinct();
 
                 foreach (var item in resultSet)
                 {

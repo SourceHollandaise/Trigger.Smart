@@ -6,6 +6,7 @@ namespace Trigger.BCL.ParaOffice
 
     [System.ComponentModel.DefaultProperty("Subject")]
     [System.ComponentModel.DisplayName("ERV-Rückverkehr-Anhang")]
+    [ImageName("folder3_document")]
     public class ErvRueckverkehrDokument : ExportableBase, IFileData
     {
         public override string GetSearchString()

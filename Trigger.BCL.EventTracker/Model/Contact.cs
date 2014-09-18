@@ -5,9 +5,17 @@ namespace Trigger.BCL.EventTracker.Model
 {
     [System.ComponentModel.DefaultProperty("PersonAlias")]
     [System.ComponentModel.DisplayName("Contact")]
-    [ImageName("user_comments")]
+    [ImageName("address_book2")]
     public class Contact : StorableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return PersonAlias + " - " + PhoneNumber + " " + MobileNumber + " " + Email;
+            }
+        }
+
         public override string GetSearchString()
         {
             return PersonAlias + PhoneNumber + MobileNumber + Email;
