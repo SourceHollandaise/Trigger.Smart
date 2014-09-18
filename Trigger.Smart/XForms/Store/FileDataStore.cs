@@ -93,6 +93,22 @@ namespace XForms.Store
             return LoadAll(typeof(T)).OfType<T>();
         }
 
+        public IEnumerable<IStorable> SearchResult(string input, params Type[] typesToSearch)
+        {
+            if (typesToSearch == null)
+                yield break;
+
+            foreach (var type in typesToSearch.Distinct())
+            {
+                var resultSet = LoadAll(type).Where(p => p.GetSearchString().ToLowerInvariant().Contains(input.ToLowerInvariant())).Distinct();
+
+                foreach (var item in resultSet)
+                {
+                    yield return item;
+                }
+            }
+        }
+
         static IStorable Load(Type type, string path)
         {
             if (File.Exists(path))

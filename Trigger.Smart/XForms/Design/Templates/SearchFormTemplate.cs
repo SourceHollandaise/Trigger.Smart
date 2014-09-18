@@ -134,15 +134,7 @@ namespace XForms.Design
             var descriptor = XForms.Dependency.MapProvider.Instance.ResolveType<IMainViewDescriptor>();
             var store = XForms.Dependency.MapProvider.Instance.ResolveType<IStore>();
 
-            foreach (var type in descriptor.RegisteredTypes().Distinct())
-            {
-                var resultSet = store.LoadAll(type).Where(p => p.GetSearchString().ToLowerInvariant().Contains(input.ToLowerInvariant())).Distinct();
-
-                foreach (var item in resultSet)
-                {
-                    yield return item;
-                }
-            }
+            return store.SearchResult(input, descriptor.RegisteredTypes().Distinct().ToArray());
         }
     }
 }

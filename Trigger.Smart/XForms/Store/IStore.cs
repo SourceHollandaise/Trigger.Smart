@@ -24,5 +24,7 @@ namespace XForms.Store
         IEnumerable<IStorable>LoadAll(Type type);
 
         IEnumerable<T> LoadAll<T>() where T: IStorable;
+
+        IEnumerable<IStorable> SearchResult(string input, params Type[] typesToSearch);
     }
 }
