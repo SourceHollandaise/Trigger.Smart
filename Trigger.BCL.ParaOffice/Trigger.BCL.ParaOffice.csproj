@@ -106,6 +106,7 @@
     <Compile Include="Model\ErvModel\ErvRueckverkehrDokument.cs" />
     <Compile Include="Views\Lists\LeistungListDescriptor.cs" />
     <Compile Include="Views\Details\LeistungViewDescriptor.cs" />
+    <Compile Include="Services\ErvRueckverkehrService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

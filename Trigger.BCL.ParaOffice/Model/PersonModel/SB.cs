@@ -15,6 +15,14 @@ namespace Trigger.BCL.ParaOffice
             return ID + UserAlias;
         }
 
+        public override string GetRepresentation
+        {
+            get
+            {
+                return ID + " - " + UserAlias;
+            }
+        }
+
         string id;
 
         [System.ComponentModel.DisplayName("SB-Kürzel")]

@@ -16,6 +16,14 @@ namespace Trigger.BCL.ParaOffice
             return PersonenName + PLZ + Ort + Strasse;
         }
 
+        public override string GetRepresentation
+        {
+            get
+            {
+                return PersonenName;
+            }
+        }
+
         [System.ComponentModel.DisplayName("Personenname")]
         public string PersonenName
         {

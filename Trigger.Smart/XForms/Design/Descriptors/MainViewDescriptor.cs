@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using XForms.Commands;
 using XForms.Dependency;
+using System;
 
 namespace XForms.Design
 {
@@ -23,6 +24,17 @@ namespace XForms.Design
         {
             RegisterCommands<ICurrentUserDetailsCommand>();
             RegisterCommands<IApplicationExitCommand>();
+        }
+
+        public IEnumerable<Type> RegisteredTypes()
+        {
+            foreach (var group in this.NavigationGroups)
+            {
+                foreach (var navItem in group.NavigationItems)
+                {
+                    yield return navItem.ModelType;
+                }
+            }
         }
     }
 }

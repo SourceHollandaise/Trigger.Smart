@@ -19,7 +19,7 @@ namespace Trigger.BCL.ParaOffice
                         new NavigationItemDescription(typeof(Termin), "Termine", 2){ ImageName = "date_time", ListView = new TerminListDescriptor() },
                         new NavigationItemDescription(typeof(Kontakt), "Kontakte", 3){ ImageName = "address_book2", ListView = new KontaktListDescriptor() },
                         new NavigationItemDescription(typeof(Dokument), "Postbuch", 4){ ImageName = "folder3_document", ListView = new DokumentListDescriptor() },
-                        new NavigationItemDescription(typeof(Leistung), "Leistungen", 5) { ImageName = "", ListView = new LeistungListDescriptor() }
+                        new NavigationItemDescription(typeof(Leistung), "Leistungen", 5) { ImageName = "note_pinned", ListView = new LeistungListDescriptor() }
                     }
                 },
                 new NavigationGroupItem("ERV", 2)

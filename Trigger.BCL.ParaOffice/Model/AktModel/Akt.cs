@@ -12,6 +12,14 @@ namespace Trigger.BCL.ParaOffice
     [ImageName("folder_full")]
     public class Akt : ExportableBase
     {
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Bezeichnung + " " + AktArtAlias;
+            }
+        }
+
         public override string GetSearchString()
         {
             return Bezeichnung + Bemerkung + AktArtAlias;

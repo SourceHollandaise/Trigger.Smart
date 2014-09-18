@@ -6,7 +6,6 @@ using XForms.Dependency;
 
 namespace Trigger.BCL.ParaOffice
 {
-
     public class DokumentFileDataService : IFileDataService
     {
         IStoreConfiguration StoreConfig

@@ -13,6 +13,14 @@ namespace Trigger.BCL.ParaOffice
             return PersonAlias + Telefon + MobilTelefon + Email + WebSite;
         }
 
+        public override string GetRepresentation
+        {
+            get
+            {
+                return PersonAlias + " - " + Telefon + " " + MobilTelefon + " " + Email;
+            }
+        }
+
         [System.ComponentModel.DisplayName("Person")]
         public string PersonAlias
         {

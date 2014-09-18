@@ -30,6 +30,9 @@ namespace XForms.Design
 
             if (e.Modifiers == Keys.Control & e.Key == Keys.W)
                 this.Close();
+
+            if (e.Modifiers == Keys.Control & e.Key == Keys.Space)
+                new SearchFormTemplate().Show();
         }
     }
 }

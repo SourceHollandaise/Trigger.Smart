@@ -191,7 +191,9 @@ namespace XForms.Design
 
                 if (((DateTimePicker)control).Mode == DateTimePickerMode.Time)
                 {
-                    //((DateTimePicker)control).Value = (TimeSpan?)property.GetValue(currentObject, null);
+                    TimeSpan? value = (TimeSpan?)property.GetValue(currentObject, null);
+
+                    ((DateTimePicker)control).Value = new DateTime().Add(value ?? new TimeSpan());
                 }
             }
 
@@ -528,16 +530,17 @@ namespace XForms.Design
 
         DateTimePicker TimeSpanPropertyEditor(PropertyInfo property)
         {
-            var value = property.GetValue(currentObject, null) as string;
+            TimeSpan? value = (TimeSpan?)property.GetValue(currentObject, null);
+
             var control = new DateTimePicker
             {
-                Value = (DateTime?)property.GetValue(currentObject, null),
-                Mode = DateTimePickerMode.Time,
-                MinDate = DateTime.Now
+                Value = value.HasValue ? (DateTime?)new DateTime().Add(value.Value) : null,
+                Mode = DateTimePickerMode.Time
             };
             control.ValueChanged += (sender, e) =>
             {
-                property.SetValue(currentObject, control.Value, null);
+                var newValue = control.Value.HasValue ? (TimeSpan?)control.Value.Value.TimeOfDay : null;
+                property.SetValue(currentObject, newValue, null);
             };
           
             controlCollection.Add(property.Name, control);

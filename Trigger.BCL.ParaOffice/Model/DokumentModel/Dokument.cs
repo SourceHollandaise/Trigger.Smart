@@ -15,6 +15,14 @@ namespace Trigger.BCL.ParaOffice
             return Subject + Bemerkung + RAAlias + SKAlias + AktAlias;
         }
 
+        public override string GetRepresentation
+        {
+            get
+            {
+                return Subject;
+            }
+        }
+
         public override void Initialize()
         {
             SK = ApplicationModelQuery.CurrentSB;

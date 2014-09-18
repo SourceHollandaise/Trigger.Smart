@@ -137,9 +137,9 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        TimeSpan raZeit;
+        TimeSpan? raZeit;
 
-        public TimeSpan RAZeit
+        public TimeSpan? RAZeit
         {
             get
             {
@@ -173,9 +173,9 @@ namespace Trigger.BCL.ParaOffice
             }
         }
 
-        TimeSpan skZeit;
+        TimeSpan? skZeit;
 
-        public TimeSpan SKZeit
+        public TimeSpan? SKZeit
         {
             get
             {
