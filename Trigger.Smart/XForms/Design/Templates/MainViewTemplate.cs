@@ -212,7 +212,7 @@ namespace XForms.Design
             Control content = null;
 
             var layout = new DynamicLayout();
-               
+
             if (descriptor.ListDetailView)
             {
                 if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Horizontal)

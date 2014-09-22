@@ -107,7 +107,6 @@
     <Compile Include="Commands\Interfaces\IOpenObjectListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IPrintListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IRefreshListViewCommand.cs" />
-    <Compile Include="Commands\Interfaces\ISearchListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IUpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\Interfaces\IAddFileDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\ICloseDetailViewCommand.cs" />
@@ -171,7 +170,6 @@
     <Compile Include="Commands\ListCommands\OpenObjectListViewCommand.cs" />
     <Compile Include="Commands\ListCommands\PrintListViewCommand.cs" />
     <Compile Include="Commands\ListCommands\RefreshListViewCommand.cs" />
-    <Compile Include="Commands\ListCommands\SearchListViewCommand.cs" />
     <Compile Include="Commands\ListCommands\UpdateDocumentStoreListViewCommand.cs" />
     <Compile Include="Commands\DetailCommands\DetailViewArguments.cs" />
     <Compile Include="Commands\Interfaces\ICurrentUserDetailsCommand.cs" />
@@ -191,6 +189,7 @@
     <Compile Include="Commands\Interfaces\INavigateHomeListViewCommand.cs" />
     <Compile Include="Commands\DetailCommands\NavigateHomeDetailViewCommand.cs" />
     <Compile Include="Commands\ListCommands\NavigateHomeListViewCommand.cs" />
+    <Compile Include="Design\Templates\SlideShowControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

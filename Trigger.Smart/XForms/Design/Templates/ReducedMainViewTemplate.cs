@@ -23,7 +23,7 @@ namespace XForms.Design
 
         public ReducedMainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.Size = new Size(480, 800);
+            this.Size = new Size(600, 1024);
             this.Minimizable = true;
             this.Maximizable = true;
 
@@ -165,6 +165,9 @@ namespace XForms.Design
             Control content = null;
 
             var layout = new DynamicLayout();
+
+            //INFO: Need clean and reduced Layout!!!
+            descriptor.ListDetailView = false;
 
             if (descriptor.ListDetailView)
             {

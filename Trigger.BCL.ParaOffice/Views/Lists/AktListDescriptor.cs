@@ -27,5 +27,4 @@ namespace Trigger.BCL.ParaOffice
             };
         }
     }
-
 }

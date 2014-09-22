@@ -54,7 +54,6 @@ namespace XForms.Design
             RegisterCommands<INavigateHomeListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
-            //RegisterCommands<ISearchListViewCommand>();
         }
 
         public virtual IEnumerable<IStorable> Repository { get; set; }

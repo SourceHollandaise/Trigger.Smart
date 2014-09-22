@@ -15,7 +15,7 @@ namespace Trigger.BCL.EventTracker.Model
         {
             get
             {
-                return Name;
+                return Name + "(" + Description + ")";
             }
         }
 

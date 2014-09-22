@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
-using XForms.Store;
 using XForms.Model;
+using XForms.Store;
 
 namespace XForms.Design
 {
@@ -67,7 +68,7 @@ namespace XForms.Design
 
                     foreach (var item in resultSet)
                     {
-                        var displayNameAttribute = item.GetType().FindAttribute<System.ComponentModel.DisplayNameAttribute>();
+                        var displayNameAttribute = item.GetType().FindAttribute<DisplayNameAttribute>();
 
                         var imageAttribute = item.GetType().FindAttribute<ImageNameAttribute>();
 

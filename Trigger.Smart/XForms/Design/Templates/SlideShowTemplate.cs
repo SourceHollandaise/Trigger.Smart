@@ -6,20 +6,17 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-
-
     public class SlideShowTemplate : Form
     {
         bool loop;
 
         readonly IEnumerable<IFileData> fileDataItems;
 
-        readonly ImageView imageView;
+        public readonly ImageView ImageView;
 
         Stack<IFileData> stack = new Stack<IFileData>();
 
         UITimer slideTimer = new UITimer();
-
 
         public SlideShowTemplate(IEnumerable<IFileData> fileDataItems, double interval = 3F, bool loop = true)
         {
@@ -28,10 +25,10 @@ namespace XForms.Design
             this.BackgroundColor = Colors.Black;
             this.WindowState = Eto.Forms.WindowState.Maximized;
 
-            imageView = new ImageView();
-            imageView.Size = new Size(-1, -1);
+            ImageView = new ImageView();
+            ImageView.Size = new Size(-1, -1);
 
-            this.Content = imageView;
+            this.Content = ImageView;
 
             AddImagesToStack();
 
@@ -44,7 +41,7 @@ namespace XForms.Design
 
             slideTimer.Elapsed += (sender, e) => ShowContentFromStack();
 
-            imageView.MouseDoubleClick += (sender, e) => ShowContentFromStack();
+            ImageView.MouseDoubleClick += (sender, e) => ShowContentFromStack();
 
             ShowContentFromStack();
         }
@@ -91,7 +88,7 @@ namespace XForms.Design
                     {
                         var image = new Bitmap(file);
 
-                        imageView.Image = image;
+                        ImageView.Image = image;
                     }
                     catch
                     {

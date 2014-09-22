@@ -31,6 +31,7 @@ namespace Trigger.BCL.ParaOffice
             base.RegisterDependencies();
 
             Map.RegisterType<IFileDataService, DokumentFileDataService>();
+            Map.RegisterType<IErvRueckverkehrService, ErvRueckverkehrService>();
         }
 
         public override void RegisterViewDescriptors()

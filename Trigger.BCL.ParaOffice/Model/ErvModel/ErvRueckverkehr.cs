@@ -24,8 +24,8 @@ namespace Trigger.BCL.ParaOffice
             {
                 var sb = new System.Text.StringBuilder();
 
-                //sb.Append(ErvCode);
-                //sb.Append(RepresentationSeparator);
+                sb.Append(ErvCode);
+                sb.Append(RepresentationSeparator);
                 sb.Append(Art);
                 sb.Append(RepresentationSeparator);
 
@@ -36,6 +36,7 @@ namespace Trigger.BCL.ParaOffice
                     sb.Append(AktenZeichen);
                 }
 
+                sb.Append(RepresentationSeparator);
                 sb.Append("Hinterlegt am ");
                 sb.Append(HinterlegungDatum.ToShortDateString() + " " + HinterlegungDatum.ToShortTimeString());
 

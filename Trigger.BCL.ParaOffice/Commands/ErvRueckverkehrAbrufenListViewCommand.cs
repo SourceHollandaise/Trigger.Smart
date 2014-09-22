@@ -1,29 +1,21 @@
-using System.Collections.Generic;
-using System.IO;
 using XForms.Commands;
 using XForms.Dependency;
-using XForms.Store;
+using System;
 
 namespace Trigger.BCL.ParaOffice
 {
 
     public class ErvRueckverkehrAbrufenListViewCommand : IErvRueckverkehrAbrufenListViewCommand
     {
-        void CreateRueckverkehrMocks(ListViewArguments listParameter)
-        {
-            if (!System.Diagnostics.Debugger.IsAttached)
-                return;
-
-            new ErvRueckverkehrService().Load(10);
-
-            MapProvider.Instance.ResolveType<IRefreshListViewCommand>().Execute(listParameter);
-        }
-
         public void Execute(ListViewArguments listParameter)
         {
             //TODO: Einlesen aus WebService und RV erstellen
 
-            CreateRueckverkehrMocks(listParameter);
+            var service = MapProvider.Instance.ResolveType<IErvRueckverkehrService>();
+
+            var item = service.Get(ApplicationModelQuery.CurrentSB.ErvCode, DateTime.Today, DateTime.Today);
+
+            MapProvider.Instance.ResolveType<IRefreshListViewCommand>().Execute(listParameter);
         }
 
         public string ID

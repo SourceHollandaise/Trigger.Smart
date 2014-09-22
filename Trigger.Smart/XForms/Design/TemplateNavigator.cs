@@ -31,7 +31,7 @@ namespace XForms.Design
                 return;
                 
             stack.Pop();
-            if (stack.Count > 0)
+            if (BackPossible)
             {
                 var content = stack.Peek();
 
