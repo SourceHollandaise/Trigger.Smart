@@ -20,7 +20,7 @@ namespace XForms.Commands
                 {
                     var fileDataItems = storables.Cast<IFileData>();
 
-                    var slider = new SlideShowTemplate(fileDataItems);
+                    var slider = new SlideShowControl(fileDataItems);
                     slider.Show();
                     slider.BringToFront();
                 }
