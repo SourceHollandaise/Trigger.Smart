@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{5F7CE35E-F26F-4C7B-BAE3-488BFA32F7AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Trigger.App.Android.ParaOffice</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AssemblyName>Trigger.App.Android.ParaOffice</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <ReleaseVersion>0.8</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Code\XForms\Commands\ApplicationExitCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ConfirmationMessages.cs" />
+    <Compile Include="Code\XForms\Commands\CurrentUserDetailsViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\AddFileDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\CloseDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\DeleteObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\DetailViewArguments.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\NavigateBackDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\NavigateHomeDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\RefreshDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\SaveObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\DetailCommands\TagDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IAddFileDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IApplicationExitCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ICloseDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ICreateObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ICurrentUserDetailsCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IDeleteObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ILogonCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IMainViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\INavigateBackDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\INavigateBackListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\INavigateHomeDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\INavigateHomeListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IOpenObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IPrintListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IRefreshDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IRefreshListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ISaveObjectDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ISlideShowListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\ITagDetailViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IUpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\Interfaces\IViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\CreateObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\ListViewArguments.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\NavigateBackListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\NavigateHomeListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\OpenObjectListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\PrintListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\RefreshListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\SlideShowListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\ListCommands\UpdateDocumentStoreListViewCommand.cs" />
+    <Compile Include="Code\XForms\Commands\LogonCommand.cs" />
+    <Compile Include="Code\XForms\Commands\XFormsBaseComands.cs" />
+    <Compile Include="Code\XForms\Dependency\DependencyMap.cs" />
+    <Compile Include="Code\XForms\Dependency\IDependencyMap.cs" />
+    <Compile Include="Code\XForms\Dependency\MapProvider.cs" />
+    <Compile Include="Code\XForms\Design\Actions\DetailViewCommandBarBuilder.cs" />
+    <Compile Include="Code\XForms\Design\Actions\DetailViewToolBarBuilder.cs" />
+    <Compile Include="Code\XForms\Design\Actions\ListDetailViewToolBarBuilder.cs" />
+    <Compile Include="Code\XForms\Design\Actions\ListViewCommandBarBuilder.cs" />
+    <Compile Include="Code\XForms\Design\Actions\ListViewToolBarBuilder.cs" />
+    <Compile Include="Code\XForms\Design\Actions\TagButtonBuilder.cs" />
+    <Compile Include="Code\XForms\Design\DataStoreProvider.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ColumnDescription.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ColumnSorting.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\DetailViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\DetailViewDescriptorProvider.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\GroupItemDescription.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\IDetailViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\IListViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\IMainViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\LabelOrientation.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ListPropertyMode.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ListViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ListViewDescriptorProvider.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\MainViewDescriptor.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\NavigationGroupItem.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\NavigationItemDescription.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ScreenResolutionType.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ScreenResolutionTypeCalculator.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\TabItemDescription.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ViewItemDescription.cs" />
+    <Compile Include="Code\XForms\Design\Descriptors\ViewItemOrientation.cs" />
+    <Compile Include="Code\XForms\Design\DetailViewControlFactory.cs" />
+    <Compile Include="Code\XForms\Design\GridViewComparer.cs" />
+    <Compile Include="Code\XForms\Design\IViewTemplateConfiguration.cs" />
+    <Compile Include="Code\XForms\Design\ListViewCellFactory.cs" />
+    <Compile Include="Code\XForms\Design\TemplateNavigator.cs" />
+    <Compile Include="Code\XForms\Design\Templates\DetailViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Design\Templates\IMainViewTemplate.cs" />
+    <Compile Include="Code\XForms\Design\Templates\LogonViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Design\Templates\MainViewTemplate.cs" />
+    <Compile Include="Code\XForms\Design\Templates\ReducedMainViewTemplate.cs" />
+    <Compile Include="Code\XForms\Design\Templates\SearchFormTemplate.cs" />
+    <Compile Include="Code\XForms\Design\Templates\SlideShowControl.cs" />
+    <Compile Include="Code\XForms\Design\Templates\SlideShowTemplate.cs" />
+    <Compile Include="Code\XForms\Design\Templates\TemplateBase.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Code\XForms\Design\ViewBuilders\DetailViewBuilder.cs" />
+    <Compile Include="Code\XForms\Design\ViewBuilders\IViewBuilder.cs" />
+    <Compile Include="Code\XForms\Design\ViewBuilders\ListDetailItemBuilder.cs" />
+    <Compile Include="Code\XForms\Design\ViewBuilders\ListDetailViewBuilder.cs" />
+    <Compile Include="Code\XForms\Design\ViewBuilders\ListViewBuilder.cs" />
+    <Compile Include="Code\XForms\Design\ViewBuilders\LogonViewGenerator.cs" />
+    <Compile Include="Code\XForms\Extensions\DetailViewExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\FieldNames.cs" />
+    <Compile Include="Code\XForms\Extensions\FileExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\ImageExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\LinqExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\ListViewTemplateExtensions.cs" />
+    <Compile Include="Code\XForms\Extensions\TypeExtensions.cs" />
+    <Compile Include="Code\XForms\Model\ApplicationQuery.cs" />
+    <Compile Include="Code\XForms\Model\FieldFileDataAttribute.cs" />
+    <Compile Include="Code\XForms\Model\FieldImageDataAttribute.cs" />
+    <Compile Include="Code\XForms\Model\FieldImageValueAttribute.cs" />
+    <Compile Include="Code\XForms\Model\FieldTextAreaAttribute.cs" />
+    <Compile Include="Code\XForms\Model\ImageNameAttribute.cs" />
+    <Compile Include="Code\XForms\Model\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Code\XForms\Model\Sex.cs" />
+    <Compile Include="Code\XForms\Model\StorableBase.cs" />
+    <Compile Include="Code\XForms\Model\Tag.cs" />
+    <Compile Include="Code\XForms\Model\User.cs" />
+    <Compile Include="Code\XForms\Platform\BootstrapperBase.cs" />
+    <Compile Include="Code\XForms\Platform\XFormsApplication.cs" />
+    <Compile Include="Code\XForms\Security\DataStoreAuthenticate.cs" />
+    <Compile Include="Code\XForms\Security\IAuthenticate.cs" />
+    <Compile Include="Code\XForms\Security\ISecurityInfoProvider.cs" />
+    <Compile Include="Code\XForms\Security\LogonParameters.cs" />
+    <Compile Include="Code\XForms\Security\SecureText.cs" />
+    <Compile Include="Code\XForms\Security\SecurityInfoProvider.cs" />
+    <Compile Include="Code\XForms\Security\SystemAuthenticate.cs" />
+    <Compile Include="Code\XForms\Services\ContactService.cs" />
+    <Compile Include="Code\XForms\Store\FileDataStore.cs" />
+    <Compile Include="Code\XForms\Store\GuidIdGenerator.cs" />
+    <Compile Include="Code\XForms\Store\IFileData.cs" />
+    <Compile Include="Code\XForms\Store\IFileDataService.cs" />
+    <Compile Include="Code\XForms\Store\IMappingIdGenerator.cs" />
+    <Compile Include="Code\XForms\Store\IStorable.cs" />
+    <Compile Include="Code\XForms\Store\IStore.cs" />
+    <Compile Include="Code\XForms\Store\IStoreConfiguration.cs" />
+    <Compile Include="Code\XForms\Store\LinkedListAttribute.cs" />
+    <Compile Include="Code\XForms\Store\LinkedObjectAttribute.cs" />
+    <Compile Include="Code\XForms\Store\LinkedObjectHelper.cs" />
+    <Compile Include="Code\BCL\Bootstrapper.cs" />
+    <Compile Include="Code\BCL\Commands\AktPersonDetailViewCommand.cs" />
+    <Compile Include="Code\BCL\Commands\CurrentSBDetailsCommand.cs" />
+    <Compile Include="Code\BCL\Commands\ErvRueckverkehrAbrufenListViewCommand.cs" />
+    <Compile Include="Code\BCL\Commands\IAktPersonDetailViewCommand.cs" />
+    <Compile Include="Code\BCL\Commands\IErvRueckverkehrAbrufenListViewCommand.cs" />
+    <Compile Include="Code\BCL\Model\AktModel\Akt.cs" />
+    <Compile Include="Code\BCL\Model\AktModel\AktArt.cs" />
+    <Compile Include="Code\BCL\Model\AktModel\AktPerson.cs" />
+    <Compile Include="Code\BCL\Model\AktModel\AktPersonNumberProvider.cs" />
+    <Compile Include="Code\BCL\Model\AktModel\Partei.cs" />
+    <Compile Include="Code\BCL\Model\Com\Telefonat.cs" />
+    <Compile Include="Code\BCL\Model\Com\TelefonatArt.cs" />
+    <Compile Include="Code\BCL\Model\Com\TelefonatStatus.cs" />
+    <Compile Include="Code\BCL\Model\DokumentModel\Dokument.cs" />
+    <Compile Include="Code\BCL\Model\DokumentModel\DokumentArt.cs" />
+    <Compile Include="Code\BCL\Model\DokumentModel\DokumentMedium.cs" />
+    <Compile Include="Code\BCL\Model\DokumentModel\DokumentStatus.cs" />
+    <Compile Include="Code\BCL\Model\ErvModel\ErvRueckverkehr.cs" />
+    <Compile Include="Code\BCL\Model\ErvModel\ErvRueckverkehrDokument.cs" />
+    <Compile Include="Code\BCL\Model\ExportableBase.cs" />
+    <Compile Include="Code\BCL\Model\LeistungModel\Leistung.cs" />
+    <Compile Include="Code\BCL\Model\LeistungModel\LeistungKatalog.cs" />
+    <Compile Include="Code\BCL\Model\PersonModel\Kontakt.cs" />
+    <Compile Include="Code\BCL\Model\PersonModel\KontaktArt.cs" />
+    <Compile Include="Code\BCL\Model\PersonModel\Person.cs" />
+    <Compile Include="Code\BCL\Model\PersonModel\PersonenArt.cs" />
+    <Compile Include="Code\BCL\Model\PersonModel\SB.cs" />
+    <Compile Include="Code\BCL\Model\TerminModel\Termin.cs" />
+    <Compile Include="Code\BCL\Model\TerminModel\TerminArt.cs" />
+    <Compile Include="Code\BCL\Services\ApplicationQuery.cs" />
+    <Compile Include="Code\BCL\Services\DokumentFileDataService.cs" />
+    <Compile Include="Code\BCL\Services\ErvRueckverkehrService.cs" />
+    <Compile Include="Code\BCL\Services\IErvRueckverkehrService.cs" />
+    <Compile Include="Code\BCL\Services\StoreConfiguration.cs" />
+    <Compile Include="Code\BCL\Views\ApplicationMainViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\AktArtViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\AktPersonViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\AktViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\DokumentViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\KontaktViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\LeistungViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\PersonViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\RueckverkehrDokumentViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\RueckverkehrViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\SBViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\TelefonatViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\TerminViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Details\UserViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\AktListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\DokumentListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\KontaktListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\SBListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\TelefonatListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\TerminListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\ListDetails\UserListDetailViewDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\AktArtListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\AktListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\AktPersonListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\DokumentListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\KontaktListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\LeistungListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\PersonListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\RueckverkehrDokumentListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\RueckverkehrListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\SBListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\TelefonatListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\TerminListDescriptor.cs" />
+    <Compile Include="Code\BCL\Views\Lists\UserListDescriptor.cs" />
+    <Compile Include="AndroidBootstrapper.cs" />
+    <Compile Include="StartUp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Code\" />
+    <Folder Include="Code\XForms\" />
+    <Folder Include="Code\BCL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\add.png">
+      <LogicalName>add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\add2.png">
+      <LogicalName>add2.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\address_book2.png">
+      <LogicalName>address_book2.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\blueprint.png">
+      <LogicalName>blueprint.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\blueprint_compasses.png">
+      <LogicalName>blueprint_compasses.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\businesspeople.png">
+      <LogicalName>businesspeople.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\calendar_31.png">
+      <LogicalName>calendar_31.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\clock_history.png">
+      <LogicalName>clock_history.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\cloud_computing_refresh.png">
+      <LogicalName>cloud_computing_refresh.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\date_time.png">
+      <LogicalName>date_time.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\delete.png">
+      <LogicalName>delete.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\document_attachment.png">
+      <LogicalName>document_attachment.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\document_check.png">
+      <LogicalName>document_check.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\error.png">
+      <LogicalName>error.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\exit.png">
+      <LogicalName>exit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\floppy_disk.png">
+      <LogicalName>floppy_disk.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\folder2.png">
+      <LogicalName>folder2.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\folder3_document.png">
+      <LogicalName>folder3_document.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\hand_thumb_down.png">
+      <LogicalName>hand_thumb_down.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\hand_thumb_up.png">
+      <LogicalName>hand_thumb_up.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\id_card.png">
+      <LogicalName>id_card.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\key2.png">
+      <LogicalName>key2.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\magazine_folder.png">
+      <LogicalName>magazine_folder.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\mail_cloud.png">
+      <LogicalName>mail_cloud.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\nav_left.png">
+      <LogicalName>nav_left.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\nav_refresh.png">
+      <LogicalName>nav_refresh.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\navigate_close.png">
+      <LogicalName>navigate_close.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\navigate_left.png">
+      <LogicalName>navigate_left.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\note.png">
+      <LogicalName>note.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\note_pinned.png">
+      <LogicalName>note_pinned.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\note_plain.png">
+      <LogicalName>note_plain.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\paperclip.png">
+      <LogicalName>paperclip.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\photo_landscape.png">
+      <LogicalName>photo_landscape.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\photos.png">
+      <LogicalName>photos.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\presentation.png">
+      <LogicalName>presentation.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\refresh.png">
+      <LogicalName>refresh.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\server_document.png">
+      <LogicalName>server_document.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\server_to_client.png">
+      <LogicalName>server_to_client.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\signboard_closed.png">
+      <LogicalName>signboard_closed.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\signboard_for_sale.png">
+      <LogicalName>signboard_for_sale.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\signboard_open.png">
+      <LogicalName>signboard_open.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\smartphone_cloud.png">
+      <LogicalName>smartphone_cloud.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\stopwatch.png">
+      <LogicalName>stopwatch.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\tag.png">
+      <LogicalName>tag.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\user_message.png">
+      <LogicalName>user_message.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\user_mobilephone.png">
+      <LogicalName>user_mobilephone.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\user_monitor.png">
+      <LogicalName>user_monitor.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\user_telephone.png">
+      <LogicalName>user_telephone.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\users2.png">
+      <LogicalName>users2.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\XForms\Images\MCollection\view.png">
+      <LogicalName>view.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

@@ -1,5 +1,8 @@
 using System;
 using Trigger.BCL.ParaOffice;
+using XForms.Design;
+using XForms.Security;
+using System.Diagnostics;
 
 namespace Trigger.App.OSX.ParaOffice
 {
@@ -10,7 +13,13 @@ namespace Trigger.App.OSX.ParaOffice
         {
             var application = new XForms.Platform.XFormsApplication();
 
-            application.InitalizeApplication(new Bootstrapper());
+            var logon = new LogonParameters()
+            {
+                UserName = "JE",
+                Password = ""
+            };
+
+            application.InitalizeApplication(new OSXBootstrapper(), Debugger.IsAttached ? logon : null);
             application.Run();
         }
     }

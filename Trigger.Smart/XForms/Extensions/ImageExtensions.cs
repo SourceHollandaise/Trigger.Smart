@@ -1,10 +1,35 @@
 using Eto.Drawing;
 using System.IO;
+using XForms.Store;
 
 namespace Eto.Drawing
 {
     public static class ImageExtensions
     {
+        public static Image ConvertToImage(this IFileData fileData)
+        {
+            var value = fileData.FileName;
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var file = value.GetValidPath();
+                if (file != null)
+                {
+                    try
+                    {
+                        var image = new Bitmap(file);
+
+                        return image;
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public static Image GetImage(string imageName, int size = 32)
         {
             if (string.IsNullOrWhiteSpace(imageName))

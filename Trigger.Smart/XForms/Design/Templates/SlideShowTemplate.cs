@@ -3,9 +3,11 @@ using System.IO;
 using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
+using System;
 
 namespace XForms.Design
 {
+    [Obsolete("Use SlideShowControl instead!", false)]
     public class SlideShowTemplate : Form
     {
         bool loop;

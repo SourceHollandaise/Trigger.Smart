@@ -8,46 +8,54 @@ using System;
 
 namespace XForms.Design
 {
+    internal struct ImageItem
+    {
+        public Image Image
+        {
+            get;
+            set;
+        }
+
+        public string ImageFilePath
+        {
+            get;
+            set;
+        }
+    }
+
     public class SlideShowControl : Form
     {
+        bool isLoop, isRandom, isPlaying;
+
+        int currentImageIndex;
+
         UITimer slideTimer = new UITimer();
 
         ImageView imageView;
 
         IEnumerable<IFileData> files;
 
-        Dictionary<int, Image> imageCollection = new Dictionary<int, Image>();
+        static Size defaultButtonSize = new Size(100, 40);
 
-        Button playButton = new Button(){ Text = "PLAY", Size = new Size(120, 40) };
-        Button stopButton = new Button(){ Text = "STOP", Size = new Size(120, 40) };
-        Button nextButton = new Button(){ Text = "NEXT", Size = new Size(120, 40) };
-        Button previousButton = new Button(){ Text = "PREVIOUS", Size = new Size(120, 40) };
-        Button randomButton = new Button(){ Text = "RANDOM ON", Size = new Size(120, 40) };
-        Button loopButton = new Button(){ Text = "LOOP ON", Size = new Size(120, 40) };
+        Dictionary<int, ImageItem> imageCollection = new Dictionary<int, ImageItem>();
 
-        bool isLoop, isRandom, isPlaying;
-
-        int currentImageIndex;
+        Button playButton = new Button(){ Text = "PLAY", Size = defaultButtonSize };
+        Button stopButton = new Button(){ Text = "STOP", Size = defaultButtonSize };
+        Button nextButton = new Button(){ Text = "NEXT", Size = defaultButtonSize };
+        Button previousButton = new Button(){ Text = "PREVIOUS", Size = defaultButtonSize };
+        Button randomButton = new Button(){ Text = "RANDOM ON", Size = defaultButtonSize };
+        Button loopButton = new Button(){ Text = "LOOP ON", Size = defaultButtonSize };
 
         public SlideShowControl(IEnumerable<IFileData> files)
         {
             this.files = files;
-            imageView = new ImageView();
-            imageView.Size = new Size(-1, 600);
+            this.WindowState = WindowState.Maximized;
+            this.BackgroundColor = Colors.DarkSlateGray;
 
-            slideTimer.Interval = 2.5;
+            slideTimer.Interval = 3;
             slideTimer.Elapsed += (sender, e) =>
             {
                 Next();
-            };
-
-            this.LastImageShown += (sender, e) =>
-            {
-                if (isLoop)
-                {
-                    CreateCollection(isRandom);
-                    Next();
-                }
             };
 
             AddControlButtonHandlers();
@@ -55,12 +63,9 @@ namespace XForms.Design
             this.Content = GetContent();
         }
 
-        public Control GetContent()
+        Control GetButtonsContent()
         {
             var layout = new DynamicLayout();
-            layout.BeginVertical();
-            layout.Add(imageView, false, true);
-            layout.EndVertical();
 
             layout.BeginHorizontal();
             layout.Add(null);
@@ -76,6 +81,44 @@ namespace XForms.Design
             return layout;
         }
 
+        Control GetImageViewContent()
+        {
+            imageView = new ImageView()
+            {
+                Size = this.Size
+            };
+
+            imageView.MouseUp += (sender, e) =>
+            {
+                if (e.Buttons == MouseButtons.Alternate)
+                {
+                    //TODO: Show ContextMenu
+                }
+            };
+
+            var layout = new DynamicLayout();
+
+            layout.BeginVertical();
+            layout.Add(imageView);
+            layout.EndVertical();
+
+            return layout;
+        }
+
+        public Control GetContent()
+        {
+            var layout = new DynamicLayout();
+
+            layout.Add(GetButtonsContent(), false, false);
+
+            layout.BeginVertical();
+            layout.EndVertical();
+
+            layout.Add(GetImageViewContent());
+
+            return layout;
+        }
+
         void CreateCollection(bool random)
         {
             if (random)
@@ -84,12 +127,12 @@ namespace XForms.Design
 
                 foreach (var item in files)
                 {
-                    var image = Convert(item);
+                    var image = item.ConvertToImage();
                     if (image != null)
                     {
                         while (imageCollection.ContainsKey(index))
                             index = GetRandomPosition();
-                        imageCollection.Add(index, image);
+                        imageCollection.Add(index, new ImageItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
                     }
                 }
 
@@ -101,16 +144,16 @@ namespace XForms.Design
                 var index = 0;
                 foreach (var item in files)
                 {
-                    var image = Convert(item);
+                    var image = item.ConvertToImage();
                     if (image != null)
-                        imageCollection.Add(index++, image);
+                        imageCollection.Add(index++, new ImageItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
                 }
             }
         }
 
         int GetRandomPosition()
         {
-            var random = new System.Random();
+            var random = new Random();
             int index = random.Next(0, files.Count());
 
             return index;
@@ -176,10 +219,10 @@ namespace XForms.Design
 
             if (imageCollection.ContainsKey(currentImageIndex))
             {
-                var image = imageCollection[currentImageIndex];
-                if (image != null)
+                var item = imageCollection[currentImageIndex];
+                if (item.Image != null)
                 {
-                    imageView.Image = image;
+                    imageView.Image = item.Image;
                 }
             }
         }
@@ -193,10 +236,10 @@ namespace XForms.Design
         {
             if (imageCollection.ContainsKey(currentImageIndex + 1))
             {
-                var image = imageCollection[currentImageIndex + 1];
-                if (image != null)
+                var item = imageCollection[currentImageIndex + 1];
+                if (item.Image != null)
                 {
-                    imageView.Image = image;
+                    imageView.Image = item.Image;
                     currentImageIndex = currentImageIndex + 1;
                 }
             }
@@ -204,27 +247,28 @@ namespace XForms.Design
             {
                 slideTimer.Stop();
 
-                OnLastImageShown();
+                if (isLoop)
+                {
+                    currentImageIndex = 0;
+                    CreateCollection(isRandom);
+                    Next();
+                    slideTimer.Start();
+                }
             }
-
-        }
-
-        public event EventHandler LastImageShown;
-
-        protected virtual void OnLastImageShown()
-        {
-            var handler = LastImageShown;
-            if (handler != null)
-                handler(this, new EventArgs());
         }
 
         public void Previous()
         {
-            var image = imageCollection[currentImageIndex - 1];
-            if (image != null)
-            {
-                imageView.Image = image;
+            if (currentImageIndex <= 0)
+                currentImageIndex = 0;
+
+            if (currentImageIndex >= 1)
                 currentImageIndex = currentImageIndex - 1;
+
+            var item = imageCollection[currentImageIndex];
+            if (item.Image != null)
+            {
+                imageView.Image = item.Image;
             }
         }
 
@@ -238,30 +282,6 @@ namespace XForms.Design
             isRandom = !isRandom;
 
             CreateCollection(isRandom);
-        }
-
-        Image Convert(IFileData fileData)
-        {
-            var value = fileData.FileName;
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                var file = value.GetValidPath();
-                if (file != null)
-                {
-                    try
-                    {
-                        var image = new Bitmap(file);
-
-                        return image;
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }
-            }
-
-            return null;
         }
     }
 }

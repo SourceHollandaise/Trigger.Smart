@@ -12,8 +12,18 @@ namespace Trigger.App.ParaOffice
 
             var application = new XForms.Platform.XFormsApplication(gen);
 
-            application.InitalizeApplication(new Bootstrapper());
+            application.InitalizeApplication(new IOSBootstrapper());
             application.Run();
+        }
+    }
+
+    public class IOSBootstrapper : Bootstrapper
+    {
+        public override void RegisterViewDescriptors()
+        {
+            base.RegisterViewDescriptors();
+
+            //Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
         }
     }
 }
