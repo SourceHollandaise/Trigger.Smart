@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
 using XForms.Store;
-using System;
 
 namespace XForms.Design
 {
@@ -35,22 +35,24 @@ namespace XForms.Design
 
         IEnumerable<IFileData> files;
 
-        static Size defaultButtonSize = new Size(100, 40);
+        static Size defaultButtonSize = new Size(48, 48);
+        static Color defaultBackColor = Colors.Gray;
 
         Dictionary<int, ImageItem> imageCollection = new Dictionary<int, ImageItem>();
 
-        Button playButton = new Button(){ Text = "PLAY", Size = defaultButtonSize };
-        Button stopButton = new Button(){ Text = "STOP", Size = defaultButtonSize };
-        Button nextButton = new Button(){ Text = "NEXT", Size = defaultButtonSize };
-        Button previousButton = new Button(){ Text = "PREVIOUS", Size = defaultButtonSize };
-        Button randomButton = new Button(){ Text = "RANDOM ON", Size = defaultButtonSize };
-        Button loopButton = new Button(){ Text = "LOOP ON", Size = defaultButtonSize };
+        Button playButton = CreateControlButton("media_play");
+        Button stopButton = CreateControlButton("media_stop");
+        Button nextButton = CreateControlButton("media_step_forward");
+        Button previousButton = CreateControlButton("media_step_back");
+        Button randomButton = CreateControlButton("photos");
+        Button loopButton = CreateControlButton("nav_refresh");
+        Button openImageFileButton = CreateControlButton("document_attachment");
 
         public SlideShowControl(IEnumerable<IFileData> files)
         {
             this.files = files;
             this.WindowState = WindowState.Maximized;
-            this.BackgroundColor = Colors.DarkSlateGray;
+            this.BackgroundColor = Colors.LightGrey;
 
             slideTimer.Interval = 3;
             slideTimer.Elapsed += (sender, e) =>
@@ -61,6 +63,17 @@ namespace XForms.Design
             AddControlButtonHandlers();
 
             this.Content = GetContent();
+        }
+
+        static Button CreateControlButton(string imageName)
+        {
+            return new Button
+            { 
+                Size = defaultButtonSize, 
+                Image = ImageExtensions.GetImage(imageName),
+                BackgroundColor = defaultBackColor,
+                ImagePosition = ButtonImagePosition.Overlay
+            };
         }
 
         Control GetButtonsContent()
@@ -75,6 +88,7 @@ namespace XForms.Design
             layout.Add(stopButton, false, false);
             layout.Add(loopButton, false, false);
             layout.Add(randomButton, false, false);
+            layout.Add(openImageFileButton, false, false);
             layout.Add(null);
             layout.EndHorizontal();
 
@@ -121,8 +135,13 @@ namespace XForms.Design
 
         void CreateCollection(bool random)
         {
+            imageCollection.Clear();
+
             if (random)
             {
+                if (slideTimer.Started)
+                    slideTimer.Stop();
+
                 var index = GetRandomPosition();
 
                 foreach (var item in files)
@@ -136,11 +155,11 @@ namespace XForms.Design
                     }
                 }
 
+                if (isPlaying)
+                    slideTimer.Start();
             }
             else
             {
-                imageCollection.Clear();
-
                 var index = 0;
                 foreach (var item in files)
                 {
@@ -164,10 +183,10 @@ namespace XForms.Design
             playButton.Click += (sender, e) =>
             {
                 PlayPause();
-                if (isPlaying)
-                    playButton.Text = "PAUSE";
-                else
-                    playButton.Text = "PLAY";
+
+                playButton.Image = isPlaying 
+                    ? ImageExtensions.GetImage("media_pause") 
+                    : ImageExtensions.GetImage("media_play");
             };
 
             stopButton.Click += (sender, e) =>
@@ -184,24 +203,31 @@ namespace XForms.Design
             {
                 Previous();
             };
-
+                
             randomButton.Click += (sender, e) =>
             {
                 Random();
-                if (isRandom)
-                    randomButton.Text = "RANDOM OFF";
-                else
-                    randomButton.Text = "RANDOM ON";
+
+                randomButton.Image = isRandom 
+                    ? ImageExtensions.GetImage("photo_landscape") 
+                    : ImageExtensions.GetImage("photos");
             };
 
             loopButton.Click += (sender, e) =>
             {
                 Loop();
 
-                if (isLoop)
-                    loopButton.Text = "LOOP OFF";
-                else
-                    loopButton.Text = "LOOP ON";
+                loopButton.Image = isLoop 
+                    ? ImageExtensions.GetImage("") 
+                    : ImageExtensions.GetImage("nav_refresh");
+            };
+
+            openImageFileButton.Click += (sender, e) =>
+            {
+                var currentItem = imageCollection[currentImageIndex];
+
+                if (File.Exists(currentItem.ImageFilePath))
+                    System.Diagnostics.Process.Start(currentItem.ImageFilePath);
             };
         }
 

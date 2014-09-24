@@ -380,5 +380,26 @@
     <EmbeddedResource Include="Images\MCollection\view.png">
       <LogicalName>view.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_fast_forward.png">
+      <LogicalName>media_fast_forward.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_pause.png">
+      <LogicalName>media_pause.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_play.png">
+      <LogicalName>media_play.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_rewind.png">
+      <LogicalName>media_rewind.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_step_back.png">
+      <LogicalName>media_step_back.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_step_forward.png">
+      <LogicalName>media_step_forward.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MCollection\media_stop.png">
+      <LogicalName>media_stop.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
