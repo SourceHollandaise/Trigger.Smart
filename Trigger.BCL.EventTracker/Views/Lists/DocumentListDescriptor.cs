@@ -11,7 +11,7 @@ namespace Trigger.BCL.EventTracker
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
             RegisterCommands<IFileViewerListViewCommand>();
-
+  
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 

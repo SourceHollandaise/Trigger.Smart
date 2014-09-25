@@ -34,15 +34,13 @@ namespace XForms.Design
             slideTimer.Interval = 3;
             slideTimer.Elapsed += (sender, e) => Next();
 
-            AddControlButtonHandlers();
-
             this.Content = GetContent();
 
             if (autoStart)
                 PlayPause();
         }
 
-        public void PlayPause()
+        protected override void PlayPause()
         {
             isPlaying = !isPlaying;
 
@@ -69,12 +67,12 @@ namespace XForms.Design
                 : ImageExtensions.GetImage("media_play");
         }
 
-        public void Stop()
+        protected override void Stop()
         {
             slideTimer.Stop();
         }
 
-        public void Next()
+        protected override void Next()
         {
             if (imageCollection.ContainsKey(CurrentIndex + 1))
             {
@@ -100,7 +98,7 @@ namespace XForms.Design
             }
         }
 
-        public void Previous()
+        protected override void Previous()
         {
             if (CurrentIndex <= 0)
                 CurrentIndex = 0;
@@ -116,14 +114,14 @@ namespace XForms.Design
             }
         }
 
-        public void Loop()
+        protected override void Loop()
         {
             isLoop = !isLoop;
 
             LoopButton.BackgroundColor = isLoop ? Colors.CornflowerBlue : DefaultButtonBackColor;
         }
 
-        public void Random()
+        protected override void Random()
         {
             isRandom = !isRandom;
 
@@ -132,15 +130,9 @@ namespace XForms.Design
             RandomButton.BackgroundColor = isRandom ? Colors.CornflowerBlue : DefaultButtonBackColor;
         }
 
-        public void OpenImageFile()
-        {
-            var currentItem = imageCollection[CurrentIndex];
+      
 
-            if (File.Exists(currentItem.ImageFilePath))
-                System.Diagnostics.Process.Start(currentItem.ImageFilePath);
-        }
-
-        public void AddImageSourceFolder()
+        protected override void AddImageSourceFolder()
         {
             var folderBrowser = new SelectFolderDialog();
             folderBrowser.Title = "Select source";
@@ -152,7 +144,7 @@ namespace XForms.Design
             }
         }
 
-        public void StoreImage()
+        protected override void StoreImage()
         {
             var currentItem = imageCollection[CurrentIndex];
             if (File.Exists(currentItem.ImageFilePath))
@@ -161,6 +153,14 @@ namespace XForms.Design
                 if (service != null)
                     service.StoreFile(currentItem.ImageFilePath);
             }
+        }
+
+        protected override void OpenFile()
+        {
+            var currentItem = imageCollection[CurrentIndex];
+
+            if (File.Exists(currentItem.ImageFilePath))
+                System.Diagnostics.Process.Start(currentItem.ImageFilePath);
         }
 
         Control GetContent()
@@ -175,35 +175,6 @@ namespace XForms.Design
             layout.EndVertical();
 
             layout.Add(GetImageViewContent());
-
-            return layout;
-        }
-
-        Control GetFilePathContent()
-        {
-            var layout = new DynamicLayout();
-
-            FileLabel = new Label()
-            {
-                Text = "",
-                HorizontalAlign = HorizontalAlign.Center,
-                VerticalAlign = VerticalAlign.Top,
-            };
-
-            try
-            {
-                FileLabel.Font = new Font(FileLabel.Font.Family, FileLabel.Font.Size, FileLabel.Font.FontStyle, FontDecoration.Underline);
-            }
-            catch
-            {
-
-            }
-
-            FileLabel.MouseDoubleClick += (sender, e) => OpenImageFile();
-
-            layout.BeginVertical();
-            layout.Add(FileLabel, true, false);
-            layout.EndVertical();
 
             return layout;
         }
@@ -242,25 +213,6 @@ namespace XForms.Design
             layout.EndVertical();
 
             return layout;
-        }
-
-        void AddControlButtonHandlers()
-        {
-            PlayButton.Click += (sender, e) => PlayPause();
-
-            StopButton.Click += (sender, e) => Stop();
-
-            NextButton.Click += (sender, e) => Next();
-
-            PreviousButton.Click += (sender, e) => Previous();
-
-            RandomButton.Click += (sender, e) => Random();
-
-            LoopButton.Click += (sender, e) => Loop();
-
-            OpenSourceFolderButton.Click += (sender, e) => AddImageSourceFolder();
-
-            StoreFileDataButton.Click += (sender, e) => StoreImage();
         }
 
         void CreateCollection(bool random)

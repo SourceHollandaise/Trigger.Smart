@@ -9,12 +9,10 @@ namespace XForms.Commands
 
     public class FileViewerListViewCommand : IFileViewerListViewCommand
     {
-
         public void Execute(ListViewArguments listParameter)
         {
             if (listParameter.InputData is IListViewDescriptor)
             {
-
                 var descriptor = listParameter.InputData as IListViewDescriptor;
 
                 if (descriptor.FilePreviewMode == FileDataMode.None)

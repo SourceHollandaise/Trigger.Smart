@@ -56,9 +56,6 @@ namespace XForms.Design
             RegisterCommands<INavigateHomeListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
-
-            if (this.FilePreviewMode != FileDataMode.None)
-                RegisterCommands<IFileViewerListViewCommand>();
         }
 
         public virtual IEnumerable<IStorable> Repository { get; set; }

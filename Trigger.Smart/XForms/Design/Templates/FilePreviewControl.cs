@@ -35,7 +35,7 @@ namespace XForms.Design
 
         }
 
-        public void Next()
+        protected override void Next()
         {
             if (fileCollection.ContainsKey(CurrentIndex + 1))
             {
@@ -49,7 +49,7 @@ namespace XForms.Design
             }
         }
 
-        public void Previous()
+        protected override void Previous()
         {
             if (CurrentIndex <= 0)
                 CurrentIndex = 0;
@@ -65,15 +65,7 @@ namespace XForms.Design
             }
         }
 
-        public void OpenFile()
-        {
-            var currentItem = fileCollection[CurrentIndex];
-
-            if (File.Exists(currentItem.FilePath))
-                System.Diagnostics.Process.Start(currentItem.FilePath);
-        }
-
-        public void AddImageSourceFolder()
+        protected override void AddImageSourceFolder()
         {
             var folderBrowser = new SelectFolderDialog();
             folderBrowser.Title = "Select source";
@@ -85,7 +77,7 @@ namespace XForms.Design
             }
         }
 
-        public void StoreImage()
+        protected override void StoreImage()
         {
             var currentItem = fileCollection[CurrentIndex];
             if (File.Exists(currentItem.FilePath))
@@ -94,6 +86,14 @@ namespace XForms.Design
                 if (service != null)
                     service.StoreFile(currentItem.FilePath);
             }
+        }
+
+        protected override void OpenFile()
+        {
+            var currentItem = fileCollection[CurrentIndex];
+
+            if (File.Exists(currentItem.FilePath))
+                System.Diagnostics.Process.Start(currentItem.FilePath);
         }
 
         Control GetContent()
@@ -112,35 +112,6 @@ namespace XForms.Design
             return layout;
         }
 
-        Control GetFilePathContent()
-        {
-            var layout = new DynamicLayout();
-
-            FileLabel = new Label()
-            {
-                Text = "",
-                HorizontalAlign = HorizontalAlign.Center,
-                VerticalAlign = VerticalAlign.Top,
-            };
-
-            try
-            {
-                FileLabel.Font = new Font(FileLabel.Font.Family, FileLabel.Font.Size, FileLabel.Font.FontStyle, FontDecoration.Underline);
-            }
-            catch
-            {
-
-            }
-
-            FileLabel.MouseDoubleClick += (sender, e) => OpenFile();
-
-            layout.BeginVertical();
-            layout.Add(FileLabel, true, false);
-            layout.EndVertical();
-
-            return layout;
-        }
-
         Control GetButtonsContent()
         {
             var layout = new DynamicLayout();
@@ -149,7 +120,6 @@ namespace XForms.Design
             layout.Add(null);
             layout.Add(PreviousButton, false, false);
             layout.Add(NextButton, false, false);
-            //layout.Add(openImageFileButton, false, false);
             layout.Add(OpenSourceFolderButton, false, false);
             layout.Add(StoreFileDataButton, false, false);
             layout.Add(null);

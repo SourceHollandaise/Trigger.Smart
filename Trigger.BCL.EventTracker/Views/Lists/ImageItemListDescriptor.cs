@@ -15,7 +15,7 @@ namespace Trigger.BCL.EventTracker
         public ImageItemListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
-         
+            RegisterCommands<IFileViewerListViewCommand>();
 
             ListShowTags = false;
             RowHeight = 64;

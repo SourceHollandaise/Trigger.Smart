@@ -24,6 +24,8 @@ namespace XForms.Design
         protected PreviewControl()
         {
             CreateControlButtons();
+
+            AddButtonHandlers();
         }
 
         protected void CreateControlButtons()
@@ -34,7 +36,6 @@ namespace XForms.Design
             PreviousButton = CreateButton("media_step_back");
             RandomButton = CreateButton("photos");
             LoopButton = CreateButton("nav_refresh");
-            OpenFileButton = CreateButton("document_attachment");
             OpenSourceFolderButton = CreateButton("folder3_document");
             StoreFileDataButton = CreateButton("floppy_disk");
         }
@@ -48,6 +49,99 @@ namespace XForms.Design
                 BackgroundColor = DefaultButtonBackColor,
                 ImagePosition = ButtonImagePosition.Overlay
             };
+        }
+
+        void AddButtonHandlers()
+        {
+            PlayButton.Click += (sender, e) => PlayPause();
+
+            StopButton.Click += (sender, e) => Stop();
+
+            NextButton.Click += (sender, e) => Next();
+
+            PreviousButton.Click += (sender, e) => Previous();
+
+            RandomButton.Click += (sender, e) => Random();
+
+            LoopButton.Click += (sender, e) => Loop();
+
+            OpenSourceFolderButton.Click += (sender, e) => AddImageSourceFolder();
+
+            StoreFileDataButton.Click += (sender, e) => StoreImage();
+        }
+
+        protected Control GetFilePathContent()
+        {
+            var layout = new DynamicLayout();
+
+            FileLabel = new Label()
+            {
+                Text = "",
+                HorizontalAlign = HorizontalAlign.Center,
+                VerticalAlign = VerticalAlign.Top,
+            };
+
+            try
+            {
+                FileLabel.Font = new Font(FileLabel.Font.Family, FileLabel.Font.Size, FileLabel.Font.FontStyle, FontDecoration.Underline);
+            }
+            catch
+            {
+
+            }
+
+            FileLabel.MouseDoubleClick += (sender, e) => OpenFile();
+
+            layout.BeginVertical();
+            layout.Add(FileLabel, true, false);
+            layout.EndVertical();
+
+            return layout;
+        }
+
+        protected virtual void OpenFile()
+        {
+          
+        }
+
+        protected virtual void PlayPause()
+        {
+
+        }
+
+        protected virtual void Stop()
+        {
+
+        }
+
+        protected virtual void Previous()
+        {
+
+        }
+
+        protected virtual void Next()
+        {
+
+        }
+
+        protected virtual void Random()
+        {
+
+        }
+
+        protected virtual void Loop()
+        {
+
+        }
+
+        protected virtual void AddImageSourceFolder()
+        {
+
+        }
+
+        protected virtual void StoreImage()
+        {
+
         }
     }
 }
