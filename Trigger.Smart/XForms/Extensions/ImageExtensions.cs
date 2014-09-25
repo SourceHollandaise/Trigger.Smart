@@ -30,6 +30,31 @@ namespace Eto.Drawing
             return null;
         }
 
+
+        public static Image ConvertToImage(this string value)
+        {
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var file = value.GetValidPath();
+                if (file != null)
+                {
+                    try
+                    {
+                        var image = new Bitmap(file);
+
+                        return image;
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public static Image GetImage(string imageName, int size = 32)
         {
             if (string.IsNullOrWhiteSpace(imageName))

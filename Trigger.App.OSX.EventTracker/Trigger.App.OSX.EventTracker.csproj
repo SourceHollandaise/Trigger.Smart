@@ -87,6 +87,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="StartUp.cs" />
+    <Compile Include="OSXBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trigger.Smart\XForms\XForms.csproj">

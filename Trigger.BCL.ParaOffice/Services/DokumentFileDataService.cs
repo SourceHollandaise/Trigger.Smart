@@ -70,6 +70,11 @@ namespace Trigger.BCL.ParaOffice
             return counter;
         }
 
+        public void StoreFile(string sourcePath, bool copy = true)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddFile(IFileData fileData, string sourcePath, bool copy = true)
         {
             if (File.Exists(sourcePath))

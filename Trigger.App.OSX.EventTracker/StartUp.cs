@@ -1,5 +1,4 @@
 using System;
-using Trigger.BCL.EventTracker;
 using XForms.Security;
 
 namespace Trigger.App.OSX.EventTracker
@@ -22,7 +21,7 @@ namespace Trigger.App.OSX.EventTracker
                 };
             }
 
-            application.InitalizeApplication(new Bootstrapper(), logon);
+            application.InitalizeApplication(new OSXBootstrapper(), logon);
 
             application.Run();
         }

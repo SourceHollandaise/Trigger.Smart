@@ -18,7 +18,7 @@ namespace Trigger.BCL.EventTracker
             RegisterCommands<ISlideShowListViewCommand>();
 
             ListShowTags = false;
-
+            RowHeight = 64;
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
@@ -33,6 +33,7 @@ namespace Trigger.BCL.EventTracker
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },
+                new ColumnDescription(Fields.GetName(m => m.GalleryAlias), 2){ ColumnHeaderText = "Gallery", AutoSize = false, AllowResize = true },
             };
         }
     }

@@ -102,6 +102,59 @@ namespace Trigger.BCL.EventTracker.Services
             return counter;
         }
 
+        public void StoreFile(string sourcePath, bool copy = true)
+        {
+            if (File.Exists(sourcePath))
+            {
+                var fileInfo = new FileInfo(sourcePath);
+
+                if (fileInfo.IsSupportedDocument() || fileInfo.IsSupportedImage())
+                {
+                    var fileName = fileInfo.Name;
+
+                    var result = MapProvider.Instance.ResolveType<IStore>().LoadAll<ImageItem>().Where(p => p.FileName.Equals(fileName));
+                    if (result.Any())
+                        return;
+
+                    var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, fileName);
+
+                    try
+                    {
+                        if (!sourcePath.Equals(targetPath))
+                        {
+                            if (copy)
+                                File.Copy(sourcePath, targetPath);
+                            else
+                                File.Move(sourcePath, targetPath);
+                        }
+
+                        IFileData data = null;
+
+                        if (fileInfo.IsSupportedImage())
+                            data = new ImageItem();
+
+                        if (fileInfo.IsSupportedDocument())
+                            data = new Document();
+
+                        if (data != null)
+                        {
+                            data.FileName = new FileInfo(targetPath).Name;
+                            data.Subject = data.FileName;
+
+
+                            (data as IStorable).Save();
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                else
+                    ConfirmationMessages.NotSupportedShow("This filetype is currently not supported!");
+            }
+        }
+
         public void AddFile(IFileData fileData, string sourcePath, bool copy = true)
         {
             if (File.Exists(sourcePath))

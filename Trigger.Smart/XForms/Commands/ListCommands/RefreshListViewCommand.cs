@@ -24,7 +24,7 @@ namespace XForms.Commands
                     var builder = new ListDetailViewBuilder(descriptor, listParameter.TargetType, listParameter.CustomDataSet);
                     var content = builder.GetContent();
 
-                    (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = content;
+                    (Application.Instance.MainForm as IMainViewTemplate).SetContent(content);
                 }
             }
         }

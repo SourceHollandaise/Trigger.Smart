@@ -15,7 +15,7 @@ namespace XForms.Commands
             if (listParameter.InputData is IListViewDescriptor)
             {
                 var descriptor = listParameter.InputData as IListViewDescriptor;
-                var storables = new DataStoreProvider(descriptor, listParameter.TargetType).CreateRawDataSet(listParameter.CustomDataSet) as IEnumerable<IStorable>;
+                var storables = new DataStoreProvider(descriptor, listParameter.TargetType).CreateRawDataSet(listParameter.CustomDataSet);
                 if (storables.Any())
                 {
                     var fileDataItems = storables.Cast<IFileData>();
