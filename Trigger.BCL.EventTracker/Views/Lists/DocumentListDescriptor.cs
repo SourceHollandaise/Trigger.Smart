@@ -10,7 +10,7 @@ namespace Trigger.BCL.EventTracker
         public DocumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
-            RegisterCommands<ISlideShowListViewCommand>();
+            RegisterCommands<IFileViewerListViewCommand>();
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
@@ -19,6 +19,8 @@ namespace Trigger.BCL.EventTracker
             ListDetailViewWithToolbar = true;
             ListDetailViewColumns = 2;
             ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+
+            FilePreviewMode = XForms.Store.FileDataMode.MixedMode;
 
             DetailView = new DocumentListDetailViewDescriptor();
 

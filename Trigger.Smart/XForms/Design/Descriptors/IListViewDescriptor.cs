@@ -7,6 +7,8 @@ namespace XForms.Design
 {
     public interface IListViewDescriptor
     {
+        FileDataMode FilePreviewMode { get; set; }
+
         string DefaultSortProperty { get; set; }
 
         bool AllowColumnReorder { get; set; }

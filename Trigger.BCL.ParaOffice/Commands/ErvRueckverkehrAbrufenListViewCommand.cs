@@ -13,7 +13,7 @@ namespace Trigger.BCL.ParaOffice
 
             var service = MapProvider.Instance.ResolveType<IErvRueckverkehrService>();
 
-            var item = service.Get(ApplicationModelQuery.CurrentSB.ErvCode, DateTime.Today, DateTime.Today);
+            service.Get(ApplicationModelQuery.CurrentSB.ErvCode, DateTime.Today, DateTime.Today);
 
             MapProvider.Instance.ResolveType<IRefreshListViewCommand>().Execute(listParameter);
         }

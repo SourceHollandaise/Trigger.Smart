@@ -8,29 +8,15 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public class SlideShowControl : Form
+    public class SlideShowControl : PreviewControl
     {
         bool isLoop, isRandom, isPlaying;
-        int imageIndex;
-        Label imageLabel;
+
         UITimer slideTimer;
         ImageView imageView;
 
-        static Size defaultButtonSize = new Size(48, 48);
-        static Color defaultButtonBackColor = Colors.Gray;
-
         readonly Dictionary<int, ImageItem> imageCollection;
         readonly IEnumerable<IFileData> files;
-
-        readonly Button playButton = CreateControlButton("media_play");
-        readonly Button stopButton = CreateControlButton("media_stop");
-        readonly Button nextButton = CreateControlButton("media_step_forward");
-        readonly Button previousButton = CreateControlButton("media_step_back");
-        readonly Button randomButton = CreateControlButton("photos");
-        readonly Button loopButton = CreateControlButton("nav_refresh");
-        readonly Button openImageFileButton = CreateControlButton("document_attachment");
-        readonly Button addImageSourceButton = CreateControlButton("folder3_document");
-        readonly Button storeImageButton = CreateControlButton("floppy_disk");
 
         protected SlideShowControl()
         {
@@ -68,17 +54,17 @@ namespace XForms.Design
             if (isPlaying && (imageCollection == null || imageCollection.Count == 0))
                 CreateCollection(isRandom);
 
-            if (imageCollection.ContainsKey(imageIndex))
+            if (imageCollection.ContainsKey(CurrentIndex))
             {
-                var item = imageCollection[imageIndex];
+                var item = imageCollection[CurrentIndex];
                 if (item.Image != null)
                 {
                     imageView.Image = item.Image;
-                    imageLabel.Text = item.ImageFilePath;
+                    FileLabel.Text = item.ImageFilePath;
                 }
             }
 
-            playButton.Image = isPlaying 
+            PlayButton.Image = isPlaying 
                 ? ImageExtensions.GetImage("media_pause") 
                 : ImageExtensions.GetImage("media_play");
         }
@@ -90,14 +76,14 @@ namespace XForms.Design
 
         public void Next()
         {
-            if (imageCollection.ContainsKey(imageIndex + 1))
+            if (imageCollection.ContainsKey(CurrentIndex + 1))
             {
-                var item = imageCollection[imageIndex + 1];
+                var item = imageCollection[CurrentIndex + 1];
                 if (item.Image != null)
                 {
                     imageView.Image = item.Image;
-                    imageIndex = imageIndex + 1;
-                    imageLabel.Text = item.ImageFilePath;
+                    CurrentIndex = CurrentIndex + 1;
+                    FileLabel.Text = item.ImageFilePath;
                 }
             }
             else
@@ -106,7 +92,7 @@ namespace XForms.Design
 
                 if (isLoop)
                 {
-                    imageIndex = 0;
+                    CurrentIndex = 0;
                     CreateCollection(isRandom);
                     Next();
                     slideTimer.Start();
@@ -116,17 +102,17 @@ namespace XForms.Design
 
         public void Previous()
         {
-            if (imageIndex <= 0)
-                imageIndex = 0;
+            if (CurrentIndex <= 0)
+                CurrentIndex = 0;
 
-            if (imageIndex >= 1)
-                imageIndex = imageIndex - 1;
+            if (CurrentIndex >= 1)
+                CurrentIndex = CurrentIndex - 1;
 
-            var item = imageCollection[imageIndex];
+            var item = imageCollection[CurrentIndex];
             if (item.Image != null)
             {
                 imageView.Image = item.Image;
-                imageLabel.Text = item.ImageFilePath;
+                FileLabel.Text = item.ImageFilePath;
             }
         }
 
@@ -134,11 +120,7 @@ namespace XForms.Design
         {
             isLoop = !isLoop;
 
-            loopButton.BackgroundColor = isLoop ? Colors.CornflowerBlue : defaultButtonBackColor;
-
-//            loopButton.Image = isLoop 
-//                ? ImageExtensions.GetImage("nav_refresh") 
-//                : ImageExtensions.GetImage("nav_refresh");
+            LoopButton.BackgroundColor = isLoop ? Colors.CornflowerBlue : DefaultButtonBackColor;
         }
 
         public void Random()
@@ -147,16 +129,12 @@ namespace XForms.Design
 
             CreateCollection(isRandom);
 
-            randomButton.BackgroundColor = isRandom ? Colors.CornflowerBlue : defaultButtonBackColor;
-
-//            randomButton.Image = isRandom 
-//                ? ImageExtensions.GetImage("photo_landscape") 
-//                : ImageExtensions.GetImage("photos");
+            RandomButton.BackgroundColor = isRandom ? Colors.CornflowerBlue : DefaultButtonBackColor;
         }
 
         public void OpenImageFile()
         {
-            var currentItem = imageCollection[imageIndex];
+            var currentItem = imageCollection[CurrentIndex];
 
             if (File.Exists(currentItem.ImageFilePath))
                 System.Diagnostics.Process.Start(currentItem.ImageFilePath);
@@ -176,7 +154,7 @@ namespace XForms.Design
 
         public void StoreImage()
         {
-            var currentItem = imageCollection[imageIndex];
+            var currentItem = imageCollection[CurrentIndex];
             if (File.Exists(currentItem.ImageFilePath))
             {
                 var service = Dependency.MapProvider.Instance.ResolveType<IFileDataService>();
@@ -205,7 +183,7 @@ namespace XForms.Design
         {
             var layout = new DynamicLayout();
 
-            imageLabel = new Label()
+            FileLabel = new Label()
             {
                 Text = "",
                 HorizontalAlign = HorizontalAlign.Center,
@@ -214,17 +192,17 @@ namespace XForms.Design
 
             try
             {
-                imageLabel.Font = new Font(imageLabel.Font.Family, imageLabel.Font.Size, imageLabel.Font.FontStyle, FontDecoration.Underline);
+                FileLabel.Font = new Font(FileLabel.Font.Family, FileLabel.Font.Size, FileLabel.Font.FontStyle, FontDecoration.Underline);
             }
             catch
             {
 
             }
 
-            imageLabel.MouseDoubleClick += (sender, e) => OpenImageFile();
+            FileLabel.MouseDoubleClick += (sender, e) => OpenImageFile();
 
             layout.BeginVertical();
-            layout.Add(imageLabel, true, false);
+            layout.Add(FileLabel, true, false);
             layout.EndVertical();
 
             return layout;
@@ -236,15 +214,14 @@ namespace XForms.Design
 
             layout.BeginHorizontal();
             layout.Add(null);
-            layout.Add(playButton, false, false);
-            layout.Add(previousButton, false, false);
-            layout.Add(nextButton, false, false);
-            layout.Add(stopButton, false, false);
-            layout.Add(loopButton, false, false);
-            layout.Add(randomButton, false, false);
-            //layout.Add(openImageFileButton, false, false);
-            layout.Add(addImageSourceButton, false, false);
-            layout.Add(storeImageButton, false, false);
+            layout.Add(PlayButton, false, false);
+            layout.Add(PreviousButton, false, false);
+            layout.Add(NextButton, false, false);
+            layout.Add(StopButton, false, false);
+            layout.Add(LoopButton, false, false);
+            layout.Add(RandomButton, false, false);
+            layout.Add(OpenSourceFolderButton, false, false);
+            layout.Add(StoreFileDataButton, false, false);
             layout.Add(null);
             layout.EndHorizontal();
 
@@ -267,36 +244,23 @@ namespace XForms.Design
             return layout;
         }
 
-        static Button CreateControlButton(string imageName)
-        {
-            return new Button
-            { 
-                Size = defaultButtonSize, 
-                Image = ImageExtensions.GetImage(imageName),
-                BackgroundColor = defaultButtonBackColor,
-                ImagePosition = ButtonImagePosition.Overlay
-            };
-        }
-
         void AddControlButtonHandlers()
         {
-            playButton.Click += (sender, e) => PlayPause();
+            PlayButton.Click += (sender, e) => PlayPause();
 
-            stopButton.Click += (sender, e) => Stop();
+            StopButton.Click += (sender, e) => Stop();
 
-            nextButton.Click += (sender, e) => Next();
+            NextButton.Click += (sender, e) => Next();
 
-            previousButton.Click += (sender, e) => Previous();
+            PreviousButton.Click += (sender, e) => Previous();
 
-            randomButton.Click += (sender, e) => Random();
+            RandomButton.Click += (sender, e) => Random();
 
-            loopButton.Click += (sender, e) => Loop();
+            LoopButton.Click += (sender, e) => Loop();
 
-            openImageFileButton.Click += (sender, e) => OpenImageFile();
+            OpenSourceFolderButton.Click += (sender, e) => AddImageSourceFolder();
 
-            addImageSourceButton.Click += (sender, e) => AddImageSourceFolder();
-
-            storeImageButton.Click += (sender, e) => StoreImage();
+            StoreFileDataButton.Click += (sender, e) => StoreImage();
         }
 
         void CreateCollection(bool random)

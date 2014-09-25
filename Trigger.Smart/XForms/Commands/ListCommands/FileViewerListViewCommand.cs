@@ -7,22 +7,37 @@ using System.Linq;
 namespace XForms.Commands
 {
 
-    public class SlideShowListViewCommand : ISlideShowListViewCommand
+    public class FileViewerListViewCommand : IFileViewerListViewCommand
     {
 
         public void Execute(ListViewArguments listParameter)
         {
             if (listParameter.InputData is IListViewDescriptor)
             {
+
                 var descriptor = listParameter.InputData as IListViewDescriptor;
+
+                if (descriptor.FilePreviewMode == FileDataMode.None)
+                    return;
+
                 var storables = new DataStoreProvider(descriptor, listParameter.TargetType).CreateRawDataSet(listParameter.CustomDataSet);
                 if (storables.Any())
                 {
                     var fileDataItems = storables.Cast<IFileData>();
 
-                    var slider = new SlideShowControl(fileDataItems);
-                    slider.Show();
-                    slider.BringToFront();
+                    if (descriptor.FilePreviewMode == FileDataMode.SlideShow)
+                    {
+                        var preview = new SlideShowControl(fileDataItems);
+                        preview.Show();
+                        preview.BringToFront();
+                    }
+
+                    if (descriptor.FilePreviewMode == FileDataMode.FilePreview || descriptor.FilePreviewMode == FileDataMode.MixedMode)
+                    {
+                        var preview = new FilePreviewControl(fileDataItems);
+                        preview.Show();
+                        preview.BringToFront();
+                    }
                 }
             }
         }

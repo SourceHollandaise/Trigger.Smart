@@ -22,5 +22,4 @@ namespace XForms.Design
             set;
         }
     }
-    
 }

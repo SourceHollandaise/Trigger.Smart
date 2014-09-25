@@ -9,7 +9,7 @@ namespace Trigger.BCL.ParaOffice
         public DokumentListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
-            RegisterCommands<ISlideShowListViewCommand>();
+            RegisterCommands<IFileViewerListViewCommand>();
 
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
@@ -20,6 +20,8 @@ namespace Trigger.BCL.ParaOffice
             ListDetailViewOrientation = ViewItemOrientation.Horizontal;
 
             DetailView = new DokumentListDetailViewDescriptor();
+
+            FilePreviewMode = XForms.Store.FileDataMode.MixedMode;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

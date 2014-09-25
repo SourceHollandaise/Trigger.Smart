@@ -11,6 +11,8 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
+            FilePreviewMode = XForms.Store.FileDataMode.FilePreview;
+
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Subject), 1){ ColumnHeaderText = "Dokument" },

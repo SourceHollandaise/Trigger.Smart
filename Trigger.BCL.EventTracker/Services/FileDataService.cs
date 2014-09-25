@@ -5,6 +5,7 @@ using Trigger.BCL.EventTracker.Model;
 using XForms.Store;
 using XForms.Dependency;
 using XForms.Commands;
+using XForms.Security;
 
 namespace Trigger.BCL.EventTracker.Services
 {
@@ -120,29 +121,42 @@ namespace Trigger.BCL.EventTracker.Services
 
                     try
                     {
-                        if (!sourcePath.Equals(targetPath))
+                        if (sourcePath.Equals(targetPath))
+                            return;
+
+                        bool dataEntryCreated = false;
+
+                        if (fileInfo.IsSupportedImage())
+                        {
+                            var imageItem = new ImageItem();
+
+                            imageItem.FileName = new FileInfo(targetPath).Name;
+                            imageItem.Subject = imageItem.FileName;
+            
+                            imageItem.Save();
+
+                            dataEntryCreated = true;
+                        }
+
+                        if (fileInfo.IsSupportedDocument())
+                        {
+                            var document = new Document();
+
+                            document.FileName = new FileInfo(targetPath).Name;
+                            document.Subject = document.FileName;
+                            document.User = MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser as ApplicationUser;
+         
+                            document.Save();
+
+                            dataEntryCreated = true;
+                        }
+
+                        if (dataEntryCreated)
                         {
                             if (copy)
                                 File.Copy(sourcePath, targetPath);
                             else
                                 File.Move(sourcePath, targetPath);
-                        }
-
-                        IFileData data = null;
-
-                        if (fileInfo.IsSupportedImage())
-                            data = new ImageItem();
-
-                        if (fileInfo.IsSupportedDocument())
-                            data = new Document();
-
-                        if (data != null)
-                        {
-                            data.FileName = new FileInfo(targetPath).Name;
-                            data.Subject = data.FileName;
-
-
-                            (data as IStorable).Save();
                         }
                     }
                     catch

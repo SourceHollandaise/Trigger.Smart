@@ -8,6 +8,8 @@ namespace XForms.Design
 {
     public abstract class ListViewDescriptor<T> : IListViewDescriptor
     {
+        public FileDataMode FilePreviewMode { get; set; }
+
         public IList<ColumnDescription> ColumnDescriptions { get; set; }
 
         public string DefaultSortProperty { get; set; }
@@ -54,6 +56,9 @@ namespace XForms.Design
             RegisterCommands<INavigateHomeListViewCommand>();
             RegisterCommands<ICreateObjectListViewCommand>();
             RegisterCommands<IRefreshListViewCommand>();
+
+            if (this.FilePreviewMode != FileDataMode.None)
+                RegisterCommands<IFileViewerListViewCommand>();
         }
 
         public virtual IEnumerable<IStorable> Repository { get; set; }
@@ -68,6 +73,7 @@ namespace XForms.Design
             AllowMultiSelection = false;
             ListShowTags = true;
             ShowSearchBox = false;
+            FilePreviewMode = FileDataMode.None;
 
             RegisterDefaultListCommands();
 

@@ -15,7 +15,7 @@ namespace Trigger.BCL.EventTracker
         public ImageItemListDescriptor()
         {
             RegisterCommands<IUpdateDocumentStoreListViewCommand>();
-            RegisterCommands<ISlideShowListViewCommand>();
+         
 
             ListShowTags = false;
             RowHeight = 64;
@@ -29,6 +29,8 @@ namespace Trigger.BCL.EventTracker
             ShowListDetailViewForLinkedLists = true;
 
             DetailView = new ImageItemListDetailViewDescriptor();
+
+            FilePreviewMode = FileDataMode.SlideShow;
 
             ColumnDescriptions = new List<ColumnDescription>
             {

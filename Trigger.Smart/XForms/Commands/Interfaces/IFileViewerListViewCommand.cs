@@ -3,7 +3,7 @@ using XForms.Commands;
 namespace XForms.Commands
 {
 
-    public interface ISlideShowListViewCommand : IListViewCommand
+    public interface IFileViewerListViewCommand : IListViewCommand
     {
 
     }
