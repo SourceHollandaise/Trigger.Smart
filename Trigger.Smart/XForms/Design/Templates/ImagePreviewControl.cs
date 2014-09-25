@@ -8,7 +8,7 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    public class SlideShowControl : PreviewControl
+    public class ImagePreviewControl : PreviewControl
     {
         bool isLoop, isRandom, isPlaying;
 
@@ -18,12 +18,12 @@ namespace XForms.Design
         readonly Dictionary<int, ImageItem> imageCollection;
         readonly IEnumerable<IFileData> files;
 
-        protected SlideShowControl()
+        protected ImagePreviewControl()
         {
             //INFO: Should not be called
         }
 
-        public SlideShowControl(IEnumerable<IFileData> files, bool autoStart = false)
+        public ImagePreviewControl(IEnumerable<IFileData> files, bool autoStart = false)
         {
             this.WindowState = WindowState.Maximized;
             this.BackgroundColor = Colors.LightGrey;

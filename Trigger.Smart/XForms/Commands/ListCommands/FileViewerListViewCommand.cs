@@ -25,7 +25,7 @@ namespace XForms.Commands
 
                     if (descriptor.FilePreviewMode == FileDataMode.SlideShow)
                     {
-                        var preview = new SlideShowControl(fileDataItems);
+                        var preview = new ImagePreviewControl(fileDataItems);
                         preview.Show();
                         preview.BringToFront();
                     }

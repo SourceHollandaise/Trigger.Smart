@@ -187,13 +187,13 @@
     <Compile Include="Commands\Interfaces\INavigateHomeListViewCommand.cs" />
     <Compile Include="Commands\DetailCommands\NavigateHomeDetailViewCommand.cs" />
     <Compile Include="Commands\ListCommands\NavigateHomeListViewCommand.cs" />
-    <Compile Include="Design\Templates\SlideShowControl.cs" />
     <Compile Include="Design\Templates\ImageItem.cs" />
     <Compile Include="Design\Templates\FilePreviewControl.cs" />
     <Compile Include="Commands\Interfaces\IFileViewerListViewCommand.cs" />
     <Compile Include="Commands\ListCommands\FileViewerListViewCommand.cs" />
     <Compile Include="Design\Templates\FileItem.cs" />
     <Compile Include="Design\Templates\PreviewControl.cs" />
+    <Compile Include="Design\Templates\ImagePreviewControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
