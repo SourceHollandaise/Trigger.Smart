@@ -30,6 +30,14 @@ namespace XForms.Design
             this.Content = GetMainPanelNavigationButtonStyle();
         }
 
+        public bool IsReduced
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         public void SetContent(Control control)
         {
             this.Content = control;

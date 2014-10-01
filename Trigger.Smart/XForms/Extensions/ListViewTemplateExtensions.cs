@@ -13,8 +13,7 @@ namespace XForms.Design
         {
             Control content = null;
 
-            //INFO: Need clean and reduced Layout!!!
-            descriptor.ListDetailView = false;
+            descriptor.ListDetailView = !template.IsReduced;
 
             if (descriptor.ListDetailView)
             {

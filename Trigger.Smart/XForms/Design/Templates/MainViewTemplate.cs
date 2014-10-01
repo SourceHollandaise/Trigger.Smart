@@ -41,6 +41,14 @@ namespace XForms.Design
             CreateMenu();
         }
 
+        public bool IsReduced
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public void SetContent(Control control)
         {
             ContentPanel.Content = control;

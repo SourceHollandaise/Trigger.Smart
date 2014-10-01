@@ -5,8 +5,10 @@ namespace XForms.Design
 {
     public interface IMainViewTemplate
     {
+        Type CurrentActiveType { get; set; }
+
         void SetContent(Control control);
 
-        Type CurrentActiveType { get; set; }
+        bool IsReduced { get; }
     }
 }

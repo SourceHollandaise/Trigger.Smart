@@ -8,35 +8,17 @@ namespace Eto.Drawing
     {
         public static Image ConvertToImage(this IFileData fileData)
         {
-            var value = fileData.FileName;
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                var file = value.GetValidPath();
-                if (file != null)
-                {
-                    try
-                    {
-                        var image = new Bitmap(file);
-
-                        return image;
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }
-            }
+            if (!string.IsNullOrWhiteSpace(fileData.FileName))
+                return ConvertToImage(fileData.FileName.GetValidPath());
 
             return null;
         }
 
-
-        public static Image ConvertToImage(this string value)
+        public static Image ConvertToImage(this string fileName)
         {
-
-            if (!string.IsNullOrWhiteSpace(value))
+            if (!string.IsNullOrWhiteSpace(fileName))
             {
-                var file = value.GetValidPath();
+                var file = fileName.GetValidPath();
                 if (file != null)
                 {
                     try

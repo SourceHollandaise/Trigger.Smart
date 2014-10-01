@@ -130,8 +130,6 @@ namespace XForms.Design
             RandomButton.BackgroundColor = isRandom ? Colors.CornflowerBlue : DefaultButtonBackColor;
         }
 
-      
-
         protected override void AddImageSourceFolder()
         {
             var folderBrowser = new SelectFolderDialog();
