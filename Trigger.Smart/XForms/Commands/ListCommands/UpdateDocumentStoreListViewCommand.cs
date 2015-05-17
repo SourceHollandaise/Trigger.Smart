@@ -4,7 +4,7 @@ using XForms.Design;
 
 namespace XForms.Commands
 {
-
+   
     public class UpdateDocumentStoreListViewCommand : IUpdateDocumentStoreListViewCommand
     {
         public void Execute(ListViewArguments args)

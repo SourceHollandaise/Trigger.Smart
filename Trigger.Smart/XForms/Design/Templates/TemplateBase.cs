@@ -1,6 +1,7 @@
 using Eto.Forms;
 using System;
 using XForms.Store;
+using Eto.Drawing;
 
 namespace XForms.Design
 {
@@ -22,6 +23,8 @@ namespace XForms.Design
         {
             this.ModelType = type;
             this.CurrentObject = currentObject;
+
+            this.BackgroundColor = Colors.White;
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

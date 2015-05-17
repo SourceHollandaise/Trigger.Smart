@@ -194,6 +194,8 @@
     <Compile Include="Design\Templates\FileItem.cs" />
     <Compile Include="Design\Templates\PreviewControl.cs" />
     <Compile Include="Design\Templates\ImagePreviewControl.cs" />
+    <Compile Include="Design\ViewTemplateDefaultConfiguration.cs" />
+    <Compile Include="Commands\Interfaces\IAddMultipleFilesDetailViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

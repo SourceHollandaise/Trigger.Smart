@@ -105,7 +105,7 @@ namespace XForms.Design
                     Text = tabItem.TabHeaderText,
                 };
 
-                tabControl.TabPages.Add(tabPage);
+                tabControl.Pages.Add(tabPage);
 
                 /*
                 var scrollable = new Scrollable()

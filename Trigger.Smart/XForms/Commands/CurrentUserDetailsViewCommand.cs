@@ -13,7 +13,7 @@ namespace XForms.Commands
 
         public void Execute(TemplateBase template)
         {
-            CurrentUser.ShowDetailContentEmbedded();
+            CurrentUser.ShowDetailView();
         }
 
         public string ID

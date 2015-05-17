@@ -13,7 +13,7 @@ namespace XForms.Design
         {
             Control content = null;
 
-            descriptor.ListDetailView = !template.IsReduced;
+            //descriptor.ListDetailView = !template.IsReduced;
 
             if (descriptor.ListDetailView)
             {
@@ -29,22 +29,26 @@ namespace XForms.Design
 
                 builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
                 {
-                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
-                    if (detailContent != null)
-                    {
-                        template.SetContent(detailContent);
-                    }
+                    ShowSelectedItem(builder);
+
+//                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
+//                    if (detailContent != null)
+//                    {
+//                        template.SetContent(detailContent);
+//                    }
                 };
 
                 builder.CurrentGridView.KeyUp += (sender, e) =>
                 {
                     if (e.Key == Keys.Enter)
                     {
-                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
-                        if (detailContent != null)
-                        {
-                            template.SetContent(detailContent);
-                        }
+                        ShowSelectedItem(builder);
+
+//                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
+//                        if (detailContent != null)
+//                        {
+//                            template.SetContent(detailContent);
+//                        }
                     }
                 };
             }
@@ -52,6 +56,18 @@ namespace XForms.Design
             TemplateNavigator.Add(content);
 
             return content;
+        }
+
+        static void ShowSelectedItem(ListViewBuilder builder)
+        {
+            if (builder.CurrentGridView.SelectedItem != null)
+            {
+                var item = builder.CurrentGridView.SelectedItem as IStorable;
+                if (item != null)
+                {
+                    item.ShowDetailView();
+                }
+            }
         }
 
         static Control CreateDetailViewLayout(GridView currentGridView)

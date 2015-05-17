@@ -26,7 +26,7 @@ namespace XForms.Commands
             {
                 target.Initialize();
 
-                target.ShowDetailContentEmbedded();
+                target.ShowDetailView();
             }
         }
 

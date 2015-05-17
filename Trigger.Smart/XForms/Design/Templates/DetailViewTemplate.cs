@@ -13,8 +13,6 @@ namespace XForms.Design
             SetContent(currentObject);
 
             SetTitle();
-
-            this.BackgroundColor = Colors.WhiteSmoke;
         }
 
         public void SetContent(IStorable currentObject)
