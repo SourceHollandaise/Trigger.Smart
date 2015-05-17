@@ -36,6 +36,8 @@ namespace Trigger.BCL.EventTracker
             {
                 new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },
                 new ColumnDescription(Fields.GetName(m => m.GalleryAlias), 2){ ColumnHeaderText = "Gallery", AutoSize = true, AllowResize = true },
+                new ColumnDescription(Fields.GetName(m => m.Keywords), 3){ ColumnHeaderText = "Keywords", AutoSize = true, AllowResize = true },
+
             };
         }
     }

@@ -9,11 +9,23 @@ namespace Trigger.BCL.EventTracker.Model
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Image")]
     [ImageName("photo_landscape")]
-    public class ImageItem : StorableBase, IFileData
+    public class ImageItem : StorableBase, IFileData, IThumbnailPreviewable, ITaggable
     {
         public override string GetSearchString()
         {
-            return Subject + FileName + Gallery != null ? Gallery.Name : "";
+            var search = Subject + ";" + FileName + ";" + Gallery != null ? Gallery.Name : "";
+
+            if (Keywords != null)
+            {
+                var splitted = Keywords.Split(new char[ ]{ ' ', ';', ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var item in splitted)
+                {
+                    search += item + ";";   
+                }
+            }
+
+            return search;
         }
 
         public override string GetRepresentation
@@ -21,6 +33,24 @@ namespace Trigger.BCL.EventTracker.Model
             get
             {
                 return Subject;
+            }
+        }
+
+        string keywords;
+
+        public string Keywords
+        {
+            get
+            {
+                return keywords;
+            }
+            set
+            {
+                if (Equals(keywords, value))
+                    return;
+                keywords = value;
+
+                OnPropertyChanged();
             }
         }
 

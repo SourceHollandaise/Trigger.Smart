@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Eto.Forms;
 using XForms.Dependency;
 using XForms.Store;
+using Eto.Drawing;
 
 namespace XForms.Design
 {
@@ -39,8 +40,11 @@ namespace XForms.Design
                 var template = TryGetDetailView(targetObject);
                 if (template != null)
                 {
-                    var size = MapProvider.Instance.ResolveType<IViewTemplateConfiguration>().DetailViewDefaultSize;
-                    template.Content.Size = size;
+                    //var size = MapProvider.Instance.ResolveType<IViewTemplateConfiguration>().DetailViewDefaultSize;
+
+                    var screenSize = (Size)template.Screen.WorkingArea.Size;
+
+                    template.Content.Size = new Size((int)(screenSize.Width * 0.9), (int)(screenSize.Height * 0.9));
                     template.Show();
             
                 }

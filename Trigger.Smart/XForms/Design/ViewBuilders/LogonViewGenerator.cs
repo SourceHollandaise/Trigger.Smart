@@ -18,7 +18,7 @@ namespace XForms.Design
             this.LogonViewTemplate = logonViewTemplate;
         }
 
-        public DynamicLayout GetContent()
+        public DynamicLayout GetContent(int width)
         {
             DynamicLayout layout = new DynamicLayout();
 
@@ -27,7 +27,7 @@ namespace XForms.Design
             {
                 PlaceholderText = "Username"
             };
-            textBoxUserName.Size = new Size(-1, -1);
+            textBoxUserName.Size = new Size(width, -1);
             layout.Add(textBoxUserName, true);
             layout.EndHorizontal();
 
@@ -36,7 +36,7 @@ namespace XForms.Design
             {
                 PasswordChar = '*'
             };
-            textBoxPassword.Size = new Size(-1, -1);
+            textBoxPassword.Size = new Size(width, -1);
 
             layout.Add(textBoxPassword, true);
             layout.EndHorizontal();
@@ -45,7 +45,7 @@ namespace XForms.Design
             var logonButton = new Button()
             {
                 Text = "Log on",
-                Size = new Size(-1, 34),
+                Size = new Size(width, 34),
                 Image = ImageExtensions.GetImage("lock_off", 16),
                 ImagePosition = ButtonImagePosition.Left,
                 BackgroundColor = Colors.WhiteSmoke

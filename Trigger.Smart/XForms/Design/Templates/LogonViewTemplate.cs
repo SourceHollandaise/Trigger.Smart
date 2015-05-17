@@ -8,9 +8,9 @@ namespace XForms.Design
    
         public LogonViewTemplate()
         {
-            Size = new Size(240, 180);
+            Size = new Size(300, 200);
             Title = "Logon";
-            Content = new LogonViewGenerator(this).GetContent();
+            Content = new LogonViewGenerator(this).GetContent(this.Width - 8);
         }
 
         protected override void OnLoadComplete(System.EventArgs e)

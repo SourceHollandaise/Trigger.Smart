@@ -8,8 +8,8 @@ namespace XForms.Design
         protected int CurrentIndex;
         protected Label FileLabel;
 
-        protected Size DefaultButtonSize = new Size(48, 48);
-        protected Color DefaultButtonBackColor = Colors.Gray;
+        protected Size DefaultButtonSize = new Size(32, 32);
+        protected Color DefaultButtonBackColor = Colors.Black;
       
         protected Button PlayButton;
         protected Button StopButton;
@@ -26,48 +26,51 @@ namespace XForms.Design
             CreateControlButtons();
 
             AddButtonHandlers();
+
+            this.BackgroundColor = Colors.Black;
         }
 
         protected void CreateControlButtons()
         {
-            PlayButton = CreateButton("media_play");
-            StopButton = CreateButton("media_stop");
-            NextButton = CreateButton("media_step_forward");
-            PreviousButton = CreateButton("media_step_back");
-            RandomButton = CreateButton("photos");
-            LoopButton = CreateButton("nav_refresh");
-            OpenSourceFolderButton = CreateButton("folder3_document");
-            StoreFileDataButton = CreateButton("floppy_disk");
+            PlayButton = CreateButton("media_play", "Play");
+            StopButton = CreateButton("media_stop", "Stop");
+            NextButton = CreateButton("media_step_forward", "Next");
+            PreviousButton = CreateButton("media_step_back", "Previous");
+            RandomButton = CreateButton("photos", "Shuffle (random sorted)");
+            LoopButton = CreateButton("nav_refresh", "Replay all items");
+            OpenSourceFolderButton = CreateButton("folder3_document", "Add folder to preview");
+            StoreFileDataButton = CreateButton("floppy_disk", "Save item");
         }
 
-        protected virtual Button CreateButton(string imageName)
+        protected virtual Button CreateButton(string imageName, string toolTip)
         {       
             return new Button
             { 
                 Size = DefaultButtonSize, 
-                Image = ImageExtensions.GetImage(imageName),
+                Image = ImageExtensions.GetImage(imageName, 24),
                 BackgroundColor = DefaultButtonBackColor,
-                ImagePosition = ButtonImagePosition.Overlay
+                ImagePosition = ButtonImagePosition.Overlay,
+                ToolTip = toolTip
             };
         }
 
         void AddButtonHandlers()
         {
-            PlayButton.Click += (sender, e) => PlayPause();
+            PlayButton.Click += (_, __) => PlayPause();
 
-            StopButton.Click += (sender, e) => Stop();
+            StopButton.Click += (_, __) => Stop();
 
-            NextButton.Click += (sender, e) => Next();
+            NextButton.Click += (_, __) => Next();
 
-            PreviousButton.Click += (sender, e) => Previous();
+            PreviousButton.Click += (_, __) => Previous();
 
-            RandomButton.Click += (sender, e) => Random();
+            RandomButton.Click += (_, __) => Random();
 
-            LoopButton.Click += (sender, e) => Loop();
+            LoopButton.Click += (_, __) => Loop();
 
-            OpenSourceFolderButton.Click += (sender, e) => AddImageSourceFolder();
+            OpenSourceFolderButton.Click += (_, __) => AddImageSourceFolder();
 
-            StoreFileDataButton.Click += (sender, e) => StoreImage();
+            StoreFileDataButton.Click += (_, __) => StoreImage();
         }
 
         protected Control GetFilePathContent()
@@ -79,6 +82,7 @@ namespace XForms.Design
                 Text = "",
                 HorizontalAlign = HorizontalAlign.Center,
                 VerticalAlign = VerticalAlign.Top,
+
             };
 
             try
@@ -90,7 +94,7 @@ namespace XForms.Design
 
             }
 
-            FileLabel.MouseDoubleClick += (sender, e) => OpenFile();
+            FileLabel.MouseDoubleClick += (_, __) => OpenFile();
 
             layout.BeginVertical();
             layout.Add(FileLabel, true, false);

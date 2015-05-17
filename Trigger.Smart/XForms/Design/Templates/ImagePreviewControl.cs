@@ -15,24 +15,22 @@ namespace XForms.Design
         UITimer slideTimer;
         ImageView imageView;
 
-        readonly Dictionary<int, ImageItem> imageCollection;
+        readonly Dictionary<int, ImagePreviewItem> imageCollection;
         readonly IEnumerable<IFileData> files;
 
         protected ImagePreviewControl()
         {
-            //INFO: Should not be called
         }
 
-        public ImagePreviewControl(IEnumerable<IFileData> files, bool autoStart = false)
+        public ImagePreviewControl(IEnumerable<IFileData> files, bool autoStart = false) : base()
         {
             this.WindowState = WindowState.Maximized;
-            this.BackgroundColor = Colors.LightGrey;
 
             this.files = files;
-            this.imageCollection = new Dictionary<int, ImageItem>();
+            this.imageCollection = new Dictionary<int, ImagePreviewItem>();
             this.slideTimer = new UITimer();
             slideTimer.Interval = 3;
-            slideTimer.Elapsed += (sender, e) => Next();
+            slideTimer.Elapsed += (_, __) => Next();
 
             this.Content = GetContent();
 
@@ -62,9 +60,9 @@ namespace XForms.Design
                 }
             }
 
-            PlayButton.Image = isPlaying 
-                ? ImageExtensions.GetImage("media_pause") 
-                : ImageExtensions.GetImage("media_play");
+            PlayButton.Image = isPlaying ? ImageExtensions.GetImage("media_pause") : ImageExtensions.GetImage("media_play");
+
+            PlayButton.ToolTip = isPlaying ? "Pause" : "Play";
         }
 
         protected override void Stop()
@@ -119,6 +117,7 @@ namespace XForms.Design
             isLoop = !isLoop;
 
             LoopButton.BackgroundColor = isLoop ? Colors.CornflowerBlue : DefaultButtonBackColor;
+            LoopButton.ToolTip = isLoop ? "Unshuffle" : "Shuffle";
         }
 
         protected override void Random()
@@ -231,7 +230,7 @@ namespace XForms.Design
                     {
                         while (imageCollection.ContainsKey(index))
                             index = GetRandomPosition();
-                        imageCollection.Add(index, new ImageItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
+                        imageCollection.Add(index, new ImagePreviewItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
                     }
                 }
 
@@ -245,7 +244,7 @@ namespace XForms.Design
                 {
                     var image = item.ConvertToImage();
                     if (image != null)
-                        imageCollection.Add(index++, new ImageItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
+                        imageCollection.Add(index++, new ImagePreviewItem { Image = image, ImageFilePath = item.FileName.GetValidPath() });
                 }
             }
         }
@@ -272,7 +271,7 @@ namespace XForms.Design
                         while (imageCollection.ContainsKey(index))
                             index = GetRandomPosition();
 
-                        imageCollection.Add(index, new ImageItem { Image = image, ImageFilePath = item.FullName.GetValidPath() });
+                        imageCollection.Add(index, new ImagePreviewItem { Image = image, ImageFilePath = item.FullName.GetValidPath() });
                     }
                 }
 
@@ -290,7 +289,7 @@ namespace XForms.Design
                     var image = item.FullName.ConvertToImage();
 
                     if (image != null)
-                        imageCollection.Add(index++, new ImageItem { Image = image, ImageFilePath = item.FullName.GetValidPath() });
+                        imageCollection.Add(index++, new ImagePreviewItem { Image = image, ImageFilePath = item.FullName.GetValidPath() });
                 }
             }
         }

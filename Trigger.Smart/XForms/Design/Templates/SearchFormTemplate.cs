@@ -27,11 +27,12 @@ namespace XForms.Design
             ListBox resultListBox = new ListBox()
             {
                 Visible = false,
+                
             };
 
             try
             {
-                resultListBox.Font = new Font(resultListBox.Font.Family, 14F);
+                resultListBox.Font = new Font(resultListBox.Font.Family, 18F);
             }
             catch
             {
@@ -40,13 +41,14 @@ namespace XForms.Design
                
             var searchBox = new SearchBox()
             {
-                Size = new Size(-1, -1),
-                PlaceholderText = "Application Search"
+                Size = new Size(600, 80)
             };
-
+       
             try
             {
-                searchBox.Font = new Font(searchBox.Font.Family, 15F);
+                searchBox.Font = new Font(searchBox.Font.Family, 18F);
+                searchBox.PlaceholderText = "Application Search";
+                searchBox.Size = new Size(-1, -1);
             }
             catch
             {
@@ -55,7 +57,6 @@ namespace XForms.Design
 
             searchBox.TextChanged += (sender, e) =>
             {
-                System.Threading.Thread.Sleep(200);
                 resultListBox.Visible = searchBox.Text.Length >= 2;
 
                 Size = resultListBox.Visible ? new Size(600, 480) : new Size(600, 80);
@@ -63,7 +64,7 @@ namespace XForms.Design
                 if (resultListBox.Visible)
                 {
                     resultListBox.Items.Clear();
- 
+
                     var resultSet = GetResult(searchBox.Text);
 
                     foreach (var item in resultSet)
@@ -77,13 +78,34 @@ namespace XForms.Design
                         if (displayNameAttribute != null)
                             itemName = displayNameAttribute.DisplayName;
 
-                        resultListBox.Items.Add(new ImageListItem
+                        var imageItem = new ImageListItem
                         { 
                             Image = imageAttribute != null ? ImageExtensions.GetImage(imageAttribute.ImageName, 24) : null,
+
                             Text = itemName + " - " + item.GetRepresentation,
                             Key = item.MappingId.ToString(),
                             Tag = item
-                        });
+                        };
+
+                        if (item is IThumbnailPreviewable)
+                        {
+                            imageItem.Image = (item as IThumbnailPreviewable).Thumbnail;
+                        }
+
+                        resultListBox.Items.Add(imageItem);
+                    }
+                }
+            };
+
+            resultListBox.MouseDoubleClick += (sender, e) =>
+            {
+                if (resultListBox.SelectedValue != null)
+                {
+                    if ((resultListBox.SelectedValue as ListItem).Tag != null)
+                    {
+                        this.Close();
+
+                        ((resultListBox.SelectedValue as ListItem).Tag as IStorable).ShowDetailView();
                     }
                 }
             };
@@ -95,11 +117,11 @@ namespace XForms.Design
 
                 if (e.Key == Keys.Enter && resultListBox.SelectedValue != null)
                 {
-                    this.Close();
-
                     if ((resultListBox.SelectedValue as ListItem).Tag != null)
                     {
-                        ((resultListBox.SelectedValue as ListItem).Tag as IStorable).ShowDetailContentEmbedded();
+                        this.Close();
+
+                        ((resultListBox.SelectedValue as ListItem).Tag as IStorable).ShowDetailView();
                     }
                 }
             };

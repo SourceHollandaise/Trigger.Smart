@@ -31,7 +31,7 @@ namespace XForms.Design
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.Size = new Size(1280, 800);
+            this.Size = (Size)Screen.WorkingArea.Size;
             this.WindowState = WindowState.Maximized;
             this.Minimizable = true;
             this.Maximizable = true;
@@ -109,7 +109,7 @@ namespace XForms.Design
                     {
                         Size = new Size(-1, 34),
                         Tag = navItem,
-                        BackgroundColor = Colors.Gray
+                        BackgroundColor = Colors.GreenYellow,
                     };
 
                     switch (navItem.DisplayStyle)
@@ -160,7 +160,7 @@ namespace XForms.Design
                 {
                     Size = new Size(-1, 34),
                     Tag = command,
-                    BackgroundColor = Colors.Gray
+                    BackgroundColor = Colors.GreenYellow
                 };
 
                 switch (command.DisplayStyle)

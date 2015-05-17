@@ -16,13 +16,11 @@ namespace XForms.Design
 
         protected FilePreviewControl()
         {
-            //INFO: Should not be called
         }
 
-        public FilePreviewControl(IEnumerable<IFileData> files)
+        public FilePreviewControl(IEnumerable<IFileData> files) : base()
         {
             this.WindowState = WindowState.Maximized;
-            this.BackgroundColor = Colors.LightGrey;
 
             this.files = files;
             this.fileCollection = new Dictionary<int, FileItem>();
@@ -146,7 +144,6 @@ namespace XForms.Design
 
         void AddControlButtonHandlers()
         {
-
             NextButton.Click += (sender, e) => Next();
 
             PreviousButton.Click += (sender, e) => Previous();

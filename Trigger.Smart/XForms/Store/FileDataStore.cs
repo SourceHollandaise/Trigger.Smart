@@ -93,20 +93,54 @@ namespace XForms.Store
             return LoadAll(typeof(T)).OfType<T>();
         }
 
-        public IEnumerable<IStorable> SearchResult(string input, params Type[] typesToSearch)
+        public IList<IStorable> SearchResult(string input, params Type[] typesToSearch)
         {
+
+            var result = new List<IStorable>();
             if (typesToSearch == null)
-                yield break;
+                return result;
+           
+            var func = GetSearchCriteria(input);
 
-            foreach (var type in typesToSearch.Distinct())
+            foreach (var type in typesToSearch)
             {
-                var resultSet = LoadAll(type).Where(p => p.GetSearchString().ToLowerInvariant().Contains(input.ToLowerInvariant())).Distinct();
+                var targetList = LoadAll(type).Where(func);
 
-                foreach (var item in resultSet)
+                foreach (var item in targetList)
                 {
-                    yield return item;
+                    if (!result.Contains(item))
+                        result.Add(item);
                 }
             }
+
+            return result;
+        }
+
+        Func<IStorable, bool> GetSearchCriteria(string searchString)
+        {
+            IList<Func<IStorable, bool>> functions = new List<Func<IStorable, bool>>();
+
+            if (searchString.Contains("+"))
+            {
+                var splitted = searchString.Split(new []{ '+' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var keyword in splitted)
+                    functions.Add(new Func<IStorable, bool>(p => p.GetSearchString().ToLowerInvariant().Contains(keyword.ToLowerInvariant())));
+
+                return FuncExtensions.Grouped(functions.ToArray(), FuncExtensions.GroupType.And);
+            }
+
+            if (searchString.Contains("-"))
+            {
+                var splitted = searchString.Split(new []{ '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var keyword in splitted)
+                    functions.Add(new Func<IStorable, bool>(p => p.GetSearchString().ToLowerInvariant().Contains(keyword.ToLowerInvariant())));
+
+                return FuncExtensions.Grouped(functions.ToArray(), FuncExtensions.GroupType.Or);
+            }
+
+            return new Func<IStorable, bool>(p => p.GetSearchString().ToLowerInvariant().Contains(searchString.ToLowerInvariant()));
         }
 
         static IStorable Load(Type type, string path)

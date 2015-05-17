@@ -8,7 +8,7 @@ using XForms.Store;
 
 namespace XForms.Design
 {
-    internal struct ImageItem
+    internal struct ImagePreviewItem
     {
         public Image Image
         {

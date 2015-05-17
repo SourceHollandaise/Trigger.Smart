@@ -23,5 +23,6 @@ namespace System.Linq
             return entities.OrderByDescending(e => propertyInfo.GetValue(e, null));
         }
     }
+
 }
 

@@ -110,11 +110,12 @@ namespace XForms.Design
                 {
                     if (e.Column != null)
                         (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(e.Column).Compare);
+                    else
+                        (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(descriptor).Compare);
 
                 }
                 catch
                 {
-                    (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(descriptor).Compare);
                 }
             };
 
