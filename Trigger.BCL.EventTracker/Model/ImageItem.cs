@@ -6,7 +6,6 @@ using Eto.Drawing;
 
 namespace Trigger.BCL.EventTracker.Model
 {
-
     [System.ComponentModel.DefaultProperty("Name")]
     [System.ComponentModel.DisplayName("Image")]
     [ImageName("photo_landscape")]

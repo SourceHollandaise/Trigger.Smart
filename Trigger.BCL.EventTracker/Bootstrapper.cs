@@ -40,6 +40,7 @@ namespace Trigger.BCL.EventTracker
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
             Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateDefaultConfiguration>();
 
             DetailViewDescriptorProvider.Declare<AreaUser, AreaUserViewDescriptor>();
             DetailViewDescriptorProvider.Declare<Area, AreaViewDescriptor>();
@@ -73,6 +74,7 @@ namespace Trigger.BCL.EventTracker
             Map.RegisterType<ITrackTimeDetailViewCommand, TrackTimeDetailViewCommand>();
             Map.RegisterType<ILinkAreaWithUserDetailViewCommand, LinkAreaWithUserDetailViewCommand>();
             Map.RegisterType<ICurrentUserDetailsCommand, CurrentUserDetailsViewCommand>();
+            Map.RegisterType<IAddMultipleFilesDetailViewCommand, AddMultipleFilesDetailViewCommand>();
         }
 
         public override void CreateDefaultUser()

@@ -3,10 +3,12 @@ using Trigger.BCL.EventTracker.Model;
 using Trigger.BCL.EventTracker.Services;
 using XForms.Commands;
 using XForms.Design;
+using XForms.Dependency;
+using XForms.Store;
+using Eto.Forms;
 
 namespace Trigger.BCL.EventTracker
 {
-
     public class TrackTimeDetailViewCommand : ITrackTimeDetailViewCommand
     {
         TimeTracker timeTracker;

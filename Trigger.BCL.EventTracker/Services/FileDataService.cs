@@ -182,6 +182,9 @@ namespace Trigger.BCL.EventTracker.Services
 
                     var targetPath = Path.Combine(StoreConfig.DocumentStoreLocation, fileName);
 
+                    if (File.Exists(targetPath))
+                        File.Delete(targetPath);
+
                     try
                     {
                         if (!sourcePath.Equals(targetPath))

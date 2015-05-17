@@ -7,14 +7,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Trigger.BCL.EventTracker</RootNamespace>
     <AssemblyName>Trigger.BCL.EventTracker</AssemblyName>
-    <UseMSBuildEngine>False</UseMSBuildEngine>
     <ReleaseVersion>0.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\_Output</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,7 +44,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Configuration" />
     <Reference Include="Eto">
-      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.2.0.7\lib\net40\Eto.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +106,7 @@
     <Compile Include="Views\Lists\IssueTrackerListOpenDescriptor.cs" />
     <Compile Include="Views\Lists\IssueTrackerListAcceptedDescriptor.cs" />
     <Compile Include="Services\FileDataService.cs" />
+    <Compile Include="Commands\AddMultipleFilesDetailViewCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

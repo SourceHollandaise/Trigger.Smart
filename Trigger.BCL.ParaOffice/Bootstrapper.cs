@@ -38,6 +38,7 @@ namespace Trigger.BCL.ParaOffice
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
             Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
+            Map.RegisterType<IViewTemplateConfiguration, ViewTemplateDefaultConfiguration>();
 
             DetailViewDescriptorProvider.Declare<Akt, AktViewDescriptor>();
             DetailViewDescriptorProvider.Declare<AktArt, AktArtViewDescriptor>();

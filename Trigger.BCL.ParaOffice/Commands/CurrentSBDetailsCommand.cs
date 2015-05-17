@@ -13,7 +13,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public void Execute(TemplateBase template)
         {
-            ApplicationModelQuery.CurrentSB.ShowDetailContentEmbedded();
+            ApplicationModelQuery.CurrentSB.ShowDetailView();
         }
 
         public string ID

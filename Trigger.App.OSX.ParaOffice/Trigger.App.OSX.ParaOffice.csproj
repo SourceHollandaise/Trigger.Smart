@@ -27,6 +27,7 @@
     <EnablePackageSigning>false</EnablePackageSigning>
     <EnableCodeSigning>false</EnableCodeSigning>
     <CreatePackage>false</CreatePackage>
+    <UseRefCounting>false</UseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -43,6 +44,7 @@
     <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+    <UseRefCounting>false</UseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -60,18 +62,17 @@
     <EnableCodeSigning>true</EnableCodeSigning>
     <EnablePackageSigning>true</EnablePackageSigning>
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+    <UseRefCounting>false</UseRefCounting>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="Eto">
-      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.2.0.7\lib\net45\Eto.dll</HintPath>
     </Reference>
     <Reference Include="MonoMac">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Mac.1.3.0\lib\net40\MonoMac.dll</HintPath>
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Mac.2.0.7\lib\net45\MonoMac.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Mac">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Mac.1.3.0\lib\net40\Eto.Platform.Mac.dll</HintPath>
+    <Reference Include="Eto.Mac">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Mac.2.0.7\lib\net45\Eto.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="packages.config" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

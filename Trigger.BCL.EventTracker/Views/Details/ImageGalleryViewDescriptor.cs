@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using XForms.Design;
 using Trigger.BCL.EventTracker.Model;
+using XForms.Commands;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -9,6 +10,9 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageGalleryViewDescriptor()
         {
+
+            RegisterCommands<IAddMultipleFilesDetailViewCommand>();
+
             TabItemDescriptions = new List<TabItemDescription>
             {
                 new TabItemDescription("Gallery", 1)

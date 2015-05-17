@@ -13,13 +13,19 @@ namespace Trigger.App.OSX.ParaOffice
         {
             var application = new XForms.Platform.XFormsApplication();
 
-            var logon = new LogonParameters()
-            {
-                UserName = "JE",
-                Password = ""
-            };
+            LogonParameters logon = null;
 
-            application.InitalizeApplication(new OSXBootstrapper(), Debugger.IsAttached ? logon : null);
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                logon = new LogonParameters
+                {
+                    UserName = "Admin",
+                    Password = "admin"
+                };
+            }
+
+            application.InitalizeApplication(new OSXBootstrapper(), logon);
+
             application.Run();
         }
     }

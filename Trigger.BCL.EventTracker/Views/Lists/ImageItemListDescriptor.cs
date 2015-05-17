@@ -14,28 +14,28 @@ namespace Trigger.BCL.EventTracker
     {
         public ImageItemListDescriptor()
         {
-            RegisterCommands<IUpdateDocumentStoreListViewCommand>();
+            //RegisterCommands<IUpdateDocumentStoreListViewCommand>();
             RegisterCommands<IFileViewerListViewCommand>();
 
             ListShowTags = false;
-            RowHeight = 64;
+            RowHeight = 96;
             DefaultSorting = ColumnSorting.Ascending;
-            DefaultSortProperty = Fields.GetName(m => m.Subject);
+            DefaultSortProperty = Fields.GetName(m => m.GalleryAlias);
 
-            ListDetailView = true;
-            ListDetailViewColumns = 4;
-            ListDetailViewWithToolbar = true;
-            ListDetailViewOrientation = ViewItemOrientation.Vertical;
-            ShowListDetailViewForLinkedLists = true;
-
-            DetailView = new ImageItemListDetailViewDescriptor();
+//            ListDetailView = true;
+//            ListDetailViewColumns = 4;
+//            ListDetailViewWithToolbar = true;
+//            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+//            ShowListDetailViewForLinkedLists = true;
+//
+//            DetailView = new ImageItemListDetailViewDescriptor();
 
             FilePreviewMode = FileDataMode.SlideShow;
 
             ColumnDescriptions = new List<ColumnDescription>
             {
                 new ColumnDescription(Fields.GetName(m => m.Thumbnail), 1){ ColumnHeaderText = "Image", AutoSize = false, AllowResize = false },
-                new ColumnDescription(Fields.GetName(m => m.GalleryAlias), 2){ ColumnHeaderText = "Gallery", AutoSize = false, AllowResize = true },
+                new ColumnDescription(Fields.GetName(m => m.GalleryAlias), 2){ ColumnHeaderText = "Gallery", AutoSize = true, AllowResize = true },
             };
         }
     }

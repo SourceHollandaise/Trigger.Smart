@@ -13,7 +13,7 @@ namespace Trigger.BCL.ParaOffice
             var aktPerson = new AktPerson();
             aktPerson.Initialize();
             aktPerson.Akt = akt;
-            aktPerson.ShowDetailContentEmbedded();
+            aktPerson.ShowDetailView();
         }
 
         public string ID

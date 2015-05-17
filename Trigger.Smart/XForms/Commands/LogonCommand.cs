@@ -6,7 +6,7 @@ namespace XForms.Commands
     {
         public void Execute(TemplateBase template)
         {
-            new LogonViewTemplate().ShowDialog();
+            new LogonViewTemplate().ShowModal();
         }
 
         public string ID

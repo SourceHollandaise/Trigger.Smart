@@ -14,12 +14,12 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Descendig;
             DefaultSortProperty = Fields.GetName(m => m.Beginn);
 
-            ListDetailView = true;
-            ListDetailViewWithToolbar = true;
-            ListDetailViewColumns = 3;
-            ListDetailViewOrientation = ViewItemOrientation.Vertical;
-
-            DetailView = new TelefonatListDetailViewDescriptor();
+//            ListDetailView = true;
+//            ListDetailViewWithToolbar = true;
+//            ListDetailViewColumns = 3;
+//            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+//
+//            DetailView = new TelefonatListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

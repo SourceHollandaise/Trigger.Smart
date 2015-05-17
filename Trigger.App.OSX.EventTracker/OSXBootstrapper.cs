@@ -10,7 +10,7 @@ namespace Trigger.App.OSX.EventTracker
         {
             base.RegisterViewDescriptors();
 
-            Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
+            Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
         }
     }
 }

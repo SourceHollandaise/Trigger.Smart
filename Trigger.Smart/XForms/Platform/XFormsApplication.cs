@@ -45,11 +45,8 @@ namespace XForms.Platform
             }
             else
             {
-                var logonForm = new LogonViewTemplate();
-                if (logonForm.ShowDialog() == DialogResult.Ok)
-                {
-                    ShowMainViewTemplate();
-                }
+                new LogonViewTemplate().ShowModal();
+                ShowMainViewTemplate();
             }
         }
 

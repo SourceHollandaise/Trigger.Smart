@@ -14,12 +14,12 @@ namespace Trigger.BCL.ParaOffice
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
-            ListDetailView = true;
-            ListDetailViewColumns = 2;
-            ListDetailViewWithToolbar = true;
-            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
-
-            DetailView = new DokumentListDetailViewDescriptor();
+//            ListDetailView = true;
+//            ListDetailViewColumns = 2;
+//            ListDetailViewWithToolbar = true;
+//            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+//
+//            DetailView = new DokumentListDetailViewDescriptor();
 
             FilePreviewMode = XForms.Store.FileDataMode.MixedMode;
 

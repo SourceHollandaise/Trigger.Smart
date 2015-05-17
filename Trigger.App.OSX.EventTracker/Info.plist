@@ -6,10 +6,8 @@
 	<string>com.trigger-solutions.E-Ishu</string>
 	<key>CFBundleName</key>
 	<string>E-Ishu</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.6</string>
+	<string>10.9</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
@@ -20,5 +18,7 @@
 	<string>E-Ishu</string>
 	<key>CFBundleShortVersionString</key>
 	<string>Alpha</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 </dict>
 </plist>

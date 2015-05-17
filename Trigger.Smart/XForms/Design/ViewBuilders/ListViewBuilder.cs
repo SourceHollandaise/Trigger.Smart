@@ -77,9 +77,9 @@ namespace XForms.Design
             if (descriptor.RowHeight.HasValue)
                 CurrentGridView.RowHeight = descriptor.RowHeight.Value;
 
-            CurrentGridView.DataStore = new DataStoreProvider(descriptor, ModelType).CreateDataSet(dataSet);
+            CurrentGridView.DataStore = new FilterCollection<IStorable>(new DataStoreProvider(descriptor, ModelType).CreateDataSet(dataSet));
 
-            CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
+            (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(descriptor).Compare);
 
             listViewLayout.Add(CurrentGridView);
 
@@ -109,11 +109,12 @@ namespace XForms.Design
                 try
                 {
                     if (e.Column != null)
-                        CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(e.Column).Compare);
+                        (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(e.Column).Compare);
+
                 }
                 catch
                 {
-                    CurrentGridView.SortComparer = new Comparison<object>(new GridViewComparer(descriptor).Compare);
+                    (CurrentGridView.DataStore as FilterCollection<IStorable>).Sort = new Comparison<object>(new GridViewComparer(descriptor).Compare);
                 }
             };
 

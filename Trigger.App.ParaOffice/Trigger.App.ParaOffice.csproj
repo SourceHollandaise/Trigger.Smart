@@ -10,6 +10,7 @@
     <UseMSBuildEngine>False</UseMSBuildEngine>
     <ApplicationIcon>..\..\..\..\Downloads\paraOffice.ico</ApplicationIcon>
     <ReleaseVersion>0.8</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,18 +46,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Eto">
-      <HintPath>..\Trigger.Smart\packages\Eto.Forms.1.3.0\lib\net40\Eto.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="Eto.Platform.Wpf">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Wpf.1.3.0\lib\net40\Eto.Platform.Wpf.dll</HintPath>
+    <Reference Include="Eto">
+      <HintPath>..\Trigger.Smart\packages\Eto.Forms.2.0.7\lib\net40\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Gtk">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.1.3.0\lib\net40\Eto.Platform.Gtk.dll</HintPath>
+    <Reference Include="Eto.Wpf">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Wpf.2.0.7\lib\net40\Eto.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Platform.Windows">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.1.3.0\lib\net40\Eto.Platform.Windows.dll</HintPath>
+    <Reference Include="Eto.WinForms">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.2.0.7\lib\net40\Eto.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Eto.Gtk2">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.2.0.7\lib\net40\Eto.Gtk2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

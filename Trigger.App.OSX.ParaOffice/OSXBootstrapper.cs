@@ -9,7 +9,7 @@ namespace Trigger.App.OSX.ParaOffice
         {
             base.RegisterViewDescriptors();
 
-            Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
+            Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
         }
     }
 }
