@@ -13,7 +13,7 @@ namespace XForms.Design
             Content = new LogonViewGenerator(this).GetContent();
         }
 
-        public override void OnLoadComplete(System.EventArgs e)
+        protected override void OnLoadComplete(System.EventArgs e)
         {
             base.OnLoadComplete(e);
 

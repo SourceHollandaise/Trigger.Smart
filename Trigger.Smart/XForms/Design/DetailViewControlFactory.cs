@@ -336,11 +336,11 @@ namespace XForms.Design
 
         TextArea TextAreaPropertyEditor(PropertyInfo property)
         {
-            var control = new TextArea
-            {
-                Text = (string)property.GetValue(currentObject, null),
-            };
-                
+            var control = new TextArea();
+      
+            var value = property.GetValue(currentObject, null);
+          
+            control.Text = value != null ? (string)value : "";
             control.TextChanged += (sender, e) =>
             {
                 property.SetValue(currentObject, control.Text, null);

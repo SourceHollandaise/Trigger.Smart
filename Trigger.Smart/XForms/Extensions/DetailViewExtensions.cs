@@ -26,22 +26,6 @@ namespace XForms.Design
                     var content = detailBuilder.GetContent();
                     (Application.Instance.MainForm as IMainViewTemplate).SetContent(content);
                     TemplateNavigator.Add(content);
-
-                    /*
-                    if (Application.Instance.MainForm is MainViewTemplate)
-                    {
-                        (Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content = detailBuilder.GetContent();
-
-                        TemplateNavigator.Add((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Content);
-                    }
-
-                    if (Application.Instance.MainForm is ReducedMainViewTemplate)
-                    {
-                        (Application.Instance.MainForm as ReducedMainViewTemplate).Content = detailBuilder.GetContent();
-
-                        TemplateNavigator.Add((Application.Instance.MainForm as ReducedMainViewTemplate).Content);
-                    }
-                    */
                 }
                 else
                 {

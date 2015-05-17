@@ -81,9 +81,9 @@ namespace XForms.Design
                         var dataSet = descriptor.Repository ?? MapProvider.Instance.ResolveType<IStore>().LoadAll(type);
 
                         if (descriptor.Filter != null)
-                            gridView.DataStore = new DataStoreCollection(dataSet.Where(descriptor.Filter));
+                            gridView.DataStore = dataSet.Where(descriptor.Filter);
                         else
-                            gridView.DataStore = new DataStoreCollection(dataSet);
+                            gridView.DataStore = dataSet;
                     }
                     else
                     {
@@ -91,7 +91,7 @@ namespace XForms.Design
 
                         if (descriptor.Filter != null)
                             dataSet = customDataSource.Where(descriptor.Filter);
-                        gridView.DataStore = new DataStoreCollection(dataSet);
+                        gridView.DataStore = dataSet;
                     }
                 }
             }

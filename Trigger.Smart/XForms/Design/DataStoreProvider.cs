@@ -19,7 +19,7 @@ namespace XForms.Design
             this.descriptor = descriptor;
         }
 
-        public IDataStore CreateDataSet(IEnumerable<IStorable> dataSet)
+        public IList<IStorable> CreateDataSet(IEnumerable<IStorable> dataSet)
         {
             if (descriptor == null)
                 return null;
@@ -34,7 +34,7 @@ namespace XForms.Design
                
             }
            
-            return new DataStoreCollection(dataSet);
+            return dataSet.ToList();
         }
 
         public IEnumerable<IStorable> CreateRawDataSet(IEnumerable<IStorable> dataSet)

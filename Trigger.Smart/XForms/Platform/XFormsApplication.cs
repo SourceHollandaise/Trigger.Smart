@@ -30,7 +30,7 @@ namespace XForms.Platform
             bootstrapper.CreateDefaultUser();
         }
 
-        public override void OnInitialized(EventArgs e)
+        protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
 

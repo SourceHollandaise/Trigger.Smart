@@ -24,7 +24,7 @@ namespace XForms.Design
             this.CurrentObject = currentObject;
         }
 
-        public override void OnKeyDown(KeyEventArgs e)
+        protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
 
