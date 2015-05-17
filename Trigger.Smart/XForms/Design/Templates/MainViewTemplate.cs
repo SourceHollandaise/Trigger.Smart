@@ -120,7 +120,6 @@ namespace XForms.Design
                             break;
                         case ButtonDisplayStyle.Text:
                             button.Text = navItem.NavigationItemText;
-
                             break;
                         case ButtonDisplayStyle.ImageAndText:
                             button.Text = navItem.NavigationItemText;

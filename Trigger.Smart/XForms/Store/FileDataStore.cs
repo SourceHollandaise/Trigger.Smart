@@ -93,27 +93,20 @@ namespace XForms.Store
             return LoadAll(typeof(T)).OfType<T>();
         }
 
-        public IList<IStorable> SearchResult(string input, params Type[] typesToSearch)
+        public IEnumerable<IStorable> SearchResult(string input, params Type[] typesToSearch)
         {
-
-            var result = new List<IStorable>();
             if (typesToSearch == null)
-                return result;
+                yield break;
            
-            var func = GetSearchCriteria(input);
+            var criteria = GetSearchCriteria(input);
 
             foreach (var type in typesToSearch)
             {
-                var targetList = LoadAll(type).Where(func);
+                var result = LoadAll(type).Where(criteria);
 
-                foreach (var item in targetList)
-                {
-                    if (!result.Contains(item))
-                        result.Add(item);
-                }
+                foreach (var item in result)
+                    yield return item;
             }
-
-            return result;
         }
 
         Func<IStorable, bool> GetSearchCriteria(string searchString)

@@ -36,8 +36,8 @@ namespace XForms.Design
             StopButton = CreateButton("media_stop", "Stop");
             NextButton = CreateButton("media_step_forward", "Next");
             PreviousButton = CreateButton("media_step_back", "Previous");
-            RandomButton = CreateButton("photos", "Shuffle (random sorted)");
-            LoopButton = CreateButton("nav_refresh", "Replay all items");
+            RandomButton = CreateButton("photos", "Shuffle");
+            LoopButton = CreateButton("nav_refresh", "Replay all");
             OpenSourceFolderButton = CreateButton("folder3_document", "Add folder to preview");
             StoreFileDataButton = CreateButton("floppy_disk", "Save item");
         }

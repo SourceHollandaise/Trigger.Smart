@@ -16,17 +16,17 @@ namespace XForms.Design
         ImageView imageView;
 
         readonly Dictionary<int, ImagePreviewItem> imageCollection;
-        readonly IEnumerable<IFileData> files;
+        readonly IEnumerable<IFileData> fileDataItems;
 
         protected ImagePreviewControl()
         {
         }
 
-        public ImagePreviewControl(IEnumerable<IFileData> files, bool autoStart = false) : base()
+        public ImagePreviewControl(IEnumerable<IFileData> fileDataItems, bool autoStart = false) : base()
         {
             this.WindowState = WindowState.Maximized;
 
-            this.files = files;
+            this.fileDataItems = fileDataItems;
             this.imageCollection = new Dictionary<int, ImagePreviewItem>();
             this.slideTimer = new UITimer();
             slideTimer.Interval = 3;
@@ -117,7 +117,7 @@ namespace XForms.Design
             isLoop = !isLoop;
 
             LoopButton.BackgroundColor = isLoop ? Colors.CornflowerBlue : DefaultButtonBackColor;
-            LoopButton.ToolTip = isLoop ? "Unshuffle" : "Shuffle";
+            LoopButton.ToolTip = isLoop ? "End repeat all" : "Repeat all";
         }
 
         protected override void Random()
@@ -127,6 +127,7 @@ namespace XForms.Design
             CreateCollection(isRandom);
 
             RandomButton.BackgroundColor = isRandom ? Colors.CornflowerBlue : DefaultButtonBackColor;
+            RandomButton.ToolTip = isRandom ? "Unshuffle" : "Shuffle";
         }
 
         protected override void AddImageSourceFolder()
@@ -223,7 +224,7 @@ namespace XForms.Design
 
                 var index = GetRandomPosition();
 
-                foreach (var item in files)
+                foreach (var item in fileDataItems)
                 {
                     var image = item.ConvertToImage();
                     if (image != null)
@@ -240,7 +241,7 @@ namespace XForms.Design
             else
             {
                 var index = 0;
-                foreach (var item in files)
+                foreach (var item in fileDataItems)
                 {
                     var image = item.ConvertToImage();
                     if (image != null)
@@ -297,7 +298,7 @@ namespace XForms.Design
         int GetRandomPosition()
         {
             var random = new Random();
-            int index = random.Next(0, files.Count());
+            int index = random.Next(0, fileDataItems.Count());
 
             return index;
         }

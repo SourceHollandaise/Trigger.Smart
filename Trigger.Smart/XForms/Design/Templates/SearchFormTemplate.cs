@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
+using XForms.Dependency;
 using XForms.Model;
 using XForms.Store;
 
@@ -139,7 +140,7 @@ namespace XForms.Design
                 if (e.Key == Keys.Escape)
                     this.Close();
 
-                if (e.Key == Keys.Down)
+                if (e.Key == Keys.Down || e.Key == Keys.Tab)
                 {
                     if (resultListBox.Visible)
                         resultListBox.Focus();
@@ -152,12 +153,12 @@ namespace XForms.Design
             return layout;
         }
 
-        IEnumerable<IStorable> GetResult(string input)
+        IList<IStorable> GetResult(string input)
         {
-            var descriptor = XForms.Dependency.MapProvider.Instance.ResolveType<IMainViewDescriptor>();
-            var store = XForms.Dependency.MapProvider.Instance.ResolveType<IStore>();
+            var descriptor = MapProvider.Instance.ResolveType<IMainViewDescriptor>();
+            var store = MapProvider.Instance.ResolveType<IStore>();
 
-            return store.SearchResult(input, descriptor.RegisteredTypes().Distinct().ToArray());
+            return store.SearchResult(input, descriptor.RegisteredTypes().Distinct().ToArray()).ToList();
         }
     }
 }

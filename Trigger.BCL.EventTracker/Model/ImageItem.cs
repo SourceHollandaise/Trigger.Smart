@@ -118,7 +118,6 @@ namespace Trigger.BCL.EventTracker.Model
             }
         }
 
-
         public string GalleryAlias
         {
             get

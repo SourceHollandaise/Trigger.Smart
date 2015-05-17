@@ -6,7 +6,7 @@ namespace XForms.Design
     {
         public static ScreenResolutionType GetScreenType()
         {
-            var mainWidth = Eto.Forms.Application.Instance.MainForm.Size.Width;
+            var mainWidth = Eto.Forms.Application.Instance.MainForm.Screen.WorkingArea.Width;
 
             if (mainWidth <= 1024)
                 return ScreenResolutionType.XtraSmall;
