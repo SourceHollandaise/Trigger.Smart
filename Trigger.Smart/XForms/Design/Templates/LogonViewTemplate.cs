@@ -12,6 +12,8 @@ namespace XForms.Design
             Size = new Size(300, 200);
             Title = "Logon";
             Content = new LogonViewGenerator(this).GetContent(this.Width - 8);
+           
+            //DisplayMode = DialogDisplayMode.Attached;
         }
 
         protected override void OnLoadComplete(System.EventArgs e)

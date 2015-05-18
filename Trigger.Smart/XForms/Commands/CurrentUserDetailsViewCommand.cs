@@ -13,7 +13,7 @@ namespace XForms.Commands
 
         public void Execute(TemplateBase template)
         {
-            CurrentUser.ShowDetailView();
+            CurrentUser.ShowDetailContentEmbedded();
         }
 
         public string ID
@@ -38,7 +38,7 @@ namespace XForms.Commands
             {
                 if (CurrentUser != null)
                     return CurrentUser.UserName;
-                return "Unknown";
+                return "My Profile";
             }
         }
 
@@ -47,7 +47,7 @@ namespace XForms.Commands
             get
             {
                 if (CurrentUser == null)
-                    return "";
+                    return "user_accept";
 
                 if (string.IsNullOrEmpty(CurrentUser.FileName))
                 {

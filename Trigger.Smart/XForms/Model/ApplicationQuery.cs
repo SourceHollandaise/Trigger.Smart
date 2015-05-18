@@ -10,7 +10,17 @@ namespace XForms.Model
         {
             get
             {
-                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser.AllowAdministration;
+                try
+                {
+                    var provider = MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>();
+                    if (provider == null || provider.CurrentUser == null)
+                        return false;
+                    return provider.CurrentUser.AllowAdministration;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 
@@ -18,7 +28,18 @@ namespace XForms.Model
         {
             get
             {
-                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
+                try
+                {
+                    var provider = MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>();
+                    if (provider == null || provider.CurrentUser == null)
+                        return null;
+                
+                    return provider.CurrentUser;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
     }

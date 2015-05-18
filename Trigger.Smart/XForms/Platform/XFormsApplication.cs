@@ -36,6 +36,7 @@ namespace XForms.Platform
 
             if (LogonParams != null)
             {
+                
                 if (AutoLogon())
                 {
                     ShowMainViewTemplate();
@@ -45,13 +46,14 @@ namespace XForms.Platform
             }
             else
             {
-                new LogonViewTemplate().ShowModal();
+                new LogonViewTemplate().ShowModal(MainForm);
                 ShowMainViewTemplate();
             }
         }
 
         protected virtual void ShowMainViewTemplate()
         {
+           
             MainForm = Map.ResolveType<IMainViewTemplate>() as TemplateBase;
             MainForm.Show();
         }

@@ -9,7 +9,7 @@ namespace Trigger.App.OSX.EventTracker
         static void Main()
         {
             var application = new XForms.Platform.XFormsApplication();
-
+            /*
             LogonParameters logon = null;
 
             if (System.Diagnostics.Debugger.IsAttached)
@@ -20,8 +20,9 @@ namespace Trigger.App.OSX.EventTracker
                     Password = "admin"
                 };
             }
+            */
 
-            application.InitalizeApplication(new OSXBootstrapper(), logon);
+            application.InitalizeApplication(new OSXBootstrapper());
 
             application.Run();
         }

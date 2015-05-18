@@ -48,7 +48,6 @@ namespace XForms.Design
                 Size = new Size(width, 34),
                 Image = ImageExtensions.GetImage("lock_off", 16),
                 ImagePosition = ButtonImagePosition.Left,
-                BackgroundColor = Colors.WhiteSmoke
             };
 
             LogonViewTemplate.DefaultButton = logonButton;

@@ -6,9 +6,9 @@
     <ProjectGuid>{E522C014-2E66-498B-892A-487C68762ABE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Trigger.App.EventTracker</RootNamespace>
-    <UseMSBuildEngine>False</UseMSBuildEngine>
     <ApplicationIcon>..\..\Downloads\e_ishu.ico</ApplicationIcon>
     <ReleaseVersion>0.8</ReleaseVersion>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,19 +51,20 @@
     <Reference Include="Eto">
       <HintPath>..\Trigger.Smart\packages\Eto.Forms.2.0.7\lib\net40\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="Eto.Gtk2">
-      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.2.0.7\lib\net40\Eto.Gtk2.dll</HintPath>
-    </Reference>
     <Reference Include="Eto.WinForms">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Windows.2.0.7\lib\net40\Eto.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Eto.Wpf">
       <HintPath>..\Trigger.Smart\packages\Eto.Platform.Wpf.2.0.7\lib\net40\Eto.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Eto.Gtk2">
+      <HintPath>..\Trigger.Smart\packages\Eto.Platform.Gtk.2.0.7\lib\net40\Eto.Gtk2.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp.cs" />
+    <Compile Include="AppBootstrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
