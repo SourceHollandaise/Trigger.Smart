@@ -15,14 +15,13 @@ namespace Trigger.BCL.EventTracker
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.Subject);
 
-//            ListDetailView = true;
-//            ListDetailViewWithToolbar = true;
-//            ListDetailViewColumns = 2;
-//            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
+            ListDetailView = true;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewColumns = 2;
+            ListDetailViewOrientation = ViewItemOrientation.Horizontal;
 
+            DetailView = new DocumentListDetailViewDescriptor();
             FilePreviewMode = XForms.Store.FileDataMode.MixedMode;
-
-            //DetailView = new DocumentListDetailViewDescriptor();
 
             ColumnDescriptions = new List<ColumnDescription>
             {

@@ -20,8 +20,8 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
-                                new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "User", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 2){ LabelText = "User", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator, LabelOrientation = LabelOrientation.Top },
                             }
                         },
                     }

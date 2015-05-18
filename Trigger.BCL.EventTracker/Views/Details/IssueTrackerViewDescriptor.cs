@@ -21,21 +21,21 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type" },
-                                new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area" },
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area", LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription("Progress", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 1){ LabelText = "State" },
-                                new ViewItemDescription(Fields.GetName(m => m.Start), 2){ LabelText = "Start" },
-                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 2){ LabelText = "Started by" },
-                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 3){ LabelText = "Resolved" },
-                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 4){ LabelText = "Resolved by" },
+                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 1){ LabelText = "State", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Start), 2){ LabelText = "Start", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 2){ LabelText = "Started by", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 3){ LabelText = "Resolved", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 4){ LabelText = "Resolved by", LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription("Description", 3)

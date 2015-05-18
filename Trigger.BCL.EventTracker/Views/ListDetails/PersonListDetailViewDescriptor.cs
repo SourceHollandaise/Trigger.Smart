@@ -30,19 +30,19 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.FirstName), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.MiddleName), 2){ LabelText = "Middle name" },
-                                new ViewItemDescription(Fields.GetName(m => m.LastName), 3){ LabelText = "Last name" },
-                                new ViewItemDescription(Fields.GetName(m => m.Company), 4){ LabelText = "Company" },
+                                new ViewItemDescription(Fields.GetName(m => m.FirstName), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.MiddleName), 2){ LabelText = "Middle name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.LastName), 3){ LabelText = "Last name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Company), 4){ LabelText = "Company", LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription(null, 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.PostalCode), 1){ LabelText = "Postal Code" },
-                                new ViewItemDescription(Fields.GetName(m => m.City), 2){ LabelText = "City" },
-                                new ViewItemDescription(Fields.GetName(m => m.Street), 3){ LabelText = "Address" }
+                                new ViewItemDescription(Fields.GetName(m => m.PostalCode), 1){ LabelText = "Postal Code", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.City), 2){ LabelText = "City", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Street), 3){ LabelText = "Address", LabelOrientation = LabelOrientation.Top }
                             }
                         }
                     }

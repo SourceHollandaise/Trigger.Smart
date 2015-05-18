@@ -20,10 +20,11 @@ namespace XForms.Commands
                 return;
             }
 
+
             if (args.Grid.SelectedItem != null)
             {
                 if (args.Grid.SelectedItem != null)
-                    (args.Grid.SelectedItem as IStorable).ShowDetailView();
+                    (args.Grid.SelectedItem as IStorable).ShowDetailContentEmbedded();
             }
         }
 

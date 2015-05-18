@@ -25,8 +25,8 @@ namespace XForms.Commands
             if (target != null)
             {
                 target.Initialize();
-
-                target.ShowDetailView();
+                target.Save();
+                target.ShowDetailContentEmbedded();
             }
         }
 

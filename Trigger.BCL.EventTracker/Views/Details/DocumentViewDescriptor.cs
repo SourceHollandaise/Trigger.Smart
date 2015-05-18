@@ -35,17 +35,17 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
                                 new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", Fill = true },
-                                new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "From" },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "From", LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription("Links", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area" },
-                                new ViewItemDescription(Fields.GetName(m => m.Issue), 2){ LabelText = "Issue" },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 1){ LabelText = "Area", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Issue), 2){ LabelText = "Issue", LabelOrientation = LabelOrientation.Top },
                             }
                         }
                     }

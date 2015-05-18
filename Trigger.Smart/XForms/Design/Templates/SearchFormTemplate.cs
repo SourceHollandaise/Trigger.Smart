@@ -12,6 +12,9 @@ namespace XForms.Design
 {
     public class SearchFormTemplate : Form
     {
+        ListBox resultListBox;
+        SearchBox searchBox;
+
         public SearchFormTemplate()
         {
             this.WindowStyle = WindowStyle.Default;
@@ -25,10 +28,9 @@ namespace XForms.Design
         {
             var layout = new DynamicLayout();
 
-            ListBox resultListBox = new ListBox()
+            resultListBox = new ListBox()
             {
                 Visible = false,
-                
             };
 
             try
@@ -40,7 +42,7 @@ namespace XForms.Design
 
             }
                
-            var searchBox = new SearchBox()
+            searchBox = new SearchBox()
             {
                 Size = new Size(600, 80)
             };
@@ -56,43 +58,53 @@ namespace XForms.Design
 
             }
 
+            HandleControlEvents();
+
+            layout.Add(searchBox);
+            layout.Add(resultListBox);
+
+            return layout;
+        }
+
+        void HandleControlEvents()
+        {
+            searchBox.KeyDown += (sender, e) =>
+            {
+                if (e.Key == Keys.Escape)
+                    this.Close();
+                if (e.Key == Keys.Down || e.Key == Keys.Tab)
+                {
+                    if (resultListBox.Visible)
+                        resultListBox.Focus();
+                }
+            };
+
             searchBox.TextChanged += (sender, e) =>
             {
                 resultListBox.Visible = searchBox.Text.Length >= 2;
-
                 Size = resultListBox.Visible ? new Size(600, 480) : new Size(600, 80);
-
                 if (resultListBox.Visible)
                 {
                     resultListBox.Items.Clear();
-
                     var resultSet = GetResult(searchBox.Text);
-
                     foreach (var item in resultSet)
                     {
                         var displayNameAttribute = item.GetType().FindAttribute<DisplayNameAttribute>();
-
                         var imageAttribute = item.GetType().FindAttribute<ImageNameAttribute>();
-
                         string itemName = item.GetType().Name;
-
                         if (displayNameAttribute != null)
                             itemName = displayNameAttribute.DisplayName;
-
                         var imageItem = new ImageListItem
-                        { 
+                        {
                             Image = imageAttribute != null ? ImageExtensions.GetImage(imageAttribute.ImageName, 24) : null,
-
                             Text = itemName + " - " + item.GetRepresentation,
                             Key = item.MappingId.ToString(),
                             Tag = item
                         };
-
                         if (item is IThumbnailPreviewable)
                         {
                             imageItem.Image = (item as IThumbnailPreviewable).Thumbnail;
                         }
-
                         resultListBox.Items.Add(imageItem);
                     }
                 }
@@ -105,7 +117,6 @@ namespace XForms.Design
                     if ((resultListBox.SelectedValue as ListItem).Tag != null)
                     {
                         this.Close();
-
                         ((resultListBox.SelectedValue as ListItem).Tag as IStorable).ShowDetailView();
                     }
                 }
@@ -115,13 +126,11 @@ namespace XForms.Design
             {
                 if (e.Key == Keys.Escape)
                     this.Close();
-
                 if (e.Key == Keys.Enter && resultListBox.SelectedValue != null)
                 {
                     if ((resultListBox.SelectedValue as ListItem).Tag != null)
                     {
                         this.Close();
-
                         ((resultListBox.SelectedValue as ListItem).Tag as IStorable).ShowDetailView();
                     }
                 }
@@ -131,26 +140,8 @@ namespace XForms.Design
             {
                 if (resultListBox.SelectedValue != null)
                 {
-
                 }
             };
-
-            searchBox.KeyDown += (sender, e) =>
-            {
-                if (e.Key == Keys.Escape)
-                    this.Close();
-
-                if (e.Key == Keys.Down || e.Key == Keys.Tab)
-                {
-                    if (resultListBox.Visible)
-                        resultListBox.Focus();
-                }
-            };
-
-            layout.Add(searchBox);
-            layout.Add(resultListBox);
-
-            return layout;
         }
 
         IList<IStorable> GetResult(string input)

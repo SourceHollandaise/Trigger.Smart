@@ -118,8 +118,11 @@ namespace XForms.Design
                                 {
                                     control.MouseDoubleClick += (sender, e) =>
                                     {
-                                        if ((control as GridView).SelectedItem != null)
-                                            ((control as GridView).SelectedItem as IStorable).ShowDetailContentEmbedded();
+                                        if (control is GridView)
+                                        {
+                                            if ((control as GridView).SelectedItem != null)
+                                                ((control as GridView).SelectedItem as IStorable).ShowDetailContentEmbedded();
+                                        }
                                     };
                                 }
                             }

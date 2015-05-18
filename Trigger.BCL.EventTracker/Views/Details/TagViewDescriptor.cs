@@ -18,8 +18,8 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name" },
-                                new ViewItemDescription(Fields.GetName(m => m.TagColor), 2){ LabelText = "Color" },
+                                new ViewItemDescription(Fields.GetName(m => m.Name), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.TagColor), 2){ LabelText = "Color", LabelOrientation = LabelOrientation.Top },
                             }
                         },
                     }

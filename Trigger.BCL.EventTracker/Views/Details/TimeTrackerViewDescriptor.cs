@@ -21,18 +21,18 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Subject", ShowLabel = true },
-                                new ViewItemDescription(Fields.GetName(m => m.Area), 2){ LabelText = "Area", ShowLabel = true },
-                                new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "User", ShowLabel = true }
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Subject", ShowLabel = true, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 2){ LabelText = "Area", ShowLabel = true, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.User), 3){ LabelText = "User", ShowLabel = true, LabelOrientation = LabelOrientation.Top }
                             }
                         },
                         new GroupItemDescription("Time", 2)
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Begin), 1){ LabelText = "Start", ShowLabel = true },
-                                new ViewItemDescription(Fields.GetName(m => m.End), 2){ LabelText = "End", ShowLabel = true },
-                                new ViewItemDescription(Fields.GetName(m => m.Duration), 3){ LabelText = "Duration", ShowLabel = true },
+                                new ViewItemDescription(Fields.GetName(m => m.Begin), 1){ LabelText = "Start", ShowLabel = true, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.End), 2){ LabelText = "End", ShowLabel = true, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Duration), 3){ LabelText = "Duration", ShowLabel = true, LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription("Description", 3)

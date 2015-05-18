@@ -32,12 +32,12 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
+                                new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
                                 //new ViewItemDescription(Fields.GetName(m => m.Description), 2){ LabelText = "Description", ShowLabel = false, Fill = true },
-                                new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type" },
-                                new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area" },
-                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State" },
+                                new ViewItemDescription(Fields.GetName(m => m.IssuePriority), 2){ LabelText = "Priority", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.IssueType), 3){ LabelText = "Type", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Area), 4){ LabelText = "Area", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.IssueState), 5){ LabelText = "State", LabelOrientation = LabelOrientation.Top },
                                
                             }
                         },
@@ -46,7 +46,7 @@ namespace Trigger.BCL.EventTracker
                             Fill = true,
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = true },
+                                new ViewItemDescription(Fields.GetName(m => m.Description), 1){ LabelText = "Description", ShowLabel = false, Fill = true, LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         /*
@@ -62,10 +62,10 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.Start), 6){ LabelText = "Start" },
-                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 7){ LabelText = "Started by" },
-                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 8){ LabelText = "Resolved" },
-                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 9){ LabelText = "Resolved by" },
+                                new ViewItemDescription(Fields.GetName(m => m.Start), 6){ LabelText = "Start", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.StartedBy), 7){ LabelText = "Started by", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Resolved), 8){ LabelText = "Resolved", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.ResolvedBy), 9){ LabelText = "Resolved by", LabelOrientation = LabelOrientation.Top },
                             }
                         }
                     }

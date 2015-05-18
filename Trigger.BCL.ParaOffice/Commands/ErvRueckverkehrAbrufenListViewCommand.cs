@@ -9,13 +9,7 @@ namespace Trigger.BCL.ParaOffice
     {
         public void Execute(ListViewArguments listParameter)
         {
-            //TODO: Einlesen aus WebService und RV erstellen
-
-            var service = MapProvider.Instance.ResolveType<IErvRueckverkehrService>();
-
-            service.Get(ApplicationModelQuery.CurrentSB.ErvCode, DateTime.Today, DateTime.Today);
-
-            MapProvider.Instance.ResolveType<IRefreshListViewCommand>().Execute(listParameter);
+           
         }
 
         public string ID

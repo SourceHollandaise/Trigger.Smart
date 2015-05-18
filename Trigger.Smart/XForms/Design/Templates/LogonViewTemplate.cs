@@ -1,6 +1,7 @@
 using Eto.Forms;
 using Eto.Drawing;
 
+
 namespace XForms.Design
 {
     public class LogonViewTemplate : Dialog

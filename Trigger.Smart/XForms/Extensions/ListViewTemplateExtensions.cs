@@ -29,26 +29,26 @@ namespace XForms.Design
 
                 builder.CurrentGridView.MouseDoubleClick += (sender, e) =>
                 {
-                    ShowSelectedItem(builder);
+                    //ShowSelectedItem(builder);
 
-//                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
-//                    if (detailContent != null)
-//                    {
-//                        template.SetContent(detailContent);
-//                    }
+                    var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
+                    if (detailContent != null)
+                    {
+                        template.SetContent(detailContent);
+                    }
                 };
 
                 builder.CurrentGridView.KeyUp += (sender, e) =>
                 {
                     if (e.Key == Keys.Enter)
                     {
-                        ShowSelectedItem(builder);
+                        //ShowSelectedItem(builder);
 
-//                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
-//                        if (detailContent != null)
-//                        {
-//                            template.SetContent(detailContent);
-//                        }
+                        var detailContent = CreateDetailViewLayout(builder.CurrentGridView);
+                        if (detailContent != null)
+                        {
+                            template.SetContent(detailContent);
+                        }
                     }
                 };
             }
@@ -65,7 +65,7 @@ namespace XForms.Design
                 var item = builder.CurrentGridView.SelectedItem as IStorable;
                 if (item != null)
                 {
-                    item.ShowDetailView();
+                    item.ShowDetailContentEmbedded();
                 }
             }
         }

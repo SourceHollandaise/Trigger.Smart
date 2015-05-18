@@ -33,12 +33,12 @@ namespace Trigger.BCL.EventTracker
                         {
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
-                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Username", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator },
-                                new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Password" },
-                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail" },
-                                new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Sex" },
-                                new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Role" },
-                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator },
+                                new ViewItemDescription(Fields.GetName(m => m.UserName), 1){ LabelText = "Username", ReadOnly = !ApplicationQuery.CurrentUserIsAdministrator, LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Password), 2){ LabelText = "Password", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Email), 3){ LabelText = "E-Mail", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.UserSex), 4){ LabelText = "Sex", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.Role), 5){ LabelText = "Role", LabelOrientation = LabelOrientation.Top },
+                                new ViewItemDescription(Fields.GetName(m => m.AllowAdministration), 6){ LabelText = "Administration", Visible = ApplicationQuery.CurrentUserIsAdministrator, LabelOrientation = LabelOrientation.Top },
                             }
                         },
                         new GroupItemDescription("Avatar", 2)
@@ -47,7 +47,7 @@ namespace Trigger.BCL.EventTracker
                             ViewItemDescriptions = new List<ViewItemDescription>
                             {
                                 new ViewItemDescription(Fields.GetName(m => m.FileName), 1){ LabelText = "Avatar", ShowLabel = false, Fill = true },
-                                new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
+                                //new ViewItemDescription(EmptySpaceFieldName, 2){ ShowLabel = false, Fill = true },
                             }
                         },
 

@@ -22,13 +22,13 @@ namespace Trigger.BCL.EventTracker
             DefaultSorting = ColumnSorting.Ascending;
             DefaultSortProperty = Fields.GetName(m => m.GalleryAlias);
 
-//            ListDetailView = true;
-//            ListDetailViewColumns = 4;
-//            ListDetailViewWithToolbar = true;
-//            ListDetailViewOrientation = ViewItemOrientation.Vertical;
-//            ShowListDetailViewForLinkedLists = true;
-//
-//            DetailView = new ImageItemListDetailViewDescriptor();
+            ListDetailView = true;
+            ListDetailViewColumns = 4;
+            ListDetailViewWithToolbar = true;
+            ListDetailViewOrientation = ViewItemOrientation.Vertical;
+            ShowListDetailViewForLinkedLists = true;
+
+            DetailView = new ImageItemListDetailViewDescriptor();
 
             FilePreviewMode = FileDataMode.SlideShow;
 

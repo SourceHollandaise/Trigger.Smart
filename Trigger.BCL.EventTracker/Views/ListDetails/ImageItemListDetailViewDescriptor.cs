@@ -26,8 +26,9 @@ namespace Trigger.BCL.EventTracker
                 {
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name" },
-                        new ViewItemDescription(Fields.GetName(m => m.Gallery), 1){ LabelText = "Gallery" },
+                        new ViewItemDescription(Fields.GetName(m => m.Subject), 1){ LabelText = "Name", LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.Gallery), 2){ LabelText = "Gallery", LabelOrientation = LabelOrientation.Top },
+                        new ViewItemDescription(Fields.GetName(m => m.Keywords), 3){ LabelText = "Tags",  LabelOrientation = LabelOrientation.Top }
                     }
                 },
                 new GroupItemDescription(null, 2)
@@ -35,7 +36,7 @@ namespace Trigger.BCL.EventTracker
                     Fill = true,
                     ViewItemDescriptions = new List<ViewItemDescription>
                     {
-                        new ViewItemDescription(Fields.GetName(m => m.PreviewFileName), 1){ LabelText = "Preview", ShowLabel = false },
+                        new ViewItemDescription(Fields.GetName(m => m.PreviewFileName), 1){ LabelText = "Preview", ShowLabel = false, LabelOrientation = LabelOrientation.Top },
                     }
                 },
             };

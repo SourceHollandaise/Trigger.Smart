@@ -24,7 +24,7 @@ namespace XForms.Design
             this.ModelType = type;
             this.CurrentObject = currentObject;
 
-            this.BackgroundColor = Colors.White;
+            //this.BackgroundColor = Colors.White;
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
