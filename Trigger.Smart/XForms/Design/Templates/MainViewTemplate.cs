@@ -1,7 +1,7 @@
-using System;
-using System.Linq;
 using Eto.Drawing;
 using Eto.Forms;
+using System;
+using System.Linq;
 using XForms.Commands;
 using XForms.Dependency;
 using XForms.Store;
@@ -24,14 +24,23 @@ namespace XForms.Design
         }
 
         public Type CurrentActiveType
-        { 
+        {
             get;
             set;
         }
 
         public MainViewTemplate() : base(typeof(IStorable), null)
         {
-            this.Size = (Size)Screen.WorkingArea.Size;
+            try
+            {
+                var size = MapProvider.Instance.ResolveType<IViewTemplateConfiguration>().DetailViewDefaultSize;
+                this.Size = size;//(Size)Screen.WorkingArea.Size;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             this.WindowState = WindowState.Maximized;
             this.Minimizable = true;
             this.Maximizable = true;
@@ -126,7 +135,7 @@ namespace XForms.Design
                             button.Image = ImageExtensions.GetImage(navItem.ImageName, 16);
                             button.ImagePosition = ButtonImagePosition.Left;
                             break;
-                    }            
+                    }
 
                     button.Click += (sender, e) => ShowListViewFromNavigation(button.Tag as NavigationItemDescription);
                     navGroupLayout.Add(button, true);
@@ -177,19 +186,19 @@ namespace XForms.Design
                         button.Image = ImageExtensions.GetImage(command.ImageName, 16);
                         button.ImagePosition = ButtonImagePosition.Left;
                         break;
-                }            
+                }
 
                 button.Click += (sender, e) => (button.Tag as IMainViewCommand).Execute(this);
 
                 appGroupLayout.Add(button, true);
             }
-                
+
             appGroupLayout.EndVertical();
 
             appGroup.Content = appGroupLayout;
 
             navigationlayout.Add(appGroup);
-          
+
             navigationlayout.BeginVertical();
             navigationlayout.EndVertical();
 

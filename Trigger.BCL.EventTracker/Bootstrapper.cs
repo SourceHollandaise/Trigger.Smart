@@ -1,13 +1,12 @@
 using System.Linq;
+using Trigger.BCL.EventTracker.Model;
+using Trigger.BCL.EventTracker.Services;
 using XForms.Commands;
 using XForms.Design;
 using XForms.Model;
 using XForms.Platform;
 using XForms.Security;
 using XForms.Store;
-using Trigger.BCL.EventTracker;
-using Trigger.BCL.EventTracker.Model;
-using Trigger.BCL.EventTracker.Services;
 
 namespace Trigger.BCL.EventTracker
 {
@@ -40,6 +39,7 @@ namespace Trigger.BCL.EventTracker
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
             Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
+            //Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateDefaultConfiguration>();
 
             DetailViewDescriptorProvider.Declare<AreaUser, AreaUserViewDescriptor>();
@@ -54,6 +54,7 @@ namespace Trigger.BCL.EventTracker
             DetailViewDescriptorProvider.Declare<TimeTracker, TimeTrackerViewDescriptor>();
             DetailViewDescriptorProvider.Declare<ApplicationUser, ApplicationUserViewDescriptor>();
 
+            ListViewDescriptorProvider.Declare<ApplicationUser, ApplicationUserListDescriptor>();
             ListViewDescriptorProvider.Declare<AreaUser, AreaUserListDescriptor>();
             ListViewDescriptorProvider.Declare<Area, AreaListDescriptor>();
             ListViewDescriptorProvider.Declare<Contact, ContactListDescriptor>();

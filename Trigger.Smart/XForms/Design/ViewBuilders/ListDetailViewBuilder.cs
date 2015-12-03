@@ -1,8 +1,8 @@
+using Eto.Drawing;
+using Eto.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Eto.Drawing;
-using Eto.Forms;
 using XForms.Store;
 
 namespace XForms.Design
@@ -53,7 +53,7 @@ namespace XForms.Design
             var calculated = ScreenResolutionTypeCalculator.CalculatOptimumListDetailColumns(descriptor);
 
             var columns = descriptor.ListDetailViewColumns == 0 ? 1 : calculated - 1;
-           
+
             var detailViewDatatSet = rawDataSet.ToList();
 
             if (descriptor.ListDetailViewOrientation == ViewItemOrientation.Vertical)
@@ -62,14 +62,14 @@ namespace XForms.Design
                 {
                     if (currentColumnCount == 0)
                         contentLayout.BeginHorizontal();
- 
+
                     var builder = new ListDetailItemBuilder(descriptor.DetailView, current, current.GetDefaultPropertyValue(), descriptor.ListDetailViewWithToolbar);
                     var content = builder.GetContent();
-   
+
                     if (Application.Instance.MainForm is MainViewTemplate)
                     {
                         var width = ((Application.Instance.MainForm as MainViewTemplate).ContentPanel.Size.Width - 120) / calculated;
-            
+
                         content.Size = new Size(width, -1);
                     }
 
@@ -122,7 +122,7 @@ namespace XForms.Design
 
                         content.Size = new Size(width, height);
                     }
-                     
+
 
                     contentLayout.Add(content, false, false);
                 }
@@ -134,7 +134,7 @@ namespace XForms.Design
             var scrollable = new Scrollable()
             {
                 Border = BorderType.None,
-                Padding = new Padding(-1, -1),
+                //Padding = new Padding(0, 0),
                 Content = contentLayout
             };
 
