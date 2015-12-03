@@ -39,6 +39,7 @@ namespace Trigger.BCL.EventTracker
         {
             Map.RegisterType<IMainViewDescriptor, ApplicationMainViewDescriptor>();
             Map.RegisterType<IMainViewTemplate, MainViewTemplate>();
+            //Map.RegisterType<IMainViewTemplate, ReducedMainViewTemplate>();
             Map.RegisterType<IViewTemplateConfiguration, ViewTemplateDefaultConfiguration>();
 
             DetailViewDescriptorProvider.Declare<AreaUser, AreaUserViewDescriptor>();

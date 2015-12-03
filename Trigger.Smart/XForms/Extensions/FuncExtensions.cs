@@ -15,10 +15,10 @@ namespace System
         public static Func<T, bool> AndAlso<T>(this Func<T, bool> func1, Func<T, bool> func2)
         {
             if (func1 == null)
-                throw new ArgumentNullException("func1");
+                throw new ArgumentNullException(nameof(func1));
 
             if (func2 == null)
-                throw new ArgumentNullException("func2");
+                throw new ArgumentNullException(nameof(func2));
 
             return a => func1(a) && func2(a);
         }
@@ -26,10 +26,10 @@ namespace System
         public static Func<T, bool> OrElse<T>(this Func<T, bool> func1, Func<T, bool> func2)
         {
             if (func1 == null)
-                throw new ArgumentNullException("func1");
+                throw new ArgumentNullException(nameof(func1));
 
             if (func2 == null)
-                throw new ArgumentNullException("func2");
+                throw new ArgumentNullException(nameof(func2));
 
             return a => func1(a) || func2(a);
         }
@@ -37,10 +37,10 @@ namespace System
         public static Func<T, bool> Grouped<T>(Func<T, bool>[] functions, GroupType groupType = GroupType.Or)
         {
             if (functions == null)
-                throw new ArgumentNullException("functions");
+                throw new ArgumentNullException(nameof(functions));
 
             if (functions.Length == 0)
-                throw new ArgumentOutOfRangeException("functions");
+                throw new ArgumentOutOfRangeException(nameof(functions));
 
             Func<T, bool> result = a => groupType == GroupType.And;
 
