@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -185,26 +185,18 @@
     <Compile Include="Code\XForms\ViewDescriptions\ViewItemOrientation.cs" />
     <Compile Include="Code\XForms\Visuals\Details\DetailViewBuilder.cs" />
     <Compile Include="Code\XForms\Visuals\Details\DetailViewControlFactory.cs" />
-    <Compile Include="Code\XForms\Visuals\Details\DetailViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
+    <Compile Include="Code\XForms\Visuals\Details\DetailViewTemplate.cs" />
     <Compile Include="Code\XForms\Visuals\Details\TagButtonBuilder.cs" />
     <Compile Include="Code\XForms\Visuals\IViewTemplateConfiguration.cs" />
     <Compile Include="Code\XForms\Visuals\Lists\DataStoreProvider.cs" />
     <Compile Include="Code\XForms\Visuals\Lists\GridViewComparer.cs" />
     <Compile Include="Code\XForms\Visuals\Lists\ListViewBuilder.cs" />
     <Compile Include="Code\XForms\Visuals\Lists\ListViewCellFactory.cs" />
-    <Compile Include="Code\XForms\Visuals\Lists\ListViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
+    <Compile Include="Code\XForms\Visuals\Lists\ListViewTemplate.cs" />
     <Compile Include="Code\XForms\Visuals\LogonViewGenerator.cs" />
-    <Compile Include="Code\XForms\Visuals\LogonViewTemplate.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
+    <Compile Include="Code\XForms\Visuals\LogonViewTemplate.cs" />
     <Compile Include="Code\XForms\Visuals\MainViewTemplate.cs" />
-    <Compile Include="Code\XForms\Visuals\TemplateBase.cs">
-      <SubType>Eto.Forms</SubType>
-    </Compile>
+    <Compile Include="Code\XForms\Visuals\TemplateBase.cs" />
     <Compile Include="Code\XForms\Visuals\ViewTemplateConfiguration.cs" />
     <Compile Include="Code\XDependency\DefaultDependencyAttribute.cs" />
     <Compile Include="Code\XDependency\DependencyMap.cs" />
@@ -281,17 +273,8 @@
     <Compile Include="Application\Bootstrapper.cs" />
     <Compile Include="Application\StartUp.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Code\" />
-    <Folder Include="Code\XStorable\" />
-    <Folder Include="Code\XForms\" />
-    <Folder Include="Code\XDependency\" />
-    <Folder Include="Code\BCLCommon\" />
-    <Folder Include="Code\BCLEventTracker\" />
-    <Folder Include="Application\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Code\XForms\Images\Size64\accept.png">
       <LogicalName>accept.png</LogicalName>
