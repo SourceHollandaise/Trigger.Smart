@@ -6,7 +6,8 @@
     <ProjectGuid>{E522C014-2E66-498B-892A-487C68762ABE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Trigger.App.EventTracker</RootNamespace>
-    <ApplicationIcon>..\..\Downloads\e_ishu.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <ReleaseVersion>0.8</ReleaseVersion>
     <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>

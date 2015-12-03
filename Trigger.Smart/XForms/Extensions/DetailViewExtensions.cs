@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
+using Eto.Drawing;
 using Eto.Forms;
+using System;
 using XForms.Dependency;
 using XForms.Store;
-using Eto.Drawing;
 
 namespace XForms.Design
 {
@@ -19,7 +18,8 @@ namespace XForms.Design
                 var detailBuilder = new DetailViewBuilder(detailDescriptor, currentObject);
                 if (template == null)
                 {
-                    Application.Instance.MainForm.Title = currentObject.GetDefaultPropertyValue();
+                    var title = !string.IsNullOrWhiteSpace(currentObject.GetDefaultPropertyValue()) ? currentObject.GetDefaultPropertyValue() : "EventTracker";
+                    Application.Instance.MainForm.Title = title;
 
                     var content = detailBuilder.GetContent();
                     (Application.Instance.MainForm as IMainViewTemplate).SetContent(content);
@@ -40,13 +40,13 @@ namespace XForms.Design
                 var template = TryGetDetailView(targetObject);
                 if (template != null)
                 {
-                    //var size = MapProvider.Instance.ResolveType<IViewTemplateConfiguration>().DetailViewDefaultSize;
+                    var size = MapProvider.Instance.ResolveType<IViewTemplateConfiguration>().DetailViewDefaultSize;
 
-                    var screenSize = (Size)template.Screen.WorkingArea.Size;
+                    var screenSize = size;//(Size)template.Screen.WorkingArea.Size;
 
                     template.Content.Size = new Size((int)(screenSize.Width * 0.9), (int)(screenSize.Height * 0.9));
                     template.Show();
-            
+
                 }
             }
         }
