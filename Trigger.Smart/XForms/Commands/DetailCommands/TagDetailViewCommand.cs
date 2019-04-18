@@ -39,60 +39,18 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_tags";
-            }
-        }
+        public string ID => "cmd_tags";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Tag";
-            }
-        }
+        public string Name => "Tag";
 
-        public string ImageName
-        {
-            get
-            {
-                return "tag";
-            }
-        }
+        public string ImageName => "tag";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

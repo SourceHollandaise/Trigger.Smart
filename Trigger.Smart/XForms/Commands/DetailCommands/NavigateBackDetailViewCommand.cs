@@ -19,61 +19,19 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_navigate_back";
-            }
-        }
+        public string ID => "cmd_navigate_back";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Back";
-            }
-        }
+        public string Name => "Back";
 
-        public string ImageName
-        {
-            get
-            {
-                return "clock_history";
-            }
-        }
+        public string ImageName => "clock_history";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return TemplateNavigator.BackPossible;
-            }
-        }
+        public bool AllowExecute => TemplateNavigator.BackPossible;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 
 }

@@ -9,13 +9,7 @@ namespace XForms.Platform
 {
     public abstract class BootstrapperBase
     {
-        protected IDependencyMap Map
-        {
-            get
-            {
-                return MapProvider.Instance;
-            }
-        }
+        protected IDependencyMap Map => MapProvider.Instance;
 
         public abstract void InitalizeDataStore();
 

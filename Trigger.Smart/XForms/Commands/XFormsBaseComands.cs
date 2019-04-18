@@ -2,16 +2,9 @@ using XForms.Dependency;
 
 namespace XForms.Commands
 {
-
     public class XFormsBaseComands
     {
-        static IDependencyMap Map
-        {
-            get
-            {
-                return MapProvider.Instance;
-            }
-        }
+        static IDependencyMap Map => MapProvider.Instance;
 
         public virtual void Register()
         {

@@ -50,13 +50,7 @@ namespace XForms.Design
             CreateMenu();
         }
 
-        public bool IsReduced
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReduced => false;
 
         public void SetContent(Control control)
         {

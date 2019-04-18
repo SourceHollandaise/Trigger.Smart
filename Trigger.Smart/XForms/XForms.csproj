@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,11 +29,14 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Eto, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Eto.Forms.2.0.7\lib\net40\Eto.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.IO">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
     </Reference>
@@ -42,9 +45,6 @@
     </Reference>
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Eto">
-      <HintPath>..\packages\Eto.Forms.2.0.7\lib\net40\Eto.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +150,9 @@
     <Compile Include="Design\Templates\LogonViewTemplate.cs">
       <SubType>Eto.Forms</SubType>
     </Compile>
-    <Compile Include="Design\Templates\MainViewTemplate.cs" />
+    <Compile Include="Design\Templates\MainViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Design\Descriptors\LabelOrientation.cs" />
     <Compile Include="Design\Templates\TemplateBase.cs">
       <SubType>Eto.Forms</SubType>
@@ -178,20 +180,30 @@
     <Compile Include="Design\Descriptors\NavigationItemDescription.cs" />
     <Compile Include="Design\Descriptors\ScreenResolutionTypeCalculator.cs" />
     <Compile Include="Design\Descriptors\ScreenResolutionType.cs" />
-    <Compile Include="Design\Templates\SearchFormTemplate.cs" />
-    <Compile Include="Design\Templates\ReducedMainViewTemplate.cs" />
+    <Compile Include="Design\Templates\SearchFormTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\Templates\ReducedMainViewTemplate.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Design\Templates\IMainViewTemplate.cs" />
     <Compile Include="Design\ViewBuilders\IViewBuilder.cs" />
     <Compile Include="Commands\Interfaces\INavigateHomeDetailViewCommand.cs" />
     <Compile Include="Commands\Interfaces\INavigateHomeListViewCommand.cs" />
     <Compile Include="Commands\DetailCommands\NavigateHomeDetailViewCommand.cs" />
     <Compile Include="Commands\ListCommands\NavigateHomeListViewCommand.cs" />
-    <Compile Include="Design\Templates\FilePreviewControl.cs" />
+    <Compile Include="Design\Templates\FilePreviewControl.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Commands\Interfaces\IFileViewerListViewCommand.cs" />
     <Compile Include="Commands\ListCommands\FileViewerListViewCommand.cs" />
     <Compile Include="Design\Templates\FileItem.cs" />
-    <Compile Include="Design\Templates\PreviewControl.cs" />
-    <Compile Include="Design\Templates\ImagePreviewControl.cs" />
+    <Compile Include="Design\Templates\PreviewControl.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
+    <Compile Include="Design\Templates\ImagePreviewControl.cs">
+      <SubType>Eto.Forms</SubType>
+    </Compile>
     <Compile Include="Design\ViewTemplateDefaultConfiguration.cs" />
     <Compile Include="Commands\Interfaces\IAddMultipleFilesDetailViewCommand.cs" />
     <Compile Include="Design\Templates\ImagePreviewItem.cs" />
@@ -201,26 +213,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <ItemGroup>
-    <Folder Include="Store\" />
-    <Folder Include="Dependency\" />
-    <Folder Include="Design\" />
-    <Folder Include="Model\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Security\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Commands\Interfaces\" />
-    <Folder Include="Platform\" />
-    <Folder Include="Images\" />
-    <Folder Include="Services\" />
-    <Folder Include="Design\Descriptors\" />
-    <Folder Include="Design\ViewBuilders\" />
-    <Folder Include="Design\Actions\" />
-    <Folder Include="Design\Templates\" />
-    <Folder Include="Commands\DetailCommands\" />
-    <Folder Include="Commands\ListCommands\" />
-    <Folder Include="Images\MCollection\" />
-  </ItemGroup>
+  <ItemGroup />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

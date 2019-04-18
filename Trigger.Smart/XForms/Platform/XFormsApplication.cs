@@ -10,13 +10,7 @@ namespace XForms.Platform
     {
         protected LogonParameters LogonParams;
 
-        protected IDependencyMap Map
-        {
-            get
-            {
-                return MapProvider.Instance;
-            }
-        }
+        protected IDependencyMap Map => MapProvider.Instance;
 
         public virtual void InitalizeApplication(BootstrapperBase bootstrapper, LogonParameters logonParams = null)
         {

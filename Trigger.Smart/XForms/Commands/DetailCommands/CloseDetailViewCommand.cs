@@ -18,60 +18,18 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_close";
-            }
-        }
+        public string ID => "cmd_close";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Close";
-            }
-        }
+        public string Name => "Close";
 
-        public string ImageName
-        {
-            get
-            {
-                return "navigate_close";
-            }
-        }
+        public string ImageName => "navigate_close";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

@@ -16,21 +16,9 @@ namespace XForms.Commands
             CurrentUser.ShowDetailContentEmbedded();
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_current_User";
-            }
-        }
+        public string ID => "cmd_current_User";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.ImageAndText;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.ImageAndText;
 
         public string Name
         {
@@ -66,36 +54,12 @@ namespace XForms.Commands
             }
         }
 
-        public int Width
-        {
-            get
-            {
-                return 110;
-            }
-        }
+        public int Width => 110;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
 
-        protected User CurrentUser
-        {
-            get
-            {
-                return MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
-            }
-        }
+        protected User CurrentUser => MapProvider.Instance.ResolveInstance<ISecurityInfoProvider>().CurrentUser;
     }
 }

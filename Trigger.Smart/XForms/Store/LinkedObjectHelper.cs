@@ -7,13 +7,7 @@ namespace XForms.Store
 
     public static class LinkedObjectHelper
     {
-        static IStore Store
-        {
-            get
-            {
-                return MapProvider.Instance.ResolveType<IStore>();
-            }
-        }
+        static IStore Store => MapProvider.Instance.ResolveType<IStore>();
 
         public static void UpdateStoredReferences(IStorable storable)
         {

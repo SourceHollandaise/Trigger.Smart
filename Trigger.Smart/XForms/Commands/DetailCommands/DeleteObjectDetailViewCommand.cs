@@ -26,45 +26,15 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_delete";
-            }
-        }
+        public string ID => "cmd_delete";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Delete";
-            }
-        }
+        public string Name => "Delete";
 
-        public string ImageName
-        {
-            get
-            {
-                return "delete";
-            }
-        }
+        public string ImageName => "delete";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
         public bool AllowExecute
         {
@@ -82,12 +52,6 @@ namespace XForms.Commands
             }
         }
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

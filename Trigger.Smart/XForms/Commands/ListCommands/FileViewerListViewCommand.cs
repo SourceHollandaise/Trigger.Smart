@@ -41,60 +41,18 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_image_slideshow";
-            }
-        }
+        public string ID => "cmd_image_slideshow";
 
-        public string Name
-        {
-            get
-            {
-                return "Slideshow";
-            }
-        }
+        public string Name => "Slideshow";
 
-        public string ImageName
-        {
-            get
-            {
-                return "presentation";
-            }
-        }
+        public string ImageName => "presentation";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
     }
 }

@@ -14,60 +14,18 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_navigate_home";
-            }
-        }
+        public string ID => "cmd_navigate_home";
 
-        public string Name
-        {
-            get
-            {
-                return "Home";
-            }
-        }
+        public string Name => "Home";
 
-        public string ImageName
-        {
-            get
-            {
-                return "navigate_close";
-            }
-        }
+        public string ImageName => "navigate_close";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return Application.Instance.MainForm is XForms.Design.ReducedMainViewTemplate;
-            }
-        }
+        public bool Visible => Application.Instance.MainForm is XForms.Design.ReducedMainViewTemplate;
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
     }
 }

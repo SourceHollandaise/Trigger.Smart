@@ -10,60 +10,18 @@ namespace XForms.Commands
                 args.CurrentObject.Save();
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_save";
-            }
-        }
+        public string ID => "cmd_save";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Save";
-            }
-        }
+        public string Name => "Save";
 
-        public string ImageName
-        {
-            get
-            {
-                return "floppy_disk";
-            }
-        }
+        public string ImageName => "floppy_disk";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

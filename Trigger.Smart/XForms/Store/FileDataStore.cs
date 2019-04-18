@@ -170,13 +170,7 @@ namespace XForms.Store
             return typeDir;
         }
 
-        static IStoreConfiguration StoreConfig
-        {
-            get
-            {
-                return MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
-            }
-        }
+        static IStoreConfiguration StoreConfig => MapProvider.Instance.ResolveInstance<IStoreConfiguration>();
     }
 }
 

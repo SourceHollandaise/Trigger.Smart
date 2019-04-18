@@ -9,60 +9,18 @@ namespace XForms.Commands
 
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_print";
-            }
-        }
+        public string ID => "cmd_print";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Print";
-            }
-        }
+        public string Name => "Print";
 
-        public string ImageName
-        {
-            get
-            {
-                return "printer";
-            }
-        }
+        public string ImageName => "printer";
 
-        public int Width
-        {
-            get
-            {
-                return 70;
-            }
-        }
+        public int Width => 70;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

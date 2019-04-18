@@ -2,7 +2,6 @@ using Eto.Forms;
 
 namespace XForms.Commands
 {
-
     public static class ConfirmationMessages
     {
         static readonly string securityWarningCaption = "Security Warning";

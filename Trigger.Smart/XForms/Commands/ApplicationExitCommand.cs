@@ -3,7 +3,6 @@ using XForms.Design;
 
 namespace XForms.Commands
 {
-
     public class ApplicationExitCommand : IApplicationExitCommand
     {
         public void Execute(TemplateBase template)
@@ -16,60 +15,18 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_exit";
-            }
-        }
+        public string ID => "cmd_exit";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.ImageAndText;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.ImageAndText;
 
-        public string Name
-        {
-            get
-            {
-                return "Exit";
-            }
-        }
+        public string Name => "Exit";
 
-        public string ImageName
-        {
-            get
-            {
-                return "exit";
-            }
-        }
+        public string ImageName => "exit";
 
-        public int Width
-        {
-            get
-            {
-                return 100;
-            }
-        }
+        public int Width => 100;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

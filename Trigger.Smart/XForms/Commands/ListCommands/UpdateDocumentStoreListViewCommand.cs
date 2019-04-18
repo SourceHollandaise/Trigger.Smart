@@ -13,60 +13,18 @@ namespace XForms.Commands
             args.Grid.ReloadList(args.TargetType, args.CustomDataSet);
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_update_docstore";
-            }
-        }
+        public string ID => "cmd_update_docstore";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Load files";
-            }
-        }
+        public string Name => "Load files";
 
-        public string ImageName
-        {
-            get
-            {
-                return "server_to_client";
-            }
-        }
+        public string ImageName => "server_to_client";
 
-        public int Width
-        {
-            get
-            {
-                return 34;
-            }
-        }
+        public int Width => 34;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

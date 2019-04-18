@@ -28,45 +28,15 @@ namespace XForms.Commands
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_open";
-            }
-        }
+        public string ID => "cmd_open";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.Image;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.Image;
 
-        public string Name
-        {
-            get
-            {
-                return "Open";
-            }
-        }
+        public string Name => "Open";
 
-        public string ImageName
-        {
-            get
-            {
-                return "window_up";
-            }
-        }
+        public string ImageName => "window_up";
 
-        public int Width
-        {
-            get
-            {
-                return 70;
-            }
-        }
+        public int Width => 70;
 
         public bool AllowExecute
         {
@@ -81,12 +51,6 @@ namespace XForms.Commands
             }
         }
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 }

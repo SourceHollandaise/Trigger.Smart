@@ -30,13 +30,7 @@ namespace XForms.Design
             this.Content = GetMainPanelNavigationButtonStyle();
         }
 
-        public bool IsReduced
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsReduced => true;
 
         public void SetContent(Control control)
         {

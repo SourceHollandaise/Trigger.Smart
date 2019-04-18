@@ -9,61 +9,19 @@ namespace XForms.Commands
             new LogonViewTemplate().ShowModal();
         }
 
-        public string ID
-        {
-            get
-            {
-                return "cmd_logoff";
-            }
-        }
+        public string ID => "cmd_logoff";
 
-        public ButtonDisplayStyle DisplayStyle
-        {
-            get
-            {
-                return ButtonDisplayStyle.ImageAndText;
-            }
-        }
+        public ButtonDisplayStyle DisplayStyle => ButtonDisplayStyle.ImageAndText;
 
-        public string Name
-        {
-            get
-            {
-                return "Login";
-            }
-        }
+        public string Name => "Login";
 
-        public string ImageName
-        {
-            get
-            {
-                return "key2";
-            }
-        }
+        public string ImageName => "key2";
 
-        public int Width
-        {
-            get
-            {
-                return 100;
-            }
-        }
+        public int Width => 100;
 
-        public bool AllowExecute
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool AllowExecute => true;
 
-        public bool Visible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Visible => true;
     }
 
 }

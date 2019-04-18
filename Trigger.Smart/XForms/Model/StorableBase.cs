@@ -87,21 +87,9 @@ namespace XForms.Model
             LinkedObjectHelper.UpdateStoredReferences(this);
         }
 
-        protected IDependencyMap Map
-        {
-            get
-            {
-                return MapProvider.Instance;
-            }
-        }
+        protected IDependencyMap Map => MapProvider.Instance;
 
-        protected IStore Store
-        {
-            get
-            {
-                return Map.ResolveType<IStore>();
-            }
-        }
+        protected IStore Store => Map.ResolveType<IStore>();
 
         public override bool Equals(object obj)
         {

@@ -7,13 +7,7 @@ namespace XForms.Design
     {
         static Stack<Control> stack = new Stack<Control>();
 
-        public static bool BackPossible
-        {
-            get
-            {
-                return stack.Count > 0;
-            }
-        }
+        public static bool BackPossible => stack.Count > 0;
 
         public static void Add(Control content)
         {

@@ -13,12 +13,6 @@ namespace XForms.Security
             set;
         }
 
-        public User CurrentUser
-        {
-            get
-            {
-                return MapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == UserName);
-            }
-        }
+        public User CurrentUser => MapProvider.Instance.ResolveType<IStore>().LoadAll<User>().FirstOrDefault(p => p.UserName == UserName);
     }
 }
